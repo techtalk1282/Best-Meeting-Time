@@ -1,54 +1,70 @@
-// app/api/checkout/route.ts
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 export const runtime = "nodejs";
 
-function requireEnv(name: string): string {
-  const v = process.env[name];
-  if (!v || !v.trim()) throw new Error(`Missing ${name}`);
-  return v.trim();
-}
+/**
+ * Initialize Stripe
+ */
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: "2024-06-20",
+});
 
-function getBaseUrl(req: NextRequest): string {
-  // Prefer NEXT_PUBLIC_APP_URL if it's a valid absolute URL with http/https
-  const envUrl = (process.env.NEXT_PUBLIC_APP_URL || "").trim();
-  if (envUrl) {
-    try {
-      const u = new URL(envUrl);
-      if (u.protocol === "http:" || u.protocol === "https:") return u.origin;
-    } catch {
-      // fall through to req origin
-    }
-  }
-
-  // Fallback: always valid on Vercel (includes https://)
-  return req.nextUrl.origin;
-}
-
-export async function POST(req: NextRequest) {
+/**
+ * Create Checkout Session
+ */
+export async function POST(req: Request) {
   try {
-    const stripeSecretKey = requireEnv("STRIPE_SECRET_KEY");
-    const stripePriceId = requireEnv("STRIPE_PRICE_ID");
+    if (!process.env.STRIPE_SECRET_KEY) {
+      return NextResponse.json(
+        { error: "Missing STRIPE_SECRET_KEY" },
+        { status: 500 }
+      );
+    }
 
-    const stripe = new Stripe(stripeSecretKey, {
-      apiVersion: "2024-06-20",
-    });
+    if (!process.env.STRIPE_PRICE_ID) {
+      return NextResponse.json(
+        { error: "Missing STRIPE_PRICE_ID" },
+        { status: 500 }
+      );
+    }
 
-    const baseUrl = getBaseUrl(req);
+    /**
+     * ✅ SAFELY derive absolute origin (https://...)
+     * Works in:
+     * - Production
+     * - Preview
+     * - Custom domains
+     */
+    const origin = req.headers.get("origin");
+
+    if (!origin) {
+      return NextResponse.json(
+        { error: "Unable to determine request origin" },
+        { status: 500 }
+      );
+    }
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       payment_method_types: ["card"],
-      line_items: [{ price: stripePriceId, quantity: 1 }],
-      success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${baseUrl}/`,
+      line_items: [
+        {
+          price: process.env.STRIPE_PRICE_ID,
+          quantity: 1,
+        },
+      ],
+      success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/`,
     });
 
     return NextResponse.json({ url: session.url });
   } catch (err: any) {
-    const message =
-      typeof err?.message === "string" ? err.message : "Checkout failed";
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error("Stripe Checkout Error:", err);
+
+    return NextResponse.json(
+      { error: err.message ?? "Stripe checkout failed" },
+      { status: 500 }
+    );
   }
 }
