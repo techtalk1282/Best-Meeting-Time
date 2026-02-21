@@ -1,12 +1,5 @@
-// app/success/page.tsx
 import Stripe from "stripe";
 
-/**
- * Server Component page:
- * - Reads ?session_id=...
- * - Verifies the Checkout Session on the server using STRIPE_SECRET_KEY
- * - Shows Premium ON if payment_status === "paid"
- */
 export default async function SuccessPage({
   searchParams,
 }: {
@@ -42,12 +35,12 @@ export default async function SuccessPage({
 
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
-
-    // Stripe’s most direct indicator for one-time payment completion
     paid = session.payment_status === "paid";
   } catch {
     paid = false;
   }
+
+  const continueHref = `/api/premium?session_id=${encodeURIComponent(sessionId)}`;
 
   return (
     <main style={{ padding: 24, fontFamily: "system-ui" }}>
@@ -55,7 +48,11 @@ export default async function SuccessPage({
       <p>Premium: {paid ? "ON" : "OFF"}</p>
 
       <div style={{ marginTop: 16 }}>
-        <a href="/">Back home</a>
+        {paid ? (
+          <a href={continueHref}>Continue</a>
+        ) : (
+          <a href="/">Back home</a>
+        )}
       </div>
 
       {!paid && (
