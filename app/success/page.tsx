@@ -29,30 +29,25 @@ export default async function SuccessPage({ searchParams }: Props) {
     return (
       <main style={{ padding: 24, fontFamily: "system-ui" }}>
         <h1>Missing session_id</h1>
-        <p>
-          Stripe did not return a session_id. Please try checkout again.
-        </p>
+        <p>Stripe did not return a session_id.</p>
         <Link href="/">Back home</Link>
       </main>
     );
   }
 
-  const stripeSecret = requireEnv("STRIPE_SECRET_KEY");
-  const stripe = new Stripe(stripeSecret, { apiVersion: "2024-06-20" });
+  const stripe = new Stripe(requireEnv("STRIPE_SECRET_KEY"));
 
-  // Verify the Checkout Session server-side
   const session = await stripe.checkout.sessions.retrieve(session_id);
 
   const paid = session.payment_status === "paid";
 
   if (paid) {
-    // Set Premium cookie (HTTP-only) so the Home page can read it on the server
     cookies().set("premium", "1", {
       httpOnly: true,
       secure: true,
       sameSite: "lax",
       path: "/",
-      maxAge: 60 * 60 * 24 * 365, // 1 year
+      maxAge: 60 * 60 * 24 * 365,
     });
   }
 
