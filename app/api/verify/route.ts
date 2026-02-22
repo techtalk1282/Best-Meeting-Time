@@ -4,6 +4,7 @@ import Stripe from "stripe";
 import { cookies } from "next/headers";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 function requireEnv(name: string): string {
   const v = process.env[name];
@@ -33,13 +34,12 @@ export async function GET(req: Request) {
       );
     }
 
-    // Set premium cookie (source of truth)
     cookies().set("premium", "1", {
       httpOnly: true,
       secure: true,
       sameSite: "lax",
       path: "/",
-      maxAge: 60 * 60 * 24 * 365, // 1 year
+      maxAge: 60 * 60 * 24 * 365,
     });
 
     return NextResponse.json({ ok: true });
