@@ -2,17 +2,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useSearchParams, useRouter } from "next/navigation";
 
-export default function SuccessPage({
-  searchParams,
-}: {
-  searchParams: { session_id?: string };
-}) {
-  const sessionId = searchParams?.session_id;
-  const [status, setStatus] = useState<
-    "loading" | "success" | "error"
-  >("loading");
+export default function SuccessPage() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const sessionId = searchParams.get("session_id");
+
+  const [status, setStatus] = useState<"loading" | "ok" | "error">("loading");
 
   useEffect(() => {
     if (!sessionId) {
@@ -23,41 +20,30 @@ export default function SuccessPage({
     fetch(`/api/verify?session_id=${sessionId}`)
       .then((res) => res.json())
       .then((data) => {
-        if (data?.ok) {
-          setStatus("success");
+        if (data.ok) {
+          setStatus("ok");
+          setTimeout(() => {
+            router.push("/");
+          }, 1500);
         } else {
           setStatus("error");
         }
       })
-      .catch(() => {
-        setStatus("error");
-      });
-  }, [sessionId]);
+      .catch(() => setStatus("error"));
+  }, [sessionId, router]);
 
   if (status === "loading") {
-    return (
-      <main style={{ padding: 24, fontFamily: "system-ui" }}>
-        <h1>Verifying payment…</h1>
-        <p>Please wait.</p>
-      </main>
-    );
+    return <h1>Verifying payment…</h1>;
   }
 
   if (status === "error") {
     return (
-      <main style={{ padding: 24, fontFamily: "system-ui" }}>
+      <>
         <h1>Verification failed</h1>
-        <p>We could not confirm your payment.</p>
-        <Link href="/">Back home</Link>
-      </main>
+        <a href="/">Back home</a>
+      </>
     );
   }
 
-  return (
-    <main style={{ padding: 24, fontFamily: "system-ui" }}>
-      <h1>Payment successful</h1>
-      <p>Premium has been unlocked.</p>
-      <Link href="/">Go back home</Link>
-    </main>
-  );
+  return <h1>Payment successful! Redirecting…</h1>;
 }
