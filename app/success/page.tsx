@@ -1,66 +1,74 @@
+// app/success/page.tsx
 import Stripe from "stripe";
+import { cookies } from "next/headers";
+import Link from "next/link";
 
-export default async function SuccessPage({
-  searchParams,
-}: {
-  searchParams: { session_id?: string };
-}) {
-  const sessionId = searchParams.session_id;
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
-  if (!sessionId) {
+function requireEnv(name: string): string {
+  const v = process.env[name];
+  if (!v || !v.trim()) throw new Error(`Missing env: ${name}`);
+  return v.trim();
+}
+
+type Props = {
+  searchParams?: Record<string, string | string[] | undefined>;
+};
+
+export default async function SuccessPage({ searchParams }: Props) {
+  const sessionIdRaw = searchParams?.session_id;
+  const session_id =
+    typeof sessionIdRaw === "string"
+      ? sessionIdRaw
+      : Array.isArray(sessionIdRaw)
+      ? sessionIdRaw[0]
+      : undefined;
+
+  if (!session_id) {
     return (
       <main style={{ padding: 24, fontFamily: "system-ui" }}>
-        <h1>Payment Result</h1>
-        <p>Missing session_id.</p>
-        <a href="/">Back home</a>
+        <h1>Missing session_id</h1>
+        <p>
+          Stripe did not return a session_id. Please try checkout again.
+        </p>
+        <Link href="/">Back home</Link>
       </main>
     );
   }
 
-  if (!process.env.STRIPE_SECRET_KEY) {
-    return (
-      <main style={{ padding: 24, fontFamily: "system-ui" }}>
-        <h1>Payment Result</h1>
-        <p>Server misconfigured: Missing STRIPE_SECRET_KEY.</p>
-        <a href="/">Back home</a>
-      </main>
-    );
+  const stripeSecret = requireEnv("STRIPE_SECRET_KEY");
+  const stripe = new Stripe(stripeSecret, { apiVersion: "2024-06-20" });
+
+  // Verify the Checkout Session server-side
+  const session = await stripe.checkout.sessions.retrieve(session_id);
+
+  const paid = session.payment_status === "paid";
+
+  if (paid) {
+    // Set Premium cookie (HTTP-only) so the Home page can read it on the server
+    cookies().set("premium", "1", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 365, // 1 year
+    });
   }
-
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-    apiVersion: "2024-06-20",
-  });
-
-  let paid = false;
-
-  try {
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
-    paid = session.payment_status === "paid";
-  } catch {
-    paid = false;
-  }
-
-  const continueHref = `/api/premium?session_id=${encodeURIComponent(sessionId)}`;
 
   return (
     <main style={{ padding: 24, fontFamily: "system-ui" }}>
-      <h1>Payment {paid ? "Successful" : "Not Verified"}</h1>
+      <h1>{paid ? "Payment Successful" : "Payment Not Completed"}</h1>
       <p>Premium: {paid ? "ON" : "OFF"}</p>
 
       <div style={{ marginTop: 16 }}>
-        {paid ? (
-          <a href={continueHref}>Continue</a>
-        ) : (
-          <a href="/">Back home</a>
-        )}
+        <Link href="/">Back home</Link>
       </div>
 
-      {!paid && (
-        <p style={{ marginTop: 16 }}>
-          If you were charged, this usually means the session_id is invalid,
-          expired, or the payment is not marked paid yet.
-        </p>
-      )}
+      <div style={{ marginTop: 16, opacity: 0.7, fontSize: 12 }}>
+        <div>session_id: {session_id}</div>
+        <div>payment_status: {session.payment_status}</div>
+      </div>
     </main>
   );
 }
