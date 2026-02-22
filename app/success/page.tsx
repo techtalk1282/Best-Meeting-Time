@@ -1,44 +1,63 @@
 // app/success/page.tsx
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
-export const dynamic = "force-dynamic";
+export default function SuccessPage({
+  searchParams,
+}: {
+  searchParams: { session_id?: string };
+}) {
+  const sessionId = searchParams?.session_id;
+  const [status, setStatus] = useState<
+    "loading" | "success" | "error"
+  >("loading");
 
-type Props = {
-  searchParams?: Record<string, string | string[] | undefined>;
-};
+  useEffect(() => {
+    if (!sessionId) {
+      setStatus("error");
+      return;
+    }
 
-export default async function SuccessPage({ searchParams }: Props) {
-  const raw = searchParams?.session_id;
-  const session_id =
-    typeof raw === "string" ? raw : Array.isArray(raw) ? raw[0] : null;
+    fetch(`/api/verify?session_id=${sessionId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.ok) {
+          setStatus("success");
+        } else {
+          setStatus("error");
+        }
+      })
+      .catch(() => {
+        setStatus("error");
+      });
+  }, [sessionId]);
 
-  if (!session_id) {
+  if (status === "loading") {
     return (
       <main style={{ padding: 24, fontFamily: "system-ui" }}>
-        <h1>Payment Not Verified</h1>
-        <p>Missing session_id.</p>
+        <h1>Verifying payment…</h1>
+        <p>Please wait.</p>
+      </main>
+    );
+  }
+
+  if (status === "error") {
+    return (
+      <main style={{ padding: 24, fontFamily: "system-ui" }}>
+        <h1>Verification failed</h1>
+        <p>We could not confirm your payment.</p>
         <Link href="/">Back home</Link>
       </main>
     );
   }
 
-  // Server-side call to our verify endpoint
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/verify?session_id=${session_id}`,
-    { cache: "no-store" }
-  );
-
-  const data = await res.json();
-  const ok = data?.ok === true;
-
   return (
     <main style={{ padding: 24, fontFamily: "system-ui" }}>
-      <h1>{ok ? "Payment Successful" : "Payment Not Verified"}</h1>
-      <p>Premium: {ok ? "ON" : "OFF"}</p>
-
-      <div style={{ marginTop: 16 }}>
-        <Link href="/">Back home</Link>
-      </div>
+      <h1>Payment successful</h1>
+      <p>Premium has been unlocked.</p>
+      <Link href="/">Go back home</Link>
     </main>
   );
 }
