@@ -55,7 +55,11 @@ export async function POST(req: Request) {
         },
       ],
       success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/`,
+      cancel_url: `${origin}/cancel`,
+      // Metadata for webhook tracking (optional but helpful)
+      metadata: {
+        created_at: new Date().toISOString(),
+      },
     });
 
     return NextResponse.json({ url: session.url });
