@@ -1,17 +1,21 @@
 // app/api/verify/route.ts
 import { NextResponse } from "next/server";
-import Stripe from "stripe";
 import { cookies } from "next/headers";
+import { readUnlockStatus } from "@/lib/storage/kv";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-function requireEnv(name: string): string {
-  const v = process.env[name];
-  if (!v || !v.trim()) throw new Error(`Missing env: ${name}`);
-  return v.trim();
-}
-
+/**
+ * Verify endpoint - checks unlock status from KV (authoritative source)
+ * 
+ * PRODUCTION-SAFE FLOW:
+ * 1. Reads unlock status from Vercel KV (authoritative source)
+ * 2. If KV key exists → unlock confirmed, set premium cookie
+ * 3. If KV key doesn't exist → webhook hasn't written yet, return pending
+ * 
+ * NO Stripe API calls - reads ONLY from KV for unlock decisions
+ */
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
@@ -24,27 +28,34 @@ export async function GET(req: Request) {
       );
     }
 
-    const stripe = new Stripe(requireEnv("STRIPE_SECRET_KEY"));
-    const session = await stripe.checkout.sessions.retrieve(session_id);
+    console.log(`UNLOCK_READ: Verifying unlock for session ${session_id}`);
 
-    if (session.payment_status !== "paid") {
+    // Read from KV (authoritative source) - NO Stripe API calls
+    const unlockStatus = await readUnlockStatus(session_id);
+
+    if (!unlockStatus) {
+      // KV doesn't have unlock yet - webhook hasn't written
+      console.log(`UNLOCK_READ: No unlock found in KV for ${session_id}, webhook pending`);
       return NextResponse.json(
-        { ok: false, reason: "not_paid" },
+        { ok: false, reason: "webhook_pending", retry: true },
         { status: 200 }
       );
     }
 
+    // Unlock exists in KV - safe to grant access
+    console.log(`UNLOCK_READ: Unlock confirmed in KV for ${session_id}, setting cookie`);
+    
     cookies().set("premium", "1", {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
       path: "/",
-      maxAge: 60 * 60 * 24 * 365,
+      maxAge: 60 * 60 * 24 * 365, // 1 year
     });
 
     return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error("verify error:", err);
+    console.error("UNLOCK_READ: verify error:", err);
     return NextResponse.json(
       { ok: false, reason: "verify_exception" },
       { status: 500 }
