@@ -2,12 +2,12 @@
 
 import { notFound } from "next/navigation";
 
-interface ShareData {
+type ShareData = {
   id: string;
   createdAt: string;
   cities: { name: string; tz: string }[];
   windows: { startUtc: string; endUtc: string }[];
-}
+};
 
 async function getShare(id: string): Promise<ShareData | null> {
   const res = await fetch(
@@ -26,11 +26,18 @@ export default async function SharePage({
 }) {
   const data = await getShare(params.id);
 
-  if (!data) notFound();
+  if (!data) {
+    notFound();
+  }
 
   return (
-    <main style={{ padding: "32px", fontFamily: "sans-serif" }}>
-      <h1>Shared Meeting</h1>
+    <main style={{ padding: 24 }}>
+      <h1>Shared Meeting Time</h1>
+
+      <p>
+        <strong>Created:</strong>{" "}
+        {new Date(data.createdAt).toLocaleString()}
+      </p>
 
       <h2>Cities</h2>
       <ul>
