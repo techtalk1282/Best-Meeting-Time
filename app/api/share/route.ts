@@ -20,18 +20,19 @@ export async function OPTIONS() {
 /*
 Expected POST body:
 {
-  jobId: string,                // same identifier used by /api/verify
   cities: { name: string; tz: string }[],
   windows: { startUtc: string; endUtc: string }[]
 }
+
+jobId is resolved SERVER-SIDE from cookies.
 */
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { jobId, cities, windows } = body || {};
+    const { cities, windows } = body || {};
 
-    if (!jobId || !Array.isArray(cities) || !Array.isArray(windows)) {
+    if (!Array.isArray(cities) || !Array.isArray(windows)) {
       return NextResponse.json(
         { error: "Invalid payload" },
         { status: 400, headers: CORS_HEADERS }
@@ -42,6 +43,16 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         { error: "Max 3 windows allowed" },
         { status: 400, headers: CORS_HEADERS }
+      );
+    }
+
+    // 🔐 Resolve jobId from HTTP-only cookies (authoritative)
+    const jobId = req.cookies.get("jobId")?.value;
+
+    if (!jobId) {
+      return NextResponse.json(
+        { error: "Missing jobId" },
+        { status: 401, headers: CORS_HEADERS }
       );
     }
 
