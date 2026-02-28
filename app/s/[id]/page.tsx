@@ -1,21 +1,34 @@
 // app/s/[id]/page.tsx
 
 import { notFound } from "next/navigation";
+import { formatUtcToLocal } from "@/lib/time";
 
-type ShareData = {
+interface ShareData {
   id: string;
-  createdAt: string;
-  cities: { name: string; tz: string }[];
-  windows: { startUtc: string; endUtc: string }[];
-};
+  cities: {
+    name: string;
+    timezone: string;
+  }[];
+  date: string;
+  timeWindows: {
+    startUtc: string;
+    endUtc: string;
+  }[];
+  createdAt?: string;
+}
 
-async function getShare(id: string): Promise<ShareData | null> {
+async function getShareData(id: string): Promise<ShareData> {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/share/${id}`,
-    { cache: "no-store" }
+    {
+      cache: "no-store",
+    }
   );
 
-  if (!res.ok) return null;
+  if (!res.ok) {
+    notFound();
+  }
+
   return res.json();
 }
 
@@ -24,38 +37,46 @@ export default async function SharePage({
 }: {
   params: { id: string };
 }) {
-  const data = await getShare(params.id);
-
-  if (!data) {
-    notFound();
-  }
+  const data = await getShareData(params.id);
 
   return (
-    <main style={{ padding: 24 }}>
-      <h1>Shared Meeting Time</h1>
+    <main style={{ padding: "2rem", maxWidth: 800 }}>
+      <h1>Best Meeting Time</h1>
 
       <p>
-        <strong>Created:</strong>{" "}
-        {new Date(data.createdAt).toLocaleString()}
+        <strong>Shared Meeting</strong>
       </p>
+
+      {data.createdAt && (
+        <p>
+          Created: {formatUtcToLocal(data.createdAt)}
+        </p>
+      )}
+
+      <hr />
 
       <h2>Cities</h2>
       <ul>
-        {data.cities.map((c) => (
-          <li key={c.name}>
-            {c.name} ({c.tz})
+        {data.cities.map((city) => (
+          <li key={city.name}>
+            {city.name} ({city.timezone})
           </li>
         ))}
       </ul>
 
-      <h2>Windows (UTC)</h2>
-      <ul>
-        {data.windows.map((w, i) => (
-          <li key={i}>
-            {w.startUtc} → {w.endUtc}
-          </li>
-        ))}
-      </ul>
+      <hr />
+
+      <h2>Suggested Time Window(s)</h2>
+
+      {data.timeWindows.map((window, idx) => (
+        <div key={idx} style={{ marginBottom: "1rem" }}>
+          <strong>Option {idx + 1}</strong>
+          <div>
+            {formatUtcToLocal(window.startUtc)} –{" "}
+            {formatUtcToLocal(window.endUtc)}
+          </div>
+        </div>
+      ))}
     </main>
   );
 }
