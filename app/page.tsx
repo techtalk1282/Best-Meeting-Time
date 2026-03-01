@@ -1,30 +1,16 @@
-// app/page.tsx
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+"use client";
 
-export default function HomePage({
-  searchParams,
-}: {
-  searchParams?: { session_id?: string };
-}) {
-  const premium = cookies().get("premium")?.value === "1";
-  const sessionId = searchParams?.session_id;
+import UnlockPremiumButton from "./UnlockPremiumButton";
 
-  // If returning from Stripe with session_id, verify unlock
-  if (sessionId) {
-    redirect(`/verify-unlock?session_id=${sessionId}`);
-  }
-
+export default function HomePage() {
   return (
-    <main style={{ padding: 24, fontFamily: "system-ui" }}>
+    <main style={{ padding: "40px", fontFamily: "sans-serif" }}>
       <h1>Best Meeting Time</h1>
-      <p>Premium: {premium ? "ON" : "OFF"}</p>
 
-      {!premium && (
-        <a href="/api/checkout">
-          <button>Unlock Premium ($1)</button>
-        </a>
-      )}
+      <p>Premium: OFF</p>
+
+      {/* IMPORTANT: no <a>, no <form>, no href */}
+      <UnlockPremiumButton />
     </main>
   );
 }
