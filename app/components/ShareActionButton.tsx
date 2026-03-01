@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 type City = {
   name: string;
@@ -20,13 +19,16 @@ export default function ShareActionButton({
   cities: City[];
   windows: Window[];
 }) {
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [shareUrl, setShareUrl] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   async function handleShare() {
     setLoading(true);
     setError(null);
+    setShareUrl(null);
+    setCopied(false);
 
     try {
       const res = await fetch("/api/share", {
@@ -44,8 +46,9 @@ export default function ShareActionButton({
         throw new Error("Share failed");
       }
 
-      const { id } = await res.json();
-      router.push(`/s/${id}`);
+      const { url } = await res.json();
+      const fullUrl = `${window.location.origin}${url}`;
+      setShareUrl(fullUrl);
     } catch {
       setError("Unable to create share link");
     } finally {
@@ -53,13 +56,34 @@ export default function ShareActionButton({
     }
   }
 
+  function handleCopy() {
+    if (!shareUrl) return;
+    navigator.clipboard.writeText(shareUrl);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  }
+
   return (
-    <div>
+    <div style={{ marginTop: "12px" }}>
       <button onClick={handleShare} disabled={loading}>
         {loading ? "Creating link…" : "Share meeting"}
       </button>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
+
+      {shareUrl && (
+        <div style={{ marginTop: "10px" }}>
+          <input
+            type="text"
+            value={shareUrl}
+            readOnly
+            style={{ width: "100%", padding: "6px" }}
+          />
+          <button onClick={handleCopy} style={{ marginTop: "6px" }}>
+            {copied ? "Copied!" : "Copy link"}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
