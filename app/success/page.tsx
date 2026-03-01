@@ -1,16 +1,19 @@
 "use client";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 
-export default function SuccessPage() {
+function SuccessInner() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const sessionId = searchParams.get("session_id");
 
   useEffect(() => {
-    if (!sessionId) return;
+    if (!sessionId) {
+      router.replace("/");
+      return;
+    }
 
     let attempts = 0;
     const maxAttempts = 10;
@@ -42,4 +45,12 @@ export default function SuccessPage() {
   }, [sessionId, router]);
 
   return <h1>Payment successful. Redirecting...</h1>;
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={<h1>Finalizing payment…</h1>}>
+      <SuccessInner />
+    </Suspense>
+  );
 }
