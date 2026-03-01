@@ -5,25 +5,28 @@ import { formatUtcToLocal } from "@/lib/time";
 
 interface ShareData {
   id: string;
+  createdAt?: string;
   cities: {
     name: string;
-    timezone: string;
+    tz: string; // matches /api/share POST payload + KV snapshot
   }[];
-  date: string;
-  timeWindows: {
+  windows: {
     startUtc: string;
     endUtc: string;
-  }[];
-  createdAt?: string;
+  }[]; // matches /api/share snapshot key: "windows"
 }
 
 async function getShareData(id: string): Promise<ShareData> {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/share/${id}`,
-    {
-      cache: "no-store",
-    }
-  );
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+  if (!baseUrl) {
+    // Fail fast so you don’t get confusing “blank page” behavior in prod
+    throw new Error("Missing env: NEXT_PUBLIC_BASE_URL");
+  }
+
+  const res = await fetch(`${baseUrl}/api/share/${id}`, {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     notFound();
@@ -40,7 +43,7 @@ export default async function SharePage({
   const data = await getShareData(params.id);
 
   return (
-    <main style={{ padding: "2rem", maxWidth: 800 }}>
+    <main style={{ padding: "2rem", maxWidth: 800, fontFamily: "sans-serif" }}>
       <h1>Best Meeting Time</h1>
 
       <p>
@@ -48,9 +51,7 @@ export default async function SharePage({
       </p>
 
       {data.createdAt && (
-        <p>
-          Created: {formatUtcToLocal(data.createdAt)}
-        </p>
+        <p>Created: {formatUtcToLocal(data.createdAt)}</p>
       )}
 
       <hr />
@@ -59,7 +60,7 @@ export default async function SharePage({
       <ul>
         {data.cities.map((city) => (
           <li key={city.name}>
-            {city.name} ({city.timezone})
+            {city.name} ({city.tz})
           </li>
         ))}
       </ul>
@@ -67,13 +68,11 @@ export default async function SharePage({
       <hr />
 
       <h2>Suggested Time Window(s)</h2>
-
-      {data.timeWindows.map((window, idx) => (
+      {data.windows.map((w, idx) => (
         <div key={idx} style={{ marginBottom: "1rem" }}>
           <strong>Option {idx + 1}</strong>
           <div>
-            {formatUtcToLocal(window.startUtc)} –{" "}
-            {formatUtcToLocal(window.endUtc)}
+            {formatUtcToLocal(w.startUtc)} – {formatUtcToLocal(w.endUtc)}
           </div>
         </div>
       ))}
