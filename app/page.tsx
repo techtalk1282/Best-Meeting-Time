@@ -1,16 +1,16 @@
-"use client";
-
+import { cookies } from "next/headers";
 import UnlockPremiumButton from "./UnlockPremiumButton";
 
 export default function HomePage() {
+  const premium = cookies().get("premium")?.value === "1";
+
   return (
     <main style={{ padding: "40px", fontFamily: "sans-serif" }}>
       <h1>Best Meeting Time</h1>
 
-      <p>Premium: OFF</p>
+      <p>Premium: {premium ? "ON" : "OFF"}</p>
 
-      {/* IMPORTANT: no <a>, no <form>, no href */}
-      <UnlockPremiumButton />
+      {!premium && <UnlockPremiumButton />}
     </main>
   );
 }
