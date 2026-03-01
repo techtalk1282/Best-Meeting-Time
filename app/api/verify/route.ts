@@ -1,3 +1,4 @@
+// backup checkpoint before verify changes
 // app/api/verify/route.ts
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
