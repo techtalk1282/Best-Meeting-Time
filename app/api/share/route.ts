@@ -24,7 +24,10 @@ Expected POST body:
   windows: { startUtc: string; endUtc: string }[]
 }
 
-jobId is resolved SERVER-SIDE from cookies.
+AUTH:
+- Uses existing premium cookie set by /api/verify
+- No jobId
+- No session_id required here
 */
 
 export async function POST(req: NextRequest) {
@@ -46,21 +49,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 🔐 Resolve jobId from HTTP-only cookies (authoritative)
-    const jobId = req.cookies.get("jobId")?.value;
-
-    if (!jobId) {
-      return NextResponse.json(
-        { error: "Missing jobId" },
-        { status: 401, headers: CORS_HEADERS }
-      );
-    }
-
-    // 🔐 AUTHORITATIVE PREMIUM CHECK (Upstash KV)
-    const premiumKey = `premium:${jobId}`;
-    const isPremium = await kv.get<boolean>(premiumKey);
-
-    if (!isPremium) {
+    // 🔐 Gate by existing premium cookie (authoritative)
+    const premium = req.cookies.get("premium")?.value === "1";
+    if (!premium) {
       return NextResponse.json(
         { error: "Premium required" },
         { status: 403, headers: CORS_HEADERS }
@@ -85,7 +76,7 @@ export async function POST(req: NextRequest) {
       { id, url: `/s/${id}` },
       { status: 200, headers: CORS_HEADERS }
     );
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Server error" },
       { status: 500, headers: CORS_HEADERS }
