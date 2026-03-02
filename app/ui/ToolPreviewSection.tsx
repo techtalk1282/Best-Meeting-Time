@@ -2,9 +2,17 @@
 // PURPOSE: Tool preview section structure ONLY.
 // NO styling, NO logic, NO state, NO behavior.
 
-export default function ToolPreviewSection() {
+import { ReactNode } from "react";
+
+export default function ToolPreviewSection({
+  children,
+}: {
+  children?: ReactNode;
+}) {
   return (
     <section>
+      {children}
+
       <div>
         {/* Time comparison preview placeholder */}
       </div>
