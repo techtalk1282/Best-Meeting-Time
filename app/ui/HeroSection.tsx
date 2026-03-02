@@ -49,6 +49,11 @@ export default function HeroSection() {
           <div aria-label="Time Strip Placeholder">
             <p>Time strip placeholder</p>
           </div>
+
+          {/* Action Row */}
+          <div aria-label="Hero Action Row">
+            <button type="button">Compare Times</button>
+          </div>
         </div>
       </div>
     </section>
