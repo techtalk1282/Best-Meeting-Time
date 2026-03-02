@@ -28,9 +28,22 @@ export default function HeroSection() {
           </p>
         </div>
 
-        {/* Hero Card Wrapper (placeholder) */}
+        {/* Hero Card Wrapper */}
         <div aria-label="Hero Comparison Card">
-          <p>Hero card placeholder</p>
+          {/* City Comparison Header Row */}
+          <div aria-label="City Comparison Header">
+            <div>
+              <span>City A</span>
+            </div>
+
+            <div>
+              <span>Swap</span>
+            </div>
+
+            <div>
+              <span>City B</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
