@@ -19,3 +19,4 @@ export default function HomePage() {
     />
   );
 }
+// CHECKPOINT: layout shell + slot wiring verified rendering
