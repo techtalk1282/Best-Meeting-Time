@@ -10,42 +10,31 @@ export default function HeroSection() {
           padding-right: var(--space-6);
         }
 
-        /* NAV (refined) */
         .hero-nav {
-          display: grid;
-          grid-template-columns: auto 1fr auto;
+          display: flex;
           align-items: center;
-          column-gap: var(--space-8);
-          row-gap: var(--space-4);
+          justify-content: space-between;
           margin-bottom: var(--space-12);
-        }
-
-        .hero-nav-brand {
-          display: flex;
-          align-items: center;
-          gap: var(--space-2);
-          white-space: nowrap;
-        }
-
-        .hero-nav-links {
-          display: flex;
-          align-items: center;
-          justify-content: center;
           gap: var(--space-6);
           flex-wrap: wrap;
         }
 
-        .hero-nav-action {
+        .hero-nav-links {
           display: flex;
-          justify-content: flex-end;
-          white-space: nowrap;
+          gap: var(--space-6);
         }
 
-        .hero-nav-link {
-          line-height: var(--lh-normal);
+        .hero-logo {
+          display: inline-flex;
+          align-items: center;
         }
 
-        /* HERO (unchanged) */
+        .hero-logo img {
+          height: 40px;
+          width: auto;
+          display: block;
+        }
+
         .hero-main {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -100,46 +89,15 @@ export default function HeroSection() {
             grid-template-columns: 1fr;
             gap: var(--space-10);
           }
-
-          /* NAV: stack into 2 rows; keep action right */
-          .hero-nav {
-            grid-template-columns: auto 1fr;
-            grid-template-areas:
-              "brand action"
-              "links links";
-            column-gap: var(--space-6);
-            margin-bottom: var(--space-10);
-          }
-
-          .hero-nav-brand { grid-area: brand; }
-          .hero-nav-links { grid-area: links; justify-content: flex-start; }
-          .hero-nav-action { grid-area: action; }
         }
 
         /* Mobile */
         @media (max-width: 640px) {
-          .hero-container {
-            padding-left: var(--space-4);
-            padding-right: var(--space-4);
-          }
-
-          /* NAV: stack cleanly */
-          .hero-nav {
-            grid-template-columns: 1fr;
-            grid-template-areas:
-              "brand"
-              "action"
-              "links";
-            row-gap: var(--space-3);
-            margin-bottom: var(--space-10);
-          }
-
-          .hero-nav-action {
-            justify-content: flex-start;
+          .hero-logo img {
+            height: 34px;
           }
 
           .hero-nav-links {
-            justify-content: flex-start;
             gap: var(--space-4);
           }
 
@@ -150,37 +108,28 @@ export default function HeroSection() {
           .hero-headline h2 {
             font-size: var(--text-2xl);
           }
-
-          .hero-divider {
-            margin-top: var(--space-10);
-          }
-
-          .hero-demo-card {
-            padding: var(--space-5);
-          }
-
-          .hero-visual {
-            height: 120px;
-          }
         }
       `}</style>
 
       <div aria-label="Hero Container" className="hero-container">
         {/* Top Navigation Row */}
         <nav aria-label="Primary Navigation" className="hero-nav">
-          <div aria-label="Nav Brand" className="hero-nav-brand">
-            <span style={{ fontSize: "var(--text-lg)", fontWeight: 600 }}>
-              Best Meeting Time
-            </span>
+          <div aria-label="Nav Brand" className="hero-logo">
+            <a href="/" aria-label="Best Meeting Time home">
+              <img
+                src="/logo-best-meeting-time.svg"
+                alt="Best Meeting Time"
+              />
+            </a>
           </div>
 
           <div aria-label="Nav Links" className="hero-nav-links">
-            <span className="hero-nav-link">Features</span>
-            <span className="hero-nav-link">Pricing</span>
-            <span className="hero-nav-link">Login</span>
+            <span>Features</span>
+            <span>Pricing</span>
+            <span>Login</span>
           </div>
 
-          <div aria-label="Nav Action" className="hero-nav-action">
+          <div aria-label="Nav Action">
             <button type="button">Get Started</button>
           </div>
         </nav>
