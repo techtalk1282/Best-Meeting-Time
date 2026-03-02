@@ -117,7 +117,7 @@ export default function HeroSection() {
           <div aria-label="Nav Brand" className="hero-logo">
             <a href="/" aria-label="Best Meeting Time home">
               <img
-                src="/logo-best-meeting-time.svg"
+                src="/logo-best-meeting-time.png"
                 alt="Best Meeting Time"
               />
             </a>
