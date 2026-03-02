@@ -1,3 +1,6 @@
+// app/page.tsx
+// PURPOSE: Wire layout slots ONLY. No logic, no state.
+
 import LayoutShell from "./ui/LayoutShell";
 import HeroSection from "./ui/HeroSection";
 import ToolPreviewSection from "./ui/ToolPreviewSection";
