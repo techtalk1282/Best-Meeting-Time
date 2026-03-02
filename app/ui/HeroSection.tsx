@@ -1,14 +1,38 @@
 export default function HeroSection() {
   return (
-    <section aria-label="Hero Section">
-      <div aria-label="Hero Container">
+    <section
+      aria-label="Hero Section"
+      style={{ paddingTop: "var(--space-12)", paddingBottom: "var(--space-12)" }}
+    >
+      <div
+        aria-label="Hero Container"
+        style={{
+          maxWidth: "var(--container-max)",
+          margin: "0 auto",
+          paddingLeft: "var(--space-6)",
+          paddingRight: "var(--space-6)",
+        }}
+      >
         {/* Top Navigation Row */}
-        <nav aria-label="Primary Navigation">
+        <nav
+          aria-label="Primary Navigation"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginBottom: "var(--space-12)",
+          }}
+        >
           <div aria-label="Nav Brand">
-            <span>Best Meeting Time</span>
+            <span style={{ fontSize: "var(--text-lg)", fontWeight: 600 }}>
+              Best Meeting Time
+            </span>
           </div>
 
-          <div aria-label="Nav Links">
+          <div
+            aria-label="Nav Links"
+            style={{ display: "flex", gap: "var(--space-6)" }}
+          >
             <span>Features</span>
             <span>Pricing</span>
             <span>Login</span>
@@ -20,73 +44,80 @@ export default function HeroSection() {
         </nav>
 
         {/* Hero Main (2-column layout) */}
-        <div aria-label="Hero Main" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
-          {/* Left Column: Copy + Primary CTA */}
+        <div
+          aria-label="Hero Main"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "var(--space-12)",
+            alignItems: "start",
+          }}
+        >
+          {/* Left Column */}
           <div aria-label="Hero Left">
-            {/* Hero Headline Block */}
-            <div aria-label="Hero Headline">
+            <div
+              aria-label="Hero Headline"
+              style={{ marginBottom: "var(--space-8)" }}
+            >
               <h1>Find the Best Time to Meet</h1>
               <h2>Across Time Zones.</h2>
-              <p>
-                Easily schedule meetings with your team or clients around the world.
+              <p style={{ fontSize: "var(--text-lg)", maxWidth: 520 }}>
+                Easily schedule meetings with your team or clients around the
+                world.
               </p>
             </div>
 
-            {/* Primary CTA Row (visual priority) */}
-            <div aria-label="Hero Primary CTA" style={{ marginTop: 16 }}>
+            <div
+              aria-label="Hero Primary CTA"
+              style={{ display: "flex", flexDirection: "column", gap: "var(--space-3)" }}
+            >
               <button type="button">Compare Times</button>
-              <div aria-label="Hero Helper" style={{ marginTop: 8 }}>
-                <p>Helper text placeholder</p>
-              </div>
+              <p style={{ fontSize: "var(--text-sm)" }}>
+                Helper text placeholder
+              </p>
             </div>
           </div>
 
-          {/* Right Column: Visual / Demo Card */}
+          {/* Right Column */}
           <div aria-label="Hero Right">
-            <div aria-label="Hero Demo Card">
-              {/* Demo Header */}
-              <div aria-label="Demo Header">
-                <p>Demo preview (placeholder)</p>
+            <div
+              aria-label="Hero Demo Card"
+              style={{
+                padding: "var(--space-6)",
+                borderRadius: "var(--radius-md)",
+                border: "1px solid currentColor",
+              }}
+            >
+              <p style={{ marginBottom: "var(--space-4)" }}>
+                Demo preview (placeholder)
+              </p>
+
+              <div
+                aria-label="Hero Card"
+                style={{ display: "flex", flexDirection: "column", gap: "var(--space-4)" }}
+              >
+                <div
+                  aria-label="City Comparison Row"
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <span>City A</span>
+                  <span>Swap</span>
+                  <span>City B</span>
+                </div>
+
+                <p>Time strip placeholder</p>
+
+                <button type="button">Compare Times</button>
+
+                <p style={{ fontSize: "var(--text-sm)" }}>
+                  Helper text placeholder
+                </p>
               </div>
 
-              {/* Hero Card (tool preview scaffold) */}
-              <div aria-label="Hero Card">
-                {/* City Comparison Row */}
-                <div aria-label="City Comparison Row">
-                  <div aria-label="City Left">
-                    <span>City A</span>
-                  </div>
-
-                  <div aria-label="City Swap">
-                    <span>Swap</span>
-                  </div>
-
-                  <div aria-label="City Right">
-                    <span>City B</span>
-                  </div>
-                </div>
-
-                {/* Time Strip */}
-                <div aria-label="Time Strip Row">
-                  <p>Time strip placeholder</p>
-                </div>
-
-                {/* Action Row (kept inside card for future wiring) */}
-                <div aria-label="Hero Actions">
-                  <button type="button">Compare Times</button>
-                </div>
-
-                {/* Helper Text (kept for future locked/premium messaging) */}
-                <div aria-label="Hero Helper">
-                  <p>Helper text placeholder</p>
-                </div>
-              </div>
-
-              {/* Visual Block Placeholder (for later polish / screenshot-like UI) */}
               <div
                 aria-label="Demo Visual Placeholder"
                 style={{
-                  marginTop: 16,
+                  marginTop: "var(--space-6)",
                   height: 140,
                   border: "1px dashed currentColor",
                   display: "flex",
@@ -101,7 +132,10 @@ export default function HeroSection() {
         </div>
 
         {/* Divider */}
-        <div aria-label="Hero Divider" style={{ marginTop: 24 }}>
+        <div
+          aria-label="Hero Divider"
+          style={{ marginTop: "var(--space-12)" }}
+        >
           <hr />
         </div>
       </div>
