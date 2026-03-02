@@ -60,6 +60,11 @@ export default function HeroSection() {
             <p>Helper text placeholder</p>
           </div>
         </div>
+
+        {/* Divider */}
+        <div aria-label="Hero to Tool Divider">
+          <hr />
+        </div>
       </div>
     </section>
   );
