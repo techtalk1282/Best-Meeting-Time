@@ -10,20 +10,42 @@ export default function HeroSection() {
           padding-right: var(--space-6);
         }
 
+        /* NAV (refined) */
         .hero-nav {
+          display: grid;
+          grid-template-columns: auto 1fr auto;
+          align-items: center;
+          column-gap: var(--space-8);
+          row-gap: var(--space-4);
+          margin-bottom: var(--space-12);
+        }
+
+        .hero-nav-brand {
           display: flex;
           align-items: center;
-          justify-content: space-between;
-          margin-bottom: var(--space-12);
-          gap: var(--space-6);
-          flex-wrap: wrap;
+          gap: var(--space-2);
+          white-space: nowrap;
         }
 
         .hero-nav-links {
           display: flex;
+          align-items: center;
+          justify-content: center;
           gap: var(--space-6);
+          flex-wrap: wrap;
         }
 
+        .hero-nav-action {
+          display: flex;
+          justify-content: flex-end;
+          white-space: nowrap;
+        }
+
+        .hero-nav-link {
+          line-height: var(--lh-normal);
+        }
+
+        /* HERO (unchanged) */
         .hero-main {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -79,10 +101,19 @@ export default function HeroSection() {
             gap: var(--space-10);
           }
 
-          .hero-container {
-            padding-left: var(--space-6);
-            padding-right: var(--space-6);
+          /* NAV: stack into 2 rows; keep action right */
+          .hero-nav {
+            grid-template-columns: auto 1fr;
+            grid-template-areas:
+              "brand action"
+              "links links";
+            column-gap: var(--space-6);
+            margin-bottom: var(--space-10);
           }
+
+          .hero-nav-brand { grid-area: brand; }
+          .hero-nav-links { grid-area: links; justify-content: flex-start; }
+          .hero-nav-action { grid-area: action; }
         }
 
         /* Mobile */
@@ -92,11 +123,23 @@ export default function HeroSection() {
             padding-right: var(--space-4);
           }
 
+          /* NAV: stack cleanly */
           .hero-nav {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+              "brand"
+              "action"
+              "links";
+            row-gap: var(--space-3);
             margin-bottom: var(--space-10);
           }
 
+          .hero-nav-action {
+            justify-content: flex-start;
+          }
+
           .hero-nav-links {
+            justify-content: flex-start;
             gap: var(--space-4);
           }
 
@@ -125,19 +168,19 @@ export default function HeroSection() {
       <div aria-label="Hero Container" className="hero-container">
         {/* Top Navigation Row */}
         <nav aria-label="Primary Navigation" className="hero-nav">
-          <div aria-label="Nav Brand">
+          <div aria-label="Nav Brand" className="hero-nav-brand">
             <span style={{ fontSize: "var(--text-lg)", fontWeight: 600 }}>
               Best Meeting Time
             </span>
           </div>
 
           <div aria-label="Nav Links" className="hero-nav-links">
-            <span>Features</span>
-            <span>Pricing</span>
-            <span>Login</span>
+            <span className="hero-nav-link">Features</span>
+            <span className="hero-nav-link">Pricing</span>
+            <span className="hero-nav-link">Login</span>
           </div>
 
-          <div aria-label="Nav Action">
+          <div aria-label="Nav Action" className="hero-nav-action">
             <button type="button">Get Started</button>
           </div>
         </nav>
