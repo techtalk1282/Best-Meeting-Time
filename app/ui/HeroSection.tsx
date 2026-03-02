@@ -54,6 +54,11 @@ export default function HeroSection() {
           <div aria-label="Hero Action Row">
             <button type="button">Compare Times</button>
           </div>
+
+          {/* Helper Text */}
+          <div aria-label="Hero Helper Text">
+            <p>Helper text placeholder</p>
+          </div>
         </div>
       </div>
     </section>
