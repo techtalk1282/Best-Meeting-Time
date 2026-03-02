@@ -27,6 +27,11 @@ export default function HeroSection() {
             Easily schedule meetings with your team or clients around the world.
           </p>
         </div>
+
+        {/* Hero Card Wrapper (placeholder) */}
+        <div aria-label="Hero Comparison Card">
+          <p>Hero card placeholder</p>
+        </div>
       </div>
     </section>
   );
