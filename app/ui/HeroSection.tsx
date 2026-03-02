@@ -19,10 +19,13 @@ export default function HeroSection() {
           </div>
         </nav>
 
-        {/* Hero Placeholder Content (from Step 1) */}
+        {/* Hero Headline Block */}
         <div>
-          <h1>Hero Section</h1>
-          <p>Layout placeholder</p>
+          <h1>Find the Best Time to Meet</h1>
+          <h2>Across Time Zones.</h2>
+          <p>
+            Easily schedule meetings with your team or clients around the world.
+          </p>
         </div>
       </div>
     </section>
