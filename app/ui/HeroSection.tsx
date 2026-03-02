@@ -44,6 +44,11 @@ export default function HeroSection() {
               <span>City B</span>
             </div>
           </div>
+
+          {/* Time Strip / Timeline Placeholder */}
+          <div aria-label="Time Strip Placeholder">
+            <p>Time strip placeholder</p>
+          </div>
         </div>
       </div>
     </section>
