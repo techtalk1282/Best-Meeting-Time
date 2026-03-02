@@ -29,8 +29,9 @@ export default function HeroSection() {
           align-items: center;
         }
 
+        /* 🔥 Increased logo size */
         .hero-logo img {
-          height: 40px;
+          height: 56px;
           width: auto;
           display: block;
         }
@@ -94,7 +95,7 @@ export default function HeroSection() {
         /* Mobile */
         @media (max-width: 640px) {
           .hero-logo img {
-            height: 34px;
+            height: 48px;
           }
 
           .hero-nav-links {
