@@ -1,17 +1,8 @@
-// app/ui/HeroSection.tsx
-// PURPOSE: Hero section structure ONLY.
-// NO styling, NO logic, NO state, NO behavior.
-
-import { ReactNode } from "react";
-
-export default function HeroSection({
-  children,
-}: {
-  children?: ReactNode;
-}) {
+export default function HeroSection() {
   return (
     <section>
-      {children}
+      <h1>Hero Section</h1>
+      <p>Layout placeholder</p>
     </section>
   );
 }
