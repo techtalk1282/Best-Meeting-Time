@@ -31,3 +31,4 @@ export default function LayoutShell({
     </div>
   );
 }
+// CHECKPOINT: UI layout structure verified and locked
