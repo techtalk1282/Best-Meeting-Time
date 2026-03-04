@@ -29,7 +29,6 @@ export default function HeroSection() {
           align-items: center;
         }
 
-        /* 🔥 Increased logo size */
         .hero-logo img {
           height: 56px;
           width: auto;
@@ -84,7 +83,6 @@ export default function HeroSection() {
           margin-top: var(--space-12);
         }
 
-        /* Tablet */
         @media (max-width: 1024px) {
           .hero-main {
             grid-template-columns: 1fr;
@@ -92,7 +90,6 @@ export default function HeroSection() {
           }
         }
 
-        /* Mobile */
         @media (max-width: 640px) {
           .hero-logo img {
             height: 48px;
@@ -117,10 +114,7 @@ export default function HeroSection() {
         <nav aria-label="Primary Navigation" className="hero-nav">
           <div aria-label="Nav Brand" className="hero-logo">
             <a href="/" aria-label="Best Meeting Time home">
-              <img
-                src="/logo-best-meeting-time.png"
-                alt="Best Meeting Time"
-              />
+              <img src="/logo-best-meeting-time.png" alt="Best Meeting Time" />
             </a>
           </div>
 
@@ -149,7 +143,9 @@ export default function HeroSection() {
             </div>
 
             <div aria-label="Hero Primary CTA" className="hero-cta">
-              <button type="button">Compare Times</button>
+              <a href="#tool-preview">
+                <button type="button">Compare Times</button>
+              </a>
               <p style={{ fontSize: "var(--text-sm)" }}>
                 Helper text placeholder
               </p>
@@ -172,7 +168,9 @@ export default function HeroSection() {
 
                 <p>Time strip placeholder</p>
 
-                <button type="button">Compare Times</button>
+                <a href="#tool-preview">
+                  <button type="button">Compare Times</button>
+                </a>
 
                 <p style={{ fontSize: "var(--text-sm)" }}>
                   Helper text placeholder
