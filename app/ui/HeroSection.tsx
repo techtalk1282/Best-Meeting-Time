@@ -24,6 +24,11 @@ export default function HeroSection() {
           gap: var(--space-6);
         }
 
+        .hero-nav-links a {
+          text-decoration: none;
+          color: inherit;
+        }
+
         .hero-logo {
           display: inline-flex;
           align-items: center;
@@ -119,9 +124,9 @@ export default function HeroSection() {
           </div>
 
           <div aria-label="Nav Links" className="hero-nav-links">
-            <span>Features</span>
-            <span>Pricing</span>
-            <span>Login</span>
+            <a href="#tool-preview">Features</a>
+            <a href="#premium-features">Pricing</a>
+            <a href="#footer">Login</a>
           </div>
 
           <div aria-label="Nav Action">
