@@ -21,7 +21,8 @@ export default function LayoutShell({
     <div>
       <section>{hero}</section>
 
-      <section>{toolPreview}</section>
+      {/* Anchor target for Hero CTA */}
+      <section id="tool-preview">{toolPreview}</section>
 
       <section>{premiumFeatures}</section>
 
