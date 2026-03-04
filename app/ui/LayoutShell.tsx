@@ -19,17 +19,15 @@ export default function LayoutShell({
 }) {
   return (
     <div>
-      <section>{hero}</section>
+      <section id="hero">{hero}</section>
 
-      {/* Anchor target for Hero CTA */}
       <section id="tool-preview">{toolPreview}</section>
 
-      <section>{premiumFeatures}</section>
+      <section id="premium-features">{premiumFeatures}</section>
 
-      <section>{bonusFeatures}</section>
+      <section id="bonus-features">{bonusFeatures}</section>
 
-      <footer>{footer}</footer>
+      <footer id="footer">{footer}</footer>
     </div>
   );
 }
-// CHECKPOINT: UI layout structure verified and locked
