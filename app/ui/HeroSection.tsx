@@ -1,7 +1,6 @@
 export default function HeroSection() {
   return (
     <section aria-label="Hero Section" style={{ padding: "var(--space-12) 0" }}>
-      {/* Component-scoped responsive rules (Hero only) */}
       <style>{`
         .hero-container {
           max-width: var(--container-max);
@@ -115,7 +114,6 @@ export default function HeroSection() {
       `}</style>
 
       <div aria-label="Hero Container" className="hero-container">
-        {/* Top Navigation Row */}
         <nav aria-label="Primary Navigation" className="hero-nav">
           <div aria-label="Nav Brand" className="hero-logo">
             <a href="/" aria-label="Best Meeting Time home">
@@ -130,13 +128,13 @@ export default function HeroSection() {
           </div>
 
           <div aria-label="Nav Action">
-            <button type="button">Get Started</button>
+            <a href="#tool-preview">
+              <button type="button">Get Started</button>
+            </a>
           </div>
         </nav>
 
-        {/* Hero Main */}
         <div aria-label="Hero Main" className="hero-main">
-          {/* Left Column */}
           <div aria-label="Hero Left">
             <div aria-label="Hero Headline" className="hero-headline">
               <h1>Find the Best Time to Meet</h1>
@@ -157,7 +155,6 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right Column */}
           <div aria-label="Hero Right">
             <div aria-label="Hero Demo Card" className="hero-demo-card">
               <p style={{ marginBottom: "var(--space-4)" }}>
@@ -189,7 +186,6 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Divider */}
         <div aria-label="Hero Divider" className="hero-divider">
           <hr />
         </div>
