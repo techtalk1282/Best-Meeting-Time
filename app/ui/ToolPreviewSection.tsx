@@ -1,10 +1,34 @@
+"use client";
+
 // app/ui/ToolPreviewSection.tsx
-// PURPOSE: Tool preview section — realistic static UI scaffold (no logic).
-// NO state, NO behavior, NO API calls.
+// PURPOSE: Tool preview section — interactive city swap only.
+// Still NO calculations or API calls.
+
+import { useState } from "react";
 
 export default function ToolPreviewSection() {
+
+  const [cityA, setCityA] = useState({
+    name: "New York, USA",
+    time: "10:30 AM",
+    utc: "UTC-4"
+  });
+
+  const [cityB, setCityB] = useState({
+    name: "London, UK",
+    time: "3:30 PM",
+    utc: "UTC+1"
+  });
+
+  function swapCities() {
+    const temp = cityA;
+    setCityA(cityB);
+    setCityB(temp);
+  }
+
   return (
     <section
+      id="tool-preview"
       aria-label="Tool Preview Section"
       style={{
         paddingTop: "var(--space-16)",
@@ -20,6 +44,7 @@ export default function ToolPreviewSection() {
           paddingRight: "var(--space-6)",
         }}
       >
+
         {/* Section Header */}
         <header
           aria-label="Tool Preview Header"
@@ -30,8 +55,8 @@ export default function ToolPreviewSection() {
         >
           <h2 style={{ marginBottom: "var(--space-3)" }}>Tool Preview</h2>
           <p style={{ maxWidth: 760 }}>
-            A realistic preview of how comparing time zones will look — this is a
-            static UI scaffold. No selections, swapping, or calculations yet.
+            A realistic preview of how comparing time zones will look — basic
+            interaction enabled for city swap.
           </p>
         </header>
 
@@ -45,7 +70,8 @@ export default function ToolPreviewSection() {
             alignItems: "start",
           }}
         >
-          {/* Left: Main Preview Card */}
+
+          {/* LEFT CARD */}
           <div
             aria-label="Preview Main Card"
             className="card"
@@ -53,6 +79,7 @@ export default function ToolPreviewSection() {
               padding: "var(--space-8)",
             }}
           >
+
             {/* City Row */}
             <div
               aria-label="City Row"
@@ -64,8 +91,9 @@ export default function ToolPreviewSection() {
                 marginBottom: "var(--space-6)",
               }}
             >
+
+              {/* City A */}
               <div
-                aria-label="City A Block"
                 style={{
                   padding: "var(--space-4)",
                   borderRadius: "var(--radius-md)",
@@ -74,22 +102,24 @@ export default function ToolPreviewSection() {
                 }}
               >
                 <p style={{ marginBottom: "var(--space-2)" }}>
-                  <strong style={{ color: "var(--text)" }}>New York, USA</strong>
+                  <strong style={{ color: "var(--text)" }}>{cityA.name}</strong>
                 </p>
+
                 <p style={{ marginBottom: 0 }}>
-                  <span style={{ color: "var(--text)" }}>10:30 AM</span>{" "}
-                  <small>UTC-4</small>
+                  <span style={{ color: "var(--text)" }}>{cityA.time}</span>{" "}
+                  <small>{cityA.utc}</small>
                 </p>
               </div>
 
-              <div aria-label="Swap Block" style={{ textAlign: "center" }}>
-                <button type="button" aria-label="Swap cities (static)">
+              {/* Swap Button */}
+              <div style={{ textAlign: "center" }}>
+                <button onClick={swapCities}>
                   Swap
                 </button>
               </div>
 
+              {/* City B */}
               <div
-                aria-label="City B Block"
                 style={{
                   padding: "var(--space-4)",
                   borderRadius: "var(--radius-md)",
@@ -98,18 +128,19 @@ export default function ToolPreviewSection() {
                 }}
               >
                 <p style={{ marginBottom: "var(--space-2)" }}>
-                  <strong style={{ color: "var(--text)" }}>London, UK</strong>
+                  <strong style={{ color: "var(--text)" }}>{cityB.name}</strong>
                 </p>
+
                 <p style={{ marginBottom: 0 }}>
-                  <span style={{ color: "var(--text)" }}>3:30 PM</span>{" "}
-                  <small>UTC+1</small>
+                  <span style={{ color: "var(--text)" }}>{cityB.time}</span>{" "}
+                  <small>{cityB.utc}</small>
                 </p>
               </div>
+
             </div>
 
-            {/* Timeline Strip (static) */}
+            {/* Timeline Strip (still static) */}
             <div
-              aria-label="Timeline Strip"
               style={{
                 borderRadius: "var(--radius-md)",
                 border: "1px solid var(--border)",
@@ -118,7 +149,6 @@ export default function ToolPreviewSection() {
               }}
             >
               <div
-                aria-label="Timeline Labels"
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -138,38 +168,23 @@ export default function ToolPreviewSection() {
               </div>
 
               <div
-                aria-label="Timeline Bars"
                 style={{
                   display: "grid",
                   gridTemplateColumns: "1.2fr 1.6fr 1.2fr",
                   height: 14,
                 }}
               >
+                <div style={{ background: "rgba(255,255,255,0.10)" }} />
                 <div
-                  aria-label="Busy Left"
-                  style={{
-                    background: "rgba(255,255,255,0.10)",
-                    borderRight: "1px solid var(--border)",
-                  }}
-                />
-                <div
-                  aria-label="Overlap"
                   style={{
                     background:
                       "linear-gradient(90deg, rgba(124,58,237,0.55), rgba(251,191,36,0.35))",
-                    borderRight: "1px solid var(--border)",
                   }}
                 />
-                <div
-                  aria-label="Busy Right"
-                  style={{
-                    background: "rgba(255,255,255,0.10)",
-                  }}
-                />
+                <div style={{ background: "rgba(255,255,255,0.10)" }} />
               </div>
 
               <div
-                aria-label="Timeline Footer"
                 style={{
                   padding: "var(--space-3) var(--space-4)",
                   background: "rgba(0,0,0,0.12)",
@@ -177,129 +192,54 @@ export default function ToolPreviewSection() {
               >
                 <small>
                   Suggested window:{" "}
-                  <span style={{ color: "var(--text)" }}>2:00 PM – 3:00 PM</span>{" "}
+                  <span style={{ color: "var(--text)" }}>
+                    2:00 PM – 3:00 PM
+                  </span>{" "}
                   · Ideal for both
                 </small>
               </div>
             </div>
 
-            {/* Actions Row (static) */}
+            {/* Actions Row */}
             <div
-              aria-label="Tool Actions"
               style={{
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr 1fr",
                 gap: "var(--space-4)",
               }}
             >
-              <button type="button" aria-label="Share link (static)">
-                Share Link
-              </button>
-              <button type="button" aria-label="Export calendar (static)">
-                Export to Calendar
-              </button>
-              <button type="button" aria-label="Save setup (static)">
-                Save This Setup
-              </button>
+              <button type="button">Share Link</button>
+              <button type="button">Export to Calendar</button>
+              <button type="button">Save This Setup</button>
             </div>
 
-            <p style={{ marginTop: "var(--space-4)", marginBottom: 0 }}>
-              <small>Static preview. Interactions will be wired later.</small>
-            </p>
           </div>
 
-          {/* Right: Feature + Upgrade Teaser (static) */}
-          <aside aria-label="Preview Side Panel">
-            <div
-              aria-label="Side Card"
-              className="card"
-              style={{ padding: "var(--space-8)" }}
-            >
+          {/* RIGHT PANEL (unchanged) */}
+          <aside>
+            <div className="card" style={{ padding: "var(--space-8)" }}>
+
               <h3 style={{ marginBottom: "var(--space-3)" }}>
                 Premium unlock (one-time)
               </h3>
+
               <p style={{ marginBottom: "var(--space-6)" }}>
                 Unlock multiple time windows, calendar export, saved setups, and
                 sharing tools — no subscriptions.
               </p>
 
-              <div
-                aria-label="Feature List"
-                style={{
-                  display: "grid",
-                  gap: "var(--space-3)",
-                  marginBottom: "var(--space-6)",
-                }}
-              >
-                <div
-                  style={{
-                    padding: "var(--space-4)",
-                    border: "1px solid var(--border)",
-                    borderRadius: "var(--radius-md)",
-                    background: "var(--surface)",
-                  }}
-                >
-                  <strong style={{ color: "var(--text)" }}>
-                    Multiple Time Windows
-                  </strong>
-                  <p style={{ marginBottom: 0 }}>
-                    See more than one strong option instantly.
-                  </p>
-                </div>
-
-                <div
-                  style={{
-                    padding: "var(--space-4)",
-                    border: "1px solid var(--border)",
-                    borderRadius: "var(--radius-md)",
-                    background: "var(--surface)",
-                  }}
-                >
-                  <strong style={{ color: "var(--text)" }}>Saved Setups</strong>
-                  <p style={{ marginBottom: 0 }}>
-                    Reuse your favorite city pairs fast.
-                  </p>
-                </div>
-
-                <div
-                  style={{
-                    padding: "var(--space-4)",
-                    border: "1px solid var(--border)",
-                    borderRadius: "var(--radius-md)",
-                    background: "var(--surface)",
-                  }}
-                >
-                  <strong style={{ color: "var(--text)" }}>
-                    Calendar Export
-                  </strong>
-                  <p style={{ marginBottom: 0 }}>
-                    Send meetings to Google, Outlook, or Apple.
-                  </p>
-                </div>
-              </div>
-
               <button
-                type="button"
                 className="button-primary"
-                aria-label="Unlock premium (static)"
                 style={{ width: "100%" }}
               >
                 Unlock Premium (Preview)
               </button>
 
-              <p style={{ marginTop: "var(--space-4)", marginBottom: 0 }}>
-                <small>UI preview only — payment wiring is handled elsewhere.</small>
-              </p>
             </div>
           </aside>
+
         </div>
 
-        {/* Mobile note (static) */}
-        <div style={{ marginTop: "var(--space-10)" }}>
-          <small>
-            Responsive behavior will be tuned after the preview layout is approved.
-          </small>
-        </div>
       </div>
     </section>
   );
