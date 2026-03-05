@@ -1,8 +1,8 @@
 "use client";
 
 // app/ui/ToolPreviewSection.tsx
-// PURPOSE: Tool preview section — interactive city swap only.
-// Still NO calculations or API calls.
+// PURPOSE: Tool preview section — interactive city swap + share link trigger.
+// No timezone calculations yet.
 
 import { useState } from "react";
 
@@ -24,6 +24,42 @@ export default function ToolPreviewSection() {
     const temp = cityA;
     setCityA(cityB);
     setCityB(temp);
+  }
+
+  async function createShareLink() {
+    try {
+
+      const res = await fetch("/api/share", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          cities: [
+            { name: cityA.name, tz: cityA.utc },
+            { name: cityB.name, tz: cityB.utc }
+          ],
+          windows: [
+            {
+              startUtc: "2026-03-05T18:00:00Z",
+              endUtc: "2026-03-05T19:00:00Z"
+            }
+          ]
+        })
+      });
+
+      const data = await res.json();
+
+      if (data?.url) {
+        const fullUrl = window.location.origin + data.url;
+        await navigator.clipboard.writeText(fullUrl);
+        alert("Share link copied to clipboard");
+      }
+
+    } catch (err) {
+      console.error("share_link_error", err);
+      alert("Unable to create share link");
+    }
   }
 
   return (
@@ -139,7 +175,7 @@ export default function ToolPreviewSection() {
 
             </div>
 
-            {/* Timeline Strip (still static) */}
+            {/* Timeline Strip */}
             <div
               style={{
                 borderRadius: "var(--radius-md)",
@@ -208,14 +244,14 @@ export default function ToolPreviewSection() {
                 gap: "var(--space-4)",
               }}
             >
-              <button type="button">Share Link</button>
+              <button type="button" onClick={createShareLink}>Share Link</button>
               <button type="button">Export to Calendar</button>
               <button type="button">Save This Setup</button>
             </div>
 
           </div>
 
-          {/* RIGHT PANEL (unchanged) */}
+          {/* RIGHT PANEL */}
           <aside>
             <div className="card" style={{ padding: "var(--space-8)" }}>
 
