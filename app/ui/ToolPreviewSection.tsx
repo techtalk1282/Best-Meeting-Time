@@ -2,7 +2,6 @@
 
 // app/ui/ToolPreviewSection.tsx
 // PURPOSE: Tool preview section — interactive city swap + share link trigger + calendar export.
-// LayoutShell provides the section wrapper.
 
 import { useState } from "react";
 
@@ -11,13 +10,13 @@ export default function ToolPreviewSection() {
   const [cityA, setCityA] = useState({
     name: "New York, USA",
     time: "10:30 AM",
-    utc: "UTC-4"
+    tz: "America/New_York"
   });
 
   const [cityB, setCityB] = useState({
     name: "London, UK",
     time: "3:30 PM",
-    utc: "UTC+1"
+    tz: "Europe/London"
   });
 
   const [creatingShare, setCreatingShare] = useState(false);
@@ -43,8 +42,8 @@ export default function ToolPreviewSection() {
         },
         body: JSON.stringify({
           cities: [
-            { name: cityA.name, tz: cityA.utc },
-            { name: cityB.name, tz: cityB.utc }
+            { name: cityA.name, tz: cityA.tz },
+            { name: cityB.name, tz: cityB.tz }
           ],
           windows: [
             {
@@ -194,7 +193,7 @@ END:VCALENDAR`;
               </p>
 
               <p style={{ marginBottom: 0 }}>
-                {cityA.time} <small>{cityA.utc}</small>
+                {cityA.time} <small>{cityA.tz}</small>
               </p>
             </div>
 
@@ -217,7 +216,7 @@ END:VCALENDAR`;
               </p>
 
               <p style={{ marginBottom: 0 }}>
-                {cityB.time} <small>{cityB.utc}</small>
+                {cityB.time} <small>{cityB.tz}</small>
               </p>
             </div>
 
