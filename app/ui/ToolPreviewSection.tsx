@@ -20,6 +20,8 @@ export default function ToolPreviewSection() {
     utc: "UTC+1"
   });
 
+  const [creatingShare, setCreatingShare] = useState(false);
+
   function swapCities() {
     const temp = cityA;
     setCityA(cityB);
@@ -27,6 +29,11 @@ export default function ToolPreviewSection() {
   }
 
   async function createShareLink() {
+
+    if (creatingShare) return;
+
+    setCreatingShare(true);
+
     try {
 
       const res = await fetch("/api/share", {
@@ -48,17 +55,38 @@ export default function ToolPreviewSection() {
         })
       });
 
+      if (!res.ok) {
+        throw new Error("Share creation failed");
+      }
+
       const data = await res.json();
 
       if (data?.url) {
+
         const fullUrl = window.location.origin + data.url;
-        await navigator.clipboard.writeText(fullUrl);
-        alert("Share link copied to clipboard");
+
+        try {
+          await navigator.clipboard.writeText(fullUrl);
+        } catch {
+          // clipboard may fail depending on browser permissions
+        }
+
+        // Navigate to the share page
+        window.location.href = fullUrl;
+
+      } else {
+        throw new Error("Invalid response from share API");
       }
 
     } catch (err) {
+
       console.error("share_link_error", err);
       alert("Unable to create share link");
+
+    } finally {
+
+      setCreatingShare(false);
+
     }
   }
 
@@ -244,7 +272,10 @@ export default function ToolPreviewSection() {
                 gap: "var(--space-4)",
               }}
             >
-              <button type="button" onClick={createShareLink}>Share Link</button>
+              <button type="button" onClick={createShareLink}>
+                {creatingShare ? "Creating..." : "Share Link"}
+              </button>
+
               <button type="button">Export to Calendar</button>
               <button type="button">Save This Setup</button>
             </div>
