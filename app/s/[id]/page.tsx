@@ -1,6 +1,7 @@
 // app/s/[id]/page.tsx
 
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 import { formatUtcToLocal } from "@/lib/time";
 
 interface ShareData {
@@ -8,21 +9,21 @@ interface ShareData {
   createdAt?: string;
   cities: {
     name: string;
-    tz: string; // matches /api/share POST payload + KV snapshot
+    tz: string;
   }[];
   windows: {
     startUtc: string;
     endUtc: string;
-  }[]; // matches /api/share snapshot key: "windows"
+  }[];
 }
 
 async function getShareData(id: string): Promise<ShareData> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const h = headers();
 
-  if (!baseUrl) {
-    // Fail fast so you don’t get confusing “blank page” behavior in prod
-    throw new Error("Missing env: NEXT_PUBLIC_BASE_URL");
-  }
+  const host = h.get("host");
+  const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+
+  const baseUrl = `${protocol}://${host}`;
 
   const res = await fetch(`${baseUrl}/api/share/${id}`, {
     cache: "no-store",
