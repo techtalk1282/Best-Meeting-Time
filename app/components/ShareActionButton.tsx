@@ -48,7 +48,12 @@ export default function ShareActionButton({
 
       const { url } = await res.json();
       const fullUrl = `${window.location.origin}${url}`;
+
       setShareUrl(fullUrl);
+
+      // NEW: open the share page automatically
+      window.open(fullUrl, "_blank");
+
     } catch {
       setError("Unable to create share link");
     } finally {
