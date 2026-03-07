@@ -24,10 +24,9 @@ Expected POST body:
   windows: { startUtc: string; endUtc: string }[]
 }
 
-AUTH:
-- Uses existing premium cookie set by /api/verify
-- No jobId
-- No session_id required here
+NOTE:
+Preview share is allowed without premium cookie.
+Premium gating remains for other features.
 */
 
 export async function POST(req: NextRequest) {
@@ -49,34 +48,28 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 🔐 Gate by existing premium cookie (authoritative)
-    const premium = req.cookies.get("premium")?.value === "1";
-    if (!premium) {
-      return NextResponse.json(
-        { error: "Premium required" },
-        { status: 403, headers: CORS_HEADERS }
-      );
-    }
-
-    // 🔗 Generate short, non-predictable ID
-    const id = crypto.randomBytes(4).toString("hex"); // 8 chars
+    // Generate short non-predictable ID
+    const id = crypto.randomBytes(4).toString("hex"); // 8 characters
     const shareKey = `share:${id}`;
 
     const payload = {
       id,
       createdAt: new Date().toISOString(),
       cities,
-      windows, // stored as UTC only
+      windows,
     };
 
-    // 🗄 Store read-only share payload
+    // Store payload in KV
     await kv.set(shareKey, payload);
 
     return NextResponse.json(
       { id, url: `/s/${id}` },
       { status: 200, headers: CORS_HEADERS }
     );
-  } catch {
+
+  } catch (err) {
+    console.error("share_api_error", err);
+
     return NextResponse.json(
       { error: "Server error" },
       { status: 500, headers: CORS_HEADERS }
