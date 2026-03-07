@@ -2,7 +2,7 @@
 
 // app/ui/ToolPreviewSection.tsx
 // PURPOSE: Tool preview section — interactive city swap + share link trigger.
-// No timezone calculations yet.
+// LayoutShell provides the section wrapper.
 
 import { useState } from "react";
 
@@ -67,11 +67,8 @@ export default function ToolPreviewSection() {
 
         try {
           await navigator.clipboard.writeText(fullUrl);
-        } catch {
-          // clipboard may fail depending on browser permissions
-        }
+        } catch {}
 
-        // Navigate to the share page
         window.location.href = fullUrl;
 
       } else {
@@ -91,223 +88,200 @@ export default function ToolPreviewSection() {
   }
 
   return (
-    <section
-      id="tool-preview"
-      aria-label="Tool Preview Section"
+
+    <div
+      aria-label="Tool Preview Container"
       style={{
         paddingTop: "var(--space-16)",
         paddingBottom: "var(--space-16)",
+        maxWidth: "var(--container-max)",
+        margin: "0 auto",
+        paddingLeft: "var(--space-6)",
+        paddingRight: "var(--space-6)"
       }}
     >
-      <div
-        aria-label="Tool Preview Container"
+
+      <header
         style={{
-          maxWidth: "var(--container-max)",
-          margin: "0 auto",
-          paddingLeft: "var(--space-6)",
-          paddingRight: "var(--space-6)",
+          marginBottom: "var(--space-10)",
+          textAlign: "left"
+        }}
+      >
+        <h2 style={{ marginBottom: "var(--space-3)" }}>Tool Preview</h2>
+        <p style={{ maxWidth: 760 }}>
+          A realistic preview of how comparing time zones will look — basic
+          interaction enabled for city swap.
+        </p>
+      </header>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1.1fr 0.9fr",
+          gap: "var(--space-10)",
+          alignItems: "start"
         }}
       >
 
-        {/* Section Header */}
-        <header
-          aria-label="Tool Preview Header"
-          style={{
-            marginBottom: "var(--space-10)",
-            textAlign: "left",
-          }}
-        >
-          <h2 style={{ marginBottom: "var(--space-3)" }}>Tool Preview</h2>
-          <p style={{ maxWidth: 760 }}>
-            A realistic preview of how comparing time zones will look — basic
-            interaction enabled for city swap.
-          </p>
-        </header>
-
-        {/* Preview Shell */}
         <div
-          aria-label="Tool Preview Shell"
+          className="card"
           style={{
-            display: "grid",
-            gridTemplateColumns: "1.1fr 0.9fr",
-            gap: "var(--space-10)",
-            alignItems: "start",
+            padding: "var(--space-8)"
           }}
         >
 
-          {/* LEFT CARD */}
           <div
-            aria-label="Preview Main Card"
-            className="card"
             style={{
-              padding: "var(--space-8)",
+              display: "grid",
+              gridTemplateColumns: "1fr auto 1fr",
+              gap: "var(--space-4)",
+              alignItems: "center",
+              marginBottom: "var(--space-6)"
             }}
           >
 
-            {/* City Row */}
-            <div
-              aria-label="City Row"
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr auto 1fr",
-                gap: "var(--space-4)",
-                alignItems: "center",
-                marginBottom: "var(--space-6)",
-              }}
-            >
-
-              {/* City A */}
-              <div
-                style={{
-                  padding: "var(--space-4)",
-                  borderRadius: "var(--radius-md)",
-                  border: "1px solid var(--border)",
-                  background: "var(--surface)",
-                }}
-              >
-                <p style={{ marginBottom: "var(--space-2)" }}>
-                  <strong style={{ color: "var(--text)" }}>{cityA.name}</strong>
-                </p>
-
-                <p style={{ marginBottom: 0 }}>
-                  <span style={{ color: "var(--text)" }}>{cityA.time}</span>{" "}
-                  <small>{cityA.utc}</small>
-                </p>
-              </div>
-
-              {/* Swap Button */}
-              <div style={{ textAlign: "center" }}>
-                <button onClick={swapCities}>
-                  Swap
-                </button>
-              </div>
-
-              {/* City B */}
-              <div
-                style={{
-                  padding: "var(--space-4)",
-                  borderRadius: "var(--radius-md)",
-                  border: "1px solid var(--border)",
-                  background: "var(--surface)",
-                }}
-              >
-                <p style={{ marginBottom: "var(--space-2)" }}>
-                  <strong style={{ color: "var(--text)" }}>{cityB.name}</strong>
-                </p>
-
-                <p style={{ marginBottom: 0 }}>
-                  <span style={{ color: "var(--text)" }}>{cityB.time}</span>{" "}
-                  <small>{cityB.utc}</small>
-                </p>
-              </div>
-
-            </div>
-
-            {/* Timeline Strip */}
             <div
               style={{
+                padding: "var(--space-4)",
                 borderRadius: "var(--radius-md)",
                 border: "1px solid var(--border)",
-                overflow: "hidden",
-                marginBottom: "var(--space-6)",
+                background: "var(--surface)"
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  padding: "var(--space-3) var(--space-4)",
-                  background: "var(--surface)",
-                  borderBottom: "1px solid var(--border)",
-                }}
-              >
-                <small>8 AM</small>
-                <small>10 AM</small>
-                <small>12 PM</small>
-                <small>2 PM</small>
-                <small>4 PM</small>
-                <small>6 PM</small>
-                <small>8 PM</small>
-                <small>10 PM</small>
-              </div>
+              <p style={{ marginBottom: "var(--space-2)" }}>
+                <strong>{cityA.name}</strong>
+              </p>
 
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1.2fr 1.6fr 1.2fr",
-                  height: 14,
-                }}
-              >
-                <div style={{ background: "rgba(255,255,255,0.10)" }} />
-                <div
-                  style={{
-                    background:
-                      "linear-gradient(90deg, rgba(124,58,237,0.55), rgba(251,191,36,0.35))",
-                  }}
-                />
-                <div style={{ background: "rgba(255,255,255,0.10)" }} />
-              </div>
-
-              <div
-                style={{
-                  padding: "var(--space-3) var(--space-4)",
-                  background: "rgba(0,0,0,0.12)",
-                }}
-              >
-                <small>
-                  Suggested window:{" "}
-                  <span style={{ color: "var(--text)" }}>
-                    2:00 PM – 3:00 PM
-                  </span>{" "}
-                  · Ideal for both
-                </small>
-              </div>
+              <p style={{ marginBottom: 0 }}>
+                {cityA.time} <small>{cityA.utc}</small>
+              </p>
             </div>
 
-            {/* Actions Row */}
+            <div style={{ textAlign: "center" }}>
+              <button onClick={swapCities}>
+                Swap
+              </button>
+            </div>
+
             <div
               style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr 1fr",
-                gap: "var(--space-4)",
+                padding: "var(--space-4)",
+                borderRadius: "var(--radius-md)",
+                border: "1px solid var(--border)",
+                background: "var(--surface)"
               }}
             >
-              <button type="button" onClick={createShareLink}>
-                {creatingShare ? "Creating..." : "Share Link"}
-              </button>
+              <p style={{ marginBottom: "var(--space-2)" }}>
+                <strong>{cityB.name}</strong>
+              </p>
 
-              <button type="button">Export to Calendar</button>
-              <button type="button">Save This Setup</button>
+              <p style={{ marginBottom: 0 }}>
+                {cityB.time} <small>{cityB.utc}</small>
+              </p>
             </div>
 
           </div>
 
-          {/* RIGHT PANEL */}
-          <aside>
-            <div className="card" style={{ padding: "var(--space-8)" }}>
+          <div
+            style={{
+              borderRadius: "var(--radius-md)",
+              border: "1px solid var(--border)",
+              overflow: "hidden",
+              marginBottom: "var(--space-6)"
+            }}
+          >
 
-              <h3 style={{ marginBottom: "var(--space-3)" }}>
-                Premium unlock (one-time)
-              </h3>
-
-              <p style={{ marginBottom: "var(--space-6)" }}>
-                Unlock multiple time windows, calendar export, saved setups, and
-                sharing tools — no subscriptions.
-              </p>
-
-              <button
-                className="button-primary"
-                style={{ width: "100%" }}
-              >
-                Unlock Premium (Preview)
-              </button>
-
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                padding: "var(--space-3) var(--space-4)",
+                background: "var(--surface)",
+                borderBottom: "1px solid var(--border)"
+              }}
+            >
+              <small>8 AM</small>
+              <small>10 AM</small>
+              <small>12 PM</small>
+              <small>2 PM</small>
+              <small>4 PM</small>
+              <small>6 PM</small>
+              <small>8 PM</small>
+              <small>10 PM</small>
             </div>
-          </aside>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1.2fr 1.6fr 1.2fr",
+                height: 14
+              }}
+            >
+              <div style={{ background: "rgba(255,255,255,0.10)" }} />
+              <div
+                style={{
+                  background:
+                    "linear-gradient(90deg, rgba(124,58,237,0.55), rgba(251,191,36,0.35))"
+                }}
+              />
+              <div style={{ background: "rgba(255,255,255,0.10)" }} />
+            </div>
+
+            <div
+              style={{
+                padding: "var(--space-3) var(--space-4)",
+                background: "rgba(0,0,0,0.12)"
+              }}
+            >
+              <small>
+                Suggested window: <strong>2:00 PM – 3:00 PM</strong>
+              </small>
+            </div>
+
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr 1fr",
+              gap: "var(--space-4)"
+            }}
+          >
+
+            <button onClick={createShareLink}>
+              {creatingShare ? "Creating..." : "Share Link"}
+            </button>
+
+            <button>Export to Calendar</button>
+            <button>Save This Setup</button>
+
+          </div>
 
         </div>
 
+        <aside>
+
+          <div className="card" style={{ padding: "var(--space-8)" }}>
+
+            <h3 style={{ marginBottom: "var(--space-3)" }}>
+              Premium unlock (one-time)
+            </h3>
+
+            <p style={{ marginBottom: "var(--space-6)" }}>
+              Unlock multiple time windows, calendar export, saved setups, and sharing tools — no subscriptions.
+            </p>
+
+            <button className="button-primary" style={{ width: "100%" }}>
+              Unlock Premium (Preview)
+            </button>
+
+          </div>
+
+        </aside>
+
       </div>
-    </section>
+
+    </div>
+
   );
 }
