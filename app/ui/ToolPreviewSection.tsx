@@ -1,7 +1,7 @@
 "use client";
 
 // app/ui/ToolPreviewSection.tsx
-// PURPOSE: Tool preview section — interactive city swap + share link trigger.
+// PURPOSE: Tool preview section — interactive city swap + share link trigger + calendar export.
 // LayoutShell provides the section wrapper.
 
 import { useState } from "react";
@@ -85,6 +85,47 @@ export default function ToolPreviewSection() {
       setCreatingShare(false);
 
     }
+  }
+
+  function exportCalendar() {
+
+    const start = "20260305T180000Z";
+    const end = "20260305T190000Z";
+
+    const title = `Meeting: ${cityA.name} ↔ ${cityB.name}`;
+
+    const description =
+      `Suggested meeting window between ${cityA.name} and ${cityB.name}`;
+
+    const icsContent =
+`BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:${title}
+DESCRIPTION:${description}
+DTSTART:${start}
+DTEND:${end}
+END:VEVENT
+END:VCALENDAR`;
+
+    const blob = new Blob([icsContent], { type: "text/calendar" });
+
+    const url = window.URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "meeting.ics";
+
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+
+    window.URL.revokeObjectURL(url);
+  }
+
+  function saveSetup() {
+    alert("Save setup coming next");
   }
 
   return (
@@ -252,8 +293,13 @@ export default function ToolPreviewSection() {
               {creatingShare ? "Creating..." : "Share Link"}
             </button>
 
-            <button>Export to Calendar</button>
-            <button>Save This Setup</button>
+            <button onClick={exportCalendar}>
+              Export to Calendar
+            </button>
+
+            <button onClick={saveSetup}>
+              Save This Setup
+            </button>
 
           </div>
 
