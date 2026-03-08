@@ -124,7 +124,7 @@ export default function ToolPreviewSection() {
     );
 
     const url =
-      `https://outlook.live.com/calendar/0/action/compose?` +
+      `https://outlook.live.com/calendar/deeplink/compose?` +
       `subject=${subject}` +
       `&startdt=${start}` +
       `&enddt=${end}` +
@@ -144,7 +144,7 @@ export default function ToolPreviewSection() {
       `&cityB=${encodeURIComponent(cityB.name)}` +
       `&start=${start}&end=${end}`;
 
-    window.open(url);
+    window.location.href = url;
 
   }
 
@@ -164,8 +164,6 @@ export default function ToolPreviewSection() {
         A realistic preview of how comparing time zones will look — basic interaction enabled.
       </p>
 
-      {/* CITY CARDS */}
-
       <div style={{ display: "flex", gap: 20, marginBottom: 20 }}>
 
         <div style={{ border: "1px solid #444", padding: 15, borderRadius: 8 }}>
@@ -183,8 +181,6 @@ export default function ToolPreviewSection() {
         </div>
 
       </div>
-
-      {/* TIMELINE STRIP */}
 
       <div
         style={{
@@ -222,8 +218,6 @@ export default function ToolPreviewSection() {
 
       </div>
 
-      {/* ACTION BUTTONS */}
-
       <div style={{ display: "flex", gap: 12 }}>
 
         <button onClick={createShareLink}>
@@ -237,8 +231,6 @@ export default function ToolPreviewSection() {
         <button onClick={saveSetup}>Save This Setup</button>
 
       </div>
-
-      {/* CALENDAR OPTIONS */}
 
       {calendarMenuOpen && (
 
@@ -259,8 +251,6 @@ export default function ToolPreviewSection() {
         </div>
 
       )}
-
-      {/* SHARE LINK */}
 
       {shareLink && (
 
