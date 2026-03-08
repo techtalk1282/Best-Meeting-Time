@@ -32,7 +32,9 @@ Premium gating remains for other systems.
 */
 
 export async function POST(req: NextRequest) {
+
   try {
+
     const body = await req.json();
     const { cities, windows } = body || {};
 
@@ -54,7 +56,7 @@ export async function POST(req: NextRequest) {
     Generate secure 10 character ID
     */
 
-    const id = crypto.randomBytes(5).toString("hex"); // 10 characters
+    const id = crypto.randomBytes(5).toString("hex");
 
     const shareKey = `share:${id}`;
 
@@ -66,12 +68,19 @@ export async function POST(req: NextRequest) {
     };
 
     /*
-    Store payload with automatic expiration
+    Store payload with expiration
     */
 
     await kv.set(shareKey, payload, {
       ex: SHARE_TTL_SECONDS,
     });
+
+    /*
+    Analytics: track share creation
+    */
+
+    await kv.incr("analytics:share_created");
+    await kv.incr(`analytics:share_created:${id}`);
 
     return NextResponse.json(
       { id, url: `/s/${id}` },
@@ -86,5 +95,6 @@ export async function POST(req: NextRequest) {
       { error: "Server error" },
       { status: 500, headers: CORS_HEADERS }
     );
+
   }
 }
