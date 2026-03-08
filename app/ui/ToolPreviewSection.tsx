@@ -93,17 +93,29 @@ export default function ToolPreviewSection() {
     const title = `Meeting: ${cityA.name} ↔ ${cityB.name}`;
     const description = `Suggested meeting window between ${cityA.name} and ${cityB.name}`;
 
+    const now =
+      new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+
+    const uid = `meeting-${Date.now()}@bestmeetingtime`;
+
     const icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:-//Best Meeting Time//EN
 BEGIN:VEVENT
-SUMMARY:${title}
-DESCRIPTION:${description}
+UID:${uid}
+DTSTAMP:${now}
 DTSTART:${start}
 DTEND:${end}
+SUMMARY:${title}
+DESCRIPTION:${description}
 END:VEVENT
 END:VCALENDAR`;
 
-    const blob = new Blob([icsContent], { type: "text/calendar" });
+    const blob = new Blob([icsContent], {
+      type: "text/calendar;charset=utf-8",
+    });
+
     const url = window.URL.createObjectURL(blob);
 
     const link = document.createElement("a");
