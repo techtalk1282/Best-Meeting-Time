@@ -1,24 +1,14 @@
-"use client";
+// app/page.tsx
 
-import { useEffect, useState } from "react";
-import ToolPreviewSection from "@/app/ui/ToolPreviewSection";
+import { cookies } from "next/headers";
 import UnlockPremiumButton from "./UnlockPremiumButton";
 import ShareActionButton from "./components/ShareActionButton";
 
 export default function HomePage() {
+  const premium = cookies().get("premium")?.value === "1";
 
-  const [premium, setPremium] = useState(false);
-
-  useEffect(() => {
-    const cookie = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("premium="));
-
-    if (cookie?.split("=")[1] === "1") {
-      setPremium(true);
-    }
-  }, []);
-
+  // TEMP DATA (WIRING VALIDATION ONLY)
+  // Next step will replace this with real meeting state from the actual UI.
   const cities = [
     { name: "New York", tz: "America/New_York" },
     { name: "London", tz: "Europe/London" },
@@ -41,11 +31,7 @@ export default function HomePage() {
 
       {premium && (
         <div style={{ marginTop: "24px" }}>
-          <ToolPreviewSection />
-
-          <div style={{ marginTop: "24px" }}>
-            <ShareActionButton cities={cities} windows={windows} />
-          </div>
+          <ShareActionButton cities={cities} windows={windows} />
         </div>
       )}
     </main>
