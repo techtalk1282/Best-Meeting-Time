@@ -79,27 +79,26 @@ export default async function SharePage({
 
           <strong>Option {idx + 1}</strong>
 
-          <div style={{ marginTop: "0.5rem" }}>
-            Viewer Local Time:
-            <div>
-              {formatUtcToLocal(w.startUtc)} – {formatUtcToLocal(w.endUtc)}
-            </div>
+          {/* HIGH-CONVERSION COMPONENT */}
+
+          <div style={{ marginTop: "1rem", fontWeight: "bold" }}>
+            ⭐ Your Time
           </div>
 
-          <div style={{ marginTop: "0.5rem" }}>
+          <div style={{ marginBottom: "1rem" }}>
+            {formatUtcToLocal(w.startUtc)} – {formatUtcToLocal(w.endUtc)}
+          </div>
 
-            {data.cities.map((city) => (
+          {data.cities.map((city) => (
 
-              <div key={city.name}>
-                {city.name}:
-                <div>
-                  {formatForCity(w.startUtc, city.tz)} – {formatForCity(w.endUtc, city.tz)}
-                </div>
+            <div key={city.name} style={{ marginTop: "0.5rem" }}>
+              <strong>{city.name}</strong>
+              <div>
+                {formatForCity(w.startUtc, city.tz)} – {formatForCity(w.endUtc, city.tz)}
               </div>
+            </div>
 
-            ))}
-
-          </div>
+          ))}
 
         </div>
 
