@@ -2,25 +2,25 @@
 
 import { notFound } from "next/navigation";
 import { formatUtcToLocal } from "@/lib/time";
+import { kv } from "@vercel/kv";
 
 interface ShareData {
   id: string;
   createdAt?: string;
   cities: {
     name: string;
-    tz: string; // matches /api/share POST payload + KV snapshot
+    tz: string;
   }[];
   windows: {
     startUtc: string;
     endUtc: string;
-  }[]; // matches /api/share snapshot key: "windows"
+  }[];
 }
 
 async function getShareData(id: string): Promise<ShareData> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
   if (!baseUrl) {
-    // Fail fast so you don’t get confusing “blank page” behavior in prod
     throw new Error("Missing env: NEXT_PUBLIC_BASE_URL");
   }
 
@@ -32,7 +32,20 @@ async function getShareData(id: string): Promise<ShareData> {
     notFound();
   }
 
-  return res.json();
+  const data: ShareData = await res.json();
+
+  /*
+  Analytics: track share link opens
+  */
+
+  try {
+    await kv.incr("analytics:share_opened");
+    await kv.incr(`analytics:share_opened:${id}`);
+  } catch (err) {
+    console.error("analytics_error", err);
+  }
+
+  return data;
 }
 
 export default async function SharePage({
