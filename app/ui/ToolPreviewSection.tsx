@@ -1,7 +1,7 @@
 "use client";
 
 // app/ui/ToolPreviewSection.tsx
-// PURPOSE: Tool preview section with timeline strip, share link, calendar export, and save setup.
+// PURPOSE: Tool preview section with timeline strip, share link, calendar export.
 
 import { useState } from "react";
 
@@ -20,7 +20,6 @@ export default function ToolPreviewSection() {
   });
 
   const [creatingShare, setCreatingShare] = useState(false);
-  const [savingSetup, setSavingSetup] = useState(false);
 
   const [shareLink, setShareLink] = useState<string | null>(null);
   const [copyMessage, setCopyMessage] = useState("");
@@ -77,59 +76,6 @@ export default function ToolPreviewSection() {
     } finally {
 
       setCreatingShare(false);
-
-    }
-
-  }
-
-  async function saveSetup() {
-
-    if (savingSetup) return;
-
-    setSavingSetup(true);
-    setCopyMessage("");
-
-    try {
-
-      const res = await fetch("/api/share", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          cities: [
-            { name: cityA.name, tz: cityA.tz },
-            { name: cityB.name, tz: cityB.tz },
-          ],
-          windows: [
-            {
-              startUtc: "2026-03-05T18:00:00Z",
-              endUtc: "2026-03-05T19:00:00Z",
-            },
-          ],
-        }),
-      });
-
-      if (!res.ok) throw new Error("Save failed");
-
-      const data = await res.json();
-
-      const fullUrl = `${window.location.origin}${data.url}`;
-
-      setShareLink(fullUrl);
-
-      setCopyMessage(
-        "Setup saved. Use the link below to reopen this meeting configuration anytime."
-      );
-
-    } catch (err) {
-
-      console.error("save_setup_error", err);
-      setCopyMessage("Unable to save setup");
-
-    } finally {
-
-      setSavingSetup(false);
 
     }
 
@@ -243,15 +189,11 @@ export default function ToolPreviewSection() {
       <div style={{ display: "flex", gap: 12 }}>
 
         <button onClick={createShareLink}>
-          {creatingShare ? "Creating..." : "Share Link"}
+          {creatingShare ? "Creating..." : "Create Share Link"}
         </button>
 
         <button onClick={() => setCalendarMenuOpen(!calendarMenuOpen)}>
           Export to Calendar
-        </button>
-
-        <button onClick={saveSetup}>
-          {savingSetup ? "Saving..." : "Save This Setup"}
         </button>
 
       </div>
@@ -280,13 +222,15 @@ export default function ToolPreviewSection() {
 
         <div style={{ marginTop: 30 }}>
 
-          <strong>Link created</strong>
+          <strong>Share or bookmark this meeting setup</strong>
 
           <p>{shareLink}</p>
 
           <button onClick={copyLink}>Copy Link</button>
 
           <p>{copyMessage}</p>
+
+          <small>Links remain active for 45 days.</small>
 
         </div>
 
