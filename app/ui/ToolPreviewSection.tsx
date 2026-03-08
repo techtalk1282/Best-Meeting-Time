@@ -1,150 +1,351 @@
 "use client";
 
 // app/ui/ToolPreviewSection.tsx
-// PURPOSE: Tool preview UI interactions only.
-// Handles city swap + share UX.
+// PURPOSE: Tool preview section — interactive city swap + share link popup + calendar export.
+// LayoutShell provides the section wrapper.
 
 import { useState } from "react";
 
-type City = {
-  name: string;
-  tz: string;
-};
-
-type Window = {
-  startUtc: string;
-  endUtc: string;
-};
-
 export default function ToolPreviewSection() {
-
-  const [cityA, setCityA] = useState<City>({
+  const [cityA, setCityA] = useState({
     name: "New York, USA",
+    time: "10:30 AM",
     tz: "America/New_York",
   });
 
-  const [cityB, setCityB] = useState<City>({
+  const [cityB, setCityB] = useState({
     name: "London, UK",
+    time: "3:30 PM",
     tz: "Europe/London",
   });
 
+  const [creatingShare, setCreatingShare] = useState(false);
   const [shareLink, setShareLink] = useState<string | null>(null);
+  const [copyMessage, setCopyMessage] = useState<string>("");
 
-  const swapCities = () => {
+  function swapCities() {
+    const temp = cityA;
     setCityA(cityB);
-    setCityB(cityA);
-  };
+    setCityB(temp);
+  }
 
   async function createShareLink() {
+    if (creatingShare) return;
+
+    setCreatingShare(true);
+    setCopyMessage("");
+
     try {
-
-      const payload = {
-        cities: [cityA, cityB],
-        windows: [
-          {
-            startUtc: new Date().toISOString(),
-            endUtc: new Date(Date.now() + 60 * 60 * 1000).toISOString(),
-          },
-        ],
-      };
-
       const res = await fetch("/api/share", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          cities: [
+            { name: cityA.name, tz: cityA.tz },
+            { name: cityB.name, tz: cityB.tz },
+          ],
+          windows: [
+            {
+              startUtc: "2026-03-05T18:00:00Z",
+              endUtc: "2026-03-05T19:00:00Z",
+            },
+          ],
+        }),
       });
+
+      if (!res.ok) {
+        throw new Error("Share creation failed");
+      }
 
       const data = await res.json();
 
       if (data?.url) {
         const fullUrl = `${window.location.origin}${data.url}`;
         setShareLink(fullUrl);
+      } else {
+        throw new Error("Invalid response from share API");
       }
-
     } catch (err) {
-      console.error("share error", err);
+      console.error("share_link_error", err);
+      setCopyMessage("Unable to create share link");
+    } finally {
+      setCreatingShare(false);
     }
   }
 
-  function copyLink() {
+  async function copyLink() {
     if (!shareLink) return;
 
-    navigator.clipboard.writeText(shareLink);
-    alert("Link copied!");
+    try {
+      await navigator.clipboard.writeText(shareLink);
+      setCopyMessage("Link copied");
+    } catch {
+      setCopyMessage("Copy failed");
+    }
+  }
+
+  function exportCalendar() {
+    const start = "20260305T180000Z";
+    const end = "20260305T190000Z";
+
+    const title = `Meeting: ${cityA.name} ↔ ${cityB.name}`;
+    const description = `Suggested meeting window between ${cityA.name} and ${cityB.name}`;
+
+    const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:${title}
+DESCRIPTION:${description}
+DTSTART:${start}
+DTEND:${end}
+END:VEVENT
+END:VCALENDAR`;
+
+    const blob = new Blob([icsContent], { type: "text/calendar" });
+    const url = window.URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "meeting.ics";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    window.URL.revokeObjectURL(url);
+  }
+
+  function saveSetup() {
+    setCopyMessage("Save setup coming next");
   }
 
   return (
-    <section style={{ marginTop: 40 }}>
+    <div
+      aria-label="Tool Preview Container"
+      style={{
+        paddingTop: "var(--space-16)",
+        paddingBottom: "var(--space-16)",
+        maxWidth: "var(--container-max)",
+        margin: "0 auto",
+        paddingLeft: "var(--space-6)",
+        paddingRight: "var(--space-6)",
+      }}
+    >
+      <header
+        style={{
+          marginBottom: "var(--space-10)",
+          textAlign: "left",
+        }}
+      >
+        <h2 style={{ marginBottom: "var(--space-3)" }}>Tool Preview</h2>
+        <p style={{ maxWidth: 760 }}>
+          A realistic preview of how comparing time zones will look — basic
+          interaction enabled for city swap.
+        </p>
+      </header>
 
-      <h2>Tool Preview</h2>
-
-      <div style={{ display: "flex", gap: 20, marginTop: 20 }}>
-
-        <div>
-          <strong>{cityA.name}</strong>
-          <div>{cityA.tz}</div>
-        </div>
-
-        <button onClick={swapCities}>
-          Swap
-        </button>
-
-        <div>
-          <strong>{cityB.name}</strong>
-          <div>{cityB.tz}</div>
-        </div>
-
-      </div>
-
-      <div style={{ marginTop: 30 }}>
-
-        <button onClick={createShareLink}>
-          Share Link
-        </button>
-
-        <button style={{ marginLeft: 10 }}>
-          Export to Calendar
-        </button>
-
-        <button style={{ marginLeft: 10 }}>
-          Save This Setup
-        </button>
-
-      </div>
-
-      {shareLink && (
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1.1fr 0.9fr",
+          gap: "var(--space-10)",
+          alignItems: "start",
+        }}
+      >
         <div
+          className="card"
           style={{
-            marginTop: 25,
-            padding: 20,
-            border: "1px solid #444",
-            borderRadius: 8,
-            maxWidth: 500,
+            padding: "var(--space-8)",
           }}
         >
-          <strong>Link Created</strong>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr auto 1fr",
+              gap: "var(--space-4)",
+              alignItems: "center",
+              marginBottom: "var(--space-6)",
+            }}
+          >
+            <div
+              style={{
+                padding: "var(--space-4)",
+                borderRadius: "var(--radius-md)",
+                border: "1px solid var(--border)",
+                background: "var(--surface)",
+              }}
+            >
+              <p style={{ marginBottom: "var(--space-2)" }}>
+                <strong>{cityA.name}</strong>
+              </p>
+
+              <p style={{ marginBottom: 0 }}>
+                {cityA.time}
+                <br />
+                <small>{cityA.tz}</small>
+              </p>
+            </div>
+
+            <div style={{ textAlign: "center" }}>
+              <button onClick={swapCities}>Swap</button>
+            </div>
+
+            <div
+              style={{
+                padding: "var(--space-4)",
+                borderRadius: "var(--radius-md)",
+                border: "1px solid var(--border)",
+                background: "var(--surface)",
+              }}
+            >
+              <p style={{ marginBottom: "var(--space-2)" }}>
+                <strong>{cityB.name}</strong>
+              </p>
+
+              <p style={{ marginBottom: 0 }}>
+                {cityB.time}
+                <br />
+                <small>{cityB.tz}</small>
+              </p>
+            </div>
+          </div>
 
           <div
             style={{
-              marginTop: 10,
-              wordBreak: "break-all",
-              fontSize: 14,
+              borderRadius: "var(--radius-md)",
+              border: "1px solid var(--border)",
+              overflow: "hidden",
+              marginBottom: "var(--space-6)",
             }}
           >
-            {shareLink}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                padding: "var(--space-3) var(--space-4)",
+                background: "var(--surface)",
+                borderBottom: "1px solid var(--border)",
+              }}
+            >
+              <small>8 AM</small>
+              <small>10 AM</small>
+              <small>12 PM</small>
+              <small>2 PM</small>
+              <small>4 PM</small>
+              <small>6 PM</small>
+              <small>8 PM</small>
+              <small>10 PM</small>
+            </div>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1.2fr 1.6fr 1.2fr",
+                height: 14,
+              }}
+            >
+              <div style={{ background: "rgba(255,255,255,0.10)" }} />
+              <div
+                style={{
+                  background:
+                    "linear-gradient(90deg, rgba(124,58,237,0.55), rgba(251,191,36,0.35))",
+                }}
+              />
+              <div style={{ background: "rgba(255,255,255,0.10)" }} />
+            </div>
+
+            <div
+              style={{
+                padding: "var(--space-3) var(--space-4)",
+                background: "rgba(0,0,0,0.12)",
+              }}
+            >
+              <small>
+                Suggested window: <strong>2:00 PM – 3:00 PM</strong>
+              </small>
+            </div>
           </div>
 
-          <button
-            onClick={copyLink}
-            style={{ marginTop: 10 }}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr 1fr",
+              gap: "var(--space-4)",
+            }}
           >
-            Copy Link
-          </button>
-        </div>
-      )}
+            <button onClick={createShareLink}>
+              {creatingShare ? "Creating..." : "Share Link"}
+            </button>
 
-    </section>
+            <button onClick={exportCalendar}>Export to Calendar</button>
+
+            <button onClick={saveSetup}>Save This Setup</button>
+          </div>
+
+          {(shareLink || copyMessage) && (
+            <div
+              style={{
+                marginTop: "var(--space-6)",
+                padding: "var(--space-4)",
+                borderRadius: "var(--radius-md)",
+                border: "1px solid var(--border)",
+                background: "rgba(255,255,255,0.03)",
+              }}
+            >
+              {shareLink && (
+                <>
+                  <p style={{ marginTop: 0, marginBottom: "var(--space-2)" }}>
+                    <strong>Link created</strong>
+                  </p>
+
+                  <div
+                    style={{
+                      marginBottom: "var(--space-3)",
+                      wordBreak: "break-all",
+                      fontSize: 14,
+                    }}
+                  >
+                    {shareLink}
+                  </div>
+
+                  <button onClick={copyLink}>Copy Link</button>
+                </>
+              )}
+
+              {copyMessage && (
+                <p
+                  style={{
+                    marginTop: shareLink ? "var(--space-3)" : 0,
+                    marginBottom: 0,
+                    fontSize: 14,
+                  }}
+                >
+                  {copyMessage}
+                </p>
+              )}
+            </div>
+          )}
+        </div>
+
+        <aside>
+          <div className="card" style={{ padding: "var(--space-8)" }}>
+            <h3 style={{ marginBottom: "var(--space-3)" }}>
+              Premium unlock (one-time)
+            </h3>
+
+            <p style={{ marginBottom: "var(--space-6)" }}>
+              Unlock multiple time windows, calendar export, saved setups, and
+              sharing tools — no subscriptions.
+            </p>
+
+            <button className="button-primary" style={{ width: "100%" }}>
+              Unlock Premium (Preview)
+            </button>
+          </div>
+        </aside>
+      </div>
+    </div>
   );
 }
