@@ -1,12 +1,23 @@
-// app/page.tsx
+"use client";
 
-import { cookies } from "next/headers";
+import { useEffect, useState } from "react";
+import ToolPreviewSection from "./ui/ToolPreviewSection";
 import UnlockPremiumButton from "./UnlockPremiumButton";
 import ShareActionButton from "./components/ShareActionButton";
-import ToolPreviewSection from "./ui/ToolPreviewSection";
 
 export default function HomePage() {
-  const premium = cookies().get("premium")?.value === "1";
+
+  const [premium, setPremium] = useState(false);
+
+  useEffect(() => {
+    const cookie = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("premium="));
+
+    if (cookie?.split("=")[1] === "1") {
+      setPremium(true);
+    }
+  }, []);
 
   const cities = [
     { name: "New York", tz: "America/New_York" },
@@ -30,10 +41,8 @@ export default function HomePage() {
 
       {premium && (
         <div style={{ marginTop: "24px" }}>
-          {/* Full UI preview */}
           <ToolPreviewSection />
 
-          {/* existing share button wiring */}
           <div style={{ marginTop: "24px" }}>
             <ShareActionButton cities={cities} windows={windows} />
           </div>
