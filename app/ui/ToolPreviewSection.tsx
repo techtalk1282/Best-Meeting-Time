@@ -2,7 +2,7 @@
 
 // app/ui/ToolPreviewSection.tsx
 // PURPOSE: Tool preview section — interactive city swap + share link popup + calendar export.
-// LayoutShell provides the section wrapper.
+// Calendar export now calls backend endpoint /api/calendar instead of generating ICS in the browser.
 
 import { useState } from "react";
 
@@ -90,46 +90,14 @@ export default function ToolPreviewSection() {
     const start = "20260305T180000Z";
     const end = "20260305T190000Z";
 
-    const title = `Meeting: ${cityA.name} ↔ ${cityB.name}`;
-    const description = `Suggested meeting window between ${cityA.name} and ${cityB.name}`;
+    const url =
+      `/api/calendar?` +
+      `cityA=${encodeURIComponent(cityA.name)}` +
+      `&cityB=${encodeURIComponent(cityB.name)}` +
+      `&start=${start}` +
+      `&end=${end}`;
 
-    const now =
-      new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
-
-    const uid = `meeting-${Date.now()}@bestmeetingtime`;
-
-    const icsContent = `BEGIN:VCALENDAR
-PRODID:-//Best Meeting Time//EN
-VERSION:2.0
-CALSCALE:GREGORIAN
-METHOD:PUBLISH
-BEGIN:VEVENT
-UID:${uid}
-DTSTAMP:${now}
-DTSTART:${start}
-DTEND:${end}
-SUMMARY:${title}
-DESCRIPTION:${description}
-STATUS:CONFIRMED
-SEQUENCE:0
-END:VEVENT
-END:VCALENDAR`;
-
-    const blob = new Blob([icsContent], {
-      type: "text/calendar;charset=utf-8",
-    });
-
-    const url = window.URL.createObjectURL(blob);
-
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "meeting.ics";
-
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    window.URL.revokeObjectURL(url);
+    window.location.href = url;
   }
 
   function saveSetup() {
@@ -308,9 +276,7 @@ END:VCALENDAR`;
                 </>
               )}
 
-              {copyMessage && (
-                <p style={{ marginTop: 8 }}>{copyMessage}</p>
-              )}
+              {copyMessage && <p style={{ marginTop: 8 }}>{copyMessage}</p>}
             </div>
           )}
         </div>
