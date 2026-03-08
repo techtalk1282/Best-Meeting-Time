@@ -1,118 +1,79 @@
-"use client";
+<main style={{ padding: "2rem", maxWidth: 900, fontFamily: "sans-serif" }}>
+  <h1>Best Meeting Time</h1>
 
-// app/s/[id]/page.tsx
+  <p><strong>Shared Meeting</strong></p>
 
-import { useEffect, useState } from "react";
+  {data.createdAt && (
+    <p>Created: {formatInTimeZone(data.createdAt, viewerTz || "UTC")}</p>
+  )}
 
-interface ShareData {
-  id: string;
-  createdAt?: string;
-  cities: {
-    name: string;
-    tz: string;
-  }[];
-  windows: {
-    startUtc: string;
-    endUtc: string;
-  }[];
-}
+  {viewerTz && (
+    <p><strong>Your Timezone:</strong> {viewerTz}</p>
+  )}
 
-function formatInTimeZone(utc: string, timeZone: string) {
-  return new Date(utc).toLocaleString(undefined, {
-    timeZone,
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-  });
-}
+  <hr />
 
-export default function SharePage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const [data, setData] = useState<ShareData | null>(null);
-  const [viewerTz, setViewerTz] = useState<string | null>(null);
+  <h2>Cities</h2>
+  <ul>
+    {data.cities.map((city) => (
+      <li key={city.name}>
+        {city.name} ({city.tz})
+      </li>
+    ))}
+  </ul>
 
-  useEffect(() => {
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    setViewerTz(tz);
+  <hr />
 
-    async function load() {
-      const res = await fetch(`/api/share/${params.id}`, {
-        cache: "no-store",
-      });
+  <h2>Suggested Time Window(s)</h2>
 
-      if (!res.ok) {
-        setData(null);
-        return;
-      }
+  {data.windows.map((w, idx) => (
+    <div key={idx} style={{ marginBottom: "2rem" }}>
+      <strong>Option {idx + 1}</strong>
 
-      const json = await res.json();
-      setData(json);
-    }
+      <table
+        style={{
+          marginTop: "10px",
+          borderCollapse: "collapse",
+          width: "100%",
+          maxWidth: "600px",
+        }}
+      >
+        <tbody>
 
-    load();
-  }, [params.id]);
+          {data.cities.map((city) => (
+            <tr key={city.name}>
+              <td style={{ padding: "6px 10px", fontWeight: "bold" }}>
+                {city.name}
+              </td>
 
-  if (!data) {
-    return <main style={{ padding: "2rem", fontFamily: "sans-serif" }}>Loading...</main>;
-  }
+              <td style={{ padding: "6px 10px" }}>
+                {formatInTimeZone(w.startUtc, city.tz)}
+              </td>
 
-  return (
-    <main style={{ padding: "2rem", maxWidth: 900, fontFamily: "sans-serif" }}>
-      <h1>Best Meeting Time</h1>
+              <td style={{ padding: "6px 10px" }}>
+                {formatInTimeZone(w.endUtc, city.tz)}
+              </td>
+            </tr>
+          ))}
 
-      <p>
-        <strong>Shared Meeting</strong>
-      </p>
+          {viewerTz && (
+            <tr>
+              <td style={{ padding: "6px 10px", fontWeight: "bold" }}>
+                Your Local Time
+              </td>
 
-      {data.createdAt && <p>Created: {formatInTimeZone(data.createdAt, viewerTz || "UTC")}</p>}
+              <td style={{ padding: "6px 10px" }}>
+                {formatInTimeZone(w.startUtc, viewerTz)}
+              </td>
 
-      {viewerTz && (
-        <p>
-          <strong>Your Timezone:</strong> {viewerTz}
-        </p>
-      )}
+              <td style={{ padding: "6px 10px" }}>
+                {formatInTimeZone(w.endUtc, viewerTz)}
+              </td>
+            </tr>
+          )}
 
-      <hr />
-
-      <h2>Cities</h2>
-      <ul>
-        {data.cities.map((city) => (
-          <li key={city.name}>
-            {city.name} ({city.tz})
-          </li>
-        ))}
-      </ul>
-
-      <hr />
-
-      <h2>Suggested Time Window(s)</h2>
-
-      {data.windows.map((w, idx) => (
-        <div key={idx} style={{ marginBottom: "1.5rem" }}>
-          <strong>Option {idx + 1}</strong>
-
-          <div style={{ marginTop: "0.5rem" }}>
-            {data.cities.map((city) => (
-              <div key={`${idx}-${city.name}`} style={{ marginBottom: "0.35rem" }}>
-                <strong>{city.name}:</strong>{" "}
-                {formatInTimeZone(w.startUtc, city.tz)} – {formatInTimeZone(w.endUtc, city.tz)}
-              </div>
-            ))}
-
-            {viewerTz && (
-              <div style={{ marginTop: "0.35rem" }}>
-                <strong>Your Local Time:</strong>{" "}
-                {formatInTimeZone(w.startUtc, viewerTz)} – {formatInTimeZone(w.endUtc, viewerTz)}
-              </div>
-            )}
-          </div>
-        </div>
-      ))}
-    </main>
-  );
-}
+        </tbody>
+      </table>
+    </div>
+  ))}
+</main>
