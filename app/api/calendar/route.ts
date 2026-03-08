@@ -1,5 +1,5 @@
 // app/api/calendar/route.ts
-// PURPOSE: Generate calendar event (.ics) so the browser launches the calendar application.
+// PURPOSE: Generate calendar event (.ics) so the browser downloads the calendar file.
 // BACKEND ONLY — does not interact with Stripe, Premium verification, KV, or cookies.
 
 import { NextRequest, NextResponse } from "next/server";
@@ -43,7 +43,8 @@ END:VCALENDAR`;
 
     return new NextResponse(icsContent, {
       headers: {
-        "Content-Type": "text/calendar",
+        "Content-Type": "text/calendar; charset=utf-8",
+        "Content-Disposition": 'attachment; filename="meeting.ics"',
         "Cache-Control": "no-cache",
       },
     });
