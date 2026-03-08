@@ -1,7 +1,7 @@
 // app/s/[id]/page.tsx
 
 import { notFound } from "next/navigation";
-import { headers } from "next/headers";
+import { kv } from "@vercel/kv";
 import { formatUtcToLocal } from "@/lib/time";
 
 interface ShareData {
@@ -18,22 +18,14 @@ interface ShareData {
 }
 
 async function getShareData(id: string): Promise<ShareData> {
-  const h = headers();
 
-  const host = h.get("host");
-  const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+  const data = await kv.get<ShareData>(`share:${id}`);
 
-  const baseUrl = `${protocol}://${host}`;
-
-  const res = await fetch(`${baseUrl}/api/share/${id}`, {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
+  if (!data) {
     notFound();
   }
 
-  return res.json();
+  return data;
 }
 
 export default async function SharePage({
@@ -41,6 +33,7 @@ export default async function SharePage({
 }: {
   params: { id: string };
 }) {
+
   const data = await getShareData(params.id);
 
   return (
@@ -69,6 +62,7 @@ export default async function SharePage({
       <hr />
 
       <h2>Suggested Time Window(s)</h2>
+
       {data.windows.map((w, idx) => (
         <div key={idx} style={{ marginBottom: "1rem" }}>
           <strong>Option {idx + 1}</strong>
