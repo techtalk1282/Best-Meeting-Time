@@ -2,7 +2,7 @@
 
 // app/ui/ToolPreviewSection.tsx
 // PURPOSE: Tool preview section with timeline strip, share link, calendar export.
-// Includes gradient timeline with overlay labels.
+// UI improvements: thicker timeline + stronger green best-window zone.
 
 import { useState, useEffect } from "react";
 
@@ -97,7 +97,6 @@ export default function ToolPreviewSection() {
       if (!res.ok) throw new Error("Share creation failed");
 
       const data = await res.json();
-
       const fullUrl = `${window.location.origin}${data.url}`;
 
       setShareLink(fullUrl);
@@ -246,18 +245,20 @@ export default function ToolPreviewSection() {
       <div
         style={{
           border: "1px solid #444",
-          padding: 20,
+          padding: 18,
           borderRadius: 10,
           marginBottom: 25
         }}
       >
+
+        {/* Time markers */}
 
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
             fontSize: 12,
-            marginBottom: 10
+            marginBottom: 8
           }}
         >
           <span>8 AM</span>
@@ -270,16 +271,20 @@ export default function ToolPreviewSection() {
           <span>10 PM</span>
         </div>
 
+        {/* Gradient timeline */}
+
         <div style={{ position: "relative" }}>
 
           <div
             style={{
-              height: 18,
-              borderRadius: 8,
+              height: 22,
+              borderRadius: 10,
               background:
-                "linear-gradient(to right,#6d28d9 0%,#8b5cf6 25%,#22c55e 45%,#22c55e 55%,#f59e0b 75%,#d946ef 100%)"
+                "linear-gradient(to right,#6d28d9 0%,#8b5cf6 20%,#22c55e 40%,#16a34a 55%,#f59e0b 75%,#ec4899 100%)"
             }}
           />
+
+          {/* Overlay labels */}
 
           <div
             style={{
@@ -307,12 +312,12 @@ export default function ToolPreviewSection() {
 
         </div>
 
-        <div style={{ marginTop: 12, fontWeight: 600 }}>
+        <div style={{ marginTop: 10, fontWeight: 600 }}>
           Best Meeting Window: <strong>2:00 PM – 3:00 PM</strong>
         </div>
 
-        <div style={{ marginTop: 6, fontSize: 12, opacity: 0.7 }}>
-          Based on typical working hours (9 AM – 5 PM)
+        <div style={{ marginTop: 4, fontSize: 12, opacity: 0.7 }}>
+          Calculated using typical working hours (9 AM – 5 PM)
         </div>
 
       </div>
