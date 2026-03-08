@@ -1,5 +1,6 @@
 // app/api/calendar/route.ts
-// PURPOSE: Generate calendar event (.ics) so the browser opens the calendar app directly.
+// PURPOSE: Generate calendar event (.ics) so the browser launches the calendar application.
+// BACKEND ONLY — does not interact with Stripe, Premium verification, KV, or cookies.
 
 import { NextRequest, NextResponse } from "next/server";
 
@@ -23,7 +24,7 @@ export async function GET(req: NextRequest) {
     const title = `Meeting: ${cityA} ↔ ${cityB}`;
     const description = `Suggested meeting window between ${cityA} and ${cityB}`;
 
-    const ics = `BEGIN:VCALENDAR
+    const icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Best Meeting Time//EN
 CALSCALE:GREGORIAN
@@ -40,10 +41,10 @@ SEQUENCE:0
 END:VEVENT
 END:VCALENDAR`;
 
-    return new NextResponse(ics, {
+    return new NextResponse(icsContent, {
       headers: {
-        "Content-Type": "text/calendar; charset=utf-8",
-        "Content-Disposition": "inline; filename=meeting.ics",
+        "Content-Type": "text/calendar",
+        "Cache-Control": "no-cache",
       },
     });
   } catch (err) {
