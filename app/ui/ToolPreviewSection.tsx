@@ -26,6 +26,16 @@ export default function ToolPreviewSection() {
 
   const [calendarMenuOpen, setCalendarMenuOpen] = useState(false);
 
+  /**
+   * Central meeting window object.
+   * This replaces repeated hard-coded windows and prepares the system
+   * for real meeting calculations later.
+   */
+  const meetingWindow = {
+    startUtc: "2026-03-05T18:00:00Z",
+    endUtc: "2026-03-05T19:00:00Z",
+  };
+
   function swapCities() {
     const temp = cityA;
     setCityA(cityB);
@@ -51,12 +61,7 @@ export default function ToolPreviewSection() {
             { name: cityA.name, tz: cityA.tz },
             { name: cityB.name, tz: cityB.tz },
           ],
-          windows: [
-            {
-              startUtc: "2026-03-05T18:00:00Z",
-              endUtc: "2026-03-05T19:00:00Z",
-            },
-          ],
+          windows: [meetingWindow],
         }),
       });
 
