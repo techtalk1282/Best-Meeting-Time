@@ -28,6 +28,16 @@ async function getShareData(id: string): Promise<ShareData> {
   return data;
 }
 
+function formatForCity(utc: string, tz: string) {
+
+  return new Date(utc).toLocaleString("en-US", {
+    timeZone: tz,
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
+
+}
+
 export default async function SharePage({
   params,
 }: {
@@ -64,13 +74,37 @@ export default async function SharePage({
       <h2>Suggested Time Window(s)</h2>
 
       {data.windows.map((w, idx) => (
-        <div key={idx} style={{ marginBottom: "1rem" }}>
+
+        <div key={idx} style={{ marginBottom: "2rem" }}>
+
           <strong>Option {idx + 1}</strong>
-          <div>
-            {formatUtcToLocal(w.startUtc)} – {formatUtcToLocal(w.endUtc)}
+
+          <div style={{ marginTop: "0.5rem" }}>
+            Viewer Local Time:
+            <div>
+              {formatUtcToLocal(w.startUtc)} – {formatUtcToLocal(w.endUtc)}
+            </div>
           </div>
+
+          <div style={{ marginTop: "0.5rem" }}>
+
+            {data.cities.map((city) => (
+
+              <div key={city.name}>
+                {city.name}:
+                <div>
+                  {formatForCity(w.startUtc, city.tz)} – {formatForCity(w.endUtc, city.tz)}
+                </div>
+              </div>
+
+            ))}
+
+          </div>
+
         </div>
+
       ))}
+
     </main>
   );
 }
