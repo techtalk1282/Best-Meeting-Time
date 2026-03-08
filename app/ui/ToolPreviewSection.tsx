@@ -6,17 +6,16 @@
 import { useState } from "react";
 
 export default function ToolPreviewSection() {
-
   const [cityA, setCityA] = useState({
-    name: "London, UK",
-    time: "3:30 PM",
-    tz: "Europe/London",
-  });
-
-  const [cityB, setCityB] = useState({
     name: "New York, USA",
     time: "10:30 AM",
     tz: "America/New_York",
+  });
+
+  const [cityB, setCityB] = useState({
+    name: "London, UK",
+    time: "3:30 PM",
+    tz: "Europe/London",
   });
 
   const [creatingShare, setCreatingShare] = useState(false);
@@ -32,14 +31,12 @@ export default function ToolPreviewSection() {
   }
 
   async function createShareLink() {
-
     if (creatingShare) return;
 
     setCreatingShare(true);
     setCopyMessage("");
 
     try {
-
       const res = await fetch("/api/share", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -60,42 +57,32 @@ export default function ToolPreviewSection() {
       if (!res.ok) throw new Error("Share creation failed");
 
       const data = await res.json();
-
       const fullUrl = `${window.location.origin}${data.url}`;
-
       setShareLink(fullUrl);
-
     } catch (err) {
-
       console.error("share_link_error", err);
-
       setCopyMessage("Unable to create share link");
-
     } finally {
-
       setCreatingShare(false);
-
     }
-
   }
 
   async function copyLink() {
-
     if (!shareLink) return;
 
-    await navigator.clipboard.writeText(shareLink);
-
-    setCopyMessage("Link copied");
-
+    try {
+      await navigator.clipboard.writeText(shareLink);
+      setCopyMessage("Link copied");
+    } catch {
+      setCopyMessage("Copy failed");
+    }
   }
 
   function openGoogleCalendar() {
-
     const start = "20260305T180000Z";
     const end = "20260305T190000Z";
 
     const text = encodeURIComponent(`Meeting: ${cityA.name} ↔ ${cityB.name}`);
-
     const details = encodeURIComponent(
       `Suggested meeting window between ${cityA.name} and ${cityB.name}`
     );
@@ -106,12 +93,10 @@ export default function ToolPreviewSection() {
       `&dates=${start}/${end}` +
       `&details=${details}`;
 
-    window.open(url, "_blank");
-
+    window.open(url, "_blank", "noopener,noreferrer");
   }
 
   function openOutlookCalendar() {
-
     const start = "2026-03-05T18:00:00Z";
     const end = "2026-03-05T19:00:00Z";
 
@@ -124,18 +109,16 @@ export default function ToolPreviewSection() {
     );
 
     const url =
-      `https://outlook.live.com/calendar/deeplink/compose?` +
+      `https://outlook.office.com/calendar/deeplink/compose?` +
       `subject=${subject}` +
       `&startdt=${start}` +
       `&enddt=${end}` +
       `&body=${body}`;
 
-    window.open(url, "_blank");
-
+    window.open(url, "_blank", "noopener,noreferrer");
   }
 
   function downloadICS() {
-
     const start = "20260305T180000Z";
     const end = "20260305T190000Z";
 
@@ -144,28 +127,28 @@ export default function ToolPreviewSection() {
       `&cityB=${encodeURIComponent(cityB.name)}` +
       `&start=${start}&end=${end}`;
 
-    window.location.href = url;
-
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "meeting.ics";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   function saveSetup() {
-
     setCopyMessage("Save setup coming next");
-
   }
 
   return (
-
     <div style={{ maxWidth: 900, margin: "0 auto", padding: 40 }}>
-
       <h2>Tool Preview</h2>
 
       <p>
-        A realistic preview of how comparing time zones will look — basic interaction enabled.
+        A realistic preview of how comparing time zones will look — basic
+        interaction enabled.
       </p>
 
       <div style={{ display: "flex", gap: 20, marginBottom: 20 }}>
-
         <div style={{ border: "1px solid #444", padding: 15, borderRadius: 8 }}>
           <strong>{cityA.name}</strong>
           <p>{cityA.time}</p>
@@ -179,7 +162,6 @@ export default function ToolPreviewSection() {
           <p>{cityB.time}</p>
           <small>{cityB.tz}</small>
         </div>
-
       </div>
 
       <div
@@ -190,7 +172,6 @@ export default function ToolPreviewSection() {
           marginBottom: 25,
         }}
       >
-
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <span>8 AM</span>
           <span>10 AM</span>
@@ -215,11 +196,9 @@ export default function ToolPreviewSection() {
         <p style={{ marginTop: 12 }}>
           Suggested window: <strong>2:00 PM – 3:00 PM</strong>
         </p>
-
       </div>
 
       <div style={{ display: "flex", gap: 12 }}>
-
         <button onClick={createShareLink}>
           {creatingShare ? "Creating..." : "Share Link"}
         </button>
@@ -229,33 +208,20 @@ export default function ToolPreviewSection() {
         </button>
 
         <button onClick={saveSetup}>Save This Setup</button>
-
       </div>
 
       {calendarMenuOpen && (
+        <div style={{ marginTop: 20, display: "flex", gap: 12, flexWrap: "wrap" }}>
+          <button onClick={openGoogleCalendar}>Add to Google Calendar</button>
 
-        <div style={{ marginTop: 20 }}>
+          <button onClick={openOutlookCalendar}>Add to Outlook Calendar</button>
 
-          <button onClick={openGoogleCalendar}>
-            Add to Google Calendar
-          </button>
-
-          <button onClick={openOutlookCalendar}>
-            Add to Outlook Calendar
-          </button>
-
-          <button onClick={downloadICS}>
-            Apple / iCal Download
-          </button>
-
+          <button onClick={downloadICS}>Apple / iCal Download</button>
         </div>
-
       )}
 
       {shareLink && (
-
         <div style={{ marginTop: 30 }}>
-
           <strong>Link created</strong>
 
           <p>{shareLink}</p>
@@ -263,13 +229,8 @@ export default function ToolPreviewSection() {
           <button onClick={copyLink}>Copy Link</button>
 
           <p>{copyMessage}</p>
-
         </div>
-
       )}
-
     </div>
-
   );
-
 }
