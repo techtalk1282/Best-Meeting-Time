@@ -8,7 +8,6 @@ import ToolPreviewSection from "./ui/ToolPreviewSection";
 export default function HomePage() {
   const premium = cookies().get("premium")?.value === "1";
 
-  // TEMP DATA (WIRING VALIDATION ONLY)
   const cities = [
     { name: "New York", tz: "America/New_York" },
     { name: "London", tz: "Europe/London" },
@@ -31,7 +30,10 @@ export default function HomePage() {
 
       {premium && (
         <div style={{ marginTop: "24px" }}>
+          {/* Full UI preview */}
           <ToolPreviewSection />
+
+          {/* existing share button wiring */}
           <div style={{ marginTop: "24px" }}>
             <ShareActionButton cities={cities} windows={windows} />
           </div>
