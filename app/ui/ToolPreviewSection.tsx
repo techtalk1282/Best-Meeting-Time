@@ -117,7 +117,10 @@ export default function ToolPreviewSection() {
       const fullUrl = `${window.location.origin}${data.url}`;
 
       setShareLink(fullUrl);
-      setCopyMessage("Setup saved successfully");
+
+      setCopyMessage(
+        "Setup saved. Use the link below to reopen this meeting configuration anytime."
+      );
 
     } catch (err) {
 
@@ -204,16 +207,7 @@ export default function ToolPreviewSection() {
       `&cityB=${encodeURIComponent(cityB.name)}` +
       `&start=${start}&end=${end}`;
 
-    const link = document.createElement("a");
-
-    link.href = url;
-    link.download = "meeting.ics";
-
-    document.body.appendChild(link);
-
-    link.click();
-
-    document.body.removeChild(link);
+    window.open(url, "_blank");
 
   }
 
@@ -224,7 +218,8 @@ export default function ToolPreviewSection() {
       <h2>Tool Preview</h2>
 
       <p>
-        A realistic preview of how comparing time zones will look — basic interaction enabled.
+        A realistic preview of how comparing time zones will look — basic
+        interaction enabled.
       </p>
 
       <div style={{ display: "flex", gap: 20, marginBottom: 20 }}>
