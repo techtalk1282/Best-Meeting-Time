@@ -1,22 +1,22 @@
 "use client";
 
 // app/ui/ToolPreviewSection.tsx
-// PURPOSE: Tool preview section — city swap + share link + calendar export options.
+// PURPOSE: Tool preview section with timeline strip, share link, and calendar export.
 
 import { useState } from "react";
 
 export default function ToolPreviewSection() {
 
   const [cityA, setCityA] = useState({
-    name: "New York, USA",
-    time: "10:30 AM",
-    tz: "America/New_York",
-  });
-
-  const [cityB, setCityB] = useState({
     name: "London, UK",
     time: "3:30 PM",
     tz: "Europe/London",
+  });
+
+  const [cityB, setCityB] = useState({
+    name: "New York, USA",
+    time: "10:30 AM",
+    tz: "America/New_York",
   });
 
   const [creatingShare, setCreatingShare] = useState(false);
@@ -42,9 +42,7 @@ export default function ToolPreviewSection() {
 
       const res = await fetch("/api/share", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           cities: [
             { name: cityA.name, tz: cityA.tz },
@@ -63,17 +61,9 @@ export default function ToolPreviewSection() {
 
       const data = await res.json();
 
-      if (data?.url) {
+      const fullUrl = `${window.location.origin}${data.url}`;
 
-        const fullUrl = `${window.location.origin}${data.url}`;
-
-        setShareLink(fullUrl);
-
-      } else {
-
-        throw new Error("Invalid response");
-
-      }
+      setShareLink(fullUrl);
 
     } catch (err) {
 
@@ -93,17 +83,9 @@ export default function ToolPreviewSection() {
 
     if (!shareLink) return;
 
-    try {
+    await navigator.clipboard.writeText(shareLink);
 
-      await navigator.clipboard.writeText(shareLink);
-
-      setCopyMessage("Link copied");
-
-    } catch {
-
-      setCopyMessage("Copy failed");
-
-    }
+    setCopyMessage("Link copied");
 
   }
 
@@ -142,7 +124,7 @@ export default function ToolPreviewSection() {
     );
 
     const url =
-      `https://outlook.live.com/calendar/0/deeplink/compose?` +
+      `https://outlook.live.com/calendar/0/action/compose?` +
       `subject=${subject}` +
       `&startdt=${start}` +
       `&enddt=${end}` +
@@ -158,13 +140,11 @@ export default function ToolPreviewSection() {
     const end = "20260305T190000Z";
 
     const url =
-      `/api/calendar?` +
-      `cityA=${encodeURIComponent(cityA.name)}` +
+      `/api/calendar?cityA=${encodeURIComponent(cityA.name)}` +
       `&cityB=${encodeURIComponent(cityB.name)}` +
-      `&start=${start}` +
-      `&end=${end}`;
+      `&start=${start}&end=${end}`;
 
-    window.location.href = url;
+    window.open(url);
 
   }
 
@@ -181,25 +161,68 @@ export default function ToolPreviewSection() {
       <h2>Tool Preview</h2>
 
       <p>
-        A realistic preview of how comparing time zones will look — basic
-        interaction enabled for city swap.
+        A realistic preview of how comparing time zones will look — basic interaction enabled.
       </p>
+
+      {/* CITY CARDS */}
 
       <div style={{ display: "flex", gap: 20, marginBottom: 20 }}>
 
-        <div>
+        <div style={{ border: "1px solid #444", padding: 15, borderRadius: 8 }}>
           <strong>{cityA.name}</strong>
           <p>{cityA.time}</p>
+          <small>{cityA.tz}</small>
         </div>
 
         <button onClick={swapCities}>Swap</button>
 
-        <div>
+        <div style={{ border: "1px solid #444", padding: 15, borderRadius: 8 }}>
           <strong>{cityB.name}</strong>
           <p>{cityB.time}</p>
+          <small>{cityB.tz}</small>
         </div>
 
       </div>
+
+      {/* TIMELINE STRIP */}
+
+      <div
+        style={{
+          border: "1px solid #444",
+          borderRadius: 10,
+          padding: 20,
+          marginBottom: 25,
+        }}
+      >
+
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <span>8 AM</span>
+          <span>10 AM</span>
+          <span>12 PM</span>
+          <span>2 PM</span>
+          <span>4 PM</span>
+          <span>6 PM</span>
+          <span>8 PM</span>
+          <span>10 PM</span>
+        </div>
+
+        <div
+          style={{
+            height: 10,
+            marginTop: 10,
+            borderRadius: 6,
+            background:
+              "linear-gradient(to right,#444 0%,#444 35%,#8b5cf6 35%,#f59e0b 55%,#444 55%,#444 100%)",
+          }}
+        />
+
+        <p style={{ marginTop: 12 }}>
+          Suggested window: <strong>2:00 PM – 3:00 PM</strong>
+        </p>
+
+      </div>
+
+      {/* ACTION BUTTONS */}
 
       <div style={{ display: "flex", gap: 12 }}>
 
@@ -214,6 +237,8 @@ export default function ToolPreviewSection() {
         <button onClick={saveSetup}>Save This Setup</button>
 
       </div>
+
+      {/* CALENDAR OPTIONS */}
 
       {calendarMenuOpen && (
 
@@ -234,6 +259,8 @@ export default function ToolPreviewSection() {
         </div>
 
       )}
+
+      {/* SHARE LINK */}
 
       {shareLink && (
 
