@@ -2,39 +2,63 @@
 
 // app/ui/ToolPreviewSection.tsx
 // PURPOSE: Tool preview section with timeline strip, share link, calendar export.
+// Adds a basic time-overlap calculation between two cities.
 
 import { useState } from "react";
 
+type City = {
+  name: string;
+  time: string;
+  tz: string;
+};
+
+type Window = {
+  startUtc: string;
+  endUtc: string;
+};
+
+function calculateOverlap(cityA: City, cityB: City): Window {
+  // Simplified working-hours overlap (9am–5pm local for both cities)
+
+  const now = new Date();
+
+  const dateStr = now.toISOString().split("T")[0];
+
+  const aStart = new Date(`${dateStr}T09:00:00`);
+  const aEnd = new Date(`${dateStr}T17:00:00`);
+
+  const bStart = new Date(`${dateStr}T09:00:00`);
+  const bEnd = new Date(`${dateStr}T17:00:00`);
+
+  const start = new Date(Math.max(aStart.getTime(), bStart.getTime()));
+  const end = new Date(Math.min(aEnd.getTime(), bEnd.getTime()));
+
+  return {
+    startUtc: start.toISOString(),
+    endUtc: end.toISOString(),
+  };
+}
+
 export default function ToolPreviewSection() {
 
-  const [cityA, setCityA] = useState({
+  const [cityA, setCityA] = useState<City>({
     name: "New York, USA",
     time: "10:30 AM",
     tz: "America/New_York",
   });
 
-  const [cityB, setCityB] = useState({
+  const [cityB, setCityB] = useState<City>({
     name: "London, UK",
     time: "3:30 PM",
     tz: "Europe/London",
   });
 
   const [creatingShare, setCreatingShare] = useState(false);
-
   const [shareLink, setShareLink] = useState<string | null>(null);
   const [copyMessage, setCopyMessage] = useState("");
-
   const [calendarMenuOpen, setCalendarMenuOpen] = useState(false);
 
-  /**
-   * Central meeting window object.
-   * This replaces repeated hard-coded windows and prepares the system
-   * for real meeting calculations later.
-   */
-  const meetingWindow = {
-    startUtc: "2026-03-05T18:00:00Z",
-    endUtc: "2026-03-05T19:00:00Z",
-  };
+  const meetingWindow = calculateOverlap(cityA, cityB);
 
   function swapCities() {
     const temp = cityA;
@@ -105,8 +129,15 @@ export default function ToolPreviewSection() {
 
   function openGoogleCalendar() {
 
-    const start = "20260305T180000Z";
-    const end = "20260305T190000Z";
+    const start = new Date(meetingWindow.startUtc)
+      .toISOString()
+      .replace(/[-:]/g, "")
+      .split(".")[0] + "Z";
+
+    const end = new Date(meetingWindow.endUtc)
+      .toISOString()
+      .replace(/[-:]/g, "")
+      .split(".")[0] + "Z";
 
     const text = encodeURIComponent(`Meeting: ${cityA.name} ↔ ${cityB.name}`);
 
@@ -126,8 +157,8 @@ export default function ToolPreviewSection() {
 
   function openOutlookCalendar() {
 
-    const start = "2026-03-05T18:00:00Z";
-    const end = "2026-03-05T19:00:00Z";
+    const start = meetingWindow.startUtc;
+    const end = meetingWindow.endUtc;
 
     const subject = encodeURIComponent(
       `Meeting: ${cityA.name} ↔ ${cityB.name}`
@@ -150,8 +181,15 @@ export default function ToolPreviewSection() {
 
   function downloadICS() {
 
-    const start = "20260305T180000Z";
-    const end = "20260305T190000Z";
+    const start = new Date(meetingWindow.startUtc)
+      .toISOString()
+      .replace(/[-:]/g, "")
+      .split(".")[0] + "Z";
+
+    const end = new Date(meetingWindow.endUtc)
+      .toISOString()
+      .replace(/[-:]/g, "")
+      .split(".")[0] + "Z";
 
     const url =
       `/api/calendar?cityA=${encodeURIComponent(cityA.name)}` +
