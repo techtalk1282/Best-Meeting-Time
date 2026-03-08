@@ -99,9 +99,10 @@ export default function ToolPreviewSection() {
     const uid = `meeting-${Date.now()}@bestmeetingtime`;
 
     const icsContent = `BEGIN:VCALENDAR
+PRODID:-//Best Meeting Time//EN
 VERSION:2.0
 CALSCALE:GREGORIAN
-PRODID:-//Best Meeting Time//EN
+METHOD:PUBLISH
 BEGIN:VEVENT
 UID:${uid}
 DTSTAMP:${now}
@@ -109,6 +110,8 @@ DTSTART:${start}
 DTEND:${end}
 SUMMARY:${title}
 DESCRIPTION:${description}
+STATUS:CONFIRMED
+SEQUENCE:0
 END:VEVENT
 END:VCALENDAR`;
 
@@ -166,12 +169,7 @@ END:VCALENDAR`;
           alignItems: "start",
         }}
       >
-        <div
-          className="card"
-          style={{
-            padding: "var(--space-8)",
-          }}
-        >
+        <div className="card" style={{ padding: "var(--space-8)" }}>
           <div
             style={{
               display: "grid",
@@ -189,11 +187,8 @@ END:VCALENDAR`;
                 background: "var(--surface)",
               }}
             >
-              <p style={{ marginBottom: "var(--space-2)" }}>
-                <strong>{cityA.name}</strong>
-              </p>
-
-              <p style={{ marginBottom: 0 }}>
+              <strong>{cityA.name}</strong>
+              <p style={{ margin: 0 }}>
                 {cityA.time}
                 <br />
                 <small>{cityA.tz}</small>
@@ -212,11 +207,8 @@ END:VCALENDAR`;
                 background: "var(--surface)",
               }}
             >
-              <p style={{ marginBottom: "var(--space-2)" }}>
-                <strong>{cityB.name}</strong>
-              </p>
-
-              <p style={{ marginBottom: 0 }}>
+              <strong>{cityB.name}</strong>
+              <p style={{ margin: 0 }}>
                 {cityB.time}
                 <br />
                 <small>{cityB.tz}</small>
@@ -308,34 +300,16 @@ END:VCALENDAR`;
             >
               {shareLink && (
                 <>
-                  <p style={{ marginTop: 0, marginBottom: "var(--space-2)" }}>
-                    <strong>Link created</strong>
-                  </p>
-
-                  <div
-                    style={{
-                      marginBottom: "var(--space-3)",
-                      wordBreak: "break-all",
-                      fontSize: 14,
-                    }}
-                  >
+                  <strong>Link created</strong>
+                  <div style={{ wordBreak: "break-all", marginTop: 6 }}>
                     {shareLink}
                   </div>
-
                   <button onClick={copyLink}>Copy Link</button>
                 </>
               )}
 
               {copyMessage && (
-                <p
-                  style={{
-                    marginTop: shareLink ? "var(--space-3)" : 0,
-                    marginBottom: 0,
-                    fontSize: 14,
-                  }}
-                >
-                  {copyMessage}
-                </p>
+                <p style={{ marginTop: 8 }}>{copyMessage}</p>
               )}
             </div>
           )}
@@ -343,11 +317,8 @@ END:VCALENDAR`;
 
         <aside>
           <div className="card" style={{ padding: "var(--space-8)" }}>
-            <h3 style={{ marginBottom: "var(--space-3)" }}>
-              Premium unlock (one-time)
-            </h3>
-
-            <p style={{ marginBottom: "var(--space-6)" }}>
+            <h3>Premium unlock (one-time)</h3>
+            <p>
               Unlock multiple time windows, calendar export, saved setups, and
               sharing tools — no subscriptions.
             </p>
