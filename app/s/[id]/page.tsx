@@ -1,10 +1,7 @@
-// app/s/[id]/page.tsx
-
 "use client";
 
-import { notFound } from "next/navigation";
-import { formatUtcToLocal } from "@/lib/time";
-import { kv } from "@vercel/kv";
+// app/s/[id]/page.tsx
+
 import { useEffect, useState } from "react";
 
 interface ShareData {
@@ -20,35 +17,15 @@ interface ShareData {
   }[];
 }
 
-async function getShareData(id: string): Promise<ShareData> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-
-  if (!baseUrl) {
-    throw new Error("Missing env: NEXT_PUBLIC_BASE_URL");
-  }
-
-  const res = await fetch(`${baseUrl}/api/share/${id}`, {
-    cache: "no-store",
+function formatInTimeZone(utc: string, timeZone: string) {
+  return new Date(utc).toLocaleString(undefined, {
+    timeZone,
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
   });
-
-  if (!res.ok) {
-    notFound();
-  }
-
-  const data: ShareData = await res.json();
-
-  /*
-  Analytics: track share link opens
-  */
-
-  try {
-    await kv.incr("analytics:share_opened");
-    await kv.incr(`analytics:share_opened:${id}`);
-  } catch (err) {
-    console.error("analytics_error", err);
-  }
-
-  return data;
 }
 
 export default function SharePage({
@@ -64,8 +41,15 @@ export default function SharePage({
     setViewerTz(tz);
 
     async function load() {
-      const res = await fetch(`/api/share/${params.id}`);
-      if (!res.ok) return;
+      const res = await fetch(`/api/share/${params.id}`, {
+        cache: "no-store",
+      });
+
+      if (!res.ok) {
+        setData(null);
+        return;
+      }
+
       const json = await res.json();
       setData(json);
     }
@@ -74,20 +58,18 @@ export default function SharePage({
   }, [params.id]);
 
   if (!data) {
-    return <div style={{ padding: "2rem" }}>Loading...</div>;
+    return <main style={{ padding: "2rem", fontFamily: "sans-serif" }}>Loading...</main>;
   }
 
   return (
-    <main style={{ padding: "2rem", maxWidth: 800, fontFamily: "sans-serif" }}>
+    <main style={{ padding: "2rem", maxWidth: 900, fontFamily: "sans-serif" }}>
       <h1>Best Meeting Time</h1>
 
       <p>
         <strong>Shared Meeting</strong>
       </p>
 
-      {data.createdAt && (
-        <p>Created: {formatUtcToLocal(data.createdAt)}</p>
-      )}
+      {data.createdAt && <p>Created: {formatInTimeZone(data.createdAt, viewerTz || "UTC")}</p>}
 
       {viewerTz && (
         <p>
@@ -98,7 +80,6 @@ export default function SharePage({
       <hr />
 
       <h2>Cities</h2>
-
       <ul>
         {data.cities.map((city) => (
           <li key={city.name}>
@@ -112,25 +93,24 @@ export default function SharePage({
       <h2>Suggested Time Window(s)</h2>
 
       {data.windows.map((w, idx) => (
-        <div key={idx} style={{ marginBottom: "1rem" }}>
+        <div key={idx} style={{ marginBottom: "1.5rem" }}>
           <strong>Option {idx + 1}</strong>
 
-          <div>
-            {formatUtcToLocal(w.startUtc)} – {formatUtcToLocal(w.endUtc)}
-          </div>
+          <div style={{ marginTop: "0.5rem" }}>
+            {data.cities.map((city) => (
+              <div key={`${idx}-${city.name}`} style={{ marginBottom: "0.35rem" }}>
+                <strong>{city.name}:</strong>{" "}
+                {formatInTimeZone(w.startUtc, city.tz)} – {formatInTimeZone(w.endUtc, city.tz)}
+              </div>
+            ))}
 
-          {viewerTz && (
-            <div>
-              Your Local Time:{" "}
-              {new Date(w.startUtc).toLocaleString(undefined, {
-                timeZone: viewerTz,
-              })}{" "}
-              –{" "}
-              {new Date(w.endUtc).toLocaleString(undefined, {
-                timeZone: viewerTz,
-              })}
-            </div>
-          )}
+            {viewerTz && (
+              <div style={{ marginTop: "0.35rem" }}>
+                <strong>Your Local Time:</strong>{" "}
+                {formatInTimeZone(w.startUtc, viewerTz)} – {formatInTimeZone(w.endUtc, viewerTz)}
+              </div>
+            )}
+          </div>
         </div>
       ))}
     </main>
