@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ToolPreviewSection from "./ui/ToolPreviewSection";
+import ToolPreviewSection from "@/app/ui/ToolPreviewSection";
 import UnlockPremiumButton from "./UnlockPremiumButton";
 import ShareActionButton from "./components/ShareActionButton";
 
