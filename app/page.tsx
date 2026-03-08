@@ -3,12 +3,12 @@
 import { cookies } from "next/headers";
 import UnlockPremiumButton from "./UnlockPremiumButton";
 import ShareActionButton from "./components/ShareActionButton";
+import ToolPreviewSection from "./ui/ToolPreviewSection";
 
 export default function HomePage() {
   const premium = cookies().get("premium")?.value === "1";
 
   // TEMP DATA (WIRING VALIDATION ONLY)
-  // Next step will replace this with real meeting state from the actual UI.
   const cities = [
     { name: "New York", tz: "America/New_York" },
     { name: "London", tz: "Europe/London" },
@@ -34,6 +34,11 @@ export default function HomePage() {
           <ShareActionButton cities={cities} windows={windows} />
         </div>
       )}
+
+      {/* Tool Preview UI */}
+      <div id="tool-preview" style={{ marginTop: "60px" }}>
+        <ToolPreviewSection />
+      </div>
     </main>
   );
 }
