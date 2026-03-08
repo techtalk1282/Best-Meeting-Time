@@ -13,20 +13,22 @@ const CORS_HEADERS = {
   "Access-Control-Allow-Headers": "Content-Type",
 };
 
+const SHARE_TTL_SECONDS = 60 * 60 * 24 * 45; // 45 days
+
 export async function OPTIONS() {
   return new NextResponse(null, { status: 204, headers: CORS_HEADERS });
 }
 
 /*
 Expected POST body:
+
 {
   cities: { name: string; tz: string }[],
   windows: { startUtc: string; endUtc: string }[]
 }
 
-NOTE:
-Preview share is allowed without premium cookie.
-Premium gating remains for other features.
+Preview share allowed without premium cookie.
+Premium gating remains for other systems.
 */
 
 export async function POST(req: NextRequest) {
@@ -48,8 +50,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Generate short non-predictable ID
-    const id = crypto.randomBytes(4).toString("hex"); // 8 characters
+    /*
+    Generate secure 10 character ID
+    */
+
+    const id = crypto.randomBytes(5).toString("hex"); // 10 characters
+
     const shareKey = `share:${id}`;
 
     const payload = {
@@ -59,8 +65,13 @@ export async function POST(req: NextRequest) {
       windows,
     };
 
-    // Store payload in KV
-    await kv.set(shareKey, payload);
+    /*
+    Store payload with automatic expiration
+    */
+
+    await kv.set(shareKey, payload, {
+      ex: SHARE_TTL_SECONDS,
+    });
 
     return NextResponse.json(
       { id, url: `/s/${id}` },
@@ -68,6 +79,7 @@ export async function POST(req: NextRequest) {
     );
 
   } catch (err) {
+
     console.error("share_api_error", err);
 
     return NextResponse.json(
@@ -76,5 +88,3 @@ export async function POST(req: NextRequest) {
     );
   }
 }
-
-
