@@ -64,7 +64,16 @@ export default function ToolPreviewSection() {
 
   const meetingWindow = calculateOverlap(cityA, cityB);
 
-  const markerPosition = 50;
+  const offsetA = new Date().toLocaleString("en-US", { timeZone: cityA.tz });
+const offsetB = new Date().toLocaleString("en-US", { timeZone: cityB.tz });
+
+const diff =
+  (new Date(offsetA).getHours() - new Date(offsetB).getHours()) * -1;
+
+const markerPosition = Math.min(
+  90,
+  Math.max(10, 50 + diff * 5)
+);
 
   function swapCities() {
     const temp = cityA;
