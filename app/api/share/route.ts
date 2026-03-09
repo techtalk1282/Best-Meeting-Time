@@ -36,6 +36,9 @@ export async function POST(req: NextRequest) {
   try {
 
     const body = await req.json();
+
+    console.log("share_request_body", body);
+
     const { cities, windows } = body || {};
 
     if (!Array.isArray(cities) || !Array.isArray(windows)) {
@@ -81,6 +84,8 @@ export async function POST(req: NextRequest) {
 
     await kv.incr("analytics:share_created");
     await kv.incr(`analytics:share_created:${id}`);
+
+    console.log("share_saved", shareKey);
 
     return NextResponse.json(
       { id, url: `/s/${id}` },
