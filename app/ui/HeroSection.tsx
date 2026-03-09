@@ -1,3 +1,5 @@
+import ToolPreviewSection from "./ToolPreviewSection";
+
 export default function HeroSection() {
   return (
     <section aria-label="Hero Section" style={{ padding: "var(--space-12) 0" }}>
@@ -56,33 +58,6 @@ export default function HeroSection() {
           gap: var(--space-3);
         }
 
-        .hero-demo-card {
-          padding: var(--space-6);
-          border-radius: var(--radius-md);
-          border: 1px solid currentColor;
-        }
-
-        .hero-card-stack {
-          display: flex;
-          flex-direction: column;
-          gap: var(--space-4);
-        }
-
-        .hero-city-row {
-          display: flex;
-          justify-content: space-between;
-          gap: var(--space-4);
-        }
-
-        .hero-visual {
-          margin-top: var(--space-6);
-          height: 140px;
-          border: 1px dashed currentColor;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
         .hero-divider {
           margin-top: var(--space-12);
         }
@@ -114,6 +89,9 @@ export default function HeroSection() {
       `}</style>
 
       <div aria-label="Hero Container" className="hero-container">
+
+        {/* Navigation */}
+
         <nav aria-label="Primary Navigation" className="hero-nav">
           <div aria-label="Nav Brand" className="hero-logo">
             <a href="/" aria-label="Best Meeting Time home">
@@ -134,14 +112,19 @@ export default function HeroSection() {
           </div>
         </nav>
 
+        {/* Hero Content */}
+
         <div aria-label="Hero Main" className="hero-main">
+
+          {/* Left side */}
+
           <div aria-label="Hero Left">
             <div aria-label="Hero Headline" className="hero-headline">
               <h1>Find the Best Time to Meet</h1>
               <h2>Across Time Zones.</h2>
+
               <p style={{ fontSize: "var(--text-lg)", maxWidth: 520 }}>
-                Easily schedule meetings with your team or clients around the
-                world.
+                Easily schedule meetings with your team or clients around the world.
               </p>
             </div>
 
@@ -149,46 +132,25 @@ export default function HeroSection() {
               <a href="#tool-preview">
                 <button type="button">Compare Times</button>
               </a>
+
               <p style={{ fontSize: "var(--text-sm)" }}>
-                Helper text placeholder
+                Instantly see the best meeting window.
               </p>
             </div>
           </div>
 
-          <div aria-label="Hero Right">
-            <div aria-label="Hero Demo Card" className="hero-demo-card">
-              <p style={{ marginBottom: "var(--space-4)" }}>
-                Demo preview (placeholder)
-              </p>
+          {/* Right side — REAL TOOL */}
 
-              <div aria-label="Hero Card" className="hero-card-stack">
-                <div aria-label="City Comparison Row" className="hero-city-row">
-                  <span>City A</span>
-                  <span>Swap</span>
-                  <span>City B</span>
-                </div>
-
-                <p>Time strip placeholder</p>
-
-                <a href="#tool-preview">
-                  <button type="button">Compare Times</button>
-                </a>
-
-                <p style={{ fontSize: "var(--text-sm)" }}>
-                  Helper text placeholder
-                </p>
-              </div>
-
-              <div aria-label="Demo Visual Placeholder" className="hero-visual">
-                <span>Right-side visual placeholder</span>
-              </div>
-            </div>
+          <div aria-label="Hero Tool">
+            <ToolPreviewSection />
           </div>
+
         </div>
 
         <div aria-label="Hero Divider" className="hero-divider">
           <hr />
         </div>
+
       </div>
     </section>
   );
