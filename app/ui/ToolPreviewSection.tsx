@@ -1,8 +1,5 @@
 "use client";
 
-// app/ui/ToolPreviewSection.tsx
-// PURPOSE: Tool preview section with timeline strip, share link, calendar export.
-
 import { useState, useEffect } from "react";
 
 type City = {
@@ -96,16 +93,13 @@ export default function ToolPreviewSection() {
         }),
       });
 
-      if (!res.ok) throw new Error("Share creation failed");
-
       const data = await res.json();
       const fullUrl = `${window.location.origin}${data.url}`;
 
       setShareLink(fullUrl);
 
-    } catch (err) {
+    } catch {
 
-      console.error("share_link_error", err);
       setCopyMessage("Unable to create share link");
 
     } finally {
@@ -149,17 +143,12 @@ export default function ToolPreviewSection() {
 
     const text = encodeURIComponent(`Meeting: ${cityA.name} ↔ ${cityB.name}`);
 
-    const details = encodeURIComponent(
-      `Suggested meeting window between ${cityA.name} and ${cityB.name}`
-    );
-
     const url =
       `https://calendar.google.com/calendar/render?action=TEMPLATE` +
       `&text=${text}` +
-      `&dates=${start}/${end}` +
-      `&details=${details}`;
+      `&dates=${start}/${end}`;
 
-    window.open(url, "_blank", "noopener,noreferrer");
+    window.open(url, "_blank");
 
   }
 
@@ -170,18 +159,13 @@ export default function ToolPreviewSection() {
 
     const subject = encodeURIComponent(`Meeting: ${cityA.name} ↔ ${cityB.name}`);
 
-    const body = encodeURIComponent(
-      `Suggested meeting window between ${cityA.name} and ${cityB.name}`
-    );
-
     const url =
       `https://outlook.office.com/calendar/deeplink/compose?` +
       `subject=${subject}` +
       `&startdt=${start}` +
-      `&enddt=${end}` +
-      `&body=${body}`;
+      `&enddt=${end}`;
 
-    window.open(url, "_blank", "noopener,noreferrer");
+    window.open(url, "_blank");
 
   }
 
@@ -202,7 +186,8 @@ export default function ToolPreviewSection() {
     const url =
       `/api/calendar?cityA=${encodeURIComponent(cityA.name)}` +
       `&cityB=${encodeURIComponent(cityB.name)}` +
-      `&start=${start}&end=${end}`;
+      `&start=${start}` +
+      `&end=${end}`;
 
     window.open(url, "_blank");
 
@@ -220,7 +205,7 @@ export default function ToolPreviewSection() {
 
       {viewerTZ && (
         <div style={{ marginBottom: 20, fontWeight: 600 }}>
-          ⭐ Your Time Zone: {viewerTZ}
+          Your Time Zone: {viewerTZ}
         </div>
       )}
 
@@ -256,23 +241,9 @@ export default function ToolPreviewSection() {
 
       </div>
 
-      <div
-        style={{
-          border: "1px solid #444",
-          padding: 20,
-          borderRadius: 10,
-          marginBottom: 25,
-        }}
-      >
+      <div style={{ border: "1px solid #444", padding: 20, borderRadius: 10, marginBottom: 25 }}>
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            fontSize: 13,
-            marginBottom: 8,
-          }}
-        >
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, marginBottom: 8 }}>
           <span>8 AM</span>
           <span>10 AM</span>
           <span>12 PM</span>
@@ -294,37 +265,9 @@ export default function ToolPreviewSection() {
             }}
           />
 
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              fontSize: 11,
-              fontWeight: 600,
-              color: "white",
-              padding: "0 10px",
-              pointerEvents: "none",
-            }}
-          >
-            <span>Early Hours</span>
-            <span>Best Meeting Window</span>
-            <span>Late Hours</span>
-          </div>
-
         </div>
 
-        <div
-          style={{
-            position: "relative",
-            height: 18,
-            marginTop: 4
-          }}
-        >
+        <div style={{ position: "relative", height: 18, marginTop: 4 }}>
           <div
             style={{
               position: "absolute",
@@ -342,10 +285,6 @@ export default function ToolPreviewSection() {
           Best Meeting Window: <strong>2:00 PM – 3:00 PM</strong>
         </div>
 
-        <div style={{ marginTop: 4, fontSize: 12, opacity: 0.7 }}>
-          Calculated using typical working hours (9 AM – 5 PM)
-        </div>
-
       </div>
 
       <div style={{ display: "flex", gap: 12 }}>
@@ -359,7 +298,7 @@ export default function ToolPreviewSection() {
       </div>
 
       {calendarMenuOpen && (
-        <div style={{ marginTop: 20, display: "flex", gap: 12, flexWrap: "wrap" }}>
+        <div style={{ marginTop: 20, display: "flex", gap: 12 }}>
           <button onClick={openGoogleCalendar}>Add to Google Calendar</button>
           <button onClick={openOutlookCalendar}>Add to Outlook Calendar</button>
           <button onClick={downloadICS}>Apple / iCal Download</button>
