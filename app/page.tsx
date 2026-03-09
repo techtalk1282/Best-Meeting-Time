@@ -11,12 +11,18 @@ import FooterSection from "./ui/FooterSection";
 export default function HomePage() {
   return (
     <LayoutShell
-      hero={<HeroSection />}
-      toolPreview={<ToolPreviewSection />}
+      hero={
+        <>
+          <HeroSection />
+          <ToolPreviewSection />
+        </>
+      }
+      toolPreview={<></>}
       premiumFeatures={<PremiumFeaturesSection />}
       bonusFeatures={<BonusFeaturesSection />}
       footer={<FooterSection />}
     />
   );
 }
-// CHECKPOINT: layout shell + slot wiring verified rendering
+
+// CHECKPOINT: hero now contains real tool interaction
