@@ -3,7 +3,7 @@
 // app/ui/ToolPreviewSection.tsx
 // PURPOSE: Tool preview section with timeline strip, share link, calendar export.
 // Improvements:
-// 1. Meeting window marker on timeline
+// 1. Caret meeting marker on timeline
 // 2. Stronger time labels
 // 3. Wider timeline layout
 
@@ -208,9 +208,7 @@ export default function ToolPreviewSection() {
 
   }
 
-  /* Meeting marker position (2–3 PM example) */
-
-  const markerPosition = 50; // percentage across timeline
+  const markerPosition = 50;
 
   return (
 
@@ -314,7 +312,7 @@ export default function ToolPreviewSection() {
             <span>Late Hours</span>
           </div>
 
-          {/* Meeting marker */}
+          {/* Caret marker */}
 
           <div
             style={{
@@ -322,27 +320,11 @@ export default function ToolPreviewSection() {
               top: -8,
               left: `${markerPosition}%`,
               transform: "translateX(-50%)",
-              textAlign: "center",
+              fontSize: 16,
+              color: "white",
             }}
           >
-            <div
-              style={{
-                width: 2,
-                height: 36,
-                background: "white",
-                opacity: 0.9,
-              }}
-            />
-
-            <div
-              style={{
-                fontSize: 11,
-                marginTop: 4,
-                whiteSpace: "nowrap",
-              }}
-            >
-              2–3 PM
-            </div>
+            ▲
           </div>
 
         </div>
