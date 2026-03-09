@@ -17,7 +17,6 @@ type Window = {
 };
 
 function calculateOverlap(cityA: City, cityB: City): Window {
-
   const now = new Date();
   const dateStr = now.toISOString().split("T")[0];
 
@@ -34,11 +33,9 @@ function calculateOverlap(cityA: City, cityB: City): Window {
     startUtc: start.toISOString(),
     endUtc: end.toISOString(),
   };
-
 }
 
 export default function ToolPreviewSection() {
-
   const [viewerTZ, setViewerTZ] = useState<string | null>(null);
 
   useEffect(() => {
@@ -72,14 +69,12 @@ export default function ToolPreviewSection() {
   }
 
   async function createShareLink() {
-
     if (creatingShare) return;
 
     setCreatingShare(true);
     setCopyMessage("");
 
     try {
-
       const res = await fetch("/api/share", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -98,39 +93,26 @@ export default function ToolPreviewSection() {
       const fullUrl = `${window.location.origin}${data.url}`;
 
       setShareLink(fullUrl);
-
     } catch (err) {
-
       console.error("share_link_error", err);
       setCopyMessage("Unable to create share link");
-
     } finally {
-
       setCreatingShare(false);
-
     }
-
   }
 
   async function copyLink() {
-
     if (!shareLink) return;
 
     try {
-
       await navigator.clipboard.writeText(shareLink);
       setCopyMessage("Link copied");
-
     } catch {
-
       setCopyMessage("Copy failed");
-
     }
-
   }
 
   function openGoogleCalendar() {
-
     const start =
       new Date(meetingWindow.startUtc)
         .toISOString()
@@ -156,11 +138,9 @@ export default function ToolPreviewSection() {
       `&details=${details}`;
 
     window.open(url, "_blank", "noopener,noreferrer");
-
   }
 
   function openOutlookCalendar() {
-
     const start = meetingWindow.startUtc;
     const end = meetingWindow.endUtc;
 
@@ -178,11 +158,9 @@ export default function ToolPreviewSection() {
       `&body=${body}`;
 
     window.open(url, "_blank", "noopener,noreferrer");
-
   }
 
   function downloadICS() {
-
     const start =
       new Date(meetingWindow.startUtc)
         .toISOString()
@@ -201,14 +179,12 @@ export default function ToolPreviewSection() {
       `&start=${start}&end=${end}`;
 
     window.open(url, "_blank");
-
   }
 
   const markerPosition = 50;
 
   return (
-
-    <div style={{ maxWidth: 1000, margin: "0 auto", padding: 40 }}>
+    <div style={{ width: "100%", margin: "0 auto", padding: 20 }}>
 
       <h2>Tool Preview</h2>
 
@@ -222,9 +198,9 @@ export default function ToolPreviewSection() {
         </div>
       )}
 
-      <div style={{ display: "flex", gap: 20, marginBottom: 20 }}>
+      <div style={{ display: "flex", gap: 20, marginBottom: 25, flexWrap: "wrap" }}>
 
-        <div style={{ border: "1px solid #444", padding: 15, borderRadius: 8 }}>
+        <div style={{ border: "1px solid #444", padding: 16, borderRadius: 10 }}>
           <strong>{cityA.name}</strong>
           <p>{cityA.time}</p>
           <small>{cityA.tz}</small>
@@ -232,7 +208,7 @@ export default function ToolPreviewSection() {
 
         <button onClick={swapCities}>Swap</button>
 
-        <div style={{ border: "1px solid #444", padding: 15, borderRadius: 8 }}>
+        <div style={{ border: "1px solid #444", padding: 16, borderRadius: 10 }}>
           <strong>{cityB.name}</strong>
           <p>{cityB.time}</p>
           <small>{cityB.tz}</small>
@@ -245,9 +221,10 @@ export default function ToolPreviewSection() {
       <div
         style={{
           border: "1px solid #444",
-          padding: 20,
-          borderRadius: 10,
-          marginBottom: 25,
+          padding: 25,
+          borderRadius: 14,
+          marginBottom: 30,
+          width: "100%"
         }}
       >
 
@@ -256,9 +233,8 @@ export default function ToolPreviewSection() {
             display: "flex",
             justifyContent: "space-between",
             fontSize: 13,
-            fontWeight: 500,
+            marginBottom: 10,
             opacity: 0.9,
-            marginBottom: 8,
           }}
         >
           <span>8 AM</span>
@@ -275,8 +251,8 @@ export default function ToolPreviewSection() {
 
           <div
             style={{
-              height: 24,
-              borderRadius: 12,
+              height: 28,
+              borderRadius: 14,
               background:
                 "linear-gradient(to right,#6d28d9 0%,#8b5cf6 20%,#22c55e 40%,#16a34a 55%,#f59e0b 75%,#ec4899 100%)",
             }}
@@ -286,35 +262,25 @@ export default function ToolPreviewSection() {
             style={{
               position: "absolute",
               top: 0,
-              left: 0,
               width: "100%",
               height: "100%",
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
+              padding: "0 12px",
               fontSize: 11,
-              fontWeight: 600,
               color: "white",
-              padding: "0 10px",
               pointerEvents: "none",
             }}
           >
-            <span>Early Hours</span>
-            <span>Best Meeting Window</span>
-            <span>Late Hours</span>
+            <span>Early</span>
+            <span>Best Window</span>
+            <span>Late</span>
           </div>
 
         </div>
 
-        {/* Marker BELOW timeline */}
-
-        <div
-          style={{
-            position: "relative",
-            height: 18,
-            marginTop: 4
-          }}
-        >
+        <div style={{ position: "relative", height: 20, marginTop: 6 }}>
           <div
             style={{
               position: "absolute",
@@ -328,7 +294,7 @@ export default function ToolPreviewSection() {
           </div>
         </div>
 
-        <div style={{ marginTop: 6, fontWeight: 600 }}>
+        <div style={{ marginTop: 8, fontWeight: 600 }}>
           Best Meeting Window: <strong>2:00 PM – 3:00 PM</strong>
         </div>
 
@@ -338,7 +304,7 @@ export default function ToolPreviewSection() {
 
       </div>
 
-      <div style={{ display: "flex", gap: 12 }}>
+      <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
         <button onClick={createShareLink}>
           {creatingShare ? "Creating..." : "Create Share Link"}
         </button>
@@ -371,7 +337,5 @@ export default function ToolPreviewSection() {
       )}
 
     </div>
-
   );
-
 }
