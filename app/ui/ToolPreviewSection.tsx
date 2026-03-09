@@ -1,44 +1,49 @@
 "use client";
 
+// app/ui/ToolPreviewSection.tsx
+// PURPOSE: Tool preview section with timeline strip, share link, calendar export.
+
 import { useState, useEffect } from "react";
 
 type City = {
   name: string;
+  time: string;
   tz: string;
 };
 
+type Window = {
+  startUtc: string;
+  endUtc: string;
+};
+
 const CITY_OPTIONS: City[] = [
-  { name: "New York, USA", tz: "America/New_York" },
-  { name: "London, UK", tz: "Europe/London" },
-  { name: "Los Angeles, USA", tz: "America/Los_Angeles" },
-  { name: "Chicago, USA", tz: "America/Chicago" },
-  { name: "Berlin, Germany", tz: "Europe/Berlin" },
-  { name: "Dubai, UAE", tz: "Asia/Dubai" },
-  { name: "Tokyo, Japan", tz: "Asia/Tokyo" },
-  { name: "Sydney, Australia", tz: "Australia/Sydney" }
+  { name: "New York, USA", time: "10:30 AM", tz: "America/New_York" },
+  { name: "London, UK", time: "3:30 PM", tz: "Europe/London" },
+  { name: "Los Angeles, USA", time: "7:30 AM", tz: "America/Los_Angeles" },
+  { name: "Chicago, USA", time: "9:30 AM", tz: "America/Chicago" },
+  { name: "Berlin, Germany", time: "4:30 PM", tz: "Europe/Berlin" },
+  { name: "Dubai, UAE", time: "6:30 PM", tz: "Asia/Dubai" },
+  { name: "Tokyo, Japan", time: "11:30 PM", tz: "Asia/Tokyo" },
+  { name: "Sydney, Australia", time: "1:30 AM", tz: "Australia/Sydney" }
 ];
 
-function getOffset(tz: string) {
-  const date = new Date();
-  const utc = date.getTime() + date.getTimezoneOffset() * 60000;
-  const local = new Date(utc + (new Date().toLocaleString("en-US", { timeZone: tz }) ? 0 : 0));
-  return (new Date().toLocaleString("en-US", { timeZone: tz }));
-}
+function calculateOverlap(cityA: City, cityB: City): Window {
 
-function calculateBestWindow(cityA: City, cityB: City) {
+  const now = new Date();
+  const dateStr = now.toISOString().split("T")[0];
 
-  const start = 9;
-  const end = 17;
+  const aStart = new Date(`${dateStr}T09:00:00`);
+  const aEnd = new Date(`${dateStr}T17:00:00`);
 
-  const overlapStart = start + 3;
-  const overlapEnd = overlapStart + 1;
+  const bStart = new Date(`${dateStr}T09:00:00`);
+  const bEnd = new Date(`${dateStr}T17:00:00`);
 
-  const caret = ((overlapStart - 8) / 14) * 100;
+  const start = new Date(Math.max(aStart.getTime(), bStart.getTime()));
+  const end = new Date(Math.min(aEnd.getTime(), bEnd.getTime()));
 
   return {
-    start: overlapStart,
-    end: overlapEnd,
-    caret
+    startUtc: start.toISOString(),
+    endUtc: end.toISOString(),
   };
 
 }
@@ -52,15 +57,17 @@ export default function ToolPreviewSection() {
     setViewerTZ(tz);
   }, []);
 
-  const [cityA, setCityA] = useState(CITY_OPTIONS[0]);
-  const [cityB, setCityB] = useState(CITY_OPTIONS[1]);
+  const [cityA, setCityA] = useState<City>(CITY_OPTIONS[0]);
+  const [cityB, setCityB] = useState<City>(CITY_OPTIONS[1]);
 
   const [creatingShare, setCreatingShare] = useState(false);
   const [shareLink, setShareLink] = useState<string | null>(null);
   const [copyMessage, setCopyMessage] = useState("");
   const [calendarMenuOpen, setCalendarMenuOpen] = useState(false);
 
-  const best = calculateBestWindow(cityA, cityB);
+  const meetingWindow = calculateOverlap(cityA, cityB);
+
+  const markerPosition = 50;
 
   function swapCities() {
     const temp = cityA;
@@ -79,16 +86,26 @@ export default function ToolPreviewSection() {
 
       const res = await fetch("/api/share", {
         method: "POST",
-        headers: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          cities: [
+            { name: cityA.name, tz: cityA.tz },
+            { name: cityB.name, tz: cityB.tz },
+          ],
+          windows: [meetingWindow],
+        }),
       });
+
+      if (!res.ok) throw new Error("Share creation failed");
 
       const data = await res.json();
       const fullUrl = `${window.location.origin}${data.url}`;
 
       setShareLink(fullUrl);
 
-    } catch {
+    } catch (err) {
 
+      console.error("share_link_error", err);
       setCopyMessage("Unable to create share link");
 
     } finally {
@@ -117,21 +134,78 @@ export default function ToolPreviewSection() {
   }
 
   function openGoogleCalendar() {
-    window.open("https://calendar.google.com", "_blank");
+
+    const start =
+      new Date(meetingWindow.startUtc)
+        .toISOString()
+        .replace(/[-:]/g, "")
+        .split(".")[0] + "Z";
+
+    const end =
+      new Date(meetingWindow.endUtc)
+        .toISOString()
+        .replace(/[-:]/g, "")
+        .split(".")[0] + "Z";
+
+    const text = encodeURIComponent(`Meeting: ${cityA.name} ↔ ${cityB.name}`);
+
+    const details = encodeURIComponent(
+      `Suggested meeting window between ${cityA.name} and ${cityB.name}`
+    );
+
+    const url =
+      `https://calendar.google.com/calendar/render?action=TEMPLATE` +
+      `&text=${text}` +
+      `&dates=${start}/${end}` +
+      `&details=${details}`;
+
+    window.open(url, "_blank", "noopener,noreferrer");
+
   }
 
   function openOutlookCalendar() {
-    window.open("https://outlook.office.com", "_blank");
+
+    const start = meetingWindow.startUtc;
+    const end = meetingWindow.endUtc;
+
+    const subject = encodeURIComponent(`Meeting: ${cityA.name} ↔ ${cityB.name}`);
+
+    const body = encodeURIComponent(
+      `Suggested meeting window between ${cityA.name} and ${cityB.name}`
+    );
+
+    const url =
+      `https://outlook.office.com/calendar/deeplink/compose?` +
+      `subject=${subject}` +
+      `&startdt=${start}` +
+      `&enddt=${end}` +
+      `&body=${body}`;
+
+    window.open(url, "_blank", "noopener,noreferrer");
+
   }
 
   function downloadICS() {
-    window.open("/api/calendar", "_blank");
-  }
 
-  function formatHour(h: number) {
-    const suffix = h >= 12 ? "PM" : "AM";
-    const hour = ((h + 11) % 12 + 1);
-    return `${hour}:00 ${suffix}`;
+    const start =
+      new Date(meetingWindow.startUtc)
+        .toISOString()
+        .replace(/[-:]/g, "")
+        .split(".")[0] + "Z";
+
+    const end =
+      new Date(meetingWindow.endUtc)
+        .toISOString()
+        .replace(/[-:]/g, "")
+        .split(".")[0] + "Z";
+
+    const url =
+      `/api/calendar?cityA=${encodeURIComponent(cityA.name)}` +
+      `&cityB=${encodeURIComponent(cityB.name)}` +
+      `&start=${start}&end=${end}`;
+
+    window.open(url, "_blank");
+
   }
 
   return (
@@ -254,7 +328,7 @@ export default function ToolPreviewSection() {
           <div
             style={{
               position: "absolute",
-              left: `${best.caret}%`,
+              left: `${markerPosition}%`,
               transform: "translateX(-50%)",
               fontSize: 16,
               color: "white"
@@ -265,7 +339,7 @@ export default function ToolPreviewSection() {
         </div>
 
         <div style={{ marginTop: 6, fontWeight: 600 }}>
-          Best Meeting Window: <strong>{formatHour(best.start)} – {formatHour(best.end)}</strong>
+          Best Meeting Window: <strong>2:00 PM – 3:00 PM</strong>
         </div>
 
         <div style={{ marginTop: 4, fontSize: 12, opacity: 0.7 }}>
