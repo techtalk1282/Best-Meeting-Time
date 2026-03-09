@@ -2,10 +2,6 @@
 
 // app/ui/ToolPreviewSection.tsx
 // PURPOSE: Tool preview section with timeline strip, share link, calendar export.
-// Improvements:
-// 1. Caret meeting marker on timeline
-// 2. Stronger time labels
-// 3. Wider timeline layout
 
 import { useState, useEffect } from "react";
 
@@ -255,8 +251,6 @@ export default function ToolPreviewSection() {
         }}
       >
 
-        {/* Time markers */}
-
         <div
           style={{
             display: "flex",
@@ -288,8 +282,6 @@ export default function ToolPreviewSection() {
             }}
           />
 
-          {/* Overlay labels */}
-
           <div
             style={{
               position: "absolute",
@@ -312,24 +304,31 @@ export default function ToolPreviewSection() {
             <span>Late Hours</span>
           </div>
 
-          {/* Caret marker */}
+        </div>
 
+        {/* Marker BELOW timeline */}
+
+        <div
+          style={{
+            position: "relative",
+            height: 18,
+            marginTop: 4
+          }}
+        >
           <div
             style={{
               position: "absolute",
-              top: -8,
               left: `${markerPosition}%`,
               transform: "translateX(-50%)",
               fontSize: 16,
-              color: "white",
+              color: "white"
             }}
           >
             ▲
           </div>
-
         </div>
 
-        <div style={{ marginTop: 10, fontWeight: 600 }}>
+        <div style={{ marginTop: 6, fontWeight: 600 }}>
           Best Meeting Window: <strong>2:00 PM – 3:00 PM</strong>
         </div>
 
