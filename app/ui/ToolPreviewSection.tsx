@@ -291,7 +291,7 @@ const markerPosition = Math.min(
         </div>
 
         <div style={{ marginTop: 6, fontWeight: 600 }}>
-          Best Meeting Window: <strong>2:00 PM – 3:00 PM</strong>
+          Best Meeting Window: <strong>{meetingWindow.start} – {meetingWindow.end}</strong>
         </div>
 
       </div>
