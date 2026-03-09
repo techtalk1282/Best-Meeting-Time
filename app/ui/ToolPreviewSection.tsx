@@ -67,6 +67,8 @@ export default function ToolPreviewSection() {
 
   const meetingWindow = calculateOverlap(cityA, cityB);
 
+  const markerPosition = 50;
+
   function swapCities() {
     const temp = cityA;
     setCityA(cityB);
@@ -206,8 +208,6 @@ export default function ToolPreviewSection() {
 
   }
 
-  const markerPosition = 50;
-
   return (
 
     <div style={{ maxWidth: 1000, margin: "0 auto", padding: 40 }}>
@@ -226,37 +226,33 @@ export default function ToolPreviewSection() {
 
       <div style={{ display: "flex", gap: 20, marginBottom: 20 }}>
 
-        <div>
-          <select
-            value={cityA.tz}
-            onChange={(e) =>
-              setCityA(CITY_OPTIONS.find(c => c.tz === e.target.value)!)
-            }
-          >
-            {CITY_OPTIONS.map((c) => (
-              <option key={c.tz} value={c.tz}>
-                {c.name}
-              </option>
-            ))}
-          </select>
-        </div>
+        <select
+          value={cityA.tz}
+          onChange={(e) =>
+            setCityA(CITY_OPTIONS.find(c => c.tz === e.target.value)!)
+          }
+        >
+          {CITY_OPTIONS.map((c) => (
+            <option key={c.tz} value={c.tz}>
+              {c.name}
+            </option>
+          ))}
+        </select>
 
         <button onClick={swapCities}>Swap</button>
 
-        <div>
-          <select
-            value={cityB.tz}
-            onChange={(e) =>
-              setCityB(CITY_OPTIONS.find(c => c.tz === e.target.value)!)
-            }
-          >
-            {CITY_OPTIONS.map((c) => (
-              <option key={c.tz} value={c.tz}>
-                {c.name}
-              </option>
-            ))}
-          </select>
-        </div>
+        <select
+          value={cityB.tz}
+          onChange={(e) =>
+            setCityB(CITY_OPTIONS.find(c => c.tz === e.target.value)!)
+          }
+        >
+          {CITY_OPTIONS.map((c) => (
+            <option key={c.tz} value={c.tz}>
+              {c.name}
+            </option>
+          ))}
+        </select>
 
       </div>
 
@@ -300,6 +296,28 @@ export default function ToolPreviewSection() {
             }}
           />
 
+        </div>
+
+        {/* CARET MARKER */}
+
+        <div
+          style={{
+            position: "relative",
+            height: 18,
+            marginTop: 4
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              left: `${markerPosition}%`,
+              transform: "translateX(-50%)",
+              fontSize: 16,
+              color: "white"
+            }}
+          >
+            ▲
+          </div>
         </div>
 
         <div style={{ marginTop: 6, fontWeight: 600 }}>
