@@ -1,4 +1,4 @@
-// app/api/share/route.ts
+// app/api/share/route.ts BACKUP 3/7/26 8:29 AM
 
 import { NextRequest, NextResponse } from "next/server";
 import { kv } from "@vercel/kv";
@@ -13,32 +13,26 @@ const CORS_HEADERS = {
   "Access-Control-Allow-Headers": "Content-Type",
 };
 
-const SHARE_TTL_SECONDS = 60 * 60 * 24 * 45; // 45 days
-
 export async function OPTIONS() {
   return new NextResponse(null, { status: 204, headers: CORS_HEADERS });
 }
 
 /*
 Expected POST body:
-
 {
   cities: { name: string; tz: string }[],
   windows: { startUtc: string; endUtc: string }[]
 }
 
-Preview share allowed without premium cookie.
-Premium gating remains for other systems.
+AUTH:
+- Uses existing premium cookie set by /api/verify
+- No jobId
+- No session_id required here
 */
 
 export async function POST(req: NextRequest) {
-
   try {
-
     const body = await req.json();
-
-    console.log("share_request_body", body);
-
     const { cities, windows } = body || {};
 
     if (!Array.isArray(cities) || !Array.isArray(windows)) {
@@ -55,51 +49,37 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    /*
-    Generate secure 10 character ID
-    */
+    // 🔐 Gate by existing premium cookie (authoritative)
+    const premium = req.cookies.get("premium")?.value === "1";
+    if (!premium) {
+      return NextResponse.json(
+        { error: "Premium required" },
+        { status: 403, headers: CORS_HEADERS }
+      );
+    }
 
-    const id = crypto.randomBytes(5).toString("hex");
-
+    // 🔗 Generate short, non-predictable ID
+    const id = crypto.randomBytes(4).toString("hex"); // 8 chars
     const shareKey = `share:${id}`;
 
     const payload = {
       id,
       createdAt: new Date().toISOString(),
       cities,
-      windows,
+      windows, // stored as UTC only
     };
 
-    /*
-    Store payload with expiration
-    */
-
-    await kv.set(shareKey, payload, {
-      ex: SHARE_TTL_SECONDS,
-    });
-
-    /*
-    Analytics: track share creation
-    */
-
-    await kv.incr("analytics:share_created");
-    await kv.incr(`analytics:share_created:${id}`);
-
-    console.log("share_saved", shareKey);
+    // 🗄 Store read-only share payload
+    await kv.set(shareKey, payload);
 
     return NextResponse.json(
       { id, url: `/s/${id}` },
       { status: 200, headers: CORS_HEADERS }
     );
-
-  } catch (err) {
-
-    console.error("share_api_error", err);
-
+  } catch {
     return NextResponse.json(
       { error: "Server error" },
       { status: 500, headers: CORS_HEADERS }
     );
-
   }
 }
