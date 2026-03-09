@@ -3,7 +3,6 @@
 
 import LayoutShell from "./ui/LayoutShell";
 import HeroSection from "./ui/HeroSection";
-import ToolPreviewSection from "./ui/ToolPreviewSection";
 import PremiumFeaturesSection from "./ui/PremiumFeaturesSection";
 import BonusFeaturesSection from "./ui/BonusFeaturesSection";
 import FooterSection from "./ui/FooterSection";
@@ -11,12 +10,7 @@ import FooterSection from "./ui/FooterSection";
 export default function HomePage() {
   return (
     <LayoutShell
-      hero={
-        <>
-          <HeroSection />
-          <ToolPreviewSection />
-        </>
-      }
+      hero={<HeroSection />}
       toolPreview={<></>}
       premiumFeatures={<PremiumFeaturesSection />}
       bonusFeatures={<BonusFeaturesSection />}
@@ -25,4 +19,4 @@ export default function HomePage() {
   );
 }
 
-// CHECKPOINT: hero now contains real tool interaction
+// CHECKPOINT: tool now lives inside HeroSection, duplicate preview removed
