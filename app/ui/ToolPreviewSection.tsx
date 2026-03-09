@@ -2,7 +2,10 @@
 
 // app/ui/ToolPreviewSection.tsx
 // PURPOSE: Tool preview section with timeline strip, share link, calendar export.
-// UI improvements: thicker timeline + stronger green best-window zone.
+// Improvements:
+// 1. Meeting window marker on timeline
+// 2. Stronger time labels
+// 3. Wider timeline layout
 
 import { useState, useEffect } from "react";
 
@@ -35,6 +38,7 @@ function calculateOverlap(cityA: City, cityB: City): Window {
     startUtc: start.toISOString(),
     endUtc: end.toISOString(),
   };
+
 }
 
 export default function ToolPreviewSection() {
@@ -82,16 +86,14 @@ export default function ToolPreviewSection() {
 
       const res = await fetch("/api/share", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           cities: [
             { name: cityA.name, tz: cityA.tz },
-            { name: cityB.name, tz: cityB.tz }
+            { name: cityB.name, tz: cityB.tz },
           ],
-          windows: [meetingWindow]
-        })
+          windows: [meetingWindow],
+        }),
       });
 
       if (!res.ok) throw new Error("Share creation failed");
@@ -206,9 +208,13 @@ export default function ToolPreviewSection() {
 
   }
 
+  /* Meeting marker position (2–3 PM example) */
+
+  const markerPosition = 50; // percentage across timeline
+
   return (
 
-    <div style={{ maxWidth: 900, margin: "0 auto", padding: 40 }}>
+    <div style={{ maxWidth: 1000, margin: "0 auto", padding: 40 }}>
 
       <h2>Tool Preview</h2>
 
@@ -245,9 +251,9 @@ export default function ToolPreviewSection() {
       <div
         style={{
           border: "1px solid #444",
-          padding: 18,
+          padding: 20,
           borderRadius: 10,
-          marginBottom: 25
+          marginBottom: 25,
         }}
       >
 
@@ -257,8 +263,10 @@ export default function ToolPreviewSection() {
           style={{
             display: "flex",
             justifyContent: "space-between",
-            fontSize: 12,
-            marginBottom: 8
+            fontSize: 13,
+            fontWeight: 500,
+            opacity: 0.9,
+            marginBottom: 8,
           }}
         >
           <span>8 AM</span>
@@ -271,16 +279,14 @@ export default function ToolPreviewSection() {
           <span>10 PM</span>
         </div>
 
-        {/* Gradient timeline */}
-
         <div style={{ position: "relative" }}>
 
           <div
             style={{
-              height: 22,
-              borderRadius: 10,
+              height: 24,
+              borderRadius: 12,
               background:
-                "linear-gradient(to right,#6d28d9 0%,#8b5cf6 20%,#22c55e 40%,#16a34a 55%,#f59e0b 75%,#ec4899 100%)"
+                "linear-gradient(to right,#6d28d9 0%,#8b5cf6 20%,#22c55e 40%,#16a34a 55%,#f59e0b 75%,#ec4899 100%)",
             }}
           />
 
@@ -300,14 +306,43 @@ export default function ToolPreviewSection() {
               fontWeight: 600,
               color: "white",
               padding: "0 10px",
-              pointerEvents: "none"
+              pointerEvents: "none",
             }}
           >
-
             <span>Early Hours</span>
             <span>Best Meeting Window</span>
             <span>Late Hours</span>
+          </div>
 
+          {/* Meeting marker */}
+
+          <div
+            style={{
+              position: "absolute",
+              top: -8,
+              left: `${markerPosition}%`,
+              transform: "translateX(-50%)",
+              textAlign: "center",
+            }}
+          >
+            <div
+              style={{
+                width: 2,
+                height: 36,
+                background: "white",
+                opacity: 0.9,
+              }}
+            />
+
+            <div
+              style={{
+                fontSize: 11,
+                marginTop: 4,
+                whiteSpace: "nowrap",
+              }}
+            >
+              2–3 PM
+            </div>
           </div>
 
         </div>
