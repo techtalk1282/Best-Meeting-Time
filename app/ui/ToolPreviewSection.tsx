@@ -296,9 +296,33 @@ export default function ToolPreviewSection() {
             }}
           />
 
+          {/* Overlay labels restored */}
+
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              fontSize: 11,
+              fontWeight: 600,
+              color: "white",
+              padding: "0 10px",
+              pointerEvents: "none",
+            }}
+          >
+            <span>Early Hours</span>
+            <span>Best Meeting Window</span>
+            <span>Late Hours</span>
+          </div>
+
         </div>
 
-        {/* CARET MARKER */}
+        {/* CARET */}
 
         <div
           style={{
@@ -322,6 +346,10 @@ export default function ToolPreviewSection() {
 
         <div style={{ marginTop: 6, fontWeight: 600 }}>
           Best Meeting Window: <strong>2:00 PM – 3:00 PM</strong>
+        </div>
+
+        <div style={{ marginTop: 4, fontSize: 12, opacity: 0.7 }}>
+          Calculated using typical working hours (9 AM – 5 PM)
         </div>
 
       </div>
