@@ -1,4 +1,4 @@
-"use client";
+use client;
 
 // app/ui/ToolPreviewSection.tsx
 // PURPOSE: Tool preview section with timeline strip, share link, calendar export.
@@ -305,6 +305,8 @@ export default function ToolPreviewSection() {
           </div>
 
         </div>
+
+        {/* Marker BELOW timeline */}
 
         <div
           style={{
