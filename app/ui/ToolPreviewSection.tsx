@@ -319,16 +319,38 @@ export default function ToolPreviewSection() {
 
         <div style={{ position: "relative" }}>
 
-          <div
-            style={{
-              height: 24,
-              borderRadius: 12,
-              background:
-                "linear-gradient(90deg,#7c3aed,#22c55e,#f59e0b,#ec4899)",
-            }}
-          />
+  <div
+    style={{
+      height: 24,
+      borderRadius: 12,
+      background:
+        "linear-gradient(90deg,#7c3aed,#22c55e,#f59e0b,#ec4899)",
+    }}
+  />
 
-        </div>
+  <div
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      fontSize: 11,
+      fontWeight: 600,
+      color: "white",
+      padding: "0 10px",
+      pointerEvents: "none",
+    }}
+  >
+    <span>Early Hours</span>
+    <span>Best Meeting Window</span>
+    <span>Late Hours</span>
+  </div>
+
+</div>
 
         <div style={{ marginTop: 6, fontWeight: 600 }}>
           Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
