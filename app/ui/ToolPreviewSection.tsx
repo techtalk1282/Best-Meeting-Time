@@ -1,8 +1,5 @@
 "use client";
 
-// app/ui/ToolPreviewSection.tsx
-// PURPOSE: Tool preview section with timeline strip, share link, calendar export.
-
 import { useState, useEffect } from "react";
 
 type City = {
@@ -15,6 +12,40 @@ type Window = {
   startUtc: string;
   endUtc: string;
 };
+
+const CITY_OPTIONS: City[] = [
+  { name: "New York, USA", time: "10:30 AM", tz: "America/New_York" },
+  { name: "London, UK", time: "3:30 PM", tz: "Europe/London" },
+  { name: "Los Angeles, USA", time: "7:30 AM", tz: "America/Los_Angeles" },
+  { name: "Chicago, USA", time: "9:30 AM", tz: "America/Chicago" },
+  { name: "Berlin, Germany", time: "4:30 PM", tz: "Europe/Berlin" },
+  { name: "Dubai, UAE", time: "6:30 PM", tz: "Asia/Dubai" },
+  { name: "Tokyo, Japan", time: "11:30 PM", tz: "Asia/Tokyo" },
+  { name: "Sydney, Australia", time: "1:30 AM", tz: "Australia/Sydney" },
+];
+
+function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    timeZoneName: "shortOffset",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).formatToParts(date);
+
+  const tzPart =
+    parts.find((part) => part.type === "timeZoneName")?.value ?? "GMT+0";
+
+  const match = tzPart.match(/GMT([+-])(\d{1,2})(?::?(\d{2}))?/);
+
+  if (!match) return 0;
+
+  const sign = match[1] === "-" ? -1 : 1;
+  const hours = Number(match[2]);
+  const minutes = Number(match[3] ?? "0");
+
+  return sign * (hours * 60 + minutes);
+}
 
 function calculateOverlap(cityA: City, cityB: City): Window {
 
@@ -45,17 +76,8 @@ export default function ToolPreviewSection() {
     setViewerTZ(tz);
   }, []);
 
-  const [cityA, setCityA] = useState<City>({
-    name: "New York, USA",
-    time: "10:30 AM",
-    tz: "America/New_York",
-  });
-
-  const [cityB, setCityB] = useState<City>({
-    name: "London, UK",
-    time: "3:30 PM",
-    tz: "Europe/London",
-  });
+  const [cityA, setCityA] = useState<City>(CITY_OPTIONS[0]);
+  const [cityB, setCityB] = useState<City>(CITY_OPTIONS[1]);
 
   const [creatingShare, setCreatingShare] = useState(false);
   const [shareLink, setShareLink] = useState<string | null>(null);
@@ -79,13 +101,12 @@ export default function ToolPreviewSection() {
   const endLocal = formatLocal(meetingWindow.endUtc);
 
   const startHour = new Date(meetingWindow.startUtc).getHours();
-  const endHour = new Date(meetingWindow.endUtc).getHours();
 
   const timelineStart = 0;
   const timelineEnd = 22;
 
-  const startPercent = ((startHour - timelineStart) / (timelineEnd - timelineStart)) * 100;
-  const widthPercent = ((endHour - startHour) / (timelineEnd - timelineStart)) * 100;
+  const caretPercent =
+    ((startHour - timelineStart) / (timelineEnd - timelineStart)) * 100;
 
   async function createShareLink() {
 
@@ -235,39 +256,35 @@ export default function ToolPreviewSection() {
 
         <select
           value={cityA.name}
-          onChange={(e) =>
-            setCityA({
-              ...cityA,
-              name: e.target.value,
-            })
-          }
+          onChange={(e) => {
+            const city = CITY_OPTIONS.find(c => c.name === e.target.value)!;
+            setCityA(city);
+          }}
         >
-          <option>New York, USA</option>
-          <option>London, UK</option>
-          <option>Tokyo, Japan</option>
-          <option>Berlin, Germany</option>
+          {CITY_OPTIONS.map(city => (
+            <option key={city.name} value={city.name}>
+              {city.name}
+            </option>
+          ))}
         </select>
 
         <button onClick={swapCities}>Swap</button>
 
         <select
           value={cityB.name}
-          onChange={(e) =>
-            setCityB({
-              ...cityB,
-              name: e.target.value,
-            })
-          }
+          onChange={(e) => {
+            const city = CITY_OPTIONS.find(c => c.name === e.target.value)!;
+            setCityB(city);
+          }}
         >
-          <option>London, UK</option>
-          <option>Tokyo, Japan</option>
-          <option>Berlin, Germany</option>
-          <option>New York, USA</option>
+          {CITY_OPTIONS.map(city => (
+            <option key={city.name} value={city.name}>
+              {city.name}
+            </option>
+          ))}
         </select>
 
       </div>
-
-      {/* Timeline */}
 
       <div
         style={{
@@ -302,53 +319,14 @@ export default function ToolPreviewSection() {
 
         <div style={{ position: "relative" }}>
 
-          {/* Base timeline */}
-
           <div
             style={{
               height: 24,
               borderRadius: 12,
-              background: "#3b2a67",
+              background:
+                "linear-gradient(90deg,#7c3aed,#22c55e,#f59e0b,#ec4899)",
             }}
           />
-
-          {/* Highlighted meeting window */}
-
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: `${startPercent}%`,
-              width: `${widthPercent}%`,
-              height: 24,
-              borderRadius: 12,
-              background: "#22c55e",
-            }}
-          />
-
-          {/* Labels */}
-
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              fontSize: 11,
-              fontWeight: 600,
-              color: "white",
-              padding: "0 10px",
-              pointerEvents: "none",
-            }}
-          >
-            <span>Early Hours</span>
-            <span>Best Meeting Window</span>
-            <span>Late Hours</span>
-          </div>
 
         </div>
 
