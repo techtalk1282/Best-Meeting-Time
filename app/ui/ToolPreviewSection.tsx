@@ -55,9 +55,9 @@ function getZonedDateParts(date: Date, timeZone: string) {
     day: "2-digit",
   }).formatToParts(date);
 
-  const year = Number(parts.find((p) => p.type === "year")?.value);
-  const month = Number(parts.find((p) => p.type === "month")?.value);
-  const day = Number(parts.find((p) => p.type === "day")?.value);
+  const year = Number(parts.find((part) => part.type === "year")?.value);
+  const month = Number(parts.find((part) => part.type === "month")?.value);
+  const day = Number(parts.find((part) => part.type === "day")?.value);
 
   return { year, month, day };
 }
@@ -67,28 +67,19 @@ function zonedLocalToUtc(timeZone: string, hour: number, minute = 0): Date {
   const { year, month, day } = getZonedDateParts(now, timeZone);
 
   const firstGuessUtc = Date.UTC(year, month - 1, day, hour, minute, 0);
+  const firstOffset = getTimeZoneOffsetMinutes(new Date(firstGuessUtc), timeZone);
+  const secondGuessUtc = firstGuessUtc - firstOffset * 60 * 1000;
+  const secondOffset = getTimeZoneOffsetMinutes(new Date(secondGuessUtc), timeZone);
 
-  const firstOffset = getTimeZoneOffsetMinutes(
-    new Date(firstGuessUtc),
-    timeZone
-  );
-
-  const secondGuessUtc = firstGuessUtc - firstOffset * 60000;
-
-  const secondOffset = getTimeZoneOffsetMinutes(
-    new Date(secondGuessUtc),
-    timeZone
-  );
-
-  return new Date(firstGuessUtc - secondOffset * 60000);
+  return new Date(firstGuessUtc - secondOffset * 60 * 1000);
 }
 
 function calculateMeetingWindow(cityA: City, cityB: City): Window {
-  const cityAMidUtc = zonedLocalToUtc(cityA.tz, 13).getTime();
-  const cityBMidUtc = zonedLocalToUtc(cityB.tz, 13).getTime();
+  const cityAMidUtc = zonedLocalToUtc(cityA.tz, 13, 0).getTime();
+  const cityBMidUtc = zonedLocalToUtc(cityB.tz, 13, 0).getTime();
 
   const startMs = Math.round((cityAMidUtc + cityBMidUtc) / 2);
-  const endMs = startMs + 3600000;
+  const endMs = startMs + 60 * 60 * 1000;
 
   return {
     startUtc: new Date(startMs).toISOString(),
@@ -106,7 +97,8 @@ function formatLocalWindow(iso: string) {
 function getMarkerPosition(iso: string) {
   const date = new Date(iso);
   const localHour = date.getHours() + date.getMinutes() / 60;
-  return (localHour / 24) * 100;
+  const percent = (localHour / 24) * 100;
+  return percent;
 }
 
 export default function ToolPreviewSection() {
@@ -117,13 +109,12 @@ export default function ToolPreviewSection() {
     setViewerTZ(tz);
   }, []);
 
-  const [cityA, setCityA] = useState(CITY_OPTIONS[0]);
-  const [cityB, setCityB] = useState(CITY_OPTIONS[1]);
+  const [cityA, setCityA] = useState<City>(CITY_OPTIONS[0]);
+  const [cityB, setCityB] = useState<City>(CITY_OPTIONS[1]);
 
   const [creatingShare, setCreatingShare] = useState(false);
   const [shareLink, setShareLink] = useState<string | null>(null);
   const [copyMessage, setCopyMessage] = useState("");
-
   const [calendarMenuOpen, setCalendarMenuOpen] = useState(false);
 
   const meetingWindow = calculateMeetingWindow(cityA, cityB);
@@ -133,21 +124,21 @@ export default function ToolPreviewSection() {
   const endLocal = formatLocalWindow(meetingWindow.endUtc);
 
   function swapCities() {
+    const temp = cityA;
     setCityA(cityB);
-    setCityB(cityA);
+    setCityB(temp);
   }
 
   async function createShareLink() {
     if (creatingShare) return;
 
     setCreatingShare(true);
+    setCopyMessage("");
 
     try {
       const res = await fetch("/api/share", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           cities: [
             { name: cityA.name, tz: cityA.tz },
@@ -157,10 +148,10 @@ export default function ToolPreviewSection() {
         }),
       });
 
+      if (!res.ok) throw new Error("Share creation failed");
+
       const data = await res.json();
-
       const fullUrl = `${window.location.origin}${data.url}`;
-
       setShareLink(fullUrl);
     } catch {
       setCopyMessage("Unable to create share link");
@@ -172,8 +163,12 @@ export default function ToolPreviewSection() {
   async function copyLink() {
     if (!shareLink) return;
 
-    await navigator.clipboard.writeText(shareLink);
-    setCopyMessage("Link copied");
+    try {
+      await navigator.clipboard.writeText(shareLink);
+      setCopyMessage("Link copied");
+    } catch {
+      setCopyMessage("Copy failed");
+    }
   }
 
   function openGoogleCalendar() {
@@ -189,30 +184,29 @@ export default function ToolPreviewSection() {
         .replace(/[-:]/g, "")
         .split(".")[0] + "Z";
 
-    const text = encodeURIComponent(
-      `Meeting: ${cityA.name} ↔ ${cityB.name}`
-    );
+    const text = encodeURIComponent(`Meeting: ${cityA.name} ↔ ${cityB.name}`);
 
     const url =
       `https://calendar.google.com/calendar/render?action=TEMPLATE` +
       `&text=${text}` +
       `&dates=${start}/${end}`;
 
-    window.open(url, "_blank");
+    window.open(url, "_blank", "noopener,noreferrer");
   }
 
   function openOutlookCalendar() {
-    const subject = encodeURIComponent(
-      `Meeting: ${cityA.name} ↔ ${cityB.name}`
-    );
+    const start = meetingWindow.startUtc;
+    const end = meetingWindow.endUtc;
+
+    const subject = encodeURIComponent(`Meeting: ${cityA.name} ↔ ${cityB.name}`);
 
     const url =
       `https://outlook.office.com/calendar/deeplink/compose?` +
       `subject=${subject}` +
-      `&startdt=${meetingWindow.startUtc}` +
-      `&enddt=${meetingWindow.endUtc}`;
+      `&startdt=${start}` +
+      `&enddt=${end}`;
 
-    window.open(url, "_blank");
+    window.open(url, "_blank", "noopener,noreferrer");
   }
 
   function downloadICS() {
@@ -241,6 +235,10 @@ export default function ToolPreviewSection() {
     <div style={{ maxWidth: 1000, margin: "0 auto", padding: 40 }}>
       <h2>Tool Preview</h2>
 
+      <p>
+        A realistic preview of how comparing time zones will look — basic interaction enabled.
+      </p>
+
       {viewerTZ && (
         <div style={{ marginBottom: 20, fontWeight: 600 }}>
           Your Time Zone: {viewerTZ}
@@ -251,9 +249,7 @@ export default function ToolPreviewSection() {
         <select
           value={cityA.tz}
           onChange={(e) =>
-            setCityA(
-              CITY_OPTIONS.find((c) => c.tz === e.target.value)!
-            )
+            setCityA(CITY_OPTIONS.find((c) => c.tz === e.target.value)!)
           }
         >
           {CITY_OPTIONS.map((c) => (
@@ -268,9 +264,7 @@ export default function ToolPreviewSection() {
         <select
           value={cityB.tz}
           onChange={(e) =>
-            setCityB(
-              CITY_OPTIONS.find((c) => c.tz === e.target.value)!
-            )
+            setCityB(CITY_OPTIONS.find((c) => c.tz === e.target.value)!)
           }
         >
           {CITY_OPTIONS.map((c) => (
@@ -281,8 +275,22 @@ export default function ToolPreviewSection() {
         </select>
       </div>
 
-      <div style={{ border: "1px solid #444", padding: 20, borderRadius: 10 }}>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div
+        style={{
+          border: "1px solid #444",
+          padding: 20,
+          borderRadius: 10,
+          marginBottom: 25,
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            fontSize: 13,
+            marginBottom: 8,
+          }}
+        >
           <span>12 AM</span>
           <span>3 AM</span>
           <span>6 AM</span>
@@ -293,22 +301,46 @@ export default function ToolPreviewSection() {
           <span>9 PM</span>
         </div>
 
-        <div style={{ position: "relative", marginTop: 10 }}>
+        <div style={{ position: "relative" }}>
           <div
             style={{
               height: 24,
               borderRadius: 12,
               background:
-                "linear-gradient(to right,#6d28d9,#22c55e,#f59e0b,#ec4899)",
+                "linear-gradient(to right,#6d28d9 0%,#8b5cf6 20%,#22c55e 40%,#16a34a 55%,#f59e0b 75%,#ec4899 100%)",
             }}
           />
 
           <div
             style={{
               position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              fontSize: 11,
+              fontWeight: 600,
+              color: "white",
+              padding: "0 10px",
+              pointerEvents: "none",
+            }}
+          >
+            <span>Early Hours</span>
+            <span>Best Meeting Window</span>
+            <span>Late Hours</span>
+          </div>
+        </div>
+
+        <div style={{ position: "relative", height: 18, marginTop: 4 }}>
+          <div
+            style={{
+              position: "absolute",
               left: `${markerPosition}%`,
               transform: "translateX(-50%)",
-              top: -8,
+              fontSize: 16,
               color: "white",
             }}
           >
@@ -316,10 +348,42 @@ export default function ToolPreviewSection() {
           </div>
         </div>
 
-        <div style={{ marginTop: 10, fontWeight: 600 }}>
-          Best Meeting Window: {startLocal} – {endLocal}
+        <div style={{ marginTop: 6, fontWeight: 600 }}>
+          Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
         </div>
       </div>
+
+      <div style={{ display: "flex", gap: 12 }}>
+        <button onClick={createShareLink}>
+          {creatingShare ? "Creating..." : "Create Share Link"}
+        </button>
+
+        <button onClick={() => setCalendarMenuOpen(!calendarMenuOpen)}>
+          Export to Calendar
+        </button>
+      </div>
+
+      {calendarMenuOpen && (
+        <div style={{ marginTop: 20, display: "flex", gap: 12 }}>
+          <button onClick={openGoogleCalendar}>Add to Google Calendar</button>
+          <button onClick={openOutlookCalendar}>Add to Outlook Calendar</button>
+          <button onClick={downloadICS}>Apple / iCal Download</button>
+        </div>
+      )}
+
+      {shareLink && (
+        <div style={{ marginTop: 30 }}>
+          <strong>Share or bookmark this meeting setup</strong>
+
+          <p>{shareLink}</p>
+
+          <button onClick={copyLink}>Copy Link</button>
+
+          <p>{copyMessage}</p>
+
+          <small>Links remain active for 45 days.</small>
+        </div>
+      )}
     </div>
   );
 }
