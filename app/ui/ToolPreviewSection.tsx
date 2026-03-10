@@ -24,19 +24,53 @@ const CITY_OPTIONS: City[] = [
   { name: "Sydney, Australia", time: "1:30 AM", tz: "Australia/Sydney" },
 ];
 
+function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    timeZoneName: "shortOffset",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).formatToParts(date);
+
+  const tzPart =
+    parts.find((part) => part.type === "timeZoneName")?.value ?? "GMT+0";
+
+  const match = tzPart.match(/GMT([+-])(\d{1,2})(?::?(\d{2}))?/);
+
+  if (!match) return 0;
+
+  const sign = match[1] === "-" ? -1 : 1;
+  const hours = Number(match[2]);
+  const minutes = Number(match[3] ?? "0");
+
+  return sign * (hours * 60 + minutes);
+}
+
 function calculateOverlap(cityA: City, cityB: City): Window {
 
   const now = new Date();
-  const dateStr = now.toISOString().split("T")[0];
 
-  const aStart = new Date(`${dateStr}T09:00:00`);
-  const aEnd = new Date(`${dateStr}T17:00:00`);
+  const offsetA = getTimeZoneOffsetMinutes(now, cityA.tz);
+  const offsetB = getTimeZoneOffsetMinutes(now, cityB.tz);
 
-  const bStart = new Date(`${dateStr}T09:00:00`);
-  const bEnd = new Date(`${dateStr}T17:00:00`);
+  const workStart = 9 * 60;
+  const workEnd = 17 * 60;
 
-  const start = new Date(Math.max(aStart.getTime(), bStart.getTime()));
-  const end = new Date(Math.min(aEnd.getTime(), bEnd.getTime()));
+  const startA = workStart - offsetA;
+  const endA = workEnd - offsetA;
+
+  const startB = workStart - offsetB;
+  const endB = workEnd - offsetB;
+
+  const overlapStart = Math.max(startA, startB);
+  const overlapEnd = Math.min(endA, endB);
+
+  const base = new Date();
+  base.setUTCHours(0,0,0,0);
+
+  const start = new Date(base.getTime() + overlapStart * 60000);
+  const end = new Date(base.getTime() + overlapEnd * 60000);
 
   return {
     startUtc: start.toISOString(),
