@@ -10,6 +10,7 @@ import FooterSection from "./ui/FooterSection";
 export default function HomePage() {
   return (
     <LayoutShell
+      hero={null}
       toolPreview={<ToolPreviewSection />}
       premiumFeatures={<PremiumFeaturesSection />}
       bonusFeatures={<BonusFeaturesSection />}
