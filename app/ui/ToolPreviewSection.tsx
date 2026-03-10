@@ -24,29 +24,86 @@ const CITY_OPTIONS: City[] = [
   { name: "Sydney, Australia", time: "1:30 AM", tz: "Australia/Sydney" }
 ];
 
-function calculateOverlap(cityA: City, cityB: City): Window {
+function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    timeZoneName: "shortOffset",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).formatToParts(date);
 
+  const tzPart = parts.find((part) => part.type === "timeZoneName")?.value ?? "GMT+0";
+  const match = tzPart.match(/GMT([+-])(\d{1,2})(?::?(\d{2}))?/);
+
+  if (!match) return 0;
+
+  const sign = match[1] === "-" ? -1 : 1;
+  const hours = Number(match[2]);
+  const minutes = Number(match[3] ?? "0");
+
+  return sign * (hours * 60 + minutes);
+}
+
+function getZonedDateParts(date: Date, timeZone: string) {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(date);
+
+  const year = Number(parts.find((part) => part.type === "year")?.value);
+  const month = Number(parts.find((part) => part.type === "month")?.value);
+  const day = Number(parts.find((part) => part.type === "day")?.value);
+
+  return { year, month, day };
+}
+
+function zonedLocalToUtc(timeZone: string, hour: number, minute = 0): Date {
   const now = new Date();
-  const dateStr = now.toISOString().split("T")[0];
+  const { year, month, day } = getZonedDateParts(now, timeZone);
 
-  const aStart = new Date(`${dateStr}T09:00:00`);
-  const aEnd = new Date(`${dateStr}T17:00:00`);
+  const firstGuessUtc = Date.UTC(year, month - 1, day, hour, minute, 0);
+  const firstOffset = getTimeZoneOffsetMinutes(new Date(firstGuessUtc), timeZone);
+  const secondGuessUtc = firstGuessUtc - firstOffset * 60 * 1000;
+  const secondOffset = getTimeZoneOffsetMinutes(new Date(secondGuessUtc), timeZone);
 
-  const bStart = new Date(`${dateStr}T09:00:00`);
-  const bEnd = new Date(`${dateStr}T17:00:00`);
+  return new Date(firstGuessUtc - secondOffset * 60 * 1000);
+}
 
-  const start = new Date(Math.max(aStart.getTime(), bStart.getTime()));
-  const end = new Date(Math.min(aEnd.getTime(), bEnd.getTime()));
+function calculateMeetingWindow(cityA: City, cityB: City): Window {
+  const cityAMidUtc = zonedLocalToUtc(cityA.tz, 13, 0).getTime();
+  const cityBMidUtc = zonedLocalToUtc(cityB.tz, 13, 0).getTime();
+
+  const startMs = Math.round((cityAMidUtc + cityBMidUtc) / 2);
+  const endMs = startMs + 60 * 60 * 1000;
 
   return {
-    startUtc: start.toISOString(),
-    endUtc: end.toISOString(),
+    startUtc: new Date(startMs).toISOString(),
+    endUtc: new Date(endMs).toISOString(),
   };
+}
 
+function formatLocalWindow(iso: string) {
+  return new Date(iso).toLocaleTimeString([], {
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
+function getMarkerPosition(iso: string) {
+  const date = new Date(iso);
+  const localHour = date.getHours() + date.getMinutes() / 60;
+  const minHour = 8;
+  const maxHour = 22;
+
+  const percent = ((localHour - minHour) / (maxHour - minHour)) * 100;
+
+  return Math.min(90, Math.max(10, percent));
 }
 
 export default function ToolPreviewSection() {
-
   const [viewerTZ, setViewerTZ] = useState<string | null>(null);
 
   useEffect(() => {
@@ -62,18 +119,11 @@ export default function ToolPreviewSection() {
   const [copyMessage, setCopyMessage] = useState("");
   const [calendarMenuOpen, setCalendarMenuOpen] = useState(false);
 
-  const meetingWindow = calculateOverlap(cityA, cityB);
+  const meetingWindow = calculateMeetingWindow(cityA, cityB);
+  const markerPosition = getMarkerPosition(meetingWindow.startUtc);
 
-  const offsetA = new Date().toLocaleString("en-US", { timeZone: cityA.tz });
-  const offsetB = new Date().toLocaleString("en-US", { timeZone: cityB.tz });
-
-  const diff =
-    (new Date(offsetA).getHours() - new Date(offsetB).getHours()) * -1;
-
-  const markerPosition = Math.min(
-    90,
-    Math.max(10, 50 + diff * 5)
-  );
+  const startLocal = formatLocalWindow(meetingWindow.startUtc);
+  const endLocal = formatLocalWindow(meetingWindow.endUtc);
 
   function swapCities() {
     const temp = cityA;
@@ -82,14 +132,12 @@ export default function ToolPreviewSection() {
   }
 
   async function createShareLink() {
-
     if (creatingShare) return;
 
     setCreatingShare(true);
     setCopyMessage("");
 
     try {
-
       const res = await fetch("/api/share", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -102,42 +150,31 @@ export default function ToolPreviewSection() {
         }),
       });
 
+      if (!res.ok) throw new Error("Share creation failed");
+
       const data = await res.json();
       const fullUrl = `${window.location.origin}${data.url}`;
 
       setShareLink(fullUrl);
-
     } catch {
-
       setCopyMessage("Unable to create share link");
-
     } finally {
-
       setCreatingShare(false);
-
     }
-
   }
 
   async function copyLink() {
-
     if (!shareLink) return;
 
     try {
-
       await navigator.clipboard.writeText(shareLink);
       setCopyMessage("Link copied");
-
     } catch {
-
       setCopyMessage("Copy failed");
-
     }
-
   }
 
   function openGoogleCalendar() {
-
     const start =
       new Date(meetingWindow.startUtc)
         .toISOString()
@@ -157,12 +194,10 @@ export default function ToolPreviewSection() {
       `&text=${text}` +
       `&dates=${start}/${end}`;
 
-    window.open(url, "_blank");
-
+    window.open(url, "_blank", "noopener,noreferrer");
   }
 
   function openOutlookCalendar() {
-
     const start = meetingWindow.startUtc;
     const end = meetingWindow.endUtc;
 
@@ -174,12 +209,10 @@ export default function ToolPreviewSection() {
       `&startdt=${start}` +
       `&enddt=${end}`;
 
-    window.open(url, "_blank");
-
+    window.open(url, "_blank", "noopener,noreferrer");
   }
 
   function downloadICS() {
-
     const start =
       new Date(meetingWindow.startUtc)
         .toISOString()
@@ -199,16 +232,10 @@ export default function ToolPreviewSection() {
       `&end=${end}`;
 
     window.open(url, "_blank");
-
   }
 
-  const startLocal = new Date(meetingWindow.startUtc).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
-  const endLocal = new Date(meetingWindow.endUtc).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
-
   return (
-
     <div style={{ maxWidth: 1000, margin: "0 auto", padding: 40 }}>
-
       <h2>Tool Preview</h2>
 
       <p>
@@ -222,11 +249,10 @@ export default function ToolPreviewSection() {
       )}
 
       <div style={{ display: "flex", gap: 20, marginBottom: 20 }}>
-
         <select
           value={cityA.tz}
           onChange={(e) =>
-            setCityA(CITY_OPTIONS.find(c => c.tz === e.target.value)!)
+            setCityA(CITY_OPTIONS.find((c) => c.tz === e.target.value)!)
           }
         >
           {CITY_OPTIONS.map((c) => (
@@ -241,7 +267,7 @@ export default function ToolPreviewSection() {
         <select
           value={cityB.tz}
           onChange={(e) =>
-            setCityB(CITY_OPTIONS.find(c => c.tz === e.target.value)!)
+            setCityB(CITY_OPTIONS.find((c) => c.tz === e.target.value)!)
           }
         >
           {CITY_OPTIONS.map((c) => (
@@ -250,12 +276,24 @@ export default function ToolPreviewSection() {
             </option>
           ))}
         </select>
-
       </div>
 
-      <div style={{ border: "1px solid #444", padding: 20, borderRadius: 10, marginBottom: 25 }}>
-
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, marginBottom: 8 }}>
+      <div
+        style={{
+          border: "1px solid #444",
+          padding: 20,
+          borderRadius: 10,
+          marginBottom: 25,
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            fontSize: 13,
+            marginBottom: 8,
+          }}
+        >
           <span>8 AM</span>
           <span>10 AM</span>
           <span>12 PM</span>
@@ -267,7 +305,6 @@ export default function ToolPreviewSection() {
         </div>
 
         <div style={{ position: "relative" }}>
-
           <div
             style={{
               height: 24,
@@ -277,6 +314,27 @@ export default function ToolPreviewSection() {
             }}
           />
 
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              fontSize: 11,
+              fontWeight: 600,
+              color: "white",
+              padding: "0 10px",
+              pointerEvents: "none",
+            }}
+          >
+            <span>Early Hours</span>
+            <span>Best Meeting Window</span>
+            <span>Late Hours</span>
+          </div>
         </div>
 
         <div style={{ position: "relative", height: 18, marginTop: 4 }}>
@@ -286,7 +344,7 @@ export default function ToolPreviewSection() {
               left: `${markerPosition}%`,
               transform: "translateX(-50%)",
               fontSize: 16,
-              color: "white"
+              color: "white",
             }}
           >
             ▲
@@ -296,7 +354,6 @@ export default function ToolPreviewSection() {
         <div style={{ marginTop: 6, fontWeight: 600 }}>
           Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
         </div>
-
       </div>
 
       <div style={{ display: "flex", gap: 12 }}>
@@ -330,9 +387,6 @@ export default function ToolPreviewSection() {
           <small>Links remain active for 45 days.</small>
         </div>
       )}
-
     </div>
-
   );
-
 }
