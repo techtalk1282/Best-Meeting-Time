@@ -14,14 +14,65 @@ type Window = {
 };
 
 const CITY_OPTIONS: City[] = [
-  { name: "New York, USA", time: "10:30 AM", tz: "America/New_York" },
-  { name: "London, UK", time: "3:30 PM", tz: "Europe/London" },
-  { name: "Los Angeles, USA", time: "7:30 AM", tz: "America/Los_Angeles" },
-  { name: "Chicago, USA", time: "9:30 AM", tz: "America/Chicago" },
-  { name: "Berlin, Germany", time: "4:30 PM", tz: "Europe/Berlin" },
-  { name: "Dubai, UAE", time: "6:30 PM", tz: "Asia/Dubai" },
-  { name: "Tokyo, Japan", time: "11:30 PM", tz: "Asia/Tokyo" },
-  { name: "Sydney, Australia", time: "1:30 AM", tz: "Australia/Sydney" },
+
+  // USA
+  { name: "New York, USA", tz: "America/New_York" },
+  { name: "Miami, USA", tz: "America/New_York" },
+  { name: "Chicago, USA", tz: "America/Chicago" },
+  { name: "Dallas, USA", tz: "America/Chicago" },
+  { name: "Denver, USA", tz: "America/Denver" },
+  { name: "Los Angeles, USA", tz: "America/Los_Angeles" },
+  { name: "San Francisco, USA", tz: "America/Los_Angeles" },
+  { name: "Seattle, USA", tz: "America/Los_Angeles" },
+
+  // Canada
+  { name: "Toronto, Canada", tz: "America/Toronto" },
+  { name: "Vancouver, Canada", tz: "America/Vancouver" },
+
+  // South America
+  { name: "São Paulo, Brazil", tz: "America/Sao_Paulo" },
+  { name: "Buenos Aires, Argentina", tz: "America/Argentina/Buenos_Aires" },
+
+  // UK / Europe
+  { name: "London, UK", tz: "Europe/London" },
+  { name: "Paris, France", tz: "Europe/Paris" },
+  { name: "Berlin, Germany", tz: "Europe/Berlin" },
+  { name: "Madrid, Spain", tz: "Europe/Madrid" },
+  { name: "Rome, Italy", tz: "Europe/Rome" },
+  { name: "Amsterdam, Netherlands", tz: "Europe/Amsterdam" },
+  { name: "Zurich, Switzerland", tz: "Europe/Zurich" },
+  { name: "Stockholm, Sweden", tz: "Europe/Stockholm" },
+
+  // Middle East
+  { name: "Dubai, UAE", tz: "Asia/Dubai" },
+  { name: "Tel Aviv, Israel", tz: "Asia/Jerusalem" },
+  { name: "Riyadh, Saudi Arabia", tz: "Asia/Riyadh" },
+
+  // Africa
+  { name: "Cape Town, South Africa", tz: "Africa/Johannesburg" },
+  { name: "Nairobi, Kenya", tz: "Africa/Nairobi" },
+
+  // India
+  { name: "Mumbai, India", tz: "Asia/Kolkata" },
+  { name: "Delhi, India", tz: "Asia/Kolkata" },
+
+  // Asia
+  { name: "Singapore", tz: "Asia/Singapore" },
+  { name: "Hong Kong", tz: "Asia/Hong_Kong" },
+  { name: "Shanghai, China", tz: "Asia/Shanghai" },
+  { name: "Beijing, China", tz: "Asia/Shanghai" },
+  { name: "Tokyo, Japan", tz: "Asia/Tokyo" },
+  { name: "Seoul, South Korea", tz: "Asia/Seoul" },
+  { name: "Bangkok, Thailand", tz: "Asia/Bangkok" },
+  { name: "Jakarta, Indonesia", tz: "Asia/Jakarta" },
+
+  // Australia / NZ
+  { name: "Sydney, Australia", tz: "Australia/Sydney" },
+  { name: "Melbourne, Australia", tz: "Australia/Melbourne" },
+  { name: "Brisbane, Australia", tz: "Australia/Brisbane" },
+  { name: "Perth, Australia", tz: "Australia/Perth" },
+  { name: "Auckland, New Zealand", tz: "Pacific/Auckland" }
+
 ];
 
 function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
