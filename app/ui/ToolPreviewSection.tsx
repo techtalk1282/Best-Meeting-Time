@@ -231,7 +231,7 @@ export default function ToolPreviewSection() {
   }
 
   return (
-    <div style={{ maxWidth: 1100, margin: "0 auto", padding: 40 }}>
+    <div style={{ maxWidth: 1200, margin: "0 auto", padding: 40 }}>
       <h2>Tool Preview</h2>
 
       <p>
@@ -244,7 +244,7 @@ export default function ToolPreviewSection() {
         </div>
       )}
 
-      <div style={{ display: "flex", gap: 20, marginBottom: 20 }}>
+      <div style={{ display: "flex", gap: 20, marginBottom: 30 }}>
         <select
           value={cityA.tz}
           onChange={(e) =>
@@ -274,23 +274,28 @@ export default function ToolPreviewSection() {
         </select>
       </div>
 
+      {/* TIMELINE CARD */}
+
       <div
         style={{
           border: "1px solid #444",
-          padding: 24,
-          borderRadius: 10,
-          marginBottom: 25,
+          padding: 32,
+          borderRadius: 12,
+          marginBottom: 30,
+          maxWidth: 950,
         }}
       >
 
-        {/* Timeline labels using grid */}
+        {/* TIME LABELS */}
+
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(12, 1fr)",
-            fontSize: 11,
-            marginBottom: 8,
-            textAlign: "center"
+            fontSize: 14,
+            fontWeight: 600,
+            textAlign: "center",
+            marginBottom: 14
           }}
         >
           <span>12 AM</span>
@@ -307,11 +312,35 @@ export default function ToolPreviewSection() {
           <span>10 PM</span>
         </div>
 
-        <div style={{ position: "relative" }}>
+        {/* TICKS */}
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(12, 1fr)",
+            height: 10,
+            marginBottom: 6
+          }}
+        >
+          {Array.from({ length: 12 }).map((_, i) => (
+            <div
+              key={i}
+              style={{
+                borderLeft: "1px solid #666",
+                height: 10
+              }}
+            />
+          ))}
+        </div>
+
+        {/* TIMELINE BAR */}
+
+        <div style={{ position: "relative", marginBottom: 16 }}>
+
           <div
             style={{
-              height: 24,
-              borderRadius: 12,
+              height: 34,
+              borderRadius: 18,
               background:
                 "linear-gradient(to right,#6d28d9 0%,#8b5cf6 20%,#22c55e 40%,#16a34a 55%,#f59e0b 75%,#ec4899 100%)",
             }}
@@ -327,10 +356,10 @@ export default function ToolPreviewSection() {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              fontSize: 11,
-              fontWeight: 600,
+              fontSize: 13,
+              fontWeight: 700,
               color: "white",
-              padding: "0 10px",
+              padding: "0 14px",
               pointerEvents: "none",
             }}
           >
@@ -338,25 +367,37 @@ export default function ToolPreviewSection() {
             <span>Best Meeting Window</span>
             <span>Late Hours</span>
           </div>
+
         </div>
 
-        <div style={{ position: "relative", height: 18, marginTop: 4 }}>
+        {/* MARKER */}
+
+        <div style={{ position: "relative", height: 22 }}>
+
           <div
             style={{
               position: "absolute",
               left: `${markerPosition}%`,
               transform: "translateX(-50%)",
-              fontSize: 16,
-              color: "white",
+              fontSize: 20,
+              color: "white"
             }}
           >
             ▲
           </div>
+
         </div>
 
-        <div style={{ marginTop: 6, fontWeight: 600 }}>
+        <div
+          style={{
+            marginTop: 16,
+            fontWeight: 700,
+            fontSize: 16
+          }}
+        >
           Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
         </div>
+
       </div>
 
       <div style={{ display: "flex", gap: 12 }}>
