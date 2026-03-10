@@ -320,13 +320,26 @@ export default function ToolPreviewSection() {
         <div style={{ position: "relative" }}>
 
   <div
+  style={{
+    height: 24,
+    borderRadius: 12,
+    background: "#5b21b6", // purple base bar
+    position: "relative",
+  }}
+>
+
+  <div
     style={{
-      height: 24,
+      position: "absolute",
+      left: "35%",
+      width: "30%",
+      height: "100%",
+      background: "#22c55e",
       borderRadius: 12,
-      background:
-        "linear-gradient(90deg,#7c3aed,#22c55e,#f59e0b,#ec4899)",
     }}
   />
+
+</div>
 
   <div
     style={{
