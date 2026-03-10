@@ -92,11 +92,6 @@ function formatLocalWindow(iso: string) {
   });
 }
 
-/*
-24-hour timeline correction
-The meeting window algorithm works across 0–24 hours.
-The marker must map across the same range.
-*/
 function getMarkerPosition(iso: string) {
   const date = new Date(iso);
 
@@ -290,6 +285,8 @@ export default function ToolPreviewSection() {
           marginBottom: 25,
         }}
       >
+
+        {/* 24 hour timeline */}
         <div
           style={{
             display: "flex",
@@ -298,14 +295,14 @@ export default function ToolPreviewSection() {
             marginBottom: 8,
           }}
         >
-          <span>8 AM</span>
-          <span>10 AM</span>
+          <span>12 AM</span>
+          <span>3 AM</span>
+          <span>6 AM</span>
+          <span>9 AM</span>
           <span>12 PM</span>
-          <span>2 PM</span>
-          <span>4 PM</span>
+          <span>3 PM</span>
           <span>6 PM</span>
-          <span>8 PM</span>
-          <span>10 PM</span>
+          <span>9 PM</span>
         </div>
 
         <div style={{ position: "relative" }}>
