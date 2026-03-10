@@ -122,7 +122,12 @@ export default function ToolPreviewSection() {
   const [calendarMenuOpen, setCalendarMenuOpen] = useState(false);
 
   const meetingWindow = calculateMeetingWindow(cityA, cityB);
-  const markerPosition = getMarkerPosition(meetingWindow.startUtc);
+  const markerPosition = getMarkerPosition(
+  new Date(
+    (new Date(meetingWindow.startUtc).getTime() +
+     new Date(meetingWindow.endUtc).getTime()) / 2
+  ).toISOString()
+);
 
   const startLocal = formatLocalWindow(meetingWindow.startUtc);
   const endLocal = formatLocalWindow(meetingWindow.endUtc);
