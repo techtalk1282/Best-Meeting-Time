@@ -17,6 +17,7 @@ type Window = {
 };
 
 function calculateOverlap(cityA: City, cityB: City): Window {
+
   const now = new Date();
   const dateStr = now.toISOString().split("T")[0];
 
@@ -36,6 +37,7 @@ function calculateOverlap(cityA: City, cityB: City): Window {
 }
 
 export default function ToolPreviewSection() {
+
   const [viewerTZ, setViewerTZ] = useState<string | null>(null);
 
   useEffect(() => {
@@ -68,13 +70,32 @@ export default function ToolPreviewSection() {
     setCityB(temp);
   }
 
+  function formatLocal(dateString: string) {
+    const date = new Date(dateString);
+    return date.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+  }
+
+  const startLocal = formatLocal(meetingWindow.startUtc);
+  const endLocal = formatLocal(meetingWindow.endUtc);
+
+  const startHour = new Date(meetingWindow.startUtc).getHours();
+  const endHour = new Date(meetingWindow.endUtc).getHours();
+
+  const timelineStart = 0;
+  const timelineEnd = 22;
+
+  const startPercent = ((startHour - timelineStart) / (timelineEnd - timelineStart)) * 100;
+  const widthPercent = ((endHour - startHour) / (timelineEnd - timelineStart)) * 100;
+
   async function createShareLink() {
+
     if (creatingShare) return;
 
     setCreatingShare(true);
     setCopyMessage("");
 
     try {
+
       const res = await fetch("/api/share", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -93,26 +114,37 @@ export default function ToolPreviewSection() {
       const fullUrl = `${window.location.origin}${data.url}`;
 
       setShareLink(fullUrl);
+
     } catch (err) {
+
       console.error("share_link_error", err);
       setCopyMessage("Unable to create share link");
+
     } finally {
+
       setCreatingShare(false);
+
     }
   }
 
   async function copyLink() {
+
     if (!shareLink) return;
 
     try {
+
       await navigator.clipboard.writeText(shareLink);
       setCopyMessage("Link copied");
+
     } catch {
+
       setCopyMessage("Copy failed");
+
     }
   }
 
   function openGoogleCalendar() {
+
     const start =
       new Date(meetingWindow.startUtc)
         .toISOString()
@@ -125,9 +157,7 @@ export default function ToolPreviewSection() {
         .replace(/[-:]/g, "")
         .split(".")[0] + "Z";
 
-    const text = encodeURIComponent(
-      `Meeting: ${cityA.name} ↔ ${cityB.name}`
-    );
+    const text = encodeURIComponent(`Meeting: ${cityA.name} ↔ ${cityB.name}`);
 
     const details = encodeURIComponent(
       `Suggested meeting window between ${cityA.name} and ${cityB.name}`
@@ -143,12 +173,11 @@ export default function ToolPreviewSection() {
   }
 
   function openOutlookCalendar() {
+
     const start = meetingWindow.startUtc;
     const end = meetingWindow.endUtc;
 
-    const subject = encodeURIComponent(
-      `Meeting: ${cityA.name} ↔ ${cityB.name}`
-    );
+    const subject = encodeURIComponent(`Meeting: ${cityA.name} ↔ ${cityB.name}`);
 
     const body = encodeURIComponent(
       `Suggested meeting window between ${cityA.name} and ${cityB.name}`
@@ -165,6 +194,7 @@ export default function ToolPreviewSection() {
   }
 
   function downloadICS() {
+
     const start =
       new Date(meetingWindow.startUtc)
         .toISOString()
@@ -185,37 +215,56 @@ export default function ToolPreviewSection() {
     window.open(url, "_blank");
   }
 
-  const markerPosition = 50;
-
   return (
+
     <div style={{ maxWidth: 1000, margin: "0 auto", padding: 40 }}>
+
       <h2>Tool Preview</h2>
 
       <p>
-        A realistic preview of how comparing time zones will look — basic
-        interaction enabled.
+        A realistic preview of how comparing time zones will look — basic interaction enabled.
       </p>
 
       {viewerTZ && (
         <div style={{ marginBottom: 20, fontWeight: 600 }}>
-          ⭐ Your Time Zone: {viewerTZ}
+          Your Time Zone: {viewerTZ}
         </div>
       )}
 
       <div style={{ display: "flex", gap: 20, marginBottom: 20 }}>
-        <div style={{ border: "1px solid #444", padding: 15, borderRadius: 8 }}>
-          <strong>{cityA.name}</strong>
-          <p>{cityA.time}</p>
-          <small>{cityA.tz}</small>
-        </div>
+
+        <select
+          value={cityA.name}
+          onChange={(e) =>
+            setCityA({
+              ...cityA,
+              name: e.target.value,
+            })
+          }
+        >
+          <option>New York, USA</option>
+          <option>London, UK</option>
+          <option>Tokyo, Japan</option>
+          <option>Berlin, Germany</option>
+        </select>
 
         <button onClick={swapCities}>Swap</button>
 
-        <div style={{ border: "1px solid #444", padding: 15, borderRadius: 8 }}>
-          <strong>{cityB.name}</strong>
-          <p>{cityB.time}</p>
-          <small>{cityB.tz}</small>
-        </div>
+        <select
+          value={cityB.name}
+          onChange={(e) =>
+            setCityB({
+              ...cityB,
+              name: e.target.value,
+            })
+          }
+        >
+          <option>London, UK</option>
+          <option>Tokyo, Japan</option>
+          <option>Berlin, Germany</option>
+          <option>New York, USA</option>
+        </select>
+
       </div>
 
       {/* Timeline */}
@@ -228,16 +277,19 @@ export default function ToolPreviewSection() {
           marginBottom: 25,
         }}
       >
+
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
             fontSize: 13,
-            fontWeight: 500,
-            opacity: 0.9,
             marginBottom: 8,
           }}
         >
+          <span>12 AM</span>
+          <span>2 AM</span>
+          <span>4 AM</span>
+          <span>6 AM</span>
           <span>8 AM</span>
           <span>10 AM</span>
           <span>12 PM</span>
@@ -249,14 +301,32 @@ export default function ToolPreviewSection() {
         </div>
 
         <div style={{ position: "relative" }}>
+
+          {/* Base timeline */}
+
           <div
             style={{
               height: 24,
               borderRadius: 12,
-              background:
-                "linear-gradient(to right,#6d28d9 0%,#8b5cf6 20%,#22c55e 40%,#16a34a 55%,#f59e0b 75%,#ec4899 100%)",
+              background: "#3b2a67",
             }}
           />
+
+          {/* Highlighted meeting window */}
+
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: `${startPercent}%`,
+              width: `${widthPercent}%`,
+              height: 24,
+              borderRadius: 12,
+              background: "#22c55e",
+            }}
+          />
+
+          {/* Labels */}
 
           <div
             style={{
@@ -279,29 +349,13 @@ export default function ToolPreviewSection() {
             <span>Best Meeting Window</span>
             <span>Late Hours</span>
           </div>
-        </div>
 
-        <div style={{ position: "relative", height: 18, marginTop: 4 }}>
-          <div
-            style={{
-              position: "absolute",
-              left: `${markerPosition}%`,
-              transform: "translateX(-50%)",
-              fontSize: 16,
-              color: "white",
-            }}
-          >
-            ▲
-          </div>
         </div>
 
         <div style={{ marginTop: 6, fontWeight: 600 }}>
-          Best Meeting Window: <strong>2:00 PM – 3:00 PM</strong>
+          Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
         </div>
 
-        <div style={{ marginTop: 4, fontSize: 12, opacity: 0.7 }}>
-          Calculated using typical working hours (9 AM – 5 PM)
-        </div>
       </div>
 
       <div style={{ display: "flex", gap: 12 }}>
@@ -315,23 +369,10 @@ export default function ToolPreviewSection() {
       </div>
 
       {calendarMenuOpen && (
-        <div
-          style={{
-            marginTop: 20,
-            display: "flex",
-            gap: 12,
-            flexWrap: "wrap",
-          }}
-        >
-          <button onClick={openGoogleCalendar}>
-            Add to Google Calendar
-          </button>
-          <button onClick={openOutlookCalendar}>
-            Add to Outlook Calendar
-          </button>
-          <button onClick={downloadICS}>
-            Apple / iCal Download
-          </button>
+        <div style={{ marginTop: 20, display: "flex", gap: 12 }}>
+          <button onClick={openGoogleCalendar}>Add to Google Calendar</button>
+          <button onClick={openOutlookCalendar}>Add to Outlook Calendar</button>
+          <button onClick={downloadICS}>Apple / iCal Download</button>
         </div>
       )}
 
@@ -348,6 +389,7 @@ export default function ToolPreviewSection() {
           <small>Links remain active for 45 days.</small>
         </div>
       )}
+
     </div>
   );
 }
