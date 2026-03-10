@@ -94,11 +94,8 @@ function formatLocalWindow(iso: string) {
 
 function getMarkerPosition(iso: string) {
   const date = new Date(iso);
-
   const localHour = date.getHours() + date.getMinutes() / 60;
-
   const percent = (localHour / 24) * 100;
-
   return percent;
 }
 
@@ -153,8 +150,8 @@ export default function ToolPreviewSection() {
 
       const data = await res.json();
       const fullUrl = `${window.location.origin}${data.url}`;
-
       setShareLink(fullUrl);
+
     } catch {
       setCopyMessage("Unable to create share link");
     } finally {
@@ -286,7 +283,7 @@ export default function ToolPreviewSection() {
         }}
       >
 
-        {/* 24 hour timeline */}
+        {/* 2-hour interval timeline */}
         <div
           style={{
             display: "flex",
@@ -296,13 +293,17 @@ export default function ToolPreviewSection() {
           }}
         >
           <span>12 AM</span>
-          <span>3 AM</span>
+          <span>2 AM</span>
+          <span>4 AM</span>
           <span>6 AM</span>
-          <span>9 AM</span>
+          <span>8 AM</span>
+          <span>10 AM</span>
           <span>12 PM</span>
-          <span>3 PM</span>
+          <span>2 PM</span>
+          <span>4 PM</span>
           <span>6 PM</span>
-          <span>9 PM</span>
+          <span>8 PM</span>
+          <span>10 PM</span>
         </div>
 
         <div style={{ position: "relative" }}>
