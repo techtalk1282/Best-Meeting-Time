@@ -102,7 +102,13 @@ function getMarkerPosition(iso: string) {
 
   const hourDecimal = localHour + localMinutes / 60;
 
-  return (hourDecimal / 24) * 100;
+  const timelineStart = 0;   // 12 AM
+  const timelineEnd = 22;    // 10 PM
+  const timelineRange = timelineEnd - timelineStart;
+
+  const clampedHour = Math.max(timelineStart, Math.min(hourDecimal, timelineEnd));
+
+  return ((clampedHour - timelineStart) / timelineRange) * 100;
 }
 
 export default function ToolPreviewSection() {
