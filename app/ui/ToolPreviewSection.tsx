@@ -63,11 +63,17 @@ function calculateOverlap(cityA: City, cityB: City): Window {
   const startB = workStart - offsetB;
   const endB = workEnd - offsetB;
 
-  const overlapStart = Math.max(startA, startB);
-  const overlapEnd = Math.min(endA, endB);
+  let overlapStart = Math.max(startA, startB);
+  let overlapEnd = Math.min(endA, endB);
+
+  /* Fix invalid overlap */
+  if (overlapStart >= overlapEnd) {
+    overlapStart = overlapStart;
+    overlapEnd = overlapStart + 60;
+  }
 
   const base = new Date();
-  base.setUTCHours(0,0,0,0);
+  base.setUTCHours(0, 0, 0, 0);
 
   const start = new Date(base.getTime() + overlapStart * 60000);
   const end = new Date(base.getTime() + overlapEnd * 60000);
@@ -354,28 +360,6 @@ export default function ToolPreviewSection() {
               }}
             />
 
-          </div>
-
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              fontSize: 11,
-              fontWeight: 600,
-              color: "white",
-              padding: "0 10px",
-              pointerEvents: "none",
-            }}
-          >
-            <span>Early Hours</span>
-            <span>Best Meeting Window</span>
-            <span>Late Hours</span>
           </div>
 
         </div>
