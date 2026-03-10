@@ -16,62 +16,62 @@ type Window = {
 const CITY_OPTIONS: City[] = [
 
   // USA
-  { name: "New York, USA", tz: "America/New_York" },
-  { name: "Miami, USA", tz: "America/New_York" },
-  { name: "Chicago, USA", tz: "America/Chicago" },
-  { name: "Dallas, USA", tz: "America/Chicago" },
-  { name: "Denver, USA", tz: "America/Denver" },
-  { name: "Los Angeles, USA", tz: "America/Los_Angeles" },
-  { name: "San Francisco, USA", tz: "America/Los_Angeles" },
-  { name: "Seattle, USA", tz: "America/Los_Angeles" },
+  { name: "New York, USA", time: "", tz: "America/New_York" },
+  { name: "Miami, USA", time: "", tz: "America/New_York" },
+  { name: "Chicago, USA", time: "", tz: "America/Chicago" },
+  { name: "Dallas, USA", time: "", tz: "America/Chicago" },
+  { name: "Denver, USA", time: "", tz: "America/Denver" },
+  { name: "Los Angeles, USA", time: "", tz: "America/Los_Angeles" },
+  { name: "San Francisco, USA", time: "", tz: "America/Los_Angeles" },
+  { name: "Seattle, USA", time: "", tz: "America/Los_Angeles" },
 
   // Canada
-  { name: "Toronto, Canada", tz: "America/Toronto" },
-  { name: "Vancouver, Canada", tz: "America/Vancouver" },
+  { name: "Toronto, Canada", time: "", tz: "America/Toronto" },
+  { name: "Vancouver, Canada", time: "", tz: "America/Vancouver" },
 
   // South America
-  { name: "São Paulo, Brazil", tz: "America/Sao_Paulo" },
-  { name: "Buenos Aires, Argentina", tz: "America/Argentina/Buenos_Aires" },
+  { name: "São Paulo, Brazil", time: "", tz: "America/Sao_Paulo" },
+  { name: "Buenos Aires, Argentina", time: "", tz: "America/Argentina/Buenos_Aires" },
 
   // UK / Europe
-  { name: "London, UK", tz: "Europe/London" },
-  { name: "Paris, France", tz: "Europe/Paris" },
-  { name: "Berlin, Germany", tz: "Europe/Berlin" },
-  { name: "Madrid, Spain", tz: "Europe/Madrid" },
-  { name: "Rome, Italy", tz: "Europe/Rome" },
-  { name: "Amsterdam, Netherlands", tz: "Europe/Amsterdam" },
-  { name: "Zurich, Switzerland", tz: "Europe/Zurich" },
-  { name: "Stockholm, Sweden", tz: "Europe/Stockholm" },
+  { name: "London, UK", time: "", tz: "Europe/London" },
+  { name: "Paris, France", time: "", tz: "Europe/Paris" },
+  { name: "Berlin, Germany", time: "", tz: "Europe/Berlin" },
+  { name: "Madrid, Spain", time: "", tz: "Europe/Madrid" },
+  { name: "Rome, Italy", time: "", tz: "Europe/Rome" },
+  { name: "Amsterdam, Netherlands", time: "", tz: "Europe/Amsterdam" },
+  { name: "Zurich, Switzerland", time: "", tz: "Europe/Zurich" },
+  { name: "Stockholm, Sweden", time: "", tz: "Europe/Stockholm" },
 
   // Middle East
-  { name: "Dubai, UAE", tz: "Asia/Dubai" },
-  { name: "Tel Aviv, Israel", tz: "Asia/Jerusalem" },
-  { name: "Riyadh, Saudi Arabia", tz: "Asia/Riyadh" },
+  { name: "Dubai, UAE", time: "", tz: "Asia/Dubai" },
+  { name: "Tel Aviv, Israel", time: "", tz: "Asia/Jerusalem" },
+  { name: "Riyadh, Saudi Arabia", time: "", tz: "Asia/Riyadh" },
 
   // Africa
-  { name: "Cape Town, South Africa", tz: "Africa/Johannesburg" },
-  { name: "Nairobi, Kenya", tz: "Africa/Nairobi" },
+  { name: "Cape Town, South Africa", time: "", tz: "Africa/Johannesburg" },
+  { name: "Nairobi, Kenya", time: "", tz: "Africa/Nairobi" },
 
   // India
-  { name: "Mumbai, India", tz: "Asia/Kolkata" },
-  { name: "Delhi, India", tz: "Asia/Kolkata" },
+  { name: "Mumbai, India", time: "", tz: "Asia/Kolkata" },
+  { name: "Delhi, India", time: "", tz: "Asia/Kolkata" },
 
   // Asia
-  { name: "Singapore", tz: "Asia/Singapore" },
-  { name: "Hong Kong", tz: "Asia/Hong_Kong" },
-  { name: "Shanghai, China", tz: "Asia/Shanghai" },
-  { name: "Beijing, China", tz: "Asia/Shanghai" },
-  { name: "Tokyo, Japan", tz: "Asia/Tokyo" },
-  { name: "Seoul, South Korea", tz: "Asia/Seoul" },
-  { name: "Bangkok, Thailand", tz: "Asia/Bangkok" },
-  { name: "Jakarta, Indonesia", tz: "Asia/Jakarta" },
+  { name: "Singapore", time: "", tz: "Asia/Singapore" },
+  { name: "Hong Kong", time: "", tz: "Asia/Hong_Kong" },
+  { name: "Shanghai, China", time: "", tz: "Asia/Shanghai" },
+  { name: "Beijing, China", time: "", tz: "Asia/Shanghai" },
+  { name: "Tokyo, Japan", time: "", tz: "Asia/Tokyo" },
+  { name: "Seoul, South Korea", time: "", tz: "Asia/Seoul" },
+  { name: "Bangkok, Thailand", time: "", tz: "Asia/Bangkok" },
+  { name: "Jakarta, Indonesia", time: "", tz: "Asia/Jakarta" },
 
   // Australia / NZ
-  { name: "Sydney, Australia", tz: "Australia/Sydney" },
-  { name: "Melbourne, Australia", tz: "Australia/Melbourne" },
-  { name: "Brisbane, Australia", tz: "Australia/Brisbane" },
-  { name: "Perth, Australia", tz: "Australia/Perth" },
-  { name: "Auckland, New Zealand", tz: "Pacific/Auckland" }
+  { name: "Sydney, Australia", time: "", tz: "Australia/Sydney" },
+  { name: "Melbourne, Australia", time: "", tz: "Australia/Melbourne" },
+  { name: "Brisbane, Australia", time: "", tz: "Australia/Brisbane" },
+  { name: "Perth, Australia", time: "", tz: "Australia/Perth" },
+  { name: "Auckland, New Zealand", time: "", tz: "Pacific/Auckland" }
 
 ];
 
