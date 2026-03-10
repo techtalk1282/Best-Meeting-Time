@@ -24,29 +24,6 @@ const CITY_OPTIONS: City[] = [
   { name: "Sydney, Australia", time: "1:30 AM", tz: "Australia/Sydney" },
 ];
 
-function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
-  const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone,
-    timeZoneName: "shortOffset",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  }).formatToParts(date);
-
-  const tzPart =
-    parts.find((part) => part.type === "timeZoneName")?.value ?? "GMT+0";
-
-  const match = tzPart.match(/GMT([+-])(\d{1,2})(?::?(\d{2}))?/);
-
-  if (!match) return 0;
-
-  const sign = match[1] === "-" ? -1 : 1;
-  const hours = Number(match[2]);
-  const minutes = Number(match[3] ?? "0");
-
-  return sign * (hours * 60 + minutes);
-}
-
 function calculateOverlap(cityA: City, cityB: City): Window {
 
   const now = new Date();
@@ -101,12 +78,16 @@ export default function ToolPreviewSection() {
   const endLocal = formatLocal(meetingWindow.endUtc);
 
   const startHour = new Date(meetingWindow.startUtc).getHours();
+  const endHour = new Date(meetingWindow.endUtc).getHours();
 
   const timelineStart = 0;
   const timelineEnd = 22;
 
-  const caretPercent =
+  const startPercent =
     ((startHour - timelineStart) / (timelineEnd - timelineStart)) * 100;
+
+  const widthPercent =
+    ((endHour - startHour) / (timelineEnd - timelineStart)) * 100;
 
   async function createShareLink() {
 
@@ -319,51 +300,51 @@ export default function ToolPreviewSection() {
 
         <div style={{ position: "relative" }}>
 
-  <div
-  style={{
-    height: 24,
-    borderRadius: 12,
-    background: "#5b21b6", // purple base bar
-    position: "relative",
-  }}
->
+          <div
+            style={{
+              height: 24,
+              borderRadius: 12,
+              background: "#5b21b6",
+              position: "relative",
+            }}
+          >
 
-  <div
-    style={{
-      position: "absolute",
-      left: "35%",
-      width: "30%",
-      height: "100%",
-      background: "#22c55e",
-      borderRadius: 12,
-    }}
-  />
+            <div
+              style={{
+                position: "absolute",
+                left: `${startPercent}%`,
+                width: `${widthPercent}%`,
+                height: "100%",
+                background: "#22c55e",
+                borderRadius: 12,
+              }}
+            />
 
-</div>
+          </div>
 
-  <div
-    style={{
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      fontSize: 11,
-      fontWeight: 600,
-      color: "white",
-      padding: "0 10px",
-      pointerEvents: "none",
-    }}
-  >
-    <span>Early Hours</span>
-    <span>Best Meeting Window</span>
-    <span>Late Hours</span>
-  </div>
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              fontSize: 11,
+              fontWeight: 600,
+              color: "white",
+              padding: "0 10px",
+              pointerEvents: "none",
+            }}
+          >
+            <span>Early Hours</span>
+            <span>Best Meeting Window</span>
+            <span>Late Hours</span>
+          </div>
 
-</div>
+        </div>
 
         <div style={{ marginTop: 6, fontWeight: 600 }}>
           Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
