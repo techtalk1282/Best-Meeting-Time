@@ -96,8 +96,14 @@ function formatLocalWindow(iso: string) {
 
 function getMarkerPosition(iso: string) {
   const date = new Date(iso);
-  const localHour = date.getHours() + date.getMinutes() / 60;
-  const percent = (localHour / 24) * 100;
+
+  const utcHour = date.getUTCHours();
+  const utcMinutes = date.getUTCMinutes();
+
+  const hourDecimal = utcHour + utcMinutes / 60;
+
+  const percent = (hourDecimal / 24) * 100;
+
   return percent;
 }
 
