@@ -204,37 +204,7 @@ export default function ToolPreviewSection() {
 
   }
 
-  // ------------------------------
-  // CARET POSITION CALCULATION
-  // ------------------------------
-
-  const start = new Date(meetingWindow.startUtc);
-  const end = new Date(meetingWindow.endUtc);
-
-  const midpoint = new Date((start.getTime() + end.getTime()) / 2);
-
-  const midpointHour =
-    midpoint.getHours() + midpoint.getMinutes() / 60;
-
-  const timelineStart = 0;     // 12 AM
-  const timelineEnd = 22;      // 10 PM
-  const timelineRange = timelineEnd - timelineStart;
-
-  let markerPosition =
-    ((midpointHour - timelineStart) / timelineRange) * 100;
-
-  markerPosition = Math.max(0, Math.min(100, markerPosition));
-
-  // ------------------------------
-  // DISPLAY WINDOW TEXT
-  // ------------------------------
-
-  function formatTime(date: Date) {
-    return date.toLocaleTimeString([], {
-      hour: "numeric",
-      minute: "2-digit",
-    });
-  }
+  const markerPosition = 50;
 
   return (
 
@@ -291,10 +261,6 @@ export default function ToolPreviewSection() {
             marginBottom: 8,
           }}
         >
-          <span>12 AM</span>
-          <span>2 AM</span>
-          <span>4 AM</span>
-          <span>6 AM</span>
           <span>8 AM</span>
           <span>10 AM</span>
           <span>12 PM</span>
@@ -361,10 +327,7 @@ export default function ToolPreviewSection() {
         </div>
 
         <div style={{ marginTop: 6, fontWeight: 600 }}>
-          Best Meeting Window:{" "}
-          <strong>
-            {formatTime(start)} – {formatTime(end)}
-          </strong>
+          Best Meeting Window: <strong>2:00 PM – 3:00 PM</strong>
         </div>
 
         <div style={{ marginTop: 4, fontSize: 12, opacity: 0.7 }}>
