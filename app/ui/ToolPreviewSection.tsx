@@ -231,7 +231,7 @@ export default function ToolPreviewSection() {
   }
 
   return (
-    <div style={{ maxWidth: 1000, margin: "0 auto", padding: 40 }}>
+    <div style={{ maxWidth: 1100, margin: "0 auto", padding: 40 }}>
       <h2>Tool Preview</h2>
 
       <p>
@@ -277,19 +277,20 @@ export default function ToolPreviewSection() {
       <div
         style={{
           border: "1px solid #444",
-          padding: 20,
+          padding: 24,
           borderRadius: 10,
           marginBottom: 25,
         }}
       >
 
-        {/* 2-hour interval timeline */}
+        {/* Timeline labels using grid */}
         <div
           style={{
-            display: "flex",
-            justifyContent: "space-between",
-            fontSize: 13,
+            display: "grid",
+            gridTemplateColumns: "repeat(12, 1fr)",
+            fontSize: 11,
             marginBottom: 8,
+            textAlign: "center"
           }}
         >
           <span>12 AM</span>
