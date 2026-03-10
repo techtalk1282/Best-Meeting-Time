@@ -48,16 +48,6 @@ export default function HeroSection() {
           align-items: start;
         }
 
-        .hero-headline {
-          margin-bottom: var(--space-8);
-        }
-
-        .hero-cta {
-          display: flex;
-          flex-direction: column;
-          gap: var(--space-3);
-        }
-
         .hero-divider {
           margin-top: var(--space-12);
         }
@@ -77,21 +67,10 @@ export default function HeroSection() {
           .hero-nav-links {
             gap: var(--space-4);
           }
-
-          .hero-headline h1 {
-            font-size: var(--text-3xl);
-          }
-
-          .hero-headline h2 {
-            font-size: var(--text-2xl);
-          }
         }
       `}</style>
 
       <div aria-label="Hero Container" className="hero-container">
-
-        {/* Navigation */}
-
         <nav aria-label="Primary Navigation" className="hero-nav">
           <div aria-label="Nav Brand" className="hero-logo">
             <a href="/" aria-label="Best Meeting Time home">
@@ -112,45 +91,18 @@ export default function HeroSection() {
           </div>
         </nav>
 
-        {/* Hero Content */}
-
         <div aria-label="Hero Main" className="hero-main">
-
-          {/* Left side */}
-
-          <div aria-label="Hero Left">
-            <div aria-label="Hero Headline" className="hero-headline">
-              <h1>Find the Best Time to Meet</h1>
-              <h2>Across Time Zones.</h2>
-
-              <p style={{ fontSize: "var(--text-lg)", maxWidth: 520 }}>
-                Easily schedule meetings with your team or clients around the world.
-              </p>
-            </div>
-
-            <div aria-label="Hero Primary CTA" className="hero-cta">
-              <a href="#tool-preview">
-                <button type="button">Compare Times</button>
-              </a>
-
-              <p style={{ fontSize: "var(--text-sm)" }}>
-                Instantly see the best meeting window.
-              </p>
-            </div>
-          </div>
-
-          {/* Right side — REAL TOOL */}
+          {/* Step 1: left side intentionally cleared. Step 2 will move Tool Preview left. */}
+          <div aria-label="Hero Left" />
 
           <div aria-label="Hero Tool">
             <ToolPreviewSection />
           </div>
-
         </div>
 
         <div aria-label="Hero Divider" className="hero-divider">
           <hr />
         </div>
-
       </div>
     </section>
   );
