@@ -1,4 +1,4 @@
-use client;
+"use client";
 
 // app/ui/ToolPreviewSection.tsx
 // PURPOSE: Tool preview section with timeline strip, share link, calendar export.
@@ -17,7 +17,6 @@ type Window = {
 };
 
 function calculateOverlap(cityA: City, cityB: City): Window {
-
   const now = new Date();
   const dateStr = now.toISOString().split("T")[0];
 
@@ -34,11 +33,9 @@ function calculateOverlap(cityA: City, cityB: City): Window {
     startUtc: start.toISOString(),
     endUtc: end.toISOString(),
   };
-
 }
 
 export default function ToolPreviewSection() {
-
   const [viewerTZ, setViewerTZ] = useState<string | null>(null);
 
   useEffect(() => {
@@ -72,14 +69,12 @@ export default function ToolPreviewSection() {
   }
 
   async function createShareLink() {
-
     if (creatingShare) return;
 
     setCreatingShare(true);
     setCopyMessage("");
 
     try {
-
       const res = await fetch("/api/share", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -98,39 +93,26 @@ export default function ToolPreviewSection() {
       const fullUrl = `${window.location.origin}${data.url}`;
 
       setShareLink(fullUrl);
-
     } catch (err) {
-
       console.error("share_link_error", err);
       setCopyMessage("Unable to create share link");
-
     } finally {
-
       setCreatingShare(false);
-
     }
-
   }
 
   async function copyLink() {
-
     if (!shareLink) return;
 
     try {
-
       await navigator.clipboard.writeText(shareLink);
       setCopyMessage("Link copied");
-
     } catch {
-
       setCopyMessage("Copy failed");
-
     }
-
   }
 
   function openGoogleCalendar() {
-
     const start =
       new Date(meetingWindow.startUtc)
         .toISOString()
@@ -143,7 +125,9 @@ export default function ToolPreviewSection() {
         .replace(/[-:]/g, "")
         .split(".")[0] + "Z";
 
-    const text = encodeURIComponent(`Meeting: ${cityA.name} ↔ ${cityB.name}`);
+    const text = encodeURIComponent(
+      `Meeting: ${cityA.name} ↔ ${cityB.name}`
+    );
 
     const details = encodeURIComponent(
       `Suggested meeting window between ${cityA.name} and ${cityB.name}`
@@ -156,15 +140,15 @@ export default function ToolPreviewSection() {
       `&details=${details}`;
 
     window.open(url, "_blank", "noopener,noreferrer");
-
   }
 
   function openOutlookCalendar() {
-
     const start = meetingWindow.startUtc;
     const end = meetingWindow.endUtc;
 
-    const subject = encodeURIComponent(`Meeting: ${cityA.name} ↔ ${cityB.name}`);
+    const subject = encodeURIComponent(
+      `Meeting: ${cityA.name} ↔ ${cityB.name}`
+    );
 
     const body = encodeURIComponent(
       `Suggested meeting window between ${cityA.name} and ${cityB.name}`
@@ -178,11 +162,9 @@ export default function ToolPreviewSection() {
       `&body=${body}`;
 
     window.open(url, "_blank", "noopener,noreferrer");
-
   }
 
   function downloadICS() {
-
     const start =
       new Date(meetingWindow.startUtc)
         .toISOString()
@@ -201,19 +183,17 @@ export default function ToolPreviewSection() {
       `&start=${start}&end=${end}`;
 
     window.open(url, "_blank");
-
   }
 
   const markerPosition = 50;
 
   return (
-
     <div style={{ maxWidth: 1000, margin: "0 auto", padding: 40 }}>
-
       <h2>Tool Preview</h2>
 
       <p>
-        A realistic preview of how comparing time zones will look — basic interaction enabled.
+        A realistic preview of how comparing time zones will look — basic
+        interaction enabled.
       </p>
 
       {viewerTZ && (
@@ -223,7 +203,6 @@ export default function ToolPreviewSection() {
       )}
 
       <div style={{ display: "flex", gap: 20, marginBottom: 20 }}>
-
         <div style={{ border: "1px solid #444", padding: 15, borderRadius: 8 }}>
           <strong>{cityA.name}</strong>
           <p>{cityA.time}</p>
@@ -237,7 +216,6 @@ export default function ToolPreviewSection() {
           <p>{cityB.time}</p>
           <small>{cityB.tz}</small>
         </div>
-
       </div>
 
       {/* Timeline */}
@@ -250,7 +228,6 @@ export default function ToolPreviewSection() {
           marginBottom: 25,
         }}
       >
-
         <div
           style={{
             display: "flex",
@@ -272,7 +249,6 @@ export default function ToolPreviewSection() {
         </div>
 
         <div style={{ position: "relative" }}>
-
           <div
             style={{
               height: 24,
@@ -303,25 +279,16 @@ export default function ToolPreviewSection() {
             <span>Best Meeting Window</span>
             <span>Late Hours</span>
           </div>
-
         </div>
 
-        {/* Marker BELOW timeline */}
-
-        <div
-          style={{
-            position: "relative",
-            height: 18,
-            marginTop: 4
-          }}
-        >
+        <div style={{ position: "relative", height: 18, marginTop: 4 }}>
           <div
             style={{
               position: "absolute",
               left: `${markerPosition}%`,
               transform: "translateX(-50%)",
               fontSize: 16,
-              color: "white"
+              color: "white",
             }}
           >
             ▲
@@ -335,7 +302,6 @@ export default function ToolPreviewSection() {
         <div style={{ marginTop: 4, fontSize: 12, opacity: 0.7 }}>
           Calculated using typical working hours (9 AM – 5 PM)
         </div>
-
       </div>
 
       <div style={{ display: "flex", gap: 12 }}>
@@ -349,10 +315,23 @@ export default function ToolPreviewSection() {
       </div>
 
       {calendarMenuOpen && (
-        <div style={{ marginTop: 20, display: "flex", gap: 12, flexWrap: "wrap" }}>
-          <button onClick={openGoogleCalendar}>Add to Google Calendar</button>
-          <button onClick={openOutlookCalendar}>Add to Outlook Calendar</button>
-          <button onClick={downloadICS}>Apple / iCal Download</button>
+        <div
+          style={{
+            marginTop: 20,
+            display: "flex",
+            gap: 12,
+            flexWrap: "wrap",
+          }}
+        >
+          <button onClick={openGoogleCalendar}>
+            Add to Google Calendar
+          </button>
+          <button onClick={openOutlookCalendar}>
+            Add to Outlook Calendar
+          </button>
+          <button onClick={downloadICS}>
+            Apple / iCal Download
+          </button>
         </div>
       )}
 
@@ -369,9 +348,6 @@ export default function ToolPreviewSection() {
           <small>Links remain active for 45 days.</small>
         </div>
       )}
-
     </div>
-
   );
-
 }
