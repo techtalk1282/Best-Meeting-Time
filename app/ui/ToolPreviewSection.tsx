@@ -69,7 +69,7 @@ function calculateOverlap(cityA: City, cityB: City): Window {
   /* Fix invalid overlap */
   if (overlapStart >= overlapEnd) {
     overlapStart = overlapStart;
-    overlapEnd = overlapStart + 60;
+    overlapEnd = overlapStart + 120;
   }
 
   const base = new Date();
