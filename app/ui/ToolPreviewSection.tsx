@@ -291,20 +291,24 @@ export default function ToolPreviewSection() {
             marginBottom: 8,
           }}
         >
-          <span>12 AM</span>
-          <span>3 AM</span>
-          <span>6 AM</span>
-          <span>9 AM</span>
-          <span>12 PM</span>
-          <span>3 PM</span>
-          <span>6 PM</span>
-          <span>9 PM</span>
+<span>12 AM</span>
+<span>2 AM</span>
+<span>4 AM</span>
+<span>6 AM</span>
+<span>8 AM</span>
+<span>10 AM</span>
+<span>12 PM</span>
+<span>2 PM</span>
+<span>4 PM</span>
+<span>6 PM</span>
+<span>8 PM</span>
+<span>10 PM</span>
         </div>
 
         <div style={{ position: "relative" }}>
           <div
             style={{
-              height: 24,
+              height: 32,
               borderRadius: 12,
               background:
                 "linear-gradient(to right,#6d28d9 0%,#8b5cf6 20%,#22c55e 40%,#16a34a 55%,#f59e0b 75%,#ec4899 100%)",
