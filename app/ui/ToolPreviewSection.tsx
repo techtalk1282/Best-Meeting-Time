@@ -1,274 +1,3 @@
-use client;
-
-import { useState, useEffect } from "react";
-
-type City = {
-  name: string;
-  time: string;
-  tz: string;
-};
-
-type Window = {
-  startUtc: string;
-  endUtc: string;
-};
-
-const CITY_OPTIONS: City[] = [
-  { name: "New York, USA", time: "10:30 AM", tz: "America/New_York" },
-  { name: "London, UK", time: "3:30 PM", tz: "Europe/London" },
-  { name: "Los Angeles, USA", time: "7:30 AM", tz: "America/Los_Angeles" },
-  { name: "Chicago, USA", time: "9:30 AM", tz: "America/Chicago" },
-  { name: "Berlin, Germany", time: "4:30 PM", tz: "Europe/Berlin" },
-  { name: "Dubai, UAE", time: "6:30 PM", tz: "Asia/Dubai" },
-  { name: "Tokyo, Japan", time: "11:30 PM", tz: "Asia/Tokyo" },
-  { name: "Sydney, Australia", time: "1:30 AM", tz: "Australia/Sydney" }
-];
-
-function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
-  const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone,
-    timeZoneName: "shortOffset",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  }).formatToParts(date);
-
-  const tzPart = parts.find((part) => part.type === "timeZoneName")?.value ?? "GMT+0";
-  const match = tzPart.match(/GMT([+-])(\d{1,2})(?::?(\d{2}))?/);
-
-  if (!match) return 0;
-
-  const sign = match[1] === "-" ? -1 : 1;
-  const hours = Number(match[2]);
-  const minutes = Number(match[3] ?? "0");
-
-  return sign * (hours * 60 + minutes);
-}
-
-function getZonedDateParts(date: Date, timeZone: string) {
-  const parts = new Intl.DateTimeFormat("en-CA", {
-    timeZone,
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).formatToParts(date);
-
-  const year = Number(parts.find((part) => part.type === "year")?.value);
-  const month = Number(parts.find((part) => part.type === "month")?.value);
-  const day = Number(parts.find((part) => part.type === "day")?.value);
-
-  return { year, month, day };
-}
-
-function zonedLocalToUtc(timeZone: string, hour: number, minute = 0): Date {
-  const now = new Date();
-  const { year, month, day } = getZonedDateParts(now, timeZone);
-
-  const firstGuessUtc = Date.UTC(year, month - 1, day, hour, minute, 0);
-  const firstOffset = getTimeZoneOffsetMinutes(new Date(firstGuessUtc), timeZone);
-  const secondGuessUtc = firstGuessUtc - firstOffset * 60 * 1000;
-  const secondOffset = getTimeZoneOffsetMinutes(new Date(secondGuessUtc), timeZone);
-
-  return new Date(firstGuessUtc - secondOffset * 60 * 1000);
-}
-
-function calculateMeetingWindow(cityA: City, cityB: City): Window {
-  const cityAMidUtc = zonedLocalToUtc(cityA.tz, 13, 0).getTime();
-  const cityBMidUtc = zonedLocalToUtc(cityB.tz, 13, 0).getTime();
-
-  const startMs = Math.round((cityAMidUtc + cityBMidUtc) / 2);
-  const endMs = startMs + 60 * 60 * 1000;
-
-  return {
-    startUtc: new Date(startMs).toISOString(),
-    endUtc: new Date(endMs).toISOString(),
-  };
-}
-
-function formatLocalWindow(iso: string) {
-  return new Date(iso).toLocaleTimeString([], {
-    hour: "numeric",
-    minute: "2-digit",
-  });
-}
-
-function getMarkerPosition(iso: string) {
-  const date = new Date(iso);
-  const localHour = date.getHours() + date.getMinutes() / 60;
-  const minHour = 8;
-  const maxHour = 22;
-
-  const percent = ((localHour - minHour) / (maxHour - minHour)) * 100;
-
-  return Math.min(90, Math.max(10, percent));
-}
-
-export default function ToolPreviewSection() {
-  const [viewerTZ, setViewerTZ] = useState<string | null>(null);
-
-  useEffect(() => {
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    setViewerTZ(tz);
-  }, []);
-
-  const [cityA, setCityA] = useState<City>(CITY_OPTIONS[0]);
-  const [cityB, setCityB] = useState<City>(CITY_OPTIONS[1]);
-
-  const [creatingShare, setCreatingShare] = useState(false);
-  const [shareLink, setShareLink] = useState<string | null>(null);
-  const [copyMessage, setCopyMessage] = useState("");
-  const [calendarMenuOpen, setCalendarMenuOpen] = useState(false);
-
-  const meetingWindow = calculateMeetingWindow(cityA, cityB);
-  const markerPosition = getMarkerPosition(meetingWindow.startUtc);
-
-  const startLocal = formatLocalWindow(meetingWindow.startUtc);
-  const endLocal = formatLocalWindow(meetingWindow.endUtc);
-
-  function swapCities() {
-    const temp = cityA;
-    setCityA(cityB);
-    setCityB(temp);
-  }
-
-  async function createShareLink() {
-    if (creatingShare) return;
-
-    setCreatingShare(true);
-    setCopyMessage("");
-
-    try {
-      const res = await fetch("/api/share", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          cities: [
-            { name: cityA.name, tz: cityA.tz },
-            { name: cityB.name, tz: cityB.tz },
-          ],
-          windows: [meetingWindow],
-        }),
-      });
-
-      if (!res.ok) throw new Error("Share creation failed");
-
-      const data = await res.json();
-      const fullUrl = `${window.location.origin}${data.url}`;
-
-      setShareLink(fullUrl);
-    } catch {
-      setCopyMessage("Unable to create share link");
-    } finally {
-      setCreatingShare(false);
-    }
-  }
-
-  async function copyLink() {
-    if (!shareLink) return;
-
-    try {
-      await navigator.clipboard.writeText(shareLink);
-      setCopyMessage("Link copied");
-    } catch {
-      setCopyMessage("Copy failed");
-    }
-  }
-
-  function openGoogleCalendar() {
-    const start =
-      new Date(meetingWindow.startUtc)
-        .toISOString()
-        .replace(/[-:]/g, "")
-        .split(".")[0] + "Z";
-
-    const end =
-      new Date(meetingWindow.endUtc)
-        .toISOString()
-        .replace(/[-:]/g, "")
-        .split(".")[0] + "Z";
-
-    const text = encodeURIComponent(`Meeting: ${cityA.name} ↔ ${cityB.name}`);
-
-    const url =
-      `https://calendar.google.com/calendar/render?action=TEMPLATE` +
-      `&text=${text}` +
-      `&dates=${start}/${end}`;
-
-    window.open(url, "_blank", "noopener,noreferrer");
-  }
-
-  function openOutlookCalendar() {
-    const start = meetingWindow.startUtc;
-    const end = meetingWindow.endUtc;
-
-    const subject = encodeURIComponent(`Meeting: ${cityA.name} ↔ ${cityB.name}`);
-
-    const url =
-      `https://outlook.office.com/calendar/deeplink/compose?` +
-      `subject=${subject}` +
-      `&startdt=${start}` +
-      `&enddt=${end}`;
-
-    window.open(url, "_blank", "noopener,noreferrer");
-  }
-
-  function downloadICS() {
-    const start =
-      new Date(meetingWindow.startUtc)
-        .toISOString()
-        .replace(/[-:]/g, "")
-        .split(".")[0] + "Z";
-
-    const end =
-      new Date(meetingWindow.endUtc)
-        .toISOString()
-        .replace(/[-:]/g, "")
-        .split(".")[0] + "Z";
-
-    const url =
-      `/api/calendar?cityA=${encodeURIComponent(cityA.name)}` +
-      `&cityB=${encodeURIComponent(cityB.name)}` +
-      `&start=${start}` +
-      `&end=${end}`;
-
-    window.open(url, "_blank");
-  }
-
-  return (
-    <div style={{ maxWidth: 1000, margin: "0 auto", padding: 40 }}>
-      <h2>Tool Preview</h2>
-
-      <p>
-        A realistic preview of how comparing time zones will look — basic interaction enabled.
-      </p>
-
-      {viewerTZ && (
-        <div style={{ marginBottom: 20, fontWeight: 600 }}>
-          Your Time Zone: {viewerTZ}
-        </div>
-      )}
-
-      <div style={{ display: "flex", gap: 20, marginBottom: 20 }}>
-        <select
-          value={cityA.tz}
-          onChange={(e) =>
-            setCityA(CITY_OPTIONS.find((c) => c.tz === e.target.value)!)
-          }
-        >
-          {CITY_OPTIONS.map((c) => (
-            <option key={c.tz} value={c.tz}>
-              {c.name}
-            </option>
-          ))}
-        </select>
-
-        <button onClick={swapCities}>Swap</button>
-
-        <select
-          value={cityB.tz}
-          onChange={(e) =>
-            setCityB(CITY_OPTIONS.find((c) => c.tz === e.target.value)!)
-          }
         >
           {CITY_OPTIONS.map((c) => (
             <option key={c.tz} value={c.tz}>
@@ -281,19 +10,26 @@ export default function ToolPreviewSection() {
       <div
         style={{
           border: "1px solid #444",
-          padding: 20,
+          padding: 24,
           borderRadius: 10,
           marginBottom: 25,
         }}
       >
+
+        {/* Timeline labels using grid */}
         <div
           style={{
-            display: "flex",
-            justifyContent: "space-between",
-            fontSize: 13,
+            display: "grid",
+            gridTemplateColumns: "repeat(12, 1fr)",
+            fontSize: 11,
             marginBottom: 8,
+            textAlign: "center"
           }}
         >
+          <span>12 AM</span>
+          <span>2 AM</span>
+          <span>4 AM</span>
+          <span>6 AM</span>
           <span>8 AM</span>
           <span>10 AM</span>
           <span>12 PM</span>
