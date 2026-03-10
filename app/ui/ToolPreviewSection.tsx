@@ -1,4 +1,4 @@
-"use client";
+use client;
 
 import { useState, useEffect } from "react";
 
@@ -95,19 +95,24 @@ function formatLocalWindow(iso: string) {
 function getMarkerPosition(iso: string) {
   const date = new Date(iso);
   const localHour = date.getHours() + date.getMinutes() / 60;
-  return (localHour / 24) * 100;
+  const minHour = 8;
+  const maxHour = 22;
+
+  const percent = ((localHour - minHour) / (maxHour - minHour)) * 100;
+
+  return Math.min(90, Math.max(10, percent));
 }
 
 export default function ToolPreviewSection() {
-
   const [viewerTZ, setViewerTZ] = useState<string | null>(null);
 
   useEffect(() => {
-    setViewerTZ(Intl.DateTimeFormat().resolvedOptions().timeZone);
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    setViewerTZ(tz);
   }, []);
 
-  const [cityA, setCityA] = useState(CITY_OPTIONS[0]);
-  const [cityB, setCityB] = useState(CITY_OPTIONS[1]);
+  const [cityA, setCityA] = useState<City>(CITY_OPTIONS[0]);
+  const [cityB, setCityB] = useState<City>(CITY_OPTIONS[1]);
 
   const [creatingShare, setCreatingShare] = useState(false);
   const [shareLink, setShareLink] = useState<string | null>(null);
@@ -126,24 +131,134 @@ export default function ToolPreviewSection() {
     setCityB(temp);
   }
 
-  return (
-    <div style={{maxWidth:1400, margin:"0 auto", padding:"40px"}}>
+  async function createShareLink() {
+    if (creatingShare) return;
 
+    setCreatingShare(true);
+    setCopyMessage("");
+
+    try {
+      const res = await fetch("/api/share", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          cities: [
+            { name: cityA.name, tz: cityA.tz },
+            { name: cityB.name, tz: cityB.tz },
+          ],
+          windows: [meetingWindow],
+        }),
+      });
+
+      if (!res.ok) throw new Error("Share creation failed");
+
+      const data = await res.json();
+      const fullUrl = `${window.location.origin}${data.url}`;
+
+      setShareLink(fullUrl);
+    } catch {
+      setCopyMessage("Unable to create share link");
+    } finally {
+      setCreatingShare(false);
+    }
+  }
+
+  async function copyLink() {
+    if (!shareLink) return;
+
+    try {
+      await navigator.clipboard.writeText(shareLink);
+      setCopyMessage("Link copied");
+    } catch {
+      setCopyMessage("Copy failed");
+    }
+  }
+
+  function openGoogleCalendar() {
+    const start =
+      new Date(meetingWindow.startUtc)
+        .toISOString()
+        .replace(/[-:]/g, "")
+        .split(".")[0] + "Z";
+
+    const end =
+      new Date(meetingWindow.endUtc)
+        .toISOString()
+        .replace(/[-:]/g, "")
+        .split(".")[0] + "Z";
+
+    const text = encodeURIComponent(`Meeting: ${cityA.name} ↔ ${cityB.name}`);
+
+    const url =
+      `https://calendar.google.com/calendar/render?action=TEMPLATE` +
+      `&text=${text}` +
+      `&dates=${start}/${end}`;
+
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
+  function openOutlookCalendar() {
+    const start = meetingWindow.startUtc;
+    const end = meetingWindow.endUtc;
+
+    const subject = encodeURIComponent(`Meeting: ${cityA.name} ↔ ${cityB.name}`);
+
+    const url =
+      `https://outlook.office.com/calendar/deeplink/compose?` +
+      `subject=${subject}` +
+      `&startdt=${start}` +
+      `&enddt=${end}`;
+
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
+  function downloadICS() {
+    const start =
+      new Date(meetingWindow.startUtc)
+        .toISOString()
+        .replace(/[-:]/g, "")
+        .split(".")[0] + "Z";
+
+    const end =
+      new Date(meetingWindow.endUtc)
+        .toISOString()
+        .replace(/[-:]/g, "")
+        .split(".")[0] + "Z";
+
+    const url =
+      `/api/calendar?cityA=${encodeURIComponent(cityA.name)}` +
+      `&cityB=${encodeURIComponent(cityB.name)}` +
+      `&start=${start}` +
+      `&end=${end}`;
+
+    window.open(url, "_blank");
+  }
+
+  return (
+    <div style={{ maxWidth: 1000, margin: "0 auto", padding: 40 }}>
       <h2>Tool Preview</h2>
 
+      <p>
+        A realistic preview of how comparing time zones will look — basic interaction enabled.
+      </p>
+
       {viewerTZ && (
-        <div style={{marginBottom:20,fontWeight:600}}>
+        <div style={{ marginBottom: 20, fontWeight: 600 }}>
           Your Time Zone: {viewerTZ}
         </div>
       )}
 
-      <div style={{display:"flex",gap:20,marginBottom:40}}>
+      <div style={{ display: "flex", gap: 20, marginBottom: 20 }}>
         <select
           value={cityA.tz}
-          onChange={(e)=>setCityA(CITY_OPTIONS.find(c=>c.tz===e.target.value)!)}
+          onChange={(e) =>
+            setCityA(CITY_OPTIONS.find((c) => c.tz === e.target.value)!)
+          }
         >
-          {CITY_OPTIONS.map(c=>(
-            <option key={c.tz} value={c.tz}>{c.name}</option>
+          {CITY_OPTIONS.map((c) => (
+            <option key={c.tz} value={c.tz}>
+              {c.name}
+            </option>
           ))}
         </select>
 
@@ -151,31 +266,34 @@ export default function ToolPreviewSection() {
 
         <select
           value={cityB.tz}
-          onChange={(e)=>setCityB(CITY_OPTIONS.find(c=>c.tz===e.target.value)!)}
+          onChange={(e) =>
+            setCityB(CITY_OPTIONS.find((c) => c.tz === e.target.value)!)
+          }
         >
-          {CITY_OPTIONS.map(c=>(
-            <option key={c.tz} value={c.tz}>{c.name}</option>
+          {CITY_OPTIONS.map((c) => (
+            <option key={c.tz} value={c.tz}>
+              {c.name}
+            </option>
           ))}
         </select>
       </div>
 
-      {/* TIMELINE */}
-
-      <div style={{width:"100%",marginBottom:30}}>
-
+      <div
+        style={{
+          border: "1px solid #444",
+          padding: 20,
+          borderRadius: 10,
+          marginBottom: 25,
+        }}
+      >
         <div
           style={{
-            display:"grid",
-            gridTemplateColumns:"repeat(12,1fr)",
-            textAlign:"center",
-            marginBottom:8,
-            fontWeight:600
+            display: "flex",
+            justifyContent: "space-between",
+            fontSize: 13,
+            marginBottom: 8,
           }}
         >
-          <span>12 AM</span>
-          <span>2 AM</span>
-          <span>4 AM</span>
-          <span>6 AM</span>
           <span>8 AM</span>
           <span>10 AM</span>
           <span>12 PM</span>
@@ -186,58 +304,89 @@ export default function ToolPreviewSection() {
           <span>10 PM</span>
         </div>
 
-        <div style={{position:"relative"}}>
-
+        <div style={{ position: "relative" }}>
           <div
             style={{
-              height:36,
-              borderRadius:18,
+              height: 24,
+              borderRadius: 12,
               background:
-                "linear-gradient(to right,#6d28d9 0%,#8b5cf6 30%,#22c55e 45%,#16a34a 55%,#f59e0b 75%,#ec4899 100%)"
+                "linear-gradient(to right,#6d28d9 0%,#8b5cf6 20%,#22c55e 40%,#16a34a 55%,#f59e0b 75%,#ec4899 100%)",
             }}
           />
 
           <div
             style={{
-              position:"absolute",
-              width:"100%",
-              height:"100%",
-              display:"flex",
-              justifyContent:"space-between",
-              alignItems:"center",
-              color:"white",
-              fontWeight:700,
-              padding:"0 20px"
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              fontSize: 11,
+              fontWeight: 600,
+              color: "white",
+              padding: "0 10px",
+              pointerEvents: "none",
             }}
           >
             <span>Early Hours</span>
             <span>Best Meeting Window</span>
             <span>Late Hours</span>
           </div>
-
         </div>
 
-        <div style={{position:"relative",height:30}}>
-
+        <div style={{ position: "relative", height: 18, marginTop: 4 }}>
           <div
             style={{
-              position:"absolute",
-              left:`${markerPosition}%`,
-              transform:"translateX(-50%)",
-              fontSize:22
+              position: "absolute",
+              left: `${markerPosition}%`,
+              transform: "translateX(-50%)",
+              fontSize: 16,
+              color: "white",
             }}
           >
             ▲
           </div>
-
         </div>
 
-        <div style={{fontWeight:700,fontSize:18}}>
-          Best Meeting Window: {startLocal} – {endLocal}
+        <div style={{ marginTop: 6, fontWeight: 600 }}>
+          Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
         </div>
-
       </div>
 
+      <div style={{ display: "flex", gap: 12 }}>
+        <button onClick={createShareLink}>
+          {creatingShare ? "Creating..." : "Create Share Link"}
+        </button>
+
+        <button onClick={() => setCalendarMenuOpen(!calendarMenuOpen)}>
+          Export to Calendar
+        </button>
+      </div>
+
+      {calendarMenuOpen && (
+        <div style={{ marginTop: 20, display: "flex", gap: 12 }}>
+          <button onClick={openGoogleCalendar}>Add to Google Calendar</button>
+          <button onClick={openOutlookCalendar}>Add to Outlook Calendar</button>
+          <button onClick={downloadICS}>Apple / iCal Download</button>
+        </div>
+      )}
+
+      {shareLink && (
+        <div style={{ marginTop: 30 }}>
+          <strong>Share or bookmark this meeting setup</strong>
+
+          <p>{shareLink}</p>
+
+          <button onClick={copyLink}>Copy Link</button>
+
+          <p>{copyMessage}</p>
+
+          <small>Links remain active for 45 days.</small>
+        </div>
+      )}
     </div>
   );
 }
