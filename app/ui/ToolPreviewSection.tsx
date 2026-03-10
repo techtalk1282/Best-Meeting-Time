@@ -231,12 +231,9 @@ export default function ToolPreviewSection() {
   }
 
   return (
-    <div style={{ maxWidth: 1200, margin: "0 auto", padding: 40 }}>
-      <h2>Tool Preview</h2>
+    <div style={{ width: "100%", padding: "40px 40px 80px 40px" }}>
 
-      <p>
-        A realistic preview of how comparing time zones will look — basic interaction enabled.
-      </p>
+      <h2>Tool Preview</h2>
 
       {viewerTZ && (
         <div style={{ marginBottom: 20, fontWeight: 600 }}>
@@ -244,7 +241,7 @@ export default function ToolPreviewSection() {
         </div>
       )}
 
-      <div style={{ display: "flex", gap: 20, marginBottom: 30 }}>
+      <div style={{ display: "flex", gap: 20, marginBottom: 40 }}>
         <select
           value={cityA.tz}
           onChange={(e) =>
@@ -274,28 +271,17 @@ export default function ToolPreviewSection() {
         </select>
       </div>
 
-      {/* TIMELINE CARD */}
+      {/* FULL WIDTH TIMELINE */}
 
-      <div
-        style={{
-          border: "1px solid #444",
-          padding: 32,
-          borderRadius: 12,
-          marginBottom: 30,
-          maxWidth: 950,
-        }}
-      >
-
-        {/* TIME LABELS */}
+      <div style={{ width: "100%", marginBottom: 30 }}>
 
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(12, 1fr)",
+            display: "flex",
+            justifyContent: "space-between",
             fontSize: 14,
             fontWeight: 600,
-            textAlign: "center",
-            marginBottom: 14
+            marginBottom: 10
           }}
         >
           <span>12 AM</span>
@@ -312,54 +298,28 @@ export default function ToolPreviewSection() {
           <span>10 PM</span>
         </div>
 
-        {/* TICKS */}
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(12, 1fr)",
-            height: 10,
-            marginBottom: 6
-          }}
-        >
-          {Array.from({ length: 12 }).map((_, i) => (
-            <div
-              key={i}
-              style={{
-                borderLeft: "1px solid #666",
-                height: 10
-              }}
-            />
-          ))}
-        </div>
-
-        {/* TIMELINE BAR */}
-
-        <div style={{ position: "relative", marginBottom: 16 }}>
+        <div style={{ position: "relative" }}>
 
           <div
             style={{
-              height: 34,
-              borderRadius: 18,
+              height: 36,
+              borderRadius: 20,
               background:
-                "linear-gradient(to right,#6d28d9 0%,#8b5cf6 20%,#22c55e 40%,#16a34a 55%,#f59e0b 75%,#ec4899 100%)",
+                "linear-gradient(to right,#6d28d9 0%,#8b5cf6 25%,#22c55e 45%,#16a34a 55%,#f59e0b 75%,#ec4899 100%)",
             }}
           />
 
           <div
             style={{
               position: "absolute",
-              top: 0,
-              left: 0,
               width: "100%",
               height: "100%",
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              fontSize: 13,
               fontWeight: 700,
               color: "white",
-              padding: "0 14px",
+              padding: "0 20px",
               pointerEvents: "none",
             }}
           >
@@ -370,17 +330,15 @@ export default function ToolPreviewSection() {
 
         </div>
 
-        {/* MARKER */}
-
-        <div style={{ position: "relative", height: 22 }}>
+        <div style={{ position: "relative", height: 30 }}>
 
           <div
             style={{
               position: "absolute",
               left: `${markerPosition}%`,
               transform: "translateX(-50%)",
-              fontSize: 20,
-              color: "white"
+              fontSize: 24,
+              color: "white",
             }}
           >
             ▲
@@ -388,14 +346,8 @@ export default function ToolPreviewSection() {
 
         </div>
 
-        <div
-          style={{
-            marginTop: 16,
-            fontWeight: 700,
-            fontSize: 16
-          }}
-        >
-          Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
+        <div style={{ marginTop: 10, fontSize: 18, fontWeight: 700 }}>
+          Best Meeting Window: {startLocal} – {endLocal}
         </div>
 
       </div>
@@ -431,6 +383,7 @@ export default function ToolPreviewSection() {
           <small>Links remain active for 45 days.</small>
         </div>
       )}
+
     </div>
   );
 }
