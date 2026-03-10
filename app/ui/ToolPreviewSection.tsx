@@ -92,15 +92,19 @@ function formatLocalWindow(iso: string) {
   });
 }
 
+/*
+24-hour timeline correction
+The meeting window algorithm works across 0–24 hours.
+The marker must map across the same range.
+*/
 function getMarkerPosition(iso: string) {
   const date = new Date(iso);
+
   const localHour = date.getHours() + date.getMinutes() / 60;
-  const minHour = 8;
-  const maxHour = 22;
 
-  const percent = ((localHour - minHour) / (maxHour - minHour)) * 100;
+  const percent = (localHour / 24) * 100;
 
-  return Math.min(90, Math.max(10, percent));
+  return percent;
 }
 
 export default function ToolPreviewSection() {
