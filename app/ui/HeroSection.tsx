@@ -41,22 +41,16 @@ export default function HeroSection() {
           display: block;
         }
 
+        /* STEP 2 CHANGE */
         .hero-main {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr;
           gap: var(--space-12);
           align-items: start;
         }
 
         .hero-divider {
           margin-top: var(--space-12);
-        }
-
-        @media (max-width: 1024px) {
-          .hero-main {
-            grid-template-columns: 1fr;
-            gap: var(--space-10);
-          }
         }
 
         @media (max-width: 640px) {
@@ -71,6 +65,7 @@ export default function HeroSection() {
       `}</style>
 
       <div aria-label="Hero Container" className="hero-container">
+
         <nav aria-label="Primary Navigation" className="hero-nav">
           <div aria-label="Nav Brand" className="hero-logo">
             <a href="/" aria-label="Best Meeting Time home">
@@ -91,10 +86,9 @@ export default function HeroSection() {
           </div>
         </nav>
 
-        <div aria-label="Hero Main" className="hero-main">
-          {/* Step 1: left side intentionally cleared. Step 2 will move Tool Preview left. */}
-          <div aria-label="Hero Left" />
+        {/* TOOL NOW FULL WIDTH */}
 
+        <div aria-label="Hero Main" className="hero-main">
           <div aria-label="Hero Tool">
             <ToolPreviewSection />
           </div>
@@ -103,6 +97,7 @@ export default function HeroSection() {
         <div aria-label="Hero Divider" className="hero-divider">
           <hr />
         </div>
+
       </div>
     </section>
   );
