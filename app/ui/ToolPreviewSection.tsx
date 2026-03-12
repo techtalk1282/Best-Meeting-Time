@@ -15,7 +15,6 @@ type Window = {
 
 const CITY_OPTIONS: City[] = [
 
-  // USA
   { name: "New York, USA", time: "", tz: "America/New_York" },
   { name: "Miami, USA", time: "", tz: "America/New_York" },
   { name: "Chicago, USA", time: "", tz: "America/Chicago" },
@@ -25,15 +24,12 @@ const CITY_OPTIONS: City[] = [
   { name: "San Francisco, USA", time: "", tz: "America/Los_Angeles" },
   { name: "Seattle, USA", time: "", tz: "America/Los_Angeles" },
 
-  // Canada
   { name: "Toronto, Canada", time: "", tz: "America/Toronto" },
   { name: "Vancouver, Canada", time: "", tz: "America/Vancouver" },
 
-  // South America
   { name: "São Paulo, Brazil", time: "", tz: "America/Sao_Paulo" },
   { name: "Buenos Aires, Argentina", time: "", tz: "America/Argentina/Buenos_Aires" },
 
-  // UK / Europe
   { name: "London, UK", time: "", tz: "Europe/London" },
   { name: "Paris, France", time: "", tz: "Europe/Paris" },
   { name: "Berlin, Germany", time: "", tz: "Europe/Berlin" },
@@ -43,20 +39,16 @@ const CITY_OPTIONS: City[] = [
   { name: "Zurich, Switzerland", time: "", tz: "Europe/Zurich" },
   { name: "Stockholm, Sweden", time: "", tz: "Europe/Stockholm" },
 
-  // Middle East
   { name: "Dubai, UAE", time: "", tz: "Asia/Dubai" },
   { name: "Tel Aviv, Israel", time: "", tz: "Asia/Jerusalem" },
   { name: "Riyadh, Saudi Arabia", time: "", tz: "Asia/Riyadh" },
 
-  // Africa
   { name: "Cape Town, South Africa", time: "", tz: "Africa/Johannesburg" },
   { name: "Nairobi, Kenya", time: "", tz: "Africa/Nairobi" },
 
-  // India
   { name: "Mumbai, India", time: "", tz: "Asia/Kolkata" },
   { name: "Delhi, India", time: "", tz: "Asia/Kolkata" },
 
-  // Asia
   { name: "Singapore", time: "", tz: "Asia/Singapore" },
   { name: "Hong Kong", time: "", tz: "Asia/Hong_Kong" },
   { name: "Shanghai, China", time: "", tz: "Asia/Shanghai" },
@@ -66,13 +58,11 @@ const CITY_OPTIONS: City[] = [
   { name: "Bangkok, Thailand", time: "", tz: "Asia/Bangkok" },
   { name: "Jakarta, Indonesia", time: "", tz: "Asia/Jakarta" },
 
-  // Australia / NZ
   { name: "Sydney, Australia", time: "", tz: "Australia/Sydney" },
   { name: "Melbourne, Australia", time: "", tz: "Australia/Melbourne" },
   { name: "Brisbane, Australia", time: "", tz: "Australia/Brisbane" },
   { name: "Perth, Australia", time: "", tz: "Australia/Perth" },
   { name: "Auckland, New Zealand", time: "", tz: "Pacific/Auckland" }
-
 ];
 
 function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
@@ -117,9 +107,7 @@ function calculateOverlap(cityA: City, cityB: City): Window {
   let overlapStart = Math.max(startA, startB);
   let overlapEnd = Math.min(endA, endB);
 
-  /* Fix invalid overlap */
   if (overlapStart >= overlapEnd) {
-    overlapStart = overlapStart;
     overlapEnd = overlapStart + 120;
   }
 
@@ -168,17 +156,14 @@ export default function ToolPreviewSection() {
   const startLocal = formatLocal(meetingWindow.startUtc);
   const endLocal = formatLocal(meetingWindow.endUtc);
 
-  const startHour = new Date(meetingWindow.startUtc).getHours();
-  const endHour = new Date(meetingWindow.endUtc).getHours();
+  const startDate = new Date(meetingWindow.startUtc);
+  const endDate = new Date(meetingWindow.endUtc);
 
-  const timelineStart = 0;
-  const timelineEnd = 22;
+  const startHour = startDate.getHours() + startDate.getMinutes() / 60;
+  const endHour = endDate.getHours() + endDate.getMinutes() / 60;
 
-  const startPercent =
-    ((startHour - timelineStart) / (timelineEnd - timelineStart)) * 100;
-
-  const widthPercent =
-    ((endHour - startHour) / (timelineEnd - timelineStart)) * 100;
+  const startPercent = (startHour / 24) * 100;
+  const widthPercent = ((endHour - startHour) / 24) * 100;
 
   async function createShareLink() {
 
