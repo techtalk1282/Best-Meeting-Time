@@ -30,124 +30,71 @@ export default function HeroSection() {
           color: inherit;
         }
 
+        .hero-logo {
+          display: inline-flex;
+          align-items: center;
+        }
+
         .hero-logo img {
           height: 56px;
           width: auto;
           display: block;
         }
 
+        /* STEP 2 CHANGE */
         .hero-main {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr;
           gap: var(--space-12);
           align-items: start;
-        }
-
-        .hero-headline h1 {
-          font-size: var(--text-5xl);
-          margin-bottom: var(--space-3);
-        }
-
-        .hero-headline h2 {
-          font-size: var(--text-3xl);
-          margin-bottom: var(--space-4);
-        }
-
-        .hero-headline p {
-          font-size: var(--text-lg);
-          max-width: 520px;
-        }
-
-        .hero-highlight {
-          color: #facc15;
-        }
-
-        .hero-cta {
-          display: flex;
-          flex-direction: column;
-          gap: var(--space-3);
-          margin-top: var(--space-6);
-        }
-
-        .hero-demo-card {
-          padding: var(--space-6);
-          border-radius: var(--radius-md);
-          border: 1px solid currentColor;
         }
 
         .hero-divider {
           margin-top: var(--space-12);
         }
 
-        @media (max-width: 1024px) {
-          .hero-main {
-            grid-template-columns: 1fr;
+        @media (max-width: 640px) {
+          .hero-logo img {
+            height: 48px;
+          }
+
+          .hero-nav-links {
+            gap: var(--space-4);
           }
         }
       `}</style>
 
-      <div className="hero-container">
+      <div aria-label="Hero Container" className="hero-container">
 
-        <nav className="hero-nav">
-          <div className="hero-logo">
+        <nav aria-label="Primary Navigation" className="hero-nav">
+          <div aria-label="Nav Brand" className="hero-logo">
             <a href="/" aria-label="Best Meeting Time home">
               <img src="/logo-best-meeting-time.png" alt="Best Meeting Time" />
             </a>
           </div>
 
-          <div className="hero-nav-links">
+          <div aria-label="Nav Links" className="hero-nav-links">
             <a href="#tool-preview">Features</a>
             <a href="#premium-features">Pricing</a>
             <a href="#footer">Login</a>
           </div>
 
-          <div>
+          <div aria-label="Nav Action">
             <a href="#tool-preview">
               <button type="button">Get Started</button>
             </a>
           </div>
         </nav>
 
-        <div className="hero-main">
+        {/* TOOL NOW FULL WIDTH */}
 
-          <div>
-
-            <div className="hero-headline">
-
-              <h1>
-                Schedule the <span className="hero-highlight">Perfect Meeting Time</span>
-              </h1>
-
-              <h2>Every Time</h2>
-
-              <p>
-                The Smart Way to Schedule Across Time Zones
-              </p>
-
-            </div>
-
-            <div className="hero-cta">
-              <a href="#tool-preview">
-                <button type="button">Compare Times</button>
-              </a>
-
-              <p style={{ fontSize: "var(--text-sm)" }}>
-                Instantly find the best meeting window across global cities
-              </p>
-            </div>
-
-          </div>
-
-          <div className="hero-demo-card">
-
-            {/* REAL TOOL UI */}
+        <div aria-label="Hero Main" className="hero-main">
+          <div aria-label="Hero Tool">
             <ToolPreviewSection />
-
           </div>
-
         </div>
 
-        <div className="hero-divider">
+        <div aria-label="Hero Divider" className="hero-divider">
           <hr />
         </div>
 
