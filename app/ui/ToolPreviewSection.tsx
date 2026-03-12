@@ -1,4 +1,4 @@
-use client;
+"use client";
 
 import { useState, useEffect } from "react";
 
@@ -102,8 +102,8 @@ function getMarkerPosition(iso: string) {
 
   const hourDecimal = localHour + localMinutes / 60;
 
-  const timelineStart = 0;   // 12 AM
-  const timelineEnd = 22;    // 10 PM
+  const timelineStart = 0;
+  const timelineEnd = 22;
   const timelineRange = timelineEnd - timelineStart;
 
   const clampedHour = Math.max(timelineStart, Math.min(hourDecimal, timelineEnd));
@@ -128,12 +128,14 @@ export default function ToolPreviewSection() {
   const [calendarMenuOpen, setCalendarMenuOpen] = useState(false);
 
   const meetingWindow = calculateMeetingWindow(cityA, cityB);
+
   const markerPosition = getMarkerPosition(
-  new Date(
-    (new Date(meetingWindow.startUtc).getTime() +
-     new Date(meetingWindow.endUtc).getTime()) / 2
-  ).toISOString()
-);
+    new Date(
+      (new Date(meetingWindow.startUtc).getTime() +
+        new Date(meetingWindow.endUtc).getTime()) /
+        2
+    ).toISOString()
+  );
 
   const startLocal = formatLocalWindow(meetingWindow.startUtc);
   const endLocal = formatLocalWindow(meetingWindow.endUtc);
@@ -306,18 +308,18 @@ export default function ToolPreviewSection() {
             marginBottom: 8,
           }}
         >
-<span>12 AM</span>
-<span>2 AM</span>
-<span>4 AM</span>
-<span>6 AM</span>
-<span>8 AM</span>
-<span>10 AM</span>
-<span>12 PM</span>
-<span>2 PM</span>
-<span>4 PM</span>
-<span>6 PM</span>
-<span>8 PM</span>
-<span>10 PM</span>
+          <span>12 AM</span>
+          <span>2 AM</span>
+          <span>4 AM</span>
+          <span>6 AM</span>
+          <span>8 AM</span>
+          <span>10 AM</span>
+          <span>12 PM</span>
+          <span>2 PM</span>
+          <span>4 PM</span>
+          <span>6 PM</span>
+          <span>8 PM</span>
+          <span>10 PM</span>
         </div>
 
         <div style={{ position: "relative" }}>
