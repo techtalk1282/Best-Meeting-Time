@@ -244,13 +244,13 @@ export default function ToolPreviewSection() {
         <div style={{ position: "relative" }}>
 
           <div
-            style={{
-              height: 24,
-              borderRadius: 12,
-              background: "#5b21b6",
-              position: "relative",
-            }}
-          >
+  style={{
+    height: 24,
+    borderRadius: 12,
+    background: "linear-gradient(90deg, #4c1d95, #6d28d9, #7c3aed)",
+    position: "relative",
+  }}
+>
 
            {[...Array(24)].map((_, i) => (
   <div
