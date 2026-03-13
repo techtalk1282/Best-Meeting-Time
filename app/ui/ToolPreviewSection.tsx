@@ -63,6 +63,7 @@ const CITY_OPTIONS: City[] = [
   { name: "Brisbane, Australia", time: "", tz: "Australia/Brisbane" },
   { name: "Perth, Australia", time: "", tz: "Australia/Perth" },
   { name: "Auckland, New Zealand", time: "", tz: "Pacific/Auckland" }
+
 ];
 
 function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
@@ -135,26 +136,7 @@ export default function ToolPreviewSection() {
   const [cityA, setCityA] = useState<City>(CITY_OPTIONS[0]);
   const [cityB, setCityB] = useState<City>(CITY_OPTIONS[1]);
 
-  const [creatingShare, setCreatingShare] = useState(false);
-  const [shareLink, setShareLink] = useState<string | null>(null);
-  const [copyMessage, setCopyMessage] = useState("");
-  const [calendarMenuOpen, setCalendarMenuOpen] = useState(false);
-
   const meetingWindow = calculateOverlap(cityA, cityB);
-
-  function swapCities() {
-    const temp = cityA;
-    setCityA(cityB);
-    setCityB(temp);
-  }
-
-  function formatLocal(dateString: string) {
-    const date = new Date(dateString);
-    return date.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
-  }
-
-  const startLocal = formatLocal(meetingWindow.startUtc);
-  const endLocal = formatLocal(meetingWindow.endUtc);
 
   const startDate = new Date(meetingWindow.startUtc);
   const endDate = new Date(meetingWindow.endUtc);
@@ -165,133 +147,23 @@ export default function ToolPreviewSection() {
   const startPercent = (startHour / 24) * 100;
   const widthPercent = ((endHour - startHour) / 24) * 100;
 
-  async function createShareLink() {
+  const startLocal = startDate.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+  const endLocal = endDate.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
 
-    if (creatingShare) return;
-
-    setCreatingShare(true);
-    setCopyMessage("");
-
-    try {
-
-      const res = await fetch("/api/share", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          cities: [
-            { name: cityA.name, tz: cityA.tz },
-            { name: cityB.name, tz: cityB.tz },
-          ],
-          windows: [meetingWindow],
-        }),
-      });
-
-      if (!res.ok) throw new Error("Share creation failed");
-
-      const data = await res.json();
-      const fullUrl = `${window.location.origin}${data.url}`;
-
-      setShareLink(fullUrl);
-
-    } catch (err) {
-
-      console.error("share_link_error", err);
-      setCopyMessage("Unable to create share link");
-
-    } finally {
-
-      setCreatingShare(false);
-
-    }
-  }
-
-  async function copyLink() {
-
-    if (!shareLink) return;
-
-    try {
-
-      await navigator.clipboard.writeText(shareLink);
-      setCopyMessage("Link copied");
-
-    } catch {
-
-      setCopyMessage("Copy failed");
-
-    }
-  }
-
-  function openGoogleCalendar() {
-
-    const start =
-      new Date(meetingWindow.startUtc)
-        .toISOString()
-        .replace(/[-:]/g, "")
-        .split(".")[0] + "Z";
-
-    const end =
-      new Date(meetingWindow.endUtc)
-        .toISOString()
-        .replace(/[-:]/g, "")
-        .split(".")[0] + "Z";
-
-    const text = encodeURIComponent(`Meeting: ${cityA.name} ↔ ${cityB.name}`);
-
-    const details = encodeURIComponent(
-      `Suggested meeting window between ${cityA.name} and ${cityB.name}`
-    );
-
-    const url =
-      `https://calendar.google.com/calendar/render?action=TEMPLATE` +
-      `&text=${text}` +
-      `&dates=${start}/${end}` +
-      `&details=${details}`;
-
-    window.open(url, "_blank", "noopener,noreferrer");
-  }
-
-  function openOutlookCalendar() {
-
-    const start = meetingWindow.startUtc;
-    const end = meetingWindow.endUtc;
-
-    const subject = encodeURIComponent(`Meeting: ${cityA.name} ↔ ${cityB.name}`);
-
-    const body = encodeURIComponent(
-      `Suggested meeting window between ${cityA.name} and ${cityB.name}`
-    );
-
-    const url =
-      `https://outlook.office.com/calendar/deeplink/compose?` +
-      `subject=${subject}` +
-      `&startdt=${start}` +
-      `&enddt=${end}` +
-      `&body=${body}`;
-
-    window.open(url, "_blank", "noopener,noreferrer");
-  }
-
-  function downloadICS() {
-
-    const start =
-      new Date(meetingWindow.startUtc)
-        .toISOString()
-        .replace(/[-:]/g, "")
-        .split(".")[0] + "Z";
-
-    const end =
-      new Date(meetingWindow.endUtc)
-        .toISOString()
-        .replace(/[-:]/g, "")
-        .split(".")[0] + "Z";
-
-    const url =
-      `/api/calendar?cityA=${encodeURIComponent(cityA.name)}` +
-      `&cityB=${encodeURIComponent(cityB.name)}` +
-      `&start=${start}&end=${end}`;
-
-    window.open(url, "_blank");
-  }
+  const labels = [
+    { label: "12 AM", hour: 0 },
+    { label: "2 AM", hour: 2 },
+    { label: "4 AM", hour: 4 },
+    { label: "6 AM", hour: 6 },
+    { label: "8 AM", hour: 8 },
+    { label: "10 AM", hour: 10 },
+    { label: "12 PM", hour: 12 },
+    { label: "2 PM", hour: 14 },
+    { label: "4 PM", hour: 16 },
+    { label: "6 PM", hour: 18 },
+    { label: "8 PM", hour: 20 },
+    { label: "10 PM", hour: 22 }
+  ];
 
   return (
 
@@ -325,7 +197,13 @@ export default function ToolPreviewSection() {
           ))}
         </select>
 
-        <button onClick={swapCities}>Swap</button>
+        <button onClick={() => {
+          const temp = cityA;
+          setCityA(cityB);
+          setCityB(temp);
+        }}>
+          Swap
+        </button>
 
         <select
           value={cityB.name}
@@ -343,35 +221,24 @@ export default function ToolPreviewSection() {
 
       </div>
 
-      <div
-        style={{
-          border: "1px solid #444",
-          padding: 20,
-          borderRadius: 10,
-          marginBottom: 25,
-        }}
-      >
+      <div style={{ border: "1px solid #444", padding: 20, borderRadius: 10 }}>
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            fontSize: 13,
-            marginBottom: 8,
-          }}
-        >
-          <span>12 AM</span>
-          <span>2 AM</span>
-          <span>4 AM</span>
-          <span>6 AM</span>
-          <span>8 AM</span>
-          <span>10 AM</span>
-          <span>12 PM</span>
-          <span>2 PM</span>
-          <span>4 PM</span>
-          <span>6 PM</span>
-          <span>8 PM</span>
-          <span>10 PM</span>
+        <div style={{ position: "relative", height: 20, marginBottom: 10 }}>
+
+          {labels.map((l) => (
+            <span
+              key={l.hour}
+              style={{
+                position: "absolute",
+                left: `${(l.hour / 24) * 100}%`,
+                transform: "translateX(-50%)",
+                fontSize: 13
+              }}
+            >
+              {l.label}
+            </span>
+          ))}
+
         </div>
 
         <div style={{ position: "relative" }}>
@@ -400,43 +267,11 @@ export default function ToolPreviewSection() {
 
         </div>
 
-        <div style={{ marginTop: 6, fontWeight: 600 }}>
+        <div style={{ marginTop: 8, fontWeight: 600 }}>
           Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
         </div>
 
       </div>
-
-      <div style={{ display: "flex", gap: 12 }}>
-        <button onClick={createShareLink}>
-          {creatingShare ? "Creating..." : "Create Share Link"}
-        </button>
-
-        <button onClick={() => setCalendarMenuOpen(!calendarMenuOpen)}>
-          Export to Calendar
-        </button>
-      </div>
-
-      {calendarMenuOpen && (
-        <div style={{ marginTop: 20, display: "flex", gap: 12 }}>
-          <button onClick={openGoogleCalendar}>Add to Google Calendar</button>
-          <button onClick={openOutlookCalendar}>Add to Outlook Calendar</button>
-          <button onClick={downloadICS}>Apple / iCal Download</button>
-        </div>
-      )}
-
-      {shareLink && (
-        <div style={{ marginTop: 30 }}>
-          <strong>Share or bookmark this meeting setup</strong>
-
-          <p>{shareLink}</p>
-
-          <button onClick={copyLink}>Copy Link</button>
-
-          <p>{copyMessage}</p>
-
-          <small>Links remain active for 45 days.</small>
-        </div>
-      )}
 
     </div>
   );
