@@ -150,6 +150,8 @@ export default function ToolPreviewSection() {
   const startLocal = startDate.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
   const endLocal = endDate.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
 
+  const showInlineLabel = widthPercent > 18;
+
   const labels = [
     { label: "12 AM", hour: 0 },
     { label: "2 AM", hour: 2 },
@@ -244,29 +246,29 @@ export default function ToolPreviewSection() {
         <div style={{ position: "relative" }}>
 
           <div
-  style={{
-    height: 24,
-    borderRadius: 12,
-    background: "linear-gradient(90deg, #4c1d95, #6d28d9, #7c3aed)",
-    position: "relative",
-  }}
->
+            style={{
+              height: 24,
+              borderRadius: 12,
+              background: "linear-gradient(90deg, #4c1d95, #6d28d9, #7c3aed)",
+              position: "relative",
+            }}
+          >
 
            {[...Array(24)].map((_, i) => (
-  <div
-    key={i}
-    style={{
-      position: "absolute",
-      left: `${(i / 24) * 100}%`,
-      top: "50%",
-      transform: "translateY(-50%)",
-      width: 1,
-      height: i % 2 === 0 ? 20 : 12,
-      background: "#ffffff66",
-      pointerEvents: "none"
-    }}
-  />
-))} 
+            <div
+              key={i}
+              style={{
+                position: "absolute",
+                left: `${(i / 24) * 100}%`,
+                top: "50%",
+                transform: "translateY(-50%)",
+                width: 1,
+                height: i % 2 === 0 ? 20 : 12,
+                background: "#ffffff66",
+                pointerEvents: "none"
+              }}
+            />
+           ))}
 
             <div
               style={{
@@ -276,16 +278,28 @@ export default function ToolPreviewSection() {
                 height: "100%",
                 background: "#22c55e",
                 borderRadius: 12,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#ffffff",
+                fontSize: 12,
+                fontWeight: 600,
+                whiteSpace: "nowrap",
+                overflow: "hidden"
               }}
-            />
+            >
+              {showInlineLabel ? "Best Time" : ""}
+            </div>
 
           </div>
 
         </div>
 
-        <div style={{ marginTop: 8, fontWeight: 600 }}>
-          Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
-        </div>
+        {!showInlineLabel && (
+          <div style={{ marginTop: 8, fontWeight: 600 }}>
+            Best Time: <strong>{startLocal} – {endLocal}</strong>
+          </div>
+        )}
 
       </div>
 
