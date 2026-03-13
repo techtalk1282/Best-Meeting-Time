@@ -13,6 +13,13 @@ type Window = {
   endUtc: string;
 };
 
+/* ===============================
+   SAFE FEATURE FLAG
+   Toggle to instantly revert UI
+================================ */
+
+const SHOW_WORK_HOURS = true;
+
 const CITY_OPTIONS: City[] = [
 
   { name: "New York, USA", time: "", tz: "America/New_York" },
@@ -67,6 +74,7 @@ const CITY_OPTIONS: City[] = [
 ];
 
 function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
+
   const parts = new Intl.DateTimeFormat("en-US", {
     timeZone,
     timeZoneName: "shortOffset",
@@ -167,6 +175,9 @@ export default function ToolPreviewSection() {
 
   const showInsideLabel = widthPercent > 12;
 
+  const workStartPercent = (9 / 24) * 100;
+  const workWidthPercent = (8 / 24) * 100;
+
   return (
 
     <div style={{ maxWidth: 1000, margin: "0 auto", padding: 40 }}>
@@ -251,8 +262,21 @@ export default function ToolPreviewSection() {
               borderRadius: 12,
               background: "linear-gradient(90deg, #4c1d95, #6d28d9, #7c3aed)",
               position: "relative",
+              overflow: "hidden"
             }}
           >
+
+            {SHOW_WORK_HOURS && (
+              <div
+                style={{
+                  position: "absolute",
+                  left: `${workStartPercent}%`,
+                  width: `${workWidthPercent}%`,
+                  height: "100%",
+                  background: "rgba(255,255,255,0.08)"
+                }}
+              />
+            )}
 
             {[...Array(24)].map((_, i) => (
               <div
