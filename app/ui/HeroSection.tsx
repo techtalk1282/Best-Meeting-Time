@@ -4,7 +4,7 @@ export default function HeroSection() {
   return (
     <section aria-label="Hero Section" style={{ padding: "80px 20px" }}>
       
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+      <div style={{ maxWidth: 900, margin: "0 auto" }}>
 
         {/* NAVBAR */}
         <div
