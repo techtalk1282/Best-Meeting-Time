@@ -252,19 +252,21 @@ export default function ToolPreviewSection() {
             }}
           >
 
-            {[...Array(24)].map((_, i) => (
-              <div
-                key={i}
-                style={{
-                  position: "absolute",
-                  left: `${(i / 24) * 100}%`,
-                  top: -6,
-                  width: 1,
-                  height: i % 2 === 0 ? 14 : 8,
-                  background: "#ffffff55"
-                }}
-              />
-            ))}
+           {[...Array(24)].map((_, i) => (
+  <div
+    key={i}
+    style={{
+      position: "absolute",
+      left: `${(i / 24) * 100}%`,
+      top: "50%",
+      transform: "translateY(-50%)",
+      width: 1,
+      height: i % 2 === 0 ? 20 : 12,
+      background: "#ffffff66",
+      pointerEvents: "none"
+    }}
+  />
+))} 
 
             <div
               style={{
