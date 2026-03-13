@@ -252,6 +252,20 @@ export default function ToolPreviewSection() {
             }}
           >
 
+            {[...Array(24)].map((_, i) => (
+              <div
+                key={i}
+                style={{
+                  position: "absolute",
+                  left: `${(i / 24) * 100}%`,
+                  top: -6,
+                  width: 1,
+                  height: i % 2 === 0 ? 14 : 8,
+                  background: "#ffffff55"
+                }}
+              />
+            ))}
+
             <div
               style={{
                 position: "absolute",
