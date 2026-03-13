@@ -33,7 +33,7 @@ export default function HeroSection() {
         {/* HERO TEXT */}
         <div style={{ textAlign: "center", marginBottom: 50 }}>
           <h1 style={{ fontSize: 48, marginBottom: 10 }}>
-            Best <span style={{ color: "#facc15" }}>Meeting Time</span> — Every Time
+            <span style={{ color: "#facc15" }}>Best Meeting Time</span> — Every Time
           </h1>
 
           <h2 style={{ fontSize: 36, fontWeight: 400 }}>
