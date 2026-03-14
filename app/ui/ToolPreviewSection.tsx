@@ -18,7 +18,7 @@ type Window = {
    Toggle to instantly revert UI
 ================================ */
 
-const SHOW_WORK_HOURS = true;
+const SHOW_WORK_HOURS = false;
 
 const CITY_OPTIONS: City[] = [
 
@@ -258,25 +258,13 @@ export default function ToolPreviewSection() {
 
           <div
             style={{
-              height: 24,
+              height: 36,
               borderRadius: 12,
               background: "linear-gradient(90deg, #4c1d95, #6d28d9, #7c3aed)",
               position: "relative",
               overflow: "hidden"
             }}
           >
-
-            {SHOW_WORK_HOURS && (
-              <div
-                style={{
-                  position: "absolute",
-                  left: `${workStartPercent}%`,
-                  width: `${workWidthPercent}%`,
-                  height: "100%",
-                  background: "rgba(255,255,255,0.08)"
-                }}
-              />
-            )}
 
             {[...Array(24)].map((_, i) => (
               <div
@@ -324,5 +312,6 @@ export default function ToolPreviewSection() {
       </div>
 
     </div>
+
   );
 }
