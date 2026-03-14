@@ -167,12 +167,12 @@ export default function ToolPreviewSection() {
 
   const cityATZ = new Intl.DateTimeFormat("en-US", {
     timeZone: cityA.tz,
-    timeZoneName: "short"
+    timeZoneName: "shortGeneric"
   }).formatToParts(now).find(p => p.type === "timeZoneName")?.value;
 
   const cityBTZ = new Intl.DateTimeFormat("en-US", {
     timeZone: cityB.tz,
-    timeZoneName: "short"
+    timeZoneName: "shortGeneric"
   }).formatToParts(now).find(p => p.type === "timeZoneName")?.value;
 
   const cityADate = new Intl.DateTimeFormat("en-US", {
