@@ -66,6 +66,23 @@ const CITY_OPTIONS: City[] = [
 
 ];
 
+const FLAG_MAP: Record<string,string> = {
+  USA:"🇺🇸", Canada:"🇨🇦", Brazil:"🇧🇷", Argentina:"🇦🇷",
+  UK:"🇬🇧", France:"🇫🇷", Germany:"🇩🇪", Spain:"🇪🇸",
+  Italy:"🇮🇹", Netherlands:"🇳🇱", Switzerland:"🇨🇭",
+  Sweden:"🇸🇪", UAE:"🇦🇪", Israel:"🇮🇱", "Saudi Arabia":"🇸🇦",
+  "South Africa":"🇿🇦", Kenya:"🇰🇪", India:"🇮🇳",
+  Singapore:"🇸🇬", "Hong Kong":"🇭🇰", China:"🇨🇳",
+  Japan:"🇯🇵", "South Korea":"🇰🇷", Thailand:"🇹🇭",
+  Indonesia:"🇮🇩", Australia:"🇦🇺", "New Zealand":"🇳🇿"
+};
+
+function getFlag(city:string){
+  const parts = city.split(",");
+  const country = parts[1]?.trim() ?? "";
+  return FLAG_MAP[country] ?? "🌍";
+}
+
 function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
 
   const parts = new Intl.DateTimeFormat("en-US", {
@@ -151,17 +168,28 @@ export default function ToolPreviewSection() {
   const startLocal = startDate.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
   const endLocal = endDate.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
 
-  const cityATime = new Date().toLocaleTimeString([], {
-    timeZone: cityA.tz,
-    hour: "numeric",
-    minute: "2-digit"
-  });
+  const now = new Date();
 
-  const cityBTime = new Date().toLocaleTimeString([], {
-    timeZone: cityB.tz,
-    hour: "numeric",
-    minute: "2-digit"
-  });
+  const cityATime = new Intl.DateTimeFormat("en-US",{
+    timeZone:cityA.tz,
+    hour:"numeric",
+    minute:"2-digit"
+  }).format(now);
+
+  const cityBTime = new Intl.DateTimeFormat("en-US",{
+    timeZone:cityB.tz,
+    hour:"numeric",
+    minute:"2-digit"
+  }).format(now);
+
+  const cityATZ = new Intl.DateTimeFormat("en-US",{timeZone:cityA.tz,timeZoneName:"short"})
+    .formatToParts(now).find(p=>p.type==="timeZoneName")?.value;
+
+  const cityBTZ = new Intl.DateTimeFormat("en-US",{timeZone:cityB.tz,timeZoneName:"short"})
+    .formatToParts(now).find(p=>p.type==="timeZoneName")?.value;
+
+  const cityADate = new Intl.DateTimeFormat("en-US",{timeZone:cityA.tz,weekday:"long",month:"long",day:"numeric"}).format(now);
+  const cityBDate = new Intl.DateTimeFormat("en-US",{timeZone:cityB.tz,weekday:"long",month:"long",day:"numeric"}).format(now);
 
   const labels = [
     { label: "12 AM", hour: 0 },
@@ -188,18 +216,32 @@ export default function ToolPreviewSection() {
         </div>
       )}
 
-      {/* CITY TIMES */}
+      {/* CITY DISPLAY */}
 
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 20 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 30 }}>
 
         <div>
-          <div style={{ fontWeight: 600 }}>{cityA.name}</div>
-          <div style={{ fontSize: 22 }}>{cityATime}</div>
+          <div style={{ fontWeight: 600 }}>
+            {getFlag(cityA.name)} {cityA.name}
+          </div>
+          <div style={{ fontSize: 26, fontWeight: 700 }}>
+            {cityATime} — {cityATZ}
+          </div>
+          <div style={{ opacity:0.7 }}>
+            {cityADate}
+          </div>
         </div>
 
         <div style={{ textAlign: "right" }}>
-          <div style={{ fontWeight: 600 }}>{cityB.name}</div>
-          <div style={{ fontSize: 22 }}>{cityBTime}</div>
+          <div style={{ fontWeight: 600 }}>
+            {getFlag(cityB.name)} {cityB.name}
+          </div>
+          <div style={{ fontSize: 26, fontWeight: 700 }}>
+            {cityBTime} — {cityBTZ}
+          </div>
+          <div style={{ opacity:0.7 }}>
+            {cityBDate}
+          </div>
         </div>
 
       </div>
