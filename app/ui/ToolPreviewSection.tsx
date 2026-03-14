@@ -233,6 +233,7 @@ export default function ToolPreviewSection() {
             fontWeight: 600,
             borderRadius: 6,
             cursor: "pointer"
+            color: "#000"
           }}
         >
           SWAP
