@@ -66,9 +66,7 @@ const CITY_OPTIONS: City[] = [
 
 ];
 
-/* -------------------------------- */
 /* COUNTRY FLAG MAP */
-/* -------------------------------- */
 
 function getCountryCode(city: string): string {
 
@@ -121,17 +119,13 @@ function Flag({ city }: { city: string }) {
         width: 26,
         height: 18,
         marginLeft: 8,
-        display: "block",
         borderRadius: 2
       }}
     />
   );
 }
-Why this works
 
-/* -------------------------------- */
 /* TIMEZONE NORMALIZATION */
-/* -------------------------------- */
 
 function normalizeTimeZoneLabel(label?: string) {
 
@@ -166,9 +160,7 @@ function normalizeTimeZoneLabel(label?: string) {
   return map[label] ?? label;
 }
 
-/* -------------------------------- */
 /* TIMEZONE OFFSET */
-/* -------------------------------- */
 
 function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
 
@@ -194,9 +186,7 @@ function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
   return sign * (hours * 60 + minutes);
 }
 
-/* -------------------------------- */
 /* MEETING OVERLAP */
-/* -------------------------------- */
 
 function calculateOverlap(cityA: City, cityB: City): Window {
 
@@ -233,9 +223,7 @@ function calculateOverlap(cityA: City, cityB: City): Window {
   };
 }
 
-/* -------------------------------- */
 /* MAIN COMPONENT */
-/* -------------------------------- */
 
 export default function ToolPreviewSection() {
 
@@ -332,10 +320,10 @@ export default function ToolPreviewSection() {
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 30 }}>
 
         <div>
-         <div style={{ fontWeight: 600, display: "flex", alignItems: "center" }}>
-  {cityA.name}
-  <Flag city={cityA.name}/>
-</div>
+          <div style={{ fontWeight: 600, display: "flex", alignItems: "center" }}>
+            {cityA.name}
+            <Flag city={cityA.name}/>
+          </div>
 
           <div style={{ fontSize: 30, fontWeight: 700 }}>
             {cityATime} {cityATZ}
@@ -347,10 +335,10 @@ export default function ToolPreviewSection() {
         </div>
 
         <div style={{ textAlign: "right" }}>
-         <div style={{ fontWeight: 600, display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
-  {cityB.name}
-  <Flag city={cityB.name}/>
-</div>>
+          <div style={{ fontWeight: 600, display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+            {cityB.name}
+            <Flag city={cityB.name}/>
+          </div>
 
           <div style={{ fontSize: 30, fontWeight: 700 }}>
             {cityBTime} {cityBTZ}
