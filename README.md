@@ -18,3 +18,4 @@ No feature renaming
 No pricing changes
 
 Approved UI image is the single source of truth
+Stable deployment restored: ERuNT3FHK
