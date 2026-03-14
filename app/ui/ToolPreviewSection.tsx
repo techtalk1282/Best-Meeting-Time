@@ -118,15 +118,16 @@ function Flag({ city }: { city: string }) {
       src={`https://flagcdn.com/w40/${code}.png`}
       alt={code}
       style={{
-        width: 20,
-        height: 14,
+        width: 26,
+        height: 18,
         marginLeft: 8,
-        verticalAlign: "middle",
+        display: "block",
         borderRadius: 2
       }}
     />
   );
 }
+Why this works
 
 /* -------------------------------- */
 /* TIMEZONE NORMALIZATION */
@@ -331,10 +332,10 @@ export default function ToolPreviewSection() {
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 30 }}>
 
         <div>
-          <div style={{ fontWeight: 600 }}>
-            {cityA.name}
-            <Flag city={cityA.name}/>
-          </div>
+         <div style={{ fontWeight: 600, display: "flex", alignItems: "center" }}>
+  {cityA.name}
+  <Flag city={cityA.name}/>
+</div>
 
           <div style={{ fontSize: 30, fontWeight: 700 }}>
             {cityATime} {cityATZ}
@@ -346,10 +347,10 @@ export default function ToolPreviewSection() {
         </div>
 
         <div style={{ textAlign: "right" }}>
-          <div style={{ fontWeight: 600 }}>
-            {cityB.name}
-            <Flag city={cityB.name}/>
-          </div>
+         <div style={{ fontWeight: 600, display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+  {cityB.name}
+  <Flag city={cityB.name}/>
+</div>>
 
           <div style={{ fontSize: 30, fontWeight: 700 }}>
             {cityBTime} {cityBTZ}
