@@ -66,6 +66,42 @@ const CITY_OPTIONS: City[] = [
 
 ];
 
+const FLAG_MAP: Record<string,string> = {
+  USA:"🇺🇸",
+  Canada:"🇨🇦",
+  Brazil:"🇧🇷",
+  Argentina:"🇦🇷",
+  UK:"🇬🇧",
+  France:"🇫🇷",
+  Germany:"🇩🇪",
+  Spain:"🇪🇸",
+  Italy:"🇮🇹",
+  Netherlands:"🇳🇱",
+  Switzerland:"🇨🇭",
+  Sweden:"🇸🇪",
+  UAE:"🇦🇪",
+  Israel:"🇮🇱",
+  "Saudi Arabia":"🇸🇦",
+  "South Africa":"🇿🇦",
+  Kenya:"🇰🇪",
+  India:"🇮🇳",
+  Singapore:"🇸🇬",
+  "Hong Kong":"🇭🇰",
+  China:"🇨🇳",
+  Japan:"🇯🇵",
+  "South Korea":"🇰🇷",
+  Thailand:"🇹🇭",
+  Indonesia:"🇮🇩",
+  Australia:"🇦🇺",
+  "New Zealand":"🇳🇿"
+};
+
+function getFlag(cityName:string){
+  const parts = cityName.split(",");
+  const country = parts[1]?.trim();
+  return FLAG_MAP[country] ?? "";
+}
+
 function normalizeTimeZoneLabel(label?: string) {
 
   if (!label) return "";
@@ -255,7 +291,7 @@ export default function ToolPreviewSection() {
 
         <div>
           <div style={{ fontWeight: 600 }}>
-            {cityA.name}
+            {getFlag(cityA.name)} {cityA.name}
           </div>
 
           <div style={{ fontSize: 30, fontWeight: 700 }}>
@@ -269,7 +305,7 @@ export default function ToolPreviewSection() {
 
         <div style={{ textAlign: "right" }}>
           <div style={{ fontWeight: 600 }}>
-            {cityB.name}
+            {getFlag(cityB.name)} {cityB.name}
           </div>
 
           <div style={{ fontSize: 30, fontWeight: 700 }}>
