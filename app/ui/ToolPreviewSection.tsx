@@ -66,6 +66,72 @@ const CITY_OPTIONS: City[] = [
 
 ];
 
+/* -------------------------------- */
+/* COUNTRY FLAG MAP */
+/* -------------------------------- */
+
+function getCountryCode(city: string): string {
+
+  if (city.includes("USA")) return "us";
+  if (city.includes("Canada")) return "ca";
+  if (city.includes("Brazil")) return "br";
+  if (city.includes("Argentina")) return "ar";
+
+  if (city.includes("UK")) return "gb";
+  if (city.includes("France")) return "fr";
+  if (city.includes("Germany")) return "de";
+  if (city.includes("Spain")) return "es";
+  if (city.includes("Italy")) return "it";
+  if (city.includes("Netherlands")) return "nl";
+  if (city.includes("Switzerland")) return "ch";
+  if (city.includes("Sweden")) return "se";
+
+  if (city.includes("UAE")) return "ae";
+  if (city.includes("Israel")) return "il";
+  if (city.includes("Saudi")) return "sa";
+
+  if (city.includes("South Africa")) return "za";
+  if (city.includes("Kenya")) return "ke";
+
+  if (city.includes("India")) return "in";
+
+  if (city.includes("Singapore")) return "sg";
+  if (city.includes("Hong Kong")) return "hk";
+  if (city.includes("China")) return "cn";
+  if (city.includes("Japan")) return "jp";
+  if (city.includes("South Korea")) return "kr";
+  if (city.includes("Thailand")) return "th";
+  if (city.includes("Indonesia")) return "id";
+
+  if (city.includes("Australia")) return "au";
+  if (city.includes("New Zealand")) return "nz";
+
+  return "un";
+}
+
+function Flag({ city }: { city: string }) {
+
+  const code = getCountryCode(city);
+
+  return (
+    <img
+      src={`https://flagcdn.com/w40/${code}.png`}
+      alt={code}
+      style={{
+        width: 20,
+        height: 14,
+        marginLeft: 8,
+        verticalAlign: "middle",
+        borderRadius: 2
+      }}
+    />
+  );
+}
+
+/* -------------------------------- */
+/* TIMEZONE NORMALIZATION */
+/* -------------------------------- */
+
 function normalizeTimeZoneLabel(label?: string) {
 
   if (!label) return "";
@@ -73,7 +139,6 @@ function normalizeTimeZoneLabel(label?: string) {
   const map: Record<string, string> = {
 
     "GMT+0": "GMT",
-
     "GMT+1": "CET",
     "GMT+2": "CEST",
 
@@ -100,6 +165,10 @@ function normalizeTimeZoneLabel(label?: string) {
   return map[label] ?? label;
 }
 
+/* -------------------------------- */
+/* TIMEZONE OFFSET */
+/* -------------------------------- */
+
 function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
 
   const parts = new Intl.DateTimeFormat("en-US", {
@@ -123,6 +192,10 @@ function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
 
   return sign * (hours * 60 + minutes);
 }
+
+/* -------------------------------- */
+/* MEETING OVERLAP */
+/* -------------------------------- */
 
 function calculateOverlap(cityA: City, cityB: City): Window {
 
@@ -158,6 +231,10 @@ function calculateOverlap(cityA: City, cityB: City): Window {
     endUtc: end.toISOString(),
   };
 }
+
+/* -------------------------------- */
+/* MAIN COMPONENT */
+/* -------------------------------- */
 
 export default function ToolPreviewSection() {
 
@@ -256,6 +333,7 @@ export default function ToolPreviewSection() {
         <div>
           <div style={{ fontWeight: 600 }}>
             {cityA.name}
+            <Flag city={cityA.name}/>
           </div>
 
           <div style={{ fontSize: 30, fontWeight: 700 }}>
@@ -270,6 +348,7 @@ export default function ToolPreviewSection() {
         <div style={{ textAlign: "right" }}>
           <div style={{ fontWeight: 600 }}>
             {cityB.name}
+            <Flag city={cityB.name}/>
           </div>
 
           <div style={{ fontSize: 30, fontWeight: 700 }}>
