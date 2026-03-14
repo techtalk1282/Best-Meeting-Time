@@ -71,18 +71,29 @@ function normalizeTimeZoneLabel(label?: string) {
   if (!label) return "";
 
   const map: Record<string, string> = {
+
+    // Europe
+    "GMT+0": "GMT",
     "GMT+1": "CET",
     "GMT+2": "CEST",
+
+    // Middle East / Africa
     "GMT+3": "EAT",
     "GMT+4": "GST",
+
+    // Asia
     "GMT+5": "PKT",
     "GMT+5:30": "IST",
     "GMT+6": "BST",
     "GMT+7": "ICT",
     "GMT+8": "CST",
     "GMT+9": "JST",
+
+    // Australia
     "GMT+10": "AEST",
     "GMT+11": "AEDT",
+
+    // New Zealand
     "GMT+12": "NZST"
   };
 
