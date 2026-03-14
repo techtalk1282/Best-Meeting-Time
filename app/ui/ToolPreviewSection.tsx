@@ -208,7 +208,7 @@ export default function ToolPreviewSection() {
 
   return (
 
-    <div style={{ maxWidth: 1000, margin: "0 auto", padding: 40 }}>
+    <div style={{ maxWidth: 820, margin: "0 auto", padding: 40 }}>
 
       {viewerTZ && (
         <div style={{ marginBottom: 20, fontWeight: 600 }}>
