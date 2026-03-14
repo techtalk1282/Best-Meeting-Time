@@ -1,3 +1,4 @@
+
 // app/page.tsx
 // PURPOSE: Wire layout slots ONLY. No logic, no state.
 
