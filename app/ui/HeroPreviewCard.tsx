@@ -22,23 +22,11 @@ export default function HeroSection() {
             marginBottom: 80
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-  <img
-    src="/logo-best-meeting-time.png"
-    alt="Best Meeting Time"
-    style={{ height: 44 }}
-  />
-  <span
-    style={{
-      fontSize: 22,
-      fontWeight: 700,
-      color: "#facc15",
-      letterSpacing: "0.5px"
-    }}
-  >
-    Best Meeting Time
-  </span>
-</div>
+          <img
+            src="/logo-best-meeting-time.png"
+            alt="Best Meeting Time"
+            style={{ height: 48 }}
+          />
 
           <div style={{ display: "flex", gap: 30, fontSize: 16 }}>
             <a href="#tool-preview" style={{ color: "#fff", textDecoration: "none" }}>Features</a>
