@@ -1,4 +1,4 @@
-import ToolPreviewSection from "./ToolPreviewSection";
+import HeroPreviewCard from "./HeroPreviewCard";
 
 export default function HeroSection() {
   return (
@@ -11,8 +11,6 @@ export default function HeroSection() {
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-
-        {/* NAVBAR */}
 
         <div
           style={{
@@ -49,37 +47,19 @@ export default function HeroSection() {
           </button>
         </div>
 
-        {/* HERO TEXT */}
-
         <div style={{ textAlign: "center", marginBottom: 60 }}>
-
-          <h1
-            style={{
-              fontSize: 56,
-              marginBottom: 10,
-              fontWeight: 700
-            }}
-          >
+          <h1 style={{ fontSize: 56, marginBottom: 10, fontWeight: 700 }}>
             <span style={{ color: "#facc15" }}>Best Meeting Time</span> — Every Time
           </h1>
 
-          <h2
-            style={{
-              fontSize: 36,
-              fontWeight: 400,
-              marginBottom: 10
-            }}
-          >
+          <h2 style={{ fontSize: 36, fontWeight: 400, marginBottom: 10 }}>
             Across Time Zones.
           </h2>
 
           <p style={{ opacity: 0.85 }}>
             Easily schedule meetings with your team or clients around the world.
           </p>
-
         </div>
-
-        {/* HERO TOOL CARD */}
 
         <div
           style={{
@@ -90,7 +70,7 @@ export default function HeroSection() {
             boxShadow: "0 20px 50px rgba(0,0,0,0.35)"
           }}
         >
-          <ToolPreviewSection />
+          <HeroPreviewCard />
         </div>
 
       </div>
