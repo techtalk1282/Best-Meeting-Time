@@ -1,4 +1,4 @@
-import HeroPreviewCard from "./HeroPreviewCard";
+import HeroPreviewCard from "./HeroSection";
 
 export default function HeroSection() {
   return (
