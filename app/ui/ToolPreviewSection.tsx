@@ -15,7 +15,6 @@ type Window = {
 
 /* ===============================
    SAFE FEATURE FLAG
-   Toggle to instantly revert UI
 ================================ */
 
 const SHOW_WORK_HOURS = false;
@@ -73,45 +72,21 @@ const CITY_OPTIONS: City[] = [
 
 ];
 
-function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
-
-  const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone,
-    timeZoneName: "shortOffset",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  }).formatToParts(date);
-
-  const tzPart =
-    parts.find((part) => part.type === "timeZoneName")?.value ?? "GMT+0";
-
-  const match = tzPart.match(/GMT([+-])(\d{1,2})(?::?(\d{2}))?/);
-
-  if (!match) return 0;
-
-  const sign = match[1] === "-" ? -1 : 1;
-  const hours = Number(match[2]);
-  const minutes = Number(match[3] ?? "0");
-
-  return sign * (hours * 60 + minutes);
-}
-
 function calculateOverlap(cityA: City, cityB: City): Window {
 
   const now = new Date();
 
-  const offsetA = getTimeZoneOffsetMinutes(now, cityA.tz);
-  const offsetB = getTimeZoneOffsetMinutes(now, cityB.tz);
+  const offsetA = new Date().toLocaleString("en-US", { timeZone: cityA.tz });
+  const offsetB = new Date().toLocaleString("en-US", { timeZone: cityB.tz });
 
   const workStart = 9 * 60;
   const workEnd = 17 * 60;
 
-  const startA = workStart - offsetA;
-  const endA = workEnd - offsetA;
+  const startA = workStart;
+  const endA = workEnd;
 
-  const startB = workStart - offsetB;
-  const endB = workEnd - offsetB;
+  const startB = workStart;
+  const endB = workEnd;
 
   let overlapStart = Math.max(startA, startB);
   let overlapEnd = Math.min(endA, endB);
@@ -158,6 +133,18 @@ export default function ToolPreviewSection() {
   const startLocal = startDate.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
   const endLocal = endDate.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
 
+  const cityATime = new Date().toLocaleTimeString([], {
+    timeZone: cityA.tz,
+    hour: "numeric",
+    minute: "2-digit"
+  });
+
+  const cityBTime = new Date().toLocaleTimeString([], {
+    timeZone: cityB.tz,
+    hour: "numeric",
+    minute: "2-digit"
+  });
+
   const labels = [
     { label: "12 AM", hour: 0 },
     { label: "2 AM", hour: 2 },
@@ -175,24 +162,35 @@ export default function ToolPreviewSection() {
 
   const showInsideLabel = widthPercent > 12;
 
-  const workStartPercent = (9 / 24) * 100;
-  const workWidthPercent = (8 / 24) * 100;
-
   return (
 
     <div style={{ maxWidth: 1000, margin: "0 auto", padding: 40 }}>
-
-      <h2>Tool Preview</h2>
-
-      <p>
-        A realistic preview of how comparing time zones will look — basic interaction enabled.
-      </p>
 
       {viewerTZ && (
         <div style={{ marginBottom: 20, fontWeight: 600 }}>
           Your Time Zone: {viewerTZ}
         </div>
       )}
+
+      {/* CITY TIMES */}
+
+      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 20 }}>
+
+        <div style={{ textAlign: "left" }}>
+          <div style={{ fontWeight: 600 }}>{cityA.name}</div>
+          <div style={{ fontSize: 22 }}>{cityATime}</div>
+        </div>
+
+        <div style={{ alignSelf: "center", fontSize: 24 }}>⇄</div>
+
+        <div style={{ textAlign: "right" }}>
+          <div style={{ fontWeight: 600 }}>{cityB.name}</div>
+          <div style={{ fontSize: 22 }}>{cityBTime}</div>
+        </div>
+
+      </div>
+
+      {/* CITY SELECTORS */}
 
       <div style={{ display: "flex", gap: 20, marginBottom: 20 }}>
 
@@ -233,6 +231,8 @@ export default function ToolPreviewSection() {
         </select>
 
       </div>
+
+      {/* TIMELINE */}
 
       <div style={{ border: "1px solid #444", padding: 20, borderRadius: 10 }}>
 
