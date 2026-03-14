@@ -66,6 +66,29 @@ const CITY_OPTIONS: City[] = [
 
 ];
 
+function normalizeTimeZoneLabel(label?: string) {
+
+  if (!label) return "";
+
+  const map: Record<string, string> = {
+    "GMT+1": "CET",
+    "GMT+2": "CEST",
+    "GMT+3": "EAT",
+    "GMT+4": "GST",
+    "GMT+5": "PKT",
+    "GMT+5:30": "IST",
+    "GMT+6": "BST",
+    "GMT+7": "ICT",
+    "GMT+8": "CST",
+    "GMT+9": "JST",
+    "GMT+10": "AEST",
+    "GMT+11": "AEDT",
+    "GMT+12": "NZST"
+  };
+
+  return map[label] ?? label;
+}
+
 function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
 
   const parts = new Intl.DateTimeFormat("en-US", {
@@ -165,15 +188,18 @@ export default function ToolPreviewSection() {
     minute: "2-digit"
   }).format(now);
 
-  const cityATZ = new Intl.DateTimeFormat("en-US", {
+  const cityATZRaw = new Intl.DateTimeFormat("en-US", {
     timeZone: cityA.tz,
     timeZoneName: "short"
   }).formatToParts(now).find(p => p.type === "timeZoneName")?.value;
 
-  const cityBTZ = new Intl.DateTimeFormat("en-US", {
+  const cityBTZRaw = new Intl.DateTimeFormat("en-US", {
     timeZone: cityB.tz,
     timeZoneName: "short"
   }).formatToParts(now).find(p => p.type === "timeZoneName")?.value;
+
+  const cityATZ = normalizeTimeZoneLabel(cityATZRaw);
+  const cityBTZ = normalizeTimeZoneLabel(cityBTZRaw);
 
   const cityADate = new Intl.DateTimeFormat("en-US", {
     timeZone: cityA.tz,
@@ -214,8 +240,6 @@ export default function ToolPreviewSection() {
         </div>
       )}
 
-      {/* CITY DISPLAY */}
-
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 30 }}>
 
         <div>
@@ -247,8 +271,6 @@ export default function ToolPreviewSection() {
         </div>
 
       </div>
-
-      {/* SELECTORS + SWAP */}
 
       <div style={{ display: "flex", gap: 20, marginBottom: 20, alignItems: "center" }}>
 
@@ -298,8 +320,6 @@ export default function ToolPreviewSection() {
         </select>
 
       </div>
-
-      {/* TIMELINE */}
 
       <div style={{ border: "1px solid #444", padding: 20, borderRadius: 10 }}>
 
@@ -379,6 +399,5 @@ export default function ToolPreviewSection() {
       </div>
 
     </div>
-
   );
 }
