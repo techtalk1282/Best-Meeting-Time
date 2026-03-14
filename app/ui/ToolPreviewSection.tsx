@@ -66,6 +66,42 @@ const CITY_OPTIONS: City[] = [
 
 ];
 
+const COUNTRY_FLAGS: Record<string, string> = {
+  "USA": "🇺🇸",
+  "Canada": "🇨🇦",
+  "Brazil": "🇧🇷",
+  "Argentina": "🇦🇷",
+  "UK": "🇬🇧",
+  "France": "🇫🇷",
+  "Germany": "🇩🇪",
+  "Spain": "🇪🇸",
+  "Italy": "🇮🇹",
+  "Netherlands": "🇳🇱",
+  "Switzerland": "🇨🇭",
+  "Sweden": "🇸🇪",
+  "UAE": "🇦🇪",
+  "Israel": "🇮🇱",
+  "Saudi Arabia": "🇸🇦",
+  "South Africa": "🇿🇦",
+  "Kenya": "🇰🇪",
+  "India": "🇮🇳",
+  "Singapore": "🇸🇬",
+  "Hong Kong": "🇭🇰",
+  "China": "🇨🇳",
+  "Japan": "🇯🇵",
+  "South Korea": "🇰🇷",
+  "Thailand": "🇹🇭",
+  "Indonesia": "🇮🇩",
+  "Australia": "🇦🇺",
+  "New Zealand": "🇳🇿"
+};
+
+function getFlag(cityName: string) {
+  const parts = cityName.split(",");
+  const country = parts[1]?.trim();
+  return country ? COUNTRY_FLAGS[country] ?? "" : "";
+}
+
 function normalizeTimeZoneLabel(label?: string) {
 
   if (!label) return "";
@@ -254,8 +290,9 @@ export default function ToolPreviewSection() {
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 30 }}>
 
         <div>
-          <div style={{ fontWeight: 600 }}>
-            {cityA.name}
+          <div style={{ fontWeight: 600, display: "flex", alignItems: "center", gap: 8 }}>
+            <span>{getFlag(cityA.name)}</span>
+            <span>{cityA.name}</span>
           </div>
 
           <div style={{ fontSize: 30, fontWeight: 700 }}>
@@ -268,8 +305,9 @@ export default function ToolPreviewSection() {
         </div>
 
         <div style={{ textAlign: "right" }}>
-          <div style={{ fontWeight: 600 }}>
-            {cityB.name}
+          <div style={{ fontWeight: 600, display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8 }}>
+            <span>{cityB.name}</span>
+            <span>{getFlag(cityB.name)}</span>
           </div>
 
           <div style={{ fontSize: 30, fontWeight: 700 }}>
