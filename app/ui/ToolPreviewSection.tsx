@@ -232,7 +232,7 @@ export default function ToolPreviewSection() {
             padding: "8px 16px",
             fontWeight: 600,
             borderRadius: 6,
-            cursor: "pointer"
+            cursor: "pointer",
             color: "#000"
           }}
         >
