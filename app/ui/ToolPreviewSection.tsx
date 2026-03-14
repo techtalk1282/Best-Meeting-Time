@@ -188,23 +188,14 @@ export default function ToolPreviewSection() {
         </div>
       )}
 
+      {/* CITY TIMES */}
+
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 20 }}>
 
         <div>
           <div style={{ fontWeight: 600 }}>{cityA.name}</div>
           <div style={{ fontSize: 22 }}>{cityATime}</div>
         </div>
-
-        <button
-          onClick={() => {
-            const temp = cityA;
-            setCityA(cityB);
-            setCityB(temp);
-          }}
-          style={{ alignSelf: "center", padding: "8px 16px" }}
-        >
-          SWAP
-        </button>
 
         <div style={{ textAlign: "right" }}>
           <div style={{ fontWeight: 600 }}>{cityB.name}</div>
@@ -213,7 +204,9 @@ export default function ToolPreviewSection() {
 
       </div>
 
-      <div style={{ display: "flex", gap: 20, marginBottom: 20 }}>
+      {/* SELECTORS + SWAP */}
+
+      <div style={{ display: "flex", gap: 20, marginBottom: 20, alignItems: "center" }}>
 
         <select
           value={cityA.name}
@@ -228,6 +221,22 @@ export default function ToolPreviewSection() {
             </option>
           ))}
         </select>
+
+        <button
+          onClick={() => {
+            const temp = cityA;
+            setCityA(cityB);
+            setCityB(temp);
+          }}
+          style={{
+            padding: "8px 16px",
+            fontWeight: 600,
+            borderRadius: 6,
+            cursor: "pointer"
+          }}
+        >
+          SWAP
+        </button>
 
         <select
           value={cityB.name}
@@ -244,6 +253,8 @@ export default function ToolPreviewSection() {
         </select>
 
       </div>
+
+      {/* TIMELINE */}
 
       <div style={{ border: "1px solid #444", padding: 20, borderRadius: 10 }}>
 
@@ -323,5 +334,6 @@ export default function ToolPreviewSection() {
       </div>
 
     </div>
+
   );
 }
