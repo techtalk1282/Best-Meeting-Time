@@ -13,12 +13,6 @@ type Window = {
   endUtc: string;
 };
 
-/* ===============================
-   SAFE FEATURE FLAG
-================================ */
-
-const SHOW_WORK_HOURS = false;
-
 const CITY_OPTIONS: City[] = [
 
   { name: "New York, USA", time: "", tz: "America/New_York" },
@@ -72,21 +66,45 @@ const CITY_OPTIONS: City[] = [
 
 ];
 
+function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
+
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    timeZoneName: "shortOffset",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).formatToParts(date);
+
+  const tzPart =
+    parts.find((part) => part.type === "timeZoneName")?.value ?? "GMT+0";
+
+  const match = tzPart.match(/GMT([+-])(\d{1,2})(?::?(\d{2}))?/);
+
+  if (!match) return 0;
+
+  const sign = match[1] === "-" ? -1 : 1;
+  const hours = Number(match[2]);
+  const minutes = Number(match[3] ?? "0");
+
+  return sign * (hours * 60 + minutes);
+}
+
 function calculateOverlap(cityA: City, cityB: City): Window {
 
   const now = new Date();
 
-  const offsetA = new Date().toLocaleString("en-US", { timeZone: cityA.tz });
-  const offsetB = new Date().toLocaleString("en-US", { timeZone: cityB.tz });
+  const offsetA = getTimeZoneOffsetMinutes(now, cityA.tz);
+  const offsetB = getTimeZoneOffsetMinutes(now, cityB.tz);
 
   const workStart = 9 * 60;
   const workEnd = 17 * 60;
 
-  const startA = workStart;
-  const endA = workEnd;
+  const startA = workStart - offsetA;
+  const endA = workEnd - offsetA;
 
-  const startB = workStart;
-  const endB = workEnd;
+  const startB = workStart - offsetB;
+  const endB = workEnd - offsetB;
 
   let overlapStart = Math.max(startA, startB);
   let overlapEnd = Math.min(endA, endB);
@@ -160,8 +178,6 @@ export default function ToolPreviewSection() {
     { label: "10 PM", hour: 22 }
   ];
 
-  const showInsideLabel = widthPercent > 12;
-
   return (
 
     <div style={{ maxWidth: 1000, margin: "0 auto", padding: 40 }}>
@@ -172,16 +188,23 @@ export default function ToolPreviewSection() {
         </div>
       )}
 
-      {/* CITY TIMES */}
-
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 20 }}>
 
-        <div style={{ textAlign: "left" }}>
+        <div>
           <div style={{ fontWeight: 600 }}>{cityA.name}</div>
           <div style={{ fontSize: 22 }}>{cityATime}</div>
         </div>
 
-        <div style={{ alignSelf: "center", fontSize: 24 }}>⇄</div>
+        <button
+          onClick={() => {
+            const temp = cityA;
+            setCityA(cityB);
+            setCityB(temp);
+          }}
+          style={{ alignSelf: "center", padding: "8px 16px" }}
+        >
+          SWAP
+        </button>
 
         <div style={{ textAlign: "right" }}>
           <div style={{ fontWeight: 600 }}>{cityB.name}</div>
@@ -189,8 +212,6 @@ export default function ToolPreviewSection() {
         </div>
 
       </div>
-
-      {/* CITY SELECTORS */}
 
       <div style={{ display: "flex", gap: 20, marginBottom: 20 }}>
 
@@ -208,14 +229,6 @@ export default function ToolPreviewSection() {
           ))}
         </select>
 
-        <button onClick={() => {
-          const temp = cityA;
-          setCityA(cityB);
-          setCityB(temp);
-        }}>
-          Swap
-        </button>
-
         <select
           value={cityB.name}
           onChange={(e) => {
@@ -231,8 +244,6 @@ export default function ToolPreviewSection() {
         </select>
 
       </div>
-
-      {/* TIMELINE */}
 
       <div style={{ border: "1px solid #444", padding: 20, borderRadius: 10 }}>
 
@@ -260,7 +271,7 @@ export default function ToolPreviewSection() {
             style={{
               height: 36,
               borderRadius: 12,
-              background: "linear-gradient(90deg, #4c1d95, #6d28d9, #7c3aed)",
+              background: "linear-gradient(90deg,#4c1d95,#6d28d9,#7c3aed)",
               position: "relative",
               overflow: "hidden"
             }}
@@ -298,7 +309,7 @@ export default function ToolPreviewSection() {
                 fontSize: 12
               }}
             >
-              {showInsideLabel && "Best Time"}
+              Best Time
             </div>
 
           </div>
@@ -312,6 +323,5 @@ export default function ToolPreviewSection() {
       </div>
 
     </div>
-
   );
 }
