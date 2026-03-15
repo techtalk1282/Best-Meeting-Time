@@ -97,7 +97,10 @@ export default function HeroSection() {
             borderRadius: 24,
             padding: 32,
             color: "#000",
-            boxShadow: "0 20px 50px rgba(0,0,0,0.35)"
+
+            /* Slightly stronger card framing */
+            border: "1px solid rgba(0,0,0,0.06)",
+            boxShadow: "0 30px 80px rgba(0,0,0,0.35)"
           }}
         >
           <ToolPreviewSection />
