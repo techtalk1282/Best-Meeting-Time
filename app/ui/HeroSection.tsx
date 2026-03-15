@@ -69,14 +69,22 @@ export default function HeroSection() {
             style={{
               fontSize: 36,
               fontWeight: 400,
-              marginBottom: 10
+              marginBottom: 16
             }}
           >
-            Across Time Zones.
+            Across Time Zones
           </h2>
 
-          <p style={{ opacity: 0.85 }}>
-            Easily schedule meetings with your team or clients around the world.
+          <p
+            style={{
+              fontSize: 18,
+              fontWeight: 500,
+              maxWidth: 720,
+              margin: "0 auto",
+              opacity: 0.95
+            }}
+          >
+            Easily schedule meetings with your team or clients around the world
           </p>
 
         </div>
