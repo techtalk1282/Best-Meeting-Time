@@ -34,19 +34,21 @@ export default function HeroSection() {
             <a href="#footer" style={{ color: "#fff", textDecoration: "none" }}>Login</a>
           </div>
 
-          <button
-            style={{
-              background: "#facc15",
-              color: "#000",
-              border: "none",
-              padding: "10px 20px",
-              borderRadius: 8,
-              fontWeight: 600,
-              cursor: "pointer"
-            }}
-          >
-            Get Started
-          </button>
+          <a href="#premium-features">
+            <button
+              style={{
+                background: "#facc15",
+                color: "#000",
+                border: "none",
+                padding: "10px 20px",
+                borderRadius: 8,
+                fontWeight: 600,
+                cursor: "pointer"
+              }}
+            >
+              Get Started
+            </button>
+          </a>
         </div>
 
         {/* HERO TEXT */}
