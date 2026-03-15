@@ -5,7 +5,7 @@ export default function HeroSection() {
     <section
       aria-label="Hero Section"
       style={{
-        padding: "80px 20px",
+        padding: "48px 20px",
         background: "linear-gradient(135deg,#3b0764,#4c1d95,#1e1b4b)",
         color: "#ffffff"
       }}
@@ -19,7 +19,7 @@ export default function HeroSection() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            marginBottom: 80
+            marginBottom: 40
           }}
         >
           <img
@@ -53,7 +53,7 @@ export default function HeroSection() {
 
         {/* HERO TEXT */}
 
-        <div style={{ textAlign: "center", marginBottom: 60 }}>
+        <div style={{ textAlign: "center", marginBottom: 32 }}>
 
           <h1
             style={{
@@ -95,7 +95,7 @@ export default function HeroSection() {
           style={{
             background: "#ffffff",
             borderRadius: 24,
-            padding: 40,
+            padding: 32,
             color: "#000",
             boxShadow: "0 20px 50px rgba(0,0,0,0.35)"
           }}
