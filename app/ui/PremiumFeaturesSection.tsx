@@ -1,11 +1,19 @@
 // app/ui/PremiumFeaturesSection.tsx
-// PURPOSE: Premium features section structure + LIGHT styling (container only).
+// PURPOSE: Premium features section with styled cards (UI only).
 // NO logic, NO state, NO behavior.
 
 import { ReactNode } from "react";
 
 type PremiumFeaturesSectionProps = {
   children?: ReactNode;
+};
+
+const cardStyle: React.CSSProperties = {
+  background: "#f9fafb",
+  borderRadius: 16,
+  padding: 20,
+  textAlign: "center",
+  boxShadow: "0 10px 25px rgba(0,0,0,0.08)"
 };
 
 export default function PremiumFeaturesSection({
@@ -23,7 +31,6 @@ export default function PremiumFeaturesSection({
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
 
         {/* HEADER */}
-
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <h2 style={{ fontSize: 36, fontWeight: 700 }}>
             Unlock Premium Features
@@ -33,8 +40,7 @@ export default function PremiumFeaturesSection({
           </p>
         </div>
 
-        {/* CARD CONTAINER */}
-
+        {/* MAIN CARD */}
         <div
           style={{
             background: "#ffffff",
@@ -46,7 +52,6 @@ export default function PremiumFeaturesSection({
         >
 
           {/* FEATURE GRID */}
-
           <div
             style={{
               display: "grid",
@@ -56,27 +61,32 @@ export default function PremiumFeaturesSection({
             }}
           >
 
-            <div>
+            <div style={cardStyle}>
+              <div style={{ fontSize: 28 }}>🔗</div>
               <h3>Share a Meeting Link</h3>
               <p>Send a meeting link with one click.</p>
             </div>
 
-            <div>
+            <div style={cardStyle}>
+              <div style={{ fontSize: 28 }}>🌍</div>
               <h3>Compare Cities Globally</h3>
               <p>Plan meetings across international time zones.</p>
             </div>
 
-            <div>
+            <div style={cardStyle}>
+              <div style={{ fontSize: 28 }}>📅</div>
               <h3>Google Calendar</h3>
               <p>Save meetings directly to Google.</p>
             </div>
 
-            <div>
+            <div style={cardStyle}>
+              <div style={{ fontSize: 28 }}>📨</div>
               <h3>Outlook Calendar</h3>
               <p>Save meetings directly to Outlook.</p>
             </div>
 
-            <div>
+            <div style={cardStyle}>
+              <div style={{ fontSize: 28 }}>🍎</div>
               <h3>Apple Calendar</h3>
               <p>Download a .ICS file for Apple.</p>
             </div>
@@ -86,9 +96,7 @@ export default function PremiumFeaturesSection({
           </div>
 
           {/* CTA */}
-
           <div style={{ textAlign: "center" }}>
-
             <button
               style={{
                 background: "#facc15",
@@ -111,7 +119,6 @@ export default function PremiumFeaturesSection({
                 Secured by Stripe • Terms • Privacy
               </div>
             </div>
-
           </div>
 
         </div>
