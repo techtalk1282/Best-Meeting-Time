@@ -1,6 +1,6 @@
 // app/ui/PremiumFeaturesSection.tsx
-// PURPOSE: Premium features section with styled cards (UI only).
-// NO logic, NO state, NO behavior.
+// PURPOSE: Premium features section with correct 2-row layout
+// NO logic, NO state, NO behavior
 
 import { ReactNode } from "react";
 
@@ -8,12 +8,12 @@ type PremiumFeaturesSectionProps = {
   children?: ReactNode;
 };
 
-const cardStyle: React.CSSProperties = {
-  background: "#f9fafb",
+const cardBase: React.CSSProperties = {
+  background: "#ffffff",
   borderRadius: 16,
-  padding: 20,
+  padding: 24,
   textAlign: "center",
-  boxShadow: "0 10px 25px rgba(0,0,0,0.08)"
+  boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
 };
 
 export default function PremiumFeaturesSection({
@@ -43,7 +43,7 @@ export default function PremiumFeaturesSection({
         {/* MAIN CARD */}
         <div
           style={{
-            background: "#ffffff",
+            background: "#f3f4f6",
             borderRadius: 24,
             padding: 32,
             color: "#000",
@@ -51,48 +51,56 @@ export default function PremiumFeaturesSection({
           }}
         >
 
-          {/* FEATURE GRID */}
+          {/* TOP ROW (2 CARDS) */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 20,
+              marginBottom: 20
+            }}
+          >
+            <div style={cardBase}>
+              <div style={{ fontSize: 32, marginBottom: 10 }}>🔗</div>
+              <h3>Share a Meeting Link</h3>
+              <p>Send a booking page with one click.</p>
+            </div>
+
+            <div style={cardBase}>
+              <div style={{ fontSize: 32, marginBottom: 10 }}>🌍</div>
+              <h3>Compare Cities Globally</h3>
+              <p>Plan meetings across global time zones.</p>
+            </div>
+          </div>
+
+          {/* BOTTOM ROW (3 CARDS) */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr 1fr",
               gap: 20,
               marginBottom: 30
             }}
           >
-
-            <div style={cardStyle}>
-              <div style={{ fontSize: 28 }}>🔗</div>
-              <h3>Share a Meeting Link</h3>
-              <p>Send a meeting link with one click.</p>
-            </div>
-
-            <div style={cardStyle}>
-              <div style={{ fontSize: 28 }}>🌍</div>
-              <h3>Compare Cities Globally</h3>
-              <p>Plan meetings across international time zones.</p>
-            </div>
-
-            <div style={cardStyle}>
-              <div style={{ fontSize: 28 }}>📅</div>
+            <div style={cardBase}>
+              <div style={{ fontSize: 28, marginBottom: 10 }}>📅</div>
               <h3>Google Calendar</h3>
               <p>Save meetings directly to Google.</p>
             </div>
 
-            <div style={cardStyle}>
-              <div style={{ fontSize: 28 }}>📨</div>
+            <div style={cardBase}>
+              <div style={{ fontSize: 28, marginBottom: 10 }}>📨</div>
               <h3>Outlook Calendar</h3>
               <p>Save meetings directly to Outlook.</p>
             </div>
 
-            <div style={cardStyle}>
-              <div style={{ fontSize: 28 }}>🍎</div>
+            <div style={cardBase}>
+              <div style={{ fontSize: 28, marginBottom: 10 }}>🍎</div>
               <h3>Apple Calendar</h3>
-              <p>Download a .ICS file for Apple.</p>
+              <p>Download the .ICS file for Apple.</p>
             </div>
 
             {children}
-
           </div>
 
           {/* CTA */}
