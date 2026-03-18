@@ -15,7 +15,7 @@ export default function RootLayout({
       <body
         style={{
           margin: 0,
-          background: "linear-gradient(180deg,#4c1d95,#3b0764)",
+          background: "#0b0a14", // solid base (REMOVED gradient conflict)
           minHeight: "100vh",
         }}
       >
