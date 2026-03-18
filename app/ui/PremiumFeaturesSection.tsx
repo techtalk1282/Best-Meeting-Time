@@ -1,5 +1,5 @@
 // app/ui/PremiumFeaturesSection.tsx
-// FIXED: CTA-first layout (removes header, improves conversion, reduces height)
+// FIXED: align premium section width with main content for visual consistency
 
 import { ReactNode } from "react";
 
@@ -85,9 +85,10 @@ export default function PremiumFeaturesSection({
         color: "#ffffff",
       }}
     >
-      <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+      {/* ✅ MATCH WIDTH WITH MAIN CONTENT */}
+      <div style={{ maxWidth: 1120, margin: "0 auto" }}>
         
-        {/* 🔥 TOP CTA (moved here) */}
+        {/* CTA */}
         <div style={{ textAlign: "center", marginBottom: 20 }}>
           <button
             style={{
