@@ -1,6 +1,5 @@
 // app/ui/LayoutShell.tsx
-// PURPOSE: Layout structure ONLY.
-// NO styling, NO logic, NO state, NO behavior.
+// FIXED: remove duplicate IDs (anchor bug)
 
 import { ReactNode } from "react";
 
@@ -23,7 +22,8 @@ export default function LayoutShell({
 
       <section id="tool-preview">{toolPreview}</section>
 
-      <section id="premium-features">{premiumFeatures}</section>
+      {/* ✅ REMOVE ID HERE (important) */}
+      <section>{premiumFeatures}</section>
 
       <section id="bonus-features">{bonusFeatures}</section>
 
