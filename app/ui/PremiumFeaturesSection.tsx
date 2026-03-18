@@ -1,6 +1,5 @@
 // app/ui/PremiumFeaturesSection.tsx
-// PURPOSE: Premium features section with correct 2-row layout
-// ICONS: now using real assets (no SVG recreation)
+// PURPOSE: Premium features section (FINAL — icon fix + scroll fix only)
 
 import { ReactNode } from "react";
 
@@ -36,6 +35,12 @@ const iconImg: React.CSSProperties = {
   objectFit: "contain",
 };
 
+const iconImgApple: React.CSSProperties = {
+  width: 48, // slightly larger (fix)
+  height: 48,
+  objectFit: "contain",
+};
+
 const cardTitle: React.CSSProperties = {
   fontSize: 16,
   fontWeight: 700,
@@ -59,7 +64,7 @@ const checklistItem: React.CSSProperties = {
 
 function CheckIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true">
+    <svg width="18" height="18" viewBox="0 0 20 20">
       <path
         d="M7.8 14.2L3.9 10.3l1.4-1.4 2.5 2.5 6.9-6.9 1.4 1.4-8.3 8.3z"
         fill="#facc15"
@@ -78,6 +83,7 @@ export default function PremiumFeaturesSection({
         padding: "60px 20px",
         background: "linear-gradient(135deg,#1e1b4b,#4c1d95,#3b0764)",
         color: "#ffffff",
+        scrollMarginTop: "100px", // ✅ FIX: prevents cutoff when clicking nav
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
@@ -144,7 +150,8 @@ export default function PremiumFeaturesSection({
 
             <div style={cardBase}>
               <div style={iconWrap}>
-                <img src="/outlook.png" style={iconImg} />
+                {/* ✅ FIX: correct file name */}
+                <img src="/microsoft-outlook-logo.png" style={iconImg} />
               </div>
               <h3 style={cardTitle}>Outlook Calendar</h3>
               <p style={cardText}>Save meetings directly to Outlook.</p>
@@ -152,7 +159,7 @@ export default function PremiumFeaturesSection({
 
             <div style={cardBase}>
               <div style={iconWrap}>
-                <img src="/apple.png" style={iconImg} />
+                <img src="/apple.png" style={iconImgApple} />
               </div>
               <h3 style={cardTitle}>Apple Calendar</h3>
               <p style={cardText}>Download the .ICS file for Apple.</p>
