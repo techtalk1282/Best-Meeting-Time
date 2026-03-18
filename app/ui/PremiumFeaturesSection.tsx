@@ -1,5 +1,5 @@
 // app/ui/PremiumFeaturesSection.tsx
-// FIXED: proper anchor scroll offset using scrollMarginTop
+// FIXED: compact layout (removes excessive vertical height)
 
 import { ReactNode } from "react";
 
@@ -9,11 +9,11 @@ type PremiumFeaturesSectionProps = {
 
 const cardBase: React.CSSProperties = {
   background: "#ffffff",
-  borderRadius: 16,
-  padding: 24,
+  borderRadius: 14,
+  padding: 18, // ↓ reduced
   textAlign: "center",
-  boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
-  minHeight: 170,
+  boxShadow: "0 8px 18px rgba(0,0,0,0.08)",
+  minHeight: 140, // ↓ reduced
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -21,35 +21,35 @@ const cardBase: React.CSSProperties = {
 };
 
 const iconWrap: React.CSSProperties = {
-  width: 56,
-  height: 56,
+  width: 50,
+  height: 50,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  marginBottom: 12,
+  marginBottom: 8, // ↓ reduced
 };
 
 const iconImg: React.CSSProperties = {
-  width: 44,
-  height: 44,
+  width: 36,
+  height: 36,
   objectFit: "contain",
 };
 
 const iconImgApple: React.CSSProperties = {
-  width: 48,
-  height: 48,
+  width: 40,
+  height: 40,
   objectFit: "contain",
 };
 
 const cardTitle: React.CSSProperties = {
-  fontSize: 16,
+  fontSize: 15,
   fontWeight: 700,
-  margin: "0 0 8px 0",
+  margin: "0 0 6px 0",
 };
 
 const cardText: React.CSSProperties = {
-  fontSize: 14,
-  lineHeight: 1.45,
+  fontSize: 13,
+  lineHeight: 1.4,
   margin: 0,
   color: "#4b5563",
 };
@@ -57,15 +57,14 @@ const cardText: React.CSSProperties = {
 const checklistItem: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
-  gap: 10,
-  fontSize: 16,
+  gap: 8,
+  fontSize: 14,
   fontWeight: 500,
-  justifyContent: "flex-start",
 };
 
 function CheckIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 20 20">
+    <svg width="16" height="16" viewBox="0 0 20 20">
       <path
         d="M7.8 14.2L3.9 10.3l1.4-1.4 2.5 2.5 6.9-6.9 1.4 1.4-8.3 8.3z"
         fill="#facc15"
@@ -81,15 +80,15 @@ export default function PremiumFeaturesSection({
     <section
       id="premium-features"
       style={{
-        padding: "80px 20px",
-        scrollMarginTop: 120, // ✅ KEY FIX
+        padding: "30px 20px", // ↓ reduced
         background: "linear-gradient(135deg,#1e1b4b,#4c1d95,#3b0764)",
         color: "#ffffff",
       }}
     >
-      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <h2 style={{ fontSize: 36, fontWeight: 700, margin: "0 0 10px 0" }}>
+      <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+        {/* HEADER */}
+        <div style={{ textAlign: "center", marginBottom: 24 }}>
+          <h2 style={{ fontSize: 32, fontWeight: 700, margin: "0 0 6px 0" }}>
             Unlock Premium Features
           </h2>
           <p style={{ opacity: 0.85, margin: 0 }}>
@@ -97,21 +96,23 @@ export default function PremiumFeaturesSection({
           </p>
         </div>
 
+        {/* MAIN CARD */}
         <div
           style={{
             background: "#f3f4f6",
-            borderRadius: 24,
-            padding: 36,
+            borderRadius: 20,
+            padding: 24, // ↓ reduced
             color: "#000",
-            boxShadow: "0 20px 50px rgba(0,0,0,0.35)",
+            boxShadow: "0 14px 40px rgba(0,0,0,0.25)",
           }}
         >
+          {/* TOP ROW */}
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
-              gap: 20,
-              marginBottom: 20,
+              gap: 16,
+              marginBottom: 16,
             }}
           >
             <div style={cardBase}>
@@ -133,12 +134,13 @@ export default function PremiumFeaturesSection({
             </div>
           </div>
 
+          {/* BOTTOM ROW */}
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr 1fr",
-              gap: 20,
-              marginBottom: 28,
+              gap: 16,
+              marginBottom: 18,
             }}
           >
             <div style={cardBase}>
@@ -146,9 +148,7 @@ export default function PremiumFeaturesSection({
                 <img src="/google-calendar.png" style={iconImg} />
               </div>
               <h3 style={cardTitle}>Google Calendar</h3>
-              <p style={cardText}>
-                Save meetings directly to Google.
-              </p>
+              <p style={cardText}>Save meetings directly to Google.</p>
             </div>
 
             <div style={cardBase}>
@@ -156,9 +156,7 @@ export default function PremiumFeaturesSection({
                 <img src="/outlook.png" style={iconImg} />
               </div>
               <h3 style={cardTitle}>Outlook Calendar</h3>
-              <p style={cardText}>
-                Save meetings directly to Outlook.
-              </p>
+              <p style={cardText}>Save meetings directly to Outlook.</p>
             </div>
 
             <div style={cardBase}>
@@ -166,39 +164,37 @@ export default function PremiumFeaturesSection({
                 <img src="/apple.png" style={iconImgApple} />
               </div>
               <h3 style={cardTitle}>Apple Calendar</h3>
-              <p style={cardText}>
-                Download the .ICS file for Apple.
-              </p>
+              <p style={cardText}>Download the .ICS file for Apple.</p>
             </div>
 
             {children}
           </div>
 
-          <div style={{ textAlign: "center", marginBottom: 26 }}>
+          {/* CTA */}
+          <div style={{ textAlign: "center", marginBottom: 18 }}>
             <button
               style={{
                 background: "#facc15",
                 color: "#000",
                 border: "none",
-                padding: "14px 30px",
-                borderRadius: 10,
+                padding: "12px 24px",
+                borderRadius: 8,
                 fontWeight: 700,
                 cursor: "pointer",
-                boxShadow: "0 6px 14px rgba(0,0,0,0.12)",
               }}
             >
               Unlock Premium – $9 One-Time
             </button>
           </div>
 
+          {/* CHECKLIST */}
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
-              gap: "14px 40px",
-              maxWidth: 600,
-              margin: "0 auto 18px auto",
-              textAlign: "left",
+              gap: "10px 30px",
+              maxWidth: 520,
+              margin: "0 auto",
             }}
           >
             <div style={checklistItem}><CheckIcon /><span>One-time payment</span></div>
@@ -209,7 +205,7 @@ export default function PremiumFeaturesSection({
             <div style={checklistItem}><CheckIcon /><span>Share meeting links</span></div>
           </div>
 
-          <div style={{ textAlign: "center", fontSize: 14, color: "#4b5563" }}>
+          <div style={{ textAlign: "center", fontSize: 13, marginTop: 12, color: "#6b7280" }}>
             Secured by Stripe • Terms • Privacy
           </div>
         </div>
