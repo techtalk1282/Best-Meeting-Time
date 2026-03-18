@@ -1,5 +1,5 @@
 // app/ui/LayoutShell.tsx
-// FIXED: remove duplicate IDs (anchor bug)
+// FIXED: remove wrapper around premium section (correct anchor positioning)
 
 import { ReactNode } from "react";
 
@@ -22,8 +22,8 @@ export default function LayoutShell({
 
       <section id="tool-preview">{toolPreview}</section>
 
-      {/* ✅ REMOVE ID HERE (important) */}
-      <section>{premiumFeatures}</section>
+      {/* ✅ FIX: remove wrapper */}
+      {premiumFeatures}
 
       <section id="bonus-features">{bonusFeatures}</section>
 
