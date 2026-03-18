@@ -81,7 +81,7 @@ export default function PremiumFeaturesSection({
       id="premium-features"
       style={{
         padding: "40px 20px",
-        background: "linear-gradient(135deg,#3b0764,#4c1d95,#1e1b4b)",
+        background: "linear-gradient(180deg,#4c1d95,#3b0764)",
         color: "#ffffff",
       }}
     >
