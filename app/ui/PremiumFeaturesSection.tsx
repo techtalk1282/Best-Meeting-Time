@@ -1,5 +1,5 @@
 // app/ui/PremiumFeaturesSection.tsx
-// FIXED: compact layout (removes excessive vertical height)
+// FIXED: CTA-first layout (removes header, improves conversion, reduces height)
 
 import { ReactNode } from "react";
 
@@ -10,10 +10,10 @@ type PremiumFeaturesSectionProps = {
 const cardBase: React.CSSProperties = {
   background: "#ffffff",
   borderRadius: 14,
-  padding: 18, // ↓ reduced
+  padding: 18,
   textAlign: "center",
   boxShadow: "0 8px 18px rgba(0,0,0,0.08)",
-  minHeight: 140, // ↓ reduced
+  minHeight: 140,
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -26,7 +26,7 @@ const iconWrap: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  marginBottom: 8, // ↓ reduced
+  marginBottom: 8,
 };
 
 const iconImg: React.CSSProperties = {
@@ -80,20 +80,34 @@ export default function PremiumFeaturesSection({
     <section
       id="premium-features"
       style={{
-        padding: "30px 20px", // ↓ reduced
+        padding: "30px 20px",
         background: "linear-gradient(135deg,#1e1b4b,#4c1d95,#3b0764)",
         color: "#ffffff",
       }}
     >
       <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-        {/* HEADER */}
-        <div style={{ textAlign: "center", marginBottom: 24 }}>
-          <h2 style={{ fontSize: 32, fontWeight: 700, margin: "0 0 6px 0" }}>
-            Unlock Premium Features
-          </h2>
-          <p style={{ opacity: 0.85, margin: 0 }}>
-            Powerful tools for global scheduling professionals.
-          </p>
+        
+        {/* 🔥 TOP CTA (moved here) */}
+        <div style={{ textAlign: "center", marginBottom: 20 }}>
+          <button
+            style={{
+              background: "#facc15",
+              color: "#000",
+              border: "none",
+              padding: "14px 28px",
+              borderRadius: 10,
+              fontWeight: 700,
+              fontSize: 16,
+              cursor: "pointer",
+              boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
+            }}
+          >
+            Unlock Premium – $9 One-Time
+          </button>
+
+          <div style={{ marginTop: 6, fontSize: 13, opacity: 0.8 }}>
+            Instant access • No subscription
+          </div>
         </div>
 
         {/* MAIN CARD */}
@@ -101,7 +115,7 @@ export default function PremiumFeaturesSection({
           style={{
             background: "#f3f4f6",
             borderRadius: 20,
-            padding: 24, // ↓ reduced
+            padding: 24,
             color: "#000",
             boxShadow: "0 14px 40px rgba(0,0,0,0.25)",
           }}
@@ -168,23 +182,6 @@ export default function PremiumFeaturesSection({
             </div>
 
             {children}
-          </div>
-
-          {/* CTA */}
-          <div style={{ textAlign: "center", marginBottom: 18 }}>
-            <button
-              style={{
-                background: "#facc15",
-                color: "#000",
-                border: "none",
-                padding: "12px 24px",
-                borderRadius: 8,
-                fontWeight: 700,
-                cursor: "pointer",
-              }}
-            >
-              Unlock Premium – $9 One-Time
-            </button>
           </div>
 
           {/* CHECKLIST */}
