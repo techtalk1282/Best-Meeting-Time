@@ -1,5 +1,5 @@
 // app/ui/PremiumFeaturesSection.tsx
-// FINAL FIX: scroll + outlook + checklist alignment ONLY
+// FIXED: scroll offset + checklist alignment (final)
 
 import { ReactNode } from "react";
 
@@ -58,9 +58,9 @@ const checklistItem: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
   gap: 10,
-  fontSize: 16,            // slightly larger
-  fontWeight: 500,         // slightly bolder
-  justifyContent: "center", // center each item
+  fontSize: 16,
+  fontWeight: 500,
+  justifyContent: "flex-start", // ✅ FIXED
 };
 
 function CheckIcon() {
@@ -81,10 +81,10 @@ export default function PremiumFeaturesSection({
     <section
       id="premium-features"
       style={{
-        padding: "80px 20px 60px",   // ✅ FIX: extra top spacing
+        padding: "120px 20px 80px", // ✅ MORE SPACE (fixes cut-off)
         background: "linear-gradient(135deg,#1e1b4b,#4c1d95,#3b0764)",
         color: "#ffffff",
-        scrollMarginTop: "140px",    // ✅ FIX: prevents BOTH top & bottom cutoff
+        scrollMarginTop: "180px", // ✅ STRONG FIX for nav scroll
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
@@ -107,18 +107,22 @@ export default function PremiumFeaturesSection({
           }}
         >
           {/* TOP ROW */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 20,
-            marginBottom: 20,
-          }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 20,
+              marginBottom: 20,
+            }}
+          >
             <div style={cardBase}>
               <div style={iconWrap}>
                 <img src="/share.png" style={iconImg} />
               </div>
               <h3 style={cardTitle}>Share a Meeting Link</h3>
-              <p style={cardText}>Send a booking page with one click.</p>
+              <p style={cardText}>
+                Send a booking page with one click.
+              </p>
             </div>
 
             <div style={cardBase}>
@@ -126,32 +130,39 @@ export default function PremiumFeaturesSection({
                 <img src="/globe.png" style={iconImg} />
               </div>
               <h3 style={cardTitle}>Compare Cities Globally</h3>
-              <p style={cardText}>Plan meetings across global time zones.</p>
+              <p style={cardText}>
+                Plan meetings across global time zones.
+              </p>
             </div>
           </div>
 
           {/* BOTTOM ROW */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr",
-            gap: 20,
-            marginBottom: 28,
-          }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr 1fr",
+              gap: 20,
+              marginBottom: 28,
+            }}
+          >
             <div style={cardBase}>
               <div style={iconWrap}>
                 <img src="/google-calendar.png" style={iconImg} />
               </div>
               <h3 style={cardTitle}>Google Calendar</h3>
-              <p style={cardText}>Save meetings directly to Google.</p>
+              <p style={cardText}>
+                Save meetings directly to Google.
+              </p>
             </div>
 
             <div style={cardBase}>
               <div style={iconWrap}>
-                {/* ✅ FIX: correct filename */}
                 <img src="/outlook.png" style={iconImg} />
               </div>
               <h3 style={cardTitle}>Outlook Calendar</h3>
-              <p style={cardText}>Save meetings directly to Outlook.</p>
+              <p style={cardText}>
+                Save meetings directly to Outlook.
+              </p>
             </div>
 
             <div style={cardBase}>
@@ -159,7 +170,9 @@ export default function PremiumFeaturesSection({
                 <img src="/apple.png" style={iconImgApple} />
               </div>
               <h3 style={cardTitle}>Apple Calendar</h3>
-              <p style={cardText}>Download the .ICS file for Apple.</p>
+              <p style={cardText}>
+                Download the .ICS file for Apple.
+              </p>
             </div>
 
             {children}
@@ -167,42 +180,66 @@ export default function PremiumFeaturesSection({
 
           {/* CTA */}
           <div style={{ textAlign: "center", marginBottom: 26 }}>
-            <button style={{
-              background: "#facc15",
-              color: "#000",
-              border: "none",
-              padding: "14px 30px",
-              borderRadius: 10,
-              fontWeight: 700,
-              cursor: "pointer",
-              boxShadow: "0 6px 14px rgba(0,0,0,0.12)",
-            }}>
+            <button
+              style={{
+                background: "#facc15",
+                color: "#000",
+                border: "none",
+                padding: "14px 30px",
+                borderRadius: 10,
+                fontWeight: 700,
+                cursor: "pointer",
+                boxShadow: "0 6px 14px rgba(0,0,0,0.12)",
+              }}
+            >
               Unlock Premium – $9 One-Time
             </button>
           </div>
 
           {/* CHECKLIST */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "14px 40px",
-            maxWidth: 600,         // ✅ FIX: centers block
-            margin: "0 auto 18px auto",
-            textAlign: "center",   // ✅ FIX: center text
-          }}>
-            <div style={checklistItem}><CheckIcon /><span>One-time payment</span></div>
-            <div style={checklistItem}><CheckIcon /><span>Save & export meeting times</span></div>
-            <div style={checklistItem}><CheckIcon /><span>No subscription</span></div>
-            <div style={checklistItem}><CheckIcon /><span>Download .ics file options</span></div>
-            <div style={checklistItem}><CheckIcon /><span>Remove all ads</span></div>
-            <div style={checklistItem}><CheckIcon /><span>Share meeting links</span></div>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "14px 40px",
+              maxWidth: 600,
+              margin: "0 auto 18px auto",
+              textAlign: "left", // ✅ FIXED
+            }}
+          >
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>One-time payment</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>Save & export meeting times</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>No subscription</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>Download .ics file options</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>Remove all ads</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>Share meeting links</span>
+            </div>
           </div>
 
-          <div style={{
-            textAlign: "center",
-            fontSize: 14,
-            color: "#4b5563",
-          }}>
+          <div
+            style={{
+              textAlign: "center",
+              fontSize: 14,
+              color: "#4b5563",
+            }}
+          >
             Secured by Stripe • Terms • Privacy
           </div>
         </div>
