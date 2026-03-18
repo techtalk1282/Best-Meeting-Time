@@ -1,5 +1,5 @@
 // app/ui/PremiumFeaturesSection.tsx
-// FIXED: scroll offset + checklist alignment (final)
+// FIXED: proper anchor offset targeting + no visual clipping
 
 import { ReactNode } from "react";
 
@@ -60,7 +60,7 @@ const checklistItem: React.CSSProperties = {
   gap: 10,
   fontSize: 16,
   fontWeight: 500,
-  justifyContent: "flex-start", // ✅ FIXED
+  justifyContent: "flex-start",
 };
 
 function CheckIcon() {
@@ -79,14 +79,21 @@ export default function PremiumFeaturesSection({
 }: PremiumFeaturesSectionProps) {
   return (
     <section
-      id="premium-features"
       style={{
-        padding: "40px 20px 80px", // ✅ MORE SPACE (fixes cut-off)
+        padding: "40px 20px 80px",
         background: "linear-gradient(135deg,#1e1b4b,#4c1d95,#3b0764)",
         color: "#ffffff",
-        scrollMarginTop: "100px", // ✅ STRONG FIX for nav scroll
       }}
     >
+      {/* ✅ ANCHOR TARGET FIX (THIS IS THE REAL FIX) */}
+      <div
+        id="premium-features"
+        style={{
+          position: "relative",
+          top: "-100px", // matches navbar height
+        }}
+      />
+
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <h2 style={{ fontSize: 36, fontWeight: 700, margin: "0 0 10px 0" }}>
@@ -204,42 +211,18 @@ export default function PremiumFeaturesSection({
               gap: "14px 40px",
               maxWidth: 600,
               margin: "0 auto 18px auto",
-              textAlign: "left", // ✅ FIXED
+              textAlign: "left",
             }}
           >
-            <div style={checklistItem}>
-              <CheckIcon />
-              <span>One-time payment</span>
-            </div>
-            <div style={checklistItem}>
-              <CheckIcon />
-              <span>Save & export meeting times</span>
-            </div>
-            <div style={checklistItem}>
-              <CheckIcon />
-              <span>No subscription</span>
-            </div>
-            <div style={checklistItem}>
-              <CheckIcon />
-              <span>Download .ics file options</span>
-            </div>
-            <div style={checklistItem}>
-              <CheckIcon />
-              <span>Remove all ads</span>
-            </div>
-            <div style={checklistItem}>
-              <CheckIcon />
-              <span>Share meeting links</span>
-            </div>
+            <div style={checklistItem}><CheckIcon /><span>One-time payment</span></div>
+            <div style={checklistItem}><CheckIcon /><span>Save & export meeting times</span></div>
+            <div style={checklistItem}><CheckIcon /><span>No subscription</span></div>
+            <div style={checklistItem}><CheckIcon /><span>Download .ics file options</span></div>
+            <div style={checklistItem}><CheckIcon /><span>Remove all ads</span></div>
+            <div style={checklistItem}><CheckIcon /><span>Share meeting links</span></div>
           </div>
 
-          <div
-            style={{
-              textAlign: "center",
-              fontSize: 14,
-              color: "#4b5563",
-            }}
-          >
+          <div style={{ textAlign: "center", fontSize: 14, color: "#4b5563" }}>
             Secured by Stripe • Terms • Privacy
           </div>
         </div>
