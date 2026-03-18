@@ -1,5 +1,5 @@
 // app/ui/PremiumFeaturesSection.tsx
-// FIXED: proper anchor offset targeting + no visual clipping
+// FIXED: premium section anchor attached correctly to section itself
 
 import { ReactNode } from "react";
 
@@ -79,21 +79,13 @@ export default function PremiumFeaturesSection({
 }: PremiumFeaturesSectionProps) {
   return (
     <section
+      id="premium-features"
       style={{
         padding: "40px 20px 80px",
         background: "linear-gradient(135deg,#1e1b4b,#4c1d95,#3b0764)",
         color: "#ffffff",
       }}
     >
-      {/* ✅ ANCHOR TARGET FIX (THIS IS THE REAL FIX) */}
-      <div
-        id="premium-features"
-        style={{
-          position: "relative",
-          top: "-100px", // matches navbar height
-        }}
-      />
-
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <h2 style={{ fontSize: 36, fontWeight: 700, margin: "0 0 10px 0" }}>
@@ -124,22 +116,18 @@ export default function PremiumFeaturesSection({
           >
             <div style={cardBase}>
               <div style={iconWrap}>
-                <img src="/share.png" style={iconImg} />
+                <img src="/share.png" style={iconImg} alt="Share link" />
               </div>
               <h3 style={cardTitle}>Share a Meeting Link</h3>
-              <p style={cardText}>
-                Send a booking page with one click.
-              </p>
+              <p style={cardText}>Send a booking page with one click.</p>
             </div>
 
             <div style={cardBase}>
               <div style={iconWrap}>
-                <img src="/globe.png" style={iconImg} />
+                <img src="/globe.png" style={iconImg} alt="Compare cities" />
               </div>
               <h3 style={cardTitle}>Compare Cities Globally</h3>
-              <p style={cardText}>
-                Plan meetings across global time zones.
-              </p>
+              <p style={cardText}>Plan meetings across global time zones.</p>
             </div>
           </div>
 
@@ -154,32 +142,30 @@ export default function PremiumFeaturesSection({
           >
             <div style={cardBase}>
               <div style={iconWrap}>
-                <img src="/google-calendar.png" style={iconImg} />
+                <img
+                  src="/google-calendar.png"
+                  style={iconImg}
+                  alt="Google Calendar"
+                />
               </div>
               <h3 style={cardTitle}>Google Calendar</h3>
-              <p style={cardText}>
-                Save meetings directly to Google.
-              </p>
+              <p style={cardText}>Save meetings directly to Google.</p>
             </div>
 
             <div style={cardBase}>
               <div style={iconWrap}>
-                <img src="/outlook.png" style={iconImg} />
+                <img src="/outlook.png" style={iconImg} alt="Outlook Calendar" />
               </div>
               <h3 style={cardTitle}>Outlook Calendar</h3>
-              <p style={cardText}>
-                Save meetings directly to Outlook.
-              </p>
+              <p style={cardText}>Save meetings directly to Outlook.</p>
             </div>
 
             <div style={cardBase}>
               <div style={iconWrap}>
-                <img src="/apple.png" style={iconImgApple} />
+                <img src="/apple.png" style={iconImgApple} alt="Apple Calendar" />
               </div>
               <h3 style={cardTitle}>Apple Calendar</h3>
-              <p style={cardText}>
-                Download the .ICS file for Apple.
-              </p>
+              <p style={cardText}>Download the .ICS file for Apple.</p>
             </div>
 
             {children}
@@ -214,12 +200,30 @@ export default function PremiumFeaturesSection({
               textAlign: "left",
             }}
           >
-            <div style={checklistItem}><CheckIcon /><span>One-time payment</span></div>
-            <div style={checklistItem}><CheckIcon /><span>Save & export meeting times</span></div>
-            <div style={checklistItem}><CheckIcon /><span>No subscription</span></div>
-            <div style={checklistItem}><CheckIcon /><span>Download .ics file options</span></div>
-            <div style={checklistItem}><CheckIcon /><span>Remove all ads</span></div>
-            <div style={checklistItem}><CheckIcon /><span>Share meeting links</span></div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>One-time payment</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>Save & export meeting times</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>No subscription</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>Download .ics file options</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>Remove all ads</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>Share meeting links</span>
+            </div>
           </div>
 
           <div style={{ textAlign: "center", fontSize: 14, color: "#4b5563" }}>
