@@ -1,6 +1,18 @@
 import ToolPreviewSection from "./ToolPreviewSection";
 
 export default function HeroSection() {
+
+  // ✅ FIX: controlled scroll with offset
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const yOffset = -120; // adjust if needed
+    const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
+
   return (
     <section
       aria-label="Hero Section"
@@ -29,26 +41,33 @@ export default function HeroSection() {
           />
 
           <div style={{ display: "flex", gap: 30, fontSize: 16 }}>
-            <a href="#tool-preview" style={{ color: "#fff", textDecoration: "none" }}>Features</a>
-            <a href="#premium-features" style={{ color: "#fff", textDecoration: "none" }}>Pricing</a>
-            <a href="#footer" style={{ color: "#fff", textDecoration: "none" }}>Login</a>
+            <button onClick={() => scrollToSection("tool-preview")} style={{ background: "none", border: "none", color: "#fff", cursor: "pointer" }}>
+              Features
+            </button>
+
+            <button onClick={() => scrollToSection("premium-features")} style={{ background: "none", border: "none", color: "#fff", cursor: "pointer" }}>
+              Pricing
+            </button>
+
+            <button onClick={() => scrollToSection("footer")} style={{ background: "none", border: "none", color: "#fff", cursor: "pointer" }}>
+              Login
+            </button>
           </div>
 
-          <a href="#premium-features">
-            <button
-              style={{
-                background: "#facc15",
-                color: "#000",
-                border: "none",
-                padding: "10px 20px",
-                borderRadius: 8,
-                fontWeight: 600,
-                cursor: "pointer"
-              }}
-            >
-              Get Started
-            </button>
-          </a>
+          <button
+            onClick={() => scrollToSection("premium-features")}
+            style={{
+              background: "#facc15",
+              color: "#000",
+              border: "none",
+              padding: "10px 20px",
+              borderRadius: 8,
+              fontWeight: 600,
+              cursor: "pointer"
+            }}
+          >
+            Get Started
+          </button>
         </div>
 
         {/* HERO TEXT */}
@@ -97,8 +116,6 @@ export default function HeroSection() {
             borderRadius: 24,
             padding: 32,
             color: "#000",
-
-            /* Slightly stronger card framing */
             border: "1px solid rgba(0,0,0,0.06)",
             boxShadow: "0 30px 80px rgba(0,0,0,0.35)"
           }}
