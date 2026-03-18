@@ -1,5 +1,5 @@
 // app/ui/PremiumFeaturesSection.tsx
-// FIXED: remove viewport centering so anchor scroll aligns correctly
+// FIXED: proper anchor scroll offset using scrollMarginTop
 
 import { ReactNode } from "react";
 
@@ -82,6 +82,7 @@ export default function PremiumFeaturesSection({
       id="premium-features"
       style={{
         padding: "80px 20px",
+        scrollMarginTop: 120, // ✅ KEY FIX
         background: "linear-gradient(135deg,#1e1b4b,#4c1d95,#3b0764)",
         color: "#ffffff",
       }}
@@ -105,7 +106,6 @@ export default function PremiumFeaturesSection({
             boxShadow: "0 20px 50px rgba(0,0,0,0.35)",
           }}
         >
-          {/* TOP ROW */}
           <div
             style={{
               display: "grid",
@@ -133,7 +133,6 @@ export default function PremiumFeaturesSection({
             </div>
           </div>
 
-          {/* BOTTOM ROW */}
           <div
             style={{
               display: "grid",
@@ -175,7 +174,6 @@ export default function PremiumFeaturesSection({
             {children}
           </div>
 
-          {/* CTA */}
           <div style={{ textAlign: "center", marginBottom: 26 }}>
             <button
               style={{
@@ -193,7 +191,6 @@ export default function PremiumFeaturesSection({
             </button>
           </div>
 
-          {/* CHECKLIST */}
           <div
             style={{
               display: "grid",
