@@ -1,5 +1,5 @@
 // app/ui/PremiumFeaturesSection.tsx
-// FIXED: viewport alignment (prevents top/bottom clipping)
+// FIXED: remove viewport centering so anchor scroll aligns correctly
 
 import { ReactNode } from "react";
 
@@ -81,144 +81,139 @@ export default function PremiumFeaturesSection({
     <section
       id="premium-features"
       style={{
-        minHeight: "100vh", // 🔥 CRITICAL FIX
-        display: "flex",     // 🔥 CRITICAL FIX
-        alignItems: "center", // 🔥 centers vertically
-        padding: "40px 20px",
+        padding: "80px 20px",
         background: "linear-gradient(135deg,#1e1b4b,#4c1d95,#3b0764)",
         color: "#ffffff",
       }}
     >
-      <div style={{ width: "100%" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <h2 style={{ fontSize: 36, fontWeight: 700, margin: "0 0 10px 0" }}>
-              Unlock Premium Features
-            </h2>
-            <p style={{ opacity: 0.85, margin: 0 }}>
-              Powerful tools for global scheduling professionals.
-            </p>
-          </div>
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 40 }}>
+          <h2 style={{ fontSize: 36, fontWeight: 700, margin: "0 0 10px 0" }}>
+            Unlock Premium Features
+          </h2>
+          <p style={{ opacity: 0.85, margin: 0 }}>
+            Powerful tools for global scheduling professionals.
+          </p>
+        </div>
 
+        <div
+          style={{
+            background: "#f3f4f6",
+            borderRadius: 24,
+            padding: 36,
+            color: "#000",
+            boxShadow: "0 20px 50px rgba(0,0,0,0.35)",
+          }}
+        >
+          {/* TOP ROW */}
           <div
             style={{
-              background: "#f3f4f6",
-              borderRadius: 24,
-              padding: 36,
-              color: "#000",
-              boxShadow: "0 20px 50px rgba(0,0,0,0.35)",
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 20,
+              marginBottom: 20,
             }}
           >
-            {/* TOP ROW */}
-            <div
+            <div style={cardBase}>
+              <div style={iconWrap}>
+                <img src="/share.png" style={iconImg} />
+              </div>
+              <h3 style={cardTitle}>Share a Meeting Link</h3>
+              <p style={cardText}>Send a booking page with one click.</p>
+            </div>
+
+            <div style={cardBase}>
+              <div style={iconWrap}>
+                <img src="/globe.png" style={iconImg} />
+              </div>
+              <h3 style={cardTitle}>Compare Cities Globally</h3>
+              <p style={cardText}>
+                Plan meetings across global time zones.
+              </p>
+            </div>
+          </div>
+
+          {/* BOTTOM ROW */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr 1fr",
+              gap: 20,
+              marginBottom: 28,
+            }}
+          >
+            <div style={cardBase}>
+              <div style={iconWrap}>
+                <img src="/google-calendar.png" style={iconImg} />
+              </div>
+              <h3 style={cardTitle}>Google Calendar</h3>
+              <p style={cardText}>
+                Save meetings directly to Google.
+              </p>
+            </div>
+
+            <div style={cardBase}>
+              <div style={iconWrap}>
+                <img src="/outlook.png" style={iconImg} />
+              </div>
+              <h3 style={cardTitle}>Outlook Calendar</h3>
+              <p style={cardText}>
+                Save meetings directly to Outlook.
+              </p>
+            </div>
+
+            <div style={cardBase}>
+              <div style={iconWrap}>
+                <img src="/apple.png" style={iconImgApple} />
+              </div>
+              <h3 style={cardTitle}>Apple Calendar</h3>
+              <p style={cardText}>
+                Download the .ICS file for Apple.
+              </p>
+            </div>
+
+            {children}
+          </div>
+
+          {/* CTA */}
+          <div style={{ textAlign: "center", marginBottom: 26 }}>
+            <button
               style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: 20,
-                marginBottom: 20,
+                background: "#facc15",
+                color: "#000",
+                border: "none",
+                padding: "14px 30px",
+                borderRadius: 10,
+                fontWeight: 700,
+                cursor: "pointer",
+                boxShadow: "0 6px 14px rgba(0,0,0,0.12)",
               }}
             >
-              <div style={cardBase}>
-                <div style={iconWrap}>
-                  <img src="/share.png" style={iconImg} />
-                </div>
-                <h3 style={cardTitle}>Share a Meeting Link</h3>
-                <p style={cardText}>Send a booking page with one click.</p>
-              </div>
+              Unlock Premium – $9 One-Time
+            </button>
+          </div>
 
-              <div style={cardBase}>
-                <div style={iconWrap}>
-                  <img src="/globe.png" style={iconImg} />
-                </div>
-                <h3 style={cardTitle}>Compare Cities Globally</h3>
-                <p style={cardText}>
-                  Plan meetings across global time zones.
-                </p>
-              </div>
-            </div>
+          {/* CHECKLIST */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "14px 40px",
+              maxWidth: 600,
+              margin: "0 auto 18px auto",
+              textAlign: "left",
+            }}
+          >
+            <div style={checklistItem}><CheckIcon /><span>One-time payment</span></div>
+            <div style={checklistItem}><CheckIcon /><span>Save & export meeting times</span></div>
+            <div style={checklistItem}><CheckIcon /><span>No subscription</span></div>
+            <div style={checklistItem}><CheckIcon /><span>Download .ics file options</span></div>
+            <div style={checklistItem}><CheckIcon /><span>Remove all ads</span></div>
+            <div style={checklistItem}><CheckIcon /><span>Share meeting links</span></div>
+          </div>
 
-            {/* BOTTOM ROW */}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr 1fr",
-                gap: 20,
-                marginBottom: 28,
-              }}
-            >
-              <div style={cardBase}>
-                <div style={iconWrap}>
-                  <img src="/google-calendar.png" style={iconImg} />
-                </div>
-                <h3 style={cardTitle}>Google Calendar</h3>
-                <p style={cardText}>
-                  Save meetings directly to Google.
-                </p>
-              </div>
-
-              <div style={cardBase}>
-                <div style={iconWrap}>
-                  <img src="/outlook.png" style={iconImg} />
-                </div>
-                <h3 style={cardTitle}>Outlook Calendar</h3>
-                <p style={cardText}>
-                  Save meetings directly to Outlook.
-                </p>
-              </div>
-
-              <div style={cardBase}>
-                <div style={iconWrap}>
-                  <img src="/apple.png" style={iconImgApple} />
-                </div>
-                <h3 style={cardTitle}>Apple Calendar</h3>
-                <p style={cardText}>
-                  Download the .ICS file for Apple.
-                </p>
-              </div>
-
-              {children}
-            </div>
-
-            {/* CTA */}
-            <div style={{ textAlign: "center", marginBottom: 26 }}>
-              <button
-                style={{
-                  background: "#facc15",
-                  color: "#000",
-                  border: "none",
-                  padding: "14px 30px",
-                  borderRadius: 10,
-                  fontWeight: 700,
-                  cursor: "pointer",
-                  boxShadow: "0 6px 14px rgba(0,0,0,0.12)",
-                }}
-              >
-                Unlock Premium – $9 One-Time
-              </button>
-            </div>
-
-            {/* CHECKLIST */}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "14px 40px",
-                maxWidth: 600,
-                margin: "0 auto 18px auto",
-                textAlign: "left",
-              }}
-            >
-              <div style={checklistItem}><CheckIcon /><span>One-time payment</span></div>
-              <div style={checklistItem}><CheckIcon /><span>Save & export meeting times</span></div>
-              <div style={checklistItem}><CheckIcon /><span>No subscription</span></div>
-              <div style={checklistItem}><CheckIcon /><span>Download .ics file options</span></div>
-              <div style={checklistItem}><CheckIcon /><span>Remove all ads</span></div>
-              <div style={checklistItem}><CheckIcon /><span>Share meeting links</span></div>
-            </div>
-
-            <div style={{ textAlign: "center", fontSize: 14, color: "#4b5563" }}>
-              Secured by Stripe • Terms • Privacy
-            </div>
+          <div style={{ textAlign: "center", fontSize: 14, color: "#4b5563" }}>
+            Secured by Stripe • Terms • Privacy
           </div>
         </div>
       </div>
