@@ -84,7 +84,7 @@ export default function PremiumFeaturesSection({
         padding: "120px 20px 80px", // ✅ MORE SPACE (fixes cut-off)
         background: "linear-gradient(135deg,#1e1b4b,#4c1d95,#3b0764)",
         color: "#ffffff",
-        scrollMarginTop: "180px", // ✅ STRONG FIX for nav scroll
+        scrollMarginTop: "100px", // ✅ STRONG FIX for nav scroll
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
