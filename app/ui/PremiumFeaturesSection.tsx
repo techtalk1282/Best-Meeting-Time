@@ -1,5 +1,5 @@
 // app/ui/PremiumFeaturesSection.tsx
-// FIXED: align premium section width with main content for visual consistency
+// FIXED: added outer container frame for premium UI polish (no layout changes)
 
 import { ReactNode } from "react";
 
@@ -80,14 +80,22 @@ export default function PremiumFeaturesSection({
     <section
       id="premium-features"
       style={{
-        padding: "30px 20px",
+        padding: "40px 20px",
         background: "linear-gradient(135deg,#1e1b4b,#4c1d95,#3b0764)",
         color: "#ffffff",
       }}
     >
-      {/* ✅ MATCH WIDTH WITH MAIN CONTENT */}
-      <div style={{ maxWidth: 1120, margin: "0 auto" }}>
-        
+      {/* ✅ OUTER FRAME (NEW) */}
+      <div
+        style={{
+          maxWidth: 1120,
+          margin: "0 auto",
+          padding: 20,
+          borderRadius: 24,
+          background: "rgba(255,255,255,0.04)",
+          boxShadow: "0 20px 60px rgba(0,0,0,0.35)",
+        }}
+      >
         {/* CTA */}
         <div style={{ textAlign: "center", marginBottom: 20 }}>
           <button
@@ -100,13 +108,13 @@ export default function PremiumFeaturesSection({
               fontWeight: 700,
               fontSize: 16,
               cursor: "pointer",
-              boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
+              boxShadow: "0 8px 22px rgba(0,0,0,0.3)",
             }}
           >
             Unlock Premium – $9 One-Time
           </button>
 
-          <div style={{ marginTop: 6, fontSize: 13, opacity: 0.8 }}>
+          <div style={{ marginTop: 6, fontSize: 13, opacity: 0.85 }}>
             Instant access • No subscription
           </div>
         </div>
