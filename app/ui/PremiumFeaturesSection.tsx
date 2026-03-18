@@ -1,5 +1,5 @@
 // app/ui/PremiumFeaturesSection.tsx
-// FIXED: added outer container frame for premium UI polish (no layout changes)
+// FIXED: remove outer overlay causing color mismatch + unify with hero
 
 import { ReactNode } from "react";
 
@@ -12,7 +12,7 @@ const cardBase: React.CSSProperties = {
   borderRadius: 14,
   padding: 18,
   textAlign: "center",
-  boxShadow: "0 8px 18px rgba(0,0,0,0.08)",
+  boxShadow: "0 10px 25px rgba(0,0,0,0.12)",
   minHeight: 140,
   display: "flex",
   flexDirection: "column",
@@ -81,21 +81,12 @@ export default function PremiumFeaturesSection({
       id="premium-features"
       style={{
         padding: "40px 20px",
-        background: "transparent)",
+        background: "linear-gradient(135deg,#3b0764,#4c1d95,#1e1b4b)",
         color: "#ffffff",
       }}
     >
-      {/* ✅ OUTER FRAME (NEW) */}
-      <div
-        style={{
-          maxWidth: 1120,
-          margin: "0 auto",
-          padding: 20,
-          borderRadius: 24,
-          background: "rgba(255,255,255,0.04)",
-          boxShadow: "0 20px 60px rgba(0,0,0,0.35)",
-        }}
-      >
+      <div style={{ maxWidth: 1120, margin: "0 auto" }}>
+        
         {/* CTA */}
         <div style={{ textAlign: "center", marginBottom: 20 }}>
           <button
@@ -122,11 +113,12 @@ export default function PremiumFeaturesSection({
         {/* MAIN CARD */}
         <div
           style={{
-            background: "#f3f4f6",
+            background: "linear-gradient(180deg,#ffffff,#f1f5f9)",
             borderRadius: 20,
-            padding: 24,
+            padding: 26,
             color: "#000",
-            boxShadow: "0 14px 40px rgba(0,0,0,0.25)",
+            border: "1px solid rgba(0,0,0,0.06)",
+            boxShadow: "0 18px 50px rgba(0,0,0,0.25)",
           }}
         >
           {/* TOP ROW */}
