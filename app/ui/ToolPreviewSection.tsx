@@ -309,7 +309,7 @@ export default function ToolPreviewSection() {
 
   return (
 
-   <div style={{ maxWidth: 720, margin: "0 auto" }}>
+   <div style={{ width: "100%" }}>
 
   <div
     style={{
