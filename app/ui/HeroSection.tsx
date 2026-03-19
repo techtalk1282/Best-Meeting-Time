@@ -8,8 +8,7 @@ export default function HeroSection() {
       aria-label="Hero Section"
       style={{
         padding: "28px 20px",
-        color: "#ffffff", // keep text white, remove background
-        background: "#ede9fe"
+        color: "#ffffff" // keep text white, remove background
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
@@ -95,7 +94,7 @@ export default function HeroSection() {
 
         <div
           style={{
-            background: "transparent",
+            background: "#ffffff",
             borderRadius: 24,
             padding: 32,
             color: "#000",
