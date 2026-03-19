@@ -309,7 +309,17 @@ export default function ToolPreviewSection() {
 
   return (
 
-    <div style={{ maxWidth: 720, margin: "0 auto", padding: 16 }}>
+   <div style={{ maxWidth: 720, margin: "0 auto", padding: 16 }}>
+
+  <div
+    style={{
+      background: "linear-gradient(180deg,#efe7ff 0%, #f6f2ff 100%)",
+      borderRadius: 20,
+      padding: 26,
+      border: "1px solid rgba(255,255,255,0.22)",
+      boxShadow: "0 18px 50px rgba(0,0,0,0.25)"
+    }}
+  >
 
       {viewerTZ && (
         <div style={{ marginBottom: 20, fontWeight: 600 }}>
@@ -476,7 +486,7 @@ export default function ToolPreviewSection() {
         </div>
 
       </div>
-
+</div>
     </div>
   );
 }
