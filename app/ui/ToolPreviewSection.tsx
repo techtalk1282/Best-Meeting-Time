@@ -410,7 +410,7 @@ export default function ToolPreviewSection() {
 
       </div>
 
-      <div style={{ border: "1px solid #444", padding: 16, borderRadius: 10 }}>
+      <div style={{ padding: 8 }}>
 
         <div style={{ position: "relative", height: 20, marginBottom: 10 }}>
 
