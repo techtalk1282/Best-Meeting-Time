@@ -1,5 +1,4 @@
 // app/ui/PremiumFeaturesSection.tsx
-// FIXED: remove outer overlay causing color mismatch + unify with hero
 
 import { ReactNode } from "react";
 
@@ -81,8 +80,7 @@ export default function PremiumFeaturesSection({
       id="premium-features"
       style={{
         padding: "40px 20px",
-        background: "linear-gradient(180deg,#4c1d95,#3b0764)",
-        color: "#ffffff",
+        color: "#ffffff", // keep text color, REMOVE background
       }}
     >
       <div style={{ maxWidth: 1120, margin: "0 auto" }}>
