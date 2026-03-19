@@ -94,7 +94,7 @@ export default function HeroSection() {
 
         <div
           style={{
-            background: "#ffffff",
+            background: "transparent",
             borderRadius: 24,
             padding: 32,
             color: "#000",
