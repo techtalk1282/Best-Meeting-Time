@@ -471,24 +471,9 @@ export default function ToolPreviewSection() {
 
         </div>
 
-        <div style={{ marginTop: 10, textAlign: "center" }}>
-  
-  <div style={{ fontWeight: 600 }}>
-    Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
-  </div>
-
-  <div
-    style={{
-      marginTop: 6,
-      fontSize: 14,
-      fontWeight: 600,
-      color: "#22c55e"
-    }}
-  >
-    Suggested: {startLocal} – {endLocal} • Ideal for both
-  </div>
-
-</div>
+        <div style={{ marginTop: 8, fontWeight: 600 }}>
+          Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
+        </div>
 
       </div>
 
