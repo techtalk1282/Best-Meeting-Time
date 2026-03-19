@@ -1,5 +1,3 @@
-// app/ui/HeroSection.tsx
-
 import ToolPreviewSection from "./ToolPreviewSection";
 
 export default function HeroSection() {
@@ -8,13 +6,11 @@ export default function HeroSection() {
       aria-label="Hero Section"
       style={{
         padding: "28px 20px",
-        background: "linear-gradient(180deg,#4c1d95,#3b0764)",
+        background: "transparent", // ✅ REMOVE gradient
         color: "#ffffff"
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-
-        {/* NAVBAR */}
 
         <div
           style={{
@@ -31,9 +27,9 @@ export default function HeroSection() {
           />
 
           <div style={{ display: "flex", gap: 30, fontSize: 16 }}>
-            <a href="#tool-preview" style={{ color: "#fff", textDecoration: "none" }}>Features</a>
-            <a href="#premium-features" style={{ color: "#fff", textDecoration: "none" }}>Pricing</a>
-            <a href="#footer" style={{ color: "#fff", textDecoration: "none" }}>Login</a>
+            <a href="#tool-preview" style={{ color: "#fff" }}>Features</a>
+            <a href="#premium-features" style={{ color: "#fff" }}>Pricing</a>
+            <a href="#footer" style={{ color: "#fff" }}>Login</a>
           </div>
 
           <a href="#premium-features">
@@ -53,27 +49,12 @@ export default function HeroSection() {
           </a>
         </div>
 
-        {/* HERO TEXT */}
-
         <div style={{ textAlign: "center", marginBottom: 32 }}>
-
-          <h1
-            style={{
-              fontSize: 56,
-              marginBottom: 10,
-              fontWeight: 700
-            }}
-          >
+          <h1 style={{ fontSize: 56, marginBottom: 10, fontWeight: 700 }}>
             <span style={{ color: "#facc15" }}>Best Meeting Time</span> — Every Time
           </h1>
 
-          <h2
-            style={{
-              fontSize: 36,
-              fontWeight: 400,
-              marginBottom: 16
-            }}
-          >
+          <h2 style={{ fontSize: 36, fontWeight: 400, marginBottom: 16 }}>
             Across Time Zones
           </h2>
 
@@ -88,10 +69,7 @@ export default function HeroSection() {
           >
             Easily schedule meetings with your team or clients around the world
           </p>
-
         </div>
-
-        {/* HERO TOOL CARD */}
 
         <div
           style={{
@@ -99,8 +77,6 @@ export default function HeroSection() {
             borderRadius: 24,
             padding: 32,
             color: "#000",
-
-            /* Slightly stronger card framing */
             border: "1px solid rgba(0,0,0,0.06)",
             boxShadow: "0 30px 80px rgba(0,0,0,0.35)"
           }}
