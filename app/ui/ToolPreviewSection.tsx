@@ -69,6 +69,7 @@ const CITY_OPTIONS: City[] = [
 /* COUNTRY FLAG MAP */
 
 function getCountryCode(city: string): string {
+
   if (city.includes("USA")) return "us";
   if (city.includes("Canada")) return "ca";
   if (city.includes("Brazil")) return "br";
@@ -107,6 +108,7 @@ function getCountryCode(city: string): string {
 }
 
 function Flag({ city }: { city: string }) {
+
   const code = getCountryCode(city);
 
   return (
@@ -123,7 +125,105 @@ function Flag({ city }: { city: string }) {
   );
 }
 
-/* REMAINDER OF FILE UNCHANGED (ALL LOGIC PRESERVED) */
+/* TIMEZONE NORMALIZATION */
+
+function normalizeTimeZoneLabel(label?: string) {
+
+  if (!label) return "";
+
+  const map: Record<string, string> = {
+
+    "GMT+0": "GMT",
+    "GMT+1": "CET",
+    "GMT+2": "CEST",
+
+    "GMT+3": "EAT",
+    "GMT+4": "GST",
+
+    "GMT+5": "PKT",
+    "GMT+5:30": "IST",
+    "GMT+6": "BST",
+    "GMT+7": "ICT",
+    "GMT+8": "CST",
+    "GMT+9": "JST",
+
+    "GMT+10": "AEST",
+    "GMT+11": "AEDT",
+
+    "GMT+12": "NZST",
+    "GMT+13": "NZDT",
+
+    "GMT-3": "BRT"
+
+  };
+
+  return map[label] ?? label;
+}
+
+/* TIMEZONE OFFSET */
+
+function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
+
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    timeZoneName: "shortOffset",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).formatToParts(date);
+
+  const tzPart =
+    parts.find((part) => part.type === "timeZoneName")?.value ?? "GMT+0";
+
+  const match = tzPart.match(/GMT([+-])(\d{1,2})(?::?(\d{2}))?/);
+
+  if (!match) return 0;
+
+  const sign = match[1] === "-" ? -1 : 1;
+  const hours = Number(match[2]);
+  const minutes = Number(match[3] ?? "0");
+
+  return sign * (hours * 60 + minutes);
+}
+
+/* MEETING OVERLAP */
+
+function calculateOverlap(cityA: City, cityB: City): Window {
+
+  const now = new Date();
+
+  const offsetA = getTimeZoneOffsetMinutes(now, cityA.tz);
+  const offsetB = getTimeZoneOffsetMinutes(now, cityB.tz);
+
+  const workStart = 9 * 60;
+  const workEnd = 17 * 60;
+
+  const startA = workStart - offsetA;
+  const endA = workEnd - offsetA;
+
+  const startB = workStart - offsetB;
+  const endB = workEnd - offsetB;
+
+  let overlapStart = Math.max(startA, startB);
+  let overlapEnd = Math.min(endA, endB);
+
+  if (overlapStart >= overlapEnd) {
+    overlapEnd = overlapStart + 120;
+  }
+
+  const base = new Date();
+  base.setUTCHours(0, 0, 0, 0);
+
+  const start = new Date(base.getTime() + overlapStart * 60000);
+  const end = new Date(base.getTime() + overlapEnd * 60000);
+
+  return {
+    startUtc: start.toISOString(),
+    endUtc: end.toISOString(),
+  };
+}
+
+/* MAIN COMPONENT */
 
 export default function ToolPreviewSection() {
 
@@ -208,62 +308,175 @@ export default function ToolPreviewSection() {
   ];
 
   return (
+
     <div style={{ maxWidth: 720, margin: "0 auto", padding: 16 }}>
 
-      {/* ✅ NEW WRAPPER (MATCHES PREMIUM BACKGROUND) */}
-      <div
-        style={{
-          background: "linear-gradient(180deg,#efe7ff 0%, #f6f2ff 100%)",
-          borderRadius: 20,
-          padding: 26,
-          border: "1px solid rgba(255,255,255,0.22)",
-          boxShadow: "0 18px 50px rgba(0,0,0,0.25)"
-        }}
-      >
+      {viewerTZ && (
+        <div style={{ marginBottom: 20, fontWeight: 600 }}>
+          Your Time Zone: {viewerTZ}
+        </div>
+      )}
 
-        {viewerTZ && (
-          <div style={{ marginBottom: 20, fontWeight: 600 }}>
-            Your Time Zone: {viewerTZ}
-          </div>
-        )}
+      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 30 }}>
 
-        {/* EVERYTHING BELOW UNCHANGED */}
-
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 30 }}>
-          <div>
-            <div style={{ fontWeight: 600, display: "flex", alignItems: "center" }}>
-              {cityA.name}
-              <Flag city={cityA.name}/>
-            </div>
-
-            <div style={{ fontSize: 30, fontWeight: 700 }}>
-              {cityATime} {cityATZ}
-            </div>
-
-            <div style={{ opacity: 0.7 }}>
-              {cityADate}
-            </div>
+        <div>
+          <div style={{ fontWeight: 600, display: "flex", alignItems: "center" }}>
+            {cityA.name}
+            <Flag city={cityA.name}/>
           </div>
 
-          <div style={{ textAlign: "right" }}>
-            <div style={{ fontWeight: 600, display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
-              {cityB.name}
-              <Flag city={cityB.name}/>
-            </div>
+          <div style={{ fontSize: 30, fontWeight: 700 }}>
+            {cityATime} {cityATZ}
+          </div>
 
-            <div style={{ fontSize: 30, fontWeight: 700 }}>
-              {cityBTime} {cityBTZ}
-            </div>
-
-            <div style={{ opacity: 0.7 }}>
-              {cityBDate}
-            </div>
+          <div style={{ opacity: 0.7 }}>
+            {cityADate}
           </div>
         </div>
 
-        {/* rest unchanged... */}
+        <div style={{ textAlign: "right" }}>
+          <div style={{ fontWeight: 600, display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+            {cityB.name}
+            <Flag city={cityB.name}/>
+          </div>
+
+          <div style={{ fontSize: 30, fontWeight: 700 }}>
+            {cityBTime} {cityBTZ}
+          </div>
+
+          <div style={{ opacity: 0.7 }}>
+            {cityBDate}
+          </div>
+        </div>
 
       </div>
+
+      <div style={{ display: "flex", gap: 20, marginBottom: 20, alignItems: "center" }}>
+
+        <select
+          value={cityA.name}
+          onChange={(e) => {
+            const city = CITY_OPTIONS.find(c => c.name === e.target.value)!;
+            setCityA(city);
+          }}
+        >
+          {CITY_OPTIONS.map(city => (
+            <option key={city.name} value={city.name}>
+              {city.name}
+            </option>
+          ))}
+        </select>
+
+        <button
+          onClick={() => {
+            const temp = cityA;
+            setCityA(cityB);
+            setCityB(temp);
+          }}
+          style={{
+            padding: "8px 16px",
+            fontWeight: 600,
+            borderRadius: 6,
+            cursor: "pointer",
+            color: "#000"
+          }}
+        >
+          SWAP
+        </button>
+
+        <select
+          value={cityB.name}
+          onChange={(e) => {
+            const city = CITY_OPTIONS.find(c => c.name === e.target.value)!;
+            setCityB(city);
+          }}
+        >
+          {CITY_OPTIONS.map(city => (
+            <option key={city.name} value={city.name}>
+              {city.name}
+            </option>
+          ))}
+        </select>
+
+      </div>
+
+      <div style={{ border: "1px solid #444", padding: 16, borderRadius: 10 }}>
+
+        <div style={{ position: "relative", height: 20, marginBottom: 10 }}>
+
+          {labels.map((l) => (
+            <span
+              key={l.hour}
+              style={{
+                position: "absolute",
+                left: `${(l.hour / 24) * 100}%`,
+                transform: "translateX(-50%)",
+                fontSize: 13
+              }}
+            >
+              {l.label}
+            </span>
+          ))}
+
+        </div>
+
+        <div style={{ position: "relative" }}>
+
+          <div
+            style={{
+              height: 36,
+              borderRadius: 12,
+              background: "linear-gradient(90deg,#4c1d95,#6d28d9,#7c3aed)",
+              position: "relative",
+              overflow: "hidden"
+            }}
+          >
+
+            {[...Array(24)].map((_, i) => (
+              <div
+                key={i}
+                style={{
+                  position: "absolute",
+                  left: `${(i / 24) * 100}%`,
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  width: 1,
+                  height: i % 2 === 0 ? 20 : 12,
+                  background: "#ffffff66",
+                  pointerEvents: "none"
+                }}
+              />
+            ))}
+
+            <div
+              style={{
+                position: "absolute",
+                left: `${startPercent}%`,
+                width: `${widthPercent}%`,
+                height: "100%",
+                background: "#22c55e",
+                borderRadius: 12,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontWeight: 600,
+                color: "#fff",
+                fontSize: 12
+              }}
+            >
+              Best Time
+            </div>
+
+          </div>
+
+        </div>
+
+        <div style={{ marginTop: 8, fontWeight: 600 }}>
+          Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
+        </div>
+
+      </div>
+
     </div>
   );
 }
