@@ -15,8 +15,10 @@ export default function RootLayout({
       <body
         style={{
           margin: 0,
-          background: "#0b0a14", // solid base (REMOVED gradient conflict)
           minHeight: "100vh",
+          background: `
+            radial-gradient(circle at top, #6d28d9 0%, #4c1d95 40%, #2e1065 75%, #0b0a14 100%)
+          `,
         }}
       >
         {children}
