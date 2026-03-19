@@ -8,8 +8,7 @@ export default function HeroSection() {
       aria-label="Hero Section"
       style={{
         padding: "28px 20px",
-        background: "linear-gradient(180deg,#4c1d95,#3b0764)",
-        color: "#ffffff"
+        color: "#ffffff" // keep text white, remove background
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
@@ -100,7 +99,6 @@ export default function HeroSection() {
             padding: 32,
             color: "#000",
 
-            /* Slightly stronger card framing */
             border: "1px solid rgba(0,0,0,0.06)",
             boxShadow: "0 30px 80px rgba(0,0,0,0.35)"
           }}
