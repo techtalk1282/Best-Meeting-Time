@@ -8,7 +8,7 @@ export default function HeroSection() {
       aria-label="Hero Section"
       style={{
         padding: "28px 20px",
-        color: "#ffffff" // keep text white, remove background
+        color: "#ffffff" // keep text white, no background here
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
@@ -94,13 +94,13 @@ export default function HeroSection() {
 
         <div
           style={{
-            background: "#ffffff",
+            background: "linear-gradient(180deg,#ede9fe,#ddd6fe)", // ✅ FIXED
             borderRadius: 24,
             padding: 32,
             color: "#000",
 
             border: "1px solid rgba(0,0,0,0.06)",
-            boxShadow: "0 30px 80px rgba(0,0,0,0.35)"
+            boxShadow: "0 20px 50px rgba(0,0,0,0.25)"
           }}
         >
           <ToolPreviewSection />
