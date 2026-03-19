@@ -313,7 +313,7 @@ export default function ToolPreviewSection() {
 
   <div
     style={{
-      background: "linear-gradient(180deg,#efe7ff 0%, #f6f2ff 100%)",
+      background: "#ede9fe",
       borderRadius: 20,
       padding: 26,
       border: "1px solid rgba(255,255,255,0.22)",
