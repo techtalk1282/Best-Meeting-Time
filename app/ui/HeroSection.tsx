@@ -9,6 +9,7 @@ export default function HeroSection() {
       style={{
         padding: "28px 20px",
         color: "#ffffff" // keep text white, remove background
+        background: "#ede9fe"
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
