@@ -8,7 +8,7 @@ export default function HeroSection() {
       aria-label="Hero Section"
       style={{
         padding: "28px 20px",
-        color: "#ffffff" // keep text white, remove background
+        color: "#ffffff", // keep text white, remove background
         background: "#ede9fe"
       }}
     >
