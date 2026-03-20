@@ -106,17 +106,26 @@ export default function PremiumFeaturesSection({
             boxShadow: "0 18px 50px rgba(0,0,0,0.24)",
           }}
         >
-          <h2
-            style={{
-              margin: "0 0 22px 0",
-              textAlign: "center",
-              fontSize: 24,
-              fontWeight: 800,
-              color: "#1f1147",
-            }}
-          >
-            Unlock Premium Features
-          </h2>
+
+          {/* ✅ PRIMARY CTA MOVED TO TOP */}
+          <div style={{ textAlign: "center", marginBottom: 22 }}>
+            <button
+              style={{
+                background: "#facc15",
+                color: "#000000",
+                border: "none",
+                padding: "14px 28px",
+                borderRadius: 10,
+                fontWeight: 800,
+                fontSize: 16,
+                cursor: "pointer",
+                minWidth: 320,
+                boxShadow: "0 8px 18px rgba(245, 158, 11, 0.35)",
+              }}
+            >
+              Unlock Premium – $9 One-Time
+            </button>
+          </div>
 
           <div
             style={{
@@ -153,11 +162,7 @@ export default function PremiumFeaturesSection({
           >
             <div style={bottomFeatureCard}>
               <div style={iconWrap}>
-                <img
-                  src="/google-calendar.png"
-                  alt="Google Calendar"
-                  style={iconImg}
-                />
+                <img src="/google-calendar.png" alt="Google Calendar" style={iconImg} />
               </div>
               <h3 style={cardTitle}>Google Calendar</h3>
               <p style={cardText}>Save meetings directly to Google</p>
@@ -165,11 +170,7 @@ export default function PremiumFeaturesSection({
 
             <div style={bottomFeatureCard}>
               <div style={iconWrap}>
-                <img
-                  src="/outlook.png"
-                  alt="Outlook Calendar"
-                  style={iconImg}
-                />
+                <img src="/outlook.png" alt="Outlook Calendar" style={iconImg} />
               </div>
               <h3 style={cardTitle}>Outlook Calendar</h3>
               <p style={cardText}>Save meetings directly to Outlook</p>
@@ -177,36 +178,13 @@ export default function PremiumFeaturesSection({
 
             <div style={bottomFeatureCard}>
               <div style={iconWrap}>
-                <img
-                  src="/apple.png"
-                  alt="Apple Calendar"
-                  style={appleIconImg}
-                />
+                <img src="/apple.png" alt="Apple Calendar" style={appleIconImg} />
               </div>
               <h3 style={cardTitle}>Apple Calendar</h3>
               <p style={cardText}>Download the .ICS file for Apple</p>
             </div>
 
             {children}
-          </div>
-
-          <div style={{ textAlign: "center", marginBottom: 22 }}>
-            <button
-              style={{
-                background: "#facc15",
-                color: "#000000",
-                border: "none",
-                padding: "14px 28px",
-                borderRadius: 10,
-                fontWeight: 800,
-                fontSize: 16,
-                cursor: "pointer",
-                minWidth: 320,
-                boxShadow: "0 8px 18px rgba(245, 158, 11, 0.35)",
-              }}
-            >
-              Unlock Premium – $9 One-Time
-            </button>
           </div>
 
           <div
