@@ -19,15 +19,8 @@ const featureCardBase: React.CSSProperties = {
   justifyContent: "center",
 };
 
-const topFeatureCard: React.CSSProperties = {
-  ...featureCardBase,
-  minHeight: 160,
-};
-
-const bottomFeatureCard: React.CSSProperties = {
-  ...featureCardBase,
-  minHeight: 150,
-};
+const topFeatureCard = { ...featureCardBase, minHeight: 160 };
+const bottomFeatureCard = { ...featureCardBase, minHeight: 150 };
 
 const iconWrap: React.CSSProperties = {
   width: 56,
@@ -67,15 +60,16 @@ const cardText: React.CSSProperties = {
 const checklistItem: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
+  justifyContent: "center", // ✅ center content
   gap: 10,
-  fontSize: 14,
-  fontWeight: 500,
-  color: "#1f1147",
+  fontSize: 16, // ✅ bigger
+  fontWeight: 600, // ✅ stronger
+  color: "#1f1147", // ✅ darker
 };
 
 function CheckIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true">
+    <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true">
       <path
         d="M7.8 14.2L3.9 10.3l1.4-1.4 2.5 2.5 6.9-6.9 1.4 1.4-8.3 8.3z"
         fill="#facc15"
@@ -107,7 +101,7 @@ export default function PremiumFeaturesSection({
           }}
         >
 
-          {/* ✅ PRIMARY CTA MOVED TO TOP */}
+          {/* ✅ UPDATED CTA TEXT */}
           <div style={{ textAlign: "center", marginBottom: 22 }}>
             <button
               style={{
@@ -119,14 +113,15 @@ export default function PremiumFeaturesSection({
                 fontWeight: 800,
                 fontSize: 16,
                 cursor: "pointer",
-                minWidth: 320,
+                minWidth: 340,
                 boxShadow: "0 8px 18px rgba(245, 158, 11, 0.35)",
               }}
             >
-              Unlock Premium – $9 One-Time
+              Unlock Premium Features – $9 One-Time Charge
             </button>
           </div>
 
+          {/* FEATURES GRID */}
           <div
             style={{
               display: "grid",
@@ -187,39 +182,23 @@ export default function PremiumFeaturesSection({
             {children}
           </div>
 
+          {/* ✅ FIXED CHECKLIST BLOCK */}
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
-              gap: "12px 48px",
-              maxWidth: 760,
-              margin: "0 auto 18px",
+              gap: "14px 60px",
+              maxWidth: 680,
+              margin: "0 auto 20px",
+              textAlign: "center", // ✅ centers whole block
             }}
           >
-            <div style={checklistItem}>
-              <CheckIcon />
-              <span>One-time payment</span>
-            </div>
-            <div style={checklistItem}>
-              <CheckIcon />
-              <span>Save &amp; export meeting times</span>
-            </div>
-            <div style={checklistItem}>
-              <CheckIcon />
-              <span>No subscription</span>
-            </div>
-            <div style={checklistItem}>
-              <CheckIcon />
-              <span>Download .ics file options</span>
-            </div>
-            <div style={checklistItem}>
-              <CheckIcon />
-              <span>Remove all ads</span>
-            </div>
-            <div style={checklistItem}>
-              <CheckIcon />
-              <span>Share meeting links</span>
-            </div>
+            <div style={checklistItem}><CheckIcon /><span>One-time payment</span></div>
+            <div style={checklistItem}><CheckIcon /><span>Save & export meeting times</span></div>
+            <div style={checklistItem}><CheckIcon /><span>No subscription</span></div>
+            <div style={checklistItem}><CheckIcon /><span>Download .ics file options</span></div>
+            <div style={checklistItem}><CheckIcon /><span>Remove all ads</span></div>
+            <div style={checklistItem}><CheckIcon /><span>Share meeting links</span></div>
           </div>
 
           <div
