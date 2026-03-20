@@ -93,6 +93,7 @@ export default function HeroSection() {
         {/* HERO TOOL CARD */}
 
         <div
+          id="tool-preview"
           style={{
             background: "linear-gradient(180deg,#ede9fe,#ddd6fe)", // ✅ FIXED
             borderRadius: 24,
