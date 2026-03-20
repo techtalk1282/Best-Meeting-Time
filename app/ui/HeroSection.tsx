@@ -48,7 +48,7 @@ export default function HeroSection() {
                 cursor: "pointer"
               }}
             >
-              Get Started
+              Get Started Free
             </button>
           </a>
         </div>
@@ -88,7 +88,24 @@ export default function HeroSection() {
           >
             Easily schedule meetings with your team or clients around the world
           </p>
-
+<div style={{ marginTop: 24 }}>
+  <a href="#tool-preview">
+    <button
+      style={{
+        background: "#facc15",
+        color: "#000",
+        border: "none",
+        padding: "12px 26px",
+        borderRadius: 10,
+        fontWeight: 700,
+        cursor: "pointer",
+        fontSize: 16
+      }}
+    >
+      Get Started Free
+    </button>
+  </a>
+</div>
         </div>
 
         {/* HERO TOOL CARD */}
