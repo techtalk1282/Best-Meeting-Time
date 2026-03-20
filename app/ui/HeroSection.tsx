@@ -2,6 +2,20 @@
 
 import ToolPreviewSection from "./ToolPreviewSection";
 
+/* ✅ STANDARD CTA STYLE */
+const primaryButton: React.CSSProperties = {
+  background: "#facc15",
+  color: "#000",
+  border: "none",
+  padding: "14px 28px",
+  borderRadius: 10,
+  fontWeight: 800,
+  fontSize: 16,
+  cursor: "pointer",
+  minWidth: 260,
+  boxShadow: "0 8px 18px rgba(245, 158, 11, 0.35)",
+};
+
 export default function HeroSection() {
   return (
     <section
@@ -30,10 +44,8 @@ export default function HeroSection() {
             style={{ height: 72 }}
           />
 
-          {/* spacer keeps center balance */}
           <div />
 
-          {/* ✅ NEW PREMIUM CTA BUTTON (RIGHT SIDE) */}
           <a href="#premium-features">
             <button
               style={{
@@ -104,20 +116,9 @@ export default function HeroSection() {
           }}
         >
 
-          {/* CTA inside tool */}
+          {/* ✅ STANDARDIZED BUTTON */}
           <div style={{ textAlign: "center", marginBottom: 20 }}>
-            <button
-              style={{
-                background: "#facc15",
-                color: "#000",
-                border: "none",
-                padding: "12px 26px",
-                borderRadius: 10,
-                fontWeight: 700,
-                fontSize: 16,
-                cursor: "default"
-              }}
-            >
+            <button style={primaryButton}>
               Get Started Free
             </button>
           </div>
