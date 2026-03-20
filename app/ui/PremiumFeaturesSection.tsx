@@ -57,14 +57,14 @@ const cardText: React.CSSProperties = {
   color: "#4b5563",
 };
 
+/* ✅ UPDATED CHECKLIST ITEM */
 const checklistItem: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
-  justifyContent: "center", // ✅ center content
   gap: 10,
-  fontSize: 16, // ✅ bigger
-  fontWeight: 600, // ✅ stronger
-  color: "#1f1147", // ✅ darker
+  fontSize: 16,
+  fontWeight: 600,
+  color: "#1f1147",
 };
 
 function CheckIcon() {
@@ -101,7 +101,7 @@ export default function PremiumFeaturesSection({
           }}
         >
 
-          {/* ✅ UPDATED CTA TEXT */}
+          {/* CTA */}
           <div style={{ textAlign: "center", marginBottom: 22 }}>
             <button
               style={{
@@ -121,7 +121,7 @@ export default function PremiumFeaturesSection({
             </button>
           </div>
 
-          {/* FEATURES GRID */}
+          {/* FEATURE CARDS */}
           <div
             style={{
               display: "grid",
@@ -182,15 +182,14 @@ export default function PremiumFeaturesSection({
             {children}
           </div>
 
-          {/* ✅ FIXED CHECKLIST BLOCK */}
+          {/* ✅ FIXED CHECKLIST GRID */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 1fr",
+              gridTemplateColumns: "repeat(2, max-content)", // ✅ key fix
+              justifyContent: "center", // ✅ centers entire block
               gap: "14px 60px",
-              maxWidth: 680,
               margin: "0 auto 20px",
-              textAlign: "center", // ✅ centers whole block
             }}
           >
             <div style={checklistItem}><CheckIcon /><span>One-time payment</span></div>
