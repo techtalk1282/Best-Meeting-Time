@@ -8,7 +8,7 @@ export default function HeroSection() {
       id="hero"
       aria-label="Hero Section"
       style={{
-        padding: "24px 20px", // slightly reduced
+        padding: "24px 20px",
         color: "#ffffff"
       }}
     >
@@ -21,7 +21,7 @@ export default function HeroSection() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            marginBottom: 32 // tightened
+            marginBottom: 32
           }}
         >
           <img
@@ -30,16 +30,27 @@ export default function HeroSection() {
             style={{ height: 72 }}
           />
 
-          <div style={{ display: "flex", gap: 30, fontSize: 16 }}>
-            <a
-              href="#premium-features"
-              style={{ color: "#fff", textDecoration: "none" }}
+          {/* spacer keeps center balance */}
+          <div />
+
+          {/* ✅ NEW PREMIUM CTA BUTTON (RIGHT SIDE) */}
+          <a href="#premium-features">
+            <button
+              style={{
+                background: "#facc15",
+                color: "#000",
+                border: "none",
+                padding: "10px 22px",
+                borderRadius: 10,
+                fontWeight: 700,
+                fontSize: 14,
+                cursor: "pointer",
+                boxShadow: "0 6px 18px rgba(0,0,0,0.25)"
+              }}
             >
               Premium Features & Pricing
-            </a>
-          </div>
-
-          <div style={{ width: 120 }} />
+            </button>
+          </a>
         </div>
 
         {/* HERO TEXT */}
@@ -49,7 +60,7 @@ export default function HeroSection() {
           <h1
             style={{
               fontSize: 56,
-              marginBottom: 6, // tightened
+              marginBottom: 6,
               fontWeight: 700
             }}
           >
@@ -60,7 +71,7 @@ export default function HeroSection() {
             style={{
               fontSize: 34,
               fontWeight: 400,
-              marginBottom: 10 // tightened
+              marginBottom: 10
             }}
           >
             Across Time Zones
@@ -77,8 +88,6 @@ export default function HeroSection() {
           >
             Easily schedule meetings with your team or clients around the world
           </p>
-
-          {/* ❌ CTA REMOVED FROM HERO */}
         </div>
 
         {/* HERO TOOL CARD */}
@@ -88,14 +97,14 @@ export default function HeroSection() {
           style={{
             background: "linear-gradient(180deg,#ede9fe,#ddd6fe)",
             borderRadius: 24,
-            padding: 28, // slightly reduced
+            padding: 28,
             color: "#000",
             border: "1px solid rgba(0,0,0,0.06)",
             boxShadow: "0 20px 50px rgba(0,0,0,0.25)"
           }}
         >
 
-          {/* ✅ CTA MOVED INSIDE TOOL (STATIC, NO LINK) */}
+          {/* CTA inside tool */}
           <div style={{ textAlign: "center", marginBottom: 20 }}>
             <button
               style={{
@@ -106,7 +115,7 @@ export default function HeroSection() {
                 borderRadius: 10,
                 fontWeight: 700,
                 fontSize: 16,
-                cursor: "default" // no interaction
+                cursor: "default"
               }}
             >
               Get Started Free
