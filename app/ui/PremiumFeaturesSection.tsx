@@ -57,7 +57,7 @@ const cardText: React.CSSProperties = {
   color: "#4b5563",
 };
 
-/* ✅ UPDATED CHECKLIST ITEM */
+/* ✅ IMPROVED CHECKLIST ITEM */
 const checklistItem: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
@@ -65,6 +65,19 @@ const checklistItem: React.CSSProperties = {
   fontSize: 16,
   fontWeight: 600,
   color: "#1f1147",
+};
+
+/* ✅ GLOBAL BUTTON STYLE (matches Hero + Nav) */
+const primaryButton: React.CSSProperties = {
+  background: "#facc15",
+  color: "#000",
+  border: "none",
+  padding: "10px 22px",
+  borderRadius: 10,
+  fontWeight: 700,
+  fontSize: 14,
+  cursor: "pointer",
+  boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
 };
 
 function CheckIcon() {
@@ -101,22 +114,9 @@ export default function PremiumFeaturesSection({
           }}
         >
 
-          {/* CTA */}
+          {/* ✅ STANDARDIZED CTA */}
           <div style={{ textAlign: "center", marginBottom: 22 }}>
-            <button
-              style={{
-                background: "#facc15",
-                color: "#000000",
-                border: "none",
-                padding: "14px 28px",
-                borderRadius: 10,
-                fontWeight: 800,
-                fontSize: 16,
-                cursor: "pointer",
-                minWidth: 340,
-                boxShadow: "0 8px 18px rgba(245, 158, 11, 0.35)",
-              }}
-            >
+            <button style={primaryButton}>
               Unlock Premium Features – $9 One-Time Charge
             </button>
           </div>
@@ -182,12 +182,12 @@ export default function PremiumFeaturesSection({
             {children}
           </div>
 
-          {/* ✅ FIXED CHECKLIST GRID */}
+          {/* ✅ CENTERED + STRONG CHECKLIST */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(2, max-content)", // ✅ key fix
-              justifyContent: "center", // ✅ centers entire block
+              gridTemplateColumns: "repeat(2, max-content)",
+              justifyContent: "center",
               gap: "14px 60px",
               margin: "0 auto 20px",
             }}
@@ -209,6 +209,7 @@ export default function PremiumFeaturesSection({
           >
             Secured by Stripe • Terms • Privacy
           </div>
+
         </div>
       </div>
     </section>
