@@ -9,7 +9,7 @@ export default function HeroSection() {
       aria-label="Hero Section"
       style={{
         padding: "28px 20px",
-        color: "#ffffff" // keep text white, no background here
+        color: "#ffffff"
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
@@ -30,27 +30,17 @@ export default function HeroSection() {
             style={{ height: 72 }}
           />
 
-    <div style={{ display: "flex", gap: 30, fontSize: 16 }}>
-  <a href="#premium-features" style={{ color: "#fff", textDecoration: "none" }}>
-    Premium Features & Pricing
-  </a>
-</div>
-
-          <a href="#tool-preview">
-            <button
-              style={{
-                background: "#facc15",
-                color: "#000",
-                border: "none",
-                padding: "10px 20px",
-                borderRadius: 8,
-                fontWeight: 600,
-                cursor: "pointer"
-              }}
+          <div style={{ display: "flex", gap: 30, fontSize: 16 }}>
+            <a
+              href="#premium-features"
+              style={{ color: "#fff", textDecoration: "none" }}
             >
-              Get Started Free
-            </button>
-          </a>
+              Premium Features & Pricing
+            </a>
+          </div>
+
+          {/* spacer keeps layout balanced after removing button */}
+          <div style={{ width: 120 }} />
         </div>
 
         {/* HERO TEXT */}
@@ -88,24 +78,25 @@ export default function HeroSection() {
           >
             Easily schedule meetings with your team or clients around the world
           </p>
-<div style={{ marginTop: 24 }}>
-  <a href="#tool-preview">
-    <button
-      style={{
-        background: "#facc15",
-        color: "#000",
-        border: "none",
-        padding: "12px 26px",
-        borderRadius: 10,
-        fontWeight: 700,
-        cursor: "pointer",
-        fontSize: 16
-      }}
-    >
-      Get Started Free
-    </button>
-  </a>
-</div>
+
+          <div style={{ marginTop: 24 }}>
+            <a href="#tool-preview">
+              <button
+                style={{
+                  background: "#facc15",
+                  color: "#000",
+                  border: "none",
+                  padding: "12px 26px",
+                  borderRadius: 10,
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  fontSize: 16
+                }}
+              >
+                Get Started Free
+              </button>
+            </a>
+          </div>
         </div>
 
         {/* HERO TOOL CARD */}
@@ -113,11 +104,10 @@ export default function HeroSection() {
         <div
           id="tool-preview"
           style={{
-            background: "linear-gradient(180deg,#ede9fe,#ddd6fe)", // ✅ FIXED
+            background: "linear-gradient(180deg,#ede9fe,#ddd6fe)",
             borderRadius: 24,
             padding: 32,
             color: "#000",
-
             border: "1px solid rgba(0,0,0,0.06)",
             boxShadow: "0 20px 50px rgba(0,0,0,0.25)"
           }}
