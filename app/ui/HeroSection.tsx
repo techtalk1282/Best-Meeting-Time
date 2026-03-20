@@ -5,6 +5,7 @@ import ToolPreviewSection from "./ToolPreviewSection";
 export default function HeroSection() {
   return (
     <section
+      id="tool-preview"
       aria-label="Hero Section"
       style={{
         padding: "28px 20px",
