@@ -29,13 +29,12 @@ export default function HeroSection() {
             style={{ height: 72 }}
           />
 
-          <div style={{ display: "flex", gap: 30, fontSize: 16 }}>
-            <a href="#tool-preview" style={{ color: "#fff", textDecoration: "none" }}>Features</a>
-            <a href="#premium-features" style={{ color: "#fff", textDecoration: "none" }}>Pricing</a>
-            <a href="#footer" style={{ color: "#fff", textDecoration: "none" }}>Login</a>
-          </div>
+    <div style={{ display: "flex", gap: 30, fontSize: 16 }}>
+  <a href="#tool-preview" style={{ color: "#fff", textDecoration: "none" }}>Features</a>
+  <a href="#premium-features" style={{ color: "#fff", textDecoration: "none" }}>Pricing</a>
+</div>      
 
-          <a href="#premium-features">
+          <a href="#tool-preview">
             <button
               style={{
                 background: "#facc15",
