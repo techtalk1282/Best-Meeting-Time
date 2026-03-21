@@ -3,6 +3,11 @@
 
 import { useState, useEffect } from "react";
 
+function checkPremiumCookie(): boolean {
+  if (typeof document === "undefined") return false;
+  return document.cookie.includes("premium=1");
+}
+
 type City = {
   name: string;
   time: string;
@@ -227,12 +232,14 @@ function calculateOverlap(cityA: City, cityB: City): Window {
 /* MAIN COMPONENT */
 
 export default function ToolPreviewSection() {
-
+const [isPremium, setIsPremium] = useState(false);
   const [viewerTZ, setViewerTZ] = useState<string | null>(null);
 
   useEffect(() => {
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
     setViewerTZ(tz);
+    const premium = checkPremiumCookie();
+  setIsPremium(premium);
   }, []);
 
   const [cityA, setCityA] = useState<City>(CITY_OPTIONS[0]);
@@ -312,6 +319,12 @@ export default function ToolPreviewSection() {
 
 <div style={{ width: "100%", padding: 0 }}>
 
+
+    {isPremium && (
+      <div style={{ marginBottom: 10, color: "#16a34a", fontWeight: 700 }}>
+        Premium Unlocked
+      </div>
+    )}
       {viewerTZ && (
         <div style={{ marginBottom: 20, fontWeight: 600 }}>
           Your Time Zone: {viewerTZ}
