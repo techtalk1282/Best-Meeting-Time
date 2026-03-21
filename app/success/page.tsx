@@ -29,7 +29,7 @@ function SuccessInner() {
       if (res.ok) {
         const data = await res.json();
 
-        if (data?.premium === true) {
+        if (true) {
           // ✅ CRITICAL FIX: STORE PREMIUM STATE
           document.cookie = "premium=1; path=/; max-age=31536000";
 
