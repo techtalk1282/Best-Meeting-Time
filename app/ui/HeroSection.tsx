@@ -1,5 +1,7 @@
-// app/ui/HeroSection.tsx
+"use client";
 
+import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import ToolPreviewSection from "./ToolPreviewSection";
 
 const navButton: React.CSSProperties = {
@@ -15,6 +17,35 @@ const navButton: React.CSSProperties = {
 };
 
 export default function HeroSection() {
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const sessionId = searchParams.get("session_id");
+    if (!sessionId) return;
+
+    console.log("VERIFY: session detected");
+
+    fetch(`/api/verify?session_id=${sessionId}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log("VERIFY RESULT:", data);
+
+        if (data.ok) {
+          console.log("Premium unlocked");
+
+          // clean URL
+          window.history.replaceState({}, "", "/");
+        } else if (data.retry) {
+          console.log("Webhook pending — retrying");
+
+          setTimeout(() => {
+            window.location.reload();
+          }, 1500);
+        }
+      })
+      .catch(err => console.error("VERIFY ERROR:", err));
+  }, [searchParams]);
+
   return (
     <section
       id="hero"
@@ -42,7 +73,6 @@ export default function HeroSection() {
 
           <div />
 
-          {/* FIXED: anchor styled as button */}
           <a
             href="#premium-features"
             style={{
@@ -108,7 +138,6 @@ export default function HeroSection() {
             boxShadow: "0 20px 50px rgba(0,0,0,0.25)",
           }}
         >
-          {/* FIXED: anchor styled as button */}
           <div style={{ textAlign: "center", marginBottom: 20 }}>
             <a
               href="#tool-preview"
