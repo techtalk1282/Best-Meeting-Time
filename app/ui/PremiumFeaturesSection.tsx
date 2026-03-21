@@ -147,7 +147,7 @@ export default function PremiumFeaturesSection({
               marginBottom: 16,
             }}
           >
-            <div style={{ ...topFeatureCard, opacity: 0.5, pointerEvents: "none" }}>
+            <div style={topFeatureCard}>
               <div style={iconWrap}>
                 <img src="/share.png" alt="Share link" style={iconImg} />
               </div>
@@ -155,7 +155,7 @@ export default function PremiumFeaturesSection({
               <p style={cardText}>Send a booking page with one click</p>
             </div>
 
-            <div style={{ ...topFeatureCard, opacity: 0.5, pointerEvents: "none" }}>
+            <div style={topFeatureCard}>
               <div style={iconWrap}>
                 <img src="/globe.png" alt="Compare cities" style={iconImg} />
               </div>
@@ -172,7 +172,7 @@ export default function PremiumFeaturesSection({
               marginBottom: 24,
             }}
           >
-            <div style={{ ...bottomFeatureCard, opacity: 0.5, pointerEvents: "none" }}>
+            <div style={bottomFeatureCard}>
               <div style={iconWrap}>
                 <img src="/google-calendar.png" alt="Google Calendar" style={iconImg} />
               </div>
@@ -180,7 +180,7 @@ export default function PremiumFeaturesSection({
               <p style={cardText}>Save meetings directly to Google</p>
             </div>
 
-           <div style={{ ...bottomFeatureCard, opacity: 0.5, pointerEvents: "none" }}>
+           <div style={bottomFeatureCard}>
               <div style={iconWrap}>
                 <img src="/outlook.png" alt="Outlook Calendar" style={iconImg} />
               </div>
@@ -188,7 +188,7 @@ export default function PremiumFeaturesSection({
               <p style={cardText}>Save meetings directly to Outlook</p>
             </div>
 
-           <div style={{ ...bottomFeatureCard, opacity: 0.5, pointerEvents: "none" }}>
+           <div style={bottomFeatureCard}>
               <div style={iconWrap}>
                 <img src="/apple.png" alt="Apple Calendar" style={appleIconImg} />
               </div>
