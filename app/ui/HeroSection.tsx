@@ -14,18 +14,6 @@ const navButton: React.CSSProperties = {
   boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
 };
 
-const heroButton: React.CSSProperties = {
-  background: "#facc15",
-  color: "#000",
-  border: "none",
-  padding: "10px 22px",
-  borderRadius: 10,
-  fontWeight: 700,
-  fontSize: 14,
-  cursor: "default",
-  boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
-};
-
 export default function HeroSection() {
   return (
     <section
@@ -37,6 +25,7 @@ export default function HeroSection() {
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        {/* NAVBAR */}
         <div
           style={{
             display: "flex",
@@ -53,11 +42,26 @@ export default function HeroSection() {
 
           <div />
 
-          <a href="#premium-features">
-            <button style={navButton}>Premium Features & Pricing</button>
+          {/* FIXED: anchor styled as button */}
+          <a
+            href="#premium-features"
+            style={{
+              display: "inline-block",
+              background: "#facc15",
+              color: "#000",
+              padding: "10px 22px",
+              borderRadius: 10,
+              fontWeight: 700,
+              fontSize: 14,
+              textDecoration: "none",
+              boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
+            }}
+          >
+            Premium Features & Pricing
           </a>
         </div>
 
+        {/* HERO TEXT */}
         <div style={{ textAlign: "center", marginBottom: 20 }}>
           <h1
             style={{
@@ -92,6 +96,7 @@ export default function HeroSection() {
           </p>
         </div>
 
+        {/* TOOL PREVIEW CARD */}
         <div
           id="tool-preview"
           style={{
@@ -103,8 +108,24 @@ export default function HeroSection() {
             boxShadow: "0 20px 50px rgba(0,0,0,0.25)",
           }}
         >
+          {/* FIXED: anchor styled as button */}
           <div style={{ textAlign: "center", marginBottom: 20 }}>
-            <button style={heroButton}>Get Started Free</button>
+            <a
+              href="#tool-preview"
+              style={{
+                display: "inline-block",
+                background: "#facc15",
+                color: "#000",
+                padding: "10px 22px",
+                borderRadius: 10,
+                fontWeight: 700,
+                fontSize: 14,
+                textDecoration: "none",
+                boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
+              }}
+            >
+              Get Started Free
+            </a>
           </div>
 
           <ToolPreviewSection />
