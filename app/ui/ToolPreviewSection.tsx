@@ -1,4 +1,3 @@
-// app/ui/PremiumFeaturesSection.tsx
 
 "use client";
 
