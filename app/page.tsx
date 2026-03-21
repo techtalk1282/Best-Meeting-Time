@@ -6,15 +6,20 @@ import HeroSection from "./ui/HeroSection";
 import PremiumFeaturesSection from "./ui/PremiumFeaturesSection";
 import BonusFeaturesSection from "./ui/BonusFeaturesSection";
 import FooterSection from "./ui/FooterSection";
+import VerifyPremium from "./ui/VerifyPremium"; // ✅ ADDED
 
 export default function HomePage() {
   return (
-    <LayoutShell
-      hero={<HeroSection />}
-      toolPreview={null}
-      premiumFeatures={<PremiumFeaturesSection />}
-      bonusFeatures={<BonusFeaturesSection />}
-      footer={<FooterSection />}
-    />
+    <>
+      <VerifyPremium /> {/* ✅ ADDED */}
+
+      <LayoutShell
+        hero={<HeroSection />}
+        toolPreview={null}
+        premiumFeatures={<PremiumFeaturesSection />}
+        bonusFeatures={<BonusFeaturesSection />}
+        footer={<FooterSection />}
+      />
+    </>
   );
 }
