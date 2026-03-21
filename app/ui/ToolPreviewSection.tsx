@@ -316,7 +316,6 @@ const [isPremium, setIsPremium] = useState(false);
   ];
 
   return (
-
 <div style={{ width: "100%", padding: 0 }}>
 
 
