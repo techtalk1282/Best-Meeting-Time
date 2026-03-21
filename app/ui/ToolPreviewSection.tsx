@@ -244,7 +244,12 @@ const [isPremium, setIsPremium] = useState(false);
 
   const [cityA, setCityA] = useState<City>(CITY_OPTIONS[0]);
   const [cityB, setCityB] = useState<City>(CITY_OPTIONS[1]);
+  const [now, setNow] = useState<Date | null>(null);
 
+useEffect(() => {
+  setNow(new Date());
+}, []);
+  if (!now) return null;
   const meetingWindow = calculateOverlap(cityA, cityB);
 
   const startDate = new Date(meetingWindow.startUtc);
@@ -259,7 +264,7 @@ const [isPremium, setIsPremium] = useState(false);
   const startLocal = startDate.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
   const endLocal = endDate.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
 
-  const now = new Date();
+ 
 
   const cityATime = new Intl.DateTimeFormat("en-US", {
     timeZone: cityA.tz,
