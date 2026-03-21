@@ -1,3 +1,5 @@
+"use client";
+
 // app/ui/PremiumFeaturesSection.tsx
 
 import { ReactNode } from "react";
@@ -57,7 +59,6 @@ const cardText: React.CSSProperties = {
   color: "#4b5563",
 };
 
-/* ✅ IMPROVED CHECKLIST ITEM */
 const checklistItem: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
@@ -67,7 +68,6 @@ const checklistItem: React.CSSProperties = {
   color: "#1f1147",
 };
 
-/* ✅ GLOBAL BUTTON STYLE (matches Hero + Nav) */
 const primaryButton: React.CSSProperties = {
   background: "#facc15",
   color: "#000",
@@ -94,6 +94,25 @@ function CheckIcon() {
 export default function PremiumFeaturesSection({
   children,
 }: PremiumFeaturesSectionProps) {
+
+  async function handleCheckout() {
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+      });
+
+      const data = await res.json();
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        console.error("No checkout URL returned");
+      }
+    } catch (err) {
+      console.error("Checkout error:", err);
+    }
+  }
+
   return (
     <section
       id="premium-features"
@@ -114,14 +133,12 @@ export default function PremiumFeaturesSection({
           }}
         >
 
-          {/* ✅ STANDARDIZED CTA */}
           <div style={{ textAlign: "center", marginBottom: 22 }}>
-            <button style={primaryButton}>
+            <button style={primaryButton} onClick={handleCheckout}>
               Unlock Premium Features – $9 One-Time Charge
             </button>
           </div>
 
-          {/* FEATURE CARDS */}
           <div
             style={{
               display: "grid",
@@ -182,7 +199,6 @@ export default function PremiumFeaturesSection({
             {children}
           </div>
 
-          {/* ✅ CENTERED + STRONG CHECKLIST */}
           <div
             style={{
               display: "grid",
