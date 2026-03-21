@@ -30,6 +30,9 @@ function SuccessInner() {
         const data = await res.json();
 
         if (data?.premium === true) {
+          // ✅ CRITICAL FIX: STORE PREMIUM STATE
+          document.cookie = "premium=true; path=/; max-age=31536000";
+
           clearInterval(interval);
           router.replace("/");
         }
