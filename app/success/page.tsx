@@ -31,7 +31,7 @@ function SuccessInner() {
 
         if (data?.premium === true) {
           // ✅ CRITICAL FIX: STORE PREMIUM STATE
-          document.cookie = "premium=true; path=/; max-age=31536000";
+          document.cookie = "premium=1; path=/; max-age=31536000";
 
           clearInterval(interval);
           router.replace("/");
