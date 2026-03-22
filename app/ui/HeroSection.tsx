@@ -124,22 +124,23 @@ export default function HeroSection() {
         >
           {/* FIXED: anchor styled as button */}
           <div style={{ textAlign: "center", marginBottom: 20 }}>
-            <a
-              href="#tool-preview"
-              style={{
-                display: "inline-block",
-                background: "#facc15",
-                color: "#000",
-                padding: "10px 22px",
-                borderRadius: 10,
-                fontWeight: 700,
-                fontSize: 14,
-                textDecoration: "none",
-                boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
-              }}
-            >
-              Get Started Free
-            </a>
+          <a
+  href="#tool-preview"
+  style={{
+    display: "inline-block",
+    background: isPremium ? "#8b5cf6" : "#facc15",
+    color: isPremium ? "#ffffff" : "#000",
+    padding: "10px 22px",
+    borderRadius: 10,
+    fontWeight: 700,
+    fontSize: 14,
+    textDecoration: "none",
+    boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
+    cursor: isPremium ? "default" : "pointer",
+  }}
+>
+  {isPremium ? "✓ Premium Features Unlocked" : "Get Started Free"}
+</a>  
           </div>
 
           <ToolPreviewSection />
