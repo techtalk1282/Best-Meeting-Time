@@ -5,7 +5,7 @@
 
 // app/ui/PremiumFeaturesSection.tsx
 
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 
 type PremiumFeaturesSectionProps = {
   children?: ReactNode;
@@ -97,7 +97,7 @@ function CheckIcon() {
 export default function PremiumFeaturesSection({
   children,
 }: PremiumFeaturesSectionProps) {
-
+const [copied, setCopied] = useState(false);
   async function handleCheckout() {
     try {
       const res = await fetch("/api/checkout", {
@@ -121,7 +121,8 @@ function handleShareClick() {
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(url)
       .then(() => {
-        alert("Share link copied");
+        setCopied(true);
+setTimeout(() => setCopied(false), 2000);
       })
       .catch(() => {
         fallbackCopy(url);
@@ -142,7 +143,8 @@ function fallbackCopy(text: string) {
 
   try {
     document.execCommand("copy");
-    alert("Share link copied");
+    setCopied(true);
+setTimeout(() => setCopied(false), 2000);
   } catch {
     alert("Copy failed");
   }
@@ -189,6 +191,11 @@ function fallbackCopy(text: string) {
               </div>
               <h3 style={cardTitle}>Share a Meeting Link</h3>
               <p style={cardText}>Send a booking page with one click</p>
+             {copied && (
+  <p style={{ color: "#16a34a", fontWeight: 600, marginTop: 6 }}>
+    Link copied
+  </p>
+)}
             </div>
 
             <div style={topFeatureCard}>
