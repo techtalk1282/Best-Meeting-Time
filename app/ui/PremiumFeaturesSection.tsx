@@ -184,7 +184,7 @@ function fallbackCopy(text: string) {
     cursor: isPremium ? "default" : "pointer",
     opacity: isPremium ? 0.9 : 1,
   }}
-  onClick={isPremium ? undefined : handleCheckout}
+  onClick={!isPremium ? handleCheckout : undefined}
 >
   {isPremium
     ? "✓ Premium Features Unlocked"
