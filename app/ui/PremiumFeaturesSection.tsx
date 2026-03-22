@@ -101,7 +101,10 @@ const [copied, setCopied] = useState(false);
   const [isPremium, setIsPremium] = useState(false);
   
   useEffect(() => {
-  const premium = document.cookie.includes("premium=true");
+  const premium = document.cookie
+  .split("; ")
+  .find((row) => row.startsWith("premium="))
+  ?.split("=")[1] === "true";
   setIsPremium(premium);
 }, []);
   
