@@ -100,12 +100,20 @@ export default function PremiumFeaturesSection({
 const [copied, setCopied] = useState(false);
   const [isPremium, setIsPremium] = useState(false);
   
-  useEffect(() => {
-  const premium = document.cookie
-  .split("; ")
-  .find((row) => row.startsWith("premium="))
-  ?.split("=")[1] === "true";
-  setIsPremium(premium);
+ useEffect(() => {
+  function checkPremium() {
+    const premium = document.cookie
+      .split(";")
+      .map((c) => c.trim())
+      .find((c) => c.startsWith("premium="))
+      ?.split("=")[1];
+
+    setIsPremium(premium === "true");
+  }
+
+  checkPremium();
+
+  setTimeout(checkPremium, 100);
 }, []);
   
   async function handleCheckout() {
