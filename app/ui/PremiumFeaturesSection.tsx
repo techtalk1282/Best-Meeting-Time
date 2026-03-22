@@ -177,9 +177,19 @@ function fallbackCopy(text: string) {
         >
 
           <div style={{ textAlign: "center", marginBottom: 22 }}>
-            <button style={primaryButton} onClick={handleCheckout}>
-              Unlock Premium Features – $9 One-Time Charge
-            </button>
+            <button
+  style={{
+    ...primaryButton,
+    background: isPremium ? "#16a34a" : primaryButton.background,
+    cursor: isPremium ? "default" : "pointer",
+    opacity: isPremium ? 0.9 : 1,
+  }}
+  onClick={isPremium ? undefined : handleCheckout}
+>
+  {isPremium
+    ? "✓ Premium Features Unlocked"
+    : "Unlock Premium Features — $9 One-Time Charge"}
+</button>
           </div>
 
           <div
