@@ -191,8 +191,8 @@ function fallbackCopy(text: string) {
             <button
   style={{
     ...primaryButton,
-    background: isPremium ? "#a78bfa" : primaryButton.background,
-color: "#ffffff",
+    background: isPremium ? "#8b5cf6" : primaryButton.background,
+color: isPremium ? "#ffffff" : primaryButton.color,
 cursor: isPremium ? "default" : "pointer",
 opacity: 1,
 boxShadow: primaryButton.boxShadow,
