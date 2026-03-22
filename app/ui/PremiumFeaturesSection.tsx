@@ -5,7 +5,7 @@
 
 // app/ui/PremiumFeaturesSection.tsx
 
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect } from "react";
 
 type PremiumFeaturesSectionProps = {
   children?: ReactNode;
@@ -98,6 +98,13 @@ export default function PremiumFeaturesSection({
   children,
 }: PremiumFeaturesSectionProps) {
 const [copied, setCopied] = useState(false);
+  const [isPremium, setIsPremium] = useState(false);
+  
+  useEffect(() => {
+  const premium = document.cookie.includes("premium=true");
+  setIsPremium(premium);
+}, []);
+  
   async function handleCheckout() {
     try {
       const res = await fetch("/api/checkout", {
