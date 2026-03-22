@@ -122,7 +122,6 @@ function handleShareClick() {
     navigator.clipboard.writeText(url)
       .then(() => {
         setCopied(true);
-setTimeout(() => setCopied(false), 3500);
       })
       .catch(() => {
         fallbackCopy(url);
@@ -144,7 +143,6 @@ function fallbackCopy(text: string) {
   try {
     document.execCommand("copy");
     setCopied(true);
-setTimeout(() => setCopied(false), 3500);
   } catch {
     alert("Copy failed");
   }
