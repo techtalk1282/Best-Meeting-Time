@@ -232,6 +232,16 @@ function calculateOverlap(cityA: City, cityB: City): Window {
 /* MAIN COMPONENT */
 
 export default function ToolPreviewSection() {
+
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    const sessionId = url.searchParams.get("session_id");
+
+    if (sessionId) {
+      document.cookie = "premium=true; path=/; max-age=31536000";
+    }
+  }, []);
+
 const [isPremium, setIsPremium] = useState(false);
   const [viewerTZ, setViewerTZ] = useState<string | null>(null);
 
