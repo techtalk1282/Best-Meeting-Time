@@ -115,7 +115,11 @@ export default function PremiumFeaturesSection({
       console.error("Checkout error:", err);
     }
   }
-
+// ✅ ADD THIS RIGHT HERE
+function handleShareClick() {
+  console.log("CLICK WORKED");
+  alert("CLICK WORKED");
+}
   return (
     <section
       id="premium-features"
@@ -150,7 +154,7 @@ export default function PremiumFeaturesSection({
               marginBottom: 16,
             }}
           >
-            <div style={topFeatureCard}>
+           <div style={topFeatureCard} onClick={handleShareClick}>
               <div style={iconWrap}>
                 <img src="/share.png" alt="Share link" style={iconImg} />
               </div>
