@@ -20,8 +20,8 @@ export default function VerifyPremium() {
         if (data.ok) {
           console.log("Premium unlocked");
 
-          // clean URL
-          window.history.replaceState({}, "", "/");
+          // ✅ CLEAN URL + FORCE FULL RELOAD (CRITICAL FIX)
+          window.location.href = "/";
         } else if (data.retry) {
           console.log("Webhook pending — retrying");
 
@@ -33,5 +33,5 @@ export default function VerifyPremium() {
       .catch(err => console.error("VERIFY ERROR:", err));
   }, [searchParams]);
 
-  return null; // no UI impact
+  return null;
 }
