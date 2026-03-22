@@ -122,7 +122,7 @@ function handleShareClick() {
     navigator.clipboard.writeText(url)
       .then(() => {
         setCopied(true);
-setTimeout(() => setCopied(false), 2000);
+setTimeout(() => setCopied(false), 3500);
       })
       .catch(() => {
         fallbackCopy(url);
@@ -144,7 +144,7 @@ function fallbackCopy(text: string) {
   try {
     document.execCommand("copy");
     setCopied(true);
-setTimeout(() => setCopied(false), 2000);
+setTimeout(() => setCopied(false), 3500);
   } catch {
     alert("Copy failed");
   }
@@ -192,8 +192,15 @@ setTimeout(() => setCopied(false), 2000);
               <h3 style={cardTitle}>Share a Meeting Link</h3>
               <p style={cardText}>Send a booking page with one click</p>
              {copied && (
-  <p style={{ color: "#16a34a", fontWeight: 600, marginTop: 6 }}>
-    Link copied
+  <p
+    style={{
+      color: "#16a34a",
+      fontWeight: 700,
+      marginTop: 10,
+      fontSize: 15,
+    }}
+  >
+    ✓ Link copied to clipboard
   </p>
 )}
             </div>
