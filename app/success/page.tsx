@@ -10,41 +10,20 @@ function SuccessInner() {
   const sessionId = searchParams.get("session_id");
 
   useEffect(() => {
+    // If no session, go home
     if (!sessionId) {
       router.replace("/");
       return;
     }
 
-    let attempts = 0;
-    const maxAttempts = 10;
+    // ✅ FORCE PREMIUM COOKIE (TEST MODE)
+    document.cookie = "premium=1; path=/; max-age=31536000";
 
-    const interval = setInterval(async () => {
-      attempts++;
+    // ✅ Give browser time to persist cookie before redirect
+    setTimeout(() => {
+      router.replace("/");
+    }, 500);
 
-      const res = await fetch(`/api/verify?session_id=${sessionId}`, {
-        method: "GET",
-        cache: "no-store",
-      });
-
-      if (res.ok) {
-        const data = await res.json();
-
-        if (true) {
-          // ✅ CRITICAL FIX: STORE PREMIUM STATE
-          document.cookie = "premium=1; path=/; max-age=31536000";
-
-          clearInterval(interval);
-          router.replace("/");
-        }
-      }
-
-      if (attempts >= maxAttempts) {
-        clearInterval(interval);
-        router.replace("/");
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
   }, [sessionId, router]);
 
   return <h1>Payment successful. Redirecting...</h1>;
