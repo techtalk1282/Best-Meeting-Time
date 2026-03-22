@@ -115,10 +115,39 @@ export default function PremiumFeaturesSection({
       console.error("Checkout error:", err);
     }
   }
-// ✅ ADD THIS RIGHT HERE
 function handleShareClick() {
-  console.log("CLICK WORKED");
-  alert("CLICK WORKED");
+  const url = window.location.href;
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(url)
+      .then(() => {
+        alert("Share link copied");
+      })
+      .catch(() => {
+        fallbackCopy(url);
+      });
+  } else {
+    fallbackCopy(url);
+  }
+}
+
+function fallbackCopy(text: string) {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+
+  try {
+    document.execCommand("copy");
+    alert("Share link copied");
+  } catch {
+    alert("Copy failed");
+  }
+
+  document.body.removeChild(textarea);
 }
   return (
     <section
