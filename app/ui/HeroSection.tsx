@@ -1,5 +1,8 @@
 // app/ui/HeroSection.tsx
 
+"use client";
+
+import { useEffect, useState } from "react";
 import ToolPreviewSection from "./ToolPreviewSection";
 
 const navButton: React.CSSProperties = {
@@ -15,6 +18,17 @@ const navButton: React.CSSProperties = {
 };
 
 export default function HeroSection() {
+  const [isPremium, setIsPremium] = useState(false);
+
+  useEffect(() => {
+    const premium = document.cookie
+      .split(";")
+      .map((c) => c.trim())
+      .find((c) => c.startsWith("premium="))
+      ?.split("=")[1];
+
+    setIsPremium(premium === "true");
+  }, []);
   return (
     <section
       id="hero"
