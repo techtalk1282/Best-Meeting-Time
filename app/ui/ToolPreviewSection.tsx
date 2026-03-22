@@ -238,7 +238,7 @@ export default function ToolPreviewSection() {
     const sessionId = url.searchParams.get("session_id");
 
     if (sessionId) {
-      document.cookie = "premium=true; path=/; max-age=31536000";
+      document.cookie = "premium=1; path=/; max-age=31536000";
     }
   }, []);
 
