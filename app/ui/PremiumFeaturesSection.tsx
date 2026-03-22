@@ -191,13 +191,11 @@ function fallbackCopy(text: string) {
             <button
   style={{
     ...primaryButton,
-    background: primaryButton.background,
-color: isPremium ? "#22c55e" : primaryButton.color,
+    background: isPremium ? "#a78bfa" : primaryButton.background,
+color: "#ffffff",
 cursor: isPremium ? "default" : "pointer",
 opacity: 1,
-boxShadow: isPremium
- ? "0 6px 22px rgba(0,0,0,0.28), 0 0 0 1px rgba(255,255,255,0.25)"
-  : primaryButton.boxShadow,
+boxShadow: primaryButton.boxShadow,
   }}
   onClick={!isPremium ? handleCheckout : undefined}
 >
