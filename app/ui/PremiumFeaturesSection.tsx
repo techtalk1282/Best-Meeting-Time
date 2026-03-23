@@ -1,6 +1,3 @@
-//app/ui/PremiumFeaturesSection.tsx
-
-
 "use client";
 
 // app/ui/PremiumFeaturesSection.tsx
@@ -97,25 +94,25 @@ function CheckIcon() {
 export default function PremiumFeaturesSection({
   children,
 }: PremiumFeaturesSectionProps) {
-const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [isPremium, setIsPremium] = useState(false);
-  
- useEffect(() => {
-  function checkPremium() {
-    const premium = document.cookie
-      .split(";")
-      .map((c) => c.trim())
-      .find((c) => c.startsWith("premium="))
-      ?.split("=")[1];
 
-    setIsPremium(premium === "true");
-  }
+  useEffect(() => {
+    function checkPremium() {
+      const premium = document.cookie
+        .split(";")
+        .map((c) => c.trim())
+        .find((c) => c.startsWith("premium="))
+        ?.split("=")[1];
 
-  checkPremium();
+      setIsPremium(premium === "true");
+    }
 
-  setTimeout(checkPremium, 100);
-}, []);
-  
+    checkPremium();
+
+    setTimeout(checkPremium, 100);
+  }, []);
+
   async function handleCheckout() {
     try {
       const res = await fetch("/api/checkout", {
@@ -133,40 +130,47 @@ const [copied, setCopied] = useState(false);
       console.error("Checkout error:", err);
     }
   }
-function handleShareClick() {
-  const url = window.location.href;
 
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(url)
-      .then(() => {
-        setCopied(true);
-      })
-      .catch(() => {
-        fallbackCopy(url);
-      });
-  } else {
-    fallbackCopy(url);
-  }
-}
+  function handleShareClick() {
+    if (!isPremium) {
+      return;
+    }
 
-function fallbackCopy(text: string) {
-  const textarea = document.createElement("textarea");
-  textarea.value = text;
-  textarea.style.position = "fixed";
-  textarea.style.left = "-9999px";
-  document.body.appendChild(textarea);
-  textarea.focus();
-  textarea.select();
+    const url = window.location.href;
 
-  try {
-    document.execCommand("copy");
-    setCopied(true);
-  } catch {
-    alert("Copy failed");
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard
+        .writeText(url)
+        .then(() => {
+          setCopied(true);
+        })
+        .catch(() => {
+          fallbackCopy(url);
+        });
+    } else {
+      fallbackCopy(url);
+    }
   }
 
-  document.body.removeChild(textarea);
-}
+  function fallbackCopy(text: string) {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed";
+    textarea.style.left = "-9999px";
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+
+    try {
+      document.execCommand("copy");
+      setCopied(true);
+    } catch {
+      alert("Copy failed");
+    }
+
+    document.body.removeChild(textarea);
+  }
+
   return (
     <section
       id="premium-features"
@@ -186,23 +190,23 @@ function fallbackCopy(text: string) {
             boxShadow: "0 18px 50px rgba(0,0,0,0.24)",
           }}
         >
-
           <div style={{ textAlign: "center", marginBottom: 22 }}>
             <button
-  style={{
-    ...primaryButton,
-    background: isPremium ? "#8b5cf6" : primaryButton.background,
-color: isPremium ? "#ffffff" : primaryButton.color,
-cursor: isPremium ? "default" : "pointer",
-opacity: 1,
-boxShadow: primaryButton.boxShadow,
-  }}
-  onClick={!isPremium ? handleCheckout : undefined}
->
-  {isPremium
-  ? "✓ Premium Features Unlocked"
-  : "Unlock Premium Planning Tools — $7 One-Time"}
-</button>
+              style={{
+                ...primaryButton,
+                background: isPremium ? "#8b5cf6" : primaryButton.background,
+                color: isPremium ? "#ffffff" : primaryButton.color,
+                cursor: isPremium ? "default" : "pointer",
+                opacity: 1,
+                boxShadow: primaryButton.boxShadow,
+              }}
+              onClick={!isPremium ? handleCheckout : undefined}
+            >
+              {isPremium
+                ? "✓ Premium Features Unlocked"
+                : "Unlock Premium Planning Tools — $7 One-Time"}
+            </button>
+
             {!isPremium && (
               <div
                 style={{
@@ -225,24 +229,32 @@ boxShadow: primaryButton.boxShadow,
               marginBottom: 16,
             }}
           >
-           <div style={topFeatureCard} onClick={handleShareClick}>
+            <div
+              style={{
+                ...topFeatureCard,
+                opacity: isPremium ? 1 : 0.55,
+                cursor: isPremium ? "pointer" : "not-allowed",
+              }}
+              onClick={handleShareClick}
+            >
               <div style={iconWrap}>
                 <img src="/share.png" alt="Share link" style={iconImg} />
               </div>
               <h3 style={cardTitle}>Share a Meeting Link</h3>
-<p style={cardText}>Send a booking page with one click</p>
-             {copied && (
-  <p
-    style={{
-      color: "#16a34a",
-      fontWeight: 700,
-      marginTop: 10,
-      fontSize: 15,
-    }}
-  >
-    ✓ Link copied to clipboard
-  </p>
-)}
+              <p style={cardText}>Send a booking page with one click</p>
+
+              {copied && (
+                <p
+                  style={{
+                    color: "#16a34a",
+                    fontWeight: 700,
+                    marginTop: 10,
+                    fontSize: 15,
+                  }}
+                >
+                  ✓ Link copied to clipboard
+                </p>
+              )}
             </div>
 
             <div style={topFeatureCard}>
@@ -250,7 +262,9 @@ boxShadow: primaryButton.boxShadow,
                 <img src="/globe.png" alt="Compare cities" style={iconImg} />
               </div>
               <h3 style={cardTitle}>3 Planning Sessions (2 Cities)</h3>
-<p style={cardText}>Plan meetings between different cities with 3 sessions</p>
+              <p style={cardText}>
+                Plan meetings between different cities with 3 sessions
+              </p>
             </div>
           </div>
 
@@ -264,13 +278,17 @@ boxShadow: primaryButton.boxShadow,
           >
             <div style={bottomFeatureCard}>
               <div style={iconWrap}>
-                <img src="/google-calendar.png" alt="Google Calendar" style={iconImg} />
+                <img
+                  src="/google-calendar.png"
+                  alt="Google Calendar"
+                  style={iconImg}
+                />
               </div>
               <h3 style={cardTitle}>Google Calendar</h3>
               <p style={cardText}>Save meetings directly to Google</p>
             </div>
 
-           <div style={bottomFeatureCard}>
+            <div style={bottomFeatureCard}>
               <div style={iconWrap}>
                 <img src="/outlook.png" alt="Outlook Calendar" style={iconImg} />
               </div>
@@ -278,7 +296,7 @@ boxShadow: primaryButton.boxShadow,
               <p style={cardText}>Save meetings directly to Outlook</p>
             </div>
 
-           <div style={bottomFeatureCard}>
+            <div style={bottomFeatureCard}>
               <div style={iconWrap}>
                 <img src="/apple.png" alt="Apple Calendar" style={appleIconImg} />
               </div>
@@ -298,12 +316,30 @@ boxShadow: primaryButton.boxShadow,
               margin: "0 auto 20px",
             }}
           >
-            <div style={checklistItem}><CheckIcon /><span>$7 one-time payment</span></div>
-<div style={checklistItem}><CheckIcon /><span>3 planning sessions</span></div>
-<div style={checklistItem}><CheckIcon /><span>No subscription</span></div>
-<div style={checklistItem}><CheckIcon /><span>Google, Outlook & Apple export</span></div>
-<div style={checklistItem}><CheckIcon /><span>No ads during planning</span></div>
-<div style={checklistItem}><CheckIcon /><span>Share meeting links</span></div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>$7 one-time payment</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>3 planning sessions</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>No subscription</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>Google, Outlook & Apple export</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>No ads during planning</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>Share meeting links</span>
+            </div>
           </div>
 
           <div
@@ -315,7 +351,6 @@ boxShadow: primaryButton.boxShadow,
           >
             Secured by Stripe • Terms • Privacy
           </div>
-
         </div>
       </div>
     </section>
