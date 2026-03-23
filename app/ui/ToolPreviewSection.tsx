@@ -265,7 +265,16 @@ useEffect(() => {
   if (sessionTracked) return;
 
   const existing = localStorage.getItem("free_sessions_used");
+const freeSessionsUsed = parseInt(existing || "0", 10);
 
+// GATING FLAG (no behavior change yet)
+const isFreeLimitReached = !isPremium && freeSessionsUsed >= 1;
+
+console.log("GATING STATUS:", {
+  freeSessionsUsed,
+  isPremium,
+  isFreeLimitReached,
+});
   if (!existing) {
     localStorage.setItem("free_sessions_used", "1");
     console.log("SESSION TRACKED: 1 (first free session)");
