@@ -200,9 +200,21 @@ boxShadow: primaryButton.boxShadow,
   onClick={!isPremium ? handleCheckout : undefined}
 >
   {isPremium
-    ? "✓ Premium Features Unlocked"
-    : "Unlock Premium Features — $9 One-Time Charge"}
+  ? "✓ Premium Features Unlocked"
+  : "Unlock Premium Planning Tools — $7 One-Time"}
 </button>
+            {!isPremium && (
+              <div
+                style={{
+                  marginTop: 10,
+                  fontSize: 13,
+                  color: "#6b7280",
+                  fontWeight: 600,
+                }}
+              >
+                No subscription • Pay once, use anytime
+              </div>
+            )}
           </div>
 
           <div
@@ -218,7 +230,7 @@ boxShadow: primaryButton.boxShadow,
                 <img src="/share.png" alt="Share link" style={iconImg} />
               </div>
               <h3 style={cardTitle}>Share a Meeting Link</h3>
-              <p style={cardText}>Send a booking page with one click</p>
+<p style={cardText}>Send a booking page with one click</p>
              {copied && (
   <p
     style={{
@@ -237,8 +249,8 @@ boxShadow: primaryButton.boxShadow,
               <div style={iconWrap}>
                 <img src="/globe.png" alt="Compare cities" style={iconImg} />
               </div>
-              <h3 style={cardTitle}>Compare Cities Globally</h3>
-              <p style={cardText}>Plan meetings across global time zones</p>
+              <h3 style={cardTitle}>3 Planning Sessions (2 Cities)</h3>
+<p style={cardText}>Plan meetings between different cities with 3 sessions</p>
             </div>
           </div>
 
@@ -286,12 +298,12 @@ boxShadow: primaryButton.boxShadow,
               margin: "0 auto 20px",
             }}
           >
-            <div style={checklistItem}><CheckIcon /><span>One-time payment</span></div>
-            <div style={checklistItem}><CheckIcon /><span>Save & export meeting times</span></div>
-            <div style={checklistItem}><CheckIcon /><span>No subscription</span></div>
-            <div style={checklistItem}><CheckIcon /><span>Download .ics file options</span></div>
-            <div style={checklistItem}><CheckIcon /><span>Remove all ads</span></div>
-            <div style={checklistItem}><CheckIcon /><span>Share meeting links</span></div>
+            <div style={checklistItem}><CheckIcon /><span>$7 one-time payment</span></div>
+<div style={checklistItem}><CheckIcon /><span>3 planning sessions</span></div>
+<div style={checklistItem}><CheckIcon /><span>No subscription</span></div>
+<div style={checklistItem}><CheckIcon /><span>Google, Outlook & Apple export</span></div>
+<div style={checklistItem}><CheckIcon /><span>No ads during planning</span></div>
+<div style={checklistItem}><CheckIcon /><span>Share meeting links</span></div>
           </div>
 
           <div
