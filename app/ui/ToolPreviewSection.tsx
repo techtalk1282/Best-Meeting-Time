@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -242,14 +241,14 @@ export default function ToolPreviewSection() {
     }
   }, []);
 
-const [isPremium, setIsPremium] = useState(false);
+  const [isPremium, setIsPremium] = useState(false);
   const [viewerTZ, setViewerTZ] = useState<string | null>(null);
 
   useEffect(() => {
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
     setViewerTZ(tz);
     const premium = checkPremiumCookie();
-  setIsPremium(premium);
+    setIsPremium(premium);
   }, []);
 
   const [sessionTracked, setSessionTracked] = useState(false);
@@ -258,46 +257,45 @@ const [isPremium, setIsPremium] = useState(false);
   const [now, setNow] = useState<Date | null>(null);
 
   const isFreeLimitReached =
-  !isPremium &&
-  parseInt(localStorage.getItem("free_sessions_used") || "0", 10) >= 1;
+    typeof window !== "undefined" &&
+    !isPremium &&
+    parseInt(localStorage.getItem("free_sessions_used") || "0", 10) >= 1;
 
   function handleLockedInteraction(): boolean {
-  if (isFreeLimitReached) {
-    alert("Free plan includes 1 planning session (2 cities). Upgrade to continue.");
-    return true;
+    if (isFreeLimitReached) {
+      alert("Free plan includes 1 planning session (2 cities). Upgrade to continue.");
+      return true;
+    }
+    return false;
   }
-  return false;
-}
-  
-useEffect(() => {
-  setNow(new Date());
-}, []);
+
   useEffect(() => {
-  if (isPremium) return;
-  if (sessionTracked) return;
+    setNow(new Date());
+  }, []);
 
-  const existing = localStorage.getItem("free_sessions_used");
-const freeSessionsUsed = parseInt(existing || "0", 10);
+  useEffect(() => {
+    if (isPremium) return;
+    if (sessionTracked) return;
 
-// GATING FLAG
+    const existing = localStorage.getItem("free_sessions_used");
+    const freeSessionsUsed = parseInt(existing || "0", 10);
 
+    console.log("GATING STATUS:", {
+      freeSessionsUsed,
+      isPremium,
+      isFreeLimitReached,
+    });
 
+    if (!existing) {
+      localStorage.setItem("free_sessions_used", "1");
+      console.log("SESSION TRACKED: 1 (first free session)");
+      setSessionTracked(true);
+    } else {
+      console.log("SESSION ALREADY USED:", existing);
+      setSessionTracked(true);
+    }
+  }, [isPremium, sessionTracked, isFreeLimitReached]);
 
-
-console.log("GATING STATUS:", {
-  freeSessionsUsed,
-  isPremium,
-  isFreeLimitReached,
-});
-  if (!existing) {
-    localStorage.setItem("free_sessions_used", "1");
-    console.log("SESSION TRACKED: 1 (first free session)");
-    setSessionTracked(true);
-  } else {
-    console.log("SESSION ALREADY USED:", existing);
-    setSessionTracked(true);
-  }
-}, [isPremium, sessionTracked]);
   if (!now) return null;
   const meetingWindow = calculateOverlap(cityA, cityB);
 
@@ -312,8 +310,6 @@ console.log("GATING STATUS:", {
 
   const startLocal = startDate.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
   const endLocal = endDate.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
-
- 
 
   const cityATime = new Intl.DateTimeFormat("en-US", {
     timeZone: cityA.tz,
@@ -370,14 +366,13 @@ console.log("GATING STATUS:", {
   ];
 
   return (
-<div style={{ width: "100%", padding: 0 }}>
+    <div style={{ width: "100%", padding: 0 }}>
 
-
-    {isPremium && (
-      <div style={{ marginBottom: 10, color: "#16a34a", fontWeight: 700 }}>
-        Premium Unlocked
-      </div>
-    )}
+      {isPremium && (
+        <div style={{ marginBottom: 10, color: "#16a34a", fontWeight: 700 }}>
+          Premium Unlocked
+        </div>
+      )}
       {viewerTZ && (
         <div style={{ marginBottom: 20, fontWeight: 600 }}>
           Your Time Zone: {viewerTZ}
@@ -423,11 +418,11 @@ console.log("GATING STATUS:", {
         <select
           value={cityA.name}
           onChange={(e) => {
-  if (handleLockedInteraction()) return;
+            if (handleLockedInteraction()) return;
 
-  const city = CITY_OPTIONS.find(c => c.name === e.target.value)!;
-  setCityA(city);
-}}
+            const city = CITY_OPTIONS.find(c => c.name === e.target.value)!;
+            setCityA(city);
+          }}
         >
           {CITY_OPTIONS.map(city => (
             <option key={city.name} value={city.name}>
@@ -437,13 +432,13 @@ console.log("GATING STATUS:", {
         </select>
 
         <button
-         onClick={() => {
-  if (handleLockedInteraction()) return;
+          onClick={() => {
+            if (handleLockedInteraction()) return;
 
-  const temp = cityA;
-  setCityA(cityB);
-  setCityB(temp);
-}}
+            const temp = cityA;
+            setCityA(cityB);
+            setCityB(temp);
+          }}
           style={{
             padding: "8px 16px",
             fontWeight: 600,
