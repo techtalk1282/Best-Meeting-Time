@@ -253,6 +253,7 @@ const [isPremium, setIsPremium] = useState(false);
   }, []);
 
   const [sessionTracked, setSessionTracked] = useState(false);
+  const [cityA, setCityA] = useState<City>(CITY_OPTIONS[0]);
   const [cityB, setCityB] = useState<City>(CITY_OPTIONS[1]);
   const [now, setNow] = useState<Date | null>(null);
 
