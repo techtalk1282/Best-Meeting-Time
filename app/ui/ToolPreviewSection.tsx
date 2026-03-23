@@ -252,13 +252,28 @@ const [isPremium, setIsPremium] = useState(false);
   setIsPremium(premium);
   }, []);
 
-  const [cityA, setCityA] = useState<City>(CITY_OPTIONS[0]);
+  const [sessionTracked, setSessionTracked] = useState(false);
   const [cityB, setCityB] = useState<City>(CITY_OPTIONS[1]);
   const [now, setNow] = useState<Date | null>(null);
 
 useEffect(() => {
   setNow(new Date());
 }, []);
+  useEffect(() => {
+  if (isPremium) return;
+  if (sessionTracked) return;
+
+  const existing = localStorage.getItem("free_sessions_used");
+
+  if (!existing) {
+    localStorage.setItem("free_sessions_used", "1");
+    console.log("SESSION TRACKED: 1 (first free session)");
+    setSessionTracked(true);
+  } else {
+    console.log("SESSION ALREADY USED:", existing);
+    setSessionTracked(true);
+  }
+}, [isPremium, sessionTracked]);
   if (!now) return null;
   const meetingWindow = calculateOverlap(cityA, cityB);
 
