@@ -453,9 +453,11 @@ export default function ToolPreviewSection() {
         <select
           value={cityB.name}
           onChange={(e) => {
-            const city = CITY_OPTIONS.find(c => c.name === e.target.value)!;
-            setCityB(city);
-          }}
+  if (handleLockedInteraction()) return;
+
+  const city = CITY_OPTIONS.find(c => c.name === e.target.value)!;
+  setCityB(city);
+}}
         >
           {CITY_OPTIONS.map(city => (
             <option key={city.name} value={city.name}>
