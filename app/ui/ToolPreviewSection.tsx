@@ -252,6 +252,7 @@ export default function ToolPreviewSection() {
   }, []);
 
   const [sessionTracked, setSessionTracked] = useState(false);
+  const [isLocked, setIsLocked] = useState(false);
   const [cityA, setCityA] = useState<City>(CITY_OPTIONS[0]);
   const [cityB, setCityB] = useState<City>(CITY_OPTIONS[1]);
   const [now, setNow] = useState<Date | null>(null);
@@ -262,12 +263,12 @@ export default function ToolPreviewSection() {
     parseInt(localStorage.getItem("free_sessions_used") || "0", 10) >= 1;
 
   function handleLockedInteraction(): boolean {
-    if (isFreeLimitReached) {
-      alert("Free plan includes 1 planning session (2 cities). Upgrade to continue.");
-      return true;
-    }
-    return false;
+  if (isFreeLimitReached) {
+    setIsLocked(true);
+    return true;
   }
+  return false;
+}
 
   useEffect(() => {
     setNow(new Date());
