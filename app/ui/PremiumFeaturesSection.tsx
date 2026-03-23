@@ -109,7 +109,6 @@ export default function PremiumFeaturesSection({
     }
 
     checkPremium();
-
     setTimeout(checkPremium, 100);
   }, []);
 
@@ -232,8 +231,7 @@ export default function PremiumFeaturesSection({
             <div
               style={{
                 ...topFeatureCard,
-                opacity: isPremium ? 1 : 0.55,
-                cursor: isPremium ? "pointer" : "not-allowed",
+                cursor: "pointer",
               }}
               onClick={handleShareClick}
             >
