@@ -275,7 +275,6 @@ function handleLockedInteraction(): boolean {
     alert("Free plan includes 1 planning session (2 cities). Upgrade to continue.");
     return true;
   }
-
   return false;
 }
 
@@ -432,11 +431,13 @@ console.log("GATING STATUS:", {
         </select>
 
         <button
-          onClick={() => {
-            const temp = cityA;
-            setCityA(cityB);
-            setCityB(temp);
-          }}
+         onClick={() => {
+  if (handleLockedInteraction()) return;
+
+  const temp = cityA;
+  setCityA(cityB);
+  setCityB(temp);
+}}
           style={{
             padding: "8px 16px",
             fontWeight: 600,
