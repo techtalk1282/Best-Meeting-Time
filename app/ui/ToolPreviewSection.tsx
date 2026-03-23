@@ -267,8 +267,17 @@ useEffect(() => {
   const existing = localStorage.getItem("free_sessions_used");
 const freeSessionsUsed = parseInt(existing || "0", 10);
 
-// GATING FLAG (no behavior change yet)
+// GATING FLAG
 const isFreeLimitReached = !isPremium && freeSessionsUsed >= 1;
+
+function handleLockedInteraction(): boolean {
+  if (isFreeLimitReached) {
+    alert("Free plan includes 1 planning session (2 cities). Upgrade to continue.");
+    return true;
+  }
+
+  return false;
+}
 
 console.log("GATING STATUS:", {
   freeSessionsUsed,
