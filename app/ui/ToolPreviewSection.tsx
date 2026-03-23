@@ -257,6 +257,18 @@ const [isPremium, setIsPremium] = useState(false);
   const [cityB, setCityB] = useState<City>(CITY_OPTIONS[1]);
   const [now, setNow] = useState<Date | null>(null);
 
+  const isFreeLimitReached =
+  !isPremium &&
+  parseInt(localStorage.getItem("free_sessions_used") || "0", 10) >= 1;
+
+  function handleLockedInteraction(): boolean {
+  if (isFreeLimitReached) {
+    alert("Free plan includes 1 planning session (2 cities). Upgrade to continue.");
+    return true;
+  }
+  return false;
+}
+  
 useEffect(() => {
   setNow(new Date());
 }, []);
@@ -268,15 +280,9 @@ useEffect(() => {
 const freeSessionsUsed = parseInt(existing || "0", 10);
 
 // GATING FLAG
-const isFreeLimitReached = !isPremium && freeSessionsUsed >= 1;
 
-function handleLockedInteraction(): boolean {
-  if (isFreeLimitReached) {
-    alert("Free plan includes 1 planning session (2 cities). Upgrade to continue.");
-    return true;
-  }
-  return false;
-}
+
+
 
 console.log("GATING STATUS:", {
   freeSessionsUsed,
