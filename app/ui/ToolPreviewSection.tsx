@@ -267,12 +267,12 @@ export default function ToolPreviewSection() {
 
   const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
 
-  if (used >= 1) {
+  if (used >= 2) {
     setIsLocked(true);
     return true;
   }
 
-  localStorage.setItem("free_sessions_used", "1");
+  localStorage.setItem("free_sessions_used", String(used + 1));
   setSessionTracked(true);
   return false;
 }
@@ -420,8 +420,7 @@ export default function ToolPreviewSection() {
         <select
           value={cityA.name}
           onChange={(e) => {
-            if (handleLockedInteraction()) return;
-
+            
             const city = CITY_OPTIONS.find(c => c.name === e.target.value)!;
             setCityA(city);
           }}
@@ -435,7 +434,7 @@ export default function ToolPreviewSection() {
 
         <button
           onClick={() => {
-            if (handleLockedInteraction()) return;
+            
 
             const temp = cityA;
             setCityA(cityB);
@@ -455,7 +454,7 @@ export default function ToolPreviewSection() {
         <select
           value={cityB.name}
           onChange={(e) => {
-  if (handleLockedInteraction()) return;
+  
 
   const city = CITY_OPTIONS.find(c => c.name === e.target.value)!;
   setCityB(city);
