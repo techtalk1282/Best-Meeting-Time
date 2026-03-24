@@ -439,7 +439,7 @@ export default function ToolPreviewSection() {
 
         <button
           onClick={() => {
-  handleLockedInteraction();
+  if (handleLockedInteraction()) return;
 
   const temp = cityA;
   setCityA(cityB);
