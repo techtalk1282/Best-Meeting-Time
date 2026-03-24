@@ -262,10 +262,9 @@ export default function ToolPreviewSection() {
     !isPremium &&
     parseInt(localStorage.getItem("free_sessions_used") || "0", 10) >= 1;
 
-function handleLockedInteraction(): boolean {
-  if (isPremium) return false;
+;
 
-  const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
+  
 
   // allow up to 2 sessions
   function handleLockedInteraction(): boolean {
