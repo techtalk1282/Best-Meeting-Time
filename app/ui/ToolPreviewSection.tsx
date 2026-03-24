@@ -377,16 +377,67 @@ export default function ToolPreviewSection() {
   return (
     <div style={{ width: "100%", padding: 0 }}>
       {isLocked && !isPremium && (
-        <div
-          style={{
-            marginBottom: 20,
-            padding: "14px 16px",
-            borderRadius: 10,
-            background: "#fee2e2",
-            color: "#991b1b",
-            fontWeight: 600,
-            textAlign: "center",
-          }}
+  <div
+    style={{
+      marginBottom: 24,
+      padding: 20,
+      borderRadius: 16,
+      background: "#fff7ed",
+      border: "1px solid #fed7aa",
+      textAlign: "center",
+    }}
+  >
+    <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 6 }}>
+      You’ve used your free planning sessions
+    </div>
+
+    <div style={{ fontSize: 14, marginBottom: 14, color: "#444" }}>
+      Continue planning instantly or unlock all features
+    </div>
+
+    <div style={{ display: "flex", gap: 12, justifyContent: "center" }}>
+      
+      {/* CONTINUE FREE (SIMULATED AD) */}
+      <button
+        onClick={() => {
+          // TEMPORARY: simulate ad + unlock 1 session (2 clicks)
+          const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
+
+          setTimeout(() => {
+            localStorage.setItem("free_sessions_used", String(Math.max(0, used - 2)));
+            setIsLocked(false);
+          }, 2500);
+        }}
+        style={{
+          background: "#ffffff",
+          border: "1px solid #ddd",
+          padding: "10px 16px",
+          borderRadius: 8,
+          cursor: "pointer",
+          fontWeight: 600,
+        }}
+      >
+        Continue Free (Watch Ad)
+      </button>
+
+      {/* PREMIUM CTA */}
+      <a
+        href="#premium-features"
+        style={{
+          display: "inline-block",
+          background: "#facc15",
+          color: "#000",
+          padding: "10px 16px",
+          borderRadius: 8,
+          fontWeight: 700,
+          textDecoration: "none",
+        }}
+      >
+        Unlock Premium
+      </a>
+    </div>
+  </div>
+)}
         >
           You’ve reached your free limit. Unlock premium to continue planning.
         </div>
