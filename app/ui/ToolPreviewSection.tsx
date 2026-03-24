@@ -268,12 +268,16 @@ function handleLockedInteraction(): boolean {
   const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
 
   // allow up to 2 sessions
+  function handleLockedInteraction(): boolean {
+  if (isPremium) return false;
+
+  const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
+
   if (used >= 2) {
     setIsLocked(true);
     return true;
   }
 
-  // ONLY count session once
   if (!sessionTracked) {
     localStorage.setItem("free_sessions_used", String(used + 1));
     setSessionTracked(true);
@@ -281,7 +285,6 @@ function handleLockedInteraction(): boolean {
 
   return false;
 }
-
   useEffect(() => {
     setNow(new Date());
   }, []);
