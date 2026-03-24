@@ -371,8 +371,25 @@ export default function ToolPreviewSection() {
     { label: "10 PM", hour: 22 }
   ];
 
-  return (
-    <div style={{ width: "100%", padding: 0 }}>
+ return (
+  <div style={{ width: "100%", padding: 0 }}>
+
+    {/* ✅ LOCK MESSAGE (NEW) */}
+    {isLocked && !isPremium && (
+      <div
+        style={{
+          marginBottom: 20,
+          padding: "14px 16px",
+          borderRadius: 10,
+          background: "#fee2e2",
+          color: "#991b1b",
+          fontWeight: 600,
+          textAlign: "center",
+        }}
+      >
+        You’ve reached your free limit. Unlock premium to continue planning.
+      </div>
+    )}
 
       {isPremium && (
         <div style={{ marginBottom: 10, color: "#16a34a", fontWeight: 700 }}>
