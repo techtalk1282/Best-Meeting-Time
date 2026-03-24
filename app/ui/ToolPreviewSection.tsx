@@ -263,10 +263,17 @@ export default function ToolPreviewSection() {
     parseInt(localStorage.getItem("free_sessions_used") || "0", 10) >= 1;
 
   function handleLockedInteraction(): boolean {
-  if (isFreeLimitReached) {
+  if (isPremium) return false;
+
+  const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
+
+  if (used >= 1) {
     setIsLocked(true);
     return true;
   }
+
+  localStorage.setItem("free_sessions_used", "1");
+  setSessionTracked(true);
   return false;
 }
 
@@ -275,27 +282,21 @@ export default function ToolPreviewSection() {
   }, []);
 
   useEffect(() => {
-    if (isPremium) return;
-    if (sessionTracked) return;
+  if (isPremium) return;
 
-    const existing = localStorage.getItem("free_sessions_used");
-    const freeSessionsUsed = parseInt(existing || "0", 10);
+  const existing = localStorage.getItem("free_sessions_used");
+  const freeSessionsUsed = parseInt(existing || "0", 10);
 
-    console.log("GATING STATUS:", {
-      freeSessionsUsed,
-      isPremium,
-      isFreeLimitReached,
-    });
+  console.log("GATING STATUS:", {
+    freeSessionsUsed,
+    isPremium,
+    isFreeLimitReached,
+  });
 
-    if (!existing) {
-      localStorage.setItem("free_sessions_used", "1");
-      console.log("SESSION TRACKED: 1 (first free session)");
-      setSessionTracked(true);
-    } else {
-      console.log("SESSION ALREADY USED:", existing);
-      setSessionTracked(true);
-    }
-  }, [isPremium, sessionTracked, isFreeLimitReached]);
+  if (existing) {
+    setSessionTracked(true);
+  }
+}, [isPremium, isFreeLimitReached]);
 
   if (!now) return null;
   const meetingWindow = calculateOverlap(cityA, cityB);
