@@ -416,6 +416,7 @@ export default function ToolPreviewSection() {
     borderRadius: 8,
     cursor: "pointer",
     fontWeight: 600,
+    color: "#111827",
   }}
 >
   {isWatchingAd ? "Playing ad..." : "Continue Free (Watch Ad)"}
