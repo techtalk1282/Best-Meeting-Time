@@ -459,7 +459,7 @@ export default function ToolPreviewSection() {
         <select
           value={cityB.name}
           onChange={(e) => {
-  handleLockedInteraction();
+  if (handleLockedInteraction()) return;
 
   const city = CITY_OPTIONS.find(c => c.name === e.target.value)!;
   setCityB(city);
