@@ -19,7 +19,6 @@ type Window = {
 };
 
 const CITY_OPTIONS: City[] = [
-
   { name: "New York, USA", time: "", tz: "America/New_York" },
   { name: "Miami, USA", time: "", tz: "America/New_York" },
   { name: "Chicago, USA", time: "", tz: "America/Chicago" },
@@ -33,7 +32,11 @@ const CITY_OPTIONS: City[] = [
   { name: "Vancouver, Canada", time: "", tz: "America/Vancouver" },
 
   { name: "São Paulo, Brazil", time: "", tz: "America/Sao_Paulo" },
-  { name: "Buenos Aires, Argentina", time: "", tz: "America/Argentina/Buenos_Aires" },
+  {
+    name: "Buenos Aires, Argentina",
+    time: "",
+    tz: "America/Argentina/Buenos_Aires",
+  },
 
   { name: "London, UK", time: "", tz: "Europe/London" },
   { name: "Paris, France", time: "", tz: "Europe/Paris" },
@@ -67,14 +70,12 @@ const CITY_OPTIONS: City[] = [
   { name: "Melbourne, Australia", time: "", tz: "Australia/Melbourne" },
   { name: "Brisbane, Australia", time: "", tz: "Australia/Brisbane" },
   { name: "Perth, Australia", time: "", tz: "Australia/Perth" },
-  { name: "Auckland, New Zealand", time: "", tz: "Pacific/Auckland" }
-
+  { name: "Auckland, New Zealand", time: "", tz: "Pacific/Auckland" },
 ];
 
 /* COUNTRY FLAG MAP */
 
 function getCountryCode(city: string): string {
-
   if (city.includes("USA")) return "us";
   if (city.includes("Canada")) return "ca";
   if (city.includes("Brazil")) return "br";
@@ -113,7 +114,6 @@ function getCountryCode(city: string): string {
 }
 
 function Flag({ city }: { city: string }) {
-
   const code = getCountryCode(city);
 
   return (
@@ -124,7 +124,7 @@ function Flag({ city }: { city: string }) {
         width: 26,
         height: 18,
         marginLeft: 8,
-        borderRadius: 2
+        borderRadius: 2,
       }}
     />
   );
@@ -133,11 +133,9 @@ function Flag({ city }: { city: string }) {
 /* TIMEZONE NORMALIZATION */
 
 function normalizeTimeZoneLabel(label?: string) {
-
   if (!label) return "";
 
   const map: Record<string, string> = {
-
     "GMT+0": "GMT",
     "GMT+1": "CET",
     "GMT+2": "CEST",
@@ -158,8 +156,7 @@ function normalizeTimeZoneLabel(label?: string) {
     "GMT+12": "NZST",
     "GMT+13": "NZDT",
 
-    "GMT-3": "BRT"
-
+    "GMT-3": "BRT",
   };
 
   return map[label] ?? label;
@@ -168,7 +165,6 @@ function normalizeTimeZoneLabel(label?: string) {
 /* TIMEZONE OFFSET */
 
 function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
-
   const parts = new Intl.DateTimeFormat("en-US", {
     timeZone,
     timeZoneName: "shortOffset",
@@ -194,7 +190,6 @@ function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
 /* MEETING OVERLAP */
 
 function calculateOverlap(cityA: City, cityB: City): Window {
-
   const now = new Date();
 
   const offsetA = getTimeZoneOffsetMinutes(now, cityA.tz);
@@ -231,7 +226,6 @@ function calculateOverlap(cityA: City, cityB: City): Window {
 /* MAIN COMPONENT */
 
 export default function ToolPreviewSection() {
-
   useEffect(() => {
     const url = new URL(window.location.href);
     const sessionId = url.searchParams.get("session_id");
@@ -243,66 +237,65 @@ export default function ToolPreviewSection() {
 
   const [isPremium, setIsPremium] = useState(false);
   const [viewerTZ, setViewerTZ] = useState<string | null>(null);
-
-  useEffect(() => {
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    setViewerTZ(tz);
-    const premium = checkPremiumCookie();
-    setIsPremium(premium);
-  }, []);
-
-  const [sessionTracked, setSessionTracked] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
   const [cityA, setCityA] = useState<City>(CITY_OPTIONS[0]);
   const [cityB, setCityB] = useState<City>(CITY_OPTIONS[1]);
   const [now, setNow] = useState<Date | null>(null);
 
+  useEffect(() => {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    setViewerTZ(tz);
+
+    const premium = checkPremiumCookie();
+    setIsPremium(premium);
+  }, []);
+
   const isFreeLimitReached =
     typeof window !== "undefined" &&
     !isPremium &&
-    parseInt(localStorage.getItem("free_sessions_used") || "0", 10) >= 1;
+    parseInt(localStorage.getItem("free_sessions_used") || "0", 10) >= 4;
 
-;
-
-  
-
-  // allow up to 2 sessions
   function handleLockedInteraction(): boolean {
-  if (isPremium) return false;
+    if (isPremium) return false;
 
-  const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
+    const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
 
-  if (used >= 2) {
-    setIsLocked(true);
-    return true;
+    if (used >= 4) {
+      setIsLocked(true);
+      return true;
+    }
+
+    localStorage.setItem("free_sessions_used", String(used + 1));
+
+    return false;
   }
 
-  localStorage.setItem("free_sessions_used", String(used + 1));
-
-  return false;
-}
   useEffect(() => {
     setNow(new Date());
   }, []);
 
   useEffect(() => {
-  if (isPremium) return;
+    if (isPremium) {
+      setIsLocked(false);
+      return;
+    }
 
-  const existing = localStorage.getItem("free_sessions_used");
-  const freeSessionsUsed = parseInt(existing || "0", 10);
+    const existing = parseInt(
+      localStorage.getItem("free_sessions_used") || "0",
+      10
+    );
 
-  console.log("GATING STATUS:", {
-    freeSessionsUsed,
-    isPremium,
-    isFreeLimitReached,
-  });
+    setIsLocked(existing >= 4);
 
-  if (existing) {
-    setSessionTracked(true);
-  }
-}, [isPremium, isFreeLimitReached]);
+    console.log("GATING STATUS:", {
+      freeSessionsUsed: existing,
+      isPremium,
+      isFreeLimitReached,
+    });
+  }, [isPremium, isFreeLimitReached]);
 
   if (!now) return null;
+
   const meetingWindow = calculateOverlap(cityA, cityB);
 
   const startDate = new Date(meetingWindow.startUtc);
@@ -314,30 +307,40 @@ export default function ToolPreviewSection() {
   const startPercent = (startHour / 24) * 100;
   const widthPercent = ((endHour - startHour) / 24) * 100;
 
-  const startLocal = startDate.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
-  const endLocal = endDate.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+  const startLocal = startDate.toLocaleTimeString([], {
+    hour: "numeric",
+    minute: "2-digit",
+  });
+  const endLocal = endDate.toLocaleTimeString([], {
+    hour: "numeric",
+    minute: "2-digit",
+  });
 
   const cityATime = new Intl.DateTimeFormat("en-US", {
     timeZone: cityA.tz,
     hour: "numeric",
-    minute: "2-digit"
+    minute: "2-digit",
   }).format(now);
 
   const cityBTime = new Intl.DateTimeFormat("en-US", {
     timeZone: cityB.tz,
     hour: "numeric",
-    minute: "2-digit"
+    minute: "2-digit",
   }).format(now);
 
   const cityATZRaw = new Intl.DateTimeFormat("en-US", {
     timeZone: cityA.tz,
-    timeZoneName: "short"
-  }).formatToParts(now).find(p => p.type === "timeZoneName")?.value;
+    timeZoneName: "short",
+  })
+    .formatToParts(now)
+    .find((p) => p.type === "timeZoneName")?.value;
 
   const cityBTZRaw = new Intl.DateTimeFormat("en-US", {
     timeZone: cityB.tz,
-    timeZoneName: "short"
-  }).formatToParts(now).find(p => p.type === "timeZoneName")?.value;
+    timeZoneName: "short",
+  })
+    .formatToParts(now)
+    .find((p) => p.type === "timeZoneName")?.value;
 
   const cityATZ = normalizeTimeZoneLabel(cityATZRaw);
   const cityBTZ = normalizeTimeZoneLabel(cityBTZRaw);
@@ -346,14 +349,14 @@ export default function ToolPreviewSection() {
     timeZone: cityA.tz,
     weekday: "long",
     month: "long",
-    day: "numeric"
+    day: "numeric",
   }).format(now);
 
   const cityBDate = new Intl.DateTimeFormat("en-US", {
     timeZone: cityB.tz,
     weekday: "long",
     month: "long",
-    day: "numeric"
+    day: "numeric",
   }).format(now);
 
   const labels = [
@@ -368,86 +371,95 @@ export default function ToolPreviewSection() {
     { label: "4 PM", hour: 16 },
     { label: "6 PM", hour: 18 },
     { label: "8 PM", hour: 20 },
-    { label: "10 PM", hour: 22 }
+    { label: "10 PM", hour: 22 },
   ];
 
- return (
-  <div style={{ width: "100%", padding: 0 }}>
-
-    {/* ✅ LOCK MESSAGE (NEW) */}
-    {isLocked && !isPremium && (
-      <div
-        style={{
-          marginBottom: 20,
-          padding: "14px 16px",
-          borderRadius: 10,
-          background: "#fee2e2",
-          color: "#991b1b",
-          fontWeight: 600,
-          textAlign: "center",
-        }}
-      >
-        You’ve reached your free limit. Unlock premium to continue planning.
-      </div>
-    )}
+  return (
+    <div style={{ width: "100%", padding: 0 }}>
+      {isLocked && !isPremium && (
+        <div
+          style={{
+            marginBottom: 20,
+            padding: "14px 16px",
+            borderRadius: 10,
+            background: "#fee2e2",
+            color: "#991b1b",
+            fontWeight: 600,
+            textAlign: "center",
+          }}
+        >
+          You’ve reached your free limit. Unlock premium to continue planning.
+        </div>
+      )}
 
       {isPremium && (
         <div style={{ marginBottom: 10, color: "#16a34a", fontWeight: 700 }}>
           Premium Unlocked
         </div>
       )}
+
       {viewerTZ && (
         <div style={{ marginBottom: 20, fontWeight: 600 }}>
           Your Time Zone: {viewerTZ}
         </div>
       )}
 
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 30 }}>
-
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: 30,
+        }}
+      >
         <div>
-          <div style={{ fontWeight: 600, display: "flex", alignItems: "center" }}>
+          <div
+            style={{ fontWeight: 600, display: "flex", alignItems: "center" }}
+          >
             {cityA.name}
-            <Flag city={cityA.name}/>
+            <Flag city={cityA.name} />
           </div>
 
           <div style={{ fontSize: 30, fontWeight: 700 }}>
             {cityATime} {cityATZ}
           </div>
 
-          <div style={{ opacity: 0.7 }}>
-            {cityADate}
-          </div>
+          <div style={{ opacity: 0.7 }}>{cityADate}</div>
         </div>
 
         <div style={{ textAlign: "right" }}>
-          <div style={{ fontWeight: 600, display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+          <div
+            style={{
+              fontWeight: 600,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-end",
+            }}
+          >
             {cityB.name}
-            <Flag city={cityB.name}/>
+            <Flag city={cityB.name} />
           </div>
 
           <div style={{ fontSize: 30, fontWeight: 700 }}>
             {cityBTime} {cityBTZ}
           </div>
 
-          <div style={{ opacity: 0.7 }}>
-            {cityBDate}
-          </div>
+          <div style={{ opacity: 0.7 }}>{cityBDate}</div>
         </div>
-
       </div>
 
-      <div style={{ display: "flex", gap: 20, marginBottom: 20, alignItems: "center" }}>
-
+      <div
+        style={{ display: "flex", gap: 20, marginBottom: 20, alignItems: "center" }}
+      >
         <select
           value={cityA.name}
-         onChange={(e) => {
-  if (handleLockedInteraction()) return;
+          onChange={(e) => {
+            if (handleLockedInteraction()) return;
 
-  const city = CITY_OPTIONS.find(c => c.name === e.target.value)!;
-  setCityA(city);
-}}
+            const city = CITY_OPTIONS.find((c) => c.name === e.target.value)!;
+            setCityA(city);
+          }}
         >
-          {CITY_OPTIONS.map(city => (
+          {CITY_OPTIONS.map((city) => (
             <option key={city.name} value={city.name}>
               {city.name}
             </option>
@@ -456,18 +468,16 @@ export default function ToolPreviewSection() {
 
         <button
           onClick={() => {
-  if (handleLockedInteraction()) return;
-
-  const temp = cityA;
-  setCityA(cityB);
-  setCityB(temp);
-}}
+            const temp = cityA;
+            setCityA(cityB);
+            setCityB(temp);
+          }}
           style={{
             padding: "8px 16px",
             fontWeight: 600,
             borderRadius: 6,
             cursor: "pointer",
-            color: "#000"
+            color: "#000",
           }}
         >
           SWAP
@@ -476,25 +486,22 @@ export default function ToolPreviewSection() {
         <select
           value={cityB.name}
           onChange={(e) => {
-  if (handleLockedInteraction()) return;
+            if (handleLockedInteraction()) return;
 
-  const city = CITY_OPTIONS.find(c => c.name === e.target.value)!;
-  setCityB(city);
-}}
+            const city = CITY_OPTIONS.find((c) => c.name === e.target.value)!;
+            setCityB(city);
+          }}
         >
-          {CITY_OPTIONS.map(city => (
+          {CITY_OPTIONS.map((city) => (
             <option key={city.name} value={city.name}>
               {city.name}
             </option>
           ))}
         </select>
-
       </div>
 
       <div style={{ padding: 8 }}>
-
         <div style={{ position: "relative", height: 20, marginBottom: 10 }}>
-
           {labels.map((l) => (
             <span
               key={l.hour}
@@ -502,27 +509,24 @@ export default function ToolPreviewSection() {
                 position: "absolute",
                 left: `${(l.hour / 24) * 100}%`,
                 transform: "translateX(-50%)",
-                fontSize: 13
+                fontSize: 13,
               }}
             >
               {l.label}
             </span>
           ))}
-
         </div>
 
         <div style={{ position: "relative" }}>
-
           <div
             style={{
               height: 36,
               borderRadius: 12,
               background: "linear-gradient(90deg,#4c1d95,#6d28d9,#7c3aed)",
               position: "relative",
-              overflow: "hidden"
+              overflow: "hidden",
             }}
           >
-
             {[...Array(24)].map((_, i) => (
               <div
                 key={i}
@@ -534,7 +538,7 @@ export default function ToolPreviewSection() {
                   width: 1,
                   height: i % 2 === 0 ? 20 : 12,
                   background: "#ffffff66",
-                  pointerEvents: "none"
+                  pointerEvents: "none",
                 }}
               />
             ))}
@@ -552,22 +556,18 @@ export default function ToolPreviewSection() {
                 justifyContent: "center",
                 fontWeight: 600,
                 color: "#fff",
-                fontSize: 12
+                fontSize: 12,
               }}
             >
               Best Time
             </div>
-
           </div>
-
         </div>
 
         <div style={{ marginTop: 8, fontWeight: 600 }}>
           Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
         </div>
-
       </div>
-
     </div>
   );
 }
