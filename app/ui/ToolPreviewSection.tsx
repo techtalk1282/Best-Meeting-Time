@@ -238,6 +238,7 @@ export default function ToolPreviewSection() {
   const [isPremium, setIsPremium] = useState(false);
   const [viewerTZ, setViewerTZ] = useState<string | null>(null);
   const [isLocked, setIsLocked] = useState(false);
+  const [isWatchingAd, setIsWatchingAd] = useState(false);
   const [cityA, setCityA] = useState<City>(CITY_OPTIONS[0]);
   const [cityB, setCityB] = useState<City>(CITY_OPTIONS[1]);
   const [now, setNow] = useState<Date | null>(null);
@@ -398,27 +399,29 @@ export default function ToolPreviewSection() {
     <div style={{ display: "flex", gap: 12, justifyContent: "center" }}>
       
       {/* CONTINUE FREE (SIMULATED AD) */}
-      <button
-        onClick={() => {
-          // TEMPORARY: simulate ad + unlock 1 session (2 clicks)
-          const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
+<button
+  onClick={() => {
+  setIsWatchingAd(true);
 
-          setTimeout(() => {
-            localStorage.setItem("free_sessions_used", String(Math.max(0, used - 2)));
-            setIsLocked(false);
-          }, 2500);
-        }}
-        style={{
-          background: "#ffffff",
-          border: "1px solid #ddd",
-          padding: "10px 16px",
-          borderRadius: 8,
-          cursor: "pointer",
-          fontWeight: 600,
-        }}
-      >
-        Continue Free (Watch Ad)
-      </button>
+  const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
+
+  setTimeout(() => {
+    localStorage.setItem("free_sessions_used", String(Math.max(0, used - 2)));
+    setIsLocked(false);
+    setIsWatchingAd(false);
+  }, 2500);
+}}
+  style={{
+    background: "#ffffff",
+    border: "1px solid #ddd",
+    padding: "10px 16px",
+    borderRadius: 8,
+    cursor: "pointer",
+    fontWeight: 600,
+  }}
+>
+  Continue Free (Watch Ad)
+</button>
 
       {/* PREMIUM CTA */}
       <a
