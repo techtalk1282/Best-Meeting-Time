@@ -460,7 +460,7 @@ function handleLockedInteraction(): boolean {
         <select
           value={cityB.name}
           onChange={(e) => {
-  
+  handleLockedInteraction();
 
   const city = CITY_OPTIONS.find(c => c.name === e.target.value)!;
   setCityB(city);
