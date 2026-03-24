@@ -420,7 +420,7 @@ export default function ToolPreviewSection() {
     fontWeight: 600,
   }}
 >
-  Continue Free (Watch Ad)
+  {isWatchingAd ? "Playing ad..." : "Continue Free (Watch Ad)"}
 </button>
 
       {/* PREMIUM CTA */}
