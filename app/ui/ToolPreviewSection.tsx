@@ -277,10 +277,7 @@ export default function ToolPreviewSection() {
     return true;
   }
 
-  if (!sessionTracked) {
-    localStorage.setItem("free_sessions_used", String(used + 1));
-    setSessionTracked(true);
-  }
+  localStorage.setItem("free_sessions_used", String(used + 1));
 
   return false;
 }
