@@ -275,26 +275,24 @@ export default function ToolPreviewSection() {
     setNow(new Date());
   }, []);
 
-  useEffect(() => {
-    if (isPremium) {
-      setIsLocked(false);
-      return;
-    }
+ useEffect(() => {
+  if (typeof window === "undefined") return;
 
-    const existing = parseInt(
-      localStorage.getItem("free_sessions_used") || "0",
-      10
-    );
+  const existing = parseInt(
+    localStorage.getItem("free_sessions_used") || "0",
+    10
+  );
 
-    setIsLocked(existing >= 4);
+  if (!isPremium && existing >= 4) {
+    setIsLocked(true);
+  }
 
-    console.log("GATING STATUS:", {
-      freeSessionsUsed: existing,
-      isPremium,
-      isFreeLimitReached,
-    });
-  }, [isPremium, isFreeLimitReached]);
-
+  console.log("GATING STATUS:", {
+    freeSessionsUsed: existing,
+    isPremium,
+    isFreeLimitReached: existing >= 4,
+  });
+}, [isPremium]);
   if (!now) return null;
 
   const meetingWindow = calculateOverlap(cityA, cityB);
