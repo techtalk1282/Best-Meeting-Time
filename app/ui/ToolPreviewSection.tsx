@@ -425,10 +425,11 @@ function handleLockedInteraction(): boolean {
         <select
           value={cityA.name}
           onChange={(e) => {
-            
-            const city = CITY_OPTIONS.find(c => c.name === e.target.value)!;
-            setCityA(city);
-          }}
+  handleLockedInteraction();
+
+  const city = CITY_OPTIONS.find(c => c.name === e.target.value)!;
+  setCityA(city);
+}}
         >
           {CITY_OPTIONS.map(city => (
             <option key={city.name} value={city.name}>
