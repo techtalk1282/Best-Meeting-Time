@@ -437,11 +437,6 @@ export default function ToolPreviewSection() {
       </a>
     </div>
   </div>
-)}
-        >
-          You’ve reached your free limit. Unlock premium to continue planning.
-        </div>
-      )}
 
       {isPremium && (
         <div style={{ marginBottom: 10, color: "#16a34a", fontWeight: 700 }}>
