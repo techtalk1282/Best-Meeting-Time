@@ -440,12 +440,12 @@ function handleLockedInteraction(): boolean {
 
         <button
           onClick={() => {
-            
+  handleLockedInteraction();
 
-            const temp = cityA;
-            setCityA(cityB);
-            setCityB(temp);
-          }}
+  const temp = cityA;
+  setCityA(cityB);
+  setCityB(temp);
+}}
           style={{
             padding: "8px 16px",
             fontWeight: 600,
