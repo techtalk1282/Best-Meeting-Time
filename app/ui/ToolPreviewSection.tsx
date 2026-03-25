@@ -428,9 +428,7 @@ export default function ToolPreviewSection() {
       >
         Unlock Premium
       </a>
-    </div>
-  </div>
-
+      
       {isPremium && (
         <div style={{ marginBottom: 10, color: "#16a34a", fontWeight: 700 }}>
           Premium Unlocked
