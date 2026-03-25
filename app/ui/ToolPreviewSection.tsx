@@ -376,7 +376,7 @@ export default function ToolPreviewSection() {
   return (
     <div style={{ width: "100%", padding: 0 }}>
       
-  >
+  
     <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 6 }}>
       You’ve used your free planning sessions
     </div>
