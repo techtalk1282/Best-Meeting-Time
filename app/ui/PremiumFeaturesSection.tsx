@@ -130,6 +130,13 @@ export default function PremiumFeaturesSection({
     }
   }
 
+  function handleWatchAd() {
+    const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
+    const next = Math.max(0, used - 2);
+    localStorage.setItem("free_sessions_used", String(next));
+    window.location.reload();
+  }
+
   function handleShareClick() {
     if (!isPremium) {
       return;
@@ -170,13 +177,6 @@ export default function PremiumFeaturesSection({
     document.body.removeChild(textarea);
   }
 
-  function handleWatchAd() {
-    const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
-    const next = Math.max(0, used - 2);
-    localStorage.setItem("free_sessions_used", String(next));
-    window.location.reload();
-  }
-
   return (
     <section
       id="premium-features"
@@ -194,11 +194,9 @@ export default function PremiumFeaturesSection({
             color: "#000000",
             border: "1px solid rgba(255,255,255,0.22)",
             boxShadow: "0 18px 50px rgba(0,0,0,0.24)",
-            position: "relative", // ✅ required for corner button
+            position: "relative",
           }}
         >
-
-          {/* ✅ CORNER WATCH AD BUTTON */}
           {!isPremium && (
             <div
               onClick={handleWatchAd}
@@ -252,4 +250,137 @@ export default function PremiumFeaturesSection({
             )}
           </div>
 
-          {/* EVERYTHING ELSE UNCHANGED BELOW */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 16,
+              marginBottom: 16,
+            }}
+          >
+            <div
+              style={{
+                ...topFeatureCard,
+                cursor: "pointer",
+              }}
+              onClick={handleShareClick}
+            >
+              <div style={iconWrap}>
+                <img src="/share.png" alt="Share link" style={iconImg} />
+              </div>
+              <h3 style={cardTitle}>Share a Meeting Link</h3>
+              <p style={cardText}>Send a booking page with one click</p>
+
+              {copied && (
+                <p
+                  style={{
+                    color: "#16a34a",
+                    fontWeight: 700,
+                    marginTop: 10,
+                    fontSize: 15,
+                  }}
+                >
+                  ✓ Link copied to clipboard
+                </p>
+              )}
+            </div>
+
+            <div style={topFeatureCard}>
+              <div style={iconWrap}>
+                <img src="/globe.png" alt="Compare cities" style={iconImg} />
+              </div>
+              <h3 style={cardTitle}>3 Planning Sessions (2 Cities)</h3>
+              <p style={cardText}>
+                Plan meetings between different cities with 3 sessions
+              </p>
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr 1fr",
+              gap: 16,
+              marginBottom: 24,
+            }}
+          >
+            <div style={bottomFeatureCard}>
+              <div style={iconWrap}>
+                <img
+                  src="/google-calendar.png"
+                  alt="Google Calendar"
+                  style={iconImg}
+                />
+              </div>
+              <h3 style={cardTitle}>Google Calendar</h3>
+              <p style={cardText}>Save meetings directly to Google</p>
+            </div>
+
+            <div style={bottomFeatureCard}>
+              <div style={iconWrap}>
+                <img src="/outlook.png" alt="Outlook Calendar" style={iconImg} />
+              </div>
+              <h3 style={cardTitle}>Outlook Calendar</h3>
+              <p style={cardText}>Save meetings directly to Outlook</p>
+            </div>
+
+            <div style={bottomFeatureCard}>
+              <div style={iconWrap}>
+                <img src="/apple.png" alt="Apple Calendar" style={appleIconImg} />
+              </div>
+              <h3 style={cardTitle}>Apple Calendar</h3>
+              <p style={cardText}>Download the .ICS file for Apple</p>
+            </div>
+
+            {children}
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(2, max-content)",
+              justifyContent: "center",
+              gap: "14px 60px",
+              margin: "0 auto 20px",
+            }}
+          >
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>$7 one-time payment</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>3 planning sessions</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>No subscription</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>Google, Outlook & Apple export</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>No ads during planning</span>
+            </div>
+            <div style={checklistItem}>
+              <CheckIcon />
+              <span>Share meeting links</span>
+            </div>
+          </div>
+
+          <div
+            style={{
+              textAlign: "center",
+              fontSize: 13,
+              color: "#6b7280",
+            }}
+          >
+            Secured by Stripe • Terms • Privacy
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
