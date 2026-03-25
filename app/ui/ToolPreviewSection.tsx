@@ -375,16 +375,7 @@ export default function ToolPreviewSection() {
 
   return (
     <div style={{ width: "100%", padding: 0 }}>
-      {isFreeLimitReached && !isPremium && (
-  <div
-    style={{
-      marginBottom: 24,
-      padding: 20,
-      borderRadius: 16,
-      background: "#fff7ed",
-      border: "1px solid #fed7aa",
-      textAlign: "center",
-    }}
+      
   >
     <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 6 }}>
       You’ve used your free planning sessions
