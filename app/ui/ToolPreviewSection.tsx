@@ -374,7 +374,7 @@ export default function ToolPreviewSection() {
   ];
 
   return (
-  <div style={{ width: "100%", padding: 0 }}>
+    <div style={{ width: "100%", padding: 0 }}>
       
   
     <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 6 }}>
@@ -428,7 +428,9 @@ export default function ToolPreviewSection() {
       >
         Unlock Premium
       </a>
-      
+    </div>
+  </div>
+)}
       {isPremium && (
         <div style={{ marginBottom: 10, color: "#16a34a", fontWeight: 700 }}>
           Premium Unlocked
