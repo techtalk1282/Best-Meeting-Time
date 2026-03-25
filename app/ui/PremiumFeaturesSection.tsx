@@ -404,7 +404,13 @@ export default function PremiumFeaturesSection({
               <p style={cardText}>Save meetings directly to Outlook</p>
             </div>
 
-            <div style={bottomFeatureCard}>
+           <div
+       style={{ ...bottomFeatureCard, cursor: "pointer" }}
+       onClick={() => {
+         const url = `/api/calendar?cityA=New%20York&cityB=London&start=2026-03-25T14:00:00Z&end=2026-03-25T15:00:00Z`;
+         window.open(url, "_blank");
+       }}
+     >
               <div style={iconWrap}>
                 <img src="/apple.png" alt="Apple Calendar" style={appleIconImg} />
               </div>
