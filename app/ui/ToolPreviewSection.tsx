@@ -275,24 +275,25 @@ export default function ToolPreviewSection() {
     setNow(new Date());
   }, []);
 
- useEffect(() => {
-  if (typeof window === "undefined") return;
+  useEffect(() => {
+    if (typeof window === "undefined") return;
 
-  const existing = parseInt(
-    localStorage.getItem("free_sessions_used") || "0",
-    10
-  );
+    const existing = parseInt(
+      localStorage.getItem("free_sessions_used") || "0",
+      10
+    );
 
-  if (!isPremium && existing >= 4) {
-    setIsLocked(true);
-  }
+    if (!isPremium && existing >= 4) {
+      setIsLocked(true);
+    }
 
-  console.log("GATING STATUS:", {
-    freeSessionsUsed: existing,
-    isPremium,
-    isFreeLimitReached: existing >= 4,
-  });
-}, [isPremium]);
+    console.log("GATING STATUS:", {
+      freeSessionsUsed: existing,
+      isPremium,
+      isFreeLimitReached: existing >= 4,
+    });
+  }, [isPremium]);
+
   if (!now) return null;
 
   const meetingWindow = calculateOverlap(cityA, cityB);
@@ -310,6 +311,7 @@ export default function ToolPreviewSection() {
     hour: "numeric",
     minute: "2-digit",
   });
+
   const endLocal = endDate.toLocaleTimeString([], {
     hour: "numeric",
     minute: "2-digit",
@@ -375,62 +377,6 @@ export default function ToolPreviewSection() {
 
   return (
     <div style={{ width: "100%", padding: 0 }}>
-      
-  
-    <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 6 }}>
-      You’ve used your free planning sessions
-    </div>
-
-    <div style={{ fontSize: 14, marginBottom: 14, color: "#444" }}>
-      Continue planning instantly or unlock all features
-    </div>
-
-    <div style={{ display: "flex", gap: 12, justifyContent: "center" }}>
-      
-      {/* CONTINUE FREE (SIMULATED AD) */}
-<button
-  onClick={() => {
-  setIsWatchingAd(true);
-
-  const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
-
-  setTimeout(() => {
-    localStorage.setItem("free_sessions_used", String(Math.max(0, used - 2)));
-    setIsLocked(false);
-    setIsWatchingAd(false);
-  }, 2500);
-}}
-  style={{
-    background: "#ffffff",
-    border: "1px solid #ddd",
-    padding: "10px 16px",
-    borderRadius: 8,
-    cursor: "pointer",
-    fontWeight: 600,
-    color: "#111827",
-  }}
->
-  {isWatchingAd ? "Playing ad..." : "Continue Free (Watch Ad)"}
-</button>
-
-      {/* PREMIUM CTA */}
-      <a
-        href="#premium-features"
-        style={{
-          display: "inline-block",
-          background: "#facc15",
-          color: "#000",
-          padding: "10px 16px",
-          borderRadius: 8,
-          fontWeight: 700,
-          textDecoration: "none",
-        }}
-      >
-        Unlock Premium
-      </a>
-    </div>
-  </div>
-)}
       {isPremium && (
         <div style={{ marginBottom: 10, color: "#16a34a", fontWeight: 700 }}>
           Premium Unlocked
@@ -487,7 +433,12 @@ export default function ToolPreviewSection() {
       </div>
 
       <div
-        style={{ display: "flex", gap: 20, marginBottom: 20, alignItems: "center" }}
+        style={{
+          display: "flex",
+          gap: 20,
+          marginBottom: 20,
+          alignItems: "center",
+        }}
       >
         <select
           value={cityA.name}
