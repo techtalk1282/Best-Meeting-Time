@@ -96,6 +96,8 @@ export default function PremiumFeaturesSection({
 }: PremiumFeaturesSectionProps) {
   const [copied, setCopied] = useState(false);
   const [isPremium, setIsPremium] = useState(false);
+  const [isLocked, setIsLocked] = useState(false);
+  const [isWatchingAd, setIsWatchingAd] = useState(false);
 
   useEffect(() => {
     function checkPremium() {
@@ -105,11 +107,21 @@ export default function PremiumFeaturesSection({
         .find((c) => c.startsWith("premium="))
         ?.split("=")[1];
 
-      setIsPremium(premium === "true");
+      setIsPremium(premium === "true" || premium === "1");
+    }
+
+    function checkLocked() {
+      const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
+      setIsLocked(used >= 4);
     }
 
     checkPremium();
-    setTimeout(checkPremium, 100);
+    checkLocked();
+
+    setTimeout(() => {
+      checkPremium();
+      checkLocked();
+    }, 100);
   }, []);
 
   async function handleCheckout() {
@@ -131,10 +143,17 @@ export default function PremiumFeaturesSection({
   }
 
   function handleWatchAd() {
+    setIsWatchingAd(true);
+
     const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
     const next = Math.max(0, used - 2);
-    localStorage.setItem("free_sessions_used", String(next));
-    window.location.reload();
+
+    setTimeout(() => {
+      localStorage.setItem("free_sessions_used", String(next));
+      setIsLocked(false);
+      setIsWatchingAd(false);
+      window.location.hash = "#tool-preview";
+    }, 2500);
   }
 
   function handleShareClick() {
@@ -197,56 +216,114 @@ export default function PremiumFeaturesSection({
             position: "relative",
           }}
         >
-          {!isPremium && (
-            <div
-              onClick={handleWatchAd}
-              style={{
-                position: "absolute",
-                top: 16,
-                right: 16,
-                background: "#f3f4f6",
-                color: "#111827",
-                border: "1px solid #e5e7eb",
-                borderRadius: 999,
-                padding: "6px 12px",
-                fontSize: 12,
-                fontWeight: 600,
-                cursor: "pointer",
-                whiteSpace: "nowrap",
-              }}
-            >
-              Continue Free — Watch Ad - Get 2 More Sessions
-            </div>
-          )}
-
           <div style={{ textAlign: "center", marginBottom: 22 }}>
-            <button
-              style={{
-                ...primaryButton,
-                background: isPremium ? "#8b5cf6" : primaryButton.background,
-                color: isPremium ? "#ffffff" : primaryButton.color,
-                cursor: isPremium ? "default" : "pointer",
-                opacity: 1,
-                boxShadow: primaryButton.boxShadow,
-              }}
-              onClick={!isPremium ? handleCheckout : undefined}
-            >
-              {isPremium
-                ? "✓ Premium Features Unlocked"
-                : "Unlock Premium Planning Tools — $7 One-Time"}
-            </button>
+            {isPremium ? (
+              <>
+                <button
+                  style={{
+                    ...primaryButton,
+                    background: "#8b5cf6",
+                    color: "#ffffff",
+                    cursor: "default",
+                    opacity: 1,
+                    boxShadow: primaryButton.boxShadow,
+                  }}
+                >
+                  ✓ Premium Features Unlocked
+                </button>
 
-            {!isPremium && (
-              <div
-                style={{
-                  marginTop: 10,
-                  fontSize: 13,
-                  color: "#6b7280",
-                  fontWeight: 600,
-                }}
-              >
-                No subscription • Pay once, use anytime
-              </div>
+                <div
+                  style={{
+                    marginTop: 10,
+                    fontSize: 13,
+                    color: "#6b7280",
+                    fontWeight: 600,
+                  }}
+                >
+                  No subscription • Pay once, use anytime
+                </div>
+              </>
+            ) : isLocked ? (
+              <>
+                <div
+                  style={{
+                    textAlign: "center",
+                    fontSize: 14,
+                    color: "#555",
+                    marginBottom: 12,
+                    fontWeight: 500,
+                  }}
+                >
+                  You’ve used your free planning sessions. Choose how to continue.
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 12,
+                    marginBottom: 10,
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <button
+                    onClick={handleCheckout}
+                    style={{
+                      ...primaryButton,
+                    }}
+                  >
+                    Unlock Premium — $7 One-Time
+                  </button>
+
+                  <button
+                    onClick={handleWatchAd}
+                    style={{
+                      ...primaryButton,
+                    }}
+                  >
+                    {isWatchingAd ? "Playing Ad..." : "Continue Free — Watch Ad"}
+                  </button>
+                </div>
+
+                <div
+                  style={{
+                    textAlign: "center",
+                    fontSize: 12,
+                    color: "#666",
+                    lineHeight: 1.4,
+                  }}
+                >
+                  <div>Unlock Premium → Get all features below</div>
+                  <div>Continue Free → Basic sessions only (no premium tools)</div>
+                </div>
+              </>
+            ) : (
+              <>
+                <button
+                  style={{
+                    ...primaryButton,
+                    background: primaryButton.background,
+                    color: primaryButton.color,
+                    cursor: "pointer",
+                    opacity: 1,
+                    boxShadow: primaryButton.boxShadow,
+                  }}
+                  onClick={handleCheckout}
+                >
+                  Unlock Premium Planning Tools — $7 One-Time
+                </button>
+
+                <div
+                  style={{
+                    marginTop: 10,
+                    fontSize: 13,
+                    color: "#6b7280",
+                    fontWeight: 600,
+                  }}
+                >
+                  No subscription • Pay once, use anytime
+                </div>
+              </>
             )}
           </div>
 
