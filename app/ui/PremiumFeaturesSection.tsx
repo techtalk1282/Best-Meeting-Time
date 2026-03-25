@@ -250,13 +250,13 @@ export default function PremiumFeaturesSection({
                 <div
                   style={{
                     textAlign: "center",
-                    fontSize: 14,
-                    color: "#555",
-                    marginBottom: 12,
-                    fontWeight: 500,
+                    fontSize: 16,
+               color: "#222",
+               marginBottom: 12,
+               fontWeight: 600,
                   }}
                 >
-                  You’ve used your free planning sessions. Choose how to continue.
+                  You've used your 2 free planning sessions. Choose how to continue.
                 </div>
 
                 <div
