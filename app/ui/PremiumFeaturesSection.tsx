@@ -118,10 +118,12 @@ export default function PremiumFeaturesSection({
     checkPremium();
     checkLocked();
 
-    setTimeout(() => {
+    const interval = setInterval(() => {
       checkPremium();
       checkLocked();
-    }, 100);
+    }, 500);
+
+    return () => clearInterval(interval);
   }, []);
 
   async function handleCheckout() {
