@@ -290,13 +290,14 @@ export default function PremiumFeaturesSection({
                 <div
                   style={{
                     textAlign: "center",
-                    fontSize: 12,
-                    color: "#666",
+                    fontSize: 16,
+                    color: "#222",
+                    fontWeight: 500,
                     lineHeight: 1.4,
                   }}
                 >
                   <div>Unlock Premium → Get all features below</div>
-                  <div>Continue Free → Basic sessions only (no premium tools)</div>
+                  <div>Continue Free → Get 2 more planning sessions (no premium tools)</div>
                 </div>
               </>
             ) : (
