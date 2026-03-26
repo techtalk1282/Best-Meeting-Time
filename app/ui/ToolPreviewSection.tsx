@@ -268,7 +268,7 @@ export default function ToolPreviewSection() {
   );
 
   if (isPremium) {
-  if (premiumUsed >= 3) {
+  if (premiumUsed >= 6) {
     setIsLocked(true);
     return true; // block interaction
   }
