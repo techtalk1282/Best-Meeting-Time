@@ -224,7 +224,7 @@ export default function PremiumFeaturesSection({
                 <button
                   style={{
                     ...primaryButton,
-                    background: "#8b5cf6",
+                    background: "#7c3aed",
                     color: "#ffffff",
                     cursor: "default",
                     opacity: 1,
