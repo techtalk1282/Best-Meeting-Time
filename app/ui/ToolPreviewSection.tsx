@@ -257,19 +257,37 @@ export default function ToolPreviewSection() {
     parseInt(localStorage.getItem("free_sessions_used") || "0", 10) >= 4;
 
   function handleLockedInteraction(): boolean {
-    if (isPremium) return false;
+  const freeUsed = parseInt(
+    localStorage.getItem("free_sessions_used") || "0",
+    10
+  );
 
-    const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
+  const premiumUsed = parseInt(
+    localStorage.getItem("premium_sessions_used") || "0",
+    10
+  );
 
-    if (used >= 4) {
-      setIsLocked(true);
-      return true;
+  if (isPremium) {
+    if (premiumUsed >= 3) {
+      return false;
     }
 
-    localStorage.setItem("free_sessions_used", String(used + 1));
+    localStorage.setItem(
+      "premium_sessions_used",
+      String(premiumUsed + 1)
+    );
 
     return false;
   }
+
+  if (freeUsed >= 4) {
+    setIsLocked(true);
+    return true;
+  }
+
+  localStorage.setItem("free_sessions_used", String(freeUsed + 1));
+  return false;
+}
 
   useEffect(() => {
     setNow(new Date());
