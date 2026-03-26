@@ -1,21 +1,7 @@
-// app/ui/HeroSection.tsx
-
 "use client";
 
 import { useEffect, useState } from "react";
 import ToolPreviewSection from "./ToolPreviewSection";
-
-const navButton: React.CSSProperties = {
-  background: "#facc15",
-  color: "#000",
-  border: "none",
-  padding: "10px 22px",
-  borderRadius: 10,
-  fontWeight: 700,
-  fontSize: 14,
-  cursor: "pointer",
-  boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
-};
 
 export default function HeroSection() {
   const [isPremium, setIsPremium] = useState(false);
@@ -27,8 +13,10 @@ export default function HeroSection() {
       .find((c) => c.startsWith("premium="))
       ?.split("=")[1];
 
-    setIsPremium(premium === "true");
+    // ✅ FIX: support BOTH formats
+    setIsPremium(premium === "true" || premium === "1");
   }, []);
+
   return (
     <section
       id="hero"
@@ -56,7 +44,6 @@ export default function HeroSection() {
 
           <div />
 
-          {/* FIXED: anchor styled as button */}
           <a
             href="#premium-features"
             style={{
@@ -122,25 +109,26 @@ export default function HeroSection() {
             boxShadow: "0 20px 50px rgba(0,0,0,0.25)",
           }}
         >
-          {/* FIXED: anchor styled as button */}
           <div style={{ textAlign: "center", marginBottom: 20 }}>
-          <a
-  href="#tool-preview"
-  style={{
-    display: "inline-block",
-    background: isPremium ? "#8b5cf6" : "#facc15",
-    color: isPremium ? "#ffffff" : "#000",
-    padding: "10px 18px",
-    borderRadius: 999,
-    fontWeight: 700,
-    fontSize: 14,
-    textDecoration: "none",
-    boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
-    cursor: isPremium ? "default" : "pointer",
-  }}
->
-  {isPremium ? "✓ Premium Features Unlocked" : "Get Started Free"}
-</a>  
+            <a
+              href="#tool-preview"
+              style={{
+                display: "inline-block",
+                background: isPremium ? "#7c3aed" : "#facc15",
+                color: isPremium ? "#ffffff" : "#000",
+                padding: "10px 18px",
+                borderRadius: 999,
+                fontWeight: 700,
+                fontSize: 14,
+                textDecoration: "none",
+                boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
+                cursor: isPremium ? "default" : "pointer",
+              }}
+            >
+              {isPremium
+                ? "✓ Premium Features Unlocked"
+                : "Get Started Free"}
+            </a>
           </div>
 
           <ToolPreviewSection />
