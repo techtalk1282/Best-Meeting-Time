@@ -644,7 +644,54 @@ export default function ToolPreviewSection() {
   }}
 >
 
-  {/* GOOGLE CALENDAR */}
+  {/* SHARE LINK */}
+<button
+  onClick={async () => {
+    try {
+      const res = await fetch("/api/share", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cities: [
+            { name: cityA.name, tz: cityA.tz },
+            { name: cityB.name, tz: cityB.tz },
+          ],
+          windows: [
+            {
+              startUtc: meetingWindow.startUtc,
+              endUtc: meetingWindow.endUtc,
+            },
+          ],
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.url) {
+        const fullUrl = window.location.origin + data.url;
+        await navigator.clipboard.writeText(fullUrl);
+        alert("Link copied to clipboard");
+      }
+    } catch (err) {
+      console.error("Share error:", err);
+    }
+  }}
+  style={{
+    background: "#facc15",
+    color: "#000",
+    fontWeight: 700,
+    padding: "8px 14px",
+    borderRadius: 999,
+    border: "none",
+    cursor: "pointer",
+    fontSize: 13,
+    boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+  }}
+>
+  Share Link
+</button>
   {/* GOOGLE CALENDAR */}
         <button
           onClick={() => {
