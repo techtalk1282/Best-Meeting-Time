@@ -635,7 +635,7 @@ export default function ToolPreviewSection() {
           Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
          <div
   style={{
-    marginTop: 14,
+    marginTop: 18,
     display: "flex",
     gap: 14,
     justifyContent: "flex-start",
