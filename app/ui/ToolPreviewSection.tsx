@@ -252,9 +252,9 @@ export default function ToolPreviewSection() {
   }, []);
 
   const isFreeLimitReached =
-    typeof window !== "undefined" &&
-    !isPremium &&
-    parseInt(localStorage.getItem("free_sessions_used") || "0", 10) >= 4;
+  typeof window !== "undefined" &&
+  !isPremium &&
+  parseInt(localStorage.getItem("free_sessions_used") || "0", 10) >= 4;
 
   function handleLockedInteraction(): boolean {
   const freeUsed = parseInt(
@@ -293,24 +293,29 @@ export default function ToolPreviewSection() {
     setNow(new Date());
   }, []);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
+ useEffect(() => {
+  if (typeof window === "undefined") return;
 
-    const existing = parseInt(
-      localStorage.getItem("free_sessions_used") || "0",
-      10
-    );
+  const freeUsed = parseInt(
+    localStorage.getItem("free_sessions_used") || "0",
+    10
+  );
 
-    if (!isPremium && existing >= 4) {
-      setIsLocked(true);
-    }
+  const premiumUsed = parseInt(
+    localStorage.getItem("premium_sessions_used") || "0",
+    10
+  );
 
-    console.log("GATING STATUS:", {
-      freeSessionsUsed: existing,
-      isPremium,
-      isFreeLimitReached: existing >= 4,
-    });
-  }, [isPremium]);
+  if (!isPremium && freeUsed >= 4) {
+    setIsLocked(true);
+  }
+
+  console.log("GATING STATUS:", {
+    freeSessionsUsed: freeUsed,
+    premiumSessionsUsed: premiumUsed,
+    isPremium,
+  });
+}, [isPremium]);
 
   if (!now) return null;
 
