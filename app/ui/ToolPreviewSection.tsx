@@ -268,17 +268,18 @@ export default function ToolPreviewSection() {
   );
 
   if (isPremium) {
-    if (premiumUsed >= 3) {
-      return false;
-    }
-
-    localStorage.setItem(
-      "premium_sessions_used",
-      String(premiumUsed + 1)
-    );
-
-    return false;
+  if (premiumUsed >= 3) {
+    setIsLocked(true);
+    return true; // block interaction
   }
+
+  localStorage.setItem(
+    "premium_sessions_used",
+    String(premiumUsed + 1)
+  );
+
+  return false;
+}
 
   if (freeUsed >= 4) {
     setIsLocked(true);
