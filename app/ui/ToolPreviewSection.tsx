@@ -403,15 +403,60 @@ export default function ToolPreviewSection() {
     <div style={{ width: "100%", padding: 0 }}>
      {isLocked && isPremium && (
   <div style={{
-    marginBottom: 20,
-    padding: 16,
-    borderRadius: 10,
-    background: "#fff3cd",
-    color: "#856404",
-    fontWeight: 600,
+    marginBottom: 24,
+    padding: 24,
+    borderRadius: 16,
+    background: "#ffffff",
+    boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
     textAlign: "center"
   }}>
-    You’ve reached your premium planning limit. Upgrade to continue.
+    
+    <div style={{
+      fontSize: 18,
+      fontWeight: 700,
+      marginBottom: 8
+    }}>
+      You’ve reached your premium planning limit
+    </div>
+
+    <div style={{
+      fontSize: 14,
+      opacity: 0.7,
+      marginBottom: 16
+    }}>
+      Unlock more planning sessions and continue scheduling instantly
+    </div>
+
+    <button
+      onClick={async () => {
+        try {
+          const res = await fetch("/api/checkout", {
+            method: "POST",
+          });
+
+          const data = await res.json();
+
+          if (data.url) {
+            window.location.href = data.url;
+          }
+        } catch (err) {
+          console.error("Checkout error:", err);
+        }
+      }}
+      style={{
+        background: "#facc15",
+        color: "#000",
+        fontWeight: 700,
+        padding: "12px 24px",
+        borderRadius: 999,
+        border: "none",
+        cursor: "pointer",
+        fontSize: 14
+      }}
+    >
+      Unlock More Sessions — $7 One-Time
+    </button>
+
   </div>
 )}
 
