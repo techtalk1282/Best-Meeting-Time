@@ -257,6 +257,8 @@ export default function ToolPreviewSection() {
   parseInt(localStorage.getItem("free_sessions_used") || "0", 10) >= 4;
 
   function handleLockedInteraction(): boolean {
+  const premium = document.cookie.includes("premium=1");
+
   const freeUsed = parseInt(
     localStorage.getItem("free_sessions_used") || "0",
     10
@@ -267,25 +269,35 @@ export default function ToolPreviewSection() {
     10
   );
 
-  if (isPremium) {
-    if (premiumUsed >= 3) {
-      return false;
-    }
+  const totalUsed = premium ? premiumUsed : freeUsed;
 
-    localStorage.setItem(
-      "premium_sessions_used",
-      String(premiumUsed + 1)
-    );
+  const LIMIT = premium ? 6 : 2;
 
-    return false;
-  }
+  console.log("GATING STATUS:", {
+    freeUsed,
+    premiumUsed,
+    isPremium: premium,
+  });
 
-  if (freeUsed >= 4) {
+  // 🚫 HARD STOP
+  if (totalUsed >= LIMIT) {
     setIsLocked(true);
     return true;
   }
 
-  localStorage.setItem("free_sessions_used", String(freeUsed + 1));
+  // ✅ INCREMENT CORRECT COUNTER
+  if (premium) {
+    localStorage.setItem(
+      "premium_sessions_used",
+      String(premiumUsed + 1)
+    );
+  } else {
+    localStorage.setItem(
+      "free_sessions_used",
+      String(freeUsed + 1)
+    );
+  }
+
   return false;
 }
 
