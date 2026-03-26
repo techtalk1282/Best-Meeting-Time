@@ -633,7 +633,16 @@ export default function ToolPreviewSection() {
 
         <div style={{ marginTop: 8, fontWeight: 600 }}>
           Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
-          <div style={{ marginTop: 16, display: "flex", gap: 10, flexWrap: "wrap" }}>
+          <div
+  style={{
+    marginTop: 14,
+    display: "flex",
+    gap: 8,
+    justifyContent: "center",
+    flexWrap: "nowrap",
+    overflowX: "auto",
+  }}
+>
 
   {/* GOOGLE CALENDAR */}
   {/* GOOGLE CALENDAR */}
@@ -656,7 +665,7 @@ export default function ToolPreviewSection() {
   background: "#facc15",
   color: "#000",
   fontWeight: 700,
-  padding: "10px 16px",
+  padding: "8px 14px",
   borderRadius: 999,
   border: "none",
   cursor: "pointer",
@@ -677,7 +686,7 @@ export default function ToolPreviewSection() {
   background: "#facc15",
   color: "#000",
   fontWeight: 700,
-  padding: "10px 16px",
+  padding: "8px 14px",
   borderRadius: 999,
   border: "none",
   cursor: "pointer",
@@ -698,7 +707,7 @@ export default function ToolPreviewSection() {
   background: "#facc15",
   color: "#000",
   fontWeight: 700,
-  padding: "10px 16px",
+ padding: "8px 14px",
   borderRadius: 999,
   border: "none",
   cursor: "pointer",
