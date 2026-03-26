@@ -401,7 +401,19 @@ export default function ToolPreviewSection() {
 
   return (
     <div style={{ width: "100%", padding: 0 }}>
-     
+     {isLocked && isPremium && (
+  <div style={{
+    marginBottom: 20,
+    padding: 16,
+    borderRadius: 10,
+    background: "#fff3cd",
+    color: "#856404",
+    fontWeight: 600,
+    textAlign: "center"
+  }}>
+    You’ve reached your premium planning limit. Upgrade to continue.
+  </div>
+)}
 
       {viewerTZ && (
         <div style={{ marginBottom: 20, fontWeight: 600 }}>
