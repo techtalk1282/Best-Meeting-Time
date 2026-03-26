@@ -652,7 +652,17 @@ export default function ToolPreviewSection() {
 
             window.open(url, "_blank");
           }}
-          style={{ padding: "8px 14px", borderRadius: 6, cursor: "pointer" }}
+         style={{
+  background: "#facc15",
+  color: "#000",
+  fontWeight: 700,
+  padding: "10px 16px",
+  borderRadius: 999,
+  border: "none",
+  cursor: "pointer",
+  fontSize: 13,
+  boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+}}
         >
           Add to Google
         </button>
@@ -663,7 +673,17 @@ export default function ToolPreviewSection() {
       const url = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent("Meeting: " + cityA.name + " ↔ " + cityB.name)}&startdt=${meetingWindow.startUtc}&enddt=${meetingWindow.endUtc}&body=${encodeURIComponent("Suggested meeting window")}`;
       window.open(url, "_blank");
     }}
-    style={{ padding: "8px 14px", borderRadius: 6, cursor: "pointer" }}
+   style={{
+  background: "#facc15",
+  color: "#000",
+  fontWeight: 700,
+  padding: "10px 16px",
+  borderRadius: 999,
+  border: "none",
+  cursor: "pointer",
+  fontSize: 13,
+  boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+}}
   >
     Add to Outlook
   </button>
@@ -674,7 +694,17 @@ export default function ToolPreviewSection() {
       const url = `/api/calendar?cityA=${encodeURIComponent(cityA.name)}&cityB=${encodeURIComponent(cityB.name)}&start=${meetingWindow.startUtc}&end=${meetingWindow.endUtc}`;
       window.open(url, "_blank");
     }}
-    style={{ padding: "8px 14px", borderRadius: 6, cursor: "pointer" }}
+   style={{
+  background: "#facc15",
+  color: "#000",
+  fontWeight: 700,
+  padding: "10px 16px",
+  borderRadius: 999,
+  border: "none",
+  cursor: "pointer",
+  fontSize: 13,
+  boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+}}
   >
     Download ICS (Apple)
   </button>
