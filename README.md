@@ -1,3 +1,21 @@
+## 🔒 PRODUCTION LOCK — DO NOT MODIFY
+
+This commit represents a fully working production system:
+
+- Free gating (4 clicks / 2 sessions) ✔
+- Premium gating (6 clicks / 3 sessions) ✔
+- Stripe checkout flow ✔
+- Premium unlock via cookie ✔
+- UI gating + upgrade CTA ✔
+
+CRITICAL FILES — DO NOT MODIFY WITHOUT BACKUP:
+- app/api/checkout/route.ts
+- app/api/verify/route.ts
+- app/api/webhooks/stripe/route.ts
+- app/ui/ToolPreviewSection.tsx
+- app/ui/PremiumFeaturesSection.tsx
+
+If anything breaks, revert to this commit immediately.
 # Best-Meeting-Time
 Best-Meeting-Time – a paid utility to find the best meeting time across time zones
 //backup(unlock): production premium unlock confirmed end-to-end
