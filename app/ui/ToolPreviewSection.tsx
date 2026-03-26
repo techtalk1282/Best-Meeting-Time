@@ -409,62 +409,8 @@ export default function ToolPreviewSection() {
 
   return (
     <div style={{ width: "100%", padding: 0 }}>
-     {isLocked && (
-  <div
-    style={{
-      marginTop: 20,
-      marginBottom: 20,
-      padding: 20,
-      background: "#fff",
-      borderRadius: 16,
-      textAlign: "center",
-      boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
-    }}
-  >
-    <div style={{ marginBottom: 10, fontWeight: 700 }}>
-      You’ve reached your session limit
-    </div>
-
-    <div style={{ marginBottom: 14 }}>
-      Choose how you want to continue
-    </div>
-
-    <button
-      onClick={() => {
-        window.location.href = "#premium-features";
-      }}
-      style={{
-        background: "#facc15",
-        color: "#000",
-        padding: "10px 16px",
-        borderRadius: 8,
-        fontWeight: 600,
-        marginRight: 10,
-        cursor: "pointer",
-      }}
-    >
-      Unlock Premium
-    </button>
-
-    <button
-      onClick={() => {
-        localStorage.setItem("free_sessions_used", "0");
-        setIsLocked(false);
-      }}
-      style={{
-        background: "#e5e7eb",
-        padding: "10px 16px",
-        borderRadius: 8,
-        fontWeight: 600,
-        cursor: "pointer",
-      }}
-    >
-      Continue Free
-    </button>
-  </div>
-)}
-
-      {viewerTZ && (
+     
+          {viewerTZ && (
         <div style={{ marginBottom: 20, fontWeight: 600 }}>
           Your Time Zone: {viewerTZ}
         </div>
