@@ -633,6 +633,53 @@ export default function ToolPreviewSection() {
 
         <div style={{ marginTop: 8, fontWeight: 600 }}>
           Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
+          <div style={{ marginTop: 16, display: "flex", gap: 10, flexWrap: "wrap" }}>
+
+  {/* GOOGLE CALENDAR */}
+  {/* GOOGLE CALENDAR */}
+        <button
+          onClick={() => {
+            const start =
+              meetingWindow.startUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
+            const end =
+              meetingWindow.endUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
+
+            const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+              "Meeting: " + cityA.name + " ↔ " + cityB.name
+            )}&dates=${start}/${end}&details=${encodeURIComponent(
+              "Suggested meeting window"
+            )}`;
+
+            window.open(url, "_blank");
+          }}
+          style={{ padding: "8px 14px", borderRadius: 6, cursor: "pointer" }}
+        >
+          Add to Google
+        </button>
+
+  {/* OUTLOOK */}
+  <button
+    onClick={() => {
+      const url = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent("Meeting: " + cityA.name + " ↔ " + cityB.name)}&startdt=${meetingWindow.startUtc}&enddt=${meetingWindow.endUtc}&body=${encodeURIComponent("Suggested meeting window")}`;
+      window.open(url, "_blank");
+    }}
+    style={{ padding: "8px 14px", borderRadius: 6, cursor: "pointer" }}
+  >
+    Add to Outlook
+  </button>
+
+  {/* APPLE (FIXED — now dynamic) */}
+  <button
+    onClick={() => {
+      const url = `/api/calendar?cityA=${encodeURIComponent(cityA.name)}&cityB=${encodeURIComponent(cityB.name)}&start=${meetingWindow.startUtc}&end=${meetingWindow.endUtc}`;
+      window.open(url, "_blank");
+    }}
+    style={{ padding: "8px 14px", borderRadius: 6, cursor: "pointer" }}
+  >
+    Download ICS (Apple)
+  </button>
+
+</div>
         </div>
       </div>
     </div>
