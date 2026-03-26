@@ -257,8 +257,6 @@ export default function ToolPreviewSection() {
   parseInt(localStorage.getItem("free_sessions_used") || "0", 10) >= 4;
 
   function handleLockedInteraction(): boolean {
-  const premium = document.cookie.includes("premium=1");
-
   const freeUsed = parseInt(
     localStorage.getItem("free_sessions_used") || "0",
     10
@@ -269,35 +267,25 @@ export default function ToolPreviewSection() {
     10
   );
 
-  const totalUsed = premium ? premiumUsed : freeUsed;
+  if (isPremium) {
+    if (premiumUsed >= 3) {
+      return false;
+    }
 
-  const LIMIT = premium ? 6 : 2;
-
-  console.log("GATING STATUS:", {
-    freeUsed,
-    premiumUsed,
-    isPremium: premium,
-  });
-
-  // 🚫 HARD STOP
-  if (totalUsed >= LIMIT) {
-    setIsLocked(true);
-    return true;
-  }
-
-  // ✅ INCREMENT CORRECT COUNTER
-  if (premium) {
     localStorage.setItem(
       "premium_sessions_used",
       String(premiumUsed + 1)
     );
-  } else {
-    localStorage.setItem(
-      "free_sessions_used",
-      String(freeUsed + 1)
-    );
+
+    return false;
   }
 
+  if (freeUsed >= 4) {
+    setIsLocked(true);
+    return true;
+  }
+
+  localStorage.setItem("free_sessions_used", String(freeUsed + 1));
   return false;
 }
 
@@ -318,6 +306,9 @@ export default function ToolPreviewSection() {
     10
   );
 
+  if (!isPremium && freeUsed >= 4) {
+    setIsLocked(true);
+  }
 
   console.log("GATING STATUS:", {
     freeSessionsUsed: freeUsed,
@@ -410,7 +401,8 @@ export default function ToolPreviewSection() {
   return (
     <div style={{ width: "100%", padding: 0 }}>
      
-          {viewerTZ && (
+
+      {viewerTZ && (
         <div style={{ marginBottom: 20, fontWeight: 600 }}>
           Your Time Zone: {viewerTZ}
         </div>
