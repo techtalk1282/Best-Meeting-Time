@@ -377,39 +377,7 @@ export default function ToolPreviewSection() {
 
   return (
     <div style={{ width: "100%", padding: 0 }}>
-      {isPremium ? (
-  <div
-    style={{
-      background: "#6d28d9",
-      color: "#fff",
-      padding: "10px 16px",
-      borderRadius: 999,
-      fontWeight: 600,
-      display: "inline-block",
-      marginBottom: 12,
-    }}
-  >
-    ✓ Premium Features Unlocked
-  </div>
-) : (
-  <button
-    onClick={() => {
-      window.location.hash = "#premium-features";
-    }}
-    style={{
-      background: "#facc15",
-      color: "#000",
-      padding: "10px 16px",
-      borderRadius: 999,
-      fontWeight: 600,
-      border: "none",
-      cursor: "pointer",
-      marginBottom: 12,
-    }}
-  >
-    Get Started Free
-  </button>
-)}
+     
 
       {viewerTZ && (
         <div style={{ marginBottom: 20, fontWeight: 600 }}>
