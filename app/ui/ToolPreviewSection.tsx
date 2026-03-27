@@ -779,7 +779,7 @@ export default function ToolPreviewSection() {
       borderRadius: 10,
       fontSize: 13,
       wordBreak: "break-all",
-    }}
+   }}>
   
     <div style={{ fontWeight: 600, marginBottom: 6 }}>
       Link ready to share
@@ -800,10 +800,12 @@ export default function ToolPreviewSection() {
         fontWeight: 600,
       }}
     >
-     Copy Link
+Copy Link
 </button>
-  </div>
+</div>
 )}
+</div>
+
         </div>
       </div>
     </div>
