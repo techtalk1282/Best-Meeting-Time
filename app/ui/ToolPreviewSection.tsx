@@ -242,7 +242,7 @@ export default function ToolPreviewSection() {
   const [cityA, setCityA] = useState<City>(CITY_OPTIONS[0]);
   const [cityB, setCityB] = useState<City>(CITY_OPTIONS[1]);
   const [now, setNow] = useState<Date | null>(null);
-
+  const [shareUrl, setShareUrl] = useState<string | null>(null);
   useEffect(() => {
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
     setViewerTZ(tz);
@@ -671,10 +671,12 @@ export default function ToolPreviewSection() {
       const data = await res.json();
 
       if (data.url) {
-        const fullUrl = window.location.origin + data.url;
-        await navigator.clipboard.writeText(fullUrl);
-        
-      }
+  const fullUrl = window.location.origin + data.url;
+
+  await navigator.clipboard.writeText(fullUrl);
+
+  setShareUrl(fullUrl); // <-- THIS is the key addition
+}
     } catch (err) {
       console.error("Share error:", err);
     }
@@ -691,8 +693,15 @@ export default function ToolPreviewSection() {
     boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
   }}
 >
-  Share Link
+  Share Meeting Link
 </button>
+ 
+      }}
+    >
+      Copy Link
+    </button>
+  </div>
+)}         
   {/* GOOGLE CALENDAR */}
         <button
           onClick={() => {
@@ -766,7 +775,40 @@ export default function ToolPreviewSection() {
     Add to Apple Calendar
   </button>
 
-</div>
+{shareUrl && (
+  <div
+    style={{
+      marginTop: 16,
+      padding: 14,
+      background: "#f8fafc",
+      borderRadius: 10,
+      fontSize: 13,
+      wordBreak: "break-all",
+    }}
+  >
+    <div style={{ fontWeight: 600, marginBottom: 6 }}>
+      Link ready to share
+    </div>
+
+    <div style={{ marginBottom: 8 }}>
+      {shareUrl}
+    </div>
+
+    <button
+      onClick={() => navigator.clipboard.writeText(shareUrl)}
+      style={{
+        background: "#e5e7eb",
+        border: "none",
+        padding: "6px 10px",
+        borderRadius: 6,
+        cursor: "pointer",
+        fontWeight: 600,
+      }}
+    >
+      Copy Link
+    </button>
+  </div>
+)}</div>
         </div>
       </div>
     </div>
