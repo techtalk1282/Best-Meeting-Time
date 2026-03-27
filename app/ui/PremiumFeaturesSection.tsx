@@ -420,7 +420,7 @@ export default function PremiumFeaturesSection({
                 <img src="/apple.png" alt="Apple Calendar" style={appleIconImg} />
               </div>
               <h3 style={cardTitle}>Apple Calendar</h3>
-              <p style={cardText}>Download the .ICS file for Apple</p>
+              <p style={cardText}>Download meeting file for Apple Calendar</p>
             </div>
 
             {children}
