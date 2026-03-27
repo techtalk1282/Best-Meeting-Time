@@ -334,7 +334,7 @@ export default function PremiumFeaturesSection({
     color: "#1f1147",
   }}
 >
-  ✓ All features below included with Premium
+  ✓ All features below are included with Premium
 </div>
                 </div>
               </>
