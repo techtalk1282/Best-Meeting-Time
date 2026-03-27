@@ -673,7 +673,7 @@ export default function ToolPreviewSection() {
       if (data.url) {
         const fullUrl = window.location.origin + data.url;
         await navigator.clipboard.writeText(fullUrl);
-        alert("Link copied to clipboard");
+        
       }
     } catch (err) {
       console.error("Share error:", err);
