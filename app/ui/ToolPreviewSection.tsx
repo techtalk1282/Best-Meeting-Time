@@ -698,10 +698,7 @@ export default function ToolPreviewSection() {
  
       }}
     >
-      Copy Link
-    </button>
-  </div>
-)}         
+      
   {/* GOOGLE CALENDAR */}
         <button
           onClick={() => {
@@ -805,8 +802,7 @@ export default function ToolPreviewSection() {
         fontWeight: 600,
       }}
     >
-      Copy Link
-    </button>
+     
   </div>
 )}</div>
         </div>
