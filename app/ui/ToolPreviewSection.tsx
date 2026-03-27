@@ -774,12 +774,67 @@ export default function ToolPreviewSection() {
   <div
     style={{
       marginTop: 16,
-      padding: 14,
-      background: "#f8fafc",
-      borderRadius: 10,
-      fontSize: 13,
-      wordBreak: "break-all",
-   }}>
+      marginLeft: 18,
+      padding: 16,
+      background: "#ffffff",
+      borderRadius: 16,
+      boxShadow: "0 8px 24px rgba(0,0,0,0.10)",
+      border: "1px solid rgba(0,0,0,0.06)",
+      minWidth: 320,
+      maxWidth: 460,
+    }}
+  >
+    <div
+      style={{
+        fontSize: 15,
+        fontWeight: 700,
+        color: "#111827",
+        marginBottom: 8,
+      }}
+    >
+      Your meeting link is ready
+    </div>
+
+    <div
+      style={{
+        fontSize: 13,
+        color: "#4b5563",
+        marginBottom: 10,
+        lineHeight: 1.5,
+        wordBreak: "break-all",
+      }}
+    >
+      {shareUrl}
+    </div>
+
+    <button
+      onClick={async () => {
+        await navigator.clipboard.writeText(shareUrl);
+        const button = document.activeElement as HTMLButtonElement | null;
+        if (button) {
+          const originalText = button.innerText;
+          button.innerText = "Copied ✓";
+          setTimeout(() => {
+            button.innerText = originalText;
+          }, 2000);
+        }
+      }}
+      style={{
+        background: "#facc15",
+        color: "#000",
+        fontWeight: 700,
+        padding: "8px 14px",
+        borderRadius: 999,
+        border: "none",
+        cursor: "pointer",
+        fontSize: 13,
+        boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+      }}
+    >
+      Copy Link
+    </button>
+  </div>
+)}
   
     <div style={{ fontWeight: 600, marginBottom: 6 }}>
       Link ready to share
