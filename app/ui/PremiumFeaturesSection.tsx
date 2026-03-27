@@ -325,6 +325,17 @@ export default function PremiumFeaturesSection({
                   }}
                 >
                   No subscription • Pay once, use anytime
+                  <div
+  style={{
+    marginTop: 10,
+    textAlign: "center",
+    fontSize: 13,
+    fontWeight: 700,
+    color: "#1f1147",
+  }}
+>
+  ✓ All features below included with Premium
+</div>
                 </div>
               </>
             )}
