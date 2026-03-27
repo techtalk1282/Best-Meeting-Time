@@ -399,7 +399,8 @@ export default function ToolPreviewSection() {
     { label: "10 PM", hour: 22 },
   ];
 
-  return (
+ return (
+  <>
     <div style={{ width: "100%", padding: 0 }}>
      {isLocked && isPremium && (
   <div style={{
@@ -695,10 +696,7 @@ export default function ToolPreviewSection() {
 >
   Share Meeting Link
 </button>
- 
-      }}
-    >
-      
+        
   {/* GOOGLE CALENDAR */}
         <button
           onClick={() => {
@@ -782,7 +780,7 @@ export default function ToolPreviewSection() {
       fontSize: 13,
       wordBreak: "break-all",
     }}
-  >
+  
     <div style={{ fontWeight: 600, marginBottom: 6 }}>
       Link ready to share
     </div>
@@ -802,11 +800,13 @@ export default function ToolPreviewSection() {
         fontWeight: 600,
       }}
     >
-     
+     Copy Link
+</button>
   </div>
-)}</div>
+)}
         </div>
       </div>
     </div>
-  );
+</>
+);
 }
