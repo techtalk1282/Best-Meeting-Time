@@ -370,7 +370,7 @@ export default function ToolPreviewSection() {
             Unlock More Sessions — $7 One-Time
           </button>
         </div>
-      )}
+      ))}
       {viewerTZ && (
         <div style={{ marginBottom: 20, fontWeight: 600 }}>
           Your Time Zone: {viewerTZ}
