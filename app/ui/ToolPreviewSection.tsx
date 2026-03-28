@@ -851,14 +851,7 @@ export default function ToolPreviewSection() {
     <button
       onClick={async () => {
         await navigator.clipboard.writeText(shareUrl);
-        const button = document.activeElement as HTMLButtonElement | null;
-        if (button) {
-          const originalText = button.innerText;
-          button.innerText = "Copied ✓";
-          setTimeout(() => {
-            button.innerText = originalText;
-          }, 2000);
-        }
+        
       }}
       style={{
         background: "#facc15",
@@ -882,7 +875,6 @@ export default function ToolPreviewSection() {
 
         </div>
       </div>
-    </div>
-</>
+   </>
 );
 }
