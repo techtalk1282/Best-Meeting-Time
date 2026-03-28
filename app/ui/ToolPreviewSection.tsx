@@ -721,7 +721,18 @@ export default function ToolPreviewSection() {
 
     const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
       "Meeting: " + cityA.name + " ↔ " + cityB.name
-    )}&dates=${meetingWindow.startUtc}/${meetingWindow.endUtc}&details=${encodeURIComponent(
+    <button
+  onClick={() => {
+    if (!requirePremiumFeature()) return;
+
+    const start =
+      meetingWindow.startUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
+    const end =
+      meetingWindow.endUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
+
+    const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+      "Meeting: " + cityA.name + " ↔ " + cityB.name
+    )}&dates=${start}/${end}&details=${encodeURIComponent(
       "Suggested meeting window"
     )}`;
 
@@ -741,7 +752,6 @@ export default function ToolPreviewSection() {
 >
   Add to Google
 </button>
-
           <button
             onClick={() => {
               if (!requirePremiumFeature()) return;        
