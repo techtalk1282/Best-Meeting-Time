@@ -715,9 +715,32 @@ export default function ToolPreviewSection() {
               fontSize: 13,
               boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
             }}
-          >
-            Add to Google
-          </button>
+         <button
+  onClick={() => {
+    if (!requirePremiumFeature()) return;
+
+    const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+      "Meeting: " + cityA.name + " ↔ " + cityB.name
+    )}&dates=${meetingWindow.startUtc}/${meetingWindow.endUtc}&details=${encodeURIComponent(
+      "Suggested meeting window"
+    )}`;
+
+    window.open(url, "_blank");
+  }}
+  style={{
+    background: "#facc15",
+    color: "#000",
+    fontWeight: 700,
+    padding: "8px 14px",
+    borderRadius: 999,
+    border: "none",
+    cursor: "pointer",
+    fontSize: 13,
+    boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+  }}
+>
+  Add to Google
+</button>
 
           <button
             onClick={() => {
