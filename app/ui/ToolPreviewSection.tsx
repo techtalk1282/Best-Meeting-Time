@@ -262,7 +262,7 @@ export default function ToolPreviewSection() {
     });
   }, [isPremium]);
 
-  function handleLockedInteraction(): boolean {
+ function handlePlannerInteraction(): boolean {
   const freeUsed = parseInt(
     localStorage.getItem("free_sessions_used") || "0",
     10
@@ -294,6 +294,13 @@ export default function ToolPreviewSection() {
   localStorage.setItem("free_sessions_used", String(freeUsed + 1));
 
   return false;
+ function requirePremiumFeature(): boolean {
+  if (!isPremium) {
+    alert("Upgrade to Premium to use this feature");
+    return false;
+  }
+  return true;
+}
 }
   if (!now) return null;
 
@@ -505,7 +512,7 @@ export default function ToolPreviewSection() {
         <select
           value={cityA.name}
           onChange={(e) => {
-            if (handleLockedInteraction()) return;
+            if (handlePlannerInteraction()) return;
             const city = CITY_OPTIONS.find((c) => c.name === e.target.value)!;
             setCityA(city);
           }}
@@ -537,7 +544,7 @@ export default function ToolPreviewSection() {
         <select
           value={cityB.name}
           onChange={(e) => {
-            if (handleLockedInteraction()) return;
+            if (handlePlannerInteraction()) return;
             const city = CITY_OPTIONS.find((c) => c.name === e.target.value)!;
             setCityB(city);
           }}
@@ -630,7 +637,7 @@ export default function ToolPreviewSection() {
         >
           <button
             onClick={async () => {
-                if (handleLockedInteraction()) return;
+               if (!requirePremiumFeature()) return;
               
               try {
                 const res = await fetch("/api/share", {
@@ -680,7 +687,7 @@ export default function ToolPreviewSection() {
 
           <button
            onClick={() => {
-            if (handleLockedInteraction()) return;
+            if (handlePlannerInteraction()) return;
               const start =
                 meetingWindow.startUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
               const end =
@@ -711,6 +718,7 @@ export default function ToolPreviewSection() {
 
           <button
             onClick={() => {
+              if (!requirePremiumFeature()) return;        
               const url = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(
                 "Meeting: " + cityA.name + " ↔ " + cityB.name
               )}&startdt=${meetingWindow.startUtc}&enddt=${meetingWindow.endUtc}&body=${encodeURIComponent(
@@ -735,7 +743,7 @@ export default function ToolPreviewSection() {
 
           <button
             onClick={() => {
-               if (handleLockedInteraction()) return;
+              if (!requirePremiumFeature()) return;
               const url = `/api/calendar?cityA=${encodeURIComponent(
                 cityA.name
               )}&cityB=${encodeURIComponent(
