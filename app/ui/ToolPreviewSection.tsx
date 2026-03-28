@@ -836,29 +836,7 @@ export default function ToolPreviewSection() {
   </div>
 )}
   
-    <div style={{ fontWeight: 600, marginBottom: 6 }}>
-      Link ready to share
-    </div>
-
-    <div style={{ marginBottom: 8 }}>
-      {shareUrl}
-    </div>
-
-    <button
-      onClick={() => navigator.clipboard.writeText(shareUrl)}
-      style={{
-        background: "#e5e7eb",
-        border: "none",
-        padding: "6px 10px",
-        borderRadius: 6,
-        cursor: "pointer",
-        fontWeight: 600,
-      }}
-    >
-Copy Link
-</button>
-</div>
-)}
+    
 </div>
 
         </div>
