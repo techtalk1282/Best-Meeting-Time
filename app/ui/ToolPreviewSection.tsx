@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function checkPremiumCookie(): boolean {
   if (typeof document === "undefined") return false;
@@ -73,8 +73,6 @@ const CITY_OPTIONS: City[] = [
   { name: "Auckland, New Zealand", time: "", tz: "Pacific/Auckland" },
 ];
 
-/* COUNTRY FLAG MAP */
-
 function getCountryCode(city: string): string {
   if (city.includes("USA")) return "us";
   if (city.includes("Canada")) return "ca";
@@ -130,8 +128,6 @@ function Flag({ city }: { city: string }) {
   );
 }
 
-/* TIMEZONE NORMALIZATION */
-
 function normalizeTimeZoneLabel(label?: string) {
   if (!label) return "";
 
@@ -139,30 +135,23 @@ function normalizeTimeZoneLabel(label?: string) {
     "GMT+0": "GMT",
     "GMT+1": "CET",
     "GMT+2": "CEST",
-
     "GMT+3": "EAT",
     "GMT+4": "GST",
-
     "GMT+5": "PKT",
     "GMT+5:30": "IST",
     "GMT+6": "BST",
     "GMT+7": "ICT",
     "GMT+8": "CST",
     "GMT+9": "JST",
-
     "GMT+10": "AEST",
     "GMT+11": "AEDT",
-
     "GMT+12": "NZST",
     "GMT+13": "NZDT",
-
     "GMT-3": "BRT",
   };
 
   return map[label] ?? label;
 }
-
-/* TIMEZONE OFFSET */
 
 function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
   const parts = new Intl.DateTimeFormat("en-US", {
@@ -186,8 +175,6 @@ function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
 
   return sign * (hours * 60 + minutes);
 }
-
-/* MEETING OVERLAP */
 
 function calculateOverlap(cityA: City, cityB: City): Window {
   const now = new Date();
@@ -223,9 +210,16 @@ function calculateOverlap(cityA: City, cityB: City): Window {
   };
 }
 
-/* MAIN COMPONENT */
-
 export default function ToolPreviewSection() {
+  const [isPremium, setIsPremium] = useState(false);
+  const [viewerTZ, setViewerTZ] = useState<string | null>(null);
+  const [isLocked, setIsLocked] = useState(false);
+  const [cityA, setCityA] = useState<City>(CITY_OPTIONS[0]);
+  const [cityB, setCityB] = useState<City>(CITY_OPTIONS[1]);
+  const [now, setNow] = useState<Date | null>(null);
+  const [shareUrl, setShareUrl] = useState<string | null>(null);
+  const [shareCopied, setShareCopied] = useState(false);
+
   useEffect(() => {
     const url = new URL(window.location.href);
     const sessionId = url.searchParams.get("session_id");
@@ -235,88 +229,70 @@ export default function ToolPreviewSection() {
     }
   }, []);
 
-  const [isPremium, setIsPremium] = useState(false);
-  const [viewerTZ, setViewerTZ] = useState<string | null>(null);
-  const [isLocked, setIsLocked] = useState(false);
-  const [isWatchingAd, setIsWatchingAd] = useState(false);
-  const [cityA, setCityA] = useState<City>(CITY_OPTIONS[0]);
-  const [cityB, setCityB] = useState<City>(CITY_OPTIONS[1]);
-  const [now, setNow] = useState<Date | null>(null);
-  const [shareUrl, setShareUrl] = useState<string | null>(null);
   useEffect(() => {
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
     setViewerTZ(tz);
-
-    const premium = checkPremiumCookie();
-    setIsPremium(premium);
+    setIsPremium(checkPremiumCookie());
   }, []);
-
-  const isFreeLimitReached =
-  typeof window !== "undefined" &&
-  !isPremium &&
-  parseInt(localStorage.getItem("free_sessions_used") || "0", 10) >= 4;
-
-  function handleLockedInteraction(): boolean {
-  const freeUsed = parseInt(
-    localStorage.getItem("free_sessions_used") || "0",
-    10
-  );
-
-  const premiumUsed = parseInt(
-    localStorage.getItem("premium_sessions_used") || "0",
-    10
-  );
-
-  if (isPremium) {
-  if (premiumUsed >= 6) {
-    setIsLocked(true);
-    return true; // block interaction
-  }
-
-  localStorage.setItem(
-    "premium_sessions_used",
-    String(premiumUsed + 1)
-  );
-
-  return false;
-}
-
-  if (freeUsed >= 4) {
-    setIsLocked(true);
-    return true;
-  }
-
-  localStorage.setItem("free_sessions_used", String(freeUsed + 1));
-  return false;
-}
 
   useEffect(() => {
     setNow(new Date());
   }, []);
 
- useEffect(() => {
-  if (typeof window === "undefined") return;
+  useEffect(() => {
+    if (typeof window === "undefined") return;
 
-  const freeUsed = parseInt(
-    localStorage.getItem("free_sessions_used") || "0",
-    10
-  );
+    const freeUsed = parseInt(
+      localStorage.getItem("free_sessions_used") || "0",
+      10
+    );
+    const premiumUsed = parseInt(
+      localStorage.getItem("premium_sessions_used") || "0",
+      10
+    );
 
-  const premiumUsed = parseInt(
-    localStorage.getItem("premium_sessions_used") || "0",
-    10
-  );
+    if (!isPremium && freeUsed >= 4) {
+      setIsLocked(true);
+    }
 
-  if (!isPremium && freeUsed >= 4) {
-    setIsLocked(true);
+    console.log("GATING STATUS:", {
+      freeSessionsUsed: freeUsed,
+      premiumSessionsUsed: premiumUsed,
+      isPremium,
+    });
+  }, [isPremium]);
+
+  function handleLockedInteraction(): boolean {
+    const freeUsed = parseInt(
+      localStorage.getItem("free_sessions_used") || "0",
+      10
+    );
+    const premiumUsed = parseInt(
+      localStorage.getItem("premium_sessions_used") || "0",
+      10
+    );
+
+    if (isPremium) {
+      if (premiumUsed >= 6) {
+        setIsLocked(true);
+        return true;
+      }
+
+      localStorage.setItem(
+        "premium_sessions_used",
+        String(premiumUsed + 1)
+      );
+      return false;
+    }
+
+    if (freeUsed >= 4) {
+      setIsLocked(true);
+      return true;
+    }
+
+    localStorage.setItem("free_sessions_used", String(freeUsed + 1));
+    return false;
   }
-
-  console.log("GATING STATUS:", {
-    freeSessionsUsed: freeUsed,
-    premiumSessionsUsed: premiumUsed,
-    isPremium,
-  });
-}, [isPremium]);
 
   if (!now) return null;
 
@@ -399,67 +375,70 @@ export default function ToolPreviewSection() {
     { label: "10 PM", hour: 22 },
   ];
 
- return (
-  <>
+  return (
     <div style={{ width: "100%", padding: 0 }}>
-     {isLocked && isPremium && (
-  <div style={{
-    marginBottom: 24,
-    padding: 24,
-    borderRadius: 16,
-    background: "#ffffff",
-    boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
-    textAlign: "center"
-  }}>
-    
-    <div style={{
-      fontSize: 18,
-      fontWeight: 700,
-      marginBottom: 8
-    }}>
-      You’ve reached your premium planning limit
-    </div>
+      {isLocked && isPremium && (
+        <div
+          style={{
+            marginBottom: 24,
+            padding: 24,
+            borderRadius: 16,
+            background: "#ffffff",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
+            textAlign: "center",
+          }}
+        >
+          <div
+            style={{
+              fontSize: 18,
+              fontWeight: 700,
+              marginBottom: 8,
+            }}
+          >
+            You’ve reached your premium planning limit
+          </div>
 
-    <div style={{
-      fontSize: 14,
-      opacity: 0.7,
-      marginBottom: 16
-    }}>
-      Unlock more planning sessions and continue scheduling instantly
-    </div>
+          <div
+            style={{
+              fontSize: 14,
+              opacity: 0.7,
+              marginBottom: 16,
+            }}
+          >
+            Unlock more planning sessions and continue scheduling instantly
+          </div>
 
-    <button
-      onClick={async () => {
-        try {
-          const res = await fetch("/api/checkout", {
-            method: "POST",
-          });
+          <button
+            onClick={async () => {
+              try {
+                const res = await fetch("/api/checkout", {
+                  method: "POST",
+                });
 
-          const data = await res.json();
+                const data = await res.json();
 
-          if (data.url) {
-            window.location.href = data.url;
-          }
-        } catch (err) {
-          console.error("Checkout error:", err);
-        }
-      }}
-      style={{
-        background: "#facc15",
-        color: "#000",
-        fontWeight: 700,
-        padding: "12px 24px",
-        borderRadius: 999,
-        border: "none",
-        cursor: "pointer",
-        fontSize: 14
-      }}
-    >
-      Unlock More Sessions — $7 One-Time
-    </button>
-
-  </div>
-)}
+                if (data.url) {
+                  window.location.href = data.url;
+                }
+              } catch (err) {
+                console.error("Checkout error:", err);
+              }
+            }}
+            style={{
+              background: "#facc15",
+              color: "#000",
+              fontWeight: 700,
+              padding: "12px 24px",
+              borderRadius: 999,
+              border: "none",
+              cursor: "pointer",
+              fontSize: 14,
+            }}
+          >
+            Unlock More Sessions — $7 One-Time
+          </button>
+        </div>
+      )}
 
       {viewerTZ && (
         <div style={{ marginBottom: 20, fontWeight: 600 }}>
@@ -476,7 +455,11 @@ export default function ToolPreviewSection() {
       >
         <div>
           <div
-            style={{ fontWeight: 600, display: "flex", alignItems: "center" }}
+            style={{
+              fontWeight: 600,
+              display: "flex",
+              alignItems: "center",
+            }}
           >
             {cityA.name}
             <Flag city={cityA.name} />
@@ -522,7 +505,6 @@ export default function ToolPreviewSection() {
           value={cityA.name}
           onChange={(e) => {
             if (handleLockedInteraction()) return;
-
             const city = CITY_OPTIONS.find((c) => c.name === e.target.value)!;
             setCityA(city);
           }}
@@ -555,7 +537,6 @@ export default function ToolPreviewSection() {
           value={cityB.name}
           onChange={(e) => {
             if (handleLockedInteraction()) return;
-
             const city = CITY_OPTIONS.find((c) => c.name === e.target.value)!;
             setCityB(city);
           }}
@@ -634,247 +615,196 @@ export default function ToolPreviewSection() {
 
         <div style={{ marginTop: 8, fontWeight: 600 }}>
           Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
-         <div
-  style={{
-    marginTop: 18,
-    display: "flex",
-    gap: 14,
-    justifyContent: "flex-start",
-    alignItems: "center",
-    flexWrap: "nowrap",
-    overflowX: "auto",
-  }}
->
-
-  {/* SHARE LINK */}
-<button
-  onClick={async () => {
-    try {
-      const res = await fetch("/api/share", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          cities: [
-            { name: cityA.name, tz: cityA.tz },
-            { name: cityB.name, tz: cityB.tz },
-          ],
-          windows: [
-            {
-              startUtc: meetingWindow.startUtc,
-              endUtc: meetingWindow.endUtc,
-            },
-          ],
-        }),
-      });
-
-      const data = await res.json();
-
-      if (data.url) {
-  const fullUrl = window.location.origin + data.url;
-
-  await navigator.clipboard.writeText(fullUrl);
-
-  setShareUrl(fullUrl); // <-- THIS is the key addition
-}
-    } catch (err) {
-      console.error("Share error:", err);
-    }
-  }}
-  style={{
-    background: "#facc15",
-    color: "#000",
-    fontWeight: 700,
-    padding: "8px 14px",
-    borderRadius: 999,
-    border: "none",
-    cursor: "pointer",
-    fontSize: 13,
-    boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-  }}
->
-  Share Meeting Link
-</button>
-        
-  {/* GOOGLE CALENDAR */}
-        <button
-          onClick={() => {
-            const start =
-              meetingWindow.startUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
-            const end =
-              meetingWindow.endUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
-
-            const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
-              "Meeting: " + cityA.name + " ↔ " + cityB.name
-            )}&dates=${start}/${end}&details=${encodeURIComponent(
-              "Suggested meeting window"
-            )}`;
-
-            window.open(url, "_blank");
-          }}
-         style={{
-  background: "#facc15",
-  color: "#000",
-  fontWeight: 700,
-  padding: "8px 14px",
-  borderRadius: 999,
-  border: "none",
-  cursor: "pointer",
-  fontSize: 13,
-  boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-}}
-        >
-          Add to Google
-        </button>
-
-  {/* OUTLOOK */}
-  <button
-    onClick={() => {
-      const url = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent("Meeting: " + cityA.name + " ↔ " + cityB.name)}&startdt=${meetingWindow.startUtc}&enddt=${meetingWindow.endUtc}&body=${encodeURIComponent("Suggested meeting window")}`;
-      window.open(url, "_blank");
-    }}
-   style={{
-  background: "#facc15",
-  color: "#000",
-  fontWeight: 700,
-  padding: "8px 14px",
-  borderRadius: 999,
-  border: "none",
-  cursor: "pointer",
-  fontSize: 13,
-  boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-}}
-  >
-    Add to Outlook
-  </button>
-
-  {/* APPLE (FIXED — now dynamic) */}
-  <button
-    onClick={() => {
-      const url = `/api/calendar?cityA=${encodeURIComponent(cityA.name)}&cityB=${encodeURIComponent(cityB.name)}&start=${meetingWindow.startUtc}&end=${meetingWindow.endUtc}`;
-      window.open(url, "_blank");
-    }}
-   style={{
-  background: "#facc15",
-  color: "#000",
-  fontWeight: 700,
- padding: "8px 14px",
-  borderRadius: 999,
-  border: "none",
-  cursor: "pointer",
-  fontSize: 13,
-  boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-}}
-  >
-    Add to Apple Calendar
-  </button>
-
-{shareUrl && (
-  <div style={{ marginTop: 16, marginLeft: 4 }}>
-
-    <div
-      style={{
-        fontSize: 14,
-        fontWeight: 600,
-        marginBottom: 6,
-        color: "#111827",
-      }}
-    >
-      Your meeting link is ready
-    </div>
-
-    <a
-      href={shareUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        display: "block",
-        fontSize: 13,
-        color: "#2563eb",
-        marginBottom: 10,
-        textDecoration: "none",
-        wordBreak: "break-all",
-      }}
-    >
-      {shareUrl.replace(/^https?:\/\//, "")}
-    </a>
-
-    <button
-      onClick={async (e) => {
-        await navigator.clipboard.writeText(shareUrl);
-
-        const btn = e.currentTarget;
-        btn.innerText = "Copied ✓";
-      }}
-      style={{
-        background: "#facc15",
-        color: "#000",
-        fontWeight: 700,
-        padding: "8px 14px",
-        borderRadius: 999,
-        border: "none",
-        cursor: "pointer",
-        fontSize: 13,
-        boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-      }}
-    >
-      Copy Link
-    </button>
-
-  </div>
-)}
-      <div
-      style={{
-        fontSize: 15,
-        fontWeight: 700,
-        color: "#111827",
-        marginBottom: 8,
-      }}
-    >
-      Your meeting link is ready
-    </div>
-
-    <div
-      style={{
-        fontSize: 13,
-        color: "#4b5563",
-        marginBottom: 10,
-        lineHeight: 1.5,
-        wordBreak: "break-all",
-      }}
-    >
-      {shareUrl}
-    </div>
-
-    <button
-      onClick={async (e) => {
-  await navigator.clipboard.writeText(shareUrl);
-
-  const btn = e.currentTarget;
-  btn.innerText = "Copied ✓";
-}}
-        background: "#facc15",
-        color: "#000",
-        fontWeight: 700,
-        padding: "8px 14px",
-        borderRadius: 999,
-        border: "none",
-        cursor: "pointer",
-        fontSize: 13,
-        boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-      }}
-    >
-      Copy Link
-    </button>
-  </div>
-)}
-  
-    
-</div>
-
         </div>
+
+        <div
+          style={{
+            marginTop: 18,
+            display: "flex",
+            gap: 14,
+            justifyContent: "flex-start",
+            alignItems: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          <button
+            onClick={async () => {
+              try {
+                const res = await fetch("/api/share", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    cities: [
+                      { name: cityA.name, tz: cityA.tz },
+                      { name: cityB.name, tz: cityB.tz },
+                    ],
+                    windows: [
+                      {
+                        startUtc: meetingWindow.startUtc,
+                        endUtc: meetingWindow.endUtc,
+                      },
+                    ],
+                  }),
+                });
+
+                const data = await res.json();
+
+                if (data.url) {
+                  const fullUrl = window.location.origin + data.url;
+                  setShareUrl(fullUrl);
+                  setShareCopied(false);
+                }
+              } catch (err) {
+                console.error("Share error:", err);
+              }
+            }}
+            style={{
+              background: "#facc15",
+              color: "#000",
+              fontWeight: 700,
+              padding: "8px 14px",
+              borderRadius: 999,
+              border: "none",
+              cursor: "pointer",
+              fontSize: 13,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+            }}
+          >
+            Share Meeting Link
+          </button>
+
+          <button
+            onClick={() => {
+              const start =
+                meetingWindow.startUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
+              const end =
+                meetingWindow.endUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
+
+              const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+                "Meeting: " + cityA.name + " ↔ " + cityB.name
+              )}&dates=${start}/${end}&details=${encodeURIComponent(
+                "Suggested meeting window"
+              )}`;
+
+              window.open(url, "_blank");
+            }}
+            style={{
+              background: "#facc15",
+              color: "#000",
+              fontWeight: 700,
+              padding: "8px 14px",
+              borderRadius: 999,
+              border: "none",
+              cursor: "pointer",
+              fontSize: 13,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+            }}
+          >
+            Add to Google
+          </button>
+
+          <button
+            onClick={() => {
+              const url = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(
+                "Meeting: " + cityA.name + " ↔ " + cityB.name
+              )}&startdt=${meetingWindow.startUtc}&enddt=${meetingWindow.endUtc}&body=${encodeURIComponent(
+                "Suggested meeting window"
+              )}`;
+              window.open(url, "_blank");
+            }}
+            style={{
+              background: "#facc15",
+              color: "#000",
+              fontWeight: 700,
+              padding: "8px 14px",
+              borderRadius: 999,
+              border: "none",
+              cursor: "pointer",
+              fontSize: 13,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+            }}
+          >
+            Add to Outlook
+          </button>
+
+          <button
+            onClick={() => {
+              const url = `/api/calendar?cityA=${encodeURIComponent(
+                cityA.name
+              )}&cityB=${encodeURIComponent(
+                cityB.name
+              )}&start=${meetingWindow.startUtc}&end=${meetingWindow.endUtc}`;
+              window.open(url, "_blank");
+            }}
+            style={{
+              background: "#facc15",
+              color: "#000",
+              fontWeight: 700,
+              padding: "8px 14px",
+              borderRadius: 999,
+              border: "none",
+              cursor: "pointer",
+              fontSize: 13,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+            }}
+          >
+            Add to Apple Calendar
+          </button>
+        </div>
+
+        {shareUrl && (
+          <div style={{ marginTop: 16 }}>
+            <div
+              style={{
+                fontSize: 14,
+                fontWeight: 600,
+                marginBottom: 6,
+                color: "#111827",
+              }}
+            >
+              Your meeting link is ready
+            </div>
+
+            <a
+              href={shareUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "block",
+                fontSize: 13,
+                color: "#2563eb",
+                marginBottom: 10,
+                textDecoration: "none",
+                wordBreak: "break-all",
+              }}
+            >
+              {shareUrl.replace(/^https?:\/\//, "")}
+            </a>
+
+            <button
+              onClick={async () => {
+                await navigator.clipboard.writeText(shareUrl);
+                setShareCopied(true);
+              }}
+              style={{
+                background: "#facc15",
+                color: "#000",
+                fontWeight: 700,
+                padding: "8px 14px",
+                borderRadius: 999,
+                border: "none",
+                cursor: "pointer",
+                fontSize: 13,
+                boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+              }}
+            >
+              {shareCopied ? "Copied ✓" : "Copy Link"}
+            </button>
+          </div>
+        )}
       </div>
-   </>
-);
+    </div>
+  );
 }
