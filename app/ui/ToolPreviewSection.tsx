@@ -576,21 +576,91 @@ export default function ToolPreviewSection() {
               } catch (err) {
                 console.error("Share error:", err);
               }
-            }}
-            style={{
-              background: "#facc15",
-              color: "#000",
-              fontWeight: 700,
-              padding: "8px 14px",
-              borderRadius: 999,
-              border: "none",
-              cursor: "pointer",
-              fontSize: 13,
-              boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-            }}
-          >
-            Share Meeting Link
-          </button>
+           }
+            }
+}
+
+<button
+  onClick={async () => {
+    try {
+      const res = await fetch("/api/share", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cities: [
+            { name: cityA.name, tz: cityA.tz },
+            { name: cityB.name, tz: cityB.tz },
+          ],
+          windows: [
+            {
+              startUtc: meetingWindow.startUtc,
+              endUtc: meetingWindow.endUtc,
+            },
+          ],
+        }),
+      });
+
+      const data = await res.json();
+      if (data.url) {
+        const fullUrl = window.location.origin + data.url;
+        setShareUrl(fullUrl);
+        setShareCopied(false);
+      }
+    } catch (err) {
+      console.error("Share error:", err);
+    }
+  }}
+  <button
+  onClick={async () => {
+    if (!requirePremiumFeature()) return;
+
+    try {
+      const res = await fetch("/api/share", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cities: [
+            { name: cityA.name, tz: cityA.tz },
+            { name: cityB.name, tz: cityB.tz },
+          ],
+          windows: [
+            {
+              startUtc: meetingWindow.startUtc,
+              endUtc: meetingWindow.endUtc,
+            },
+          ],
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.url) {
+        const fullUrl = window.location.origin + data.url;
+        setShareUrl(fullUrl);
+        setShareCopied(false);
+      }
+    } catch (err) {
+      console.error("Share error:", err);
+    }
+  }}
+  style={{
+    background: "#facc15",
+    color: "#000",
+    fontWeight: 700,
+    padding: "8px 14px",
+    borderRadius: 999,
+    border: "none",
+    cursor: "pointer",
+    fontSize: 13,
+    boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+  }}
+>
+  Share Meeting Link
+</button>
           <button
            onClick={() => {
             if (handlePlannerInteraction()) return;
