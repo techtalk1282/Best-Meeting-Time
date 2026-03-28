@@ -1,19 +1,23 @@
-// ToolPreviewSection.tsx (Fixed Full File)
 "use client";
+
 import { useEffect, useState } from "react";
+
 function checkPremiumCookie(): boolean {
   if (typeof document === "undefined") return false;
   return document.cookie.includes("premium=1");
 }
+
 type City = {
   name: string;
   time: string;
   tz: string;
 };
+
 type Window = {
   startUtc: string;
   endUtc: string;
 };
+
 const CITY_OPTIONS: City[] = [
   { name: "New York, USA", time: "", tz: "America/New_York" },
   { name: "Miami, USA", time: "", tz: "America/New_York" },
@@ -23,14 +27,17 @@ const CITY_OPTIONS: City[] = [
   { name: "Los Angeles, USA", time: "", tz: "America/Los_Angeles" },
   { name: "San Francisco, USA", time: "", tz: "America/Los_Angeles" },
   { name: "Seattle, USA", time: "", tz: "America/Los_Angeles" },
+
   { name: "Toronto, Canada", time: "", tz: "America/Toronto" },
   { name: "Vancouver, Canada", time: "", tz: "America/Vancouver" },
+
   { name: "São Paulo, Brazil", time: "", tz: "America/Sao_Paulo" },
   {
     name: "Buenos Aires, Argentina",
     time: "",
     tz: "America/Argentina/Buenos_Aires",
   },
+
   { name: "London, UK", time: "", tz: "Europe/London" },
   { name: "Paris, France", time: "", tz: "Europe/Paris" },
   { name: "Berlin, Germany", time: "", tz: "Europe/Berlin" },
@@ -39,13 +46,17 @@ const CITY_OPTIONS: City[] = [
   { name: "Amsterdam, Netherlands", time: "", tz: "Europe/Amsterdam" },
   { name: "Zurich, Switzerland", time: "", tz: "Europe/Zurich" },
   { name: "Stockholm, Sweden", time: "", tz: "Europe/Stockholm" },
+
   { name: "Dubai, UAE", time: "", tz: "Asia/Dubai" },
   { name: "Tel Aviv, Israel", time: "", tz: "Asia/Jerusalem" },
   { name: "Riyadh, Saudi Arabia", time: "", tz: "Asia/Riyadh" },
+
   { name: "Cape Town, South Africa", time: "", tz: "Africa/Johannesburg" },
   { name: "Nairobi, Kenya", time: "", tz: "Africa/Nairobi" },
+
   { name: "Mumbai, India", time: "", tz: "Asia/Kolkata" },
   { name: "Delhi, India", time: "", tz: "Asia/Kolkata" },
+
   { name: "Singapore", time: "", tz: "Asia/Singapore" },
   { name: "Hong Kong", time: "", tz: "Asia/Hong_Kong" },
   { name: "Shanghai, China", time: "", tz: "Asia/Shanghai" },
@@ -54,17 +65,20 @@ const CITY_OPTIONS: City[] = [
   { name: "Seoul, South Korea", time: "", tz: "Asia/Seoul" },
   { name: "Bangkok, Thailand", time: "", tz: "Asia/Bangkok" },
   { name: "Jakarta, Indonesia", time: "", tz: "Asia/Jakarta" },
+
   { name: "Sydney, Australia", time: "", tz: "Australia/Sydney" },
   { name: "Melbourne, Australia", time: "", tz: "Australia/Melbourne" },
   { name: "Brisbane, Australia", time: "", tz: "Australia/Brisbane" },
   { name: "Perth, Australia", time: "", tz: "Australia/Perth" },
   { name: "Auckland, New Zealand", time: "", tz: "Pacific/Auckland" },
 ];
+
 function getCountryCode(city: string): string {
   if (city.includes("USA")) return "us";
   if (city.includes("Canada")) return "ca";
   if (city.includes("Brazil")) return "br";
   if (city.includes("Argentina")) return "ar";
+
   if (city.includes("UK")) return "gb";
   if (city.includes("France")) return "fr";
   if (city.includes("Germany")) return "de";
@@ -73,12 +87,16 @@ function getCountryCode(city: string): string {
   if (city.includes("Netherlands")) return "nl";
   if (city.includes("Switzerland")) return "ch";
   if (city.includes("Sweden")) return "se";
+
   if (city.includes("UAE")) return "ae";
   if (city.includes("Israel")) return "il";
   if (city.includes("Saudi")) return "sa";
+
   if (city.includes("South Africa")) return "za";
   if (city.includes("Kenya")) return "ke";
+
   if (city.includes("India")) return "in";
+
   if (city.includes("Singapore")) return "sg";
   if (city.includes("Hong Kong")) return "hk";
   if (city.includes("China")) return "cn";
@@ -86,12 +104,16 @@ function getCountryCode(city: string): string {
   if (city.includes("South Korea")) return "kr";
   if (city.includes("Thailand")) return "th";
   if (city.includes("Indonesia")) return "id";
+
   if (city.includes("Australia")) return "au";
   if (city.includes("New Zealand")) return "nz";
+
   return "un";
 }
+
 function Flag({ city }: { city: string }) {
   const code = getCountryCode(city);
+
   return (
     <img
       src={`https://flagcdn.com/w40/${code}.png`}
@@ -105,8 +127,10 @@ function Flag({ city }: { city: string }) {
     />
   );
 }
+
 function normalizeTimeZoneLabel(label?: string) {
   if (!label) return "";
+
   const map: Record<string, string> = {
     "GMT+0": "GMT",
     "GMT+1": "CET",
@@ -125,8 +149,10 @@ function normalizeTimeZoneLabel(label?: string) {
     "GMT+13": "NZDT",
     "GMT-3": "BRT",
   };
+
   return map[label] ?? label;
 }
+
 function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
   const parts = new Intl.DateTimeFormat("en-US", {
     timeZone,
@@ -135,40 +161,57 @@ function getTimeZoneOffsetMinutes(date: Date, timeZone: string): number {
     minute: "2-digit",
     hour12: false,
   }).formatToParts(date);
+
   const tzPart =
     parts.find((part) => part.type === "timeZoneName")?.value ?? "GMT+0";
+
   const match = tzPart.match(/GMT([+-])(\d{1,2})(?::?(\d{2}))?/);
+
   if (!match) return 0;
+
   const sign = match[1] === "-" ? -1 : 1;
   const hours = Number(match[2]);
   const minutes = Number(match[3] ?? "0");
+
   return sign * (hours * 60 + minutes);
 }
+
 function calculateOverlap(cityA: City, cityB: City): Window {
   const now = new Date();
+
   const offsetA = getTimeZoneOffsetMinutes(now, cityA.tz);
   const offsetB = getTimeZoneOffsetMinutes(now, cityB.tz);
+
   const workStart = 9 * 60;
   const workEnd = 17 * 60;
+
   const startA = workStart - offsetA;
   const endA = workEnd - offsetA;
+
   const startB = workStart - offsetB;
   const endB = workEnd - offsetB;
+
   let overlapStart = Math.max(startA, startB);
   let overlapEnd = Math.min(endA, endB);
+
   if (overlapStart >= overlapEnd) {
     overlapEnd = overlapStart + 120;
   }
+
   const base = new Date();
   base.setUTCHours(0, 0, 0, 0);
+
   const start = new Date(base.getTime() + overlapStart * 60000);
   const end = new Date(base.getTime() + overlapEnd * 60000);
+
   return {
     startUtc: start.toISOString(),
     endUtc: end.toISOString(),
   };
 }
+
 export default function ToolPreviewSection() {
+  
   const [isPremium, setIsPremium] = useState(false);
   const [viewerTZ, setViewerTZ] = useState<string | null>(null);
   const [isLocked, setIsLocked] = useState(false);
@@ -187,20 +230,27 @@ export default function ToolPreviewSection() {
   useEffect(() => {
     const url = new URL(window.location.href);
     const sessionId = url.searchParams.get("session_id");
+
     if (sessionId) {
       document.cookie = "premium=1; path=/; max-age=31536000";
+     
+
     }
   }, []);
+
   useEffect(() => {
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
     setViewerTZ(tz);
     setIsPremium(checkPremiumCookie());
   }, []);
+
   useEffect(() => {
     setNow(new Date());
   }, []);
+
   useEffect(() => {
     if (typeof window === "undefined") return;
+
     const freeUsed = parseInt(
       localStorage.getItem("free_sessions_used") || "0",
       10
@@ -209,94 +259,118 @@ export default function ToolPreviewSection() {
       localStorage.getItem("premium_sessions_used") || "0",
       10
     );
+
     if (!isPremium && freeUsed >= 4) {
       setIsLocked(true);
     }
+
     console.log("GATING STATUS:", {
       freeSessionsUsed: freeUsed,
       premiumSessionsUsed: premiumUsed,
       isPremium,
     });
   }, [isPremium]);
+
  function handlePlannerInteraction(): boolean {
   const freeUsed = parseInt(
     localStorage.getItem("free_sessions_used") || "0",
     10
   );
+
   if (isPremium) {
     const premiumUsed = parseInt(
       localStorage.getItem("premium_sessions_used") || "0",
       10
     );
+
     if (premiumUsed >= 6) {
       setIsLocked(true);
       return true;
     }
+
     localStorage.setItem(
       "premium_sessions_used",
       String(premiumUsed + 1)
     );
     return false;
   }
+
   if (freeUsed >= 4) {
     setIsLocked(true);
     return true;
   }
+
   localStorage.setItem("free_sessions_used", String(freeUsed + 1));
+
   return false;
+ 
 }
   if (!now) return null;
+
   const meetingWindow = calculateOverlap(cityA, cityB);
+
   const startDate = new Date(meetingWindow.startUtc);
   const endDate = new Date(meetingWindow.endUtc);
+
   const startHour = startDate.getHours() + startDate.getMinutes() / 60;
   const endHour = endDate.getHours() + endDate.getMinutes() / 60;
+
   const startPercent = (startHour / 24) * 100;
   const widthPercent = ((endHour - startHour) / 24) * 100;
+
   const startLocal = startDate.toLocaleTimeString([], {
     hour: "numeric",
     minute: "2-digit",
   });
+
   const endLocal = endDate.toLocaleTimeString([], {
     hour: "numeric",
     minute: "2-digit",
   });
+
   const cityATime = new Intl.DateTimeFormat("en-US", {
     timeZone: cityA.tz,
     hour: "numeric",
     minute: "2-digit",
   }).format(now);
+
   const cityBTime = new Intl.DateTimeFormat("en-US", {
     timeZone: cityB.tz,
     hour: "numeric",
     minute: "2-digit",
   }).format(now);
+
   const cityATZRaw = new Intl.DateTimeFormat("en-US", {
     timeZone: cityA.tz,
     timeZoneName: "short",
   })
     .formatToParts(now)
     .find((p) => p.type === "timeZoneName")?.value;
+
   const cityBTZRaw = new Intl.DateTimeFormat("en-US", {
     timeZone: cityB.tz,
     timeZoneName: "short",
   })
     .formatToParts(now)
     .find((p) => p.type === "timeZoneName")?.value;
+
   const cityATZ = normalizeTimeZoneLabel(cityATZRaw);
   const cityBTZ = normalizeTimeZoneLabel(cityBTZRaw);
+
   const cityADate = new Intl.DateTimeFormat("en-US", {
     timeZone: cityA.tz,
     weekday: "long",
     month: "long",
     day: "numeric",
   }).format(now);
+
   const cityBDate = new Intl.DateTimeFormat("en-US", {
     timeZone: cityB.tz,
     weekday: "long",
     month: "long",
     day: "numeric",
   }).format(now);
+
   const labels = [
     { label: "12 AM", hour: 0 },
     { label: "2 AM", hour: 2 },
@@ -311,73 +385,78 @@ export default function ToolPreviewSection() {
     { label: "8 PM", hour: 20 },
     { label: "10 PM", hour: 22 },
   ];
+
   return (
     <div style={{ width: "100%", padding: 0 }}>
-      {isLocked && (
-  <div
-    style={{
-      marginBottom: 24,
-      padding: 24,
-      borderRadius: 16,
-      background: "#ffffff",
-      boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
-      textAlign: "center",
-    }}
-  >
-    <div
-      style={{
-        fontSize: 18,
-        fontWeight: 700,
-        marginBottom: 8,
-      }}
-    >
-      You’ve reached your premium planning limit
-    </div>
+      {isLocked && isPremium && (
+        <div
+          style={{
+            marginBottom: 24,
+            padding: 24,
+            borderRadius: 16,
+            background: "#ffffff",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
+            textAlign: "center",
+          }}
+        >
+          <div
+            style={{
+              fontSize: 18,
+              fontWeight: 700,
+              marginBottom: 8,
+            }}
+          >
+            You’ve reached your premium planning limit
+          </div>
 
-    <div
-      style={{
-        fontSize: 14,
-        opacity: 0.7,
-        marginBottom: 16,
-      }}
-    >
-      Unlock more planning sessions and continue scheduling instantly
-    </div>
+          <div
+            style={{
+              fontSize: 14,
+              opacity: 0.7,
+              marginBottom: 16,
+            }}
+          >
+            Unlock more planning sessions and continue scheduling instantly
+          </div>
 
-    <button
-      onClick={async () => {
-        try {
-          const res = await fetch("/api/checkout", {
-            method: "POST",
-          });
-          const data = await res.json();
-          if (data.url) {
-            window.location.href = data.url;
-          }
-        } catch (err) {
-          console.error("Checkout error:", err);
-        }
-      }}
-      style={{
-        background: "#facc15",
-        color: "#000",
-        fontWeight: 700,
-        padding: "12px 24px",
-        borderRadius: 999,
-        border: "none",
-        cursor: "pointer",
-        fontSize: 14,
-      }}
-    >
-      Unlock More Sessions — $7 One-Time
-    </button>
-  </div>
-)}
+          <button
+            onClick={async () => {
+              try {
+                const res = await fetch("/api/checkout", {
+                  method: "POST",
+                });
+
+                const data = await res.json();
+
+                if (data.url) {
+                  window.location.href = data.url;
+                }
+              } catch (err) {
+                console.error("Checkout error:", err);
+              }
+            }}
+            style={{
+              background: "#facc15",
+              color: "#000",
+              fontWeight: 700,
+              padding: "12px 24px",
+              borderRadius: 999,
+              border: "none",
+              cursor: "pointer",
+              fontSize: 14,
+            }}
+          >
+            Unlock More Sessions — $7 One-Time
+          </button>
+        </div>
+      )}
+
       {viewerTZ && (
         <div style={{ marginBottom: 20, fontWeight: 600 }}>
           Your Time Zone: {viewerTZ}
         </div>
       )}
+
       <div
         style={{
           display: "flex",
@@ -396,11 +475,14 @@ export default function ToolPreviewSection() {
             {cityA.name}
             <Flag city={cityA.name} />
           </div>
+
           <div style={{ fontSize: 30, fontWeight: 700 }}>
             {cityATime} {cityATZ}
           </div>
+
           <div style={{ opacity: 0.7 }}>{cityADate}</div>
         </div>
+
         <div style={{ textAlign: "right" }}>
           <div
             style={{
@@ -413,12 +495,15 @@ export default function ToolPreviewSection() {
             {cityB.name}
             <Flag city={cityB.name} />
           </div>
+
           <div style={{ fontSize: 30, fontWeight: 700 }}>
             {cityBTime} {cityBTZ}
           </div>
+
           <div style={{ opacity: 0.7 }}>{cityBDate}</div>
         </div>
       </div>
+
       <div
         style={{
           display: "flex",
@@ -441,6 +526,7 @@ export default function ToolPreviewSection() {
             </option>
           ))}
         </select>
+
         <button
           onClick={() => {
             const temp = cityA;
@@ -457,6 +543,7 @@ export default function ToolPreviewSection() {
         >
           SWAP
         </button>
+
         <select
           value={cityB.name}
           onChange={(e) => {
@@ -472,6 +559,7 @@ export default function ToolPreviewSection() {
           ))}
         </select>
       </div>
+
       <div style={{ padding: 8 }}>
         <div style={{ position: "relative", height: 20, marginBottom: 10 }}>
           {labels.map((l) => (
@@ -488,6 +576,7 @@ export default function ToolPreviewSection() {
             </span>
           ))}
         </div>
+
         <div style={{ position: "relative" }}>
           <div
             style={{
@@ -513,6 +602,7 @@ export default function ToolPreviewSection() {
                 }}
               />
             ))}
+
             <div
               style={{
                 position: "absolute",
@@ -533,9 +623,11 @@ export default function ToolPreviewSection() {
             </div>
           </div>
         </div>
+
         <div style={{ marginTop: 8, fontWeight: 600 }}>
           Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
         </div>
+
         <div
           style={{
             marginTop: 18,
@@ -569,7 +661,9 @@ export default function ToolPreviewSection() {
                     ],
                   }),
                 });
+
                 const data = await res.json();
+
                 if (data.url) {
                   const fullUrl = window.location.origin + data.url;
                   setShareUrl(fullUrl);
@@ -578,91 +672,22 @@ export default function ToolPreviewSection() {
               } catch (err) {
                 console.error("Share error:", err);
               }
-           }
-            }
-}
+            }}
+            style={{
+              background: "#facc15",
+              color: "#000",
+              fontWeight: 700,
+              padding: "8px 14px",
+              borderRadius: 999,
+              border: "none",
+              cursor: "pointer",
+              fontSize: 13,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+            }}
+          >
+            Share Meeting Link
+          </button>
 
-<button
-  onClick={async () => {
-    try {
-      const res = await fetch("/api/share", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          cities: [
-            { name: cityA.name, tz: cityA.tz },
-            { name: cityB.name, tz: cityB.tz },
-          ],
-          windows: [
-            {
-              startUtc: meetingWindow.startUtc,
-              endUtc: meetingWindow.endUtc,
-            },
-          ],
-        }),
-      });
-
-      const data = await res.json();
-      if (data.url) {
-        const fullUrl = window.location.origin + data.url;
-        setShareUrl(fullUrl);
-        setShareCopied(false);
-      }
-    } catch (err) {
-      console.error("Share error:", err);
-    }
-  }}
-  <button
-  onClick={async () => {
-    if (!requirePremiumFeature()) return;
-
-    try {
-      const res = await fetch("/api/share", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          cities: [
-            { name: cityA.name, tz: cityA.tz },
-            { name: cityB.name, tz: cityB.tz },
-          ],
-          windows: [
-            {
-              startUtc: meetingWindow.startUtc,
-              endUtc: meetingWindow.endUtc,
-            },
-          ],
-        }),
-      });
-
-      const data = await res.json();
-
-      if (data.url) {
-        const fullUrl = window.location.origin + data.url;
-        setShareUrl(fullUrl);
-        setShareCopied(false);
-      }
-    } catch (err) {
-      console.error("Share error:", err);
-    }
-  }}
-  style={{
-    background: "#facc15",
-    color: "#000",
-    fontWeight: 700,
-    padding: "8px 14px",
-    borderRadius: 999,
-    border: "none",
-    cursor: "pointer",
-    fontSize: 13,
-    boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-  }}
->
-  Share Meeting Link
-</button>
           <button
            onClick={() => {
             if (handlePlannerInteraction()) return;
@@ -670,11 +695,13 @@ export default function ToolPreviewSection() {
                 meetingWindow.startUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
               const end =
                 meetingWindow.endUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
+
               const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
                 "Meeting: " + cityA.name + " ↔ " + cityB.name
               )}&dates=${start}/${end}&details=${encodeURIComponent(
                 "Suggested meeting window"
               )}`;
+
               window.open(url, "_blank");
             }}
             style={{
@@ -687,35 +714,11 @@ export default function ToolPreviewSection() {
               cursor: "pointer",
               fontSize: 13,
               boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-            }}>
-          <button
-  onClick={() => {
-    if (!requirePremiumFeature()) return;
-    const start =
-      meetingWindow.startUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
-    const end =
-      meetingWindow.endUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
-    const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
-      "Meeting: " + cityA.name + " ↔ " + cityB.name
-    )}&dates=${start}/${end}&details=${encodeURIComponent(
-      "Suggested meeting window"
-    )}`;
-    window.open(url, "_blank");
-  }}
-  style={{
-    background: "#facc15",
-    color: "#000",
-    fontWeight: 700,
-    padding: "8px 14px",
-    borderRadius: 999,
-    border: "none",
-    cursor: "pointer",
-    fontSize: 13,
-    boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-  }}
->
-  Add to Google
-</button>
+            }}
+          >
+            Add to Google
+          </button>
+
           <button
             onClick={() => {
               if (!requirePremiumFeature()) return;        
@@ -740,6 +743,7 @@ export default function ToolPreviewSection() {
           >
             Add to Outlook
           </button>
+
           <button
             onClick={() => {
               if (!requirePremiumFeature()) return;
@@ -765,6 +769,7 @@ export default function ToolPreviewSection() {
             Add to Apple Calendar
           </button>
         </div>
+
         {shareUrl && (
           <div style={{ marginTop: 16 }}>
             <div
@@ -777,6 +782,7 @@ export default function ToolPreviewSection() {
             >
               Your meeting link is ready
             </div>
+
             <a
               href={shareUrl}
               target="_blank"
@@ -793,6 +799,7 @@ export default function ToolPreviewSection() {
             >
               {shareUrl.replace(/^https?:\/\//, "")}
             </a>
+
             <button
               onClick={async () => {
                 await navigator.clipboard.writeText(shareUrl);
@@ -810,7 +817,7 @@ export default function ToolPreviewSection() {
                 boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
               }}
             >
-              {shareCopied ? "Copied " : "Copy Link"}
+              {shareCopied ? "Copied ✓" : "Copy Link"}
             </button>
           </div>
         )}
