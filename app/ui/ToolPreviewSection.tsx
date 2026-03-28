@@ -824,8 +824,7 @@ export default function ToolPreviewSection() {
 
   </div>
 )}
-  >
-    <div
+      <div
       style={{
         fontSize: 15,
         fontWeight: 700,
@@ -849,11 +848,12 @@ export default function ToolPreviewSection() {
     </div>
 
     <button
-      onClick={async () => {
-        await navigator.clipboard.writeText(shareUrl);
-        
-      }}
-      style={{
+      onClick={async (e) => {
+  await navigator.clipboard.writeText(shareUrl);
+
+  const btn = e.currentTarget;
+  btn.innerText = "Copied ✓";
+}}
         background: "#facc15",
         color: "#000",
         fontWeight: 700,
