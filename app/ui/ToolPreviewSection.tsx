@@ -774,7 +774,7 @@ export default function ToolPreviewSection() {
               style={{
                 display: "block",
                 fontSize: 13,
-                color: "#6d28d9",
+               color: "#22c55e",
                 marginBottom: 10,
                 textDecoration: "none",
                 wordBreak: "break-all",
