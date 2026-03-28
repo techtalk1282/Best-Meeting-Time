@@ -220,11 +220,14 @@ export default function ToolPreviewSection() {
   const [now, setNow] = useState<Date | null>(null);
   const [shareUrl, setShareUrl] = useState<string | null>(null);
   const [shareCopied, setShareCopied] = useState(false);
+  const [premiumMessage, setPremiumMessage] = useState<string | null>(null);
    function requirePremiumFeature(): boolean {
   if (!isPremium) {
-    alert("Upgrade to Premium to use this feature");
+    setPremiumMessage("🔒 Premium feature — upgrade to unlock");
     return false;
   }
+
+  setPremiumMessage(null);
   return true;
 }
   useEffect(() => {
@@ -638,6 +641,22 @@ export default function ToolPreviewSection() {
             flexWrap: "wrap",
           }}
         >
+          {premiumMessage && (
+  <div
+    style={{
+      marginTop: 12,
+      padding: "10px 14px",
+      borderRadius: 8,
+      background: "#fff7ed",
+      border: "1px solid #fdba74",
+      color: "#9a3412",
+      fontSize: 13,
+      fontWeight: 600,
+    }}
+  >
+    {premiumMessage}
+  </div>
+)}
           <button
             onClick={async () => {
                if (!requirePremiumFeature()) return;
@@ -690,7 +709,8 @@ export default function ToolPreviewSection() {
 
           <button
            onClick={() => {
-            if (handlePlannerInteraction()) return;
+            if (!requirePremiumFeature()) return;
+if (handlePlannerInteraction()) return;
               const start =
                 meetingWindow.startUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
               const end =
@@ -700,8 +720,7 @@ export default function ToolPreviewSection() {
                 "Meeting: " + cityA.name + " ↔ " + cityB.name
               )}&dates=${start}/${end}&details=${encodeURIComponent(
                 "Suggested meeting window"
-              )}`;
-
+            
               window.open(url, "_blank");
             }}
             style={{
