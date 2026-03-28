@@ -211,6 +211,7 @@ function calculateOverlap(cityA: City, cityB: City): Window {
 }
 
 export default function ToolPreviewSection() {
+  
   const [isPremium, setIsPremium] = useState(false);
   const [viewerTZ, setViewerTZ] = useState<string | null>(null);
   const [isLocked, setIsLocked] = useState(false);
@@ -219,13 +220,21 @@ export default function ToolPreviewSection() {
   const [now, setNow] = useState<Date | null>(null);
   const [shareUrl, setShareUrl] = useState<string | null>(null);
   const [shareCopied, setShareCopied] = useState(false);
-
+   function requirePremiumFeature(): boolean {
+  if (!isPremium) {
+    alert("Upgrade to Premium to use this feature");
+    return false;
+  }
+  return true;
+}
   useEffect(() => {
     const url = new URL(window.location.href);
     const sessionId = url.searchParams.get("session_id");
 
     if (sessionId) {
       document.cookie = "premium=1; path=/; max-age=31536000";
+     
+
     }
   }, []);
 
@@ -294,13 +303,7 @@ export default function ToolPreviewSection() {
   localStorage.setItem("free_sessions_used", String(freeUsed + 1));
 
   return false;
- function requirePremiumFeature(): boolean {
-  if (!isPremium) {
-    alert("Upgrade to Premium to use this feature");
-    return false;
-  }
-  return true;
-}
+ 
 }
   if (!now) return null;
 
