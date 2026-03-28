@@ -771,18 +771,59 @@ export default function ToolPreviewSection() {
   </button>
 
 {shareUrl && (
-  <div
-    style={{
-      marginTop: 16,
-      marginLeft: 18,
-      padding: 16,
-      background: "#ffffff",
-      borderRadius: 16,
-      boxShadow: "0 8px 24px rgba(0,0,0,0.10)",
-      border: "1px solid rgba(0,0,0,0.06)",
-      minWidth: 320,
-      maxWidth: 460,
-    }}
+  <div style={{ marginTop: 16, marginLeft: 4 }}>
+
+    <div
+      style={{
+        fontSize: 14,
+        fontWeight: 600,
+        marginBottom: 6,
+        color: "#111827",
+      }}
+    >
+      Your meeting link is ready
+    </div>
+
+    <a
+      href={shareUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        display: "block",
+        fontSize: 13,
+        color: "#2563eb",
+        marginBottom: 10,
+        textDecoration: "none",
+        wordBreak: "break-all",
+      }}
+    >
+      {shareUrl.replace(/^https?:\/\//, "")}
+    </a>
+
+    <button
+      onClick={async (e) => {
+        await navigator.clipboard.writeText(shareUrl);
+
+        const btn = e.currentTarget;
+        btn.innerText = "Copied ✓";
+      }}
+      style={{
+        background: "#facc15",
+        color: "#000",
+        fontWeight: 700,
+        padding: "8px 14px",
+        borderRadius: 999,
+        border: "none",
+        cursor: "pointer",
+        fontSize: 13,
+        boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+      }}
+    >
+      Copy Link
+    </button>
+
+  </div>
+)}
   >
     <div
       style={{
