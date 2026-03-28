@@ -263,37 +263,38 @@ export default function ToolPreviewSection() {
   }, [isPremium]);
 
   function handleLockedInteraction(): boolean {
-    const freeUsed = parseInt(
-      localStorage.getItem("free_sessions_used") || "0",
-      10
-    );
+  const freeUsed = parseInt(
+    localStorage.getItem("free_sessions_used") || "0",
+    10
+  );
+
+  if (isPremium) {
     const premiumUsed = parseInt(
       localStorage.getItem("premium_sessions_used") || "0",
       10
     );
 
-    if (isPremium) {
-      if (premiumUsed >= 6) {
-        setIsLocked(true);
-        return true;
-      }
-
-      localStorage.setItem(
-        "premium_sessions_used",
-        String(premiumUsed + 1)
-      );
-      return false;
-    }
-
-    if (freeUsed >= 4) {
+    if (premiumUsed >= 6) {
       setIsLocked(true);
       return true;
     }
 
-    localStorage.setItem("free_sessions_used", String(freeUsed + 1));
+    localStorage.setItem(
+      "premium_sessions_used",
+      String(premiumUsed + 1)
+    );
     return false;
   }
 
+  if (freeUsed >= 4) {
+    setIsLocked(true);
+    return true;
+  }
+
+  localStorage.setItem("free_sessions_used", String(freeUsed + 1));
+
+  return false;
+}
   if (!now) return null;
 
   const meetingWindow = calculateOverlap(cityA, cityB);
@@ -629,9 +630,11 @@ export default function ToolPreviewSection() {
         >
           <button
             onClick={async () => {
+                if (handleLockedInteraction()) return;
+              
               try {
                 const res = await fetch("/api/share", {
-                  method: "POST",
+                                  method: "POST",
                   headers: {
                     "Content-Type": "application/json",
                   },
@@ -676,7 +679,8 @@ export default function ToolPreviewSection() {
           </button>
 
           <button
-            onClick={() => {
+           onClick={() => {
+            if (handleLockedInteraction()) return;
               const start =
                 meetingWindow.startUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
               const end =
@@ -731,6 +735,7 @@ export default function ToolPreviewSection() {
 
           <button
             onClick={() => {
+               if (handleLockedInteraction()) return;
               const url = `/api/calendar?cityA=${encodeURIComponent(
                 cityA.name
               )}&cityB=${encodeURIComponent(
