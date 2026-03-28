@@ -388,7 +388,7 @@ export default function ToolPreviewSection() {
 
   return (
     <div style={{ width: "100%", padding: 0 }}>
-      {isLocked && isPremium && (
+      {isLocked && (
         <div
           style={{
             marginBottom: 24,
