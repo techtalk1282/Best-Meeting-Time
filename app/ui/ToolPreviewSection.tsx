@@ -401,13 +401,18 @@ scrollToUpgrade();
       {isLocked && isPremium && (
         <div
           style={{
-            marginBottom: 24,
-            padding: 24,
-            borderRadius: 16,
-            background: "#ffffff",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
-            textAlign: "center",
-          }}
+  marginTop: 20,
+  marginBottom: 24,
+  padding: 28,
+  borderRadius: 20,
+  background: "#ffffff",
+  boxShadow: "0 20px 60px rgba(0,0,0,0.15)",
+  border: "2px solid #facc15",
+  textAlign: "center",
+  maxWidth: 700,
+  marginLeft: "auto",
+  marginRight: "auto",
+}}
         >
           <div
             style={{
@@ -416,7 +421,7 @@ scrollToUpgrade();
               marginBottom: 8,
             }}
           >
-            You’ve reached your premium planning limit
+            You’ve reached your current planning limit
           </div>
 
           <div
