@@ -223,12 +223,19 @@ export default function ToolPreviewSection() {
   const [premiumMessage, setPremiumMessage] = useState<string | null>(null);
    function requirePremiumFeature(): boolean {
   if (!isPremium) {
-    setPremiumMessage("🔒 Premium feature — upgrade to unlock");
+    setPremiumMessage("🔒 Premium feature — unlock all features for $7 below");
+scrollToUpgrade();
     return false;
   }
 
   setPremiumMessage(null);
   return true;
+}
+  function scrollToUpgrade() {
+  const el = document.getElementById("premium-features");
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
 }
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -643,7 +650,9 @@ export default function ToolPreviewSection() {
         >
           {premiumMessage && (
   <div
-    style={{
+  onClick={scrollToUpgrade}
+style={{
+  cursor: "pointer",
       marginTop: 12,
       padding: "10px 14px",
       borderRadius: 8,
