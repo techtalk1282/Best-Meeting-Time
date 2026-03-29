@@ -256,7 +256,7 @@ export default function PremiumFeaturesSection({
                fontWeight: 600,
                   }}
                 >
-                  You've used your 2 free planning sessions. Choose how to continue.
+                 You've used your 2 free planning sessions — unlock all features below for $7 or continue free.
                 </div>
 
                 <div
@@ -313,7 +313,7 @@ export default function PremiumFeaturesSection({
                   }}
                   onClick={handleCheckout}
                 >
-                  Unlock Premium Planning Tools — $7 One-Time
+                  Unlock Premium — $7 One-Time
                 </button>
 
                 <div
@@ -334,7 +334,7 @@ export default function PremiumFeaturesSection({
     color: "#1f1147",
   }}
 >
-  ✓ All features below are included with Premium
+  ✓ Unlock Premium to activate all features below
 </div>
                 </div>
               </>
