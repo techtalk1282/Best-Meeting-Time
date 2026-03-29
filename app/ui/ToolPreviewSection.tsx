@@ -402,37 +402,27 @@ scrollToUpgrade();
         <div
           style={{
   marginTop: 20,
-  marginBottom: 24,
-  padding: 28,
-  borderRadius: 20,
-  background: "#ffffff",
-  boxShadow: "0 20px 60px rgba(0,0,0,0.15)",
-  border: "2px solid #facc15",
-  textAlign: "center",
-  maxWidth: 700,
-  marginLeft: "auto",
-  marginRight: "auto",
+  marginBottom: 20,
+  padding: "14px 18px",
+  borderRadius: 12,
+  background: "rgba(250, 204, 21, 0.12)",
+  border: "1px solid #facc15",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: 16,
 }}
         >
-          <div
-            style={{
-              fontSize: 18,
-              fontWeight: 700,
-              marginBottom: 8,
-            }}
-          >
-            You’ve reached your current planning limit
-          </div>
+         <div style={{ display: "flex", flexDirection: "column", maxWidth: 420 }}>
+  <div style={{ fontSize: 15, fontWeight: 700, color: "#1f1147" }}>
+    You’ve reached your current planning limit
+  </div>
+  <div style={{ fontSize: 13, opacity: 0.7 }}>
+    Unlock more planning sessions and continue scheduling instantly
+  </div>
+</div>
 
-          <div
-            style={{
-              fontSize: 14,
-              opacity: 0.7,
-              marginBottom: 16,
-            }}
-          >
-            Unlock more planning sessions and continue scheduling instantly
-          </div>
+          
 
           <button
             onClick={async () => {
