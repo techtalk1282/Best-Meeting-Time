@@ -430,7 +430,7 @@ export default function ToolPreviewSection() {
                 });
 
                 const data = await res.json();
-             )}
+             
                 if (data.url) {
                   window.location.href = data.url;
                 }
@@ -708,9 +708,10 @@ export default function ToolPreviewSection() {
           </button>
 
           <button
-           onClick={() => {
-            if (!requirePremiumFeature()) return;
-if (handlePlannerInteraction()) return;
+            onClick={() => {
+              if (!requirePremiumFeature()) return;
+              if (handlePlannerInteraction()) return;
+
               const start =
                 meetingWindow.startUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
               const end =
@@ -720,7 +721,8 @@ if (handlePlannerInteraction()) return;
                 "Meeting: " + cityA.name + " ↔ " + cityB.name
               )}&dates=${start}/${end}&details=${encodeURIComponent(
                 "Suggested meeting window"
-            
+              )}`;
+
               window.open(url, "_blank");
             }}
             style={{
