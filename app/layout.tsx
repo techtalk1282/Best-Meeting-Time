@@ -1,28 +1,25 @@
+// app/layout.tsx
+
 import "./globals.css";
+import { ReactNode } from "react";
 
 export const metadata = {
   title: "Best Meeting Time",
   description: "Find the best meeting time across time zones",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body
-        style={{
-          margin: 0,
-          minHeight: "100vh",
-          background: `
-            radial-gradient(circle at top, #6d28d9 0%, #4c1d95 40%, #2e1065 75%, #0b0a14 100%)
-          `,
-        }}
-      >
-        {children}
-      </body>
+      <head>
+        {/* Google AdSense */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9246885832557966"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
