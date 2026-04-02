@@ -22,10 +22,11 @@ export default function HeroSection() {
   id="hero"
   aria-label="Hero Section"
   style={{
-    padding: "10px 20px 40px",
-    color: "#ffffff",
-    background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
-  }}
+  padding: "10px 20px 60px",
+  color: "#ffffff",
+  background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
+  minHeight: "100vh",
+}}
 >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         {/* NAVBAR */}
