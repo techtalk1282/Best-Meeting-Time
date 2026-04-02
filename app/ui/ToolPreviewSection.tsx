@@ -210,12 +210,18 @@ function calculateOverlap(cityA: City, cityB: City): Window {
   };
 }
 
-export default function ToolPreviewSection() {
+export default function ToolPreviewSection({
+  defaultCityLeft,
+}: {
+  defaultCityLeft?: string;
+}) {
   
   const [isPremium, setIsPremium] = useState(false);
   const [viewerTZ, setViewerTZ] = useState<string | null>(null);
   const [isLocked, setIsLocked] = useState(false);
-  const [cityA, setCityA] = useState<City>(CITY_OPTIONS[0]);
+ const [cityA, setCityA] = useState<City>(
+  CITY_OPTIONS.find(c => c.name === defaultCityLeft) || CITY_OPTIONS[0]
+);
   const [cityB, setCityB] = useState<City>(CITY_OPTIONS[1]);
   const [now, setNow] = useState<Date | null>(null);
   const [shareUrl, setShareUrl] = useState<string | null>(null);
