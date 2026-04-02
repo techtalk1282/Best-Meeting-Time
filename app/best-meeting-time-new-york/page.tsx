@@ -7,17 +7,20 @@ export default function NewYorkMeetingPage() {
   <div
   style={{
     background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
-    minHeight: "100vh"
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column"
   }}
 >
   <main
-    style={{
-      padding: "40px 20px 100px 20px",
-      maxWidth: "1100px",
-      margin: "0 auto",
-      color: "white"
-    }}
-  >
+  style={{
+    padding: "40px 20px 100px 20px",
+    maxWidth: "1100px",
+    margin: "0 auto",
+    color: "white",
+    flex: 1
+  }}
+>
       
       <div style={{ marginBottom: "20px" }}>
   <a
