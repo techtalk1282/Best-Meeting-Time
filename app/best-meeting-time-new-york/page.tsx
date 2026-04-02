@@ -4,15 +4,20 @@ import ToolPreviewSection from "@/app/ui/ToolPreviewSection";
 
 export default function NewYorkMeetingPage() {
   return (
-   <main
+  <div
   style={{
-    padding: "40px 20px 100px 20px",
-    maxWidth: "1100px",
-    margin: "0 auto",
-    color: "white",
+    background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
     minHeight: "100vh"
   }}
 >
+  <main
+    style={{
+      padding: "40px 20px 100px 20px",
+      maxWidth: "1100px",
+      margin: "0 auto",
+      color: "white"
+    }}
+  >
       
       <div style={{ marginBottom: "20px" }}>
   <a
@@ -69,5 +74,6 @@ export default function NewYorkMeetingPage() {
       </div>
 
     </main>
+    </div>
   );
 }
