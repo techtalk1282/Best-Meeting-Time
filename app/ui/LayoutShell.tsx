@@ -25,6 +25,7 @@ export default function LayoutShell({
   useEffect(() => {
   const interval = setInterval(() => {
     try {
+      // @ts-ignore
       if (window.adsbygoogle) {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
         clearInterval(interval);
