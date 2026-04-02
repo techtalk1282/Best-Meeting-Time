@@ -19,13 +19,14 @@ export default function HeroSection() {
 
   return (
     <section
-      id="hero"
-      aria-label="Hero Section"
-      style={{
-        padding: "24px 20px",
-        color: "#ffffff",
-      }}
-    >
+  id="hero"
+  aria-label="Hero Section"
+  style={{
+    padding: "24px 20px",
+    color: "#ffffff",
+    background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
+  }}
+>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         {/* NAVBAR */}
         <div
