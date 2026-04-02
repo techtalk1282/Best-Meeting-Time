@@ -42,7 +42,7 @@ export default function HeroSection() {
             src="/logo-best-meeting-time.png"
             alt="Best Meeting Time"
             style={{
-  height: 110,
+  height: 130,
   width: "auto",
 }}
           />
