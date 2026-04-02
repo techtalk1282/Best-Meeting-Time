@@ -35,7 +35,7 @@ export default function HeroSection() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            marginBottom: 32,
+            marginBottom: 12,
           }}
         >
           <img
@@ -71,7 +71,7 @@ export default function HeroSection() {
         <div style={{ textAlign: "center", marginBottom: 20 }}>
           <h1
             style={{
-              fontSize: 56,
+              fontSize: 48,
               marginBottom: 6,
               fontWeight: 700,
             }}
@@ -81,7 +81,7 @@ export default function HeroSection() {
 
           <h2
             style={{
-              fontSize: 34,
+              fontSize: 28,
               fontWeight: 400,
               marginBottom: 10,
             }}
@@ -114,7 +114,7 @@ export default function HeroSection() {
             boxShadow: "0 20px 50px rgba(0,0,0,0.25)",
           }}
         >
-          <div style={{ textAlign: "center", marginBottom: 20 }}>
+          <div style={{ textAlign: "center", marginBottom: 12 }}>
             <a
               href="#tool-preview"
               style={{
