@@ -6,10 +6,16 @@ export default function NewYorkMeetingPage() {
   return (
     <main style={{ padding: "40px 20px", maxWidth: "1100px", margin: "0 auto", color: "white" }}>
       
-      {/* ✅ SEO TITLE */}
-      <h1 style={{ fontSize: "32px", fontWeight: "bold", marginBottom: "10px" }}>
-        Best Meeting Time from New York
-      </h1>
+      <div style={{ marginBottom: "10px" }}>
+  <a href="/" style={{ color: "#ddd6fe", fontSize: "14px" }}>
+    ← Back to all cities
+  </a>
+</div>
+
+{/* ✅ SEO TITLE */}
+<h1 style={{ fontSize: "32px", fontWeight: "bold", marginBottom: "10px" }}>
+  Best Meeting Time from New York
+</h1>
 
       {/* ✅ SEO DESCRIPTION */}
       <p style={{ marginBottom: "20px", color: "#ddd6fe" }}>
