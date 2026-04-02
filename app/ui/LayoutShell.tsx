@@ -27,6 +27,7 @@ export default function LayoutShell({
     try {
       // @ts-ignore
       if (window.adsbygoogle) {
+         // @ts-ignore
         (window.adsbygoogle = window.adsbygoogle || []).push({});
         clearInterval(interval);
       }
