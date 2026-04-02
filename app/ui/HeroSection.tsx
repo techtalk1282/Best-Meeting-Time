@@ -39,7 +39,10 @@ export default function HeroSection() {
           <img
             src="/logo-best-meeting-time.png"
             alt="Best Meeting Time"
-            style={{ height: 72 }}
+            style={{
+  height: 110,
+  width: "auto",
+}}
           />
 
           <div />
