@@ -19,7 +19,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           crossOrigin="anonymous"
         ></script>
       </head>
-      <body>{children}</body>
+      <body
+  style={{
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column"
+  }}
+>
+  {children}
+</body>
     </html>
   );
 }
