@@ -4,11 +4,27 @@ import ToolPreviewSection from "@/app/ui/ToolPreviewSection";
 
 export default function NewYorkMeetingPage() {
   return (
-    <main style={{ padding: "40px 20px", maxWidth: "1100px", margin: "0 auto", color: "white" }}>
+   <main
+  style={{
+    padding: "40px 20px 100px 20px",
+    maxWidth: "1100px",
+    margin: "0 auto",
+    color: "white",
+    minHeight: "100vh"
+  }}
+>
       
-      <div style={{ marginBottom: "10px" }}>
-  <a href="/" style={{ color: "#ddd6fe", fontSize: "14px" }}>
-    ← Back to all cities
+      <div style={{ marginBottom: "20px" }}>
+  <a
+    href="/"
+    style={{
+      color: "#ddd6fe",
+      fontSize: "16px",
+      textDecoration: "none",
+      display: "inline-block"
+    }}
+  >
+    ← Back to Home
   </a>
 </div>
 
