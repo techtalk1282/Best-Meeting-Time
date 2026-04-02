@@ -7,7 +7,7 @@ export default function NewYorkMeetingPage() {
   <div
   style={{
     background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
-    minHeight: "100vh",
+    height: "100vh",
     display: "flex",
     flexDirection: "column"
   }}
