@@ -6,6 +6,10 @@ import { ReactNode } from "react";
 export const metadata = {
   title: "Best Meeting Time",
   description: "Find the best meeting time across time zones",
+
+  verification: {
+    google: "Pr1O21EgUV7XrPwBuN7-fa4ZFYi1DYlFffrwlcmfQ_U",
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -20,14 +24,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         ></script>
       </head>
       <body
-  style={{
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column"
-  }}
->
-  {children}
-</body>
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        {children}
+      </body>
     </html>
   );
 }
