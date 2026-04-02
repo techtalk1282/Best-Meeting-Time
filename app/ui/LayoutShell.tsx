@@ -19,24 +19,23 @@ export default function LayoutShell({
   footer: ReactNode;
 }) {
 
-  // ✅ Load AdSense script ONCE
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9246885832557966";
-    script.async = true;
-    script.crossOrigin = "anonymous";
-    document.body.appendChild(script);
-  }, []);
+  
 
   // ✅ Push ad after render
   useEffect(() => {
+  const interval = setInterval(() => {
     try {
-      // @ts-ignore
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      if (window.adsbygoogle) {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        clearInterval(interval);
+      }
     } catch (e) {
       console.log("AdSense error:", e);
     }
-  }, []);
+  }, 500);
+
+  return () => clearInterval(interval);
+}, []);
 
   return (
     <div style={{ background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)" }}>
