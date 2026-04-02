@@ -94,7 +94,6 @@ body {
    background: linear-gradient(180deg, #4c1d95 0%, #312e81 100%);
   margin: 0;
   padding: 0;
-  background: var(--bg); /* removed gradients */
   color: var(--text);
 }
 
