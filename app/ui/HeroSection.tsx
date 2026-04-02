@@ -22,7 +22,7 @@ export default function HeroSection() {
   id="hero"
   aria-label="Hero Section"
   style={{
-    padding: "60px 20px 40px",
+    padding: "10px 20px 40px",
     color: "#ffffff",
     background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
   }}
