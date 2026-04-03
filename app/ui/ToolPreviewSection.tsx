@@ -525,7 +525,7 @@ useEffect(() => {
       <div
         style={{
          display: "flex",
-         gap: 28,
+         gap: 35,
          marginBottom: 20,
          alignItems: "center", 
         }}
