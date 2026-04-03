@@ -649,7 +649,7 @@ scrollToUpgrade();
             justifyContent: "flex-start",
             alignItems: "center",
             flexWrap: "wrap",
-            overflowX: "auto",
+            overflowX: "visible",
           }}
         >
           {premiumMessage && (
