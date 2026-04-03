@@ -525,9 +525,10 @@ useEffect(() => {
       <div
         style={{
           display: "flex",
-          gap: 20,
-          marginBottom: 20,
-          alignItems: "center",
+gap: 20,
+marginBottom: 20,
+alignItems: "center",
+flexWrap: "wrap",
         }}
       >
         <select
