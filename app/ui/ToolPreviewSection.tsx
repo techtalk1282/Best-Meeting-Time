@@ -648,7 +648,7 @@ scrollToUpgrade();
             gap: 14,
             justifyContent: "flex-start",
             alignItems: "center",
-            flexWrap: "nowrap",
+            flexWrap: "wrap",
             overflowX: "auto",
           }}
         >
