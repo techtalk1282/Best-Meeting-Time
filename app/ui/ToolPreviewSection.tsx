@@ -643,7 +643,7 @@ scrollToUpgrade();
 
         <div
           style={{
-            marginTop: 18,
+            marginTop: 10,
             display: "flex",
             gap: 14,
             justifyContent: "flex-start",
