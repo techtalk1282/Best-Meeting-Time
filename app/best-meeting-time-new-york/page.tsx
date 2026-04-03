@@ -89,7 +89,7 @@ export default function NewYorkMeetingPage() {
             <ToolPreviewSection defaultCityLeft="New York, USA" />
 
 {/* REQUIRED FOR GATING SCROLL */}
-<div id="premium-features" style={{ marginTop: "40px" }}>
+<div id="premium-features" style={{ marginTop: "20px" }}>
   <PremiumFeaturesSection />
 </div>
 
