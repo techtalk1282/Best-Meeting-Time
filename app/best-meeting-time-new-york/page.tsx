@@ -70,7 +70,7 @@ export default function NewYorkMeetingPage() {
             color: "#ddd6fe",
             fontSize: "15px",
             lineHeight: 1.5,
-            maxWidth: "900px",
+            maxWidth: "1100px",
           }}
         >
           Find the best meeting times between New York and other global cities. Instantly see overlapping working hours and schedule meetings efficiently.
