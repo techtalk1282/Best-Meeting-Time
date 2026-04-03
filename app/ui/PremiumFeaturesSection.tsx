@@ -125,7 +125,17 @@ export default function PremiumFeaturesSection({
 
     return () => clearInterval(interval);
   }, []);
-
+// ✅ NEW useEffect OUTSIDE
+useEffect(() => {
+  try {
+    if (typeof window !== "undefined") {
+      // @ts-ignore
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    }
+  } catch (e) {
+    console.error("AdSense push error:", e);
+  }
+}, []);
   async function handleCheckout() {
     try {
       const res = await fetch("/api/checkout", {
