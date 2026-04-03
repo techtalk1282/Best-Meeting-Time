@@ -14,7 +14,7 @@
 "use client";
 
 import ToolPreviewSection from "@/app/ui/ToolPreviewSection";
-import PremiumFeaturesSection from "@/app/ui/PremiumFeaturesSection";
+
 
 export default function NewYorkMeetingPage() {
   return (
