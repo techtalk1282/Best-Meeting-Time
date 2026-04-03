@@ -142,7 +142,7 @@ useEffect(() => {
     console.error("AdSense push error:", e);
   }
 }, []);
-}, []);
+
   async function handleCheckout() {
     try {
       const res = await fetch("/api/checkout", {
