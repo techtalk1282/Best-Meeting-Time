@@ -129,12 +129,19 @@ export default function PremiumFeaturesSection({
 useEffect(() => {
   try {
     if (typeof window !== "undefined") {
-      // @ts-ignore
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      const ads = document.querySelectorAll("ins.adsbygoogle");
+
+      ads.forEach((ad) => {
+        if (!(ad as any).dataset.adsbygoogleStatus) {
+          // @ts-ignore
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        }
+      });
     }
   } catch (e) {
     console.error("AdSense push error:", e);
   }
+}, []);
 }, []);
   async function handleCheckout() {
     try {
