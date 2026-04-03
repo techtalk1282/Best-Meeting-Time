@@ -65,7 +65,7 @@ export default function NewYorkMeetingPage() {
         {/* DESCRIPTION */}
         <p
           style={{
-            marginBottom: "20px",
+            marginBottom: "60px",
             color: "#ddd6fe",
             fontSize: "15px",
             lineHeight: 1.5,
