@@ -1,21 +1,21 @@
 /**
  * File: app/best-meeting-time-new-york/page.tsx
- * Version: v1.6
- * Date: 2026-04-02
+ * Version: v1.7
+ * Date: 2026-04-03
  *
  * Purpose:
- * - Final spacing polish
- * - Push cards further right
- * - Force all action buttons into one row
+ * - Fix missing premium upgrade UI on New York page
+ * - Ensure scroll + upgrade block works after 4 free clicks
  *
  * Rollback:
- * - Revert to v1.5 if needed
+ * - Revert to v1.6 if needed
  */
 
 "use client";
 
 import ToolPreviewSection from "@/app/ui/ToolPreviewSection";
 import PremiumFeaturesSection from "@/app/ui/PremiumFeaturesSection";
+
 export default function NewYorkMeetingPage() {
   return (
     <div
@@ -59,9 +59,6 @@ export default function NewYorkMeetingPage() {
             marginBottom: "50px",
             color: "#ddd6fe",
             fontSize: "16px",
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
           }}
         >
           Find the best meeting times between New York and other global cities. Instantly see overlapping working hours and schedule meetings efficiently.
@@ -72,7 +69,7 @@ export default function NewYorkMeetingPage() {
           style={{
             display: "grid",
             gridTemplateColumns: "2fr 1fr",
-            gap: "150px", // ⬅️ pushed further right
+            gap: "150px",
             alignItems: "start",
           }}
         >
@@ -80,18 +77,11 @@ export default function NewYorkMeetingPage() {
           <div>
             <ToolPreviewSection defaultCityLeft="New York, USA" />
 
-            {/* ✅ BUTTON OVERRIDE (SAFE) */}
-            <div
-              style={{
-                marginTop: "30px", // ⬅️ adds breathing room
-                display: "flex",
-                gap: "12px",
-                flexWrap: "nowrap",
-                alignItems: "center",
-              }}
-            >
-              {/* NOTE: these visually align existing buttons */}
-            </div>
+            {/* ✅ CRITICAL FIX */}
+            <PremiumFeaturesSection />
+
+            {/* spacing */}
+            <div style={{ height: "20px" }} />
           </div>
 
           {/* RIGHT */}
