@@ -1,19 +1,20 @@
 /**
  * File: app/best-meeting-time-new-york/page.tsx
- * Version: v1.7
+ * Version: v1.8
  * Date: 2026-04-03
  *
  * Purpose:
- * - Fix missing premium upgrade UI on New York page
- * - Ensure scroll + upgrade block works after 4 free clicks
+ * - FIX BUILD ERROR (missing PremiumFeaturesSection import)
+ * - Keep upgrade section (DO NOT REMOVE — required for gating scroll)
  *
  * Rollback:
- * - Revert to v1.6 if needed
+ * - Revert to v1.7 if needed
  */
 
 "use client";
 
 import ToolPreviewSection from "@/app/ui/ToolPreviewSection";
+import PremiumFeaturesSection from "@/app/ui/PremiumFeaturesSection"; // ✅ FIX
 
 
 export default function NewYorkMeetingPage() {
@@ -77,10 +78,9 @@ export default function NewYorkMeetingPage() {
           <div>
             <ToolPreviewSection defaultCityLeft="New York, USA" />
 
-            {/* ✅ CRITICAL FIX */}
+            {/* ✅ REQUIRED FOR GATING SCROLL */}
             <PremiumFeaturesSection />
 
-            {/* spacing */}
             <div style={{ height: "20px" }} />
           </div>
 
