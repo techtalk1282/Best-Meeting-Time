@@ -30,7 +30,7 @@ export default function NewYorkMeetingPage() {
         style={{
           maxWidth: "1320px",
           margin: "0 auto",
-          padding: "30px 20px 140px 20px",
+          padding: "70px 20px 140px 20px",
           color: "white",
           flex: 1,
         }}
@@ -41,7 +41,7 @@ export default function NewYorkMeetingPage() {
             href="/"
             style={{
               color: "#ffffff",
-              fontSize: "16px",
+              fontSize: "20px",
               fontWeight: 600,
               textDecoration: "none",
             }}
