@@ -126,24 +126,7 @@ export default function PremiumFeaturesSection({
     return () => clearInterval(interval);
   }, []);
 // ✅ NEW useEffect OUTSIDE
-useEffect(() => {
-  try {
-    if (typeof window !== "undefined") {
-      if (!(window as any).__adsenseInitialized) {
-        const ad = document.querySelector("ins.adsbygoogle");
 
-        if (ad && !(ad as any).dataset.adsbygoogleStatus) {
-          // @ts-ignore
-          (window.adsbygoogle = window.adsbygoogle || []).push({});
-        }
-
-        (window as any).__adsenseInitialized = true;
-      }
-    }
-  } catch (e) {
-    console.error("AdSense push error:", e);
-  }
-}, []);
 
   async function handleCheckout() {
     try {
