@@ -646,7 +646,8 @@ scrollToUpgrade();
             gap: 14,
             justifyContent: "flex-start",
             alignItems: "center",
-            flexWrap: "wrap",
+            flexWrap: "nowrap",
+            overflowX: "auto",
           }}
         >
           {premiumMessage && (
