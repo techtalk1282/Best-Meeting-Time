@@ -1,18 +1,20 @@
 /**
  * File: app/best-meeting-time-new-york/page.tsx
- * Version: v1.4
+ * Version: v1.5
  * Date: 2026-04-02
  *
  * Purpose:
- * - Fix crowding
- * - Add breathing room between columns
- * - Push cards further right
- * - Ensure buttons align in one row cleanly
+ * - Push comparison cards further right
+ * - Convert description to single-line horizontal layout
+ * - Improve breathing room without touching ToolPreviewSection
  *
  * Changes:
- * - Increased grid gap
- * - Adjusted column widths
- * - Added spacing below tool
+ * - Increased grid spacing significantly
+ * - Adjusted column ratio
+ * - Forced description into one line
+ *
+ * Rollback:
+ * - Revert to v1.4 if needed
  */
 
 "use client";
@@ -30,7 +32,7 @@ export default function NewYorkMeetingPage() {
     >
       <main
         style={{
-          maxWidth: "1300px", // ⬅️ more breathing room
+          maxWidth: "1400px", // ⬅️ more width
           margin: "0 auto",
           padding: "60px 20px 100px 20px",
           color: "white",
@@ -57,46 +59,47 @@ export default function NewYorkMeetingPage() {
           style={{
             fontSize: "40px",
             fontWeight: "bold",
-            marginBottom: "12px",
+            marginBottom: "10px",
           }}
         >
           Best Meeting Time from New York
         </h1>
 
-        {/* DESCRIPTION */}
+        {/* ✅ SINGLE LINE DESCRIPTION */}
         <p
           style={{
             marginBottom: "50px",
             color: "#ddd6fe",
-            fontSize: "18px",
-            maxWidth: "700px",
+            fontSize: "16px", // slightly smaller
+            whiteSpace: "nowrap", // ⬅️ force one line
+            overflow: "hidden",
+            textOverflow: "ellipsis",
           }}
         >
-          Find the best meeting times between New York and other global cities.
-          Instantly see overlapping working hours and schedule meetings efficiently.
+          Find the best meeting times between New York and other global cities. Instantly see overlapping working hours and schedule meetings efficiently.
         </p>
 
-        {/* ✅ 2 COLUMN LAYOUT */}
+        {/* GRID */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "2.2fr 1fr", // ⬅️ pushes cards right
-            gap: "80px", // ⬅️ BIG spacing improvement
+            gridTemplateColumns: "2fr 1fr",
+            gap: "120px", // ⬅️ BIG separation
             alignItems: "start",
           }}
         >
-          {/* LEFT — TOOL */}
+          {/* LEFT */}
           <div style={{ paddingBottom: "40px" }}>
             <ToolPreviewSection defaultCityLeft="New York, USA" />
           </div>
 
-          {/* RIGHT — CARDS */}
+          {/* RIGHT */}
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               gap: "18px",
-              marginTop: "40px", // ⬅️ lowers cards slightly
+              marginTop: "60px", // ⬅️ pushes cards down + right feel
             }}
           >
             <h2 style={{ fontSize: "20px", marginBottom: "10px" }}>
