@@ -724,7 +724,7 @@ style={{
           <button
             onClick={() => {
               if (!requirePremiumFeature()) return;
-              if (handlePlannerInteraction()) return;
+              
 
               const start =
                 meetingWindow.startUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
