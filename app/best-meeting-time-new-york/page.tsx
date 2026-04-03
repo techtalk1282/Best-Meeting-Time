@@ -1,21 +1,21 @@
 /**
  * File: app/best-meeting-time-new-york/page.tsx
- * Version: v1.8
+ * Version: v2.0
  * Date: 2026-04-03
  *
  * Purpose:
- * - FIX BUILD ERROR (missing PremiumFeaturesSection import)
- * - Keep upgrade section (DO NOT REMOVE — required for gating scroll)
+ * - Fix city page initial viewport (100% zoom issue)
+ * - Reduce vertical spacing so tool is fully visible on load
+ * - Keep all gating + premium behavior untouched
  *
  * Rollback:
- * - Revert to v1.7 if needed
+ * - Revert to v1.8 if needed
  */
 
 "use client";
 
 import ToolPreviewSection from "@/app/ui/ToolPreviewSection";
-import PremiumFeaturesSection from "@/app/ui/PremiumFeaturesSection"; // ✅ FIX
-
+import PremiumFeaturesSection from "@/app/ui/PremiumFeaturesSection";
 
 export default function NewYorkMeetingPage() {
   return (
@@ -28,21 +28,22 @@ export default function NewYorkMeetingPage() {
     >
       <main
         style={{
-          maxWidth: "1400px",
+          maxWidth: "1320px",
           margin: "0 auto",
-          padding: "60px 20px 100px 20px",
+          padding: "30px 20px 60px 20px", // 🔥 reduced from 60px
           color: "white",
           flex: 1,
         }}
       >
         {/* BACK */}
-        <div style={{ marginBottom: "30px" }}>
+        <div style={{ marginBottom: "16px" }}>
           <a
             href="/"
             style={{
               color: "#ffffff",
-              fontSize: "18px",
-              fontWeight: 700,
+              fontSize: "16px",
+              fontWeight: 600,
+              textDecoration: "none",
             }}
           >
             ← Back to Home
@@ -50,16 +51,25 @@ export default function NewYorkMeetingPage() {
         </div>
 
         {/* TITLE */}
-        <h1 style={{ fontSize: "40px", fontWeight: "bold", marginBottom: "10px" }}>
+        <h1
+          style={{
+            fontSize: "32px",
+            fontWeight: "bold",
+            marginBottom: "6px",
+            lineHeight: 1.2,
+          }}
+        >
           Best Meeting Time from New York
         </h1>
 
         {/* DESCRIPTION */}
         <p
           style={{
-            marginBottom: "50px",
+            marginBottom: "20px", // 🔥 reduced
             color: "#ddd6fe",
-            fontSize: "16px",
+            fontSize: "15px",
+            lineHeight: 1.5,
+            maxWidth: "900px",
           }}
         >
           Find the best meeting times between New York and other global cities. Instantly see overlapping working hours and schedule meetings efficiently.
@@ -70,7 +80,7 @@ export default function NewYorkMeetingPage() {
           style={{
             display: "grid",
             gridTemplateColumns: "2fr 1fr",
-            gap: "150px",
+            gap: "70px", // 🔥 reduced from 150px
             alignItems: "start",
           }}
         >
@@ -78,10 +88,10 @@ export default function NewYorkMeetingPage() {
           <div>
             <ToolPreviewSection defaultCityLeft="New York, USA" />
 
-            {/* ✅ REQUIRED FOR GATING SCROLL */}
+            {/* REQUIRED FOR GATING SCROLL */}
             <PremiumFeaturesSection />
 
-            <div style={{ height: "20px" }} />
+            <div style={{ height: "10px" }} />
           </div>
 
           {/* RIGHT */}
@@ -89,11 +99,11 @@ export default function NewYorkMeetingPage() {
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: "18px",
-              marginTop: "60px",
+              gap: "16px",
+              marginTop: "30px", // 🔥 reduced from 60px
             }}
           >
-            <h2 style={{ fontSize: "20px", marginBottom: "10px" }}>
+            <h2 style={{ fontSize: "18px", marginBottom: "6px" }}>
               Popular Comparisons
             </h2>
 
@@ -106,16 +116,16 @@ export default function NewYorkMeetingPage() {
               <div
                 key={i}
                 style={{
-                  padding: "16px",
-                  borderRadius: "14px",
+                  padding: "14px",
+                  borderRadius: "12px",
                   background:
                     "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05))",
                   border: "1px solid rgba(255,255,255,0.15)",
-                  boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
+                  boxShadow: "0 6px 16px rgba(0,0,0,0.25)",
                 }}
               >
                 <div style={{ fontWeight: 700 }}>{item.title}</div>
-                <div style={{ fontSize: "14px", opacity: 0.8 }}>
+                <div style={{ fontSize: "13px", opacity: 0.8 }}>
                   {item.desc}
                 </div>
               </div>
