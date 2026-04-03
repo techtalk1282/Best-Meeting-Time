@@ -639,7 +639,7 @@ scrollToUpgrade();
           <div style={{ marginTop: 16, fontWeight: 600 }}>
   Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
 </div>
-        </div>
+        
 
         <div
           style={{
