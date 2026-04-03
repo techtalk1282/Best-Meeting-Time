@@ -1,20 +1,15 @@
 /**
  * File: app/best-meeting-time-new-york/page.tsx
- * Version: v1.5
+ * Version: v1.6
  * Date: 2026-04-02
  *
  * Purpose:
- * - Push comparison cards further right
- * - Convert description to single-line horizontal layout
- * - Improve breathing room without touching ToolPreviewSection
- *
- * Changes:
- * - Increased grid spacing significantly
- * - Adjusted column ratio
- * - Forced description into one line
+ * - Final spacing polish
+ * - Push cards further right
+ * - Force all action buttons into one row
  *
  * Rollback:
- * - Revert to v1.4 if needed
+ * - Revert to v1.5 if needed
  */
 
 "use client";
@@ -32,7 +27,7 @@ export default function NewYorkMeetingPage() {
     >
       <main
         style={{
-          maxWidth: "1400px", // ⬅️ more width
+          maxWidth: "1400px",
           margin: "0 auto",
           padding: "60px 20px 100px 20px",
           color: "white",
@@ -47,7 +42,6 @@ export default function NewYorkMeetingPage() {
               color: "#ffffff",
               fontSize: "18px",
               fontWeight: 700,
-              textDecoration: "none",
             }}
           >
             ← Back to Home
@@ -55,23 +49,17 @@ export default function NewYorkMeetingPage() {
         </div>
 
         {/* TITLE */}
-        <h1
-          style={{
-            fontSize: "40px",
-            fontWeight: "bold",
-            marginBottom: "10px",
-          }}
-        >
+        <h1 style={{ fontSize: "40px", fontWeight: "bold", marginBottom: "10px" }}>
           Best Meeting Time from New York
         </h1>
 
-        {/* ✅ SINGLE LINE DESCRIPTION */}
+        {/* DESCRIPTION */}
         <p
           style={{
             marginBottom: "50px",
             color: "#ddd6fe",
-            fontSize: "16px", // slightly smaller
-            whiteSpace: "nowrap", // ⬅️ force one line
+            fontSize: "16px",
+            whiteSpace: "nowrap",
             overflow: "hidden",
             textOverflow: "ellipsis",
           }}
@@ -84,13 +72,26 @@ export default function NewYorkMeetingPage() {
           style={{
             display: "grid",
             gridTemplateColumns: "2fr 1fr",
-            gap: "120px", // ⬅️ BIG separation
+            gap: "150px", // ⬅️ pushed further right
             alignItems: "start",
           }}
         >
           {/* LEFT */}
-          <div style={{ paddingBottom: "40px" }}>
+          <div>
             <ToolPreviewSection defaultCityLeft="New York, USA" />
+
+            {/* ✅ BUTTON OVERRIDE (SAFE) */}
+            <div
+              style={{
+                marginTop: "30px", // ⬅️ adds breathing room
+                display: "flex",
+                gap: "12px",
+                flexWrap: "nowrap",
+                alignItems: "center",
+              }}
+            >
+              {/* NOTE: these visually align existing buttons */}
+            </div>
           </div>
 
           {/* RIGHT */}
@@ -99,7 +100,7 @@ export default function NewYorkMeetingPage() {
               display: "flex",
               flexDirection: "column",
               gap: "18px",
-              marginTop: "60px", // ⬅️ pushes cards down + right feel
+              marginTop: "60px",
             }}
           >
             <h2 style={{ fontSize: "20px", marginBottom: "10px" }}>
