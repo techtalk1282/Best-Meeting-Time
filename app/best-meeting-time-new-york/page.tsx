@@ -99,7 +99,7 @@ export default function NewYorkMeetingPage() {
             </div>
 
             {/* REQUIRED FOR GATING SCROLL */}
-            <div id="premium-features" style={{ marginTop: "40px" }}>
+            <div id="premium-features" style={{ marginTop: "120px" }}>
               <PremiumFeaturesSection />
             </div>
 
