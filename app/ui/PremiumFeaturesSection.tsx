@@ -129,12 +129,16 @@ export default function PremiumFeaturesSection({
 useEffect(() => {
   try {
     if (typeof window !== "undefined") {
-      const ad = document.querySelector("ins.adsbygoogle");
+      if (!(window as any).__adsenseInitialized) {
+        const ad = document.querySelector("ins.adsbygoogle");
 
-if (ad && !(ad as any).dataset.adsbygoogleStatus) {
-  // @ts-ignore
-  (window.adsbygoogle = window.adsbygoogle || []).push({});
-}
+        if (ad && !(ad as any).dataset.adsbygoogleStatus) {
+          // @ts-ignore
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        }
+
+        (window as any).__adsenseInitialized = true;
+      }
     }
   } catch (e) {
     console.error("AdSense push error:", e);
