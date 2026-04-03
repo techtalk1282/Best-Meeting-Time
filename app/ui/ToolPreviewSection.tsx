@@ -650,7 +650,7 @@ useEffect(() => {
 
         <div
           style={{
-            marginTop: 10,
+            marginTop: 6,
             display: "14px",
             gap: 23,
             justifyContent: "flex-start",
