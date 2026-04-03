@@ -723,6 +723,7 @@ style={{
               cursor: "pointer",
               fontSize: 13,
               boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+              marginRight: "12px",
             }}
           >
             Share Meeting Link
