@@ -652,7 +652,7 @@ useEffect(() => {
           style={{
             marginTop: 15,
             display: "14px",
-            gap: 18,
+            gap: 23,
             justifyContent: "flex-start",
             alignItems: "center",
             flexWrap: "nowrap",
