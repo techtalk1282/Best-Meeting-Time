@@ -643,7 +643,7 @@ useEffect(() => {
         </div>
 
         
-          <div style={{ marginTop: 18, fontWeight: 600 }}>
+          <div style={{ marginTop: 18, marginBottom: 12, fontWeight: 600 }}>
   Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
 </div>
         
