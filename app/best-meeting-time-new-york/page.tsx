@@ -36,7 +36,7 @@ export default function NewYorkMeetingPage() {
         }}
       >
         {/* BACK */}
-        <div style={{ marginBottom: "16px" }}>
+        <div style={{ marginBottom: "46px" }}>
           <a
             href="/"
             style={{
