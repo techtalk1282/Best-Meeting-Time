@@ -81,7 +81,7 @@ export default function NewYorkMeetingPage() {
           style={{
             display: "grid",
             gridTemplateColumns: "2fr 1fr",
-            gap: "70px",
+            gap: "90px",
             alignItems: "start",
           }}
         >
