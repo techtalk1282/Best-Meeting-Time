@@ -757,6 +757,7 @@ style={{
               cursor: "pointer",
               fontSize: 13,
               boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+              marginRight: "12px",
             }}
           >
             Add to Google
@@ -782,6 +783,7 @@ style={{
               cursor: "pointer",
               fontSize: 13,
               boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+              marginRight: "12px",
             }}
           >
             Add to Outlook
@@ -807,6 +809,7 @@ style={{
               cursor: "pointer",
               fontSize: 13,
               boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+              marginRight: "12px",
             }}
           >
             Add to Apple Calendar
@@ -858,6 +861,7 @@ style={{
                 cursor: "pointer",
                 fontSize: 13,
                 boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+                marginRight: "12px",
               }}
             >
               {shareCopied ? "Copied ✓" : "Copy Link"}
