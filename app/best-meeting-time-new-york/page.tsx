@@ -55,7 +55,7 @@ export default function NewYorkMeetingPage() {
           style={{
             fontSize: "32px",
             fontWeight: "bold",
-            marginBottom: "6px",
+            marginBottom: "10px",
             lineHeight: 1.2,
           }}
         >
@@ -65,7 +65,7 @@ export default function NewYorkMeetingPage() {
         {/* DESCRIPTION */}
         <p
           style={{
-            marginBottom: "60px",
+            marginBottom: "40px",
             color: "#ddd6fe",
             fontSize: "15px",
             lineHeight: 1.5,
