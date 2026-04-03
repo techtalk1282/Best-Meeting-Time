@@ -1,21 +1,18 @@
 /**
  * File: app/best-meeting-time-new-york/page.tsx
- * Version: v1.3
+ * Version: v1.4
  * Date: 2026-04-02
  *
  * Purpose:
- * - Convert layout to 2-column dashboard style
- * - Move cards to right side
- * - Reduce vertical crowding
- * - Improve readability and UX
+ * - Fix crowding
+ * - Add breathing room between columns
+ * - Push cards further right
+ * - Ensure buttons align in one row cleanly
  *
  * Changes:
- * - Grid layout (tool left, cards right)
- * - Reduced vertical stacking
- * - Better spacing
- *
- * Rollback:
- * - Revert to v1.2 if needed
+ * - Increased grid gap
+ * - Adjusted column widths
+ * - Added spacing below tool
  */
 
 "use client";
@@ -33,9 +30,9 @@ export default function NewYorkMeetingPage() {
     >
       <main
         style={{
-          maxWidth: "1200px",
+          maxWidth: "1300px", // ⬅️ more breathing room
           margin: "0 auto",
-          padding: "60px 20px 80px 20px",
+          padding: "60px 20px 100px 20px",
           color: "white",
           flex: 1,
         }}
@@ -69,7 +66,7 @@ export default function NewYorkMeetingPage() {
         {/* DESCRIPTION */}
         <p
           style={{
-            marginBottom: "40px",
+            marginBottom: "50px",
             color: "#ddd6fe",
             fontSize: "18px",
             maxWidth: "700px",
@@ -83,22 +80,23 @@ export default function NewYorkMeetingPage() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "2fr 1fr",
-            gap: "40px",
+            gridTemplateColumns: "2.2fr 1fr", // ⬅️ pushes cards right
+            gap: "80px", // ⬅️ BIG spacing improvement
             alignItems: "start",
           }}
         >
-          {/* LEFT SIDE — TOOL */}
-          <div>
+          {/* LEFT — TOOL */}
+          <div style={{ paddingBottom: "40px" }}>
             <ToolPreviewSection defaultCityLeft="New York, USA" />
           </div>
 
-          {/* RIGHT SIDE — CARDS */}
+          {/* RIGHT — CARDS */}
           <div
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: "16px",
+              gap: "18px",
+              marginTop: "40px", // ⬅️ lowers cards slightly
             }}
           >
             <h2 style={{ fontSize: "20px", marginBottom: "10px" }}>
