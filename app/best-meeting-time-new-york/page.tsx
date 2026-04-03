@@ -1,15 +1,16 @@
 /**
  * File: app/best-meeting-time-new-york/page.tsx
- * Version: v2.1
+ * Version: v3.0 (FINAL STABLE)
  * Date: 2026-04-03
  *
  * Purpose:
- * - Fix New York city page first-load viewport without touching shared logic
- * - Keep main page and ToolPreviewSection untouched
- * - Keep PremiumFeaturesSection available for gating scroll
+ * - Ensure tool is fully visible at 100% zoom
+ * - Prevent premium section from appearing on load
+ * - No scaling, no hacks
+ * - Main page and shared components untouched
  *
  * Rollback:
- * - Revert to v2.0 if needed
+ * - Revert to v2.1 if needed
  */
 
 "use client";
@@ -30,18 +31,18 @@ export default function NewYorkMeetingPage() {
         style={{
           maxWidth: "1320px",
           margin: "0 auto",
-          padding: "70px 20px 140px 20px",
+          padding: "40px 20px 40px 20px",
           color: "white",
           flex: 1,
         }}
       >
         {/* BACK */}
-        <div style={{ marginBottom: "46px" }}>
+        <div style={{ marginBottom: "24px" }}>
           <a
             href="/"
             style={{
               color: "#ffffff",
-              fontSize: "20px",
+              fontSize: "18px",
               fontWeight: 600,
               textDecoration: "none",
             }}
@@ -65,7 +66,7 @@ export default function NewYorkMeetingPage() {
         {/* DESCRIPTION */}
         <p
           style={{
-            marginBottom: "40px",
+            marginBottom: "24px",
             color: "#ddd6fe",
             fontSize: "15px",
             lineHeight: 1.5,
@@ -86,24 +87,22 @@ export default function NewYorkMeetingPage() {
         >
           {/* LEFT */}
           <div>
-            {/* CITY-ONLY VIEWPORT TUNING */}
+            {/* VIEWPORT-CONSTRAINED TOOL */}
             <div
               style={{
-                transform: "scale(0.92)",
-                transformOrigin: "top left",
-                width: "108.7%",
-                marginBottom: "-90px",
+                minHeight: "calc(100vh - 260px)",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-start",
               }}
             >
               <ToolPreviewSection defaultCityLeft="New York, USA" />
             </div>
 
-            {/* REQUIRED FOR GATING SCROLL */}
-            <div id="premium-features" style={{ marginTop: "300px" }}>
+            {/* PREMIUM BELOW FOLD (NO HACKS) */}
+            <div id="premium-features" style={{ marginTop: "40px" }}>
               <PremiumFeaturesSection />
             </div>
-
-            <div style={{ height: "10px" }} />
           </div>
 
           {/* RIGHT */}
