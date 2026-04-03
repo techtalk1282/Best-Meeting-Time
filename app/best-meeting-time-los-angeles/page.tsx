@@ -1,20 +1,21 @@
 /**
  * File: app/best-meeting-time-los-angeles/page.tsx
- * Version: v1.6
- * Date: 2026-04-02
+ * Version: v1.7
+ * Date: 2026-04-03
  *
  * Purpose:
- * - Final spacing polish
- * - Push cards further right
- * - Force all action buttons into one row
+ * - Fix missing premium upgrade UI on city page
+ * - Ensure scroll + upgrade block works after 4 free clicks
+ * - Keep layout + spacing intact
  *
  * Rollback:
- * - Revert to v1.5 if needed
+ * - Revert to v1.6 if needed
  */
 
 "use client";
 
 import ToolPreviewSection from "@/app/ui/ToolPreviewSection";
+import PremiumFeaturesSection from "@/app/ui/PremiumFeaturesSection";
 
 export default function LosAngelesMeetingPage() {
   return (
@@ -59,7 +60,6 @@ export default function LosAngelesMeetingPage() {
             marginBottom: "50px",
             color: "#ddd6fe",
             fontSize: "16px",
-            
           }}
         >
           Find the best meeting times between Los Angeles and other global cities. Instantly see overlapping working hours and schedule meetings efficiently.
@@ -70,7 +70,7 @@ export default function LosAngelesMeetingPage() {
           style={{
             display: "grid",
             gridTemplateColumns: "2fr 1fr",
-            gap: "150px", // ⬅️ pushed further right
+            gap: "150px",
             alignItems: "start",
           }}
         >
@@ -78,18 +78,11 @@ export default function LosAngelesMeetingPage() {
           <div>
             <ToolPreviewSection defaultCityLeft="Los Angeles, USA" />
 
-            {/* ✅ BUTTON OVERRIDE (SAFE) */}
-            <div
-              style={{
-                marginTop: "30px", // ⬅️ adds breathing room
-                display: "flex",
-                gap: "12px",
-                flexWrap: "nowrap",
-                alignItems: "center",
-              }}
-            >
-              {/* NOTE: these visually align existing buttons */}
-            </div>
+            {/* ✅ REQUIRED FOR GATING / SCROLL */}
+            <PremiumFeaturesSection />
+
+            {/* spacing */}
+            <div style={{ height: "20px" }} />
           </div>
 
           {/* RIGHT */}
@@ -112,7 +105,7 @@ export default function LosAngelesMeetingPage() {
               { title: "Los Angeles ↔ Sydney", desc: "17–19 hour difference" },
             ].map((item, i) => (
               <div
-                 key={i}
+                key={i}
                 style={{
                   padding: "16px",
                   borderRadius: "14px",
