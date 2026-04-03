@@ -635,13 +635,15 @@ scrollToUpgrade();
           </div>
         </div>
 
-        <div style={{ marginTop: 8, fontWeight: 600 }}>
-          Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
+        
+          <div style={{ marginTop: 16, fontWeight: 600 }}>
+  Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
+</div>
         </div>
 
         <div
           style={{
-            marginTop: 18,
+            marginTop: 26,
             display: "flex",
             gap: 14,
             justifyContent: "flex-start",
