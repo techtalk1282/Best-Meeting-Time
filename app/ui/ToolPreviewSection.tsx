@@ -673,7 +673,7 @@ style={{
           <button
             onClick={async () => {
                if (!requirePremiumFeature()) return;
-               if (handlePlannerInteraction()) return;
+              
               
               try {
                 const res = await fetch("/api/share", {
