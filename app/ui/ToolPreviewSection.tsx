@@ -524,11 +524,10 @@ useEffect(() => {
 
       <div
         style={{
-          display: "flex",
-gap: 20,
-marginBottom: 20,
-alignItems: "center",
-flexWrap: "wrap",
+         display: "flex",
+         gap: 28,
+         marginBottom: 20,
+         alignItems: "center", 
         }}
       >
         <select
