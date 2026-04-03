@@ -1,15 +1,16 @@
 /**
  * File: app/best-meeting-time-new-york/page.tsx
- * Version: v1.1
+ * Version: v1.2
  * Date: 2026-04-02
- * Purpose: New York SEO landing page
- * Notes:
- * - Improves Back to Home visibility
- * - Adds stronger spacing and page structure
+ * Purpose: New York SEO landing page (card layout upgrade)
+ *
+ * Changes:
+ * - Removed long scrolling text
+ * - Added horizontal card layout (fixes cutoff + improves UX)
  * - Keeps ToolPreviewSection untouched
- * - Intended to reduce the visual cutoff feeling on the SEO page
+ *
  * Rollback:
- * - Revert this file to the prior committed version if needed
+ * - Revert to v1.1 if needed
  */
 
 "use client";
@@ -23,19 +24,18 @@ export default function NewYorkMeetingPage() {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        width: "100%",
       }}
     >
       <main
         style={{
-          width: "100%",
           maxWidth: "1100px",
           margin: "0 auto",
-          padding: "60px 20px 120px 20px",
+          padding: "60px 20px 80px 20px",
           color: "white",
           flex: 1,
         }}
       >
+        {/* BACK */}
         <div style={{ marginBottom: "30px" }}>
           <a
             href="/"
@@ -44,78 +44,92 @@ export default function NewYorkMeetingPage() {
               fontSize: "18px",
               fontWeight: 700,
               textDecoration: "none",
-              display: "inline-block",
             }}
           >
             ← Back to Home
           </a>
         </div>
 
+        {/* TITLE */}
         <h1
           style={{
             fontSize: "40px",
             fontWeight: "bold",
             marginBottom: "12px",
-            lineHeight: "1.1",
           }}
         >
           Best Meeting Time from New York
         </h1>
 
+        {/* DESCRIPTION */}
         <p
           style={{
             marginBottom: "30px",
             color: "#ddd6fe",
             fontSize: "18px",
-            lineHeight: "1.6",
-            maxWidth: "760px",
+            maxWidth: "700px",
           }}
         >
           Find the best meeting times between New York and other global cities.
-          Instantly see overlapping working hours and schedule meetings
-          efficiently across time zones.
+          Instantly see overlapping working hours and schedule meetings efficiently.
         </p>
 
-        <div style={{ marginTop: "30px", marginBottom: "40px" }}>
+        {/* TOOL */}
+        <div style={{ marginBottom: "40px" }}>
           <ToolPreviewSection defaultCityLeft="New York, USA" />
         </div>
 
-        <div
-          style={{
-            marginTop: "20px",
-            color: "#ddd6fe",
-            lineHeight: "1.7",
-            maxWidth: "800px",
-          }}
-        >
-          <h2
-            style={{
-              fontSize: "24px",
-              marginBottom: "12px",
-              color: "white",
-            }}
-          >
-            Scheduling Meetings from New York
+        {/* ✅ NEW CARD SECTION */}
+        <div>
+          <h2 style={{ fontSize: "24px", marginBottom: "20px" }}>
+            Popular Meeting Time Comparisons
           </h2>
 
-          <p>
-            New York operates in the Eastern Time Zone (ET). When scheduling
-            meetings with international teams, it’s important to find
-            overlapping working hours.
-          </p>
-
-          <p style={{ marginTop: "12px" }}>For example:</p>
-
-          <ul style={{ marginTop: "12px", paddingLeft: "20px" }}>
-            <li>New York to London: Typically 5-hour difference</li>
-            <li>New York to Los Angeles: 3-hour difference</li>
-            <li>New York to Tokyo: 13–14 hour difference</li>
-          </ul>
-
-          <p style={{ marginTop: "12px" }}>
-            Use the tool above to instantly find the best meeting window based
-            on your selected cities.
-          </p>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: "16px",
+            }}
+          >
+            {[
+              {
+                title: "New York ↔ London",
+                desc: "5-hour difference",
+              },
+              {
+                title: "New York ↔ Los Angeles",
+                desc: "3-hour difference",
+              },
+              {
+                title: "New York ↔ Tokyo",
+                desc: "13–14 hour difference",
+              },
+              {
+                title: "New York ↔ Sydney",
+                desc: "14–16 hour difference",
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: "18px",
+                  borderRadius: "14px",
+                  background:
+                    "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05))",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
+                }}
+              >
+                <div style={{ fontWeight: 700, marginBottom: "6px" }}>
+                  {item.title}
+                </div>
+                <div style={{ fontSize: "14px", opacity: 0.8 }}>
+                  {item.desc}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </main>
     </div>
