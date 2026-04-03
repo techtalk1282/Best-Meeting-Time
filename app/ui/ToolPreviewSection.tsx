@@ -643,16 +643,16 @@ useEffect(() => {
         </div>
 
         
-          <div style={{ marginTop: 16, fontWeight: 600 }}>
+          <div style={{ marginTop: 18, fontWeight: 600 }}>
   Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
 </div>
         
 
         <div
           style={{
-            marginTop: 10,
-            display: "flex",
-            gap: 14,
+            marginTop: 15,
+            display: "14px",
+            gap: 18,
             justifyContent: "flex-start",
             alignItems: "center",
             flexWrap: "nowrap",
