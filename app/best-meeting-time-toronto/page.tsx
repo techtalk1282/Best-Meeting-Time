@@ -60,6 +60,16 @@ export default function TorontoMeetingPage() {
           </div>
 
         </div>
+        {/* SEO BOOST */}
+<p
+  style={{
+    marginTop: "40px",
+    color: "#ddd6fe",
+    lineHeight: "1.6",
+  }}
+>
+  Best meeting times between Toronto and New York, London, Tokyo, Sydney, Dubai, Berlin, Paris, and Mumbai.
+</p>
       </main>
     </div>
   );
