@@ -1,16 +1,15 @@
 /**
  * File: app/page.tsx
- * Version: v1.8
+ * Version: v1.9
  * Date: 2026-04-04
  *
  * PURPOSE:
  * - Maintain layout shell structure (NO logic changes)
- * - Inject internal linking block for SEO (critical for indexing + ranking)
+ * - Add internal linking block for SEO (safe injection)
  *
  * NOTES:
  * - No changes to Stripe, gating, or premium logic
- * - Uses BonusFeatures slot safely to avoid breaking layout
- * - This improves crawlability + page authority distribution
+ * - Fix JSX syntax error from previous version
  */
 
 import dynamic from "next/dynamic";
@@ -18,7 +17,6 @@ import dynamic from "next/dynamic";
 import LayoutShell from "./ui/LayoutShell";
 import HeroSection from "./ui/HeroSection";
 import PremiumFeaturesSection from "./ui/PremiumFeaturesSection";
-import BonusFeaturesSection from "./ui/BonusFeaturesSection";
 import FooterSection from "./ui/FooterSection";
 
 // ✅ CRITICAL: disable SSR for this component
@@ -35,11 +33,8 @@ export default function HomePage() {
         hero={<HeroSection />}
         toolPreview={null}
         premiumFeatures={<PremiumFeaturesSection />}
-        
-        {/* ✅ NEW: SEO Internal Linking Block */}
         bonusFeatures={
           <div style={{ marginTop: "60px", textAlign: "center" }}>
-            
             <h2 style={{ fontSize: "28px", marginBottom: "20px" }}>
               Popular Meeting Time Cities
             </h2>
@@ -62,10 +57,8 @@ export default function HomePage() {
               <a href="/best-meeting-time-mumbai">Mumbai</a>
               <a href="/best-meeting-time-toronto">Toronto</a>
             </div>
-
           </div>
         }
-
         footer={<FooterSection />}
       />
     </>
