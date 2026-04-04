@@ -1,15 +1,15 @@
 /**
  * File: app/best-meeting-time-los-angeles/page.tsx
- * Version: v1.7
- * Date: 2026-04-03
+ * Version: v2.0 (NY TEMPLATE MATCH)
+ * Date: 2026-04-04
  *
  * Purpose:
- * - Fix missing premium upgrade UI on city page
- * - Ensure scroll + upgrade block works after 4 free clicks
- * - Keep layout + spacing intact
+ * - Match New York page EXACTLY (layout, spacing, gating behavior)
+ * - Ensure upgrade scroll target works correctly
+ * - Standardize as template for all future city pages
  *
  * Rollback:
- * - Revert to v1.6 if needed
+ * - Revert to v1.7 if needed
  */
 
 "use client";
@@ -28,21 +28,22 @@ export default function LosAngelesMeetingPage() {
     >
       <main
         style={{
-          maxWidth: "1400px",
+          maxWidth: "1320px",
           margin: "0 auto",
-          padding: "60px 20px 100px 20px",
+          padding: "40px 20px 40px 20px",
           color: "white",
           flex: 1,
         }}
       >
         {/* BACK */}
-        <div style={{ marginBottom: "30px" }}>
+        <div style={{ marginBottom: "24px" }}>
           <a
             href="/"
             style={{
               color: "#ffffff",
               fontSize: "18px",
-              fontWeight: 700,
+              fontWeight: 600,
+              textDecoration: "none",
             }}
           >
             ← Back to Home
@@ -50,16 +51,25 @@ export default function LosAngelesMeetingPage() {
         </div>
 
         {/* TITLE */}
-        <h1 style={{ fontSize: "40px", fontWeight: "bold", marginBottom: "10px" }}>
+        <h1
+          style={{
+            fontSize: "32px",
+            fontWeight: "bold",
+            marginBottom: "10px",
+            lineHeight: 1.2,
+          }}
+        >
           Best Meeting Time from Los Angeles
         </h1>
 
         {/* DESCRIPTION */}
         <p
           style={{
-            marginBottom: "50px",
+            marginBottom: "24px",
             color: "#ddd6fe",
-            fontSize: "16px",
+            fontSize: "15px",
+            lineHeight: 1.5,
+            maxWidth: "1100px",
           }}
         >
           Find the best meeting times between Los Angeles and other global cities. Instantly see overlapping working hours and schedule meetings efficiently.
@@ -70,19 +80,28 @@ export default function LosAngelesMeetingPage() {
           style={{
             display: "grid",
             gridTemplateColumns: "2fr 1fr",
-            gap: "150px",
+            gap: "90px",
             alignItems: "start",
           }}
         >
           {/* LEFT */}
           <div>
-            <ToolPreviewSection defaultCityLeft="Los Angeles, USA" />
+            {/* MATCH NY VIEWPORT BEHAVIOR */}
+            <div
+              style={{
+                minHeight: "calc(100vh - 260px)",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-start",
+              }}
+            >
+              <ToolPreviewSection defaultCityLeft="Los Angeles, USA" />
+            </div>
 
-            {/* ✅ REQUIRED FOR GATING / SCROLL */}
-            <PremiumFeaturesSection />
-
-            {/* spacing */}
-            <div style={{ height: "20px" }} />
+            {/* REQUIRED FOR SCROLL TARGET */}
+            <div id="premium-features" style={{ marginTop: "40px" }}>
+              <PremiumFeaturesSection />
+            </div>
           </div>
 
           {/* RIGHT */}
@@ -90,11 +109,11 @@ export default function LosAngelesMeetingPage() {
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: "18px",
-              marginTop: "60px",
+              gap: "20px",
+              marginTop: "30px",
             }}
           >
-            <h2 style={{ fontSize: "20px", marginBottom: "10px" }}>
+            <h2 style={{ fontSize: "18px", marginBottom: "6px" }}>
               Popular Comparisons
             </h2>
 
@@ -107,16 +126,16 @@ export default function LosAngelesMeetingPage() {
               <div
                 key={i}
                 style={{
-                  padding: "16px",
-                  borderRadius: "14px",
+                  padding: "14px",
+                  borderRadius: "12px",
                   background:
                     "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05))",
                   border: "1px solid rgba(255,255,255,0.15)",
-                  boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
+                  boxShadow: "0 6px 16px rgba(0,0,0,0.25)",
                 }}
               >
                 <div style={{ fontWeight: 700 }}>{item.title}</div>
-                <div style={{ fontSize: "14px", opacity: 0.8 }}>
+                <div style={{ fontSize: "13px", opacity: 0.8 }}>
                   {item.desc}
                 </div>
               </div>
