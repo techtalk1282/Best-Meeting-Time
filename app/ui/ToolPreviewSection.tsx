@@ -557,8 +557,8 @@ useEffect(() => {
   borderRadius: 6,
   cursor: "pointer",
   color: "#fff",
-  background: "rgba(255,255,255,0.12)",
-  border: "1px solid rgba(255,255,255,0.3)"
+  background: "#6d28d9",
+  border: "1px solid #6d28d9"
 }}
         >
           SWAP
