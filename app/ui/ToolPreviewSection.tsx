@@ -556,7 +556,7 @@ useEffect(() => {
             fontWeight: 600,
             borderRadius: 6,
             cursor: "pointer",
-            color: "#000",
+            color: "#fff",
           }}
         >
           SWAP
