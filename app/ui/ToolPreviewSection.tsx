@@ -552,12 +552,14 @@ useEffect(() => {
             setCityB(temp);
           }}
           style={{
-            padding: "8px 16px",
-            fontWeight: 600,
-            borderRadius: 6,
-            cursor: "pointer",
-            color: "#ddd6fe",
-          }}
+  padding: "8px 16px",
+  fontWeight: 600,
+  borderRadius: 6,
+  cursor: "pointer",
+  color: "#fff",
+  background: "rgba(255,255,255,0.12)",
+  border: "1px solid rgba(255,255,255,0.3)"
+}}
         >
           SWAP
         </button>
