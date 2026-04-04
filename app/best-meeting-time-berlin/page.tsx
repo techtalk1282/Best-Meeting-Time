@@ -106,6 +106,16 @@ export default function BerlinMeetingPage() {
             ))}
           </div>
         </div>
+         {/* SEO BOOST */}
+        <p
+          style={{
+            marginTop: "40px",
+            color: "#ddd6fe",
+            lineHeight: "1.6",
+          }}
+        >
+          Best meeting times between Berlin and New York, London, Tokyo, Sydney, Dubai, Paris, Mumbai, and Toronto.
+        </p>
       </main>
     </div>
   );
