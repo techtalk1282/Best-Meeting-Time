@@ -249,58 +249,68 @@ export default function PremiumFeaturesSection({
               </>
             ) : isLocked ? (
               <>
-            <div
-  style={{
-    textAlign: "center",
-    fontSize: 16,
-    color: "#222",
-    marginBottom: 12,
-    fontWeight: 600,
-  }}
->
-  You've used your 2 free planning sessions — unlock all features below for $7 or continue free.
-</div>
+           <div
+                  style={{
+                    textAlign: "center",
+                    fontSize: 16,
+                    color: "#222",
+                    marginBottom: 14,
+                    fontWeight: 600,
+                  }}
+                >
+                  You've used your 2 free planning sessions
+                </div>
 
-<div
-  style={{
-    display: "flex",
-    justifyContent: "center",
-    gap: 12,
-    marginBottom: 10,
-    flexWrap: "wrap",
-  }}
->
-  <button
-    onClick={handleCheckout}
-    style={{
-      ...primaryButton,
-    }}
-  >
-    Unlock Premium — $7 One-Time
-  </button>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 16,
+                    marginBottom: 18,
+                    flexWrap: "wrap",
+                    alignItems: "stretch",
+                  }}
+                >
+                  <button
+                    onClick={handleCheckout}
+                    style={{
+                      ...primaryButton,
+                      minWidth: 260,
+                      padding: "14px 22px",
+                      borderRadius: 12,
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <span>Unlock Premium — $7 One-Time</span>
+                    <span style={{ fontSize: 12, fontWeight: 600, marginTop: 6 }}>
+                      Get all features below
+                    </span>
+                  </button>
 
-  <button
-    onClick={handleWatchAd}
-    style={{
-      ...primaryButton,
-    }}
-  >
-    {isWatchingAd ? "Playing Ad..." : "Continue Free — Watch Ad"}
-  </button>
-</div>
-
-<div
-  style={{
-    textAlign: "center",
-    fontSize: 16,
-    color: "#222",
-    fontWeight: 500,
-    lineHeight: 1.4,
-  }}
->
-  <div>Unlock Premium → Get all features below</div>
-  <div>Continue Free → Get 2 more planning sessions (no premium tools)</div>
-</div>
+                  <button
+                    onClick={handleWatchAd}
+                    style={{
+                      ...primaryButton,
+                      minWidth: 260,
+                      padding: "14px 22px",
+                      borderRadius: 12,
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <span>{isWatchingAd ? "Playing Ad..." : "Continue Free — Watch Ad"}</span>
+                    {!isWatchingAd && (
+                      <span style={{ fontSize: 12, fontWeight: 600, marginTop: 6 }}>
+                        Get 2 more planning sessions (no premium tools)
+                      </span>
+                    )}
+                  </button>
+                </div>
               </>
             ) : (
               <>
