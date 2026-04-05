@@ -253,14 +253,7 @@ scrollToUpgrade();
 
     }
   }, []);
-useEffect(() => {
-  if (typeof window === "undefined") return;
 
-  if (window.location.pathname.includes("best-meeting-time-")) {
-    localStorage.removeItem("free_sessions_used");
-    localStorage.removeItem("premium_sessions_used");
-  }
-}, []);
   useEffect(() => {
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
     setViewerTZ(tz);
