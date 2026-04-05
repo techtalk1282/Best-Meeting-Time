@@ -1,27 +1,22 @@
 /**
  * File: app/ui/LayoutShell.tsx
- * Version: v2.0
- * Date: 2026-04-04
+ * Version: v2.1
+ * Date: 2026-04-05
  *
  * PURPOSE:
- * - Remove inactive AdSense slot causing large empty gap between tool and premium section
- * - Clean layout structure for better UX and visual consistency
+ * - Add AdSense slot between Premium and Bonus sections
  *
  * WHAT WAS CHANGED:
- * - Removed AdSense <section> block between tool and premium
- * - Removed useEffect ad push logic (not needed until ads are live)
+ * - Inserted <ins class="adsbygoogle"> container
+ * - Added useEffect to trigger ad render
  *
  * ROLLBACK:
- * - Restore previous version (v1.x) if reintroducing passive ad placement between sections
- *
- * NOTES:
- * - Ads will be reintroduced later via controlled trigger (Watch Ad flow)
- * - No changes to layout structure, premium logic, or routing
+ * - Revert to v2.0 to remove ad slot
  */
 
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 
 export default function LayoutShell({
   hero,
@@ -36,6 +31,17 @@ export default function LayoutShell({
   bonusFeatures: ReactNode;
   footer: ReactNode;
 }) {
+
+  // ✅ Trigger AdSense render
+  useEffect(() => {
+    try {
+      // @ts-ignore
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+      console.error("AdSense push error:", e);
+    }
+  }, []);
+
   return (
     <div
       style={{
@@ -48,10 +54,28 @@ export default function LayoutShell({
       {/* TOOL */}
       <section id="tool-preview">{toolPreview}</section>
 
-      {/* PREMIUM (now directly follows tool — no gap) */}
+      {/* PREMIUM */}
       <section>{premiumFeatures}</section>
 
-      {/* BONUS / SEO */}
+      {/* 🟡 AD SLOT */}
+      <section
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          padding: "30px 0",
+        }}
+      >
+        <ins
+          className="adsbygoogle"
+          style={{ display: "block", width: "100%", maxWidth: 728, height: 90 }}
+          data-ad-client="ca-pub-9246885832557966"
+          data-ad-slot="5883090133"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        />
+      </section>
+
+      {/* BONUS */}
       <section id="bonus-features">{bonusFeatures}</section>
 
       {/* FOOTER */}
