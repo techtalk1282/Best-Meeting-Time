@@ -99,7 +99,8 @@ export default function PremiumFeaturesSection({
   const [isLocked, setIsLocked] = useState(false);
   const [isWatchingAd, setIsWatchingAd] = useState(false);
   const [isPremiumLimitReached, setIsPremiumLimitReached] = useState(false);
-
+  const [showAdModal, setShowAdModal] = useState(false);
+  const [countdown, setCountdown] = useState(5);
   useEffect(() => {
     function checkPremium() {
       const premium = document.cookie
