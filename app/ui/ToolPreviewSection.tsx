@@ -266,7 +266,10 @@ scrollToUpgrade();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-
+// TEMP DEBUG RESET (safe cleanup)
+if (!document.cookie.includes("premium=1")) {
+  localStorage.setItem("free_sessions_used", "0");
+}
     const freeUsed = parseInt(
       localStorage.getItem("free_sessions_used") || "0",
       10
