@@ -423,11 +423,15 @@ scrollToUpgrade();
         >
          <div style={{ display: "flex", flexDirection: "column", maxWidth: 420 }}>
   <div style={{ fontSize: 15, fontWeight: 700, color: "#1f1147" }}>
-    You’ve reached your current planning limit
-  </div>
-  <div style={{ fontSize: 13, opacity: 0.7 }}>
-    Unlock more planning sessions and continue scheduling instantly
-  </div>
+  {isPremium
+    ? "You’ve used your 6 premium planning sessions"
+    : "You’ve used your 2 free planning sessions"}
+</div>
+<div style={{ fontSize: 13, opacity: 0.7 }}>
+  {isPremium
+    ? "Unlock more sessions to continue scheduling"
+    : "Upgrade to unlock more planning sessions and premium features"}
+</div>
 </div>
 
           
