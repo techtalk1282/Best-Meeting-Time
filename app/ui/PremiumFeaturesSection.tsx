@@ -266,7 +266,7 @@ export default function PremiumFeaturesSection({
                     display: "flex",
                     justifyContent: "center",
                     gap: 16,
-                    marginBottom: 18,
+                    marginBottom: 24,
                     flexWrap: "wrap",
                     alignItems: "stretch",
                   }}
