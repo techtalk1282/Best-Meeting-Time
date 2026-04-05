@@ -163,7 +163,7 @@ export default function PremiumFeaturesSection({
     setIsWatchingAd(true);
 
     const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
-    const next = Math.max(0, used - 2);
+    const next = Math.max(0, used - 4);
 
     setTimeout(() => {
       localStorage.setItem("free_sessions_used", String(next));
