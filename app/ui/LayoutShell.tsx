@@ -1,9 +1,27 @@
-// app/ui/LayoutShell.tsx
-// UPDATED: Added AdSense slot between tool and premium
+/**
+ * File: app/ui/LayoutShell.tsx
+ * Version: v2.0
+ * Date: 2026-04-04
+ *
+ * PURPOSE:
+ * - Remove inactive AdSense slot causing large empty gap between tool and premium section
+ * - Clean layout structure for better UX and visual consistency
+ *
+ * WHAT WAS CHANGED:
+ * - Removed AdSense <section> block between tool and premium
+ * - Removed useEffect ad push logic (not needed until ads are live)
+ *
+ * ROLLBACK:
+ * - Restore previous version (v1.x) if reintroducing passive ad placement between sections
+ *
+ * NOTES:
+ * - Ads will be reintroduced later via controlled trigger (Watch Ad flow)
+ * - No changes to layout structure, premium logic, or routing
+ */
 
 "use client";
 
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 
 export default function LayoutShell({
   hero,
@@ -18,50 +36,25 @@ export default function LayoutShell({
   bonusFeatures: ReactNode;
   footer: ReactNode;
 }) {
-
-  
-
-  // ✅ Push ad after render
-  useEffect(() => {
-  const interval = setInterval(() => {
-    try {
-      // @ts-ignore
-      if (window.adsbygoogle) {
-         // @ts-ignore
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-        clearInterval(interval);
-      }
-    } catch (e) {
-      console.log("AdSense error:", e);
-    }
-  }, 500);
-
-  return () => clearInterval(interval);
-}, []);
-
   return (
-    <div style={{ background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)" }}>
-      
+    <div
+      style={{
+        background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
+      }}
+    >
+      {/* HERO */}
       <section id="hero">{hero}</section>
 
+      {/* TOOL */}
       <section id="tool-preview">{toolPreview}</section>
 
-      {/* ✅ AD SLOT (NEW) */}
-      <section style={{ padding: "20px 0", display: "flex", justifyContent: "center" }}>
-        <ins
-          className="adsbygoogle"
-          style={{ display: "block", width: "100%", maxWidth: "728px" }}
-          data-ad-client="ca-pub-9246885832557966"
-          data-ad-slot="5883090133"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        />
-      </section>
-
+      {/* PREMIUM (now directly follows tool — no gap) */}
       <section>{premiumFeatures}</section>
 
+      {/* BONUS / SEO */}
       <section id="bonus-features">{bonusFeatures}</section>
 
+      {/* FOOTER */}
       <footer id="footer">{footer}</footer>
     </div>
   );
