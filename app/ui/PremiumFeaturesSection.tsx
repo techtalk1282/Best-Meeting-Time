@@ -98,6 +98,7 @@ export default function PremiumFeaturesSection({
   const [isPremium, setIsPremium] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
   const [isWatchingAd, setIsWatchingAd] = useState(false);
+  const [isPremiumLimitReached, setIsPremiumLimitReached] = useState(false);
 
   useEffect(() => {
     function checkPremium() {
@@ -111,10 +112,22 @@ export default function PremiumFeaturesSection({
     }
 
     function checkLocked() {
-      const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
-      setIsLocked(used >= 4);
-    }
+      const premium = document.cookie
+        .split(";")
+        .map((c) => c.trim())
+        .find((c) => c.startsWith("premium="))
+        ?.split("=")[1];
 
+      const hasPremium = premium === "true" || premium === "1";
+      const freeUsed = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
+      const premiumUsed = parseInt(localStorage.getItem("premium_sessions_used") || "0", 10);
+
+      const premiumLimitReached = hasPremium && premiumUsed >= 6;
+      const freeLimitReached = !hasPremium && freeUsed >= 4;
+
+      setIsPremiumLimitReached(premiumLimitReached);
+      setIsLocked(premiumLimitReached || freeLimitReached);
+    }
     checkPremium();
     checkLocked();
 
@@ -221,7 +234,7 @@ export default function PremiumFeaturesSection({
           }}
         >
           <div style={{ textAlign: "center", marginBottom: 22 }}>
-            {isPremium ? (
+            {isPremium && !isPremiumLimitReached ? (
               <>
                 <button
                   style={{
@@ -258,7 +271,9 @@ export default function PremiumFeaturesSection({
                     fontWeight: 600,
                   }}
                 >
-                  You've used your 2 free planning sessions
+                  {isPremiumLimitReached
+                    ? "You've used your 6 premium planning sessions"
+                    : "You've used your 2 free planning sessions"}
                 </div>
 
                 <div
