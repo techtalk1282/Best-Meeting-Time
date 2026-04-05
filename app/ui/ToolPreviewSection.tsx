@@ -300,9 +300,10 @@ scrollToUpgrade();
     );
 
     if (premiumUsed >= 6) {
-      setIsLocked(true);
-      return true;
-    }
+  setIsLocked(true);
+  scrollToUpgrade(); // 👈 ADD THIS LINE
+  return true;
+}
 
     localStorage.setItem(
       "premium_sessions_used",
@@ -312,9 +313,10 @@ scrollToUpgrade();
   }
 
   if (freeUsed >= 4) {
-    setIsLocked(true);
-    return true;
-  }
+  setIsLocked(true);
+  scrollToUpgrade(); // 👈 ADD THIS LINE
+  return true;
+}
 
   localStorage.setItem("free_sessions_used", String(freeUsed + 1));
 
