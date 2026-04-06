@@ -97,13 +97,12 @@ export default function LosAngelesMeetingPage() {
           {/* LEFT */}
           <div>
             <div
-              style={{
-                minHeight: "calc(100vh - 260px)",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-start",
-              }}
-            >
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+  }}
+>
               <ToolPreviewSection defaultCityLeft="Los Angeles, USA" />
             </div>
 
