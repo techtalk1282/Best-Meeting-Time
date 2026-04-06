@@ -28,7 +28,7 @@ export default function LosAngelesMeetingPage() {
   useEffect(() => {
     try {
       // @ts-ignore
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      (window. = window. || []).push({});
     } catch (e) {
       console.error("AdSense push error:", e);
     }
@@ -115,14 +115,23 @@ export default function LosAngelesMeetingPage() {
 
         {/* AD */}
         <div style={{ display: "flex", justifyContent: "center", padding: "30px 0" }}>
-          <ins
-            className="adsbygoogle"
-            style={{ display: "block", width: "100%", maxWidth: 728, height: 90 }}
-            data-ad-client="ca-pub-9246885832557966"
-            data-ad-slot="5883090133"
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-          />
+          <div
+  style={{
+    width: "100%",
+    maxWidth: "728px",
+    height: "90px",
+    background: "rgba(255,255,255,0.1)",
+    border: "1px dashed rgba(255,255,255,0.4)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: "8px",
+    color: "white",
+    fontSize: "14px"
+  }}
+>
+  AD CONTAINER TEST
+</div>
         </div>
 
       </main>
