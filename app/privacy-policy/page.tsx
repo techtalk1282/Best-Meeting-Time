@@ -29,7 +29,7 @@ export default function PrivacyPolicy() {
 
       <h2 style={{ marginTop: "20px" }}>Third-Party Vendors</h2>
       <p>
-        Google may use advertising cookies to serve ads based on prior visits. Users may opt out of personalized advertising by visiting Google Ads Settings.
+        Google may use advertising cookies to serve ads based on prior visits. Users may opt out of personalized advertising by visiting Google Ads Settings: https://adssettings.google.com
       </p>
 
       <h2 style={{ marginTop: "20px" }}>Usage Data</h2>
