@@ -173,9 +173,9 @@ useEffect(() => {
   }
 
   function handleWatchAd() {
+  setCountdown(5);
+  setShowAdModal(true);
   setIsWatchingAd(true);
-  setCountdown(5);        // reset timer
-  setShowAdModal(true);  // trigger modal
 }
   
 function completeAdReward() {
