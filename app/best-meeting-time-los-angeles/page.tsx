@@ -1,15 +1,20 @@
 /**
  * File: app/best-meeting-time-los-angeles/page.tsx
- * Version: v3.2 (LAYOUT POLISH — TEXT + ORDER + SPACING)
+ * Version: v3.3 (CLEAN FIX — NO DUPLICATES, CORRECT FLOW)
  * Date: 2026-04-06
  *
- * Changes:
- * - Replaced "LA" with "Los Angeles"
- * - Moved feature buttons BELOW comparison cards
- * - Improved spacing for cleaner UI
+ * Fixes:
+ * - Removed duplicated buttons
+ * - Preserved original ToolPreviewSection buttons
+ * - Added comparison cards below tool
+ * - Improved spacing for cleaner layout
+ *
+ * Notes:
+ * - Buttons remain inside ToolPreviewSection (by design)
+ * - No logic or gating touched
  *
  * Rollback:
- * - Revert to v3.1
+ * - Revert to v3.2 if needed
  */
 
 "use client";
@@ -57,7 +62,7 @@ export default function LosAngelesMeetingPage() {
           Find the best meeting times between Los Angeles and other global cities. Instantly see overlapping working hours and schedule meetings efficiently.
         </p>
 
-        {/* TOOL */}
+        {/* TOOL + CONTENT */}
         <div
           style={{
             minHeight: "calc(100vh - 260px)",
@@ -65,12 +70,13 @@ export default function LosAngelesMeetingPage() {
             flexDirection: "column",
           }}
         >
+          {/* TOOL (includes original gold buttons — DO NOT TOUCH) */}
           <ToolPreviewSection defaultCityLeft="Los Angeles, USA" />
 
-          {/* ✅ CARDS FIRST (clean flow) */}
+          {/* COMPARISON CARDS (below tool) */}
           <div
             style={{
-              marginTop: "28px",
+              marginTop: "32px",
               display: "flex",
               gap: "14px",
               justifyContent: "space-between",
@@ -99,14 +105,6 @@ export default function LosAngelesMeetingPage() {
                 <div style={{ fontSize: "13px", opacity: 0.85 }}>{item.desc}</div>
               </div>
             ))}
-          </div>
-
-          {/* ✅ BUTTONS LAST (clean hierarchy) */}
-          <div style={{ marginTop: "26px", display: "flex", gap: "12px", flexWrap: "wrap" }}>
-            <button className="gold-btn">Share Meeting Link</button>
-            <button className="gold-btn">Add to Google</button>
-            <button className="gold-btn">Add to Outlook</button>
-            <button className="gold-btn">Add to Apple Calendar</button>
           </div>
         </div>
 
