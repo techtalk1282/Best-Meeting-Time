@@ -111,7 +111,7 @@ export default function LosAngelesMeetingPage() {
   id="premium-features"
   style={{
     marginTop: "40px",
-    paddingTop: "60px"
+    paddingTop: "120px"
   }}
 >
               <PremiumFeaturesSection />
