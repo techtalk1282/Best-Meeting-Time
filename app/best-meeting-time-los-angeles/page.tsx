@@ -1,23 +1,33 @@
 /**
  * File: app/best-meeting-time-los-angeles/page.tsx
- * Version: v2.0 (NY TEMPLATE MATCH)
- * Date: 2026-04-04
+ * Version: v2.1 (ADD ADSENSE SLOT)
+ * Date: 2026-04-06
  *
  * Purpose:
- * - Match New York page EXACTLY (layout, spacing, gating behavior)
- * - Ensure upgrade scroll target works correctly
- * - Standardize as template for all future city pages
+ * - Add AdSense slot below premium section (match homepage strategy)
  *
  * Rollback:
- * - Revert to v1.7 if needed
+ * - Revert to v2.0
  */
 
 "use client";
 
+import { useEffect } from "react";
 import ToolPreviewSection from "@/app/ui/ToolPreviewSection";
 import PremiumFeaturesSection from "@/app/ui/PremiumFeaturesSection";
 
 export default function LosAngelesMeetingPage() {
+
+  // ✅ Trigger AdSense render
+  useEffect(() => {
+    try {
+      // @ts-ignore
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+      console.error("AdSense push error:", e);
+    }
+  }, []);
+
   return (
     <div
       style={{
@@ -86,7 +96,6 @@ export default function LosAngelesMeetingPage() {
         >
           {/* LEFT */}
           <div>
-            {/* MATCH NY VIEWPORT BEHAVIOR */}
             <div
               style={{
                 minHeight: "calc(100vh - 260px)",
@@ -98,9 +107,27 @@ export default function LosAngelesMeetingPage() {
               <ToolPreviewSection defaultCityLeft="Los Angeles, USA" />
             </div>
 
-            {/* REQUIRED FOR SCROLL TARGET */}
+            {/* PREMIUM */}
             <div id="premium-features" style={{ marginTop: "40px" }}>
               <PremiumFeaturesSection />
+            </div>
+
+            {/* 🟡 AD SLOT (NEW) */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "30px 0",
+              }}
+            >
+              <ins
+                className="adsbygoogle"
+                style={{ display: "block", width: "100%", maxWidth: 728, height: 90 }}
+                data-ad-client="ca-pub-9246885832557966"
+                data-ad-slot="5883090133"
+                data-ad-format="auto"
+                data-full-width-responsive="true"
+              />
             </div>
           </div>
 
