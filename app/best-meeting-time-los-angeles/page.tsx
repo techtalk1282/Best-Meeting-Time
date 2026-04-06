@@ -65,7 +65,9 @@ export default function LosAngelesMeetingPage() {
         {/* TOOL + CONTENT */}
         <div
           style={{
-            minHeight: "calc(100vh - 260px)",
+            // REMOVE minHeight entirely
+display: "flex",
+flexDirection: "column",
             display: "flex",
             flexDirection: "column",
           }}
