@@ -174,7 +174,12 @@ useEffect(() => {
   }
 
   function handleWatchAd() {
-    function completeAdReward() {
+  setIsWatchingAd(true);
+  setCountdown(5);        // reset timer
+  setShowAdModal(true);  // trigger modal
+}
+  
+function completeAdReward() {
   const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
 
   const next = Math.max(0, used - 4); // ✅ 4 clicks (2 sessions)
@@ -187,11 +192,6 @@ useEffect(() => {
 
   window.location.hash = "#tool-preview";
 }
-  setIsWatchingAd(true);
-  setCountdown(5);        // reset timer
-  setShowAdModal(true);  // trigger modal
-}
-
   function handleShareClick() {
     if (!isPremium) {
       return;
