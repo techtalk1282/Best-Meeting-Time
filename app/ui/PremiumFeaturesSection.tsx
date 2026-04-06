@@ -142,13 +142,12 @@ export default function PremiumFeaturesSection({
 useEffect(() => {
   if (!showAdModal) return;
 
-  if (countdown === 0) {
-    completeAdReward();
-    return;
-  }
-
   const timer = setTimeout(() => {
-    setCountdown((prev) => prev - 1);
+    if (countdown <= 1) {
+      completeAdReward();
+    } else {
+      setCountdown((prev) => prev - 1);
+    }
   }, 1000);
 
   return () => clearTimeout(timer);
