@@ -28,7 +28,7 @@ export default function LosAngelesMeetingPage() {
   useEffect(() => {
     try {
       // @ts-ignore
-      (window. = window. || []).push({});
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (e) {
       console.error("AdSense push error:", e);
     }
