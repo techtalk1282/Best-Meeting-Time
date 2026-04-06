@@ -64,13 +64,10 @@ export default function LosAngelesMeetingPage() {
 
         {/* TOOL + CONTENT */}
         <div
-          style={{
-            // REMOVE minHeight entirely
-display: "flex",
-flexDirection: "column",
-            display: "flex",
-            flexDirection: "column",
-          }}
+         style={{
+  display: "flex",
+  flexDirection: "column",
+}}
         >
           {/* TOOL (includes original gold buttons — DO NOT TOUCH) */}
           <ToolPreviewSection defaultCityLeft="Los Angeles, USA" />
