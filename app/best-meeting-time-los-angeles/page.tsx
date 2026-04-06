@@ -98,6 +98,7 @@ export default function LosAngelesMeetingPage() {
           <div>
             <div
   style={{
+    minHeight: "calc(100vh - 200px)",
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
