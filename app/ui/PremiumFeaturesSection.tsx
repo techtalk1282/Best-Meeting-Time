@@ -139,7 +139,20 @@ export default function PremiumFeaturesSection({
 
     return () => clearInterval(interval);
   }, []);
-// ✅ NEW useEffect OUTSIDE
+useEffect(() => {
+  if (!showAdModal) return;
+
+  if (countdown === 0) {
+    completeAdReward();
+    return;
+  }
+
+  const timer = setTimeout(() => {
+    setCountdown((prev) => prev - 1);
+  }, 1000);
+
+  return () => clearTimeout(timer);
+}, [showAdModal, countdown]);
 
 
   async function handleCheckout() {
@@ -161,18 +174,10 @@ export default function PremiumFeaturesSection({
   }
 
   function handleWatchAd() {
-    setIsWatchingAd(true);
-
-    const used = parseInt(localStorage.getItem("free_sessions_used") || "0", 10);
-    const next = Math.max(0, used - 4);
-
-    setTimeout(() => {
-      localStorage.setItem("free_sessions_used", String(next));
-      setIsLocked(false);
-      setIsWatchingAd(false);
-      window.location.hash = "#tool-preview";
-    }, 2500);
-  }
+  setIsWatchingAd(true);
+  setCountdown(5);        // reset timer
+  setShowAdModal(true);  // trigger modal
+}
 
   function handleShareClick() {
     if (!isPremium) {
