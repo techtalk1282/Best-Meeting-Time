@@ -1,20 +1,15 @@
 /**
  * File: app/best-meeting-time-los-angeles/page.tsx
- * Version: v3.3 (CLEAN FIX — NO DUPLICATES, CORRECT FLOW)
+ * Version: v4.1 (AFFILIATE TEST — PRODUCTION SAFE)
  * Date: 2026-04-06
  *
- * Fixes:
- * - Removed duplicated buttons
- * - Preserved original ToolPreviewSection buttons
- * - Added comparison cards below tool
- * - Improved spacing for cleaner layout
- *
- * Notes:
- * - Buttons remain inside ToolPreviewSection (by design)
- * - No logic or gating touched
+ * Purpose:
+ * - Replace test ad container with affiliate monetization block
+ * - Preserve layout, spacing, and UX integrity
+ * - Maintain production-safe template for scaling
  *
  * Rollback:
- * - Revert to v3.2 if needed
+ * - Revert to v3.3 if needed
  */
 
 "use client";
@@ -64,16 +59,16 @@ export default function LosAngelesMeetingPage() {
 
         {/* TOOL + CONTENT */}
         <div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    paddingBottom: "60px", // ✅ ADD THIS
-  }}
->
-          {/* TOOL (includes original gold buttons — DO NOT TOUCH) */}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            paddingBottom: "60px",
+          }}
+        >
+          {/* TOOL */}
           <ToolPreviewSection defaultCityLeft="Los Angeles, USA" />
 
-          {/* COMPARISON CARDS (below tool) */}
+          {/* COMPARISON CARDS */}
           <div
             style={{
               marginTop: "32px",
@@ -113,25 +108,46 @@ export default function LosAngelesMeetingPage() {
           <PremiumFeaturesSection />
         </div>
 
-        {/* AD */}
+        {/* MONETIZATION ZONE — AFFILIATE TEST */}
         <div style={{ display: "flex", justifyContent: "center", padding: "30px 0" }}>
           <div
-  style={{
-    width: "100%",
-    maxWidth: "728px",
-    height: "90px",
-    background: "rgba(255,255,255,0.1)",
-    border: "1px dashed rgba(255,255,255,0.4)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: "8px",
-    color: "white",
-    fontSize: "14px"
-  }}
->
-  AD CONTAINER TEST
-</div>
+            style={{
+              width: "100%",
+              maxWidth: "720px",
+              padding: "20px",
+              borderRadius: "14px",
+              textAlign: "center",
+              background:
+                "linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05))",
+              border: "1px solid rgba(255,255,255,0.15)",
+              boxShadow: "0 8px 24px rgba(0,0,0,0.25)",
+            }}
+          >
+            <div style={{ fontSize: "16px", fontWeight: 600, marginBottom: "10px" }}>
+              Schedule this meeting instantly
+            </div>
+
+            <div style={{ fontSize: "13px", opacity: 0.8, marginBottom: "16px" }}>
+              Send a booking link and let others pick the best time automatically.
+            </div>
+
+            <a
+              href="https://calendly.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                padding: "12px 20px",
+                borderRadius: "10px",
+                background: "#facc15",
+                color: "#000",
+                fontWeight: 600,
+                textDecoration: "none",
+              }}
+            >
+              Try Calendly Free
+            </a>
+          </div>
         </div>
 
       </main>
