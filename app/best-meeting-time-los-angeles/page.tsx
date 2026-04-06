@@ -1,13 +1,16 @@
 /**
  * File: app/best-meeting-time-los-angeles/page.tsx
- * Version: v2.1 (ADD ADSENSE SLOT)
+ * Version: v3.0 (STACKED LAYOUT — MATCH HOMEPAGE)
  * Date: 2026-04-06
  *
  * Purpose:
- * - Add AdSense slot below premium section (match homepage strategy)
+ * - Replace grid layout with stacked layout (match homepage)
+ * - Ensure full viewport fill at 100% zoom
+ * - Keep premium below fold (no gap)
+ * - Maintain ad placement + gating behavior
  *
  * Rollback:
- * - Revert to v2.0
+ * - Revert to v2.1 if needed
  */
 
 "use client";
@@ -18,7 +21,7 @@ import PremiumFeaturesSection from "@/app/ui/PremiumFeaturesSection";
 
 export default function LosAngelesMeetingPage() {
 
-  // ✅ Trigger AdSense render
+  // ✅ AdSense trigger
   useEffect(() => {
     try {
       // @ts-ignore
@@ -38,7 +41,7 @@ export default function LosAngelesMeetingPage() {
     >
       <main
         style={{
-          maxWidth: "1320px",
+          maxWidth: "1100px",
           margin: "0 auto",
           padding: "40px 20px 40px 20px",
           color: "white",
@@ -79,77 +82,58 @@ export default function LosAngelesMeetingPage() {
             color: "#ddd6fe",
             fontSize: "15px",
             lineHeight: 1.5,
-            maxWidth: "1100px",
           }}
         >
           Find the best meeting times between Los Angeles and other global cities. Instantly see overlapping working hours and schedule meetings efficiently.
         </p>
 
-        {/* GRID */}
+        {/* TOOL SECTION (FULL VIEWPORT CONTROL) */}
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "2fr 1fr",
-            gap: "90px",
-            alignItems: "start",
+            minHeight: "calc(100vh - 200px)",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
           }}
         >
-          {/* LEFT */}
-          <div>
-            <div
-  style={{
-    minHeight: "calc(100vh - 200px)",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "flex-start",
-  }}
->
-              <ToolPreviewSection defaultCityLeft="Los Angeles, USA" />
-            </div>
+          <ToolPreviewSection defaultCityLeft="Los Angeles, USA" />
+        </div>
 
-            {/* PREMIUM */}
-            <div
-  id="premium-features"
-  style={{
-    marginTop: "40px",
-    paddingTop: "120px"
-  }}
->
-              <PremiumFeaturesSection />
-            </div>
+        {/* PREMIUM */}
+        <div id="premium-features" style={{ marginTop: "40px" }}>
+          <PremiumFeaturesSection />
+        </div>
 
-            {/* 🟡 AD SLOT (NEW) */}
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                padding: "30px 0",
-              }}
-            >
-              <ins
-                className="adsbygoogle"
-                style={{ display: "block", width: "100%", maxWidth: 728, height: 90 }}
-                data-ad-client="ca-pub-9246885832557966"
-                data-ad-slot="5883090133"
-                data-ad-format="auto"
-                data-full-width-responsive="true"
-              />
-            </div>
-          </div>
-
-          {/* RIGHT */}
-          <div
+        {/* 🟡 AD SLOT */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            padding: "30px 0",
+          }}
+        >
+          <ins
+            className="adsbygoogle"
             style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "20px",
-              marginTop: "30px",
+              display: "block",
+              width: "100%",
+              maxWidth: 728,
+              height: 90,
             }}
-          >
-            <h2 style={{ fontSize: "18px", marginBottom: "6px" }}>
-              Popular Comparisons
-            </h2>
+            data-ad-client="ca-pub-9246885832557966"
+            data-ad-slot="5883090133"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          />
+        </div>
 
+        {/* COMPARISONS (MOVED BELOW — CLEAN UX) */}
+        <div style={{ marginTop: "40px" }}>
+          <h2 style={{ fontSize: "20px", marginBottom: "12px" }}>
+            Popular Comparisons
+          </h2>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
             {[
               { title: "Los Angeles ↔ New York", desc: "3-hour difference" },
               { title: "Los Angeles ↔ London", desc: "8-hour difference" },
@@ -175,6 +159,7 @@ export default function LosAngelesMeetingPage() {
             ))}
           </div>
         </div>
+
       </main>
     </div>
   );
