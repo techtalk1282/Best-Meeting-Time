@@ -64,11 +64,12 @@ export default function LosAngelesMeetingPage() {
 
         {/* TOOL + CONTENT */}
         <div
-         style={{
-  display: "flex",
-  flexDirection: "column",
-}}
-        >
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    paddingBottom: "60px", // ✅ ADD THIS
+  }}
+>
           {/* TOOL (includes original gold buttons — DO NOT TOUCH) */}
           <ToolPreviewSection defaultCityLeft="Los Angeles, USA" />
 
