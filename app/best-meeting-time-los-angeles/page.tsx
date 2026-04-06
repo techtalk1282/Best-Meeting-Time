@@ -1,15 +1,15 @@
 /**
  * File: app/best-meeting-time-los-angeles/page.tsx
- * Version: v3.1 (HORIZONTAL COMPARISONS — NO WRAP)
+ * Version: v3.2 (LAYOUT POLISH — TEXT + ORDER + SPACING)
  * Date: 2026-04-06
  *
- * Purpose:
- * - Add comparison cards back WITHOUT breaking viewport height
- * - Keep strict horizontal layout (no wrapping)
- * - Maintain homepage-style behavior
+ * Changes:
+ * - Replaced "LA" with "Los Angeles"
+ * - Moved feature buttons BELOW comparison cards
+ * - Improved spacing for cleaner UI
  *
  * Rollback:
- * - Revert to v3.0 if needed
+ * - Revert to v3.1
  */
 
 "use client";
@@ -30,13 +30,7 @@ export default function LosAngelesMeetingPage() {
   }, []);
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <main
         style={{
           maxWidth: "1100px",
@@ -48,15 +42,7 @@ export default function LosAngelesMeetingPage() {
       >
         {/* BACK */}
         <div style={{ marginBottom: "24px" }}>
-          <a
-            href="/"
-            style={{
-              color: "#ffffff",
-              fontSize: "18px",
-              fontWeight: 600,
-              textDecoration: "none",
-            }}
-          >
+          <a href="/" style={{ color: "#ffffff", fontSize: "18px", fontWeight: 600 }}>
             ← Back to Home
           </a>
         </div>
@@ -71,54 +57,56 @@ export default function LosAngelesMeetingPage() {
           Find the best meeting times between Los Angeles and other global cities. Instantly see overlapping working hours and schedule meetings efficiently.
         </p>
 
-        {/* TOOL SECTION */}
+        {/* TOOL */}
         <div
           style={{
             minHeight: "calc(100vh - 260px)",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "flex-start",
           }}
         >
           <ToolPreviewSection defaultCityLeft="Los Angeles, USA" />
 
-          {/* 🔥 HORIZONTAL COMPARISONS (KEY ADD) */}
+          {/* ✅ CARDS FIRST (clean flow) */}
           <div
             style={{
-              marginTop: "20px",
+              marginTop: "28px",
               display: "flex",
-              gap: "12px",
+              gap: "14px",
               justifyContent: "space-between",
               flexWrap: "nowrap",
             }}
           >
             {[
-              { title: "LA ↔ New York", desc: "3-hour difference" },
-              { title: "LA ↔ London", desc: "8-hour difference" },
-              { title: "LA ↔ Tokyo", desc: "16–17 hour difference" },
-              { title: "LA ↔ Sydney", desc: "17–19 hour difference" },
+              { title: "Los Angeles ↔ New York", desc: "3-hour difference" },
+              { title: "Los Angeles ↔ London", desc: "8-hour difference" },
+              { title: "Los Angeles ↔ Tokyo", desc: "16–17 hour difference" },
+              { title: "Los Angeles ↔ Sydney", desc: "17–19 hour difference" },
             ].map((item, i) => (
               <div
                 key={i}
                 style={{
                   flex: 1,
-                  minWidth: "0",
-                  padding: "12px",
-                  borderRadius: "10px",
+                  padding: "14px",
+                  borderRadius: "12px",
                   background:
                     "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05))",
                   border: "1px solid rgba(255,255,255,0.15)",
                   textAlign: "center",
                 }}
               >
-                <div style={{ fontWeight: 700, fontSize: "14px" }}>
-                  {item.title}
-                </div>
-                <div style={{ fontSize: "12px", opacity: 0.8 }}>
-                  {item.desc}
-                </div>
+                <div style={{ fontWeight: 700 }}>{item.title}</div>
+                <div style={{ fontSize: "13px", opacity: 0.85 }}>{item.desc}</div>
               </div>
             ))}
+          </div>
+
+          {/* ✅ BUTTONS LAST (clean hierarchy) */}
+          <div style={{ marginTop: "26px", display: "flex", gap: "12px", flexWrap: "wrap" }}>
+            <button className="gold-btn">Share Meeting Link</button>
+            <button className="gold-btn">Add to Google</button>
+            <button className="gold-btn">Add to Outlook</button>
+            <button className="gold-btn">Add to Apple Calendar</button>
           </div>
         </div>
 
@@ -127,22 +115,11 @@ export default function LosAngelesMeetingPage() {
           <PremiumFeaturesSection />
         </div>
 
-        {/* AD SLOT */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            padding: "30px 0",
-          }}
-        >
+        {/* AD */}
+        <div style={{ display: "flex", justifyContent: "center", padding: "30px 0" }}>
           <ins
             className="adsbygoogle"
-            style={{
-              display: "block",
-              width: "100%",
-              maxWidth: 728,
-              height: 90,
-            }}
+            style={{ display: "block", width: "100%", maxWidth: 728, height: 90 }}
             data-ad-client="ca-pub-9246885832557966"
             data-ad-slot="5883090133"
             data-ad-format="auto"
