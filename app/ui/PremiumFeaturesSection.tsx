@@ -528,6 +528,42 @@ function completeAdReward() {
             Secured by Stripe • Terms • Privacy
           </div>
         </div>
+        {showAdModal && (
+  <div
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100vw",
+      height: "100vh",
+      background: "rgba(0,0,0,0.75)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 9999,
+    }}
+  >
+    <div
+      style={{
+        background: "white",
+        padding: "30px",
+        borderRadius: "12px",
+        textAlign: "center",
+        width: "300px",
+      }}
+    >
+      <h2 style={{ marginBottom: "10px" }}>Watching Ad...</h2>
+
+      <p style={{ fontSize: "18px", fontWeight: "bold" }}>
+        {countdown}
+      </p>
+
+      <p style={{ marginTop: "10px", fontSize: "14px", color: "#666" }}>
+        Please wait to unlock more sessions
+      </p>
+    </div>
+  </div>
+)}
       </div>
     </section>
   );
