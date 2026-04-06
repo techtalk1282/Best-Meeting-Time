@@ -107,7 +107,13 @@ export default function LosAngelesMeetingPage() {
             </div>
 
             {/* PREMIUM */}
-            <div id="premium-features" style={{ marginTop: "40px" }}>
+            <div
+  id="premium-features"
+  style={{
+    marginTop: "40px",
+    paddingTop: "60px"
+  }}
+>
               <PremiumFeaturesSection />
             </div>
 
