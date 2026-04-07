@@ -86,7 +86,7 @@ export default function HeroSection() {
               marginBottom: 10,
             }}
           >
-            Across Time Zones
+            
           </h2>
 
           <p
