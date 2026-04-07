@@ -81,7 +81,7 @@ export default function LayoutShell({
      <footer id="footer">
   {footer}
 
-  <div style={{ marginTop: "20px", fontSize: "14px", textAlign: "center" }}>
+  <div style={{ marginTop: "10px", fontSize: "14px", textAlign: "center" }}>
     <a href="/privacy-policy" style={{ marginRight: "15px", color: "#ddd6fe" }}>
       Privacy Policy
     </a>
