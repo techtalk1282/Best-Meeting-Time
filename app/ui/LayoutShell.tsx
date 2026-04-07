@@ -80,13 +80,37 @@ export default function LayoutShell({
   </div>
 
   <ins
-    className="adsbygoogle"
-    style={{ display: "block", width: "100%", maxWidth: 728, height: 90 }}
-    data-ad-client="ca-pub-9246885832557966"
-    data-ad-slot="5883090133"
-    data-ad-format="auto"
-    data-full-width-responsive="true"
-  />
+  className="adsbygoogle"
+  style={{ display: "block", width: "100%", maxWidth: 728, height: 90 }}
+  data-ad-client="ca-pub-9246885832557966"
+  data-ad-slot="5883090133"
+  data-ad-format="auto"
+  data-full-width-responsive="true"
+/>
+
+{/* FALLBACK MONETIZATION */}
+<div
+  style={{
+    marginTop: "15px",
+    background: "rgba(255,255,255,0.08)",
+    padding: "12px 18px",
+    borderRadius: "10px",
+    textAlign: "center",
+    maxWidth: "500px",
+  }}
+>
+  <a
+    href="#"
+    style={{
+      color: "#ffffff",
+      textDecoration: "none",
+      fontSize: "14px",
+      fontWeight: "500",
+    }}
+  >
+    Schedule meetings faster with smart tools →
+  </a>
+</div>
 </section>
 
       {/* BONUS */}
