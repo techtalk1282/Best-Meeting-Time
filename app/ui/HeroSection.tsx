@@ -1,3 +1,15 @@
+/**
+ * File: app/ui/HeroSection.tsx
+ * Version: v1.1
+ * Purpose:
+ * - Fix navbar wrapper closing tag
+ * - Keep Privacy and Terms links in header
+ * - Keep cleaned hero copy without the redundant middle line
+ *
+ * Rollback:
+ * - Revert to previous HeroSection.tsx if needed
+ */
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -13,21 +25,20 @@ export default function HeroSection() {
       .find((c) => c.startsWith("premium="))
       ?.split("=")[1];
 
-    // ✅ FIX: support BOTH formats
+    // Supports both cookie formats
     setIsPremium(premium === "true" || premium === "1");
   }, []);
 
   return (
     <section
-  id="hero"
-  aria-label="Hero Section"
-  style={{
-  padding: "10px 20px 60px",
-  color: "#ffffff",
-  background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
-  
-}}
->
+      id="hero"
+      aria-label="Hero Section"
+      style={{
+        padding: "10px 20px 60px",
+        color: "#ffffff",
+        background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
+      }}
+    >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         {/* NAVBAR */}
         <div
@@ -42,37 +53,53 @@ export default function HeroSection() {
             src="/logo-best-meeting-time.png"
             alt="Best Meeting Time"
             style={{
-  height: 130,
-  width: "auto",
-}}
+              height: 130,
+              width: "auto",
+            }}
           />
 
           <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
-  <a href="/privacy-policy" style={{ fontSize: "13px", color: "#ddd6fe", textDecoration: "none" }}>
-    Privacy
-  </a>
+            <a
+              href="/privacy-policy"
+              style={{
+                fontSize: "13px",
+                color: "#ddd6fe",
+                textDecoration: "none",
+              }}
+            >
+              Privacy
+            </a>
 
-  <a href="/terms-of-service" style={{ fontSize: "13px", color: "#ddd6fe", textDecoration: "none" }}>
-    Terms
-  </a>
+            <a
+              href="/terms-of-service"
+              style={{
+                fontSize: "13px",
+                color: "#ddd6fe",
+                textDecoration: "none",
+              }}
+            >
+              Terms
+            </a>
 
-  <a
-    href="#premium-features"
-    style={{
-      display: "inline-block",
-      background: "#facc15",
-      color: "#000",
-      padding: "10px 22px",
-      borderRadius: 10,
-      fontWeight: 700,
-      fontSize: 14,
-      textDecoration: "none",
-      boxShadow: "0 6px 18px rgba(0,0,0,0.25)"
-    }}
-  >
-    Premium Features & Pricing
-  </a>
-</div>
+            <a
+              href="#premium-features"
+              style={{
+                display: "inline-block",
+                background: "#facc15",
+                color: "#000",
+                padding: "10px 22px",
+                borderRadius: 10,
+                fontWeight: 700,
+                fontSize: 14,
+                textDecoration: "none",
+                boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
+              }}
+            >
+              Premium Features & Pricing
+            </a>
+          </div>
+        </div>
+
         {/* HERO TEXT */}
         <div style={{ textAlign: "center", marginBottom: 20 }}>
           <h1
@@ -82,18 +109,9 @@ export default function HeroSection() {
               fontWeight: 700,
             }}
           >
-            <span style={{ color: "#facc15" }}>Best Meeting Time</span> — Every Time
+            <span style={{ color: "#facc15" }}>Best Meeting Time</span> — Every
+            Time
           </h1>
-
-          <h2
-            style={{
-              fontSize: 28,
-              fontWeight: 400,
-              marginBottom: 10,
-            }}
-          >
-            
-          </h2>
 
           <p
             style={{
