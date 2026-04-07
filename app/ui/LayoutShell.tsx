@@ -78,7 +78,18 @@ export default function LayoutShell({
       {/* BONUS */}
       <section id="bonus-features">{bonusFeatures}</section>
 
-      {/* FOOTER */}
+     <footer id="footer">
+  {footer}
+
+  <div style={{ marginTop: "20px", fontSize: "14px", textAlign: "center" }}>
+    <a href="/privacy-policy" style={{ marginRight: "15px", color: "#ddd6fe" }}>
+      Privacy Policy
+    </a>
+    <a href="/terms-of-service" style={{ color: "#ddd6fe" }}>
+      Terms of Service
+    </a>
+  </div>
+</footer>
       <footer id="footer">{footer}</footer>
     </div>
   );
