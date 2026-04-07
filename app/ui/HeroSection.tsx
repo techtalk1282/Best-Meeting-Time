@@ -47,26 +47,32 @@ export default function HeroSection() {
 }}
           />
 
-          <div />
+          <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+  <a href="/privacy-policy" style={{ fontSize: "13px", color: "#ddd6fe", textDecoration: "none" }}>
+    Privacy
+  </a>
 
-          <a
-            href="#premium-features"
-            style={{
-              display: "inline-block",
-              background: "#facc15",
-              color: "#000",
-              padding: "10px 22px",
-              borderRadius: 10,
-              fontWeight: 700,
-              fontSize: 14,
-              textDecoration: "none",
-              boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
-            }}
-          >
-            Premium Features & Pricing
-          </a>
-        </div>
+  <a href="/terms-of-service" style={{ fontSize: "13px", color: "#ddd6fe", textDecoration: "none" }}>
+    Terms
+  </a>
 
+  <a
+    href="#premium-features"
+    style={{
+      display: "inline-block",
+      background: "#facc15",
+      color: "#000",
+      padding: "10px 22px",
+      borderRadius: 10,
+      fontWeight: 700,
+      fontSize: 14,
+      textDecoration: "none",
+      boxShadow: "0 6px 18px rgba(0,0,0,0.25)"
+    }}
+  >
+    Premium Features & Pricing
+  </a>
+</div>
         {/* HERO TEXT */}
         <div style={{ textAlign: "center", marginBottom: 20 }}>
           <h1
