@@ -58,22 +58,36 @@ export default function LayoutShell({
       <section>{premiumFeatures}</section>
 
       {/* 🟡 AD SLOT */}
-      <section
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          padding: "30px 0",
-        }}
-      >
-        <ins
-          className="adsbygoogle"
-          style={{ display: "block", width: "100%", maxWidth: 728, height: 90 }}
-          data-ad-client="ca-pub-9246885832557966"
-          data-ad-slot="5883090133"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        />
-      </section>
+<section
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "30px 0",
+  }}
+>
+  {/* Label (temporary until ads load) */}
+  <div
+    style={{
+      textAlign: "center",
+      color: "#ddd6fe",
+      fontSize: "12px",
+      opacity: 0.6,
+      marginBottom: "10px",
+    }}
+  >
+    Advertisement
+  </div>
+
+  <ins
+    className="adsbygoogle"
+    style={{ display: "block", width: "100%", maxWidth: 728, height: 90 }}
+    data-ad-client="ca-pub-9246885832557966"
+    data-ad-slot="5883090133"
+    data-ad-format="auto"
+    data-full-width-responsive="true"
+  />
+</section>
 
       {/* BONUS */}
       <section id="bonus-features">{bonusFeatures}</section>
@@ -90,7 +104,7 @@ export default function LayoutShell({
     </a>
   </div>
 </footer>
-      <footer id="footer">{footer}</footer>
+      
     </div>
   );
 }
