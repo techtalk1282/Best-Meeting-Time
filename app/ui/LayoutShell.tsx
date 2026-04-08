@@ -1,19 +1,21 @@
 /**
  * File: app/ui/LayoutShell.tsx
- * Version: v2.3
+ * Version: v2.4
  * Date: 2026-04-07
  *
  * PURPOSE:
- * - Layout wrapper for all sections
- * - Includes AdSense slot + Amazon fallback monetization
+ * - Layout wrapper for all homepage sections
+ * - Preserve AdSense slot
+ * - Upgrade Amazon fallback monetization block to cleaner visual cards
  *
  * WHAT WAS CHANGED:
- * - Removed invalid inline text that broke JSX compilation
- * - Cleaned JSX structure
- * - Preserved AdSense + Amazon fallback block
+ * - Removed duplicated/nested Amazon fallback markup
+ * - Replaced old fallback links with one clean visual card block
+ * - Preserved AdSense render logic and overall section structure
+ * - Preserved footer legal links and Amazon disclosure
  *
  * ROLLBACK:
- * - Revert to v2.2
+ * - Revert to v2.3
  */
 
 "use client";
@@ -33,7 +35,6 @@ export default function LayoutShell({
   bonusFeatures: ReactNode;
   footer: ReactNode;
 }) {
-
   // ✅ Trigger AdSense render
   useEffect(() => {
     try {
@@ -96,111 +97,43 @@ export default function LayoutShell({
           data-full-width-responsive="true"
         />
 
-        {/* 🔥 AMAZON FALLBACK */}
+        {/* 🔥 AMAZON FALLBACK — v2.4 */}
         <div
           style={{
             marginTop: "20px",
             background: "rgba(255,255,255,0.08)",
-            padding: "16px",
-            borderRadius: "12px",
+            padding: "20px",
+            borderRadius: "16px",
             textAlign: "center",
-            maxWidth: "700px",
+            maxWidth: "800px",
           }}
         >
           <div
             style={{
-              color: "#ddd6fe",
-              fontSize: "13px",
-              marginBottom: "12px",
+              color: "#fff",
+              fontSize: "16px",
+              fontWeight: "600",
+              marginBottom: "8px",
             }}
           >
-           <div
-  style={{
-    color: "#ddd6fe",
-    fontSize: "14px",
-    marginBottom: "10px",
-    fontWeight: "600",
-  }}
->
-  Struggling to find the best time to meet?
-</div>
+            Improve your time & productivity while you wait
+          </div>
 
-<div
-  style={{
-    color: "#bbb",
-    fontSize: "13px",
-    marginBottom: "15px",
-  }}
->
-  These books help professionals manage time, schedules, and productivity better
-</div>
-
-<div
-  style={{
-    display: "flex",
-    justifyContent: "center",
-    gap: "15px",
-    flexWrap: "wrap",
-  }}
->
-  <a
-    href="https://amzn.to/47HUGKw"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{
-      background: "rgba(0,0,0,0.4)",
-      padding: "10px 14px",
-      borderRadius: "8px",
-      textDecoration: "none",
-      color: "#fff",
-      fontSize: "13px",
-      fontWeight: "500",
-    }}
-  >
-    Atomic Habits →
-  </a>
-
-  <a
-    href="https://amzn.to/4siUb0Q"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{
-      background: "rgba(0,0,0,0.4)",
-      padding: "10px 14px",
-      borderRadius: "8px",
-      textDecoration: "none",
-      color: "#fff",
-      fontSize: "13px",
-      fontWeight: "500",
-    }}
-  >
-    7 Habits →
-  </a>
-
-  <a
-    href="https://amzn.to/4duax2V"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{
-      background: "rgba(0,0,0,0.4)",
-      padding: "10px 14px",
-      borderRadius: "8px",
-      textDecoration: "none",
-      color: "#fff",
-      fontSize: "13px",
-      fontWeight: "500",
-    }}
-  >
-    Getting Things Done →
-  </a>
-</div>
+          <div
+            style={{
+              color: "#bbb",
+              fontSize: "13px",
+              marginBottom: "18px",
+            }}
+          >
+            Trusted by millions of professionals worldwide
           </div>
 
           <div
             style={{
               display: "flex",
               justifyContent: "center",
-              gap: "15px",
+              gap: "18px",
               flexWrap: "wrap",
             }}
           >
@@ -208,27 +141,69 @@ export default function LayoutShell({
               href="https://amzn.to/47HUGKw"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "#fff", textDecoration: "none", fontSize: "13px" }}
+              style={{ textDecoration: "none", width: "180px" }}
             >
-              Atomic Habits
+              <div
+                style={{
+                  background: "rgba(0,0,0,0.5)",
+                  borderRadius: "12px",
+                  padding: "15px",
+                  color: "#fff",
+                }}
+              >
+                <div style={{ fontWeight: "600", marginBottom: "6px" }}>
+                  Atomic Habits
+                </div>
+                <div style={{ fontSize: "12px", color: "#bbb" }}>
+                  4.8 rating • Build better systems
+                </div>
+              </div>
             </a>
 
             <a
               href="https://amzn.to/4siUb0Q"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "#fff", textDecoration: "none", fontSize: "13px" }}
+              style={{ textDecoration: "none", width: "180px" }}
             >
-              7 Habits
+              <div
+                style={{
+                  background: "rgba(0,0,0,0.5)",
+                  borderRadius: "12px",
+                  padding: "15px",
+                  color: "#fff",
+                }}
+              >
+                <div style={{ fontWeight: "600", marginBottom: "6px" }}>
+                  7 Habits
+                </div>
+                <div style={{ fontSize: "12px", color: "#bbb" }}>
+                  4.8 rating • Proven success principles
+                </div>
+              </div>
             </a>
 
             <a
               href="https://amzn.to/4duax2V"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "#fff", textDecoration: "none", fontSize: "13px" }}
+              style={{ textDecoration: "none", width: "180px" }}
             >
-              Getting Things Done
+              <div
+                style={{
+                  background: "rgba(0,0,0,0.5)",
+                  borderRadius: "12px",
+                  padding: "15px",
+                  color: "#fff",
+                }}
+              >
+                <div style={{ fontWeight: "600", marginBottom: "6px" }}>
+                  Getting Things Done
+                </div>
+                <div style={{ fontSize: "12px", color: "#bbb" }}>
+                  4.5 rating • Master your workflow
+                </div>
+              </div>
             </a>
           </div>
         </div>
@@ -259,7 +234,6 @@ export default function LayoutShell({
           </a>
         </div>
 
-        {/* Amazon disclosure */}
         <div
           style={{
             marginTop: "10px",
