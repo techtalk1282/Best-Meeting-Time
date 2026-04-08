@@ -1,19 +1,20 @@
 /**
  * File: app/ui/LayoutShell.tsx
- * Version: v2.9
+ * Version: v3.0 (CLEAN RESET — IMAGE-BASED BOOK DISPLAY)
  * Date: 2026-04-08
  *
  * PURPOSE:
- * - Correct book display to match Variation B
+ * - Replace broken book rendering with polished image asset
+ * - Keep layout clean and stable
  *
  * CHANGES:
- * - Removed bulky container
- * - Restored large upright book visuals
- * - Fixed third book rendering
- * - Improved spacing + visual balance
+ * - Removed all individual book image logic
+ * - Added single image-based display (books-display.png)
+ * - Preserved CTA (Shop Now)
+ * - Preserved layout + spacing
  *
  * ROLLBACK:
- * - Revert to v2.8
+ * - Revert to v2.9
  */
 
 "use client";
@@ -52,7 +53,7 @@ export default function LayoutShell({
       <section id="tool-preview">{toolPreview}</section>
       <section>{premiumFeatures}</section>
 
-      {/* 🔥 MONETIZATION — FINAL FIX */}
+      {/* 🔥 MONETIZATION — FINAL STABLE */}
       <section
         style={{
           display: "flex",
@@ -74,68 +75,39 @@ export default function LayoutShell({
           Level up your productivity today
         </div>
 
+        {/* SUBTEXT */}
         <div
           style={{
             color: "#c4b5fd",
             fontSize: "14px",
-            marginBottom: "28px",
+            marginBottom: "24px",
           }}
         >
           Top books used by high performers — get yours now
         </div>
 
-        {/* 📚 BOOK DISPLAY (KEY FIX) */}
+        {/* ✅ BOOK IMAGE (SOURCE OF TRUTH) */}
         <div
           style={{
             display: "flex",
             justifyContent: "center",
-            alignItems: "flex-end",
-            gap: "18px",
             marginBottom: "18px",
           }}
         >
-          {/* Atomic Habits */}
-          <a href="https://amzn.to/47HUGKw" target="_blank">
-            <img
-              src="https://m.media-amazon.com/images/I/81ANaVZk5LL.jpg"
-              alt="Atomic Habits"
-              style={{
-                height: "200px",
-                borderRadius: "10px",
-                boxShadow: "0 20px 40px rgba(0,0,0,0.6)",
-              }}
-            />
-          </a>
-
-          {/* 7 Habits (center highlight) */}
-          <a href="https://amzn.to/4siUb0Q" target="_blank">
-            <img
-              src="https://m.media-amazon.com/images/I/71f6DceqZAL.jpg"
-              alt="7 Habits"
-              style={{
-                height: "220px",
-                borderRadius: "10px",
-                boxShadow: "0 25px 50px rgba(0,0,0,0.7)",
-                transform: "translateY(-8px)",
-              }}
-            />
-          </a>
-
-          {/* Getting Things Done */}
-          <a href="https://amzn.to/4duax2V" target="_blank">
-            <img
-              src="https://m.media-amazon.com/images/I/81M1C7U1cKL.jpg"
-              alt="Getting Things Done"
-              style={{
-                height: "200px",
-                borderRadius: "10px",
-                boxShadow: "0 20px 40px rgba(0,0,0,0.6)",
-              }}
-            />
-          </a>
+          <img
+            src="/books-display.png"
+            alt="Top productivity books"
+            style={{
+              width: "100%",
+              maxWidth: "420px",
+              height: "auto",
+              borderRadius: "14px",
+              boxShadow: "0 25px 60px rgba(0,0,0,0.6)",
+            }}
+          />
         </div>
 
-        {/* Helper */}
+        {/* HELPER */}
         <div
           style={{
             color: "#d1d5db",
@@ -150,6 +122,7 @@ export default function LayoutShell({
         <a
           href="https://amzn.to/47HUGKw"
           target="_blank"
+          rel="noopener noreferrer"
           style={{
             display: "inline-block",
             background: "linear-gradient(90deg,#facc15,#f59e0b)",
