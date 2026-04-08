@@ -1,17 +1,17 @@
 /**
  * File: app/ui/LayoutShell.tsx
- * Version: v2.1
- * Date: 2026-04-05
+ * Version: v2.2
+ * Date: 2026-04-07
  *
  * PURPOSE:
- * - Add AdSense slot between Premium and Bonus sections
+ * - Add monetization fallback using Amazon affiliate links
  *
  * WHAT WAS CHANGED:
- * - Inserted <ins class="adsbygoogle"> container
- * - Added useEffect to trigger ad render
+ * - Replaced fallback placeholder link with Amazon affiliate links
+ * - Maintained AdSense slot and rendering logic
  *
  * ROLLBACK:
- * - Revert to v2.0 to remove ad slot
+ * - Restore previous fallback <div> block
  */
 
 "use client";
@@ -88,29 +88,90 @@ export default function LayoutShell({
   data-full-width-responsive="true"
 />
 
-{/* FALLBACK MONETIZATION */}
+{/* 🔥 AMAZON FALLBACK MONETIZATION — v2.2 */}
 <div
   style={{
-    marginTop: "15px",
+    marginTop: "20px",
     background: "rgba(255,255,255,0.08)",
-    padding: "12px 18px",
-    borderRadius: "10px",
+    padding: "16px",
+    borderRadius: "12px",
     textAlign: "center",
-    maxWidth: "500px",
+    maxWidth: "700px",
   }}
 >
-  <a
-    href="#"
+  <div style={{ color: "#ddd6fe", fontSize: "13px", marginBottom: "12px" }}>
+    Recommended Productivity Books
+  </div>
+
+  <div
     style={{
-      color: "#ffffff",
-      textDecoration: "none",
-      fontSize: "14px",
-      fontWeight: "500",
+      display: "flex",
+      justifyContent: "center",
+      gap: "15px",
+      flexWrap: "wrap",
     }}
   >
-    Schedule meetings faster with smart tools →
-  </a>
+    <a
+      href="https://amzn.to/47HUGKw"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ color: "#fff", textDecoration: "none", fontSize: "13px" }}
+    >
+      Atomic Habits
+    </a>
+
+    <a
+      href="https://amzn.to/4siUb0Q"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ color: "#fff", textDecoration: "none", fontSize: "13px" }}
+    >
+      7 Habits
+    </a>
+
+    <a
+      href="https://amzn.to/4duax2V"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ color: "#fff", textDecoration: "none", fontSize: "13px" }}
+    >
+      Getting Things Done
+    </a>
+  </div>
 </div>
+📌 VERSION UPDATE (REQUIRED)
+
+Update your header:
+
+ * Version: v2.2
+ * Date: 2026-04-07
+ *
+ * WHAT WAS CHANGED:
+ * - Replaced fallback monetization link with Amazon affiliate links
+ * - Maintained AdSense container (no structural changes)
+ *
+ * ROLLBACK:
+ * - Restore previous fallback <div> block
+💰 WHY THIS IS THE RIGHT MOVE
+You keep AdSense path open
+You monetize immediately
+You don’t risk breaking layout
+You stay within your existing container architecture
+⚠️ CRITICAL (DO THIS AFTER)
+
+Add to footer (Amazon requirement):
+
+As an Amazon Associate, I earn from qualifying purchases.
+▶️ YOUR STEP
+
+Make this exact replacement only
+
+Then reply:
+
+👉 “deployed”
+
+Next step:
+I’ll show you how to increase clicks 3–10x without adding more ads (this is where money actually starts).
 </section>
 
       {/* BONUS */}
