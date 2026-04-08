@@ -1,16 +1,15 @@
 /**
  * File: app/best-meeting-time-new-york/page.tsx
- * Version: v3.0 (FINAL STABLE)
- * Date: 2026-04-03
+ * Version: v3.1 (CONTENT UPGRADE — ADSENSE FIX)
+ * Date: 2026-04-08
  *
  * Purpose:
- * - Ensure tool is fully visible at 100% zoom
- * - Prevent premium section from appearing on load
- * - No scaling, no hacks
- * - Main page and shared components untouched
+ * - Add high-value SEO content to fix AdSense “low value content”
+ * - Improve indexing + ranking signals
+ * - Keep layout + tool behavior unchanged
  *
  * Rollback:
- * - Revert to v2.1 if needed
+ * - Revert to v3.0 if needed
  */
 
 "use client";
@@ -87,7 +86,7 @@ export default function NewYorkMeetingPage() {
         >
           {/* LEFT */}
           <div>
-            {/* VIEWPORT-CONSTRAINED TOOL */}
+            {/* TOOL */}
             <div
               style={{
                 minHeight: "calc(100vh - 260px)",
@@ -99,7 +98,57 @@ export default function NewYorkMeetingPage() {
               <ToolPreviewSection defaultCityLeft="New York, USA" />
             </div>
 
-            {/* PREMIUM BELOW FOLD (NO HACKS) */}
+            {/* ✅ NEW: HIGH VALUE CONTENT BLOCK */}
+            <div
+              style={{
+                marginTop: "50px",
+                maxWidth: "900px",
+                color: "#ddd6fe",
+                lineHeight: 1.7,
+              }}
+            >
+              <h2 style={{ fontSize: "22px", marginBottom: "12px", color: "#ffffff" }}>
+                Best Meeting Times Between New York and Global Cities
+              </h2>
+
+              <p style={{ marginBottom: "16px" }}>
+                Scheduling meetings across time zones can be challenging. New York operates on Eastern Time (ET), which overlaps differently with cities across Europe, Asia, and Australia.
+              </p>
+
+              <p style={{ marginBottom: "24px" }}>
+                This tool helps you quickly identify the best overlapping hours so you can schedule meetings efficiently without confusion or missed opportunities.
+              </p>
+
+              <h3 style={{ fontSize: "18px", marginBottom: "10px", color: "#ffffff" }}>
+                Popular Time Differences from New York
+              </h3>
+
+              <ul style={{ marginBottom: "24px", paddingLeft: "18px" }}>
+                <li>London → 5 hours ahead</li>
+                <li>Los Angeles → 3 hours behind</li>
+                <li>Tokyo → 13–14 hours ahead</li>
+                <li>Sydney → 14–16 hours ahead</li>
+              </ul>
+
+              <h3 style={{ fontSize: "18px", marginBottom: "10px", color: "#ffffff" }}>
+                When Should You Schedule?
+              </h3>
+
+              <p style={{ marginBottom: "10px" }}>
+                The best meeting windows typically fall between:
+              </p>
+
+              <ul style={{ paddingLeft: "18px" }}>
+                <li>8 AM – 12 PM New York (best for Europe overlap)</li>
+                <li>4 PM – 7 PM New York (best for Asia overlap)</li>
+              </ul>
+
+              <p style={{ marginTop: "20px" }}>
+                Use the tool above to instantly find the most convenient time for everyone involved.
+              </p>
+            </div>
+
+            {/* PREMIUM */}
             <div id="premium-features" style={{ marginTop: "40px" }}>
               <PremiumFeaturesSection />
             </div>
