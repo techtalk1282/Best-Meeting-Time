@@ -1,18 +1,19 @@
 /**
  * File: app/ui/LayoutShell.tsx
- * Version: v2.7
+ * Version: v2.8
  * Date: 2026-04-08
  *
  * PURPOSE:
- * - Upgrade monetization section to realistic book visuals (Variation B)
+ * - Match Variation B polished monetization card
  *
  * CHANGES:
- * - Replaced flat gradients with real book images
- * - Added depth, shadow, hover lift
- * - Improved CTA styling
+ * - Added dark rounded container
+ * - Improved book sizing + spacing
+ * - Stronger CTA ("Shop Now")
+ * - Better visual hierarchy + depth
  *
  * ROLLBACK:
- * - Revert to v2.6
+ * - Revert to v2.7
  */
 
 "use client";
@@ -51,29 +52,32 @@ export default function LayoutShell({
       <section id="tool-preview">{toolPreview}</section>
       <section>{premiumFeatures}</section>
 
-      {/* 🔥 MONETIZATION — UPDATED */}
+      {/* 🔥 MONETIZATION — VARIATION B */}
       <section
         style={{
           display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          padding: "40px 0 60px 0",
+          justifyContent: "center",
+          padding: "50px 20px 70px",
         }}
       >
         <div
           style={{
-            textAlign: "center",
-            maxWidth: "1000px",
             width: "100%",
-            padding: "0 20px",
+            maxWidth: "720px",
+            background: "linear-gradient(180deg,#3b1f8a,#2a1667)",
+            borderRadius: "24px",
+            padding: "30px 25px 35px",
+            boxShadow: "0 30px 60px rgba(0,0,0,0.5)",
+            textAlign: "center",
           }}
         >
+          {/* TITLE */}
           <div
             style={{
               color: "#fff",
-              fontSize: "22px",
+              fontSize: "20px",
               fontWeight: "800",
-              marginBottom: "8px",
+              marginBottom: "6px",
             }}
           >
             Level up your productivity today
@@ -82,19 +86,20 @@ export default function LayoutShell({
           <div
             style={{
               color: "#c4b5fd",
-              fontSize: "14px",
-              marginBottom: "30px",
+              fontSize: "13px",
+              marginBottom: "25px",
             }}
           >
             Top books used by high performers — get yours now
           </div>
 
-          {/* 📚 BOOKS */}
+          {/* BOOKS */}
           <div
             style={{
               display: "flex",
               justifyContent: "center",
-              gap: "30px",
+              gap: "18px",
+              marginBottom: "20px",
               flexWrap: "wrap",
             }}
           >
@@ -122,36 +127,28 @@ export default function LayoutShell({
                 rel="noopener noreferrer"
                 style={{ textDecoration: "none" }}
               >
-                <div
+                <img
+                  src={book.img}
+                  alt={book.title}
                   style={{
-                    width: "160px",
-                    transition: "all 0.25s ease",
+                    width: "110px",
+                    borderRadius: "10px",
+                    boxShadow: "0 18px 35px rgba(0,0,0,0.6)",
                   }}
-                >
-                  <img
-                    src={book.img}
-                    alt={book.title}
-                    style={{
-                      width: "100%",
-                      borderRadius: "10px",
-                      boxShadow: "0 20px 40px rgba(0,0,0,0.6)",
-                    }}
-                  />
-
-                  <div
-                    style={{
-                      marginTop: "10px",
-                      textAlign: "center",
-                      color: "#fff",
-                      fontWeight: "600",
-                      fontSize: "14px",
-                    }}
-                  >
-                    {book.title}
-                  </div>
-                </div>
+                />
               </a>
             ))}
+          </div>
+
+          {/* HELPER TEXT */}
+          <div
+            style={{
+              color: "#d1d5db",
+              fontSize: "12px",
+              marginBottom: "20px",
+            }}
+          >
+            Tap any book to view details and availability
           </div>
 
           {/* CTA */}
@@ -161,18 +158,17 @@ export default function LayoutShell({
             rel="noopener noreferrer"
             style={{
               display: "inline-block",
-              marginTop: "30px",
               background: "linear-gradient(90deg,#facc15,#f59e0b)",
               color: "#000",
               fontWeight: "800",
-              padding: "14px 28px",
-              borderRadius: "12px",
+              padding: "14px 30px",
+              borderRadius: "14px",
               textDecoration: "none",
-              fontSize: "16px",
-              boxShadow: "0 10px 25px rgba(0,0,0,0.4)",
+              fontSize: "15px",
+              boxShadow: "0 12px 30px rgba(0,0,0,0.5)",
             }}
           >
-            View on Amazon
+            Shop Now
           </a>
         </div>
       </section>
