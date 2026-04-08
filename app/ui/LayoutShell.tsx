@@ -1,16 +1,16 @@
 /**
  * File: app/ui/LayoutShell.tsx
- * Version: v3.2 (FINAL — INDIVIDUAL BOOK CTAs)
+ * Version: v3.3 (HORIZONTAL BOOK BUTTONS + SAFER IMAGE SCALING)
  * Date: 2026-04-08
  *
  * PURPOSE:
- * - Improve clarity and conversion
- * - Remove misleading CTA
- * - Add individual book CTAs
- * - Improve image rendering quality
+ * - Keep the monetization hero prominent
+ * - Replace stacked book CTAs with horizontal pill buttons
+ * - Remove misleading extra CTA copy
+ * - Reduce perceived image distortion with safer scaling
  *
  * ROLLBACK:
- * - Revert to v3.1
+ * - Revert to v3.2
  */
 
 "use client";
@@ -55,7 +55,7 @@ export default function LayoutShell({
       <section id="tool-preview">{toolPreview}</section>
       <section>{premiumFeatures}</section>
 
-      {/* 🔥 MONETIZATION — FINAL CLEAN */}
+      {/* MONETIZATION HERO */}
       <section
         style={{
           minHeight: "100vh",
@@ -63,43 +63,69 @@ export default function LayoutShell({
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          padding: "40px 20px",
+          padding: "56px 20px 72px",
           textAlign: "center",
         }}
       >
-        {/* TITLE */}
-        <div style={{ color: "#fff", fontSize: "26px", fontWeight: "800", marginBottom: "10px" }}>
+        <div
+          style={{
+            color: "#fff",
+            fontSize: "26px",
+            fontWeight: 800,
+            lineHeight: 1.15,
+            marginBottom: "12px",
+          }}
+        >
           Level up your productivity today
         </div>
 
-        {/* SUBTEXT */}
-        <div style={{ color: "#c4b5fd", fontSize: "15px", marginBottom: "28px" }}>
+        <div
+          style={{
+            color: "#c4b5fd",
+            fontSize: "15px",
+            lineHeight: 1.4,
+            marginBottom: "28px",
+          }}
+        >
           Top books used by high performers — get yours now
         </div>
 
-        {/* IMAGE (IMPROVED RENDERING) */}
-        <div style={{ width: "100%", maxWidth: "800px", marginBottom: "34px" }}>
+        {/* IMAGE */}
+        <div
+          style={{
+            width: "100%",
+            maxWidth: "760px",
+            marginBottom: "28px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <img
             src="/books-display.png"
             alt="Top productivity books"
             style={{
               width: "100%",
+              maxWidth: "760px",
               height: "auto",
+              display: "block",
               borderRadius: "16px",
-              boxShadow: "0 30px 80px rgba(0,0,0,0.7)",
+              boxShadow: "0 30px 80px rgba(0,0,0,0.55)",
+              objectFit: "contain",
               imageRendering: "auto",
             }}
           />
         </div>
 
-        {/* ✅ INDIVIDUAL BOOK CTAs */}
+        {/* HORIZONTAL BOOK BUTTONS */}
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            gap: "14px",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "12px",
             width: "100%",
-            maxWidth: "360px",
+            maxWidth: "760px",
           }}
         >
           {books.map((book) => (
@@ -109,18 +135,19 @@ export default function LayoutShell({
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                display: "block",
-                background: "linear-gradient(90deg,#facc15,#f59e0b)",
-                color: "#000",
-                fontWeight: "700",
-                padding: "14px",
-                borderRadius: "12px",
+                background: "linear-gradient(90deg, #facc15, #f59e0b)",
+                color: "#111827",
+                padding: "12px 18px",
+                borderRadius: "999px",
                 textDecoration: "none",
-                fontSize: "15px",
-                boxShadow: "0 10px 25px rgba(0,0,0,0.4)",
+                fontSize: "14px",
+                fontWeight: 700,
+                lineHeight: 1,
+                boxShadow: "0 10px 24px rgba(0,0,0,0.32)",
+                whiteSpace: "nowrap",
               }}
             >
-              {book.label} → Get the Book
+              {book.label}
             </a>
           ))}
         </div>
@@ -131,8 +158,17 @@ export default function LayoutShell({
       <footer id="footer">
         {footer}
 
-        <div style={{ marginTop: "10px", fontSize: "14px", textAlign: "center" }}>
-          <a href="/privacy-policy" style={{ marginRight: "15px", color: "#ddd6fe" }}>
+        <div
+          style={{
+            marginTop: "10px",
+            fontSize: "14px",
+            textAlign: "center",
+          }}
+        >
+          <a
+            href="/privacy-policy"
+            style={{ marginRight: "15px", color: "#ddd6fe" }}
+          >
             Privacy Policy
           </a>
           <a href="/terms-of-service" style={{ color: "#ddd6fe" }}>
