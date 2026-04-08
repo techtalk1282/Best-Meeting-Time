@@ -1,20 +1,18 @@
 /**
  * File: app/ui/LayoutShell.tsx
- * Version: v2.6
- * Date: 2026-04-07
+ * Version: v2.7
+ * Date: 2026-04-08
  *
  * PURPOSE:
- * - Layout wrapper for homepage
- * - Clean monetization block with strong CTA + better visuals
+ * - Upgrade monetization section to realistic book visuals (Variation B)
  *
- * WHAT WAS CHANGED:
- * - Added strong CTA (top + bottom)
- * - Unified card sizes
- * - Introduced gold + brand color accents
- * - Improved visual hierarchy for conversion
+ * CHANGES:
+ * - Replaced flat gradients with real book images
+ * - Added depth, shadow, hover lift
+ * - Improved CTA styling
  *
  * ROLLBACK:
- * - Revert to v2.5
+ * - Revert to v2.6
  */
 
 "use client";
@@ -49,27 +47,19 @@ export default function LayoutShell({
         background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
       }}
     >
-      {/* HERO */}
       <section id="hero">{hero}</section>
-
-      {/* TOOL */}
       <section id="tool-preview">{toolPreview}</section>
-
-      {/* PREMIUM */}
       <section>{premiumFeatures}</section>
 
-      {/* MONETIZATION */}
+      {/* 🔥 MONETIZATION — UPDATED */}
       <section
         style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          padding: "20px 0 40px 0",
+          padding: "40px 0 60px 0",
         }}
       >
-        <div style={{ height: "6px" }} />
-
-        {/* 🔥 AMAZON FALLBACK — v2.6 FINAL */}
         <div
           style={{
             textAlign: "center",
@@ -78,13 +68,12 @@ export default function LayoutShell({
             padding: "0 20px",
           }}
         >
-          {/* TOP CTA */}
           <div
             style={{
               color: "#fff",
-              fontSize: "20px",
-              fontWeight: "700",
-              marginBottom: "6px",
+              fontSize: "22px",
+              fontWeight: "800",
+              marginBottom: "8px",
             }}
           >
             Level up your productivity today
@@ -92,42 +81,38 @@ export default function LayoutShell({
 
           <div
             style={{
-              color: "#facc15",
+              color: "#c4b5fd",
               fontSize: "14px",
-              fontWeight: "600",
-              marginBottom: "20px",
+              marginBottom: "30px",
             }}
           >
             Top books used by high performers — get yours now
           </div>
 
-          {/* CARDS */}
+          {/* 📚 BOOKS */}
           <div
             style={{
               display: "flex",
               justifyContent: "center",
-              gap: "24px",
+              gap: "30px",
               flexWrap: "wrap",
             }}
           >
             {[
               {
                 title: "Atomic Habits",
-                desc: "Build better systems",
                 link: "https://amzn.to/47HUGKw",
-                gradient: "linear-gradient(145deg,#facc15,#eab308)",
+                img: "https://m.media-amazon.com/images/I/81ANaVZk5LL.jpg",
               },
               {
                 title: "7 Habits",
-                desc: "Proven success principles",
                 link: "https://amzn.to/4siUb0Q",
-                gradient: "linear-gradient(145deg,#6366f1,#4f46e5)",
+                img: "https://m.media-amazon.com/images/I/71f6DceqZAL.jpg",
               },
               {
                 title: "Getting Things Done",
-                desc: "Master your workflow",
                 link: "https://amzn.to/4duax2V",
-                gradient: "linear-gradient(145deg,#f59e0b,#d97706)",
+                img: "https://m.media-amazon.com/images/I/81M1C7U1cKL.jpg",
               },
             ].map((book) => (
               <a
@@ -139,105 +124,66 @@ export default function LayoutShell({
               >
                 <div
                   style={{
-                    width: "180px",
-                    height: "250px",
-                    background: "#ffffff",
-                    borderRadius: "14px",
-                    padding: "14px",
-                    boxShadow: "0 15px 35px rgba(0,0,0,0.35)",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    textAlign: "center",
+                    width: "160px",
+                    transition: "all 0.25s ease",
                   }}
                 >
-                  {/* TOP VISUAL */}
+                  <img
+                    src={book.img}
+                    alt={book.title}
+                    style={{
+                      width: "100%",
+                      borderRadius: "10px",
+                      boxShadow: "0 20px 40px rgba(0,0,0,0.6)",
+                    }}
+                  />
+
                   <div
                     style={{
-                      height: "140px",
-                      borderRadius: "10px",
-                      background: book.gradient,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "#111",
-                      fontWeight: "800",
-                      fontSize: "16px",
-                      padding: "10px",
+                      marginTop: "10px",
+                      textAlign: "center",
+                      color: "#fff",
+                      fontWeight: "600",
+                      fontSize: "14px",
                     }}
                   >
                     {book.title}
-                  </div>
-
-                  {/* TEXT */}
-                  <div>
-                    <div
-                      style={{
-                        color: "#111",
-                        fontWeight: "700",
-                        fontSize: "14px",
-                        marginBottom: "4px",
-                      }}
-                    >
-                      {book.title}
-                    </div>
-
-                    <div
-                      style={{
-                        color: "#6b7280",
-                        fontSize: "12px",
-                        marginBottom: "6px",
-                      }}
-                    >
-                      {book.desc}
-                    </div>
-
-                    <div
-                      style={{
-                        color: "#f59e0b",
-                        fontSize: "12px",
-                        fontWeight: "700",
-                      }}
-                    >
-                      Shop now →
-                    </div>
                   </div>
                 </div>
               </a>
             ))}
           </div>
 
-          {/* BOTTOM CTA */}
-          <div
+          {/* CTA */}
+          <a
+            href="https://amzn.to/47HUGKw"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
-              marginTop: "18px",
-              color: "#fff",
-              fontSize: "13px",
+              display: "inline-block",
+              marginTop: "30px",
+              background: "linear-gradient(90deg,#facc15,#f59e0b)",
+              color: "#000",
+              fontWeight: "800",
+              padding: "14px 28px",
+              borderRadius: "12px",
+              textDecoration: "none",
+              fontSize: "16px",
+              boxShadow: "0 10px 25px rgba(0,0,0,0.4)",
             }}
           >
-            Tap any book to view details and availability
-          </div>
+            View on Amazon
+          </a>
         </div>
       </section>
 
-      {/* BONUS */}
       <section id="bonus-features">{bonusFeatures}</section>
 
-      {/* FOOTER */}
       <footer id="footer">
         {footer}
 
-        <div
-          style={{
-            marginTop: "10px",
-            fontSize: "14px",
-            textAlign: "center",
-          }}
-        >
-          <a
-            href="/privacy-policy"
-            style={{ marginRight: "15px", color: "#ddd6fe" }}
-          >
+        <div style={{ marginTop: "10px", fontSize: "14px", textAlign: "center" }}>
+          <a href="/privacy-policy" style={{ marginRight: "15px", color: "#ddd6fe" }}>
             Privacy Policy
           </a>
           <a href="/terms-of-service" style={{ color: "#ddd6fe" }}>
