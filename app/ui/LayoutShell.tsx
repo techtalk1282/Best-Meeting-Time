@@ -1,15 +1,16 @@
 /**
  * File: app/ui/LayoutShell.tsx
- * Version: v3.1 (BOOK LINKS + BALANCED LAYOUT)
+ * Version: v3.2 (FINAL — INDIVIDUAL BOOK CTAs)
  * Date: 2026-04-08
  *
  * PURPOSE:
- * - Add individual clickable book buttons under image
- * - Preserve clean hero layout
- * - Improve monetization clarity
+ * - Improve clarity and conversion
+ * - Remove misleading CTA
+ * - Add individual book CTAs
+ * - Improve image rendering quality
  *
  * ROLLBACK:
- * - Revert to v3.0
+ * - Revert to v3.1
  */
 
 "use client";
@@ -38,6 +39,12 @@ export default function LayoutShell({
     }
   }, []);
 
+  const books = [
+    { label: "Atomic Habits", link: "https://amzn.to/47HUGKw" },
+    { label: "The 7 Habits", link: "https://amzn.to/4siUb0Q" },
+    { label: "Getting Things Done", link: "https://amzn.to/4duax2V" },
+  ];
+
   return (
     <div
       style={{
@@ -48,7 +55,7 @@ export default function LayoutShell({
       <section id="tool-preview">{toolPreview}</section>
       <section>{premiumFeatures}</section>
 
-      {/* 🔥 MONETIZATION — HERO WITH BOOK LINKS */}
+      {/* 🔥 MONETIZATION — FINAL CLEAN */}
       <section
         style={{
           minHeight: "100vh",
@@ -70,8 +77,8 @@ export default function LayoutShell({
           Top books used by high performers — get yours now
         </div>
 
-        {/* IMAGE */}
-        <div style={{ width: "100%", maxWidth: "700px", marginBottom: "26px" }}>
+        {/* IMAGE (IMPROVED RENDERING) */}
+        <div style={{ width: "100%", maxWidth: "800px", marginBottom: "34px" }}>
           <img
             src="/books-display.png"
             alt="Top productivity books"
@@ -80,71 +87,43 @@ export default function LayoutShell({
               height: "auto",
               borderRadius: "16px",
               boxShadow: "0 30px 80px rgba(0,0,0,0.7)",
+              imageRendering: "auto",
             }}
           />
         </div>
 
-        {/* ✅ BOOK BUTTON LINKS */}
+        {/* ✅ INDIVIDUAL BOOK CTAs */}
         <div
           style={{
             display: "flex",
-            justifyContent: "center",
+            flexDirection: "column",
             gap: "14px",
-            flexWrap: "wrap",
-            marginBottom: "26px",
+            width: "100%",
+            maxWidth: "360px",
           }}
         >
-          {[
-            { label: "Atomic Habits", link: "https://amzn.to/47HUGKw" },
-            { label: "The 7 Habits", link: "https://amzn.to/4siUb0Q" },
-            { label: "Getting Things Done", link: "https://amzn.to/4duax2V" },
-          ].map((book) => (
+          {books.map((book) => (
             <a
               key={book.label}
               href={book.link}
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                padding: "10px 16px",
-                borderRadius: "999px",
-                background: "rgba(255,255,255,0.08)",
-                color: "#fff",
-                fontSize: "13px",
-                fontWeight: "600",
+                display: "block",
+                background: "linear-gradient(90deg,#facc15,#f59e0b)",
+                color: "#000",
+                fontWeight: "700",
+                padding: "14px",
+                borderRadius: "12px",
                 textDecoration: "none",
-                border: "1px solid rgba(255,255,255,0.15)",
-                transition: "all 0.2s ease",
+                fontSize: "15px",
+                boxShadow: "0 10px 25px rgba(0,0,0,0.4)",
               }}
             >
-              {book.label}
+              {book.label} → Get the Book
             </a>
           ))}
         </div>
-
-        {/* HELPER */}
-        <div style={{ color: "#d1d5db", fontSize: "13px", marginBottom: "26px" }}>
-          Tap a book above to view details and availability
-        </div>
-
-        {/* CTA */}
-        <a
-          href="https://amzn.to/47HUGKw"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: "inline-block",
-            background: "linear-gradient(90deg,#facc15,#f59e0b)",
-            color: "#000",
-            fontWeight: "800",
-            padding: "16px 40px",
-            borderRadius: "16px",
-            textDecoration: "none",
-            fontSize: "18px",
-            boxShadow: "0 15px 40px rgba(0,0,0,0.6)",
-          }}
-        >
-          Shop Now
-        </a>
       </section>
 
       <section id="bonus-features">{bonusFeatures}</section>
