@@ -120,12 +120,11 @@ export default function LayoutShell({
         <div
           style={{
             display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "12px",
-            width: "100%",
-            maxWidth: "760px",
+justifyContent: "space-between",
+alignItems: "center",
+width: "100%",
+maxWidth: "760px",
+marginTop: "10px",
           }}
         >
           {books.map((book) => (
