@@ -114,7 +114,86 @@ export default function LayoutShell({
               marginBottom: "12px",
             }}
           >
-            Recommended Productivity Books
+           <div
+  style={{
+    color: "#ddd6fe",
+    fontSize: "14px",
+    marginBottom: "10px",
+    fontWeight: "600",
+  }}
+>
+  Struggling to find the best time to meet?
+</div>
+
+<div
+  style={{
+    color: "#bbb",
+    fontSize: "13px",
+    marginBottom: "15px",
+  }}
+>
+  These books help professionals manage time, schedules, and productivity better
+</div>
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    gap: "15px",
+    flexWrap: "wrap",
+  }}
+>
+  <a
+    href="https://amzn.to/47HUGKw"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      background: "rgba(0,0,0,0.4)",
+      padding: "10px 14px",
+      borderRadius: "8px",
+      textDecoration: "none",
+      color: "#fff",
+      fontSize: "13px",
+      fontWeight: "500",
+    }}
+  >
+    Atomic Habits →
+  </a>
+
+  <a
+    href="https://amzn.to/4siUb0Q"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      background: "rgba(0,0,0,0.4)",
+      padding: "10px 14px",
+      borderRadius: "8px",
+      textDecoration: "none",
+      color: "#fff",
+      fontSize: "13px",
+      fontWeight: "500",
+    }}
+  >
+    7 Habits →
+  </a>
+
+  <a
+    href="https://amzn.to/4duax2V"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      background: "rgba(0,0,0,0.4)",
+      padding: "10px 14px",
+      borderRadius: "8px",
+      textDecoration: "none",
+      color: "#fff",
+      fontSize: "13px",
+      fontWeight: "500",
+    }}
+  >
+    Getting Things Done →
+  </a>
+</div>
           </div>
 
           <div
