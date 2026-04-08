@@ -1,19 +1,19 @@
 /**
  * File: app/ui/LayoutShell.tsx
- * Version: v2.8
+ * Version: v2.9
  * Date: 2026-04-08
  *
  * PURPOSE:
- * - Match Variation B polished monetization card
+ * - Correct book display to match Variation B
  *
  * CHANGES:
- * - Added dark rounded container
- * - Improved book sizing + spacing
- * - Stronger CTA ("Shop Now")
- * - Better visual hierarchy + depth
+ * - Removed bulky container
+ * - Restored large upright book visuals
+ * - Fixed third book rendering
+ * - Improved spacing + visual balance
  *
  * ROLLBACK:
- * - Revert to v2.7
+ * - Revert to v2.8
  */
 
 "use client";
@@ -52,125 +52,118 @@ export default function LayoutShell({
       <section id="tool-preview">{toolPreview}</section>
       <section>{premiumFeatures}</section>
 
-      {/* 🔥 MONETIZATION — VARIATION B */}
+      {/* 🔥 MONETIZATION — FINAL FIX */}
       <section
         style={{
           display: "flex",
-          justifyContent: "center",
-          padding: "50px 20px 70px",
+          flexDirection: "column",
+          alignItems: "center",
+          padding: "40px 20px 60px",
+          textAlign: "center",
         }}
       >
+        {/* TITLE */}
         <div
           style={{
-            width: "100%",
-            maxWidth: "720px",
-            background: "linear-gradient(180deg,#3b1f8a,#2a1667)",
-            borderRadius: "24px",
-            padding: "30px 25px 35px",
-            boxShadow: "0 30px 60px rgba(0,0,0,0.5)",
-            textAlign: "center",
+            color: "#fff",
+            fontSize: "22px",
+            fontWeight: "800",
+            marginBottom: "6px",
           }}
         >
-          {/* TITLE */}
-          <div
-            style={{
-              color: "#fff",
-              fontSize: "20px",
-              fontWeight: "800",
-              marginBottom: "6px",
-            }}
-          >
-            Level up your productivity today
-          </div>
+          Level up your productivity today
+        </div>
 
-          <div
-            style={{
-              color: "#c4b5fd",
-              fontSize: "13px",
-              marginBottom: "25px",
-            }}
-          >
-            Top books used by high performers — get yours now
-          </div>
+        <div
+          style={{
+            color: "#c4b5fd",
+            fontSize: "14px",
+            marginBottom: "28px",
+          }}
+        >
+          Top books used by high performers — get yours now
+        </div>
 
-          {/* BOOKS */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "18px",
-              marginBottom: "20px",
-              flexWrap: "wrap",
-            }}
-          >
-            {[
-              {
-                title: "Atomic Habits",
-                link: "https://amzn.to/47HUGKw",
-                img: "https://m.media-amazon.com/images/I/81ANaVZk5LL.jpg",
-              },
-              {
-                title: "7 Habits",
-                link: "https://amzn.to/4siUb0Q",
-                img: "https://m.media-amazon.com/images/I/71f6DceqZAL.jpg",
-              },
-              {
-                title: "Getting Things Done",
-                link: "https://amzn.to/4duax2V",
-                img: "https://m.media-amazon.com/images/I/81M1C7U1cKL.jpg",
-              },
-            ].map((book) => (
-              <a
-                key={book.title}
-                href={book.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: "none" }}
-              >
-                <img
-                  src={book.img}
-                  alt={book.title}
-                  style={{
-                    width: "110px",
-                    borderRadius: "10px",
-                    boxShadow: "0 18px 35px rgba(0,0,0,0.6)",
-                  }}
-                />
-              </a>
-            ))}
-          </div>
+        {/* 📚 BOOK DISPLAY (KEY FIX) */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "flex-end",
+            gap: "18px",
+            marginBottom: "18px",
+          }}
+        >
+          {/* Atomic Habits */}
+          <a href="https://amzn.to/47HUGKw" target="_blank">
+            <img
+              src="https://m.media-amazon.com/images/I/81ANaVZk5LL.jpg"
+              alt="Atomic Habits"
+              style={{
+                height: "200px",
+                borderRadius: "10px",
+                boxShadow: "0 20px 40px rgba(0,0,0,0.6)",
+              }}
+            />
+          </a>
 
-          {/* HELPER TEXT */}
-          <div
-            style={{
-              color: "#d1d5db",
-              fontSize: "12px",
-              marginBottom: "20px",
-            }}
-          >
-            Tap any book to view details and availability
-          </div>
+          {/* 7 Habits (center highlight) */}
+          <a href="https://amzn.to/4siUb0Q" target="_blank">
+            <img
+              src="https://m.media-amazon.com/images/I/71f6DceqZAL.jpg"
+              alt="7 Habits"
+              style={{
+                height: "220px",
+                borderRadius: "10px",
+                boxShadow: "0 25px 50px rgba(0,0,0,0.7)",
+                transform: "translateY(-8px)",
+              }}
+            />
+          </a>
 
-          {/* CTA */}
-          <a
-            href="https://amzn.to/47HUGKw"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-block",
-              background: "linear-gradient(90deg,#facc15,#f59e0b)",
-              color: "#000",
-              fontWeight: "800",
-              padding: "14px 30px",
-              borderRadius: "14px",
-              textDecoration: "none",
-              fontSize: "15px",
-              boxShadow: "0 12px 30px rgba(0,0,0,0.5)",
-            }}
-          >
-            Shop Now
+          {/* Getting Things Done */}
+          <a href="https://amzn.to/4duax2V" target="_blank">
+            <img
+              src="https://m.media-amazon.com/images/I/81M1C7U1cKL.jpg"
+              alt="Getting Things Done"
+              style={{
+                height: "200px",
+                borderRadius: "10px",
+                boxShadow: "0 20px 40px rgba(0,0,0,0.6)",
+              }}
+            />
           </a>
         </div>
+
+        {/* Helper */}
+        <div
+          style={{
+            color: "#d1d5db",
+            fontSize: "12px",
+            marginBottom: "20px",
+          }}
+        >
+          Tap any book to view details and availability
+        </div>
+
+        {/* CTA */}
+        <a
+          href="https://amzn.to/47HUGKw"
+          target="_blank"
+          style={{
+            display: "inline-block",
+            background: "linear-gradient(90deg,#facc15,#f59e0b)",
+            color: "#000",
+            fontWeight: "800",
+            padding: "14px 32px",
+            borderRadius: "14px",
+            textDecoration: "none",
+            fontSize: "16px",
+            boxShadow: "0 12px 30px rgba(0,0,0,0.5)",
+          }}
+        >
+          Shop Now
+        </a>
       </section>
 
       <section id="bonus-features">{bonusFeatures}</section>
