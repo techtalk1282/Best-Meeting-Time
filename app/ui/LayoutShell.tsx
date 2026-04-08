@@ -70,32 +70,8 @@ export default function LayoutShell({
         }}
       >
         {/* Label */}
-        <div
-          style={{
-            textAlign: "center",
-            color: "#ddd6fe",
-            fontSize: "12px",
-            opacity: 0.6,
-            marginBottom: "10px",
-          }}
-        >
-          Advertisement
-        </div>
-
-        {/* AdSense */}
-        <ins
-          className="adsbygoogle"
-          style={{
-            display: "block",
-            width: "100%",
-            maxWidth: 728,
-            height: 90,
-          }}
-          data-ad-client="ca-pub-9246885832557966"
-          data-ad-slot="5883090133"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        />
+        {/* TEMP: Ad slot hidden until AdSense is active */}
+        <div style={{ height: "10px" }} />
 
         {/* 🔥 AMAZON FALLBACK — v2.4 */}
         <div
