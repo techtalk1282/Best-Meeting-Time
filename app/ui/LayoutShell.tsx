@@ -34,13 +34,13 @@ export default function LayoutShell({
 
   // ✅ Trigger AdSense render
   useEffect(() => {
-    try {
-      // @ts-ignore
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (e) {
-      console.error("AdSense push error:", e);
-    }
-  }, []);
+  try {
+    // @ts-ignore
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+  } catch (e) {
+    console.error("AdSense push error:", e);
+  }
+}, []);
 
   return (
     <div
