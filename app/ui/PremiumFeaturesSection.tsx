@@ -188,7 +188,9 @@ function completeAdReward() {
   setIsLocked(false);
   setIsWatchingAd(false);
   setShowAdModal(false);
-
+  
+window.history.replaceState(null, "", window.location.pathname);
+window.scrollTo({ top: 0, behavior: "smooth" });
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
   function handleShareClick() {
