@@ -557,9 +557,71 @@ function completeAdReward() {
         {countdown}
       </p>
 
-      <p style={{ marginTop: "10px", fontSize: "14px", color: "#666" }}>
-        Please wait to unlock more sessions
-      </p>
+      <div style={{ marginTop: "14px", textAlign: "center" }}>
+  <p style={{ fontSize: "14px", color: "#666", marginBottom: "12px" }}>
+    Unlocking your sessions... hang tight
+  </p>
+
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      gap: "10px",
+      flexWrap: "wrap",
+    }}
+  >
+    <a
+      href="https://amzn.to/47HUGKw"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        background: "#facc15",
+        color: "#000",
+        padding: "10px 14px",
+        borderRadius: "999px",
+        fontSize: "13px",
+        fontWeight: 600,
+        textDecoration: "none",
+      }}
+    >
+      Atomic Habits
+    </a>
+
+    <a
+      href="https://amzn.to/4siUb0Q"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        background: "#facc15",
+        color: "#000",
+        padding: "10px 14px",
+        borderRadius: "999px",
+        fontSize: "13px",
+        fontWeight: 600,
+        textDecoration: "none",
+      }}
+    >
+      7 Habits
+    </a>
+
+    <a
+      href="https://amzn.to/4duax2V"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        background: "#facc15",
+        color: "#000",
+        padding: "10px 14px",
+        borderRadius: "999px",
+        fontSize: "13px",
+        fontWeight: 600,
+        textDecoration: "none",
+      }}
+    >
+      Getting Things Done
+    </a>
+  </div>
+</div>
     </div>
   </div>
 )}
