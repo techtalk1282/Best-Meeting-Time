@@ -555,7 +555,17 @@ window.scrollTo({ top: 0, behavior: "smooth" });
         marginBottom: "12px",
       }}
     >
-      Unlocking your sessions... hang tight
+      Your 2 free planning sessions are unlocking...
+      <div
+  style={{
+    color: "#c4b5fd",
+    fontSize: "15px",
+    fontWeight: 500,
+    marginBottom: "24px",
+  }}
+>
+  Want to plan faster and waste less time?
+</div>
     </div>
 
     <div
@@ -593,7 +603,7 @@ window.scrollTo({ top: 0, behavior: "smooth" });
       boxShadow: "0 10px 30px rgba(0,0,0,0.35)",
     }}
   >
-    Continue — Unlock My Sessions
+    Continue — Unlock My Free Planning Sessions
   </button>
 )}
     </div>
@@ -605,6 +615,16 @@ window.scrollTo({ top: 0, behavior: "smooth" });
         marginBottom: "30px",
       }}
     >
+      <div
+  style={{
+    color: "#ffffff",
+    fontSize: "16px",
+    fontWeight: 600,
+    marginBottom: "12px",
+  }}
+>
+  These top-rated books have helped millions improve productivity and decision-making
+</div>
       <img
         src="/books-display.png"
         alt="Top productivity books"
@@ -638,7 +658,7 @@ window.scrollTo({ top: 0, behavior: "smooth" });
           fontWeight: 700,
         }}
       >
-        Atomic Habits
+        Improve Your Habits
       </a>
 
       <a
@@ -655,7 +675,8 @@ window.scrollTo({ top: 0, behavior: "smooth" });
           fontWeight: 700,
         }}
       >
-        The 7 Habits
+        Build Better Systems
+
       </a>
 
       <a
@@ -672,7 +693,7 @@ window.scrollTo({ top: 0, behavior: "smooth" });
           fontWeight: 700,
         }}
       >
-        Getting Things Done
+       Master Your Workflow
       </a>
     </div>
   </div>
