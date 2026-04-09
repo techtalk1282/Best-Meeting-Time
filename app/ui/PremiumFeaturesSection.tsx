@@ -564,7 +564,36 @@ function completeAdReward() {
         marginBottom: "20px",
       }}
     >
-      {countdown}
+     {countdown > 0 ? (
+  <div
+    style={{
+      color: "#c4b5fd",
+      fontSize: "18px",
+      fontWeight: 700,
+      marginBottom: "20px",
+    }}
+  >
+    {countdown}
+  </div>
+) : (
+  <button
+    onClick={completeAdReward}
+    style={{
+      marginBottom: "20px",
+      background: "linear-gradient(90deg, #facc15, #f59e0b)",
+      color: "#111827",
+      padding: "14px 22px",
+      borderRadius: "999px",
+      fontSize: "16px",
+      fontWeight: 800,
+      border: "none",
+      cursor: "pointer",
+      boxShadow: "0 10px 30px rgba(0,0,0,0.35)",
+    }}
+  >
+    Continue — Unlock My Sessions
+  </button>
+)}
     </div>
 
     <div
