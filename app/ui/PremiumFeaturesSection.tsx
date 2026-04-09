@@ -144,7 +144,7 @@ useEffect(() => {
 
   const timer = setTimeout(() => {
     if (countdown <= 1) {
-      completeAdReward();
+      setCountdown(0); // ✅ stop at 0, DO NOT auto-close
     } else {
       setCountdown((prev) => prev - 1);
     }
