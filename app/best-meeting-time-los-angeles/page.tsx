@@ -1,15 +1,15 @@
 /**
  * File: app/best-meeting-time-los-angeles/page.tsx
- * Version: v4.1 (AFFILIATE TEST — PRODUCTION SAFE)
- * Date: 2026-04-06
+ * Version: v4.2 (REMOVE CALENDLY — GATING PREP)
+ * Date: 2026-04-08
  *
  * Purpose:
- * - Replace test ad container with affiliate monetization block
- * - Preserve layout, spacing, and UX integrity
- * - Maintain production-safe template for scaling
+ * - Remove ALWAYS-VISIBLE monetization block (Calendly)
+ * - Prepare for gated unlock monetization system
+ * - Keep Los Angeles as MASTER template
  *
  * Rollback:
- * - Revert to v3.3 if needed
+ * - v4.1 if needed
  */
 
 "use client";
@@ -108,48 +108,7 @@ export default function LosAngelesMeetingPage() {
           <PremiumFeaturesSection />
         </div>
 
-        {/* MONETIZATION ZONE — AFFILIATE TEST */}
-        <div style={{ display: "flex", justifyContent: "center", padding: "30px 0" }}>
-          <div
-            style={{
-              width: "100%",
-              maxWidth: "720px",
-              padding: "20px",
-              borderRadius: "14px",
-              textAlign: "center",
-              background:
-                "linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05))",
-              border: "1px solid rgba(255,255,255,0.15)",
-              boxShadow: "0 8px 24px rgba(0,0,0,0.25)",
-            }}
-          >
-            <div style={{ fontSize: "16px", fontWeight: 600, marginBottom: "10px" }}>
-              Schedule this meeting instantly
-            </div>
-
-            <div style={{ fontSize: "13px", opacity: 0.8, marginBottom: "16px" }}>
-              Send a booking link and let others pick the best time automatically.
-            </div>
-
-            <a
-              href="https://calendly.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-block",
-                padding: "12px 20px",
-                borderRadius: "10px",
-                background: "#facc15",
-                color: "#000",
-                fontWeight: 600,
-                textDecoration: "none",
-              }}
-            >
-              Try Calendly Free
-            </a>
-          </div>
-        </div>
-
+        {/* 🚫 REMOVED: Monetization block (Calendly) */}
       </main>
     </div>
   );
