@@ -535,93 +535,114 @@ function completeAdReward() {
       left: 0,
       width: "100vw",
       height: "100vh",
-      background: "rgba(0,0,0,0.75)",
+      background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
       display: "flex",
-      alignItems: "center",
+      flexDirection: "column",
       justifyContent: "center",
+      alignItems: "center",
       zIndex: 9999,
+      padding: "40px 20px",
+      textAlign: "center",
     }}
   >
     <div
       style={{
-        background: "white",
-        padding: "30px",
-        borderRadius: "12px",
-        textAlign: "center",
-        width: "300px",
+        color: "#fff",
+        fontSize: "26px",
+        fontWeight: 800,
+        marginBottom: "12px",
       }}
     >
-      <h2 style={{ marginBottom: "10px" }}>Watching Ad...</h2>
+      Unlocking your sessions... hang tight
+    </div>
 
-      <p style={{ fontSize: "18px", fontWeight: "bold" }}>
-        {countdown}
-      </p>
-
-      <div style={{ marginTop: "14px", textAlign: "center" }}>
-  <p style={{ fontSize: "14px", color: "#666", marginBottom: "12px" }}>
-    Unlocking your sessions... hang tight
-  </p>
-
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "center",
-      gap: "10px",
-      flexWrap: "wrap",
-    }}
-  >
-    <a
-      href="https://amzn.to/47HUGKw"
-      target="_blank"
-      rel="noopener noreferrer"
+    <div
       style={{
-        background: "#facc15",
-        color: "#000",
-        padding: "10px 14px",
-        borderRadius: "999px",
-        fontSize: "13px",
-        fontWeight: 600,
-        textDecoration: "none",
+        color: "#c4b5fd",
+        fontSize: "18px",
+        fontWeight: 700,
+        marginBottom: "20px",
       }}
     >
-      Atomic Habits
-    </a>
+      {countdown}
+    </div>
 
-    <a
-      href="https://amzn.to/4siUb0Q"
-      target="_blank"
-      rel="noopener noreferrer"
+    <div
       style={{
-        background: "#facc15",
-        color: "#000",
-        padding: "10px 14px",
-        borderRadius: "999px",
-        fontSize: "13px",
-        fontWeight: 600,
-        textDecoration: "none",
+        width: "100%",
+        maxWidth: "700px",
+        marginBottom: "30px",
       }}
     >
-      7 Habits
-    </a>
+      <img
+        src="/books-display.png"
+        alt="Top productivity books"
+        style={{
+          width: "100%",
+          borderRadius: "16px",
+          boxShadow: "0 30px 80px rgba(0,0,0,0.55)",
+        }}
+      />
+    </div>
 
-    <a
-      href="https://amzn.to/4duax2V"
-      target="_blank"
-      rel="noopener noreferrer"
+    <div
       style={{
-        background: "#facc15",
-        color: "#000",
-        padding: "10px 14px",
-        borderRadius: "999px",
-        fontSize: "13px",
-        fontWeight: 600,
-        textDecoration: "none",
+        display: "flex",
+        gap: "16px",
+        flexWrap: "wrap",
+        justifyContent: "center",
       }}
     >
-      Getting Things Done
-    </a>
-  </div>
-</div>
+      <a
+        href="https://amzn.to/47HUGKw"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          background: "linear-gradient(90deg, #facc15, #f59e0b)",
+          color: "#111827",
+          padding: "12px 18px",
+          borderRadius: "999px",
+          textDecoration: "none",
+          fontSize: "14px",
+          fontWeight: 700,
+        }}
+      >
+        Atomic Habits
+      </a>
+
+      <a
+        href="https://amzn.to/4siUb0Q"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          background: "linear-gradient(90deg, #facc15, #f59e0b)",
+          color: "#111827",
+          padding: "12px 18px",
+          borderRadius: "999px",
+          textDecoration: "none",
+          fontSize: "14px",
+          fontWeight: 700,
+        }}
+      >
+        The 7 Habits
+      </a>
+
+      <a
+        href="https://amzn.to/4duax2V"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          background: "linear-gradient(90deg, #facc15, #f59e0b)",
+          color: "#111827",
+          padding: "12px 18px",
+          borderRadius: "999px",
+          textDecoration: "none",
+          fontSize: "14px",
+          fontWeight: 700,
+        }}
+      >
+        Getting Things Done
+      </a>
     </div>
   </div>
 )}
