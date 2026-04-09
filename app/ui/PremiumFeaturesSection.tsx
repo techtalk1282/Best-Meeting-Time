@@ -189,7 +189,7 @@ function completeAdReward() {
   setIsWatchingAd(false);
   setShowAdModal(false);
 
-  window.location.hash = "#tool-preview";
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
   function handleShareClick() {
     if (!isPremium) {
