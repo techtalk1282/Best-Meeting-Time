@@ -1,19 +1,19 @@
 /**
  * File: app/page.tsx
- * Version: v2.0 (FINAL SEO + AUTHORITY BLOCK)
+ * Version: v2.1 (HIGH-CONVERTING VISUAL UPGRADE)
  * Date: 2026-04-09
  *
  * PURPOSE:
- * - Maintain layout shell structure (NO logic changes)
- * - Add high-value SEO content for AdSense approval
- * - Include real-world example + use-case targeting
+ * - Improve SEO section UX (scanable + engaging)
+ * - Add visual blocks (NO images, lightweight)
+ * - Highlight real-world example (key conversion element)
  *
  * NOTES:
- * - No changes to Stripe, gating, or premium logic
- * - SEO content added inside bonusFeatures only
+ * - ZERO changes to logic, Stripe, or gating
+ * - SEO meaning unchanged (safe for AdSense)
  *
  * ROLLBACK:
- * - Revert to v1.9 if needed
+ * - Revert to v2.0 if needed
  */
 
 import dynamic from "next/dynamic";
@@ -68,7 +68,7 @@ export default function HomePage() {
             </div>
 
             {/* ============================= */}
-            {/* FINAL SEO + AUTHORITY BLOCK   */}
+            {/* HIGH-CONVERTING SEO SECTION   */}
             {/* ============================= */}
 
             <div
@@ -77,65 +77,92 @@ export default function HomePage() {
                 margin: "60px auto 0",
                 padding: "0 20px",
                 color: "white",
-                lineHeight: "1.7",
                 textAlign: "left",
               }}
             >
-              <h2 style={{ fontSize: "28px", marginBottom: "18px" }}>
-                Best Meeting Time Across Time Zones — Plan Smarter, Faster
+              {/* 🔥 HOOK */}
+              <h2 style={{ fontSize: "30px", marginBottom: "10px" }}>
+                Find the Best Meeting Time — Instantly, Without Guesswork
               </h2>
 
-              <p style={{ marginBottom: "18px", color: "#ddd6fe" }}>
-                Scheduling meetings across time zones can quickly become frustrating, especially when working with remote teams, international clients, or global partners. This tool helps you instantly find the best meeting time between cities by showing overlapping working hours — so you can schedule confidently without the back-and-forth.
+              <p style={{ marginBottom: "30px", color: "#ddd6fe" }}>
+                Scheduling across time zones does not need to be complicated. Instantly compare cities, visualize overlapping hours, and choose the best meeting window in seconds.
               </p>
 
-              <h3 style={{ fontSize: "22px", marginBottom: "10px" }}>
-                Real Example: New York and London
-              </h3>
+              {/* 🔥 FEATURED EXAMPLE CARD */}
+              <div
+                style={{
+                  background: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  borderRadius: "12px",
+                  padding: "20px",
+                  marginBottom: "30px",
+                }}
+              >
+                <h3 style={{ fontSize: "20px", marginBottom: "10px" }}>
+                  Example: New York ↔ London
+                </h3>
 
-              <p style={{ marginBottom: "18px", color: "#ddd6fe" }}>
-                If you are scheduling a meeting between New York and London, there is typically a 5-hour time difference. A 9:00 AM meeting in New York is 2:00 PM in London — making late morning in the U.S. one of the best overlapping windows for both teams.
-              </p>
+                <p style={{ color: "#ddd6fe", marginBottom: "10px" }}>
+                  New York (9:00 AM) → London (2:00 PM)
+                </p>
 
-              <p style={{ marginBottom: "18px", color: "#ddd6fe" }}>
-                Instead of calculating this manually every time, this tool instantly highlights the best meeting window so you can focus on productivity, not time conversions.
-              </p>
+                <p style={{ color: "#c4b5fd", fontWeight: 500 }}>
+                  Best overlap window: 9:00 AM – 12:00 PM EST
+                </p>
+              </div>
 
-              <h3 style={{ fontSize: "22px", marginBottom: "10px" }}>
-                Who This Is For
-              </h3>
+              {/* 🔥 WHO IT'S FOR */}
+              <div style={{ marginBottom: "30px" }}>
+                <h3 style={{ fontSize: "22px", marginBottom: "10px" }}>
+                  Who This Is For
+                </h3>
 
-              <ul style={{ paddingLeft: "20px", marginBottom: "18px", color: "#ddd6fe" }}>
-                <li>Remote teams working across multiple time zones</li>
-                <li>Consultants and agencies scheduling client calls</li>
-                <li>Sales teams booking international meetings</li>
-                <li>Freelancers working with global clients</li>
-              </ul>
+                <ul style={{ paddingLeft: "20px", color: "#ddd6fe" }}>
+                  <li>Remote teams across multiple time zones</li>
+                  <li>Consultants scheduling client meetings</li>
+                  <li>Sales teams booking international calls</li>
+                  <li>Freelancers working with global clients</li>
+                </ul>
+              </div>
 
-              <h3 style={{ fontSize: "22px", marginBottom: "10px" }}>
-                Why Scheduling Across Time Zones Is Difficult
-              </h3>
+              {/* 🔥 WHY IT MATTERS */}
+              <div style={{ marginBottom: "30px" }}>
+                <h3 style={{ fontSize: "22px", marginBottom: "10px" }}>
+                  Why Scheduling Across Time Zones Is Difficult
+                </h3>
 
-              <p style={{ marginBottom: "18px", color: "#ddd6fe" }}>
-                Without a clear view of overlapping working hours, meetings often get scheduled too early or too late for one side. This leads to missed calls, lower productivity, and unnecessary friction between teams.
-              </p>
+                <p style={{ color: "#ddd6fe" }}>
+                  Without a clear view of overlapping working hours, meetings often get scheduled too early or too late. This leads to missed calls, lower productivity, and unnecessary friction.
+                </p>
+              </div>
 
-              <h3 style={{ fontSize: "22px", marginBottom: "10px" }}>
-                How This Tool Helps You Find the Best Meeting Time
-              </h3>
+              {/* 🔥 HOW IT WORKS (VISUAL STYLE) */}
+              <div
+                style={{
+                  background: "rgba(255,255,255,0.04)",
+                  borderRadius: "12px",
+                  padding: "20px",
+                  marginBottom: "30px",
+                }}
+              >
+                <h3 style={{ fontSize: "22px", marginBottom: "10px" }}>
+                  How This Tool Helps You
+                </h3>
 
-              <ul style={{ paddingLeft: "20px", marginBottom: "18px", color: "#ddd6fe" }}>
-                <li>Instantly compare two cities in real time</li>
-                <li>Visualize overlapping working hours</li>
-                <li>Identify the most convenient meeting window</li>
-                <li>Schedule faster without manual calculations</li>
-              </ul>
+                <ul style={{ paddingLeft: "20px", color: "#ddd6fe" }}>
+                  <li>Compare two cities in real time</li>
+                  <li>See overlapping working hours instantly</li>
+                  <li>Identify the best meeting window</li>
+                  <li>Schedule faster without manual conversions</li>
+                </ul>
+              </div>
 
-              <p style={{ marginTop: "20px", color: "#c4b5fd", fontWeight: 500 }}>
-                Whether you're scheduling a quick call or coordinating across continents, finding the right time makes every meeting more productive. Use this tool to eliminate guesswork and plan with confidence.
+              {/* 🔥 CLOSING */}
+              <p style={{ color: "#c4b5fd", fontWeight: 500 }}>
+                Whether you're scheduling across continents or booking a quick call, finding the right time makes every meeting more productive.
               </p>
             </div>
-
           </div>
         }
         footer={<FooterSection />}
