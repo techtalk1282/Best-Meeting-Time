@@ -1,19 +1,19 @@
 /**
  * File: app/page.tsx
- * Version: v2.3 (LIGHT CARD SYSTEM — MATCHES PRODUCT UI)
+ * Version: v2.4 (SEO BLOCK — FULL VISUAL ALIGNMENT FIX)
  * Date: 2026-04-09
  *
  * PURPOSE:
- * - Replace dark SEO section with light card-based layout
- * - Match styling of tool + premium sections
- * - Improve spacing, readability, and visual hierarchy
+ * - Convert SEO block to match product UI system
+ * - Replace white cards with purple system
+ * - Improve depth, cohesion, and polish
  *
- * NOTES:
- * - NO changes to logic / Stripe / gating
- * - ALL SEO text preserved (Google-safe)
+ * SAFE:
+ * - No logic touched
+ * - No Stripe / ToolPreview changes
  *
  * ROLLBACK:
- * - Revert to v2.2 if needed
+ * - v2.3
  */
 
 import dynamic from "next/dynamic";
@@ -39,10 +39,7 @@ export default function HomePage() {
         bonusFeatures={
           <div style={{ marginTop: "80px", padding: "0 20px" }}>
 
-            {/* ============================= */}
             {/* INTERNAL LINKS */}
-            {/* ============================= */}
-
             <div style={{ textAlign: "center", marginBottom: "50px", color: "white" }}>
               <h2 style={{ fontSize: "28px", marginBottom: "15px" }}>
                 Popular Meeting Time Cities
@@ -68,25 +65,20 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* ============================= */}
-            {/* LIGHT CARD CONTAINER */}
-            {/* ============================= */}
-
+            {/* MAIN SEO CONTAINER */}
             <div
               style={{
                 maxWidth: "1100px",
                 margin: "0 auto",
-                background: "#f8fafc",
+                background: "rgba(255,255,255,0.08)",
                 borderRadius: "20px",
                 padding: "40px",
-                boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+                boxShadow: "0 20px 60px rgba(0,0,0,0.35)",
+                backdropFilter: "blur(10px)",
               }}
             >
 
-              {/* ============================= */}
-              {/* HEADER + EXAMPLE */}
-              {/* ============================= */}
-
+              {/* HEADER */}
               <div
                 style={{
                   display: "grid",
@@ -96,43 +88,40 @@ export default function HomePage() {
                 }}
               >
                 <div>
-                  <h2 style={{ fontSize: "30px", marginBottom: "10px", color: "#1e293b" }}>
+                  <h2 style={{ fontSize: "30px", marginBottom: "10px", color: "white" }}>
                     Find the Best Meeting Time — Instantly
                   </h2>
 
-                  <p style={{ color: "#475569", lineHeight: "1.6" }}>
+                  <p style={{ color: "#ddd6fe", lineHeight: "1.6" }}>
                     Scheduling across time zones can be frustrating. This tool helps you instantly compare cities, visualize overlapping hours, and choose the best meeting time without manual calculations.
                   </p>
                 </div>
 
                 <div
                   style={{
-                    background: "white",
+                    background: "rgba(255,255,255,0.12)",
                     borderRadius: "12px",
                     padding: "20px",
-                    boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
+                    boxShadow: "0 10px 25px rgba(0,0,0,0.3)",
                   }}
                 >
-                  <h3 style={{ marginBottom: "8px", color: "#1e293b" }}>
+                  <h3 style={{ marginBottom: "8px", color: "white" }}>
                     New York ↔ London
                   </h3>
 
-                  <p style={{ color: "#64748b", marginBottom: "6px" }}>
+                  <p style={{ color: "#c4b5fd", marginBottom: "6px" }}>
                     9:00 AM → 2:00 PM
                   </p>
 
-                  <p style={{ color: "#7c3aed", fontWeight: 600 }}>
+                  <p style={{ color: "#facc15", fontWeight: 600 }}>
                     Best window: 9AM – 12PM EST
                   </p>
                 </div>
               </div>
 
-              {/* ============================= */}
-              {/* USE CASE GRID */}
-              {/* ============================= */}
-
+              {/* USE CASES */}
               <div style={{ marginBottom: "50px" }}>
-                <h3 style={{ marginBottom: "20px", color: "#1e293b" }}>
+                <h3 style={{ marginBottom: "20px", color: "white" }}>
                   Who This Is For
                 </h3>
 
@@ -152,11 +141,11 @@ export default function HomePage() {
                     <div
                       key={i}
                       style={{
-                        background: "white",
+                        background: "rgba(255,255,255,0.1)",
                         padding: "18px",
                         borderRadius: "10px",
-                        boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
-                        color: "#475569",
+                        boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
+                        color: "#ddd6fe",
                       }}
                     >
                       {text}
@@ -165,10 +154,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* ============================= */}
               {/* PROBLEM / SOLUTION */}
-              {/* ============================= */}
-
               <div
                 style={{
                   display: "grid",
@@ -177,50 +163,39 @@ export default function HomePage() {
                   marginBottom: "50px",
                 }}
               >
-                <div
-                  style={{
-                    background: "white",
-                    padding: "20px",
-                    borderRadius: "10px",
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
-                  }}
-                >
-                  <h3 style={{ marginBottom: "10px", color: "#1e293b" }}>
-                    Why This Is Difficult
-                  </h3>
+                {[
+                  {
+                    title: "Why This Is Difficult",
+                    text: "Without a clear view of overlapping working hours, meetings often get scheduled too early or too late. This leads to missed calls, lower productivity, and unnecessary friction.",
+                  },
+                  {
+                    title: "How This Tool Helps",
+                    text: "Compare two cities instantly. Visualize overlapping hours. Find the best meeting window. Eliminate manual conversions.",
+                  },
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      background: "rgba(255,255,255,0.1)",
+                      padding: "20px",
+                      borderRadius: "10px",
+                      boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
+                    }}
+                  >
+                    <h3 style={{ marginBottom: "10px", color: "white" }}>
+                      {item.title}
+                    </h3>
 
-                  <p style={{ color: "#475569" }}>
-                    Without a clear view of overlapping working hours, meetings often get scheduled too early or too late. This leads to missed calls, lower productivity, and unnecessary friction.
-                  </p>
-                </div>
-
-                <div
-                  style={{
-                    background: "white",
-                    padding: "20px",
-                    borderRadius: "10px",
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
-                  }}
-                >
-                  <h3 style={{ marginBottom: "10px", color: "#1e293b" }}>
-                    How This Tool Helps
-                  </h3>
-
-                  <ul style={{ color: "#475569", paddingLeft: "20px" }}>
-                    <li>Compare two cities instantly</li>
-                    <li>Visualize overlapping hours</li>
-                    <li>Find the best meeting window</li>
-                    <li>Eliminate manual conversions</li>
-                  </ul>
-                </div>
+                    <p style={{ color: "#ddd6fe" }}>
+                      {item.text}
+                    </p>
+                  </div>
+                ))}
               </div>
 
-              {/* ============================= */}
               {/* FLOW */}
-              {/* ============================= */}
-
               <div style={{ textAlign: "center" }}>
-                <h3 style={{ marginBottom: "20px", color: "#1e293b" }}>
+                <h3 style={{ marginBottom: "20px", color: "white" }}>
                   How It Works
                 </h3>
 
@@ -236,11 +211,11 @@ export default function HomePage() {
                     <div
                       key={i}
                       style={{
-                        background: "white",
+                        background: "rgba(255,255,255,0.12)",
                         padding: "14px 20px",
                         borderRadius: "8px",
-                        boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
-                        color: "#475569",
+                        boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
+                        color: "#ddd6fe",
                       }}
                     >
                       {step}
@@ -248,7 +223,7 @@ export default function HomePage() {
                   ))}
                 </div>
 
-                <p style={{ marginTop: "25px", color: "#64748b" }}>
+                <p style={{ marginTop: "25px", color: "#c4b5fd" }}>
                   Whether you're scheduling across continents or booking a quick call, finding the right time makes every meeting more productive.
                 </p>
               </div>
