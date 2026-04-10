@@ -1,3 +1,8 @@
+/**
+ * File: app/ui/ToolPreviewSection
+ * Version: v1.0 
+ * Date: 2026-04-10
+ 
 "use client";
 
 import { useEffect, useState } from "react";
@@ -289,15 +294,7 @@ if (!localStorage.getItem("free_sessions_used")) {
       isPremium,
     });
   }, [isPremium]);
-useEffect(() => {
-    if (!isLocked) return;
 
-    const timeout = window.setTimeout(() => {
-      scrollToUpgrade();
-    }, 120);
-
-    return () => window.clearTimeout(timeout);
-  }, [isLocked]);
  function handlePlannerInteraction(): boolean {
   const freeUsed = parseInt(
     localStorage.getItem("free_sessions_used") || "0",
@@ -311,9 +308,10 @@ useEffect(() => {
     );
 
     if (premiumUsed >= 6) {
-      setIsLocked(true);
-      return true;
-    }
+  setIsLocked(true);
+  scrollToUpgrade(); // 👈 ADD THIS LINE
+  return true;
+}
 
     localStorage.setItem(
       "premium_sessions_used",
@@ -322,10 +320,11 @@ useEffect(() => {
     return false;
   }
 
- if (freeUsed >= 4) {
-    setIsLocked(true);
-    return true;
-  }
+  if (freeUsed >= 4) {
+  setIsLocked(true);
+  scrollToUpgrade(); // 👈 ADD THIS LINE
+  return true;
+}
 
   localStorage.setItem("free_sessions_used", String(freeUsed + 1));
 
