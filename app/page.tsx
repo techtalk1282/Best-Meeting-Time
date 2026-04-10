@@ -140,16 +140,18 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* AUTHORITY + SEO FOOTER */}
-            <div style={{ maxWidth: "900px", margin: "0 auto", textAlign: "center" }}>
-              <p style={{ color: "#ddd6fe", marginBottom: "10px" }}>
-                Used by professionals, remote teams, and businesses worldwide to simplify time zone scheduling and improve meeting efficiency.
-              </p>
+            {/* AUTHORITY + FEATURE VALUE */}
+<div style={{ maxWidth: "900px", margin: "0 auto", textAlign: "center", lineHeight: "1.7" }}>
+  
+  <p style={{ color: "#ddd6fe", marginBottom: "14px" }}>
+    Designed for professionals, remote teams, and global businesses, this tool simplifies time zone scheduling and helps you confidently plan meetings without friction.
+  </p>
 
-              <p style={{ color: "#c4b5fd", fontSize: "14px" }}>
-                This meeting time zone tool helps you compare cities, find overlapping work hours, and schedule meetings across global time zones quickly and accurately.
-              </p>
-            </div>
+  <p style={{ color: "#c4b5fd", fontSize: "14px" }}>
+    Go beyond just finding a time — share meeting links instantly, coordinate across teams, and add events directly to Google, Outlook, or Apple calendars. These features streamline collaboration and ensure everyone stays aligned, no matter where they are in the world.
+  </p>
+
+</div>
 
           </div>
         }
