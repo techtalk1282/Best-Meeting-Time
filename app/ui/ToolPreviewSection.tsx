@@ -1,8 +1,3 @@
-/**
- * File: app/ui/ToolPreviewSection
- * Version: v1.0 
- * Date: 2026-04-10
- 
 "use client";
 
 import { useEffect, useState } from "react";
