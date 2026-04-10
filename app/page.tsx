@@ -140,17 +140,24 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* AUTHORITY + FEATURE VALUE */}
-<div style={{ maxWidth: "900px", margin: "0 auto", textAlign: "center", lineHeight: "1.7" }}>
-  
-  <p style={{ color: "#ddd6fe", marginBottom: "14px" }}>
-    Designed for professionals, remote teams, and global businesses, this tool simplifies time zone scheduling and helps you confidently plan meetings without friction.
+            {/* AUTHORITY + FEATURE VALUE (FINAL POLISH) */}
+<div
+  style={{
+    maxWidth: "820px",
+    margin: "40px auto 0 auto",
+    textAlign: "center",
+    color: "#ddd6fe",
+    fontSize: "15px",
+    lineHeight: "1.7",
+  }}
+>
+  <p>
+    Built for professionals, remote teams, and global businesses, this tool helps you quickly find the best meeting time across time zones without confusion or back-and-forth.
   </p>
 
-  <p style={{ color: "#c4b5fd", fontSize: "14px" }}>
-    Go beyond just finding a time — share meeting links instantly, coordinate across teams, and add events directly to Google, Outlook, or Apple calendars. These features streamline collaboration and ensure everyone stays aligned, no matter where they are in the world.
+  <p style={{ marginTop: "12px" }}>
+    Share meeting links instantly so teams can align faster, and add events directly to Google, Outlook, or Apple calendars to eliminate manual scheduling. These features improve collaboration, reduce scheduling errors, and help you move from planning to execution with confidence.
   </p>
-
 </div>
 
           </div>
