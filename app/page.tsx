@@ -1,12 +1,12 @@
 /**
  * File: app/page.tsx
- * Version: v2.6 (SEO BLOCK — SPLIT LAYOUT + VIEWPORT FIX)
+ * Version: v2.7 (FINAL SEO + AUTHORITY + SPACING FIX)
  * Date: 2026-04-09
  *
  * PURPOSE:
- * - Fix cutoff at 100% zoom
- * - Improve readability and contrast
- * - Add visual polish and hierarchy
+ * - Add authority paragraph for trust
+ * - Add keyword-rich SEO footer
+ * - Fix cramped bottom spacing near footer
  *
  * SAFE:
  * - No logic touched
@@ -33,7 +33,7 @@ export default function HomePage() {
         toolPreview={null}
         premiumFeatures={<PremiumFeaturesSection />}
         bonusFeatures={
-          <div style={{ marginTop: "80px", padding: "0 20px" }}>
+          <div style={{ marginTop: "80px", padding: "0 20px", paddingBottom: "80px" }}>
 
             {/* INTERNAL LINKS */}
             <div style={{ textAlign: "center", marginBottom: "40px", color: "white" }}>
@@ -54,10 +54,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* ============================= */}
-            {/* BLOCK 1 — MAIN */}
-            {/* ============================= */}
-
+            {/* BLOCK 1 */}
             <div
               style={{
                 maxWidth: "1100px",
@@ -73,60 +70,54 @@ export default function HomePage() {
                   Find the Best Meeting Time — Instantly
                 </h2>
 
-                <p style={{ color: "#312e81", fontSize: "16px" }}>
-                  Compare cities, visualize overlap, and schedule smarter in seconds.
+                <p style={{ color: "#312e81", fontSize: "16px", maxWidth: "720px", margin: "0 auto" }}>
+                  Compare time zones instantly and find the best meeting time between cities without guesswork. Whether you're scheduling a client call, coordinating a remote team, or planning across continents, this tool shows overlapping working hours so you can confidently choose the most productive time.
                 </p>
               </div>
 
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
 
-                {/* Example */}
                 <div style={card}>
                   <h3 style={title}>New York ↔ London</h3>
                   <p style={text}>9:00 AM → 2:00 PM</p>
                   <p style={gold}>Best window: 9AM – 12PM EST</p>
                 </div>
 
-                {/* Who */}
                 <div style={card}>
                   <h3 style={title}>Who This Is For</h3>
                   <ul style={textList}>
-                    <li>Remote teams</li>
-                    <li>Consultants</li>
-                    <li>Sales teams</li>
-                    <li>Freelancers</li>
+                    <li>Remote teams working across multiple time zones</li>
+                    <li>Consultants booking international client calls</li>
+                    <li>Sales teams coordinating global meetings</li>
+                    <li>Freelancers managing clients in different regions</li>
                   </ul>
                 </div>
 
-                {/* Problem */}
                 <div style={card}>
                   <h3 style={title}>Why This Is Difficult</h3>
                   <p style={text}>
-                    Without clear overlap visibility, meetings get scheduled too early or too late.
+                    Scheduling meetings across time zones is more complex than it seems. A time that works for one participant may fall outside normal working hours for another, often leading to delays, missed calls, or inefficient scheduling.
                   </p>
                 </div>
 
-                {/* Solution */}
                 <div style={card}>
                   <h3 style={title}>How This Tool Helps</h3>
                   <ul style={textList}>
-                    <li>Compare cities instantly</li>
-                    <li>See overlap</li>
-                    <li>Find best time</li>
+                    <li>Instantly compare cities and their local times</li>
+                    <li>Visualize overlapping working hours clearly</li>
+                    <li>Identify the most convenient meeting window</li>
+                    <li>Eliminate manual time conversion errors</li>
                   </ul>
                 </div>
 
               </div>
             </div>
 
-            {/* ============================= */}
-            {/* BLOCK 2 — FLOW */}
-            {/* ============================= */}
-
+            {/* BLOCK 2 */}
             <div
               style={{
                 maxWidth: "900px",
-                margin: "0 auto",
+                margin: "0 auto 30px auto",
                 background: "#ede9fe",
                 borderRadius: "18px",
                 padding: "25px",
@@ -145,7 +136,18 @@ export default function HomePage() {
               </div>
 
               <p style={{ color: "#4b5563", fontSize: "14px" }}>
-                Find the best time quickly and avoid scheduling conflicts.
+                Find the best meeting time in seconds by comparing cities, viewing overlapping hours, and selecting the optimal time.
+              </p>
+            </div>
+
+            {/* AUTHORITY + SEO FOOTER */}
+            <div style={{ maxWidth: "900px", margin: "0 auto", textAlign: "center" }}>
+              <p style={{ color: "#ddd6fe", marginBottom: "10px" }}>
+                Used by professionals, remote teams, and businesses worldwide to simplify time zone scheduling and improve meeting efficiency.
+              </p>
+
+              <p style={{ color: "#c4b5fd", fontSize: "14px" }}>
+                This meeting time zone tool helps you compare cities, find overlapping work hours, and schedule meetings across global time zones quickly and accurately.
               </p>
             </div>
 
