@@ -289,7 +289,15 @@ if (!localStorage.getItem("free_sessions_used")) {
       isPremium,
     });
   }, [isPremium]);
+useEffect(() => {
+    if (!isLocked) return;
 
+    const timeout = window.setTimeout(() => {
+      scrollToUpgrade();
+    }, 120);
+
+    return () => window.clearTimeout(timeout);
+  }, [isLocked]);
  function handlePlannerInteraction(): boolean {
   const freeUsed = parseInt(
     localStorage.getItem("free_sessions_used") || "0",
@@ -303,10 +311,9 @@ if (!localStorage.getItem("free_sessions_used")) {
     );
 
     if (premiumUsed >= 6) {
-  setIsLocked(true);
-  scrollToUpgrade(); // 👈 ADD THIS LINE
-  return true;
-}
+      setIsLocked(true);
+      return true;
+    }
 
     localStorage.setItem(
       "premium_sessions_used",
@@ -315,11 +322,10 @@ if (!localStorage.getItem("free_sessions_used")) {
     return false;
   }
 
-  if (freeUsed >= 4) {
-  setIsLocked(true);
-  scrollToUpgrade(); // 👈 ADD THIS LINE
-  return true;
-}
+ if (freeUsed >= 4) {
+    setIsLocked(true);
+    return true;
+  }
 
   localStorage.setItem("free_sessions_used", String(freeUsed + 1));
 
