@@ -1,21 +1,20 @@
 /**
  * File: app/ui/LayoutShell.tsx
- * Version: v3.3 (HORIZONTAL BOOK BUTTONS + SAFER IMAGE SCALING)
- * Date: 2026-04-08
+ * Version: v3.4 (GATE BOOK MONETIZATION SECTION)
+ * Date: 2026-04-10
  *
  * PURPOSE:
- * - Keep the monetization hero prominent
- * - Replace stacked book CTAs with horizontal pill buttons
- * - Remove misleading extra CTA copy
- * - Reduce perceived image distortion with safer scaling
+ * - Hide the books monetization section until ad unlock is triggered
+ * - Keep current layout, styling, and footer behavior intact
+ * - Avoid showing books to unpaid users before they choose the ad flow
  *
  * ROLLBACK:
- * - Revert to v3.2
+ * - Revert to v3.3
  */
 
 "use client";
 
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 export default function LayoutShell({
   hero,
@@ -30,6 +29,8 @@ export default function LayoutShell({
   bonusFeatures: ReactNode;
   footer: ReactNode;
 }) {
+  const [showAdContent, setShowAdContent] = useState(false);
+
   useEffect(() => {
     try {
       // @ts-ignore
@@ -37,6 +38,13 @@ export default function LayoutShell({
     } catch (e) {
       console.error("AdSense push error:", e);
     }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const unlocked = localStorage.getItem("ad_unlocked") === "true";
+    setShowAdContent(unlocked);
   }, []);
 
   const books = [
@@ -55,102 +63,101 @@ export default function LayoutShell({
       <section id="tool-preview">{toolPreview}</section>
       <section>{premiumFeatures}</section>
 
-      {/* MONETIZATION HERO */}
-      <section
-        style={{
-          minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "56px 20px 72px",
-          textAlign: "center",
-        }}
-      >
-        <div
+      {showAdContent && (
+        <section
           style={{
-            color: "#fff",
-            fontSize: "26px",
-            fontWeight: 800,
-            lineHeight: 1.15,
-            marginBottom: "12px",
-          }}
-        >
-          Level up your productivity today
-        </div>
-
-        <div
-          style={{
-            color: "#c4b5fd",
-            fontSize: "15px",
-            lineHeight: 1.4,
-            marginBottom: "28px",
-          }}
-        >
-          Top books used by high performers — get yours now
-        </div>
-
-        {/* IMAGE */}
-        <div
-          style={{
-            width: "100%",
-            maxWidth: "760px",
-            marginBottom: "28px",
+            minHeight: "100vh",
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
+            alignItems: "center",
+            padding: "56px 20px 72px",
+            textAlign: "center",
           }}
         >
-          <img
-            src="/books-display.png"
-            alt="Top productivity books"
+          <div
+            style={{
+              color: "#fff",
+              fontSize: "26px",
+              fontWeight: 800,
+              lineHeight: 1.15,
+              marginBottom: "12px",
+            }}
+          >
+            Level up your productivity today
+          </div>
+
+          <div
+            style={{
+              color: "#c4b5fd",
+              fontSize: "15px",
+              lineHeight: 1.4,
+              marginBottom: "28px",
+            }}
+          >
+            Top books used by high performers — get yours now
+          </div>
+
+          <div
             style={{
               width: "100%",
               maxWidth: "760px",
-              height: "auto",
-              display: "block",
-              borderRadius: "16px",
-              boxShadow: "0 30px 80px rgba(0,0,0,0.55)",
-              objectFit: "contain",
-              imageRendering: "auto",
+              marginBottom: "28px",
+              display: "flex",
+              justifyContent: "center",
             }}
-          />
-        </div>
-
-        {/* HORIZONTAL BOOK BUTTONS */}
-        <div
-          style={{
-            display: "flex",
-justifyContent: "space-between",
-alignItems: "center",
-width: "100%",
-maxWidth: "760px",
-marginTop: "10px",
-          }}
-        >
-          {books.map((book) => (
-            <a
-              key={book.label}
-              href={book.link}
-              target="_blank"
-              rel="noopener noreferrer"
+          >
+            <img
+              src="/books-display.png"
+              alt="Top productivity books"
               style={{
-                background: "linear-gradient(90deg, #facc15, #f59e0b)",
-                color: "#111827",
-                padding: "12px 18px",
-                borderRadius: "999px",
-                textDecoration: "none",
-                fontSize: "14px",
-                fontWeight: 700,
-                lineHeight: 1,
-                boxShadow: "0 10px 24px rgba(0,0,0,0.32)",
-                whiteSpace: "nowrap",
+                width: "100%",
+                maxWidth: "760px",
+                height: "auto",
+                display: "block",
+                borderRadius: "16px",
+                boxShadow: "0 30px 80px rgba(0,0,0,0.55)",
+                objectFit: "contain",
+                imageRendering: "auto",
               }}
-            >
-              {book.label}
-            </a>
-          ))}
-        </div>
-      </section>
+            />
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              width: "100%",
+              maxWidth: "760px",
+              marginTop: "10px",
+            }}
+          >
+            {books.map((book) => (
+              <a
+                key={book.label}
+                href={book.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  background: "linear-gradient(90deg, #facc15, #f59e0b)",
+                  color: "#111827",
+                  padding: "12px 18px",
+                  borderRadius: "999px",
+                  textDecoration: "none",
+                  fontSize: "14px",
+                  fontWeight: 700,
+                  lineHeight: 1,
+                  boxShadow: "0 10px 24px rgba(0,0,0,0.32)",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {book.label}
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section id="bonus-features">{bonusFeatures}</section>
 
