@@ -1,12 +1,13 @@
 /**
  * File: app/page.tsx
- * Version: v2.7 (FINAL SEO + AUTHORITY + SPACING FIX)
+ * Version: v3.0 (FINAL POLISH — UX + SEO + VISUAL BALANCE)
  * Date: 2026-04-09
  *
  * PURPOSE:
- * - Add authority paragraph for trust
- * - Add keyword-rich SEO footer
- * - Fix cramped bottom spacing near footer
+ * - Improve "How It Works" clarity and strength
+ * - Add bottom container for visual separation
+ * - Tighten typography + spacing
+ * - Add trust signal for SEO / AdSense
  *
  * SAFE:
  * - No logic touched
@@ -113,52 +114,59 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* BLOCK 2 */}
+            {/* BLOCK 2 — UPGRADED */}
             <div
               style={{
                 maxWidth: "900px",
                 margin: "0 auto 30px auto",
                 background: "#ede9fe",
                 borderRadius: "18px",
-                padding: "25px",
-                boxShadow: "0 8px 25px rgba(0,0,0,0.2)",
+                padding: "28px",
+                boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
                 textAlign: "center",
               }}
             >
-              <h3 style={{ color: "#1e1b4b", marginBottom: "15px" }}>
+              <h3 style={{ color: "#1e1b4b", marginBottom: "18px", fontSize: "20px" }}>
                 How It Works
               </h3>
 
-              <div style={{ display: "flex", justifyContent: "center", gap: "12px", marginBottom: "12px" }}>
-                {["Compare", "View", "Choose"].map((s, i) => (
+              <div style={{ display: "flex", justifyContent: "center", gap: "14px", marginBottom: "14px" }}>
+                {["Compare Time Zones", "Find Overlap", "Schedule with Confidence"].map((s, i) => (
                   <div key={i} style={pill}>{s}</div>
                 ))}
               </div>
 
               <p style={{ color: "#4b5563", fontSize: "14px" }}>
-                Find the best meeting time in seconds by comparing cities, viewing overlapping hours, and selecting the optimal time.
+                Quickly identify the best meeting time by comparing cities, visualizing overlapping hours, and choosing the most efficient window for everyone involved.
               </p>
             </div>
 
-            {/* AUTHORITY + FEATURE VALUE (FINAL POLISH) */}
-<div
-  style={{
-    maxWidth: "820px",
-    margin: "40px auto 0 auto",
-    textAlign: "center",
-    color: "#ddd6fe",
-    fontSize: "15px",
-    lineHeight: "1.7",
-  }}
->
-  <p>
-    Built for professionals, remote teams, and global businesses, this tool helps you quickly find the best meeting time across time zones without confusion or back-and-forth.
-  </p>
+            {/* FINAL SECTION — POLISHED */}
+            <div
+              style={{
+                maxWidth: "820px",
+                margin: "40px auto 0 auto",
+                textAlign: "center",
+                background: "rgba(255,255,255,0.05)",
+                borderRadius: "14px",
+                padding: "22px",
+                color: "#ddd6fe",
+                fontSize: "15px",
+                lineHeight: "1.7",
+              }}
+            >
+              <p>
+                Built for professionals, remote teams, and global businesses, this tool helps you quickly find the best meeting time across time zones without confusion or back-and-forth.
+              </p>
 
-  <p style={{ marginTop: "12px" }}>
-    Share meeting links instantly so teams can align faster, and add events directly to Google, Outlook, or Apple calendars to eliminate manual scheduling. These features improve collaboration, reduce scheduling errors, and help you move from planning to execution with confidence.
-  </p>
-</div>
+              <p style={{ marginTop: "12px" }}>
+                Share meeting links instantly to keep teams aligned, and add events directly to Google, Outlook, or Apple calendars to eliminate manual scheduling. These features improve collaboration, reduce errors, and help you move from planning to execution with confidence.
+              </p>
+
+              <p style={{ color: "#a5b4fc", fontSize: "13px", marginTop: "18px" }}>
+                No sign-up required. No subscriptions. Built for fast, reliable scheduling across time zones.
+              </p>
+            </div>
 
           </div>
         }
@@ -198,8 +206,9 @@ const gold = {
 
 const pill = {
   background: "white",
-  padding: "8px 14px",
-  borderRadius: "8px",
-  boxShadow: "0 3px 10px rgba(0,0,0,0.12)",
+  padding: "10px 16px",
+  borderRadius: "10px",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.18)",
   color: "#374151",
+  fontWeight: 500,
 };
