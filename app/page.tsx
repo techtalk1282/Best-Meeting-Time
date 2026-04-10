@@ -1,19 +1,20 @@
 /**
  * File: app/page.tsx
- * Version: v2.4 (SEO BLOCK — FULL VISUAL ALIGNMENT FIX)
+ * Version: v2.5 (SEO BLOCK — PREMIUM STYLE LIGHT CARD REBUILD)
  * Date: 2026-04-09
  *
  * PURPOSE:
- * - Convert SEO block to match product UI system
- * - Replace white cards with purple system
- * - Improve depth, cohesion, and polish
+ * - Rebuild the homepage SEO block so it visually matches the upper product sections
+ * - Replace the bland dark-purple block with a light premium-style container
+ * - Keep SEO content intact while improving structure, centering, spacing, and polish
  *
  * SAFE:
- * - No logic touched
- * - No Stripe / ToolPreview changes
+ * - No Stripe logic touched
+ * - No ToolPreviewSection logic touched
+ * - No premium / gating logic touched
  *
  * ROLLBACK:
- * - v2.3
+ * - Revert to v2.4 if needed
  */
 
 import dynamic from "next/dynamic";
@@ -38,7 +39,6 @@ export default function HomePage() {
         premiumFeatures={<PremiumFeaturesSection />}
         bonusFeatures={
           <div style={{ marginTop: "80px", padding: "0 20px" }}>
-
             {/* INTERNAL LINKS */}
             <div style={{ textAlign: "center", marginBottom: "50px", color: "white" }}>
               <h2 style={{ fontSize: "28px", marginBottom: "15px" }}>
@@ -70,132 +70,172 @@ export default function HomePage() {
               style={{
                 maxWidth: "1100px",
                 margin: "0 auto",
-                background: "rgba(255,255,255,0.08)",
+                background: "#ede9fe",
                 borderRadius: "20px",
-                padding: "40px",
-                boxShadow: "0 20px 60px rgba(0,0,0,0.35)",
-                backdropFilter: "blur(10px)",
+                padding: "50px 40px",
+                boxShadow: "0 10px 40px rgba(0,0,0,0.25)",
               }}
             >
-
               {/* HEADER */}
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1.2fr 1fr",
-                  gap: "40px",
-                  marginBottom: "50px",
-                }}
-              >
-                <div>
-                  <h2 style={{ fontSize: "30px", marginBottom: "10px", color: "white" }}>
-                    Find the Best Meeting Time — Instantly
-                  </h2>
+              <div style={{ textAlign: "center", marginBottom: "40px" }}>
+                <h2 style={{ fontSize: "32px", color: "#1e1b4b", marginBottom: "10px" }}>
+                  Find the Best Meeting Time — Instantly
+                </h2>
 
-                  <p style={{ color: "#ddd6fe", lineHeight: "1.6" }}>
-                    Scheduling across time zones can be frustrating. This tool helps you instantly compare cities, visualize overlapping hours, and choose the best meeting time without manual calculations.
-                  </p>
-                </div>
-
-                <div
+                <p
                   style={{
-                    background: "rgba(255,255,255,0.12)",
-                    borderRadius: "12px",
-                    padding: "20px",
-                    boxShadow: "0 10px 25px rgba(0,0,0,0.3)",
+                    color: "#4338ca",
+                    maxWidth: "720px",
+                    margin: "0 auto",
+                    lineHeight: "1.6",
                   }}
                 >
-                  <h3 style={{ marginBottom: "8px", color: "white" }}>
-                    New York ↔ London
-                  </h3>
-
-                  <p style={{ color: "#c4b5fd", marginBottom: "6px" }}>
-                    9:00 AM → 2:00 PM
-                  </p>
-
-                  <p style={{ color: "#facc15", fontWeight: 600 }}>
-                    Best window: 9AM – 12PM EST
-                  </p>
-                </div>
+                  Scheduling across time zones can be frustrating. This tool helps you instantly
+                  compare cities, visualize overlapping hours, and choose the best meeting time
+                  without manual calculations.
+                </p>
               </div>
 
-              {/* USE CASES */}
-              <div style={{ marginBottom: "50px" }}>
-                <h3 style={{ marginBottom: "20px", color: "white" }}>
-                  Who This Is For
-                </h3>
-
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(2, 1fr)",
-                    gap: "20px",
-                  }}
-                >
-                  {[
-                    "Remote teams across time zones",
-                    "Consultants scheduling client calls",
-                    "Sales teams booking international meetings",
-                    "Freelancers working with global clients",
-                  ].map((text, i) => (
-                    <div
-                      key={i}
-                      style={{
-                        background: "rgba(255,255,255,0.1)",
-                        padding: "18px",
-                        borderRadius: "10px",
-                        boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
-                        color: "#ddd6fe",
-                      }}
-                    >
-                      {text}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* PROBLEM / SOLUTION */}
+              {/* TOP ROW */}
               <div
                 style={{
                   display: "grid",
                   gridTemplateColumns: "1fr 1fr",
-                  gap: "40px",
-                  marginBottom: "50px",
+                  gap: "24px",
+                  marginBottom: "24px",
                 }}
               >
-                {[
-                  {
-                    title: "Why This Is Difficult",
-                    text: "Without a clear view of overlapping working hours, meetings often get scheduled too early or too late. This leads to missed calls, lower productivity, and unnecessary friction.",
-                  },
-                  {
-                    title: "How This Tool Helps",
-                    text: "Compare two cities instantly. Visualize overlapping hours. Find the best meeting window. Eliminate manual conversions.",
-                  },
-                ].map((item, i) => (
+                <div
+                  style={{
+                    background: "white",
+                    borderRadius: "14px",
+                    padding: "24px",
+                    boxShadow: "0 6px 18px rgba(0,0,0,0.14)",
+                  }}
+                >
+                  <h3 style={{ color: "#1e1b4b", marginBottom: "10px" }}>
+                    New York ↔ London
+                  </h3>
+
+                  <p style={{ color: "#6b7280", marginBottom: "8px" }}>
+                    9:00 AM → 2:00 PM
+                  </p>
+
+                  <p style={{ color: "#d97706", fontWeight: 700 }}>
+                    Best window: 9AM – 12PM EST
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    background: "white",
+                    borderRadius: "14px",
+                    padding: "24px",
+                    boxShadow: "0 6px 18px rgba(0,0,0,0.14)",
+                  }}
+                >
+                  <h3 style={{ color: "#1e1b4b", marginBottom: "14px" }}>
+                    Who This Is For
+                  </h3>
+
                   <div
-                    key={i}
                     style={{
-                      background: "rgba(255,255,255,0.1)",
-                      padding: "20px",
-                      borderRadius: "10px",
-                      boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1fr",
+                      gap: "12px",
                     }}
                   >
-                    <h3 style={{ marginBottom: "10px", color: "white" }}>
-                      {item.title}
-                    </h3>
-
-                    <p style={{ color: "#ddd6fe" }}>
-                      {item.text}
-                    </p>
+                    {[
+                      "Remote teams across time zones",
+                      "Consultants scheduling client calls",
+                      "Sales teams booking international meetings",
+                      "Freelancers working with global clients",
+                    ].map((text, i) => (
+                      <div
+                        key={i}
+                        style={{
+                          background: "#f5f3ff",
+                          borderRadius: "10px",
+                          padding: "12px 14px",
+                          color: "#4b5563",
+                          fontSize: "14px",
+                          lineHeight: "1.5",
+                        }}
+                      >
+                        {text}
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
               </div>
 
-              {/* FLOW */}
-              <div style={{ textAlign: "center" }}>
-                <h3 style={{ marginBottom: "20px", color: "white" }}>
+              {/* MIDDLE ROW */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "24px",
+                  marginBottom: "32px",
+                }}
+              >
+                <div
+                  style={{
+                    background: "white",
+                    borderRadius: "14px",
+                    padding: "24px",
+                    boxShadow: "0 6px 18px rgba(0,0,0,0.14)",
+                  }}
+                >
+                  <h3 style={{ color: "#1e1b4b", marginBottom: "12px" }}>
+                    Why This Is Difficult
+                  </h3>
+
+                  <p style={{ color: "#4b5563", lineHeight: "1.7" }}>
+                    Without a clear view of overlapping working hours, meetings often get
+                    scheduled too early or too late. This leads to missed calls, lower
+                    productivity, and unnecessary friction.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    background: "white",
+                    borderRadius: "14px",
+                    padding: "24px",
+                    boxShadow: "0 6px 18px rgba(0,0,0,0.14)",
+                  }}
+                >
+                  <h3 style={{ color: "#1e1b4b", marginBottom: "12px" }}>
+                    How This Tool Helps
+                  </h3>
+
+                  <ul
+                    style={{
+                      color: "#4b5563",
+                      paddingLeft: "20px",
+                      margin: 0,
+                      lineHeight: "1.8",
+                    }}
+                  >
+                    <li>Compare two cities instantly</li>
+                    <li>Visualize overlapping hours</li>
+                    <li>Find the best meeting window</li>
+                    <li>Eliminate manual conversions</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* BOTTOM FLOW */}
+              <div
+                style={{
+                  background: "white",
+                  borderRadius: "14px",
+                  padding: "28px 24px",
+                  boxShadow: "0 6px 18px rgba(0,0,0,0.14)",
+                  textAlign: "center",
+                }}
+              >
+                <h3 style={{ marginBottom: "18px", color: "#1e1b4b" }}>
                   How It Works
                 </h3>
 
@@ -203,19 +243,21 @@ export default function HomePage() {
                   style={{
                     display: "flex",
                     justifyContent: "center",
-                    gap: "20px",
+                    gap: "14px",
                     flexWrap: "wrap",
+                    marginBottom: "18px",
                   }}
                 >
                   {["Compare Cities", "View Overlap", "Choose Time"].map((step, i) => (
                     <div
                       key={i}
                       style={{
-                        background: "rgba(255,255,255,0.12)",
-                        padding: "14px 20px",
-                        borderRadius: "8px",
-                        boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
-                        color: "#ddd6fe",
+                        background: "#f5f3ff",
+                        padding: "12px 18px",
+                        borderRadius: "10px",
+                        color: "#4b5563",
+                        fontWeight: 600,
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
                       }}
                     >
                       {step}
@@ -223,11 +265,18 @@ export default function HomePage() {
                   ))}
                 </div>
 
-                <p style={{ marginTop: "25px", color: "#c4b5fd" }}>
-                  Whether you're scheduling across continents or booking a quick call, finding the right time makes every meeting more productive.
+                <p
+                  style={{
+                    color: "#6b7280",
+                    maxWidth: "760px",
+                    margin: "0 auto",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  Whether you're scheduling across continents or booking a quick call, finding
+                  the right time makes every meeting more productive.
                 </p>
               </div>
-
             </div>
           </div>
         }
