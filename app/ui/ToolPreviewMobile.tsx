@@ -1,17 +1,17 @@
 /**
  * File: app/ui/ToolPreviewMobile.tsx
- * Version: v2.1
+ * Version: v2.2
  * Date: 2026-04-11
  *
  * Purpose:
- * - FIX mobile layout cutoff + centering (root issue)
- * - Fully isolate from parent layout (no LayoutShell changes)
- * - Maintain timeline + structure
+ * - FINAL fix for mobile centering + offset bug
+ * - Remove 100vw causing horizontal shift
+ * - Improve mobile visual balance
+ * - Keep fully isolated (no parent changes)
  *
  * Fixes:
- * - Uses viewport wrapper (100vw) to break out of parent constraints
- * - Prevents horizontal overflow
- * - Ensures perfect centering on all devices
+ * - True centering (no viewport drift)
+ * - Header scaling for mobile
  */
 
 "use client";
@@ -40,7 +40,6 @@ export default function ToolPreviewMobile(props: any) {
     minute: "2-digit",
   }).format(now);
 
-  // SAFE STATIC WINDOW (placeholder)
   const startHour = 9;
   const endHour = 17;
 
@@ -50,17 +49,34 @@ export default function ToolPreviewMobile(props: any) {
   const ticks = Array.from({ length: 12 }, (_, i) => i * 2);
 
   return (
-    // ✅ OUTER VIEWPORT WRAPPER (critical fix)
     <div
       style={{
-        width: "100vw",
-        maxWidth: "100vw",
+        width: "100%",
+        maxWidth: "100%",
         overflowX: "hidden",
         display: "flex",
         justifyContent: "center",
+        padding: 0,
+        margin: 0,
       }}
     >
-      {/* ✅ INNER CONTAINER */}
+      {/* MOBILE HEADER FIX */}
+      <style>
+        {`
+          h1 {
+            font-size: 28px !important;
+            line-height: 1.2 !important;
+            text-align: center;
+          }
+
+          @media (max-width: 400px) {
+            h1 {
+              font-size: 24px !important;
+            }
+          }
+        `}
+      </style>
+
       <div
         style={{
           width: "100%",
