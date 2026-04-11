@@ -34,6 +34,13 @@ const cityATime = new Intl.DateTimeFormat("en-US", {
 }).format(now);
 
 const cityBTime = new Intl.DateTimeFormat("en-US", {
+  // SIMPLE STATIC WORK WINDOW (SAFE VERSION)
+const startHour = 9;
+const endHour = 17;
+
+// Convert to % of 24h day
+const startPercent = (startHour / 24) * 100;
+const widthPercent = ((endHour - startHour) / 24) * 100;
   timeZone: cityB.tz,
   hour: "numeric",
   minute: "2-digit",
@@ -53,6 +60,27 @@ const cityBTime = new Intl.DateTimeFormat("en-US", {
       <div style={{ fontSize: 18, fontWeight: 700 }}>{cityBTime}</div>
     </div>
   </div>
+      <div style={{ marginTop: "10px" }}>
+  <div
+    style={{
+      position: "relative",
+      height: "10px",
+      background: "#ddd",
+      borderRadius: "5px",
+      overflow: "hidden",
+    }}
+  >
+    <div
+      style={{
+        position: "absolute",
+        left: `${startPercent}%`,
+        width: `${widthPercent}%`,
+        height: "100%",
+        background: "#22c55e",
+      }}
+    />
+  </div>
+</div>
       {/* City A */}
       <select
         style={{ width: "100%" }}
