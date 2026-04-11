@@ -51,7 +51,16 @@ export default function ToolPreviewMobile(props: any) {
   const ticks = Array.from({ length: 12 }, (_, i) => i * 2);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+    <div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    gap: "16px",
+    width: "100%",
+    maxWidth: "420px",
+    margin: "0 auto",
+  }}
+>
 
       {/* TIME DISPLAY */}
       <div style={{ display: "flex", justifyContent: "space-between" }}>
