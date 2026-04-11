@@ -402,20 +402,11 @@ if (isMobile) {
         setCityB={setCityB}
         CITY_OPTIONS={CITY_OPTIONS}
         handlePlannerInteraction={handlePlannerInteraction}
-
-        meetingWindow={meetingWindow}
-        cityATime={cityATime}
-        cityBTime={cityBTime}
-        cityATZ={cityATZ}
-        cityBTZ={cityBTZ}
-        startLocal={startLocal}
-        endLocal={endLocal}
-        startPercent={startPercent}
-        widthPercent={widthPercent}
       />
     </div>
   );
 }
+        
 
   const meetingWindow = calculateOverlap(cityA, cityB);
 
