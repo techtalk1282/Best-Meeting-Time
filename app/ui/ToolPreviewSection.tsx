@@ -661,14 +661,14 @@ scrollToUpgrade();
 
         <div
           style={{
-            marginTop: 2,
-            display: "14px",
-            gap: 23,
-            justifyContent: "flex-start",
-            alignItems: "center",
-            flexWrap: "nowrap",
-            overflowX: "auto"
-          }}
+  marginTop: 2,
+  display: "flex",
+  gap: 12,
+  justifyContent: "center",
+  alignItems: "center",
+  flexWrap: "wrap",        // ✅ KEY FIX
+  overflowX: "hidden"      // ✅ REMOVE SIDE SCROLL
+}}
         >
           {premiumMessage && (
   <div
