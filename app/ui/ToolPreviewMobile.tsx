@@ -25,9 +25,34 @@ export default function ToolPreviewMobile(props: any) {
     CITY_OPTIONS,
     handlePlannerInteraction,
   } = props;
+const now = new Date();
 
+const cityATime = new Intl.DateTimeFormat("en-US", {
+  timeZone: cityA.tz,
+  hour: "numeric",
+  minute: "2-digit",
+}).format(now);
+
+const cityBTime = new Intl.DateTimeFormat("en-US", {
+  timeZone: cityB.tz,
+  hour: "numeric",
+  minute: "2-digit",
+}).format(now);
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+
+  {/* TIME DISPLAY */}
+  <div style={{ display: "flex", justifyContent: "space-between" }}>
+    <div>
+      <div style={{ fontWeight: 600 }}>{cityA.name}</div>
+      <div style={{ fontSize: 18, fontWeight: 700 }}>{cityATime}</div>
+    </div>
+
+    <div style={{ textAlign: "right" }}>
+      <div style={{ fontWeight: 600 }}>{cityB.name}</div>
+      <div style={{ fontSize: 18, fontWeight: 700 }}>{cityBTime}</div>
+    </div>
+  </div>
       {/* City A */}
       <select
         style={{ width: "100%" }}
