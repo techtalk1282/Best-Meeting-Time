@@ -602,7 +602,8 @@ scrollToUpgrade();
   }
 >
         <select
-          value={cityA.name}
+  style={isMobile ? { width: "100%" } : {}}
+  value={cityA.name}
           onChange={(e) => {
             if (handlePlannerInteraction()) return;
             const city = CITY_OPTIONS.find((c) => c.name === e.target.value)!;
@@ -636,7 +637,8 @@ scrollToUpgrade();
         </button>
 
         <select
-          value={cityB.name}
+  style={isMobile ? { width: "100%" } : {}}
+  value={cityB.name}
           onChange={(e) => {
             if (handlePlannerInteraction()) return;
             const city = CITY_OPTIONS.find((c) => c.name === e.target.value)!;
