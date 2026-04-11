@@ -227,6 +227,18 @@ export default function ToolPreviewSection({
   const [shareUrl, setShareUrl] = useState<string | null>(null);
   const [shareCopied, setShareCopied] = useState(false);
   const [premiumMessage, setPremiumMessage] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const checkMobile = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
+
+  checkMobile();
+  window.addEventListener("resize", checkMobile);
+
+  return () => window.removeEventListener("resize", checkMobile);
+}, []);
    function requirePremiumFeature(): boolean {
   if (!isPremium) {
     setPremiumMessage("🔒 Premium feature — unlock all features for $7 below");
@@ -663,11 +675,11 @@ scrollToUpgrade();
           style={{
   marginTop: 2,
   display: "flex",
-  gap: 23,
-  justifyContent: "flex-start",
+  gap: isMobile ? 12 : 23,
+  justifyContent: isMobile ? "center" : "flex-start",
   alignItems: "center",
-  flexWrap: "nowrap",
-  overflowX: "auto"
+  flexWrap: isMobile ? "wrap" : "nowrap",
+  overflowX: isMobile ? "hidden" : "auto"
 }}
         >
           {premiumMessage && (
