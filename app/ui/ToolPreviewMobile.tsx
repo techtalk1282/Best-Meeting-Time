@@ -102,9 +102,9 @@ export default function ToolPreviewMobile(props: any) {
               left: `${startPercent}%`,
               width: `${widthPercent}%`,
               height: "100%",
-              background: "linear-gradient(90deg, #22c55e, #16a34a)",
+              background: "linear-gradient(90deg, #34d399, #22c55e, #16a34a)",
               borderRadius: "999px",
-              boxShadow: "0 0 16px rgba(34,197,94,1)",
+              boxShadow: "0 4px 20px rgba(34,197,94,0.9)",
             }}
           />
         </div>
