@@ -531,14 +531,15 @@ scrollToUpgrade();
         </div>
       </div>
 
-      <div
-        style={{
-         display: "flex",
-         gap: 35,
-         marginBottom: 20,
-         alignItems: "center", 
-        }}
-      >
+     <div
+  style={{
+    display: "flex",
+    gap: 12,
+    marginBottom: 20,
+    alignItems: "center",
+    flexWrap: "wrap",
+  }}
+> 
         <select
           value={cityA.name}
           onChange={(e) => {
