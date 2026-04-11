@@ -663,11 +663,11 @@ scrollToUpgrade();
           style={{
   marginTop: 2,
   display: "flex",
-  gap: 12,
-  justifyContent: "center",
+  gap: 23,
+  justifyContent: "flex-start",
   alignItems: "center",
-  flexWrap: "wrap",        // ✅ KEY FIX
-  overflowX: "hidden"      // ✅ REMOVE SIDE SCROLL
+  flexWrap: "nowrap",
+  overflowX: "auto"
 }}
         >
           {premiumMessage && (
