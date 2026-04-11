@@ -66,8 +66,9 @@ export default function ToolPreviewMobile(props: any) {
         <div
           style={{
             position: "relative",
-            height: "10px",
-            background: "#ddd",
+            height: "16px",
+background: "rgba(255,255,255,0.2)",
+borderRadius: "999px",
             borderRadius: "5px",
             overflow: "hidden",
           }}
@@ -78,7 +79,9 @@ export default function ToolPreviewMobile(props: any) {
               left: `${startPercent}%`,
               width: `${widthPercent}%`,
               height: "100%",
-              background: "#22c55e",
+              background: "linear-gradient(90deg, #22c55e, #16a34a)",
+borderRadius: "999px",
+boxShadow: "0 0 6px rgba(34,197,94,0.6)",
             }}
           />
         </div>
