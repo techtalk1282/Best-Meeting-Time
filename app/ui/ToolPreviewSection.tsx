@@ -227,18 +227,6 @@ export default function ToolPreviewSection({
   const [shareUrl, setShareUrl] = useState<string | null>(null);
   const [shareCopied, setShareCopied] = useState(false);
   const [premiumMessage, setPremiumMessage] = useState<string | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-useEffect(() => {
-  const checkMobile = () => {
-    setIsMobile(window.innerWidth < 768);
-  };
-
-  checkMobile();
-  window.addEventListener("resize", checkMobile);
-
-  return () => window.removeEventListener("resize", checkMobile);
-}, []);
    function requirePremiumFeature(): boolean {
   if (!isPremium) {
     setPremiumMessage("🔒 Premium feature — unlock all features for $7 below");
@@ -455,8 +443,7 @@ scrollToUpgrade();
     : "Upgrade to unlock more planning sessions and premium features"}
 </div>
 </div>
-)}
-<div>
+
           
 
           <button
@@ -489,7 +476,7 @@ scrollToUpgrade();
             Unlock More Sessions — $7 One-Time
           </button>
         </div>
-      
+      )}
 
       {viewerTZ && (
         <div style={{ marginBottom: 20, fontWeight: 600 }}>
@@ -545,15 +532,12 @@ scrollToUpgrade();
       </div>
 
       <div
-        <div
-  style={{
-    display: "flex",
-    gap: isMobile ? 10 : 35,
-    marginBottom: 20,
-    alignItems: "center",
-    justifyContent: isMobile ? "center" : "flex-start",
-    flexWrap: isMobile ? "wrap" : "nowrap"
-  }}
+        style={{
+         display: "flex",
+         gap: 35,
+         marginBottom: 20,
+         alignItems: "center", 
+        }}
       >
         <select
           value={cityA.name}
@@ -679,11 +663,11 @@ scrollToUpgrade();
           style={{
   marginTop: 2,
   display: "flex",
-  gap: isMobile ? 12 : 23,
-  justifyContent: isMobile ? "center" : "flex-start",
+  gap: 23,
+  justifyContent: "flex-start",
   alignItems: "center",
-  flexWrap: isMobile ? "wrap" : "nowrap",
-  overflowX: isMobile ? "hidden" : "auto"
+  flexWrap: "nowrap",
+  overflowX: "auto"
 }}
         >
           {premiumMessage && (
