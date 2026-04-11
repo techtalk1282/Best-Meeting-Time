@@ -455,7 +455,8 @@ scrollToUpgrade();
     : "Upgrade to unlock more planning sessions and premium features"}
 </div>
 </div>
-
+)}
+<div>
           
 
           <button
@@ -488,7 +489,7 @@ scrollToUpgrade();
             Unlock More Sessions — $7 One-Time
           </button>
         </div>
-      )}
+      
 
       {viewerTZ && (
         <div style={{ marginBottom: 20, fontWeight: 600 }}>
