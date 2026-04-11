@@ -1,6 +1,6 @@
 /**
  * File: app/ui/ToolPreviewMobile.tsx
- * Version: v1.0
+ * Version: v1.1
  * Date: 2026-04-11
  *
  * Purpose:
@@ -8,10 +8,8 @@
  * - Fully isolated from desktop + city layouts
  * - Prevents cross-breaking UI issues
  *
- * Notes:
- * - Layout ONLY (no logic changes)
- * - Logic will be passed from parent
- * - Safe foundation for mobile-specific design
+ * Fix:
+ * - Corrected syntax error (timeline variables placed outside formatter)
  */
 
 "use client";
@@ -25,62 +23,67 @@ export default function ToolPreviewMobile(props: any) {
     CITY_OPTIONS,
     handlePlannerInteraction,
   } = props;
-const now = new Date();
 
-const cityATime = new Intl.DateTimeFormat("en-US", {
-  timeZone: cityA.tz,
-  hour: "numeric",
-  minute: "2-digit",
-}).format(now);
+  const now = new Date();
 
-const cityBTime = new Intl.DateTimeFormat("en-US", {
-  // SIMPLE STATIC WORK WINDOW (SAFE VERSION)
-const startHour = 9;
-const endHour = 17;
+  const cityATime = new Intl.DateTimeFormat("en-US", {
+    timeZone: cityA.tz,
+    hour: "numeric",
+    minute: "2-digit",
+  }).format(now);
 
-// Convert to % of 24h day
-const startPercent = (startHour / 24) * 100;
-const widthPercent = ((endHour - startHour) / 24) * 100;
-  timeZone: cityB.tz,
-  hour: "numeric",
-  minute: "2-digit",
-}).format(now);
+  const cityBTime = new Intl.DateTimeFormat("en-US", {
+    timeZone: cityB.tz,
+    hour: "numeric",
+    minute: "2-digit",
+  }).format(now);
+
+  // ✅ SAFE TIMELINE VARIABLES (CORRECT LOCATION)
+  const startHour = 9;
+  const endHour = 17;
+
+  const startPercent = (startHour / 24) * 100;
+  const widthPercent = ((endHour - startHour) / 24) * 100;
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
 
-  {/* TIME DISPLAY */}
-  <div style={{ display: "flex", justifyContent: "space-between" }}>
-    <div>
-      <div style={{ fontWeight: 600 }}>{cityA.name}</div>
-      <div style={{ fontSize: 18, fontWeight: 700 }}>{cityATime}</div>
-    </div>
+      {/* TIME DISPLAY */}
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div>
+          <div style={{ fontWeight: 600 }}>{cityA.name}</div>
+          <div style={{ fontSize: 18, fontWeight: 700 }}>{cityATime}</div>
+        </div>
 
-    <div style={{ textAlign: "right" }}>
-      <div style={{ fontWeight: 600 }}>{cityB.name}</div>
-      <div style={{ fontSize: 18, fontWeight: 700 }}>{cityBTime}</div>
-    </div>
-  </div>
+        <div style={{ textAlign: "right" }}>
+          <div style={{ fontWeight: 600 }}>{cityB.name}</div>
+          <div style={{ fontSize: 18, fontWeight: 700 }}>{cityBTime}</div>
+        </div>
+      </div>
+
+      {/* SIMPLE TIMELINE BAR */}
       <div style={{ marginTop: "10px" }}>
-  <div
-    style={{
-      position: "relative",
-      height: "10px",
-      background: "#ddd",
-      borderRadius: "5px",
-      overflow: "hidden",
-    }}
-  >
-    <div
-      style={{
-        position: "absolute",
-        left: `${startPercent}%`,
-        width: `${widthPercent}%`,
-        height: "100%",
-        background: "#22c55e",
-      }}
-    />
-  </div>
-</div>
+        <div
+          style={{
+            position: "relative",
+            height: "10px",
+            background: "#ddd",
+            borderRadius: "5px",
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              left: `${startPercent}%`,
+              width: `${widthPercent}%`,
+              height: "100%",
+              background: "#22c55e",
+            }}
+          />
+        </div>
+      </div>
+
       {/* City A */}
       <select
         style={{ width: "100%" }}
