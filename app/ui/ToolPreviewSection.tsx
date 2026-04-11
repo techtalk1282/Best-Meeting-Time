@@ -415,7 +415,6 @@ scrollToUpgrade();
   ];
 
   return (
-  <>
     <div style={{ width: "100%", padding: 0 }}>
       {isLocked && isPremium && (
         <div
@@ -533,26 +532,21 @@ scrollToUpgrade();
       </div>
 
       <div
-  style={{
-    display: "flex",
-    gap: 12,
-    marginBottom: 20,
-    alignItems: "center",
-    flexWrap: "wrap",
-  }}
->
+        style={{
+         display: "flex",
+         gap: 35,
+         marginBottom: 20,
+         alignItems: "center", 
+        }}
+      >
         <select
-  style={{
-    flex: "1 1 140px",
-    minWidth: 0,
-  }}
-  value={cityA.name}
-  onChange={(e) => {
-    if (handlePlannerInteraction()) return;
-    const city = CITY_OPTIONS.find((c) => c.name === e.target.value)!;
-    setCityA(city);
-  }}
->
+          value={cityA.name}
+          onChange={(e) => {
+            if (handlePlannerInteraction()) return;
+            const city = CITY_OPTIONS.find((c) => c.name === e.target.value)!;
+            setCityA(city);
+          }}
+        >
           {CITY_OPTIONS.map((city) => (
             <option key={city.name} value={city.name}>
               {city.name}
@@ -567,31 +561,26 @@ scrollToUpgrade();
             setCityB(temp);
           }}
           style={{
-  padding: "8px 12px",
+  padding: "8px 16px",
   fontWeight: 600,
   borderRadius: 6,
   cursor: "pointer",
   color: "#fff",
   background: "#6d28d9",
-  border: "1px solid #6d28d9",
-  flexShrink: 0,
+  border: "1px solid #6d28d9"
 }}
         >
           SWAP
         </button>
 
-        select
-  style={{
-    flex: "1 1 140px",
-    minWidth: 0,
-  }}
-  value={cityB.name}
-  onChange={(e) => {
-    if (handlePlannerInteraction()) return;
-    const city = CITY_OPTIONS.find((c) => c.name === e.target.value)!;
-    setCityB(city);
-  }}
->
+        <select
+          value={cityB.name}
+          onChange={(e) => {
+            if (handlePlannerInteraction()) return;
+            const city = CITY_OPTIONS.find((c) => c.name === e.target.value)!;
+            setCityB(city);
+          }}
+        >
           {CITY_OPTIONS.map((city) => (
             <option key={city.name} value={city.name}>
               {city.name}
@@ -892,6 +881,5 @@ style={{
         )}
       </div>
     </div>
-</>
   );
 }
