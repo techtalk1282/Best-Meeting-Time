@@ -266,10 +266,12 @@ scrollToUpgrade();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-// Initialize free sessions ONLY if not set
-if (!localStorage.getItem("free_sessions_used")) {
-  localStorage.setItem("free_sessions_used", "0");
-}
+
+    // Initialize free sessions ONLY if not set
+    if (!localStorage.getItem("free_sessions_used")) {
+      localStorage.setItem("free_sessions_used", "0");
+    }
+
     const freeUsed = parseInt(
       localStorage.getItem("free_sessions_used") || "0",
       10
@@ -279,8 +281,13 @@ if (!localStorage.getItem("free_sessions_used")) {
       10
     );
 
-    if (!isPremium && freeUsed >= 4) {
+    if (isPremium) {
+      // Premium users should not inherit the unpaid locked banner
+      setIsLocked(false);
+    } else if (freeUsed >= 4) {
       setIsLocked(true);
+    } else {
+      setIsLocked(false);
     }
 
     console.log("GATING STATUS:", {
