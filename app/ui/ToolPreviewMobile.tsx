@@ -67,13 +67,13 @@ export default function ToolPreviewMobile(props: any) {
       </div>
 
       {/* TIMELINE */}
-      <div style={{ marginTop: "8px" }}>
+      <div style={{ marginTop: "12px" }}>
 
         {/* TRACK */}
         <div
           style={{
             position: "relative",
-            height: "26px",
+            height: "32px",
             borderRadius: "999px",
             background: "linear-gradient(90deg, #5b21b6, #4c1d95)",
             overflow: "hidden",
@@ -104,7 +104,7 @@ export default function ToolPreviewMobile(props: any) {
               height: "100%",
               background: "linear-gradient(90deg, #22c55e, #16a34a)",
               borderRadius: "999px",
-              boxShadow: "0 0 12px rgba(34,197,94,0.9)",
+              boxShadow: "0 0 16px rgba(34,197,94,1)",
             }}
           />
         </div>
