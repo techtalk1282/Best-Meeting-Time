@@ -584,13 +584,23 @@ scrollToUpgrade();
       </div>
 
       <div
-        style={{
-         display: "flex",
-         gap: 35,
-         marginBottom: 20,
-         alignItems: "center", 
-        }}
-      >
+  style={
+    isMobile
+      ? {
+          display: "flex",
+          flexDirection: "column",
+          gap: 12,
+          marginBottom: 20,
+          alignItems: "stretch",
+        }
+      : {
+          display: "flex",
+          gap: 35,
+          marginBottom: 20,
+          alignItems: "center",
+        }
+  }
+>
         <select
           value={cityA.name}
           onChange={(e) => {
