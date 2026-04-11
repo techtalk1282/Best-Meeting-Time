@@ -544,12 +544,15 @@ scrollToUpgrade();
       </div>
 
       <div
-        style={{
-         display: "flex",
-         gap: 35,
-         marginBottom: 20,
-         alignItems: "center", 
-        }}
+        <div
+  style={{
+    display: "flex",
+    gap: isMobile ? 10 : 35,
+    marginBottom: 20,
+    alignItems: "center",
+    justifyContent: isMobile ? "center" : "flex-start",
+    flexWrap: isMobile ? "wrap" : "nowrap"
+  }}
       >
         <select
           value={cityA.name}
