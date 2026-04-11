@@ -617,29 +617,7 @@ scrollToUpgrade();
           ))}
         </select>
 
-        style={
-  isMobile
-    ? {
-        width: "100%",
-        padding: "12px",
-        fontWeight: 700,
-        borderRadius: 10,
-        cursor: "pointer",
-        color: "#fff",
-        background: "#6d28d9",
-        border: "1px solid #6d28d9",
-        textAlign: "center",
-      }
-    : {
-        padding: "8px 16px",
-        fontWeight: 600,
-        borderRadius: 6,
-        cursor: "pointer",
-        color: "#fff",
-        background: "#6d28d9",
-        border: "1px solid #6d28d9",
-      }
-}
+        
 
         <select
   style={isMobile ? { width: "100%" } : {}}
