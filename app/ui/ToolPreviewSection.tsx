@@ -1,3 +1,37 @@
+/**
+ * File: app/ui/ToolPreviewSection.tsx
+ * Version: vSTABLE-2.0
+ * Date: 2026-04-11
+ *
+ * Status: STABLE BASELINE (DO NOT MODIFY WITHOUT CONTROLLED STEPS)
+ *
+ * Summary:
+ * - Reverted to last fully working version after mobile layout attempts introduced regressions
+ * - Verified working across:
+ *   - Main page (desktop + mobile baseline)
+ *   - City pages (Los Angeles template and others)
+ *   - Premium gating, buttons, and scroll behavior
+ *
+ * Critical Notes:
+ * - This component is SHARED across main + all city pages
+ * - Any change here impacts the entire app globally
+ * - Stripe / premium logic is PROTECTED — do not modify
+ *
+ * Known Issue (Next Phase):
+ * - Mobile layout is not optimized (selector row, spacing, stacking)
+ *
+ * Next Strategy:
+ * - Implement MOBILE-ONLY conditional styling
+ * - DO NOT change base styles directly
+ * - All future fixes must:
+ *   1. Be isolated
+ *   2. Be reversible
+ *   3. Be tested on main + city pages before proceeding
+ *
+ * Rollback Reference:
+ * - Commit: "revert to stable code"
+ * - This version is the safe restore point
+ */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -531,18 +565,16 @@ scrollToUpgrade();
         </div>
       </div>
 
-     <div
-  style={{
-    display: "flex",
-    gap: 12,
-    marginBottom: 20,
-    alignItems: "center",
-    flexWrap: "wrap",
-  }}
-> 
+      <div
+        style={{
+         display: "flex",
+         gap: 35,
+         marginBottom: 20,
+         alignItems: "center", 
+        }}
+      >
         <select
-  style={{ flex: "1 1 140px", minWidth: 120 }}
-  value={cityA.name}
+          value={cityA.name}
           onChange={(e) => {
             if (handlePlannerInteraction()) return;
             const city = CITY_OPTIONS.find((c) => c.name === e.target.value)!;
