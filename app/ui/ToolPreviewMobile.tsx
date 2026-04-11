@@ -1,15 +1,15 @@
 /**
  * File: app/ui/ToolPreviewMobile.tsx
- * Version: v1.1
+ * Version: v1.2
  * Date: 2026-04-11
  *
  * Purpose:
  * - Dedicated mobile layout for ToolPreviewSection
  * - Fully isolated from desktop + city layouts
- * - Prevents cross-breaking UI issues
  *
  * Fix:
- * - Corrected syntax error (timeline variables placed outside formatter)
+ * - Removed duplicate style properties causing build failure
+ * - Cleaned timeline styling (visible + stable)
  */
 
 "use client";
@@ -38,7 +38,7 @@ export default function ToolPreviewMobile(props: any) {
     minute: "2-digit",
   }).format(now);
 
-  // ✅ SAFE TIMELINE VARIABLES (CORRECT LOCATION)
+  // ✅ SAFE STATIC TIMELINE
   const startHour = 9;
   const endHour = 17;
 
@@ -61,15 +61,14 @@ export default function ToolPreviewMobile(props: any) {
         </div>
       </div>
 
-      {/* SIMPLE TIMELINE BAR */}
+      {/* TIMELINE BAR */}
       <div style={{ marginTop: "10px" }}>
         <div
           style={{
             position: "relative",
             height: "16px",
-background: "rgba(255,255,255,0.2)",
-borderRadius: "999px",
-            borderRadius: "5px",
+            background: "rgba(255,255,255,0.2)",
+            borderRadius: "999px",
             overflow: "hidden",
           }}
         >
@@ -80,8 +79,8 @@ borderRadius: "999px",
               width: `${widthPercent}%`,
               height: "100%",
               background: "linear-gradient(90deg, #22c55e, #16a34a)",
-borderRadius: "999px",
-boxShadow: "0 0 6px rgba(34,197,94,0.6)",
+              borderRadius: "999px",
+              boxShadow: "0 0 6px rgba(34,197,94,0.6)",
             }}
           />
         </div>
