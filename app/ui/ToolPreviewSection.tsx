@@ -35,6 +35,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import ToolPreviewMobile from "./ToolPreviewMobile";
 
 function checkPremiumCookie(): boolean {
   if (typeof document === "undefined") return false;
@@ -385,7 +386,26 @@ scrollToUpgrade();
   return false;
  
 }
-  if (!now) return null;
+  /**
+ * MOBILE RENDER (SAFE SWITCH)
+ * - Uses same state + handlers
+ * - No logic duplication
+ * - Desktop remains untouched
+ */
+if (isMobile) {
+  return (
+    <div style={{ width: "100%", padding: 0 }}>
+      <ToolPreviewMobile
+        cityA={cityA}
+        cityB={cityB}
+        setCityA={setCityA}
+        setCityB={setCityB}
+        CITY_OPTIONS={CITY_OPTIONS}
+        handlePlannerInteraction={handlePlannerInteraction}
+      />
+    </div>
+  );
+}
 
   const meetingWindow = calculateOverlap(cityA, cityB);
 
