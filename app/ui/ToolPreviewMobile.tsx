@@ -1,15 +1,16 @@
 /**
  * File: app/ui/ToolPreviewMobile.tsx
- * Version: v1.2
+ * Version: v1.3
  * Date: 2026-04-11
  *
  * Purpose:
  * - Dedicated mobile layout for ToolPreviewSection
  * - Fully isolated from desktop + city layouts
  *
- * Fix:
- * - Removed duplicate style properties causing build failure
- * - Cleaned timeline styling (visible + stable)
+ * Updates:
+ * - Improved timeline visibility across all mobile devices
+ * - Increased height + contrast
+ * - Enhanced glow + depth for clarity
  */
 
 "use client";
@@ -66,10 +67,11 @@ export default function ToolPreviewMobile(props: any) {
         <div
           style={{
             position: "relative",
-            height: "16px",
-            background: "rgba(255,255,255,0.2)",
+            height: "22px", // ✅ increased for visibility
+            background: "rgba(255,255,255,0.35)", // ✅ stronger contrast
             borderRadius: "999px",
             overflow: "hidden",
+            boxShadow: "inset 0 0 6px rgba(0,0,0,0.25)", // ✅ depth
           }}
         >
           <div
@@ -80,7 +82,7 @@ export default function ToolPreviewMobile(props: any) {
               height: "100%",
               background: "linear-gradient(90deg, #22c55e, #16a34a)",
               borderRadius: "999px",
-              boxShadow: "0 0 6px rgba(34,197,94,0.6)",
+              boxShadow: "0 0 10px rgba(34,197,94,0.9)", // ✅ stronger glow
             }}
           />
         </div>
