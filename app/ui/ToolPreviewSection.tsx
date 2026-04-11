@@ -541,7 +541,8 @@ scrollToUpgrade();
   }}
 > 
         <select
-          value={cityA.name}
+  style={{ flex: "1 1 140px", minWidth: 120 }}
+  value={cityA.name}
           onChange={(e) => {
             if (handlePlannerInteraction()) return;
             const city = CITY_OPTIONS.find((c) => c.name === e.target.value)!;
