@@ -259,7 +259,25 @@ export default function ToolPreviewSection({
   const [cityB, setCityB] = useState<City>(CITY_OPTIONS[1]);
   const [now, setNow] = useState<Date | null>(null);
   const [shareUrl, setShareUrl] = useState<string | null>(null);
-  const [shareCopied, setShareCopied] = useState(false);
+ const [shareCopied, setShareCopied] = useState(false);
+
+/**
+ * MOBILE DETECTION (SAFE — NO UI IMPACT)
+ */
+const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  if (typeof window === "undefined") return;
+
+  const check = () => {
+    setIsMobile(window.innerWidth <= 768);
+  };
+
+  check();
+  window.addEventListener("resize", check);
+
+  return () => window.removeEventListener("resize", check);
+}, []);
   const [premiumMessage, setPremiumMessage] = useState<string | null>(null);
    function requirePremiumFeature(): boolean {
   if (!isPremium) {
