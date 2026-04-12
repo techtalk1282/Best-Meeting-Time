@@ -61,7 +61,23 @@ export default function LayoutShell({
     >
       <section id="hero">{hero}</section>
       <section id="tool-preview">{toolPreview}</section>
-      <section>{premiumFeatures}</section>
+      <section
+  style={{
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    padding: "0 16px",
+  }}
+>
+  <div
+    style={{
+      width: "100%",
+      maxWidth: "1100px",
+    }}
+  >
+    {premiumFeatures}
+  </div>
+</section>
 
       {showAdContent && (
         <section
