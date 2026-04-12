@@ -1,3 +1,16 @@
+/**
+ * File: app/ui/ToolPreviewMobile.tsx
+ * Version: v2.1
+ * Date: 2026-04-12
+ *
+ * Purpose:
+ * - Fix element order to match main + Los Angeles template
+ * - Preserve all working logic
+ *
+ * Rollback:
+ * - Revert to previous version if layout breaks
+ */
+
 "use client";
 
 export default function ToolPreviewMobile(props: any) {
@@ -59,54 +72,6 @@ export default function ToolPreviewMobile(props: any) {
         </div>
       </div>
 
-      {/* TIMELINE */}
-      <div style={{ position: "relative", height: 32, borderRadius: 999, background: "linear-gradient(90deg,#5b21b6,#4c1d95)" }}>
-        {ticks.map((hour) => (
-          <div key={hour} style={{
-            position: "absolute",
-            left: `${(hour / 24) * 100}%`,
-            top: 0,
-            bottom: 0,
-            width: 1,
-            background: "rgba(255,255,255,0.25)"
-          }} />
-        ))}
-
-        <div style={{
-          position: "absolute",
-          left: `${startPercent}%`,
-          width: `${widthPercent}%`,
-          height: "100%",
-          background: "#22c55e",
-          borderRadius: 999,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "#fff",
-          fontWeight: 700,
-          fontSize: 12
-        }}>
-          Best Time
-        </div>
-      </div>
-
-      {/* ✅ NEW — BEST WINDOW */}
-      <div style={{ fontWeight: 600 }}>
-        Best Meeting Window: <strong>9:00 AM – 5:00 PM</strong>
-      </div>
-
-      {/* ✅ NEW — GOLD BUTTONS */}
-      <div style={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: 8
-      }}>
-        <button style={btn}>Share Meeting Link</button>
-        <button style={btn}>Add to Google</button>
-        <button style={btn}>Add to Outlook</button>
-        <button style={btn}>Add to Apple Calendar</button>
-      </div>
-
       {/* CITY A */}
       <select value={cityA.name} onChange={(e) => {
         if (handlePlannerInteraction()) return;
@@ -146,6 +111,54 @@ export default function ToolPreviewMobile(props: any) {
           <option key={c.name}>{c.name}</option>
         ))}
       </select>
+
+      {/* TIMELINE */}
+      <div style={{ position: "relative", height: 32, borderRadius: 999, background: "linear-gradient(90deg,#5b21b6,#4c1d95)" }}>
+        {ticks.map((hour) => (
+          <div key={hour} style={{
+            position: "absolute",
+            left: `${(hour / 24) * 100}%`,
+            top: 0,
+            bottom: 0,
+            width: 1,
+            background: "rgba(255,255,255,0.25)"
+          }} />
+        ))}
+
+        <div style={{
+          position: "absolute",
+          left: `${startPercent}%`,
+          width: `${widthPercent}%`,
+          height: "100%",
+          background: "#22c55e",
+          borderRadius: 999,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#fff",
+          fontWeight: 700,
+          fontSize: 12
+        }}>
+          Best Time
+        </div>
+      </div>
+
+      {/* BEST WINDOW */}
+      <div style={{ fontWeight: 600 }}>
+        Best Meeting Window: <strong>9:00 AM – 5:00 PM</strong>
+      </div>
+
+      {/* GOLD BUTTONS */}
+      <div style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: 8
+      }}>
+        <button style={btn}>Share Meeting Link</button>
+        <button style={btn}>Add to Google</button>
+        <button style={btn}>Add to Outlook</button>
+        <button style={btn}>Add to Apple Calendar</button>
+      </div>
 
     </div>
   );
