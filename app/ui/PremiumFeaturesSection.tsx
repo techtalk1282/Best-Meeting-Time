@@ -212,6 +212,7 @@ window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       fallbackCopy(url);
     }
+    }
   }
   function fallbackCopy(text: string) {
     const textarea = document.createElement("textarea");
@@ -486,7 +487,7 @@ window.scrollTo({ top: 0, behavior: "smooth" });
           <div
   style={{
     display: "grid",
-   gridTemplateColumns: "repeat(2, max-content)"
+  gridTemplateColumns: "repeat(auto-fit, minmax(220px, max-content))"
     justifyContent: "center",
     gap: "10px 40px",
     margin: "0 auto 20px",
