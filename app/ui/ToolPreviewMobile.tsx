@@ -21,6 +21,16 @@ export default function ToolPreviewMobile(props: any) {
     setCityB,
     CITY_OPTIONS,
     handlePlannerInteraction,
+    startLocal,
+    endLocal,
+  } = props;
+  const {
+    cityA,
+    cityB,
+    setCityA,
+    setCityB,
+    CITY_OPTIONS,
+    handlePlannerInteraction,
   } = props;
 
   const now = new Date();
@@ -145,7 +155,7 @@ export default function ToolPreviewMobile(props: any) {
 
       {/* BEST WINDOW */}
       <div style={{ fontWeight: 600 }}>
-        Best Meeting Window: <strong>9:00 AM – 5:00 PM</strong>
+       Best Meeting Window: <strong>{startLocal} – {endLocal}</strong>
       </div>
 
       {/* GOLD BUTTONS */}
