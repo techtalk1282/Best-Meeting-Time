@@ -396,13 +396,15 @@ if (isMobile) {
   return (
     <div style={{ width: "100%", padding: 0 }}>
       <ToolPreviewMobile
-        cityA={cityA}
-        cityB={cityB}
-        setCityA={setCityA}
-        setCityB={setCityB}
-        CITY_OPTIONS={CITY_OPTIONS}
-        handlePlannerInteraction={handlePlannerInteraction}
-      />
+  cityA={cityA}
+  cityB={cityB}
+  setCityA={setCityA}
+  setCityB={setCityB}
+  CITY_OPTIONS={CITY_OPTIONS}
+  handlePlannerInteraction={handlePlannerInteraction}
+  startLocal={startLocal}
+  endLocal={endLocal}
+/>
     </div>
   );
 }
