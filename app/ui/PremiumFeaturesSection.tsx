@@ -487,8 +487,9 @@ window.scrollTo({ top: 0, behavior: "smooth" });
           <div
   style={{
     display: "grid",
-    gridTemplateColumns: "1fr",
-    gap: "10px",
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, max-content))",
+    justifyContent: "center",
+    gap: "10px 40px",
     margin: "0 auto 20px",
     width: "100%",
   }}
