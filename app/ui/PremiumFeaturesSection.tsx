@@ -485,14 +485,14 @@ window.scrollTo({ top: 0, behavior: "smooth" });
           </div>
 
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, max-content)",
-              justifyContent: "center",
-              gap: "14px 60px",
-              margin: "0 auto 20px",
-            }}
-          >
+  style={{
+    display: "grid",
+    gridTemplateColumns: "1fr",
+    gap: "10px",
+    margin: "0 auto 20px",
+    width: "100%",
+  }}
+>
             <div style={checklistItem}>
               <CheckIcon />
               <span>$7 one-time payment</span>
