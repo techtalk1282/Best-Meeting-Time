@@ -417,22 +417,7 @@ scrollToUpgrade();
   });
 // ✅ PASTE MOBILE BLOCK HERE (AFTER endLocal)
 
-if (isMobile) {
-  return (
-    <div style={{ width: "100%", padding: 0 }}>
-      <ToolPreviewMobile
-        cityA={cityA}
-        cityB={cityB}
-        setCityA={setCityA}
-        setCityB={setCityB}
-        CITY_OPTIONS={CITY_OPTIONS}
-        handlePlannerInteraction={handlePlannerInteraction}
-        startLocal={startLocal}
-        endLocal={endLocal}
-      />
-    </div>
-  );
-}
+
   const cityATime = new Intl.DateTimeFormat("en-US", {
     timeZone: cityA.tz,
     hour: "numeric",
