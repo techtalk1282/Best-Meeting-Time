@@ -485,14 +485,15 @@ window.scrollTo({ top: 0, behavior: "smooth" });
           </div>
 
           <div
-  style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-    justifyContent: "center",
-    gap: "10px 40px",
-    margin: "0 auto 20px",
-    width: "100%",
-  }}
+ style={{
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+  justifyContent: "center",
+  gap: "16px 48px",
+  margin: "0 auto 20px",
+  width: "100%",
+  maxWidth: "620px",
+}}
 >
             <div style={checklistItem}>
               <CheckIcon />
