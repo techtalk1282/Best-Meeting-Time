@@ -209,10 +209,11 @@ window.scrollTo({ top: 0, behavior: "smooth" });
         .catch(() => {
           fallbackCopy(url);
         });
-    } else {
+     } else {
       fallbackCopy(url);
     }
-    
+  }
+
   function fallbackCopy(text: string) {
     const textarea = document.createElement("textarea");
     textarea.value = text;
