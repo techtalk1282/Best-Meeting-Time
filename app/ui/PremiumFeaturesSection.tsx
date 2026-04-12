@@ -213,7 +213,6 @@ window.scrollTo({ top: 0, behavior: "smooth" });
       fallbackCopy(url);
     }
     }
-  }
   function fallbackCopy(text: string) {
     const textarea = document.createElement("textarea");
     textarea.value = text;
