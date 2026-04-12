@@ -38,85 +38,73 @@ export default function ToolPreviewMobile(props: any) {
   }
 
   return (
-    <div
-      style={{
-        width: "100%",
-        maxWidth: "420px",
-        margin: "0 auto",
-        display: "flex",
-        flexDirection: "column",
-        gap: "16px",
-      }}
-    >
-      {/* TIME DISPLAY WITH FLAGS */}
+    <div style={{ width: "100%", maxWidth: 420, margin: "0 auto", display: "flex", flexDirection: "column", gap: 16 }}>
+
+      {/* TIME */}
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
             {cityA.name}
-            <img
-              src={`https://flagcdn.com/w20/${getFlag(cityA.name)}.png`}
-              style={{ width: 20 }}
-            />
+            <img src={`https://flagcdn.com/w20/${getFlag(cityA.name)}.png`} style={{ width: 20 }} />
           </div>
-          <div style={{ fontSize: 18, fontWeight: 700 }}>{cityATime}</div>
+          <div style={{ fontWeight: 700 }}>{cityATime}</div>
         </div>
 
         <div style={{ textAlign: "right" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 6, justifyContent: "flex-end" }}>
             {cityB.name}
-            <img
-              src={`https://flagcdn.com/w20/${getFlag(cityB.name)}.png`}
-              style={{ width: 20 }}
-            />
+            <img src={`https://flagcdn.com/w20/${getFlag(cityB.name)}.png`} style={{ width: 20 }} />
           </div>
-          <div style={{ fontSize: 18, fontWeight: 700 }}>{cityBTime}</div>
+          <div style={{ fontWeight: 700 }}>{cityBTime}</div>
         </div>
       </div>
 
       {/* TIMELINE */}
-      <div>
-        <div
-          style={{
-            position: "relative",
-            height: "32px",
-            borderRadius: "999px",
-            background: "linear-gradient(90deg, #5b21b6, #4c1d95)",
-          }}
-        >
-          {ticks.map((hour) => (
-            <div
-              key={hour}
-              style={{
-                position: "absolute",
-                left: `${(hour / 24) * 100}%`,
-                top: 0,
-                bottom: 0,
-                width: "1px",
-                background: "rgba(255,255,255,0.25)",
-              }}
-            />
-          ))}
+      <div style={{ position: "relative", height: 32, borderRadius: 999, background: "linear-gradient(90deg,#5b21b6,#4c1d95)" }}>
+        {ticks.map((hour) => (
+          <div key={hour} style={{
+            position: "absolute",
+            left: `${(hour / 24) * 100}%`,
+            top: 0,
+            bottom: 0,
+            width: 1,
+            background: "rgba(255,255,255,0.25)"
+          }} />
+        ))}
 
-          {/* BEST TIME BAR */}
-          <div
-            style={{
-              position: "absolute",
-              left: `${startPercent}%`,
-              width: `${widthPercent}%`,
-              height: "100%",
-              background: "#22c55e",
-              borderRadius: "999px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#fff",
-              fontWeight: 700,
-              fontSize: 12,
-            }}
-          >
-            Best Time
-          </div>
+        <div style={{
+          position: "absolute",
+          left: `${startPercent}%`,
+          width: `${widthPercent}%`,
+          height: "100%",
+          background: "#22c55e",
+          borderRadius: 999,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#fff",
+          fontWeight: 700,
+          fontSize: 12
+        }}>
+          Best Time
         </div>
+      </div>
+
+      {/* ✅ NEW — BEST WINDOW */}
+      <div style={{ fontWeight: 600 }}>
+        Best Meeting Window: <strong>9:00 AM – 5:00 PM</strong>
+      </div>
+
+      {/* ✅ NEW — GOLD BUTTONS */}
+      <div style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: 8
+      }}>
+        <button style={btn}>Share Meeting Link</button>
+        <button style={btn}>Add to Google</button>
+        <button style={btn}>Add to Outlook</button>
+        <button style={btn}>Add to Apple Calendar</button>
       </div>
 
       {/* CITY A */}
@@ -138,11 +126,11 @@ export default function ToolPreviewMobile(props: any) {
           setCityB(temp);
         }}
         style={{
-          padding: "12px",
+          padding: 12,
           fontWeight: 700,
           borderRadius: 10,
           color: "#fff",
-          background: "#6d28d9",
+          background: "#6d28d9"
         }}
       >
         SWAP
@@ -158,6 +146,18 @@ export default function ToolPreviewMobile(props: any) {
           <option key={c.name}>{c.name}</option>
         ))}
       </select>
+
     </div>
   );
 }
+
+const btn = {
+  background: "#facc15",
+  color: "#000",
+  fontWeight: 700,
+  padding: "8px 10px",
+  borderRadius: 999,
+  border: "none",
+  fontSize: 12,
+  cursor: "pointer"
+};
