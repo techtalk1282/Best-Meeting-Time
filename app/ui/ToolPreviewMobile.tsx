@@ -24,14 +24,7 @@ export default function ToolPreviewMobile(props: any) {
     startLocal,
     endLocal,
   } = props;
-  const {
-    cityA,
-    cityB,
-    setCityA,
-    setCityB,
-    CITY_OPTIONS,
-    handlePlannerInteraction,
-  } = props;
+  
 
   const now = new Date();
 
