@@ -392,7 +392,20 @@ scrollToUpgrade();
  * - No logic duplication
  * - Desktop remains untouched
  */
-
+if (isMobile) {
+  return (
+    <div style={{ width: "100%", padding: 0 }}>
+      <ToolPreviewMobile
+        cityA={cityA}
+        cityB={cityB}
+        setCityA={setCityA}
+        setCityB={setCityB}
+        CITY_OPTIONS={CITY_OPTIONS}
+        handlePlannerInteraction={handlePlannerInteraction}
+      />
+    </div>
+  );
+}
         
 
   const meetingWindow = calculateOverlap(cityA, cityB);
@@ -415,8 +428,6 @@ scrollToUpgrade();
     hour: "numeric",
     minute: "2-digit",
   });
-// ✅ PASTE MOBILE BLOCK HERE (AFTER endLocal)
-
 
   const cityATime = new Intl.DateTimeFormat("en-US", {
     timeZone: cityA.tz,
