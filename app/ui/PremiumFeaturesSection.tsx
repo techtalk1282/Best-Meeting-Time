@@ -105,6 +105,18 @@ export default function PremiumFeaturesSection({
   const [isPremiumLimitReached, setIsPremiumLimitReached] = useState(false);
   const [showAdModal, setShowAdModal] = useState(false);
   const [countdown, setCountdown] = useState(5);
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  function handleResize() {
+    setIsMobile(window.innerWidth <= 768);
+  }
+
+  handleResize();
+  window.addEventListener("resize", handleResize);
+
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
   useEffect(() => {
     function checkPremium() {
       const premium = document.cookie
@@ -393,13 +405,13 @@ window.scrollTo({ top: 0, behavior: "smooth" });
           </div>
 
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 16,
-              marginBottom: 16,
-            }}
-          >
+  style={{
+    display: "grid",
+    gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+    gap: 16,
+    marginBottom: 16,
+  }}
+>
             <div
               style={{
                 ...topFeatureCard,
