@@ -44,8 +44,8 @@ export default function HomePage() {
             {/* INTERNAL LINKS */}
             <div style={{ textAlign: "center", marginBottom: "40px", color: "white" }}>
               <h2 style={{ fontSize: "26px", marginBottom: "12px" }}>
-                Popular Meeting Time Cities
-              </h2>
+  Compare Popular Cities Across Time Zones
+</h2>
 
               <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "12px" }}>
                 <a href="/best-meeting-time-new-york">New York</a>
@@ -67,7 +67,7 @@ export default function HomePage() {
                 margin: "0 auto",
                 background: "linear-gradient(180deg, #efe7ff 0%, #f6f2ff 100%)",
                 borderRadius: "20px",
-                padding: "36px",
+                padding: "28px",
                 boxShadow: "0 10px 35px rgba(0,0,0,0.25)",
                 border: "1px solid rgba(255,255,255,0.35)",
               }}
@@ -82,8 +82,8 @@ export default function HomePage() {
                   style={{
                     color: "#312e81",
                     fontSize: "16px",
-                    lineHeight: "1.7",
-                    maxWidth: "760px",
+                    lineHeight: "1.6",
+maxWidth: "700px",
                     margin: "0 auto",
                   }}
                 >
@@ -98,7 +98,7 @@ export default function HomePage() {
               <div
                 style={{
                   ...card,
-                  marginBottom: "20px",
+                  marginBottom: "14px",
                   border: "2px solid #c4b5fd",
                 }}
               >
@@ -118,7 +118,7 @@ export default function HomePage() {
                 style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-                  gap: "20px",
+                  gap: "14px",
                 }}
               >
                 <div style={card}>
@@ -158,7 +158,7 @@ export default function HomePage() {
                   textAlign: "center",
                   color: "#4338ca",
                   fontSize: "14px",
-                  lineHeight: "1.7",
+                  lineHeight: "1.6",
                 }}
               >
                 Used by professionals, remote teams, and global businesses to schedule meetings
@@ -189,7 +189,7 @@ export default function HomePage() {
 /* STYLES */
 const card = {
   background: "white",
-  padding: "20px",
+  padding: "16px",
   borderRadius: "14px",
   boxShadow: "0 6px 18px rgba(0,0,0,0.12)",
 };
@@ -201,7 +201,7 @@ const title = {
 
 const text = {
   color: "#374151",
-  lineHeight: "1.7",
+  lineHeight: "1.6",
 };
 
 const textList = {
