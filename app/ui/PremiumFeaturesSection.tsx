@@ -641,7 +641,7 @@ window.scrollTo({ top: 0, behavior: "smooth" });
     marginBottom: "12px",
   }}
 >
-  These top-rated books have helped millions improve productivity and decision-making
+  Top recommended books that have helped millions improve productivity and decision-making
 </div>
       <img
         src="/books-display.png"
