@@ -39,11 +39,11 @@ export default function HomePage() {
         toolPreview={null}
         premiumFeatures={<PremiumFeaturesSection />}
         bonusFeatures={
-          <div style={{ marginTop: "80px", padding: "0 20px", paddingBottom: "80px" }}>
+          <div style={{ marginTop: "70px", padding: "0 20px", paddingBottom: "70px" }}>
 
             {/* INTERNAL LINKS */}
             <div style={{ textAlign: "center", marginBottom: "40px", color: "white" }}>
-              <h2 style={{ fontSize: "26px", marginBottom: "12px" }}>
+              <h2 style={{ fontSize: "26px", marginBottom: "10px" }}>
   Compare Popular Cities Across Time Zones
 </h2>
 
@@ -67,7 +67,7 @@ export default function HomePage() {
                 margin: "0 auto",
                 background: "linear-gradient(180deg, #efe7ff 0%, #f6f2ff 100%)",
                 borderRadius: "20px",
-                padding: "28px",
+                padding: "25px",
                 boxShadow: "0 10px 35px rgba(0,0,0,0.25)",
                 border: "1px solid rgba(255,255,255,0.35)",
               }}
@@ -98,7 +98,7 @@ maxWidth: "700px",
               <div
                 style={{
                   ...card,
-                  marginBottom: "10px",
+                  marginBottom: "8px",
                   border: "2px solid #c4b5fd",
                 }}
               >
@@ -154,11 +154,11 @@ maxWidth: "700px",
               {/* TRUST / AUTHORITY */}
               <div
                 style={{
-                  marginTop: "24px",
+                  marginTop: "22px",
                   textAlign: "center",
                   color: "#4338ca",
-                  fontSize: "14px",
-                  lineHeight: "1.6",
+                  fontSize: "12px",
+                  lineHeight: "1.4",
                 }}
               >
                 Used by professionals, remote teams, and global businesses to schedule meetings
@@ -168,7 +168,7 @@ maxWidth: "700px",
               {/* SUPPORT TEXT */}
               <div
                 style={{
-                  marginTop: "16px",
+                  marginTop: "12px",
                   textAlign: "center",
                   color: "#5b21b6",
                   fontSize: "13px",
@@ -189,20 +189,20 @@ maxWidth: "700px",
 /* STYLES */
 const card = {
   background: "white",
-  padding: "12px",
+  padding: "10px",
   borderRadius: "14px",
   boxShadow: "0 6px 18px rgba(0,0,0,0.12)",
 };
 
 const title = {
   color: "#1e1b4b",
-  marginBottom: "5px",
+  marginBottom: "3px",
 };
 
 const text = {
   color: "#374151",
-  lineHeight: "1.5",
-  margin: "4px 0",
+  lineHeight: "1.3",
+  margin: "2px 0",
 };
 
 const textList = {
