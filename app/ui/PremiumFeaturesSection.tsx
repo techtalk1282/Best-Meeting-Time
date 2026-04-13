@@ -8,6 +8,23 @@ type PremiumFeaturesSectionProps = {
   children?: ReactNode;
 };
 
+const featureCardBase: React.CSSProperties = {
+  background: "#ffffff",
+  borderRadius: 14,
+  padding: 22,
+  textAlign: "center",
+  boxShadow: "0 10px 25px rgba(0,0,0,0.10)",
+  minHeight: isMobile ? 150 : 150,
+  height: isMobile ? 150 : undefined,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
+const topFeatureCard = { ...featureCardBase, minHeight: 160 };
+const bottomFeatureCard = { ...featureCardBase, minHeight: 150 };
+
 const iconWrap: React.CSSProperties = {
   width: 56,
   height: 56,
@@ -86,30 +103,6 @@ export default function PremiumFeaturesSection({
   const [showAdModal, setShowAdModal] = useState(false);
   const [countdown, setCountdown] = useState(5);
   const [isMobile, setIsMobile] = useState(false);
-  const featureCardBase: React.CSSProperties = {
-  background: "#ffffff",
-  borderRadius: 14,
-  padding: 22,
-  textAlign: "center",
-  boxShadow: "0 10px 25px rgba(0,0,0,0.10)",
-  minHeight: 150,
-  height: isMobile ? 150 : undefined,
-  const featureCardBase: React.CSSProperties = {
-  background: "#ffffff",
-  borderRadius: 14,
-  padding: 22,
-  textAlign: "center",
-  boxShadow: "0 10px 25px rgba(0,0,0,0.10)",
-  minHeight: 150,
-  height: isMobile ? 150 : undefined,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-};
-
-const topFeatureCard: React.CSSProperties = { ...featureCardBase };
-const bottomFeatureCard: React.CSSProperties = { ...featureCardBase };
   useEffect(() => {
   function handleResize() {
     setIsMobile(window.innerWidth <= 768);
