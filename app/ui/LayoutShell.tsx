@@ -187,15 +187,21 @@ export default function LayoutShell({
             textAlign: "center",
           }}
         >
-          <a
-            href="/privacy-policy"
-            style={{ marginRight: "15px", color: "#ddd6fe" }}
-          >
-            Privacy Policy
-          </a>
-          <a href="/terms-of-service" style={{ color: "#ddd6fe" }}>
-            Terms of Service
-          </a>
+         <a
+  href="/privacy-policy"
+  style={{ marginRight: "15px", color: "#ddd6fe" }}
+>
+  Privacy Policy
+</a>
+<a
+  href="/terms-of-service"
+  style={{ marginRight: "15px", color: "#ddd6fe" }}
+>
+  Terms of Service
+</a>
+<a href="/contact" style={{ color: "#ddd6fe" }}>
+  Contact
+</a>
         </div>
 
         <div
