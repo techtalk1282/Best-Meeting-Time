@@ -1,12 +1,12 @@
 /**
  * File: app/ui/HeroSection.tsx
- * Version: v2.0 (LAYOUT STABILIZATION)
- * Date: 2026-04-11
+ * Version: v2.1 (ADD CONTACT TO NAV - SEO + TRUST FIX)
+ * Date: 2026-04-13
  *
  * Purpose:
- * - Fix full-page centering across ALL devices
- * - Eliminate horizontal drift + cutoff
- * - Keep ALL logic untouched
+ * - Add Contact link to top navigation
+ * - Improve trust + AdSense approval readiness
+ * - Keep layout + logic fully intact
  *
  * Safety:
  * - No logic changes
@@ -14,7 +14,7 @@
  * - No routing impact
  *
  * Rollback:
- * - Revert to v1.1
+ * - Revert to v2.0
  */
 
 "use client";
@@ -41,10 +41,10 @@ export default function HeroSection() {
       aria-label="Hero Section"
       style={{
         width: "100%",
-        overflowX: "hidden", // ✅ CRITICAL FIX
+        overflowX: "hidden",
         background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
         display: "flex",
-        justifyContent: "center", // ✅ FORCE CENTER
+        justifyContent: "center",
       }}
     >
       <div
@@ -69,7 +69,7 @@ export default function HeroSection() {
             src="/logo-best-meeting-time.png"
             alt="Best Meeting Time"
             style={{
-              height: 90, // slightly reduced for mobile balance
+              height: 90,
               width: "auto",
             }}
           />
@@ -81,6 +81,11 @@ export default function HeroSection() {
 
             <a href="/terms-of-service" style={{ fontSize: 12, color: "#ddd6fe" }}>
               Terms
+            </a>
+
+            {/* ✅ NEW CONTACT LINK */}
+            <a href="/contact" style={{ fontSize: 12, color: "#ddd6fe" }}>
+              Contact
             </a>
 
             <a
@@ -104,7 +109,7 @@ export default function HeroSection() {
         <div style={{ textAlign: "center", marginBottom: 18 }}>
           <h1
             style={{
-              fontSize: "clamp(28px, 6vw, 48px)", // ✅ RESPONSIVE FIX
+              fontSize: "clamp(28px, 6vw, 48px)",
               fontWeight: 700,
               lineHeight: 1.1,
               marginBottom: 8,
@@ -115,7 +120,7 @@ export default function HeroSection() {
 
           <p
             style={{
-              fontSize: "clamp(14px, 3.5vw, 17px)", // ✅ RESPONSIVE
+              fontSize: "clamp(14px, 3.5vw, 17px)",
               maxWidth: 600,
               margin: "0 auto",
               opacity: 0.95,
