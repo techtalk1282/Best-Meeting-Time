@@ -14,8 +14,7 @@ const featureCardBase: React.CSSProperties = {
   padding: 22,
   textAlign: "center",
   boxShadow: "0 10px 25px rgba(0,0,0,0.10)",
-  minHeight: isMobile ? 150 : 150,
-  height: isMobile ? 150 : undefined,
+  minHeight: 150,
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -102,29 +101,6 @@ export default function PremiumFeaturesSection({
   const [isPremiumLimitReached, setIsPremiumLimitReached] = useState(false);
   const [showAdModal, setShowAdModal] = useState(false);
   const [countdown, setCountdown] = useState(5);
-  const [isMobile, setIsMobile] = useState(false);
-
-useEffect(() => {
-  function handleResize() {
-    setIsMobile(window.innerWidth <= 768);
-  }
-
-  handleResize();
-  window.addEventListener("resize", handleResize);
-
-  return () => window.removeEventListener("resize", handleResize);
-}, []);
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-  function handleResize() {
-    setIsMobile(window.innerWidth <= 768);
-  }
-
-  handleResize();
-  window.addEventListener("resize", handleResize);
-
-  return () => window.removeEventListener("resize", handleResize);
-}, []);
   useEffect(() => {
     function checkPremium() {
       const premium = document.cookie
@@ -509,15 +485,14 @@ window.scrollTo({ top: 0, behavior: "smooth" });
           </div>
 
           <div
- style={{
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-  justifyContent: "center",
-  gap: "16px 48px",
-  margin: "0 auto 20px",
-  width: "100%",
-  maxWidth: "620px",
-}}
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+    justifyContent: "center",
+    gap: "10px 40px",
+    margin: "0 auto 20px",
+    width: "100%",
+  }}
 >
             <div style={checklistItem}>
               <CheckIcon />
