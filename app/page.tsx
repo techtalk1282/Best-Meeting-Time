@@ -74,15 +74,15 @@ export default function HomePage() {
             >
               {/* TITLE + INTRO */}
               <div style={{ textAlign: "center", marginBottom: "28px" }}>
-                <h2 style={{ fontSize: "30px", color: "#1e1b4b", marginBottom: "10px" }}>
+                <h2 style={{ fontSize: "30px", color: "#1e1b4b", marginBottom: "5px" }}>
                   Find the Best Meeting Time — Instantly
                 </h2>
 
                 <p
                   style={{
                     color: "#312e81",
-                    fontSize: "16px",
-                    lineHeight: "1.6",
+                    fontSize: "13px",
+                    lineHeight: "1.3",
 maxWidth: "700px",
                     margin: "0 auto",
                   }}
@@ -98,7 +98,7 @@ maxWidth: "700px",
               <div
                 style={{
                   ...card,
-                  marginBottom: "14px",
+                  marginBottom: "10px",
                   border: "2px solid #c4b5fd",
                 }}
               >
@@ -189,25 +189,26 @@ maxWidth: "700px",
 /* STYLES */
 const card = {
   background: "white",
-  padding: "16px",
+  padding: "12px",
   borderRadius: "14px",
   boxShadow: "0 6px 18px rgba(0,0,0,0.12)",
 };
 
 const title = {
   color: "#1e1b4b",
-  marginBottom: "10px",
+  marginBottom: "5px",
 };
 
 const text = {
   color: "#374151",
-  lineHeight: "1.6",
+  lineHeight: "1.5",
+  margin: "4px 0",
 };
 
 const textList = {
   color: "#374151",
   paddingLeft: "18px",
-  lineHeight: "1.8",
+  lineHeight: "1.5",
   margin: 0,
 };
 
