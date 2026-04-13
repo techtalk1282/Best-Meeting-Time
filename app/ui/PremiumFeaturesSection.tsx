@@ -21,7 +21,11 @@ const featureCardBase: React.CSSProperties = {
   justifyContent: "center",
 };
 
-const topFeatureCard = { ...featureCardBase, minHeight: 160 };
+const topFeatureCard = {
+  ...featureCardBase,
+  minHeight: 150,
+  height: 150,
+};
 const bottomFeatureCard = { ...featureCardBase, minHeight: 150 };
 
 const iconWrap: React.CSSProperties = {
