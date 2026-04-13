@@ -58,7 +58,50 @@ export default function HomePage() {
                 <a href="/best-meeting-time-toronto">Toronto</a>
               </div>
             </div>
+            {/* 🆕 HIGH-VALUE CONTENT BLOCK (ADSENSE FIX) */}
+<div
+  style={{
+    maxWidth: "980px",
+    margin: "0 auto 40px auto",
+    background: "rgba(255,255,255,0.92)",
+    borderRadius: "20px",
+    padding: "30px",
+    boxShadow: "0 10px 35px rgba(0,0,0,0.25)",
+  }}
+>
+  <h2 style={{ fontSize: "28px", color: "#1e1b4b", marginBottom: "15px" }}>
+    How to Schedule Meetings Across Time Zones (Without Mistakes)
+  </h2>
 
+  <p style={text}>
+    Scheduling meetings across time zones is one of the most common challenges for
+    remote teams, global businesses, and freelancers. A time that looks convenient in
+    one region can fall outside working hours in another, leading to missed calls,
+    delays, or poor collaboration.
+  </p>
+
+  <p style={text}>
+    The key to effective scheduling is understanding overlapping working hours. Instead
+    of guessing or manually converting time zones, the most efficient approach is to
+    compare both locations side-by-side and identify a shared window that works for all
+    participants.
+  </p>
+
+  <h3 style={title}>Best Practices for Global Scheduling</h3>
+  <ul style={textList}>
+    <li>Prioritize overlapping business hours whenever possible</li>
+    <li>Avoid early morning or late-night meetings for any participant</li>
+    <li>Rotate meeting times to distribute inconvenience fairly</li>
+    <li>Confirm daylight saving changes when scheduling internationally</li>
+  </ul>
+
+  <h3 style={title}>Why Time Zone Planning Matters</h3>
+  <p style={text}>
+    Poorly scheduled meetings reduce productivity and can impact team morale. Clear,
+    consistent scheduling improves attendance, communication, and overall efficiency—
+    especially for distributed teams working across multiple continents.
+  </p>
+</div>
             {/* ✅ UNIFIED SEO BLOCK */}
             <div
               style={{
