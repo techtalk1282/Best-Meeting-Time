@@ -622,16 +622,7 @@ window.scrollTo({ top: 0, behavior: "smooth" });
   >
     Continue — Unlock My Free Planning Sessions
   </button>
-      <div
-  style={{
-    marginTop: "30px",
-    fontSize: "16px",
-    color: "#c4b5fd",
-    textAlign: "center",
-  }}
->
-  Top recommended books that have helped millions improve productivity and decision-making
-</div>
+      
 )}
     </div>
 
