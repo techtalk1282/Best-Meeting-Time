@@ -8,10 +8,6 @@ type PremiumFeaturesSectionProps = {
   children?: ReactNode;
 };
 
-
-
-
-
 const iconWrap: React.CSSProperties = {
   width: 56,
   height: 56,
@@ -98,15 +94,7 @@ export default function PremiumFeaturesSection({
   boxShadow: "0 10px 25px rgba(0,0,0,0.10)",
   minHeight: 150,
   height: isMobile ? 150 : undefined,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-};
-
-const topFeatureCard = { ...featureCardBase };
-const bottomFeatureCard = { ...featureCardBase };
-  
+  const featureCardBase: React.CSSProperties = {
   background: "#ffffff",
   borderRadius: 14,
   padding: 22,
@@ -119,6 +107,9 @@ const bottomFeatureCard = { ...featureCardBase };
   alignItems: "center",
   justifyContent: "center",
 };
+
+const topFeatureCard: React.CSSProperties = { ...featureCardBase };
+const bottomFeatureCard: React.CSSProperties = { ...featureCardBase };
   useEffect(() => {
   function handleResize() {
     setIsMobile(window.innerWidth <= 768);
