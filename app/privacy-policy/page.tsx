@@ -1,8 +1,9 @@
 /**
  * File: app/privacy-policy/page.tsx
- * Version: v1.0
+ * Version: v1.1
  * Purpose:
  * - Privacy policy page required for AdSense approval
+ * - Updated with official Google AdSense cookie wording + contact info
  */
 
 export default function PrivacyPolicy() {
@@ -27,9 +28,19 @@ export default function PrivacyPolicy() {
         We use Google AdSense to display ads. Google and its partners may use cookies to personalize ads based on your visit to this and other websites.
       </p>
 
+      <p>
+        Google uses cookies to serve ads to users based on their visits to this and other websites. Users may opt out of personalized advertising by visiting{" "}
+        <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" style={{ color: "#ddd6fe" }}>
+          https://www.google.com/settings/ads
+        </a>.
+      </p>
+
       <h2 style={{ marginTop: "20px" }}>Third-Party Vendors</h2>
       <p>
-        Google may use advertising cookies to serve ads based on prior visits. Users may opt out of personalized advertising by visiting Google Ads Settings: https://adssettings.google.com
+        Google may use advertising cookies to serve ads based on prior visits. Users may opt out of personalized advertising by visiting{" "}
+        <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" style={{ color: "#ddd6fe" }}>
+          https://adssettings.google.com
+        </a>.
       </p>
 
       <h2 style={{ marginTop: "20px" }}>Usage Data</h2>
@@ -39,6 +50,10 @@ export default function PrivacyPolicy() {
 
       <p style={{ marginTop: "20px" }}>
         By using this site, you consent to this privacy policy.
+      </p>
+
+      <p style={{ marginTop: "30px", fontSize: "14px", opacity: 0.9 }}>
+        If you have any questions about this Privacy Policy, you may contact us at: support@bestmeetingtimeapp.com
       </p>
 
     </main>
