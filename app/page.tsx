@@ -1,21 +1,21 @@
 /**
  * File: app/page.tsx
- * Version: v3.1 (HOMEPAGE SEO POLISH + MOBILE STACK)
+ * Version: v3.2 (UNIFIED SEO BLOCK — CLEAN + PREMIUM)
  * Date: 2026-04-13
  *
  * PURPOSE:
- * - Improve homepage SEO block visual polish
- * - Strengthen keyword coverage naturally
- * - Make homepage SEO cards stack cleanly on mobile
- * - Keep changes isolated to homepage only
+ * - Combine SEO sections into one unified premium block
+ * - Improve example clarity and usefulness
+ * - Remove redundant sections (How It Works + duplicate text)
+ * - Maintain clean UI + strong SEO density
  *
  * SAFE:
- * - No ToolPreviewSection logic touched
- * - No PremiumFeaturesSection logic touched
- * - No city pages touched
+ * - No ToolPreviewSection changes
+ * - No PremiumFeaturesSection changes
+ * - No city page impact
  *
  * Rollback:
- * - v3.0 (FINAL POLISH — UX + SEO + VISUAL BALANCE)
+ * - v3.1
  */
 
 import dynamic from "next/dynamic";
@@ -40,20 +40,14 @@ export default function HomePage() {
         premiumFeatures={<PremiumFeaturesSection />}
         bonusFeatures={
           <div style={{ marginTop: "80px", padding: "0 20px", paddingBottom: "80px" }}>
+
             {/* INTERNAL LINKS */}
             <div style={{ textAlign: "center", marginBottom: "40px", color: "white" }}>
               <h2 style={{ fontSize: "26px", marginBottom: "12px" }}>
                 Popular Meeting Time Cities
               </h2>
 
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  justifyContent: "center",
-                  gap: "12px",
-                }}
-              >
+              <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "12px" }}>
                 <a href="/best-meeting-time-new-york">New York</a>
                 <a href="/best-meeting-time-london">London</a>
                 <a href="/best-meeting-time-tokyo">Tokyo</a>
@@ -66,11 +60,11 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* BLOCK 1 — SEO / EXPLANATION */}
+            {/* ✅ UNIFIED SEO BLOCK */}
             <div
               style={{
                 maxWidth: "980px",
-                margin: "0 auto 30px auto",
+                margin: "0 auto",
                 background: "linear-gradient(180deg, #efe7ff 0%, #f6f2ff 100%)",
                 borderRadius: "20px",
                 padding: "36px",
@@ -78,6 +72,7 @@ export default function HomePage() {
                 border: "1px solid rgba(255,255,255,0.35)",
               }}
             >
+              {/* TITLE + INTRO */}
               <div style={{ textAlign: "center", marginBottom: "28px" }}>
                 <h2 style={{ fontSize: "30px", color: "#1e1b4b", marginBottom: "10px" }}>
                   Find the Best Meeting Time — Instantly
@@ -99,6 +94,26 @@ export default function HomePage() {
                 </p>
               </div>
 
+              {/* 🔥 IMPROVED EXAMPLE */}
+              <div
+                style={{
+                  ...card,
+                  marginBottom: "20px",
+                  border: "2px solid #c4b5fd",
+                }}
+              >
+                <h3 style={title}>New York → London Meeting Time (Real Example)</h3>
+
+                <p style={text}>New York (EST): 9:00 AM</p>
+                <p style={text}>London (GMT): 2:00 PM</p>
+                <p style={text}>Overlap: 9AM – 12PM EST</p>
+
+                <p style={gold}>
+                  This is the ideal window for productive meetings across both cities.
+                </p>
+              </div>
+
+              {/* GRID */}
               <div
                 style={{
                   display: "grid",
@@ -106,12 +121,6 @@ export default function HomePage() {
                   gap: "20px",
                 }}
               >
-                <div style={card}>
-                  <h3 style={title}>New York to London Meeting Time Example</h3>
-                  <p style={text}>9:00 AM – 2:00 PM overlap</p>
-                  <p style={gold}>Best meeting window: 9AM – 12PM EST</p>
-                </div>
-
                 <div style={card}>
                   <h3 style={title}>Who This Is For</h3>
                   <ul style={textList}>
@@ -141,89 +150,34 @@ export default function HomePage() {
                   </ul>
                 </div>
               </div>
-            </div>
 
-            {/* BLOCK 2 — HOW IT WORKS */}
-            <div
-              style={{
-                maxWidth: "860px",
-                margin: "0 auto 30px auto",
-                background: "linear-gradient(180deg, #efe7ff 0%, #f6f2ff 100%)",
-                borderRadius: "18px",
-                padding: "28px",
-                boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
-                border: "1px solid rgba(255,255,255,0.35)",
-                textAlign: "center",
-              }}
-            >
-              <h3 style={{ color: "#1e1b4b", marginBottom: "18px", fontSize: "20px" }}>
-                How It Works
-              </h3>
-
+              {/* TRUST / AUTHORITY */}
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  gap: "14px",
-                  marginBottom: "14px",
-                  flexWrap: "wrap",
-                }}
-              >
-                {["Compare Time Zones", "Find Overlap", "Schedule with Confidence"].map(
-                  (s, i) => (
-                    <div key={i} style={pill}>
-                      {s}
-                    </div>
-                  )
-                )}
-              </div>
-
-              <p
-                style={{
-                  color: "#4b5563",
+                  marginTop: "24px",
+                  textAlign: "center",
+                  color: "#4338ca",
                   fontSize: "14px",
                   lineHeight: "1.7",
-                  maxWidth: "720px",
-                  margin: "0 auto",
                 }}
               >
-                Quickly identify the best meeting time by comparing cities in real-time,
-                visualizing overlapping hours, and choosing the most efficient window for
-                everyone involved.
-              </p>
+                Used by professionals, remote teams, and global businesses to schedule meetings
+                across time zones quickly and efficiently.
+              </div>
+
+              {/* SUPPORT TEXT */}
+              <div
+                style={{
+                  marginTop: "16px",
+                  textAlign: "center",
+                  color: "#5b21b6",
+                  fontSize: "13px",
+                }}
+              >
+                No sign-up required. No subscriptions. Just fast, reliable scheduling across time zones.
+              </div>
             </div>
 
-            {/* FINAL SECTION — TRUST / SUPPORTING COPY */}
-            <div
-              style={{
-                maxWidth: "820px",
-                margin: "40px auto 0 auto",
-                textAlign: "center",
-                background: "rgba(255,255,255,0.05)",
-                borderRadius: "14px",
-                padding: "22px",
-                color: "#ddd6fe",
-                fontSize: "15px",
-                lineHeight: "1.7",
-              }}
-            >
-              <p>
-                Used by professionals, remote teams, and global businesses to schedule
-                meetings across time zones quickly and efficiently.
-              </p>
-
-              <p style={{ marginTop: "12px" }}>
-                Share meeting links instantly to keep teams aligned, and add events directly
-                to Google, Outlook, or Apple calendars to eliminate manual scheduling. These
-                features improve collaboration, reduce errors, and help you move from
-                planning to execution with confidence.
-              </p>
-
-              <p style={{ color: "#a5b4fc", fontSize: "13px", marginTop: "18px" }}>
-                No sign-up required. No subscriptions. Just fast, reliable scheduling across
-                time zones.
-              </p>
-            </div>
           </div>
         }
         footer={<FooterSection />}
@@ -238,7 +192,6 @@ const card = {
   padding: "20px",
   borderRadius: "14px",
   boxShadow: "0 6px 18px rgba(0,0,0,0.12)",
-  minWidth: 0,
 };
 
 const title = {
@@ -261,13 +214,4 @@ const textList = {
 const gold = {
   color: "#d97706",
   fontWeight: 700,
-};
-
-const pill = {
-  background: "white",
-  padding: "10px 16px",
-  borderRadius: "10px",
-  boxShadow: "0 4px 12px rgba(0,0,0,0.18)",
-  color: "#374151",
-  fontWeight: 500,
 };
