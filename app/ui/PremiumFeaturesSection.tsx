@@ -171,22 +171,9 @@ useEffect(() => {
 
 
   async function handleCheckout() {
-    try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-      });
-
-      const data = await res.json();
-
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        console.error("No checkout URL returned");
-      }
-    } catch (err) {
-      console.error("Checkout error:", err);
-    }
-  }
+  window.location.href = "https://buy.stripe.com/60U5kF0Agco0cChf0ieME03";
+  return;
+}
 
   function handleWatchAd() {
   setCountdown(5);
