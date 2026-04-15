@@ -300,11 +300,15 @@ scrollToUpgrade();
     const url = new URL(window.location.href);
     const sessionId = url.searchParams.get("session_id");
 
-    if (sessionId) {
-      document.cookie = "premium=1; path=/; max-age=31536000";
-     
+if (sessionId) {
+  document.cookie = "premium=1; path=/; max-age=31536000";
 
-    }
+  // ✅ NEW: show confirmation message
+  setPremiumMessage("✓ Premium unlocked successfully");
+
+  // OPTIONAL: clean URL
+  window.history.replaceState({}, "", window.location.pathname);
+}
   }, []);
 
   useEffect(() => {
