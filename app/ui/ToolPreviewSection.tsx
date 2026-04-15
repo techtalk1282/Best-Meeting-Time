@@ -639,7 +639,26 @@ if (isMobile) {
             </option>
           ))}
         </select>
-
+       {/* SWAP BUTTON — RESTORED */}
+<button
+  onClick={() => {
+    const temp = cityA;
+    setCityA(cityB);
+    setCityB(temp);
+  }}
+  style={{
+    background: "#6d28d9",
+    color: "#fff",
+    fontWeight: 700,
+    padding: "8px 16px",
+    borderRadius: 8,
+    border: "none",
+    cursor: "pointer",
+    whiteSpace: "nowrap",
+  }}
+>
+  SWAP
+</button>
         
 
         <select
