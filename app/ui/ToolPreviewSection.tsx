@@ -519,35 +519,37 @@ if (isMobile) {
 
           
 
-          <button
-            onClick={async () => {
-              try {
-                const res = await fetch("/api/checkout", {
-                  method: "POST",
-                });
+         {!isPremium && (
+  <button
+    onClick={async () => {
+      try {
+        const res = await fetch("/api/checkout", {
+          method: "POST",
+        });
 
-                const data = await res.json();
-             
-                if (data.url) {
-                  window.location.href = data.url;
-                }
-              } catch (err) {
-                console.error("Checkout error:", err);
-              }
-            }}
-            style={{
-              background: "#facc15",
-              color: "#000",
-              fontWeight: 700,
-              padding: "12px 24px",
-              borderRadius: 999,
-              border: "none",
-              cursor: "pointer",
-              fontSize: 14,
-            }}
-          >
-            Unlock More Sessions — $7 One-Time
-          </button>
+        const data = await res.json();
+
+        if (data.url) {
+          window.location.href = data.url;
+        }
+      } catch (err) {
+        console.error("Checkout error:", err);
+      }
+    }}
+    style={{
+      background: "#facc15",
+      color: "#000",
+      fontWeight: 700,
+      padding: "12px 24px",
+      borderRadius: 999,
+      border: "none",
+      cursor: "pointer",
+      fontSize: 14,
+    }}
+  >
+    Unlock Premium — $7 One-Time
+  </button>
+)}
         </div>
       )}
 
