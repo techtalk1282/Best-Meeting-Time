@@ -280,6 +280,7 @@ useEffect(() => {
   return () => window.removeEventListener("resize", check);
 }, []);
   const [premiumMessage, setPremiumMessage] = useState<string | null>(null);
+const [successMessage, setSuccessMessage] = useState<string | null>(null);
    function requirePremiumFeature(): boolean {
   if (!isPremium) {
     setPremiumMessage("🔒 Premium feature — unlock all features for $7 below");
@@ -304,7 +305,7 @@ if (sessionId) {
   document.cookie = "premium=1; path=/; max-age=31536000";
 
   // ✅ NEW: show confirmation message
-  setPremiumMessage("✓ Premium unlocked successfully");
+  setSuccessMessage("✓ Premium unlocked successfully");
 
   // OPTIONAL: clean URL
   window.history.replaceState({}, "", window.location.pathname);
