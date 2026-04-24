@@ -35,9 +35,35 @@ export default function HomePage() {
 
       <LayoutShell
         hero={<HeroSection />}
-        toolPreview={null}
-        premiumFeatures={<PremiumFeaturesSection />}
-        bonusFeatures={
+        toolPreview={<div style={{ marginTop: "30px" }}>
+  {/* TEMP TOOL ENTRY (we will refine later) */}
+  <div style={{
+    textAlign: "center",
+    padding: "20px",
+    background: "rgba(255,255,255,0.08)",
+    borderRadius: "14px"
+  }}>
+    <h3 style={{ color: "white", marginBottom: "10px" }}>
+      Try the Best Meeting Time Tool
+    </h3>
+
+    <a href="/tool" style={{
+      display: "inline-block",
+      background: "#facc15",
+      color: "#1e1b4b",
+      padding: "10px 18px",
+      borderRadius: "8px",
+      fontWeight: "bold",
+      textDecoration: "none"
+    }}>
+      Open the Tool →
+    </a>
+  </div>
+</div>}
+
+premiumFeatures={null}
+
+bonusFeatures={
           <div style={{ marginTop: "70px", padding: "0 20px", paddingBottom: "70px" }}>
 
             {/* INTERNAL LINKS */}
