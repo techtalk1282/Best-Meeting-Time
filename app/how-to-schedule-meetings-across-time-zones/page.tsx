@@ -13,11 +13,7 @@
  *   app/how-to-schedule-meetings-across-time-zones
  */
 
-export const metadata = {
-  title: "How to Schedule Meetings Across Time Zones | Best Meeting Time",
-  description:
-    "Learn how to schedule meetings across time zones without mistakes. Compare working hours, avoid late-night calls, and plan better global meetings.",
-};
+
 
 export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
   return (
