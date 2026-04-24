@@ -31,20 +31,23 @@ export default function SiteNav() {
 }
 
 const navWrap = {
-  maxWidth: "1120px",
+  maxWidth: "1200px",
   margin: "0 auto",
-  padding: "18px 20px",
+  padding: "22px 24px",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  gap: "18px",
+  gap: "20px",
   flexWrap: "wrap" as const,
+
+  // NEW (important)
+  borderBottom: "1px solid rgba(255,255,255,0.12)",
 };
 
 const brand = {
   color: "#facc15",
-  fontSize: "18px",
-  fontWeight: 800,
+  fontSize: "20px",
+  fontWeight: 900,
   textDecoration: "none",
 };
 
@@ -56,9 +59,9 @@ const navLinks = {
 };
 
 const navLink = {
-  color: "white",
-  fontSize: "14px",
-  fontWeight: 600,
+  color: "rgba(255,255,255,0.9)",
+  fontSize: "15px",
+  fontWeight: 700,
   textDecoration: "none",
 };
 
