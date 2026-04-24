@@ -34,8 +34,44 @@ export default function HomePage() {
       <VerifyPremium />
 
       <LayoutShell
-        hero={<HeroSection />}
-        toolPreview={<div style={{ marginTop: "30px" }}>
+        hero={
+  <>
+    <HeroSection />
+
+    {/* NEW VALUE SECTION (CRITICAL FOR ADSENSE) */}
+    <div style={{
+      maxWidth: "900px",
+      margin: "30px auto 0 auto",
+      textAlign: "center",
+      color: "white",
+      padding: "0 20px"
+    }}>
+      <h2 style={{ fontSize: "24px", marginBottom: "10px" }}>
+        Plan Meetings Across Time Zones Without Guesswork
+      </h2>
+
+      <p style={{
+        opacity: 0.85,
+        lineHeight: "1.5",
+        maxWidth: "700px",
+        margin: "0 auto"
+      }}>
+        Finding the right meeting time across multiple time zones can be confusing
+        and time-consuming. This tool helps you instantly compare cities, visualize
+        overlapping working hours, and choose the most effective time for everyone.
+      </p>
+
+      <div style={{
+        marginTop: "15px",
+        fontSize: "14px",
+        opacity: 0.8
+      }}>
+        No sign-up required • Free to use • Works worldwide
+      </div>
+    </div>
+  </>
+}
+toolPreview={<div style={{ marginTop: "30px" }}>
   {/* TEMP TOOL ENTRY (we will refine later) */}
   <div style={{
     textAlign: "center",
