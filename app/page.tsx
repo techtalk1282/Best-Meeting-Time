@@ -18,7 +18,7 @@ import LayoutShell from "./ui/LayoutShell";
 import HeroSection from "./ui/HeroSection";
 import PremiumFeaturesSection from "./ui/PremiumFeaturesSection";
 import FooterSection from "./ui/FooterSection";
-
+import SiteNav from "./ui/SiteNav";
 const VerifyPremium = dynamic(() => import("./ui/VerifyPremium"), {
   ssr: false,
 });
@@ -26,9 +26,13 @@ const VerifyPremium = dynamic(() => import("./ui/VerifyPremium"), {
 export default function HomePage() {
   return (
     <>
-      <VerifyPremium />
+  <VerifyPremium />
 
-      <LayoutShell
+  <div style={{ background: "#4c1d95" }}>
+    <SiteNav />
+  </div>
+
+  <LayoutShell
         hero={
           <>
             <div id="schedule-tool">
