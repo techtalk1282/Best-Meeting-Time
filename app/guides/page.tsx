@@ -29,6 +29,22 @@ export default function GuidesPage() {
       }}>
 
         <a href="/how-to-schedule-meetings-across-time-zones" style={cardStyle}>
+  <h3 style={{ marginBottom: "10px" }}>
+    How to Schedule Across Time Zones
+  </h3>
+  <p style={{ fontSize: "14px", opacity: 0.8 }}>
+    Step-by-step guide to scheduling meetings globally without confusion.
+  </p>
+</a>
+
+<a href="/best-meeting-times-remote-teams" style={cardStyle}>
+  <h3 style={{ marginBottom: "10px" }}>
+    Best Meeting Times for Remote Teams
+  </h3>
+  <p style={{ fontSize: "14px", opacity: 0.8 }}>
+    Learn how to find the best overlap times for distributed teams.
+  </p>
+</a>
           <h3>How to Schedule Across Time Zones</h3>
           <p>Step-by-step scheduling guide</p>
         </a>
