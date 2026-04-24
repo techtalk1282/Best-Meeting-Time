@@ -13,11 +13,7 @@
  *   app/best-meeting-times-remote-teams
  */
 
-export const metadata = {
-  title: "Best Meeting Times for Remote Teams | Best Meeting Time",
-  description:
-    "Learn how remote teams can choose better meeting times across time zones, reduce scheduling friction, and plan fairer global meetings.",
-};
+
 
 export default function BestMeetingTimesRemoteTeamsPage() {
   return (
