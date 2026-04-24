@@ -35,9 +35,9 @@ export default function HomePage() {
   <LayoutShell
         hero={
           <>
-            <div id="schedule-tool">
-              <HeroSection />
-            </div>
+            <div id="schedule-tool" style={{ marginTop: "30px" }}>
+  <HeroSection />
+</div>
 
             {/* HOMEPAGE VALUE SECTION */}
             <section style={valueSection}>
