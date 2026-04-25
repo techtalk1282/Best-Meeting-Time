@@ -63,6 +63,10 @@ const cardStyle = {
   borderRadius: "14px",
   textDecoration: "none",
   boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+  minHeight: "120px",
+  display: "flex",
+  flexDirection: "column" as const,
+  justifyContent: "center",
 };
 
 const cardTitle = {
