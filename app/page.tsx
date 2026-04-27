@@ -1,15 +1,24 @@
 /**
  * File: app/page.tsx
- * Version: v3.6 (ADSENSE HOMEPAGE RESTRUCTURE)
- * Date: 2026-04-23
+ * Version: v3.7 (V3 CONTENT-FIRST HOMEPAGE PASS 1)
+ * Date: 2026-04-27
  *
  * PURPOSE:
- * - Rebuild homepage into a content-first resource layout for AdSense recovery
- * - Keep existing HeroSection, VerifyPremium, FooterSection, and PremiumFeaturesSection
- * - Preserve tool/payment logic by NOT touching ToolPreviewSection, Stripe, checkout, webhook, or KV
+ * - Move the homepage toward the V3 SaaS-style mockup direction
+ * - Make the first impression content-first instead of tool-first
+ * - Preserve the existing HeroSection/tool behavior without editing ToolPreviewSection
+ * - Preserve VerifyPremium, PremiumFeaturesSection, FooterSection, and SiteNav
+ *
+ * PROTECTED:
+ * - No Stripe changes
+ * - No checkout changes
+ * - No webhook changes
+ * - No KV changes
+ * - No premium/payment logic changes
+ * - No ToolPreviewSection logic changes
  *
  * ROLLBACK:
- * - Revert to v3.3 if this homepage restructure causes layout issues
+ * - Revert this file to v3.6 if the homepage layout does not test cleanly
  */
 
 import dynamic from "next/dynamic";
@@ -19,6 +28,7 @@ import HeroSection from "./ui/HeroSection";
 import PremiumFeaturesSection from "./ui/PremiumFeaturesSection";
 import FooterSection from "./ui/FooterSection";
 import SiteNav from "./ui/SiteNav";
+
 const VerifyPremium = dynamic(() => import("./ui/VerifyPremium"), {
   ssr: false,
 });
@@ -26,92 +36,171 @@ const VerifyPremium = dynamic(() => import("./ui/VerifyPremium"), {
 export default function HomePage() {
   return (
     <>
-  <VerifyPremium />
+      <VerifyPremium />
 
-  <div style={{ background: "#4c1d95" }}>
-    <SiteNav />
-  </div>
+      <div style={{ background: "#4c1d95" }}>
+        <SiteNav />
+      </div>
 
-  <LayoutShell
+      <LayoutShell
         hero={
+          <section style={homepageHeroSection}>
+            <div style={homepageHeroInner}>
+              <div style={heroTextColumn}>
+                <p style={eyebrow}>Free Time Zone Meeting Planner</p>
+
+                <h1 style={heroHeading}>
+                  Find the Best Meeting Time Across Any Time Zone
+                </h1>
+
+                <p style={heroSubtext}>
+                  Smart scheduling for global teams, remote workers, consultants,
+                  freelancers, and anyone planning meetings across countries.
+                </p>
+
+                <div style={heroButtonRow}>
+                  <a href="#schedule-tool" style={primaryButton}>
+                    Try the Free Tool
+                  </a>
+
+                  <a href="/guides" style={secondaryButton}>
+                    View Scheduling Guides
+                  </a>
+                </div>
+
+                <div style={trustRow}>
+                  <span>No sign-up required</span>
+                  <span>Free to use</span>
+                  <span>Works worldwide</span>
+                </div>
+              </div>
+
+              <div style={heroPreviewCard}>
+                <div style={previewTopRow}>
+                  <span style={previewLabel}>Smart Time Check</span>
+                  <span style={previewBadge}>Free</span>
+                </div>
+
+                <div style={previewTitle}>New York → London</div>
+
+                <div style={previewTimeGrid}>
+                  <div style={previewTimeBox}>
+                    <span style={previewCity}>New York</span>
+                    <strong>9:00 AM</strong>
+                  </div>
+
+                  <div style={previewTimeBox}>
+                    <span style={previewCity}>London</span>
+                    <strong>2:00 PM</strong>
+                  </div>
+                </div>
+
+                <div style={previewTimeline}>
+                  <div style={previewTimelineFill}>Best Time</div>
+                </div>
+
+                <p style={previewResult}>
+                  Best meeting window: 9AM – 12PM New York time
+                </p>
+              </div>
+            </div>
+          </section>
+        }
+        toolPreview={
           <>
-            <div id="schedule-tool" style={{ marginTop: "30px" }}>
-  <HeroSection />
-</div>
+            <section style={benefitsSection}>
+              <div style={benefitsGrid}>
+                <div style={benefitCard}>
+                  <strong>Accurate Planning</strong>
+                  <span>Compare cities and local times clearly.</span>
+                </div>
 
-            {/* HOMEPAGE VALUE SECTION */}
-            <section style={valueSection}>
-              <p style={eyebrow}>Free Time Zone Meeting Planner</p>
+                <div style={benefitCard}>
+                  <strong>Save Time</strong>
+                  <span>Reduce back-and-forth scheduling messages.</span>
+                </div>
 
-              <h2 style={valueHeading}>
-                Plan Meetings Across Time Zones Without Guesswork
+                <div style={benefitCard}>
+                  <strong>For Global Teams</strong>
+                  <span>Built for remote teams and international calls.</span>
+                </div>
+
+                <div style={benefitCard}>
+                  <strong>Simple to Use</strong>
+                  <span>No account required to check meeting windows.</span>
+                </div>
+              </div>
+            </section>
+
+            <section id="schedule-tool" style={toolSectionWrap}>
+              <div style={toolSectionHeader}>
+                <p style={eyebrow}>Use the Tool</p>
+
+                <h2 style={whiteHeading}>
+                  Compare Time Zones and Find Your Best Meeting Window
+                </h2>
+
+                <p style={whiteSubtext}>
+                  Select two locations, review the overlap, and choose a time
+                  that works better for everyone.
+                </p>
+              </div>
+
+              <HeroSection />
+            </section>
+
+            <section style={resourceIntroSection}>
+              <h2 style={whiteHeading}>
+                Helpful Resources to Schedule Better Meetings
               </h2>
 
-              <p style={valueText}>
-                Best Meeting Time helps remote teams, consultants, freelancers,
-                and global businesses compare cities, visualize overlapping work
-                hours, and choose a meeting time that works for everyone.
+              <p style={whiteSubtext}>
+                Learn how to plan across time zones, avoid scheduling mistakes,
+                and make global meetings easier for everyone.
               </p>
 
-              <div style={trustRow}>
-                <span>No sign-up required</span>
-                <span>Free to use</span>
-                <span>Works worldwide</span>
+              <div style={resourceGrid}>
+                <a
+                  href="/how-to-schedule-meetings-across-time-zones"
+                  style={resourceCard}
+                >
+                  <strong>How to Schedule Across Time Zones</strong>
+                  <span>Step-by-step guide for global teams</span>
+                </a>
+
+                <a href="/best-meeting-times-remote-teams" style={resourceCard}>
+                  <strong>Best Meeting Times for Remote Teams</strong>
+                  <span>Practical tips that actually work</span>
+                </a>
+
+                <a href="/time-zone-meeting-planner-guide" style={resourceCard}>
+                  <strong>Time Zone Meeting Planner Guide</strong>
+                  <span>Understand how to compare locations</span>
+                </a>
+
+                <a href="/global-meeting-scheduling-tips" style={resourceCard}>
+                  <strong>Global Meeting Scheduling Tips</strong>
+                  <span>Improve planning across countries</span>
+                </a>
+              </div>
+
+              <div style={toolCallout}>
+                <span>Ready to compare cities now?</span>
+
+                <a href="#schedule-tool" style={goldButton}>
+                  Use the Free Tool
+                </a>
               </div>
             </section>
           </>
         }
-
-        toolPreview={
-          <section style={resourceIntroSection}>
-            <h2 style={whiteHeading}>
-              Helpful Resources to Schedule Better Meetings
-            </h2>
-
-            <p style={whiteSubtext}>
-              Learn how to plan across time zones, avoid scheduling mistakes,
-              and make global meetings easier for everyone.
-            </p>
-
-            <div style={resourceGrid}>
-              <a href="/how-to-schedule-meetings-across-time-zones" style={resourceCard}>
-                <strong>How to Schedule Across Time Zones</strong>
-                <span>Step-by-step guide for global teams</span>
-              </a>
-
-              <a href="/best-meeting-times-remote-teams" style={resourceCard}>
-                <strong>Best Meeting Times for Remote Teams</strong>
-                <span>Practical tips that actually work</span>
-              </a>
-
-              <a href="/time-zone-meeting-planner-guide" style={resourceCard}>
-                <strong>Time Zone Meeting Planner Guide</strong>
-                <span>Understand how to compare locations</span>
-              </a>
-
-              <a href="/global-meeting-scheduling-tips" style={resourceCard}>
-                <strong>Global Meeting Scheduling Tips</strong>
-                <span>Improve planning across countries</span>
-              </a>
-            </div>
-
-            <div style={toolCallout}>
-              <span>Ready to compare cities now?</span>
-
-              <a href="#schedule-tool" style={goldButton}>
-                Use the Free Tool
-              </a>
-            </div>
-          </section>
-        }
-
         premiumFeatures={null}
-
         bonusFeatures={
           <main style={mainContentWrap}>
-            {/* INTERNAL CITY LINKS */}
             <section style={citySection}>
-              <h2 style={whiteHeading}>Compare Popular Cities Across Time Zones</h2>
+              <h2 style={whiteHeading}>
+                Compare Popular Cities Across Time Zones
+              </h2>
 
               <div style={cityLinks}>
                 <a href="/best-meeting-time-new-york">New York</a>
@@ -126,7 +215,6 @@ export default function HomePage() {
               </div>
             </section>
 
-            {/* HIGH-VALUE CONTENT BLOCK */}
             <section style={contentPanel}>
               <h2 style={panelHeading}>
                 How to Schedule Meetings Across Time Zones Without Mistakes
@@ -167,7 +255,6 @@ export default function HomePage() {
               </p>
             </section>
 
-            {/* EXAMPLE + USE CASE BLOCK */}
             <section style={contentPanel}>
               <div style={{ textAlign: "center", marginBottom: "28px" }}>
                 <h2 style={panelHeading}>Find the Best Meeting Time — Instantly</h2>
@@ -237,13 +324,11 @@ export default function HomePage() {
               </div>
             </section>
 
-            {/* PREMIUM MOVED TO BOTTOM */}
             <section style={premiumWrap}>
               <PremiumFeaturesSection />
             </section>
           </main>
         }
-
         footer={<FooterSection />}
       />
     </>
@@ -252,46 +337,210 @@ export default function HomePage() {
 
 /* STYLES */
 
-const valueSection = {
-  maxWidth: "940px",
-  margin: "34px auto 0 auto",
-  textAlign: "center" as const,
-  color: "white",
-  padding: "0 20px",
+const homepageHeroSection = {
+  background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
+  color: "#ffffff",
+  padding: "64px 20px 44px",
+};
+
+const homepageHeroInner = {
+  maxWidth: "1180px",
+  margin: "0 auto",
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+  alignItems: "center",
+  gap: "34px",
+};
+
+const heroTextColumn = {
+  maxWidth: "620px",
 };
 
 const eyebrow = {
   display: "inline-block",
-  margin: "0 0 10px 0",
+  margin: "0 0 12px 0",
   padding: "7px 14px",
   borderRadius: "999px",
   background: "rgba(250,204,21,0.16)",
   color: "#facc15",
   fontSize: "13px",
-  fontWeight: 700,
+  fontWeight: 800,
 };
 
-const valueHeading = {
-  fontSize: "28px",
-  marginBottom: "12px",
+const heroHeading = {
+  fontSize: "clamp(38px, 6vw, 64px)",
+  lineHeight: "1.02",
+  margin: "0 0 18px",
+  fontWeight: 900,
 };
 
-const valueText = {
-  maxWidth: "760px",
-  margin: "0 auto",
+const heroSubtext = {
   color: "rgba(255,255,255,0.86)",
-  lineHeight: "1.55",
-  fontSize: "15px",
+  fontSize: "17px",
+  lineHeight: "1.6",
+  margin: "0 0 24px",
+};
+
+const heroButtonRow = {
+  display: "flex",
+  flexWrap: "wrap" as const,
+  gap: "12px",
+  alignItems: "center",
+};
+
+const primaryButton = {
+  display: "inline-block",
+  background: "#facc15",
+  color: "#1e1b4b",
+  padding: "12px 18px",
+  borderRadius: "999px",
+  fontWeight: 900,
+  textDecoration: "none",
+};
+
+const secondaryButton = {
+  display: "inline-block",
+  background: "rgba(255,255,255,0.12)",
+  color: "#ffffff",
+  padding: "12px 18px",
+  borderRadius: "999px",
+  fontWeight: 800,
+  textDecoration: "none",
+  border: "1px solid rgba(255,255,255,0.22)",
 };
 
 const trustRow = {
-  marginTop: "18px",
+  marginTop: "20px",
   display: "flex",
-  justifyContent: "center",
   flexWrap: "wrap" as const,
-  gap: "14px",
+  gap: "12px",
   color: "rgba(255,255,255,0.82)",
   fontSize: "13px",
+  fontWeight: 700,
+};
+
+const heroPreviewCard = {
+  background: "#ffffff",
+  color: "#1e1b4b",
+  borderRadius: "26px",
+  padding: "24px",
+  boxShadow: "0 24px 70px rgba(0,0,0,0.32)",
+  border: "1px solid rgba(196,181,253,0.65)",
+};
+
+const previewTopRow = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  gap: "12px",
+  marginBottom: "18px",
+};
+
+const previewLabel = {
+  fontSize: "13px",
+  fontWeight: 900,
+  color: "#4c1d95",
+};
+
+const previewBadge = {
+  background: "#dcfce7",
+  color: "#166534",
+  padding: "5px 10px",
+  borderRadius: "999px",
+  fontSize: "12px",
+  fontWeight: 900,
+};
+
+const previewTitle = {
+  fontSize: "24px",
+  fontWeight: 900,
+  marginBottom: "18px",
+};
+
+const previewTimeGrid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+  gap: "12px",
+  marginBottom: "18px",
+};
+
+const previewTimeBox = {
+  background: "#f5f3ff",
+  border: "1px solid #ddd6fe",
+  borderRadius: "16px",
+  padding: "16px",
+  display: "flex",
+  flexDirection: "column" as const,
+  gap: "6px",
+};
+
+const previewCity = {
+  color: "#6b7280",
+  fontSize: "13px",
+  fontWeight: 800,
+};
+
+const previewTimeline = {
+  height: "28px",
+  background: "#ede9fe",
+  borderRadius: "999px",
+  overflow: "hidden",
+  marginBottom: "14px",
+};
+
+const previewTimelineFill = {
+  width: "62%",
+  height: "100%",
+  background: "linear-gradient(90deg, #22c55e, #16a34a)",
+  color: "#ffffff",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontSize: "12px",
+  fontWeight: 900,
+  borderRadius: "999px",
+};
+
+const previewResult = {
+  margin: 0,
+  color: "#4338ca",
+  fontSize: "14px",
+  fontWeight: 800,
+};
+
+const benefitsSection = {
+  maxWidth: "1080px",
+  margin: "0 auto",
+  padding: "0 20px 20px",
+};
+
+const benefitsGrid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+  gap: "14px",
+};
+
+const benefitCard = {
+  background: "rgba(255,255,255,0.94)",
+  color: "#1e1b4b",
+  borderRadius: "16px",
+  padding: "18px",
+  display: "flex",
+  flexDirection: "column" as const,
+  gap: "7px",
+  boxShadow: "0 8px 22px rgba(0,0,0,0.16)",
+  border: "1px solid rgba(196,181,253,0.55)",
+};
+
+const toolSectionWrap = {
+  maxWidth: "1120px",
+  margin: "30px auto 0",
+  padding: "0 20px",
+};
+
+const toolSectionHeader = {
+  textAlign: "center" as const,
+  marginBottom: "12px",
 };
 
 const resourceIntroSection = {
