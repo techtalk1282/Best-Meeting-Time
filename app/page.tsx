@@ -615,7 +615,8 @@ const mockButton = {
 const featureStrip = {
   maxWidth: "1180px",
   margin: "0 auto",
-  padding: "0 20px 28px",
+  padding: "28px 20px 48px",
+  background: "#ffffff",
 };
 
 const featureGrid = {
