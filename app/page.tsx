@@ -1,24 +1,22 @@
+// ===== app/page.tsx CHUNK 1 OF 6 START =====
+
 /**
  * File: app/page.tsx
- * Version: v3.7 (V3 CONTENT-FIRST HOMEPAGE PASS 1)
- * Date: 2026-04-27
+ * Version: v4.0 (V3 WHITE SAAS HOMEPAGE REBUILD)
+ * Date: 2026-05-03
  *
  * PURPOSE:
- * - Move the homepage toward the V3 SaaS-style mockup direction
- * - Make the first impression content-first instead of tool-first
- * - Preserve the existing HeroSection/tool behavior without editing ToolPreviewSection
- * - Preserve VerifyPremium, PremiumFeaturesSection, FooterSection, and SiteNav
+ * - Full homepage redesign toward white SaaS-style layout
+ * - Preserve ALL tool + premium + Stripe logic
+ * - Improve first impression and AdSense readiness
  *
  * PROTECTED:
- * - No Stripe changes
- * - No checkout changes
- * - No webhook changes
- * - No KV changes
- * - No premium/payment logic changes
- * - No ToolPreviewSection logic changes
+ * - NO Stripe changes
+ * - NO ToolPreviewSection changes
+ * - NO premium logic changes
  *
  * ROLLBACK:
- * - Revert this file to v3.6 if the homepage layout does not test cleanly
+ * - Revert to v3.7 if layout issues occur
  */
 
 import dynamic from "next/dynamic";
@@ -38,24 +36,28 @@ export default function HomePage() {
     <>
       <VerifyPremium />
 
-      <div style={{ background: "#4c1d95" }}>
+      {/* NEW WHITE HEADER */}
+      <div style={headerWrap}>
         <SiteNav />
       </div>
 
       <LayoutShell
         hero={
-          <section style={homepageHeroSection}>
-            <div style={homepageHeroInner}>
-              <div style={heroTextColumn}>
-                <p style={eyebrow}>Free Time Zone Meeting Planner</p>
+          <section style={heroSectionWhite}>
+            <div style={heroInnerWhite}>
 
-                <h1 style={heroHeading}>
+              {/* LEFT SIDE */}
+              <div style={heroTextColumnWhite}>
+                <p style={eyebrowDark}>Free Time Zone Meeting Planner</p>
+
+                <h1 style={heroHeadingDark}>
                   Find the Best Meeting Time Across Any Time Zone
                 </h1>
 
-                <p style={heroSubtext}>
-                  Smart scheduling for global teams, remote workers, consultants,
-                  freelancers, and anyone planning meetings across countries.
+                <p style={heroSubtextDark}>
+                  Smart scheduling for global teams, remote workers,
+                  consultants, freelancers, and anyone planning meetings
+                  across countries.
                 </p>
 
                 <div style={heroButtonRow}>
@@ -63,19 +65,20 @@ export default function HomePage() {
                     Try the Free Tool
                   </a>
 
-                  <a href="/guides" style={secondaryButton}>
+                  <a href="/guides" style={secondaryButtonDark}>
                     View Scheduling Guides
                   </a>
                 </div>
 
-                <div style={trustRow}>
+                <div style={trustRowDark}>
                   <span>No sign-up required</span>
                   <span>Free to use</span>
                   <span>Works worldwide</span>
                 </div>
               </div>
 
-              <div style={heroPreviewCard}>
+              {/* RIGHT SIDE MOCK CARD */}
+              <div style={heroPreviewCardWhite}>
                 <div style={previewTopRow}>
                   <span style={previewLabel}>Smart Time Check</span>
                   <span style={previewBadge}>Free</span>
@@ -103,12 +106,18 @@ export default function HomePage() {
                   Best meeting window: 9AM – 12PM New York time
                 </p>
               </div>
+
             </div>
           </section>
         }
+
+// ===== app/page.tsx CHUNK 1 OF 6 END =====
+// ===== app/page.tsx CHUNK 2 OF 6 START =====
+
         toolPreview={
           <>
-            <section style={benefitsSection}>
+            {/* BENEFITS STRIP */}
+            <section style={benefitsSectionWhite}>
               <div style={benefitsGrid}>
                 <div style={benefitCard}>
                   <strong>Accurate Planning</strong>
@@ -132,73 +141,96 @@ export default function HomePage() {
               </div>
             </section>
 
-            <section id="schedule-tool" style={toolSectionWrap}>
-              <div style={toolSectionHeader}>
-                <p style={eyebrow}>Use the Tool</p>
+            {/* REAL TOOL SECTION (UNCHANGED LOGIC) */}
+            <section id="schedule-tool" style={toolSectionWrapWhite}>
+              <div style={toolSectionHeaderDark}>
+                <p style={eyebrowDark}>Use the Tool</p>
 
-                <h2 style={whiteHeading}>
+                <h2 style={sectionHeadingDark}>
                   Compare Time Zones and Find Your Best Meeting Window
                 </h2>
 
-                <p style={whiteSubtext}>
+                <p style={sectionSubtextDark}>
                   Select two locations, review the overlap, and choose a time
                   that works better for everyone.
                 </p>
               </div>
 
+              {/* PROTECTED COMPONENT — DO NOT TOUCH */}
               <HeroSection />
             </section>
 
-            <section style={resourceIntroSection}>
-              <h2 style={whiteHeading}>
-                Helpful Resources to Schedule Better Meetings
-              </h2>
+// ===== app/page.tsx CHUNK 2 OF 6 END =====
+// ===== app/page.tsx CHUNK 3 OF 6 START =====
 
-              <p style={whiteSubtext}>
-                Learn how to plan across time zones, avoid scheduling mistakes,
-                and make global meetings easier for everyone.
-              </p>
+            {/* RESOURCES SECTION */}
+            <section style={resourceSectionWhite}>
+              <div style={resourceInner}>
+                <h2 style={sectionHeadingDark}>
+                  Helpful Resources to Schedule Better Meetings
+                </h2>
 
-              <div style={resourceGrid}>
-                <a
-                  href="/how-to-schedule-meetings-across-time-zones"
-                  style={resourceCard}
-                >
-                  <strong>How to Schedule Across Time Zones</strong>
-                  <span>Step-by-step guide for global teams</span>
-                </a>
+                <p style={sectionSubtextDark}>
+                  Learn how to plan across time zones, avoid scheduling mistakes,
+                  and make global meetings easier for everyone.
+                </p>
 
-                <a href="/best-meeting-times-remote-teams" style={resourceCard}>
-                  <strong>Best Meeting Times for Remote Teams</strong>
-                  <span>Practical tips that actually work</span>
-                </a>
+                <div style={resourceGrid}>
+                  <a
+                    href="/how-to-schedule-meetings-across-time-zones"
+                    style={resourceCardWhite}
+                  >
+                    <strong>How to Schedule Across Time Zones</strong>
+                    <span>Step-by-step guide for global teams</span>
+                  </a>
 
-                <a href="/time-zone-meeting-planner-guide" style={resourceCard}>
-                  <strong>Time Zone Meeting Planner Guide</strong>
-                  <span>Understand how to compare locations</span>
-                </a>
+                  <a
+                    href="/best-meeting-times-remote-teams"
+                    style={resourceCardWhite}
+                  >
+                    <strong>Best Meeting Times for Remote Teams</strong>
+                    <span>Practical tips that actually work</span>
+                  </a>
 
-                <a href="/global-meeting-scheduling-tips" style={resourceCard}>
-                  <strong>Global Meeting Scheduling Tips</strong>
-                  <span>Improve planning across countries</span>
-                </a>
-              </div>
+                  <a
+                    href="/time-zone-meeting-planner-guide"
+                    style={resourceCardWhite}
+                  >
+                    <strong>Time Zone Meeting Planner Guide</strong>
+                    <span>Understand how to compare locations</span>
+                  </a>
 
-              <div style={toolCallout}>
-                <span>Ready to compare cities now?</span>
+                  <a
+                    href="/global-meeting-scheduling-tips"
+                    style={resourceCardWhite}
+                  >
+                    <strong>Global Meeting Scheduling Tips</strong>
+                    <span>Improve planning across countries</span>
+                  </a>
+                </div>
 
-                <a href="#schedule-tool" style={goldButton}>
-                  Use the Free Tool
-                </a>
+                {/* CTA BAND */}
+                <div style={ctaBand}>
+                  <span>Ready to compare cities now?</span>
+
+                  <a href="#schedule-tool" style={primaryButton}>
+                    Use the Free Tool
+                  </a>
+                </div>
               </div>
             </section>
+
+// ===== app/page.tsx CHUNK 3 OF 6 END =====
+// ===== app/page.tsx CHUNK 4 OF 6 START =====
+
           </>
         }
         premiumFeatures={null}
         bonusFeatures={
-          <main style={mainContentWrap}>
-            <section style={citySection}>
-              <h2 style={whiteHeading}>
+          <main style={mainContentWrapWhite}>
+            {/* POPULAR CITY LINKS */}
+            <section style={citySectionWhite}>
+              <h2 style={sectionHeadingDark}>
                 Compare Popular Cities Across Time Zones
               </h2>
 
@@ -215,7 +247,8 @@ export default function HomePage() {
               </div>
             </section>
 
-            <section style={contentPanel}>
+            {/* CONTENT PANEL 1 */}
+            <section style={contentPanelWhite}>
               <h2 style={panelHeading}>
                 How to Schedule Meetings Across Time Zones Without Mistakes
               </h2>
@@ -255,7 +288,8 @@ export default function HomePage() {
               </p>
             </section>
 
-            <section style={contentPanel}>
+            {/* CONTENT PANEL 2 */}
+            <section style={contentPanelWhite}>
               <div style={{ textAlign: "center", marginBottom: "28px" }}>
                 <h2 style={panelHeading}>Find the Best Meeting Time — Instantly</h2>
 
@@ -324,6 +358,7 @@ export default function HomePage() {
               </div>
             </section>
 
+            {/* PREMIUM SECTION — PROTECTED */}
             <section style={premiumWrap}>
               <PremiumFeaturesSection />
             </section>
@@ -337,45 +372,55 @@ export default function HomePage() {
 
 /* STYLES */
 
-const homepageHeroSection = {
-  background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
-  color: "#ffffff",
-  padding: "64px 20px 44px",
+// ===== app/page.tsx CHUNK 4 OF 6 END =====
+// ===== app/page.tsx CHUNK 5 OF 6 START =====
+
+const headerWrap = {
+  background: "#ffffff",
+  borderBottom: "1px solid #ede9fe",
 };
 
-const homepageHeroInner = {
+const heroSectionWhite = {
+  background:
+    "linear-gradient(180deg, #ffffff 0%, #f8f7ff 58%, #ede9fe 100%)",
+  color: "#1e1b4b",
+  padding: "72px 20px 54px",
+};
+
+const heroInnerWhite = {
   maxWidth: "1180px",
   margin: "0 auto",
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
   alignItems: "center",
-  gap: "34px",
+  gap: "38px",
 };
 
-const heroTextColumn = {
+const heroTextColumnWhite = {
   maxWidth: "620px",
 };
 
-const eyebrow = {
+const eyebrowDark = {
   display: "inline-block",
   margin: "0 0 12px 0",
   padding: "7px 14px",
   borderRadius: "999px",
-  background: "rgba(250,204,21,0.16)",
-  color: "#facc15",
+  background: "#ede9fe",
+  color: "#4c1d95",
   fontSize: "13px",
-  fontWeight: 800,
+  fontWeight: 900,
 };
 
-const heroHeading = {
+const heroHeadingDark = {
   fontSize: "clamp(38px, 6vw, 64px)",
   lineHeight: "1.02",
   margin: "0 0 18px",
   fontWeight: 900,
+  letterSpacing: "-0.04em",
 };
 
-const heroSubtext = {
-  color: "rgba(255,255,255,0.86)",
+const heroSubtextDark = {
+  color: "#4b5563",
   fontSize: "17px",
   lineHeight: "1.6",
   margin: "0 0 24px",
@@ -396,36 +441,37 @@ const primaryButton = {
   borderRadius: "999px",
   fontWeight: 900,
   textDecoration: "none",
+  boxShadow: "0 10px 24px rgba(250,204,21,0.25)",
 };
 
-const secondaryButton = {
+const secondaryButtonDark = {
   display: "inline-block",
-  background: "rgba(255,255,255,0.12)",
-  color: "#ffffff",
+  background: "#ffffff",
+  color: "#4c1d95",
   padding: "12px 18px",
   borderRadius: "999px",
-  fontWeight: 800,
+  fontWeight: 900,
   textDecoration: "none",
-  border: "1px solid rgba(255,255,255,0.22)",
+  border: "1px solid #c4b5fd",
 };
 
-const trustRow = {
+const trustRowDark = {
   marginTop: "20px",
   display: "flex",
   flexWrap: "wrap" as const,
   gap: "12px",
-  color: "rgba(255,255,255,0.82)",
+  color: "#5b21b6",
   fontSize: "13px",
-  fontWeight: 700,
+  fontWeight: 800,
 };
 
-const heroPreviewCard = {
+const heroPreviewCardWhite = {
   background: "#ffffff",
   color: "#1e1b4b",
-  borderRadius: "26px",
-  padding: "24px",
-  boxShadow: "0 24px 70px rgba(0,0,0,0.32)",
-  border: "1px solid rgba(196,181,253,0.65)",
+  borderRadius: "28px",
+  padding: "26px",
+  boxShadow: "0 28px 80px rgba(76,29,149,0.18)",
+  border: "1px solid #ddd6fe",
 };
 
 const previewTopRow = {
@@ -456,6 +502,9 @@ const previewTitle = {
   fontWeight: 900,
   marginBottom: "18px",
 };
+
+// ===== app/page.tsx CHUNK 5 OF 6 END =====
+// ===== app/page.tsx CHUNK 6 OF 6 START =====
 
 const previewTimeGrid = {
   display: "grid",
@@ -508,114 +557,114 @@ const previewResult = {
   fontWeight: 800,
 };
 
-const benefitsSection = {
-  maxWidth: "1080px",
-  margin: "0 auto",
-  padding: "0 20px 20px",
+const benefitsSectionWhite = {
+  background: "#ffffff",
+  padding: "28px 20px",
 };
 
 const benefitsGrid = {
+  maxWidth: "1080px",
+  margin: "0 auto",
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
   gap: "14px",
 };
 
 const benefitCard = {
-  background: "rgba(255,255,255,0.94)",
+  background: "#ffffff",
   color: "#1e1b4b",
-  borderRadius: "16px",
+  borderRadius: "18px",
   padding: "18px",
   display: "flex",
   flexDirection: "column" as const,
   gap: "7px",
-  boxShadow: "0 8px 22px rgba(0,0,0,0.16)",
-  border: "1px solid rgba(196,181,253,0.55)",
+  boxShadow: "0 12px 30px rgba(76,29,149,0.10)",
+  border: "1px solid #ede9fe",
 };
 
-const toolSectionWrap = {
-  maxWidth: "1120px",
-  margin: "30px auto 0",
-  padding: "0 20px",
+const toolSectionWrapWhite = {
+  background: "#4c1d95",
+  padding: "54px 20px",
 };
 
-const toolSectionHeader = {
-  textAlign: "center" as const,
-  marginBottom: "12px",
-};
-
-const resourceIntroSection = {
-  maxWidth: "1040px",
-  margin: "50px auto 0 auto",
-  padding: "0 20px",
+const toolSectionHeaderDark = {
+  maxWidth: "760px",
+  margin: "0 auto 18px",
   textAlign: "center" as const,
 };
 
-const whiteHeading = {
-  color: "white",
-  fontSize: "26px",
-  marginBottom: "8px",
+const sectionHeadingDark = {
+  color: "#1e1b4b",
+  fontSize: "clamp(28px, 4vw, 42px)",
+  lineHeight: "1.12",
+  margin: "0 0 10px",
+  fontWeight: 900,
+  letterSpacing: "-0.03em",
 };
 
-const whiteSubtext = {
-  maxWidth: "700px",
-  margin: "0 auto 24px auto",
-  color: "rgba(255,255,255,0.78)",
-  lineHeight: "1.5",
-  fontSize: "14px",
+const sectionSubtextDark = {
+  maxWidth: "720px",
+  margin: "0 auto 26px",
+  color: "#4b5563",
+  lineHeight: "1.6",
+  fontSize: "15px",
+};
+
+const resourceSectionWhite = {
+  background: "#f8f7ff",
+  padding: "64px 20px",
+};
+
+const resourceInner = {
+  maxWidth: "1080px",
+  margin: "0 auto",
+  textAlign: "center" as const,
 };
 
 const resourceGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))",
-  gap: "14px",
+  gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+  gap: "16px",
 };
 
-const resourceCard = {
+const resourceCardWhite = {
   display: "flex",
   flexDirection: "column" as const,
   gap: "8px",
-  minHeight: "110px",
-  padding: "18px",
-  background: "rgba(255,255,255,0.94)",
+  minHeight: "118px",
+  padding: "20px",
+  background: "#ffffff",
   color: "#1e1b4b",
-  borderRadius: "16px",
+  borderRadius: "18px",
   textDecoration: "none",
-  boxShadow: "0 8px 22px rgba(0,0,0,0.16)",
-  border: "1px solid rgba(196,181,253,0.55)",
+  boxShadow: "0 12px 30px rgba(76,29,149,0.10)",
+  border: "1px solid #ede9fe",
+  textAlign: "left" as const,
 };
 
-const toolCallout = {
-  marginTop: "24px",
-  padding: "18px 22px",
-  background: "#5b21b6",
-  color: "white",
-  borderRadius: "16px",
+const ctaBand = {
+  marginTop: "28px",
+  padding: "20px 24px",
+  background: "#4c1d95",
+  color: "#ffffff",
+  borderRadius: "20px",
   display: "flex",
   alignItems: "center",
-  justifyContent: "center",
+  justifyContent: "space-between",
   flexWrap: "wrap" as const,
   gap: "16px",
-  fontWeight: 700,
-};
-
-const goldButton = {
-  display: "inline-block",
-  background: "#facc15",
-  color: "#1e1b4b",
-  padding: "10px 18px",
-  borderRadius: "10px",
   fontWeight: 800,
-  textDecoration: "none",
 };
 
-const mainContentWrap = {
-  marginTop: "60px",
-  padding: "0 20px 70px 20px",
+const mainContentWrapWhite = {
+  background: "#ffffff",
+  padding: "64px 20px 78px",
 };
 
-const citySection = {
+const citySectionWhite = {
+  maxWidth: "980px",
+  margin: "0 auto 42px",
   textAlign: "center" as const,
-  marginBottom: "36px",
 };
 
 const cityLinks = {
@@ -625,14 +674,14 @@ const cityLinks = {
   gap: "12px",
 };
 
-const contentPanel = {
+const contentPanelWhite = {
   maxWidth: "980px",
-  margin: "0 auto 40px auto",
-  background: "rgba(255,255,255,0.94)",
-  borderRadius: "22px",
-  padding: "30px",
-  boxShadow: "0 10px 35px rgba(0,0,0,0.25)",
-  border: "1px solid rgba(255,255,255,0.35)",
+  margin: "0 auto 40px",
+  background: "#ffffff",
+  borderRadius: "24px",
+  padding: "32px",
+  boxShadow: "0 14px 38px rgba(76,29,149,0.10)",
+  border: "1px solid #ede9fe",
 };
 
 const panelHeading = {
@@ -644,18 +693,17 @@ const panelHeading = {
 const panelIntro = {
   color: "#312e81",
   fontSize: "14px",
-  lineHeight: "1.45",
+  lineHeight: "1.5",
   maxWidth: "720px",
   margin: "0 auto",
 };
 
 const exampleCard = {
-  background: "#ffffff",
-  padding: "14px",
-  borderRadius: "14px",
-  marginBottom: "16px",
-  border: "2px solid #c4b5fd",
-  boxShadow: "0 8px 22px rgba(124,58,237,0.15)",
+  background: "#f8f7ff",
+  padding: "16px",
+  borderRadius: "16px",
+  marginBottom: "18px",
+  border: "1px solid #c4b5fd",
 };
 
 const infoGrid = {
@@ -666,10 +714,10 @@ const infoGrid = {
 
 const card = {
   background: "#ffffff",
-  padding: "14px",
-  borderRadius: "14px",
-  boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
-  border: "1px solid rgba(124,58,237,0.15)",
+  padding: "16px",
+  borderRadius: "16px",
+  boxShadow: "0 8px 20px rgba(76,29,149,0.08)",
+  border: "1px solid #ede9fe",
 };
 
 const title = {
@@ -679,20 +727,20 @@ const title = {
 
 const text = {
   color: "#374151",
-  lineHeight: "1.5",
+  lineHeight: "1.55",
   margin: "6px 0",
 };
 
 const textList = {
   color: "#374151",
   paddingLeft: "18px",
-  lineHeight: "1.55",
+  lineHeight: "1.6",
   margin: 0,
 };
 
 const gold = {
-  color: "#f59e0b",
-  fontWeight: 700,
+  color: "#b45309",
+  fontWeight: 800,
 };
 
 const trustFooter = {
@@ -713,5 +761,7 @@ const trustFooterSmall = {
 
 const premiumWrap = {
   maxWidth: "980px",
-  margin: "60px auto 0 auto",
+  margin: "60px auto 0",
 };
+
+// ===== app/page.tsx CHUNK 6 OF 6 END =====
