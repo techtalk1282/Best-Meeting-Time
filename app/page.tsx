@@ -74,53 +74,31 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div style={heroCard}>
-                <div style={heroCardLayout}>
-                  <div style={mockForm}>
-                    <p style={mockTitle}>Select Time Zones</p>
+          <div style={heroCard}>
+                <p style={mockTitle}>Example Meeting Time</p>
 
-                    <label style={mockLabel}>Time Zone 1</label>
-                    <div style={mockSelect}>New York, USA (EDT)</div>
-
-                    <label style={mockLabel}>Time Zone 2</label>
-                    <div style={mockSelect}>London, UK (BST)</div>
-
-                    <label style={mockLabel}>Meeting Duration</label>
-                    <div style={mockSelect}>60 minutes</div>
-
-                    <label style={mockLabel}>Preferred Time Window</label>
-                    <div style={mockSlider}>
-                      <span style={mockSliderDot}></span>
-                    </div>
-
-                    <a href="/how-it-works" style={mockButton}>
-                      Find Best Time
-                    </a>
+                <div style={cityPreviewGrid}>
+                  <div style={cityPreviewCard}>
+                    <span style={cityLabel}>New York, USA 🇺🇸</span>
+                    <strong style={cityTime}>9:00 AM EDT</strong>
+                    <span style={cityDate}>Local time</span>
                   </div>
 
-
-                  <div style={mockResultPanel}>
-                    <div style={mockResultTop}>
-                      <span>Preview Result</span>
-                      <strong>Best Time Found</strong>
-                    </div>
-
-                    <div style={mockResultBox}>
-                      <span>New York</span>
-                      <strong>9:00 AM</strong>
-                    </div>
-
-                    <div style={mockResultBox}>
-                      <span>London</span>
-                      <strong>2:00 PM</strong>
-                    </div>
-
-                    <div style={mockBestBox}>
-                      Best meeting window:
-                      <strong>9AM – 12PM New York time</strong>
-                    </div>
+                  <div style={cityPreviewCard}>
+                    <span style={cityLabel}>London, UK 🇬🇧</span>
+                    <strong style={cityTime}>2:00 PM BST</strong>
+                    <span style={cityDate}>Same meeting time</span>
                   </div>
                 </div>
+
+                <div style={bestWindowCard}>
+                  <span>Best Meeting Window</span>
+                  <strong>9:00 AM – 12:00 PM New York time</strong>
+                </div>
+
+                <a href="/how-it-works" style={mockButton}>
+                  Try the Tool Free
+                </a>
               </div>
             </section>
 
