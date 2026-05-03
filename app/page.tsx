@@ -368,8 +368,7 @@ const headerWrap = {
 };
 
 const heroSectionWhite = {
-  background:
-    "linear-gradient(180deg, #ffffff 0%, #f8f7ff 58%, #ede9fe 100%)",
+  background: "#ffffff",
   color: "#1e1b4b",
   padding: "72px 20px 54px",
 };
@@ -407,7 +406,7 @@ const heroHeadingDark = {
 };
 
 const heroSubtextDark = {
-  color: "#4b5563",
+  color: "#374151",
   fontSize: "17px",
   lineHeight: "1.6",
   margin: "0 0 24px",
@@ -581,7 +580,7 @@ const toolSectionHeaderDark = {
 };
 
 const sectionHeadingDark = {
-  color: "#1e1b4b",
+  color: "#111827",
   fontSize: "clamp(28px, 4vw, 42px)",
   lineHeight: "1.12",
   margin: "0 0 10px",
