@@ -218,52 +218,52 @@ export default function HomePage() {
 const pageWrap = {
   background: "#ffffff",
   color: "#111827",
-  maxWidth: "1180px",
+  maxWidth: "1030px",
   margin: "0 auto",
-  padding: "0 16px 24px",
+  padding: "0 12px 18px",
 };
 
 const header = {
-  height: "56px",
+  height: "44px",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  gap: "16px",
+  gap: "12px",
   borderBottom: "1px solid #ede9fe",
 };
 
 const brandLink = {
   display: "flex",
   alignItems: "center",
-  gap: "8px",
+  gap: "7px",
   color: "#5b21b6",
-  fontSize: "18px",
+  fontSize: "15px",
   fontWeight: 900,
   textDecoration: "none",
 };
 
 const brandIcon = {
-  width: "24px",
-  height: "24px",
-  borderRadius: "7px",
+  width: "20px",
+  height: "20px",
+  borderRadius: "6px",
   background: "#ede9fe",
   color: "#5b21b6",
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
-  fontSize: "14px",
+  fontSize: "12px",
 };
 
 const nav = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  gap: "22px",
+  gap: "16px",
 };
 
 const navLink = {
   color: "#374151",
-  fontSize: "13px",
+  fontSize: "11px",
   fontWeight: 800,
   textDecoration: "none",
 };
@@ -271,58 +271,58 @@ const navLink = {
 const navButton = {
   background: "#5b21b6",
   color: "#ffffff",
-  padding: "10px 16px",
+  padding: "8px 12px",
   borderRadius: "7px",
-  fontSize: "13px",
+  fontSize: "11px",
   fontWeight: 900,
   textDecoration: "none",
 };
 
 const heroSection = {
   display: "grid",
-  gridTemplateColumns: "1fr 0.92fr",
+  gridTemplateColumns: "1fr 0.88fr",
   alignItems: "center",
-  gap: "34px",
-  padding: "30px 18px 20px",
+  gap: "26px",
+  padding: "22px 14px 14px",
 };
 
 const heroLeft = {
-  maxWidth: "560px",
+  maxWidth: "470px",
 };
 
 const eyebrow = {
   display: "inline-block",
-  margin: "0 0 18px",
-  padding: "8px 14px",
+  margin: "0 0 10px",
+  padding: "6px 12px",
   borderRadius: "999px",
   background: "#f3efff",
   color: "#5b21b6",
-  fontSize: "13px",
+  fontSize: "11px",
   fontWeight: 900,
 };
 
 const heroHeading = {
   color: "#111827",
-  fontSize: "clamp(34px, 4vw, 48px)",
-  lineHeight: "1.03",
-  margin: "0 0 14px",
+  fontSize: "clamp(30px, 3.4vw, 40px)",
+  lineHeight: "1.02",
+  margin: "0 0 10px",
   fontWeight: 950,
   letterSpacing: "-0.045em",
 };
 
 const heroText = {
   color: "#374151",
-  fontSize: "16px",
-  lineHeight: "1.55",
-  margin: "0 0 24px",
+  fontSize: "13px",
+  lineHeight: "1.45",
+  margin: "0 0 14px",
 };
 
 const trustRow = {
   display: "flex",
   flexWrap: "wrap" as const,
-  gap: "20px",
+  gap: "14px",
   color: "#4c1d95",
-  fontSize: "13px",
+  fontSize: "11px",
   fontWeight: 850,
 };
 
@@ -330,14 +330,14 @@ const heroCard = {
   background: "#ffffff",
   border: "1px solid #e9d5ff",
   borderRadius: "10px",
-  padding: "14px",
-  boxShadow: "0 14px 34px rgba(76,29,149,0.12)",
+  padding: "11px",
+  boxShadow: "0 12px 28px rgba(76,29,149,0.10)",
 };
 
 const heroCardLayout = {
   display: "grid",
-  gridTemplateColumns: "1fr 0.78fr",
-  gap: "18px",
+  gridTemplateColumns: "1fr 0.72fr",
+  gap: "12px",
   alignItems: "stretch",
 };
 
@@ -347,41 +347,40 @@ const mockForm = {
 
 const mockTitle = {
   color: "#4c1d95",
-  fontSize: "13px",
+  fontSize: "11px",
   fontWeight: 950,
-  margin: "0 0 12px",
+  margin: "0 0 7px",
 };
 
 const mockLabel = {
   display: "block",
   color: "#6b7280",
-  fontSize: "10px",
+  fontSize: "9px",
   fontWeight: 900,
-  margin: "10px 0 5px",
+  margin: "7px 0 4px",
 };
 
 const mockSelect = {
   background: "#f8f7ff",
   border: "1px solid #ddd6fe",
   borderRadius: "6px",
-  padding: "9px 10px",
+  padding: "7px 9px",
   color: "#111827",
-  fontSize: "12px",
+  fontSize: "10px",
   fontWeight: 800,
 };
 
 const mockSlider = {
-  height: "8px",
+  height: "7px",
   background: "#ede9fe",
   borderRadius: "999px",
   position: "relative" as const,
-  margin: "11px 0 14px",
+  margin: "8px 0 10px",
 };
 
-
 const mockSliderDot = {
-  width: "16px",
-  height: "16px",
+  width: "14px",
+  height: "14px",
   background: "#5b21b6",
   borderRadius: "50%",
   position: "absolute" as const,
@@ -395,18 +394,18 @@ const mockButton = {
   background: "#5b21b6",
   color: "#ffffff",
   textAlign: "center" as const,
-  padding: "10px 0",
+  padding: "8px 0",
   borderRadius: "6px",
-  fontSize: "13px",
+  fontSize: "11px",
   fontWeight: 900,
   textDecoration: "none",
-  marginTop: "6px",
+  marginTop: "4px",
 };
 
 const mockTimeline = {
   background: "#f8f7ff",
   borderRadius: "8px",
-  padding: "10px",
+  padding: "8px",
   display: "flex",
   flexDirection: "column" as const,
 };
@@ -414,43 +413,43 @@ const mockTimeline = {
 const mockTimelineHeader = {
   display: "flex",
   justifyContent: "space-between",
-  fontSize: "10px",
+  fontSize: "9px",
   fontWeight: 900,
   color: "#6b7280",
-  marginBottom: "6px",
+  marginBottom: "5px",
 };
 
 const timeGrid = {
   display: "grid",
   gridTemplateColumns: "auto 1fr 1fr",
-  gap: "4px",
+  gap: "3px",
   alignItems: "center",
-  fontSize: "10px",
+  fontSize: "9px",
 };
 
 const timeCellLight = {
-  height: "18px",
+  height: "15px",
   background: "#ede9fe",
   borderRadius: "4px",
 };
 
 const timeCellMid = {
-  height: "18px",
+  height: "15px",
   background: "#c4b5fd",
   borderRadius: "4px",
 };
 
 const timeCellDark = {
-  height: "18px",
+  height: "15px",
   background: "#8b5cf6",
   borderRadius: "4px",
 };
 
 const timeCellBest = {
-  height: "18px",
+  height: "15px",
   background: "#22c55e",
   color: "#ffffff",
-  fontSize: "9px",
+  fontSize: "8px",
   fontWeight: 900,
   display: "flex",
   alignItems: "center",
@@ -461,25 +460,25 @@ const timeCellBest = {
 const featureStrip = {
   display: "grid",
   gridTemplateColumns: "repeat(4, 1fr)",
-  gap: "12px",
-  margin: "18px 0",
+  gap: "10px",
+  margin: "12px 0",
 };
 
 const featureCard = {
   background: "#ffffff",
   border: "1px solid #ede9fe",
-  borderRadius: "10px",
-  padding: "14px",
+  borderRadius: "9px",
+  padding: "10px",
   display: "flex",
   flexDirection: "column" as const,
-  gap: "5px",
-  boxShadow: "0 6px 18px rgba(0,0,0,0.04)",
-  fontSize: "13px",
+  gap: "4px",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.035)",
+  fontSize: "11px",
 };
 
 const resourcesSection = {
-  marginTop: "12px",
-  padding: "24px 20px",
+  marginTop: "8px",
+  padding: "16px 14px",
   background: "#ffffff",
   borderRadius: "10px",
   border: "1px solid #ede9fe",
@@ -487,38 +486,39 @@ const resourcesSection = {
 
 const resourcesHeader = {
   textAlign: "center" as const,
-  marginBottom: "18px",
+  marginBottom: "12px",
 };
 
 const sectionTitle = {
-  fontSize: "24px",
+  fontSize: "20px",
   fontWeight: 950,
   color: "#111827",
-  margin: "0 0 8px",
+  margin: "0 0 5px",
 };
 
 const sectionSubtitle = {
   color: "#6b7280",
-  fontSize: "14px",
+  fontSize: "12px",
+  margin: 0,
 };
 
 const resourcesGrid = {
   display: "grid",
   gridTemplateColumns: "repeat(5, 1fr)",
-  gap: "14px",
-  marginBottom: "22px",
+  gap: "10px",
+  marginBottom: "12px",
 };
 
 const resourceCard = {
   display: "block",
   background: "#f9fafb",
   border: "1px solid #ede9fe",
-  borderRadius: "10px",
-  padding: "16px",
+  borderRadius: "9px",
+  padding: "10px",
   textDecoration: "none",
   color: "#111827",
-  fontSize: "13px",
-  lineHeight: "1.4",
+  fontSize: "10px",
+  lineHeight: "1.25",
 };
 
 const ctaBand = {
@@ -527,18 +527,18 @@ const ctaBand = {
   alignItems: "center",
   background: "#5b21b6",
   color: "#ffffff",
-  padding: "16px 22px",
-  borderRadius: "10px",
+  padding: "12px 16px",
+  borderRadius: "9px",
   fontWeight: 900,
+  fontSize: "12px",
 };
 
 const ctaButton = {
   background: "#facc15",
   color: "#111827",
-  padding: "10px 16px",
-  borderRadius: "8px",
-  fontSize: "13px",
+  padding: "8px 12px",
+  borderRadius: "7px",
+  fontSize: "11px",
   fontWeight: 900,
   textDecoration: "none",
 };
-
