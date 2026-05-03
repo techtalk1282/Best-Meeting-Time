@@ -218,9 +218,9 @@ export default function HomePage() {
 const pageWrap = {
   background: "#ffffff",
   color: "#111827",
-  maxWidth: "1030px",
-  margin: "0 auto",
-  padding: "0 12px 18px",
+  maxWidth: "1048px",
+  margin: "18px auto 0",
+  padding: "0 14px 18px",
 };
 
 const header = {
@@ -280,10 +280,10 @@ const navButton = {
 
 const heroSection = {
   display: "grid",
-  gridTemplateColumns: "1fr 0.88fr",
+  gridTemplateColumns: "1fr 0.92fr",
   alignItems: "center",
-  gap: "26px",
-  padding: "22px 14px 14px",
+  gap: "28px",
+  padding: "26px 16px 16px",
 };
 
 const heroLeft = {
@@ -336,8 +336,8 @@ const heroCard = {
 
 const heroCardLayout = {
   display: "grid",
-  gridTemplateColumns: "1fr 0.72fr",
-  gap: "12px",
+  gridTemplateColumns: "1fr 0.82fr",
+  gap: "14px",
   alignItems: "stretch",
 };
 
@@ -446,10 +446,10 @@ const timeCellDark = {
 };
 
 const timeCellBest = {
-  height: "15px",
+  height: "18px",
   background: "#22c55e",
   color: "#ffffff",
-  fontSize: "8px",
+  fontSize: "9px",
   fontWeight: 900,
   display: "flex",
   alignItems: "center",
