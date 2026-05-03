@@ -214,124 +214,195 @@ export default function HomePage() {
   );
 }
 
+ 
 /* STYLES */
+const pageWrap = {
+  background: "#ffffff",
+  color: "#111827",
+  maxWidth: "1120px",
+  margin: "0 auto",
+  padding: "20px 18px 28px",
+};
 
+const header = {
+  height: "64px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: "18px",
+  borderBottom: "1px solid #ede9fe",
+  marginBottom: "14px",
+};
 
-                  <div style={mockResultPanel}>
-                    <div style={mockResultTop}>
-                      <span>Preview Result</span>
-                      <strong>Best Time Found</strong>
-                    </div>
+const brandLink = {
+  display: "flex",
+  alignItems: "center",
+  gap: "8px",
+  color: "#5b21b6",
+  fontSize: "18px",
+  fontWeight: 900,
+  textDecoration: "none",
+};
 
-                    <div style={mockResultBox}>
-                      <span>New York</span>
-                      <strong>9:00 AM</strong>
-                    </div>
+const brandIcon = {
+  width: "24px",
+  height: "24px",
+  borderRadius: "7px",
+  background: "#ede9fe",
+  color: "#5b21b6",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontSize: "14px",
+};
 
-                    <div style={mockResultBox}>
-                      <span>London</span>
-                      <strong>2:00 PM</strong>
-                    </div>
+const nav = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "18px",
+};
 
-                    <div style={mockBestBox}>
-                      Best meeting window:
-                      <strong>9AM – 12PM New York time</strong>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
+const navLink = {
+  color: "#374151",
+  fontSize: "13px",
+  fontWeight: 800,
+  textDecoration: "none",
+};
 
-            <section id="features" style={featureStrip}>
-              <div style={featureCard}>
-                <span style={featureIcon}>◷</span>
-                <strong>Accurate & Reliable</strong>
-                <span>Uses real time zone data.</span>
-              </div>
+const navButton = {
+  background: "#5b21b6",
+  color: "#ffffff",
+  padding: "10px 16px",
+  borderRadius: "7px",
+  fontSize: "13px",
+  fontWeight: 900,
+  textDecoration: "none",
+};
 
-              <div style={featureCard}>
-                <span style={featureIcon}>↯</span>
-                <strong>Save Hours</strong>
-                <span>Eliminate endless emails.</span>
-              </div>
+const heroSection = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  alignItems: "center",
+  gap: "36px",
+  padding: "24px 10px 14px",
+};
 
-              <div style={featureCard}>
-                <span style={featureIcon}>♙</span>
-                <strong>For Teams of Any Size</strong>
-                <span>Perfect for remote teams.</span>
-              </div>
+const heroLeft = {
+  maxWidth: "520px",
+};
 
-              <div style={featureCard}>
-                <span style={featureIcon}>♡</span>
-                <strong>100% Free</strong>
-                <span>Free forever, no catch.</span>
-              </div>
-            </section>
+const eyebrow = {
+  display: "inline-block",
+  margin: "0 0 12px",
+  padding: "6px 12px",
+  borderRadius: "999px",
+  background: "#f3efff",
+  color: "#5b21b6",
+  fontSize: "12px",
+  fontWeight: 900,
+};
 
-            <section id="resources" style={resourcesSection}>
-              <div style={resourcesHeader}>
-                <h2 style={sectionTitle}>
-                  Helpful Resources to Schedule Better Meetings
-                </h2>
+const heroHeading = {
+  color: "#111827",
+  fontSize: "clamp(34px, 4vw, 46px)",
+  lineHeight: "1.08",
+  margin: "0 0 12px",
+  fontWeight: 950,
+  letterSpacing: "-0.03em",
+};
 
-                <p style={sectionSubtitle}>
-                  In-depth guides and tips to help you collaborate across time zones.
-                </p>
-              </div>
+const heroText = {
+  color: "#374151",
+  fontSize: "14px",
+  lineHeight: "1.5",
+  margin: "0 0 16px",
+};
 
-              <div style={resourcesGrid}>
-                <a href="/how-to-schedule-meetings-across-time-zones" style={resourceCard}>
-                  <span style={resourceIcon}>▣</span>
-                  <strong>How to Schedule Across Time Zones</strong>
-                  <span>Step-by-step guide for global teams.</span>
-                </a>
+const trustRow = {
+  display: "flex",
+  flexWrap: "wrap" as const,
+  gap: "14px",
+  color: "#4c1d95",
+  fontSize: "12px",
+  fontWeight: 850,
+};
 
-                <a href="/best-meeting-times-remote-teams" style={resourceCard}>
-                  <span style={resourceIcon}>⌘</span>
-                  <strong>Best Meeting Times for Remote Teams</strong>
-                  <span>Practical tips that actually work.</span>
-                </a>
+const heroCard = {
+  background: "#ffffff",
+  border: "1px solid #e9d5ff",
+  borderRadius: "10px",
+  padding: "14px",
+  boxShadow: "0 10px 30px rgba(76,29,149,0.12)",
+};
 
-                <a href="/time-zone-meeting-planner-guide" style={resourceCard}>
-                  <span style={resourceIcon}>☷</span>
-                  <strong>Time Zone Meeting Planner Guide</strong>
-                  <span>Master your zone planning.</span>
-                </a>
+const heroCardLayout = {
+  display: "grid",
+  gridTemplateColumns: "1fr 0.75fr",
+  gap: "14px",
+  alignItems: "stretch",
+};
 
-                <a href="/global-meeting-scheduling-tips" style={resourceCard}>
-                  <span style={resourceIcon}>✣</span>
-                  <strong>Global Meeting Scheduling Tips</strong>
-                  <span>Expert tips for faster scheduling.</span>
-                </a>
+const mockForm = {
+  minWidth: 0,
+};
 
-                <a href="/guides" style={resourceCard}>
-                  <span style={resourceIcon}>⌁</span>
-                  <strong>Meeting Time Zone Converter Guide</strong>
-                  <span>Understand time zones easily.</span>
-                </a>
-              </div>
+const mockTitle = {
+  color: "#4c1d95",
+  fontSize: "12px",
+  fontWeight: 950,
+  margin: "0 0 10px",
+};
 
-              <div style={ctaBand}>
-                <span>Ready to find the best time for your next meeting?</span>
+const mockLabel = {
+  display: "block",
+  color: "#6b7280",
+  fontSize: "10px",
+  fontWeight: 900,
+  margin: "8px 0 4px",
+};
 
-                <a href="/how-it-works" style={ctaButton}>
-                  Try the Free Tool Now
-                </a>
-              </div>
-            </section>
-          </main>
-        }
-        toolPreview={null}
-        premiumFeatures={null}
-        bonusFeatures={null}
-        footer={<FooterSection />}
-      />
-    </>
-  );
-}
+const mockSelect = {
+  background: "#f8f7ff",
+  border: "1px solid #ddd6fe",
+  borderRadius: "6px",
+  padding: "8px 9px",
+  color: "#111827",
+  fontSize: "12px",
+  fontWeight: 800,
+};
 
-/* STYLES */
+const mockSlider = {
+  height: "6px",
+  background: "#ede9fe",
+  borderRadius: "999px",
+  position: "relative" as const,
+  margin: "10px 0 12px",
+};
 
+const mockSliderDot = {
+  width: "10px",
+  height: "10px",
+  background: "#5b21b6",
+  borderRadius: "999px",
+  position: "absolute" as const,
+  top: "-2px",
+  left: "58%",
+};
+
+const mockButton = {
+  display: "block",
+  width: "100%",
+  background: "#5b21b6",
+  color: "#ffffff",
+  textAlign: "center" as const,
+  padding: "10px",
+  borderRadius: "6px",
+  fontSize: "12px",
+  fontWeight: 900,
+  textDecoration: "none",
+  marginTop: "6px",
+};
 
 const mockResultPanel = {
   background: "#f8f7ff",
