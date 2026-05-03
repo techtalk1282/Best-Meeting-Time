@@ -639,7 +639,9 @@ const featureCard = {
 const resourcesSection = {
   maxWidth: "1180px",
   margin: "0 auto",
-  padding: "14px 20px 46px",
+  padding: "34px 20px 52px",
+  background: "#ffffff",
+  color: "#111827",
 };
 
 const sectionHeader = {
