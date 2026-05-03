@@ -1,12 +1,12 @@
 /**
  * File: app/page.tsx
- * Version: v4.1 (TARGET MOCKUP HOMEPAGE REBUILD)
+ * Version: v4.2 (TARGET HOMEPAGE ONLY)
  * Date: 2026-05-03
  *
  * PURPOSE:
- * - Rebuild homepage to closely match the white SaaS-style V3 target mockup
- * - Preserve the working meeting tool by keeping HeroSection untouched
- * - Preserve VerifyPremium, PremiumFeaturesSection, FooterSection, and protected premium behavior
+ * - Match the supplied V3 homepage target UI
+ * - Keep homepage focused: header, hero, feature strip, resources, CTA
+ * - Remove outdated homepage sections not shown in target UI
  *
  * PROTECTED:
  * - No Stripe changes
@@ -16,14 +16,12 @@
  * - No ToolPreviewSection logic changes
  *
  * ROLLBACK:
- * - Revert app/page.tsx to v4.0 or v3.7 if this layout does not test cleanly
+ * - Revert app/page.tsx to v4.1 if this layout does not test cleanly
  */
 
 import dynamic from "next/dynamic";
 
 import LayoutShell from "./ui/LayoutShell";
-import HeroSection from "./ui/HeroSection";
-import PremiumFeaturesSection from "./ui/PremiumFeaturesSection";
 import FooterSection from "./ui/FooterSection";
 
 const VerifyPremium = dynamic(() => import("./ui/VerifyPremium"), {
@@ -37,136 +35,126 @@ export default function HomePage() {
 
       <LayoutShell
         hero={
-          <div style={pageShell}>
+          <main style={pageWrap}>
             <header style={header}>
               <a href="/" style={brandLink}>
-                <span style={brandMark}>⌘</span>
+                <span style={brandIcon}>⌘</span>
                 <span>Best Meeting Time</span>
               </a>
 
-              <nav style={navLinks}>
+              <nav style={nav}>
                 <a href="/how-it-works" style={navLink}>How It Works</a>
                 <a href="#features" style={navLink}>Features</a>
                 <a href="/guides" style={navLink}>Guides</a>
                 <a href="/contact" style={navLink}>Contact</a>
               </nav>
 
-              <a href="#schedule-tool" style={navButton}>
+              <a href="#resources" style={navButton}>
                 Try the Tool Free
               </a>
             </header>
 
             <section style={heroSection}>
-              <div style={heroContent}>
+              <div style={heroLeft}>
                 <p style={eyebrow}>The Trusted Time Zone Meeting Planner</p>
 
                 <h1 style={heroHeading}>
                   Find the Best Meeting Time Across Any Time Zone
                 </h1>
 
-                <p style={heroSubtext}>
+                <p style={heroText}>
                   Smart scheduling for global teams. Save hours of back-and-forth
                   and find the perfect time for everyone, instantly.
                 </p>
 
-                <div style={heroTrustRow}>
+                <div style={trustRow}>
                   <span>100% Free to Use</span>
                   <span>No Sign-up</span>
                   <span>Works Worldwide</span>
                 </div>
-
-                <div style={heroButtonRow}>
-                  <a href="#schedule-tool" style={primaryButton}>
-                    Find Best Time
-                  </a>
-
-                  <a href="/how-it-works" style={secondaryButton}>
-                    See How It Works
-                  </a>
-                </div>
               </div>
 
-              <div style={heroMockCard}>
-                <div style={mockHeaderRow}>
-                  <span style={mockTitle}>Select Time Zones</span>
-                  <span style={mockBadge}>Best Time</span>
-                </div>
+              <div style={heroCard}>
+                <div style={heroCardLayout}>
+                  <div style={mockForm}>
+                    <p style={mockTitle}>Select Time Zones</p>
 
-                <div style={mockFieldGroup}>
-                  <label style={mockLabel}>From Zone</label>
-                  <div style={mockSelect}>New York, USA (EDT)</div>
-                </div>
+                    <label style={mockLabel}>Time Zone 1</label>
+                    <div style={mockSelect}>New York, USA (EDT)</div>
 
-                <div style={mockFieldGroup}>
-                  <label style={mockLabel}>To Zone</label>
-                  <div style={mockSelect}>London, UK (BST)</div>
-                </div>
+                    <label style={mockLabel}>Time Zone 2</label>
+                    <div style={mockSelect}>London, UK (BST)</div>
 
-                <div style={mockFieldGroup}>
-                  <label style={mockLabel}>Meeting Duration</label>
-                  <div style={mockSelect}>60 minutes</div>
-                </div>
+                    <label style={mockLabel}>Meeting Duration</label>
+                    <div style={mockSelect}>60 minutes</div>
 
-                <div style={mockGridWrap}>
-                  <div style={mockGridLabels}>
-                    <span>8 AM</span>
-                    <span>10 AM</span>
-                    <span>12 PM</span>
-                    <span>2 PM</span>
-                    <span>4 PM</span>
+                    <label style={mockLabel}>Preferred Time Window</label>
+                    <div style={mockSlider}>
+                      <span style={mockSliderDot}></span>
+                    </div>
+
+                    <a href="/how-it-works" style={mockButton}>
+                      Find Best Time
+                    </a>
                   </div>
 
-                  <div style={mockGrid}>
-                    <span style={mockCellLight}></span>
-                    <span style={mockCellLight}></span>
-                    <span style={mockCellMid}></span>
-                    <span style={mockCellDark}></span>
-                    <span style={mockCellBest}>Best Time</span>
 
-                    <span style={mockCellLight}></span>
-                    <span style={mockCellMid}></span>
-                    <span style={mockCellDark}></span>
-                    <span style={mockCellMid}></span>
-                    <span style={mockCellLight}></span>
+                  <div style={mockTimeline}>
+                    <div style={mockTimelineHeader}>
+                      <span>NY</span>
+                      <span>London</span>
+                    </div>
+
+                    <div style={timeGrid}>
+                      <span>8 AM</span>
+                      <span style={timeCellLight}></span>
+                      <span style={timeCellLight}></span>
+
+                      <span>10 AM</span>
+                      <span style={timeCellLight}></span>
+                      <span style={timeCellMid}></span>
+
+                      <span>12 PM</span>
+                      <span style={timeCellMid}></span>
+                      <span style={timeCellDark}></span>
+
+                      <span>2 PM</span>
+                      <span style={timeCellDark}></span>
+                      <span style={timeCellMid}></span>
+
+                      <span>4 PM</span>
+                      <span style={timeCellBest}>Best Time</span>
+                      <span style={timeCellLight}></span>
+                    </div>
                   </div>
                 </div>
-
-                <a href="#schedule-tool" style={mockButton}>
-                  Find Best Time
-                </a>
               </div>
             </section>
-          </div>
-        }
 
-        toolPreview={
-          <>
             <section id="features" style={featureStrip}>
-              <div style={featureGrid}>
-                <div style={featureCard}>
-                  <strong>Accurate & Reliable</strong>
-                  <span>Use real time zone offsets.</span>
-                </div>
+              <div style={featureCard}>
+                <strong>Accurate & Reliable</strong>
+                <span>Uses real time zone data.</span>
+              </div>
 
-                <div style={featureCard}>
-                  <strong>Save Hours</strong>
-                  <span>End back-and-forth emails.</span>
-                </div>
+              <div style={featureCard}>
+                <strong>Save Hours</strong>
+                <span>Eliminate endless emails.</span>
+              </div>
 
-                <div style={featureCard}>
-                  <strong>For Teams of Any Size</strong>
-                  <span>Perfect for remote teams.</span>
-                </div>
+              <div style={featureCard}>
+                <strong>For Teams of Any Size</strong>
+                <span>Perfect for remote teams.</span>
+              </div>
 
-                <div style={featureCard}>
-                  <strong>100% Free</strong>
-                  <span>Free forever, no catch.</span>
-                </div>
+              <div style={featureCard}>
+                <strong>100% Free</strong>
+                <span>Free forever, no catch.</span>
               </div>
             </section>
 
-            <section style={resourcesSection}>
-              <div style={sectionHeader}>
+            <section id="resources" style={resourcesSection}>
+              <div style={resourcesHeader}>
                 <h2 style={sectionTitle}>
                   Helpful Resources to Schedule Better Meetings
                 </h2>
@@ -176,7 +164,7 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div style={resourceGrid}>
+              <div style={resourcesGrid}>
                 <a href="/how-to-schedule-meetings-across-time-zones" style={resourceCard}>
                   <strong>How to Schedule Across Time Zones</strong>
                   <span>Step-by-step guide for global teams.</span>
@@ -206,148 +194,19 @@ export default function HomePage() {
               <div style={ctaBand}>
                 <span>Ready to find the best time for your next meeting?</span>
 
-                <a href="#schedule-tool" style={ctaButton}>
+                <a href="/how-it-works" style={ctaButton}>
                   Try the Free Tool Now
                 </a>
               </div>
             </section>
-
-            <section id="schedule-tool" style={toolSection}>
-              <div style={toolIntro}>
-                <p style={eyebrow}>Use the Tool</p>
-
-                <h2 style={toolTitle}>
-                  Compare Time Zones and Find Your Best Meeting Window
-                </h2>
-
-                <p style={toolSubtitle}>
-                  Select two locations, review the overlap, and choose a time
-                  that works better for everyone.
-                </p>
-              </div>
-
-              <HeroSection />
-            </section>
-          </>
-        }
-
-        premiumFeatures={null}
-        bonusFeatures={
-          <main style={mainContent}>
-            <section style={citySection}>
-              <h2 style={sectionTitle}>
-                Compare Popular Cities Across Time Zones
-              </h2>
-
-              <div style={cityLinks}>
-                <a href="/best-meeting-time-new-york">New York</a>
-                <a href="/best-meeting-time-london">London</a>
-                <a href="/best-meeting-time-tokyo">Tokyo</a>
-                <a href="/best-meeting-time-sydney">Sydney</a>
-                <a href="/best-meeting-time-dubai">Dubai</a>
-                <a href="/best-meeting-time-berlin">Berlin</a>
-                <a href="/best-meeting-time-paris">Paris</a>
-                <a href="/best-meeting-time-mumbai">Mumbai</a>
-                <a href="/best-meeting-time-toronto">Toronto</a>
-              </div>
-            </section>
-
-            <section style={contentPanel}>
-              <h2 style={panelHeading}>
-                How to Schedule Meetings Across Time Zones Without Mistakes
-              </h2>
-
-              <p style={text}>
-                Scheduling meetings across time zones is one of the most common
-                challenges for remote teams, global businesses, and freelancers.
-                A time that looks convenient in one region can fall outside
-                working hours in another, leading to missed calls, delays, or
-                poor collaboration.
-              </p>
-
-              <p style={text}>
-                The key to effective scheduling is understanding overlapping
-                working hours. Instead of guessing or manually converting time
-                zones, the most efficient approach is to compare both locations
-                side-by-side and identify a shared window that works for all
-                participants.
-              </p>
-
-              <h3 style={smallTitle}>Best Practices for Global Scheduling</h3>
-
-              <ul style={textList}>
-                <li>Prioritize overlapping business hours whenever possible</li>
-                <li>Avoid early morning or late-night meetings for any participant</li>
-                <li>Rotate meeting times to distribute inconvenience fairly</li>
-                <li>Confirm daylight saving changes when scheduling internationally</li>
-              </ul>
-            </section>
-
-            <section style={contentPanel}>
-              <div style={{ textAlign: "center", marginBottom: "26px" }}>
-                <h2 style={panelHeading}>Find the Best Meeting Time — Instantly</h2>
-
-                <p style={panelIntro}>
-                  Compare time zones instantly and find the best meeting time
-                  between cities without guesswork. This simple time zone
-                  converter and meeting planner helps you schedule across time
-                  zones, visualize overlapping working hours, and confidently
-                  choose the most productive time for your team.
-                </p>
-              </div>
-
-              <div style={exampleCard}>
-                <h3 style={smallTitle}>New York → London Meeting Time Example</h3>
-                <p style={text}>New York: 9:00 AM</p>
-                <p style={text}>London: 2:00 PM</p>
-                <p style={text}>Overlap: 9AM – 12PM New York time</p>
-
-                <p style={goldText}>
-                  Best meeting window: 9AM – 12PM New York time
-                </p>
-              </div>
-
-              <div style={infoGrid}>
-                <div style={infoCard}>
-                  <h3 style={smallTitle}>Who Uses This</h3>
-
-                  <ul style={textList}>
-                    <li>Remote teams working across multiple time zones</li>
-                    <li>Consultants scheduling international client calls</li>
-                    <li>Sales teams coordinating global meetings</li>
-                    <li>Freelancers managing clients in different regions</li>
-                  </ul>
-                </div>
-
-                <div style={infoCard}>
-                  <h3 style={smallTitle}>The Challenge</h3>
-
-                  <p style={text}>
-                    Scheduling meetings across time zones is more complex than it
-                    seems. A time that works for one participant may fall outside
-                    normal working hours for another, leading to delays, missed
-                    calls, or inefficient scheduling.
-                  </p>
-                </div>
-
-                <div style={infoCard}>
-                  <h3 style={smallTitle}>The Solution</h3>
-
-                  <ul style={textList}>
-                    <li>Instantly compare cities and their local times</li>
-                    <li>Visualize overlapping working hours clearly</li>
-                    <li>Identify the most convenient meeting window</li>
-                    <li>Eliminate manual time conversion errors</li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-
-            <section style={premiumWrap}>
-              <PremiumFeaturesSection />
-            </section>
           </main>
         }
+        toolPreview={null}
+
+
+
+        premiumFeatures={null}
+        bonusFeatures={null}
         footer={<FooterSection />}
       />
     </>
@@ -356,15 +215,16 @@ export default function HomePage() {
 
 /* STYLES */
 
-const pageShell = {
+const pageWrap = {
   background: "#ffffff",
-  color: "#1e1b4b",
+  color: "#111827",
+  maxWidth: "1240px",
+  margin: "0 auto",
+  padding: "0 18px 34px",
 };
 
 const header = {
-  maxWidth: "1180px",
-  margin: "0 auto",
-  padding: "18px 20px",
+  height: "64px",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -376,16 +236,16 @@ const brandLink = {
   display: "flex",
   alignItems: "center",
   gap: "8px",
-  color: "#4c1d95",
+  color: "#5b21b6",
   fontSize: "18px",
   fontWeight: 900,
   textDecoration: "none",
 };
 
-const brandMark = {
+const brandIcon = {
   width: "24px",
   height: "24px",
-  borderRadius: "8px",
+  borderRadius: "7px",
   background: "#ede9fe",
   color: "#5b21b6",
   display: "inline-flex",
@@ -394,7 +254,7 @@ const brandMark = {
   fontSize: "14px",
 };
 
-const navLinks = {
+const nav = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -412,29 +272,27 @@ const navButton = {
   background: "#5b21b6",
   color: "#ffffff",
   padding: "10px 16px",
-  borderRadius: "8px",
+  borderRadius: "7px",
   fontSize: "13px",
   fontWeight: 900,
   textDecoration: "none",
 };
 
 const heroSection = {
-  maxWidth: "1180px",
-  margin: "0 auto",
-  padding: "52px 20px 34px",
   display: "grid",
-  gridTemplateColumns: "1.05fr 0.95fr",
+  gridTemplateColumns: "1fr 1fr",
   alignItems: "center",
-  gap: "42px",
+  gap: "46px",
+  padding: "44px 24px 28px",
 };
 
-const heroContent = {
+const heroLeft = {
   maxWidth: "560px",
 };
 
 const eyebrow = {
   display: "inline-block",
-  margin: "0 0 14px",
+  margin: "0 0 18px",
   padding: "8px 14px",
   borderRadius: "999px",
   background: "#f3efff",
@@ -445,389 +303,242 @@ const eyebrow = {
 
 const heroHeading = {
   color: "#111827",
-  fontSize: "clamp(42px, 5.3vw, 64px)",
-  lineHeight: "1.02",
+  fontSize: "clamp(38px, 4.5vw, 56px)",
+  lineHeight: "1.04",
   margin: "0 0 18px",
   fontWeight: 950,
   letterSpacing: "-0.045em",
 };
 
-const heroSubtext = {
+const heroText = {
   color: "#374151",
-  fontSize: "17px",
-  lineHeight: "1.6",
-  margin: "0 0 20px",
+  fontSize: "16px",
+  lineHeight: "1.55",
+  margin: "0 0 24px",
 };
 
-const heroTrustRow = {
+const trustRow = {
   display: "flex",
   flexWrap: "wrap" as const,
-  gap: "18px",
+  gap: "20px",
   color: "#4c1d95",
   fontSize: "13px",
-  fontWeight: 800,
-  marginBottom: "22px",
+  fontWeight: 850,
 };
 
-const heroButtonRow = {
-  display: "flex",
-  flexWrap: "wrap" as const,
-  gap: "12px",
-};
-
-const primaryButton = {
-  display: "inline-block",
-  background: "#5b21b6",
-  color: "#ffffff",
-  padding: "13px 20px",
-  borderRadius: "8px",
-  fontWeight: 900,
-  textDecoration: "none",
-  boxShadow: "0 12px 22px rgba(91,33,182,0.18)",
-};
-
-const secondaryButton = {
-  display: "inline-block",
+const heroCard = {
   background: "#ffffff",
-  color: "#5b21b6",
-  padding: "13px 20px",
-  borderRadius: "8px",
-  fontWeight: 900,
-  textDecoration: "none",
-  border: "1px solid #c4b5fd",
-};
-
-const heroMockCard = {
-  background: "#ffffff",
-  color: "#1e1b4b",
-  borderRadius: "12px",
-  padding: "22px",
-  boxShadow: "0 18px 45px rgba(76,29,149,0.14)",
   border: "1px solid #e9d5ff",
+  borderRadius: "10px",
+  padding: "18px",
+  boxShadow: "0 18px 45px rgba(76,29,149,0.13)",
 };
 
-const mockHeaderRow = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  marginBottom: "16px",
+const heroCardLayout = {
+  display: "grid",
+  gridTemplateColumns: "1fr 0.78fr",
+  gap: "18px",
+  alignItems: "stretch",
+};
+
+const mockForm = {
+  minWidth: 0,
 };
 
 const mockTitle = {
   color: "#4c1d95",
   fontSize: "13px",
-  fontWeight: 900,
-};
-
-const mockBadge = {
-  background: "#22c55e",
-  color: "#ffffff",
-  borderRadius: "6px",
-  padding: "6px 10px",
-  fontSize: "12px",
-  fontWeight: 900,
-};
-
-const mockFieldGroup = {
-  marginBottom: "12px",
+  fontWeight: 950,
+  margin: "0 0 12px",
 };
 
 const mockLabel = {
   display: "block",
   color: "#6b7280",
-  fontSize: "11px",
-  fontWeight: 800,
-  marginBottom: "5px",
+  fontSize: "10px",
+  fontWeight: 900,
+  margin: "10px 0 5px",
 };
 
 const mockSelect = {
   background: "#f8f7ff",
   border: "1px solid #ddd6fe",
-  borderRadius: "8px",
-  padding: "10px 12px",
+  borderRadius: "6px",
+  padding: "9px 10px",
   color: "#111827",
-  fontSize: "13px",
+  fontSize: "12px",
   fontWeight: 800,
 };
 
-const mockGridWrap = {
-  marginTop: "16px",
-};
-
-const mockGridLabels = {
-  display: "grid",
-  gridTemplateColumns: "repeat(5, 1fr)",
-  gap: "6px",
-  color: "#6b7280",
-  fontSize: "10px",
-  fontWeight: 800,
-  marginBottom: "7px",
-};
-
-const mockGrid = {
-  display: "grid",
-  gridTemplateColumns: "repeat(5, 1fr)",
-  gap: "7px",
-};
-
-const mockCellLight = {
-  minHeight: "38px",
-  borderRadius: "6px",
+const mockSlider = {
+  height: "8px",
   background: "#ede9fe",
+  borderRadius: "999px",
+  position: "relative" as const,
+  margin: "11px 0 14px",
 };
 
-const mockCellMid = {
-  minHeight: "38px",
-  borderRadius: "6px",
-  background: "#c4b5fd",
-};
 
-const mockCellDark = {
-  minHeight: "38px",
-  borderRadius: "6px",
-  background: "#8b5cf6",
-};
-
-const mockCellBest = {
-  minHeight: "38px",
-  borderRadius: "6px",
-  background: "#22c55e",
-  color: "#ffffff",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontSize: "11px",
-  fontWeight: 900,
+const mockSliderDot = {
+  width: "16px",
+  height: "16px",
+  background: "#5b21b6",
+  borderRadius: "50%",
+  position: "absolute" as const,
+  top: "-4px",
+  left: "60%",
 };
 
 const mockButton = {
   display: "block",
-  marginTop: "16px",
+  width: "100%",
   background: "#5b21b6",
   color: "#ffffff",
-  padding: "12px 18px",
-  borderRadius: "8px",
-  fontWeight: 900,
   textAlign: "center" as const,
+  padding: "10px 0",
+  borderRadius: "6px",
+  fontSize: "13px",
+  fontWeight: 900,
   textDecoration: "none",
+  marginTop: "6px",
+};
+
+const mockTimeline = {
+  background: "#f8f7ff",
+  borderRadius: "8px",
+  padding: "10px",
+  display: "flex",
+  flexDirection: "column" as const,
+};
+
+const mockTimelineHeader = {
+  display: "flex",
+  justifyContent: "space-between",
+  fontSize: "10px",
+  fontWeight: 900,
+  color: "#6b7280",
+  marginBottom: "6px",
+};
+
+const timeGrid = {
+  display: "grid",
+  gridTemplateColumns: "auto 1fr 1fr",
+  gap: "4px",
+  alignItems: "center",
+  fontSize: "10px",
+};
+
+const timeCellLight = {
+  height: "18px",
+  background: "#ede9fe",
+  borderRadius: "4px",
+};
+
+const timeCellMid = {
+  height: "18px",
+  background: "#c4b5fd",
+  borderRadius: "4px",
+};
+
+const timeCellDark = {
+  height: "18px",
+  background: "#8b5cf6",
+  borderRadius: "4px",
+};
+
+const timeCellBest = {
+  height: "18px",
+  background: "#22c55e",
+  color: "#ffffff",
+  fontSize: "9px",
+  fontWeight: 900,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  borderRadius: "4px",
 };
 
 const featureStrip = {
-  maxWidth: "1180px",
-  margin: "0 auto",
-  padding: "28px 20px 48px",
-  background: "#ffffff",
-};
-
-const featureGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))",
-  gap: "14px",
+  gridTemplateColumns: "repeat(4, 1fr)",
+  gap: "16px",
+  margin: "34px 0",
 };
 
 const featureCard = {
   background: "#ffffff",
-  color: "#1e1b4b",
+  border: "1px solid #ede9fe",
   borderRadius: "10px",
   padding: "18px",
   display: "flex",
   flexDirection: "column" as const,
-  gap: "7px",
-  boxShadow: "0 10px 24px rgba(76,29,149,0.08)",
-  border: "1px solid #ede9fe",
+  gap: "6px",
+  boxShadow: "0 6px 18px rgba(0,0,0,0.04)",
+  fontSize: "13px",
 };
 
 const resourcesSection = {
-  maxWidth: "1180px",
-  margin: "0 auto",
-  padding: "34px 20px 52px",
+  marginTop: "18px",
+  padding: "34px 22px",
   background: "#ffffff",
-  color: "#111827",
-};
-
-const sectionHeader = {
-  textAlign: "center" as const,
-  marginBottom: "22px",
-};
-
-const sectionTitle = {
-  color: "#111827",
-  fontSize: "clamp(26px, 3vw, 36px)",
-  lineHeight: "1.15",
-  margin: "0 0 8px",
-  fontWeight: 950,
-  letterSpacing: "-0.03em",
-};
-
-const sectionSubtitle = {
-  color: "#4b5563",
-  fontSize: "15px",
-  lineHeight: "1.55",
-  margin: 0,
-};
-
-const resourceGrid = {
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))",
-  gap: "12px",
-};
-
-const resourceCard = {
-  background: "#ffffff",
-  color: "#1e1b4b",
-  minHeight: "110px",
   borderRadius: "10px",
-  padding: "18px",
-  textDecoration: "none",
-  display: "flex",
-  flexDirection: "column" as const,
-  gap: "8px",
-  boxShadow: "0 10px 24px rgba(76,29,149,0.08)",
   border: "1px solid #ede9fe",
 };
 
+const resourcesHeader = {
+  textAlign: "center" as const,
+  marginBottom: "26px",
+};
+
+const sectionTitle = {
+  fontSize: "24px",
+  fontWeight: 950,
+  color: "#111827",
+  margin: "0 0 8px",
+};
+
+const sectionSubtitle = {
+  color: "#6b7280",
+  fontSize: "14px",
+};
+
+const resourcesGrid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(5, 1fr)",
+  gap: "14px",
+  marginBottom: "22px",
+};
+
+const resourceCard = {
+  display: "block",
+  background: "#f9fafb",
+  border: "1px solid #ede9fe",
+  borderRadius: "10px",
+  padding: "16px",
+  textDecoration: "none",
+  color: "#111827",
+  fontSize: "13px",
+  lineHeight: "1.4",
+};
+
 const ctaBand = {
-  marginTop: "22px",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
   background: "#5b21b6",
   color: "#ffffff",
+  padding: "16px 22px",
   borderRadius: "10px",
-  padding: "18px 22px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  flexWrap: "wrap" as const,
-  gap: "14px",
   fontWeight: 900,
 };
 
 const ctaButton = {
   background: "#facc15",
-  color: "#1e1b4b",
-  padding: "11px 16px",
+  color: "#111827",
+  padding: "10px 16px",
   borderRadius: "8px",
-  fontWeight: 950,
+  fontSize: "13px",
+  fontWeight: 900,
   textDecoration: "none",
 };
 
-const toolSection = {
-  background: "#4c1d95",
-  padding: "54px 20px 62px",
-};
-
-const toolIntro = {
-  maxWidth: "760px",
-  margin: "0 auto 18px",
-  textAlign: "center" as const,
-};
-
-const toolTitle = {
-  color: "#ffffff",
-  fontSize: "clamp(28px, 4vw, 42px)",
-  lineHeight: "1.12",
-  margin: "0 0 10px",
-  fontWeight: 950,
-  letterSpacing: "-0.03em",
-};
-
-const toolSubtitle = {
-  maxWidth: "720px",
-  margin: "0 auto 26px",
-  color: "rgba(255,255,255,0.78)",
-  lineHeight: "1.6",
-  fontSize: "15px",
-};
-
-const mainContent = {
-  background: "#ffffff",
-  padding: "56px 20px 78px",
-};
-
-const citySection = {
-  maxWidth: "980px",
-  margin: "0 auto 40px",
-  textAlign: "center" as const,
-};
-
-const cityLinks = {
-  display: "flex",
-  flexWrap: "wrap" as const,
-  justifyContent: "center",
-  gap: "12px",
-};
-
-const contentPanel = {
-  maxWidth: "980px",
-  margin: "0 auto 40px",
-  background: "#ffffff",
-  borderRadius: "16px",
-  padding: "32px",
-  boxShadow: "0 14px 38px rgba(76,29,149,0.10)",
-  border: "1px solid #ede9fe",
-};
-
-const panelHeading = {
-  color: "#111827",
-  fontSize: "28px",
-  lineHeight: "1.2",
-  margin: "0 0 15px",
-  fontWeight: 950,
-};
-
-const panelIntro = {
-  color: "#4b5563",
-  fontSize: "15px",
-  lineHeight: "1.6",
-  maxWidth: "760px",
-  margin: "0 auto",
-};
-
-const smallTitle = {
-  color: "#1e1b4b",
-  margin: "14px 0 8px",
-  fontWeight: 950,
-};
-
-const text = {
-  color: "#374151",
-  lineHeight: "1.58",
-  margin: "7px 0",
-};
-
-const textList = {
-  color: "#374151",
-  paddingLeft: "18px",
-  lineHeight: "1.65",
-  margin: 0,
-};
-
-const exampleCard = {
-  background: "#f8f7ff",
-  padding: "18px",
-  borderRadius: "12px",
-  marginBottom: "18px",
-  border: "1px solid #c4b5fd",
-};
-
-const goldText = {
-  color: "#b45309",
-  fontWeight: 900,
-};
-
-const infoGrid = {
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-  gap: "14px",
-};
-
-const infoCard = {
-  background: "#ffffff",
-  padding: "18px",
-  borderRadius: "12px",
-  boxShadow: "0 8px 20px rgba(76,29,149,0.08)",
-  border: "1px solid #ede9fe",
-};
-
-const premiumWrap = {
-  maxWidth: "980px",
-  margin: "56px auto 0",
-};
