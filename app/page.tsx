@@ -537,3 +537,49 @@ const ctaButton = {
   fontWeight: 900,
   textDecoration: "none",
 };
+const cityPreviewGrid = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "10px",
+  marginBottom: "10px",
+};
+
+const cityPreviewCard = {
+  background: "#f8f7ff",
+  border: "1px solid #ddd6fe",
+  borderRadius: "8px",
+  padding: "10px",
+  display: "flex",
+  flexDirection: "column" as const,
+  gap: "4px",
+};
+
+const cityLabel = {
+  fontSize: "11px",
+  fontWeight: 800,
+  color: "#374151",
+};
+
+const cityTime = {
+  fontSize: "16px",
+  fontWeight: 900,
+  color: "#111827",
+};
+
+const cityDate = {
+  fontSize: "10px",
+  color: "#6b7280",
+};
+
+const bestWindowCard = {
+  background: "#dcfce7",
+  color: "#166534",
+  borderRadius: "8px",
+  padding: "10px",
+  display: "flex",
+  flexDirection: "column" as const,
+  gap: "4px",
+  fontSize: "11px",
+  fontWeight: 900,
+  marginBottom: "8px",
+};
