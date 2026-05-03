@@ -42,12 +42,10 @@ export default function HomePage() {
                 <span>Best Meeting Time</span>
               </a>
 
-              <nav style={nav}>
+               <nav style={nav}>
                 <a href="/how-it-works" style={navLink}>How It Works</a>
                 <a href="#features" style={navLink}>Features</a>
                 <a href="/guides" style={navLink}>Guides</a>
-                <a href="/blog" style={navLink}>Blog</a>
-                <a href="/about" style={navLink}>About</a>
                 <a href="/contact" style={navLink}>Contact</a>
               </nav>
 
