@@ -218,17 +218,17 @@ export default function HomePage() {
 const pageWrap = {
   background: "#ffffff",
   color: "#111827",
-  maxWidth: "1240px",
+  maxWidth: "1180px",
   margin: "0 auto",
-  padding: "0 18px 34px",
+  padding: "0 16px 24px",
 };
 
 const header = {
-  height: "64px",
+  height: "56px",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  gap: "18px",
+  gap: "16px",
   borderBottom: "1px solid #ede9fe",
 };
 
@@ -280,10 +280,10 @@ const navButton = {
 
 const heroSection = {
   display: "grid",
-  gridTemplateColumns: "1fr 1fr",
+  gridTemplateColumns: "1fr 0.92fr",
   alignItems: "center",
-  gap: "46px",
-  padding: "44px 24px 28px",
+  gap: "34px",
+  padding: "30px 18px 20px",
 };
 
 const heroLeft = {
@@ -303,9 +303,9 @@ const eyebrow = {
 
 const heroHeading = {
   color: "#111827",
-  fontSize: "clamp(38px, 4.5vw, 56px)",
-  lineHeight: "1.04",
-  margin: "0 0 18px",
+  fontSize: "clamp(34px, 4vw, 48px)",
+  lineHeight: "1.03",
+  margin: "0 0 14px",
   fontWeight: 950,
   letterSpacing: "-0.045em",
 };
@@ -330,8 +330,8 @@ const heroCard = {
   background: "#ffffff",
   border: "1px solid #e9d5ff",
   borderRadius: "10px",
-  padding: "18px",
-  boxShadow: "0 18px 45px rgba(76,29,149,0.13)",
+  padding: "14px",
+  boxShadow: "0 14px 34px rgba(76,29,149,0.12)",
 };
 
 const heroCardLayout = {
@@ -461,25 +461,25 @@ const timeCellBest = {
 const featureStrip = {
   display: "grid",
   gridTemplateColumns: "repeat(4, 1fr)",
-  gap: "16px",
-  margin: "34px 0",
+  gap: "12px",
+  margin: "18px 0",
 };
 
 const featureCard = {
   background: "#ffffff",
   border: "1px solid #ede9fe",
   borderRadius: "10px",
-  padding: "18px",
+  padding: "14px",
   display: "flex",
   flexDirection: "column" as const,
-  gap: "6px",
+  gap: "5px",
   boxShadow: "0 6px 18px rgba(0,0,0,0.04)",
   fontSize: "13px",
 };
 
 const resourcesSection = {
-  marginTop: "18px",
-  padding: "34px 22px",
+  marginTop: "12px",
+  padding: "24px 20px",
   background: "#ffffff",
   borderRadius: "10px",
   border: "1px solid #ede9fe",
@@ -487,7 +487,7 @@ const resourcesSection = {
 
 const resourcesHeader = {
   textAlign: "center" as const,
-  marginBottom: "26px",
+  marginBottom: "18px",
 };
 
 const sectionTitle = {
