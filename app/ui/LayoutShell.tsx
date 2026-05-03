@@ -56,7 +56,7 @@ export default function LayoutShell({
   return (
   <div
     style={{
-      background: "#ffffff",
+      background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
     }}
   >
       <section id="hero">{hero}</section>
