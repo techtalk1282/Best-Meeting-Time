@@ -1,5 +1,3 @@
-// ===== app/page.tsx CHUNK 1 OF 6 START =====
-
 /**
  * File: app/page.tsx
  * Version: v4.0 (V3 WHITE SAAS HOMEPAGE REBUILD)
@@ -111,9 +109,6 @@ export default function HomePage() {
           </section>
         }
 
-// ===== app/page.tsx CHUNK 1 OF 6 END =====
-// ===== app/page.tsx CHUNK 2 OF 6 START =====
-
         toolPreview={
           <>
             {/* BENEFITS STRIP */}
@@ -159,9 +154,6 @@ export default function HomePage() {
               {/* PROTECTED COMPONENT — DO NOT TOUCH */}
               <HeroSection />
             </section>
-
-// ===== app/page.tsx CHUNK 2 OF 6 END =====
-// ===== app/page.tsx CHUNK 3 OF 6 START =====
 
             {/* RESOURCES SECTION */}
             <section style={resourceSectionWhite}>
@@ -220,8 +212,6 @@ export default function HomePage() {
               </div>
             </section>
 
-// ===== app/page.tsx CHUNK 3 OF 6 END =====
-// ===== app/page.tsx CHUNK 4 OF 6 START =====
 
           </>
         }
@@ -371,9 +361,6 @@ export default function HomePage() {
 }
 
 /* STYLES */
-
-// ===== app/page.tsx CHUNK 4 OF 6 END =====
-// ===== app/page.tsx CHUNK 5 OF 6 START =====
 
 const headerWrap = {
   background: "#ffffff",
@@ -764,4 +751,4 @@ const premiumWrap = {
   margin: "60px auto 0",
 };
 
-// ===== app/page.tsx CHUNK 6 OF 6 END =====
+
