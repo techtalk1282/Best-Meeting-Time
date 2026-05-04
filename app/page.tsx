@@ -43,15 +43,15 @@ export default function HomePage() {
               </a>
 
                <nav style={nav}>
-                <a href="/how-it-works" style={navLink}>How It Works</a>
+                <a href="/how-it-works#schedule-tool" style={navLink}>Schedule</a>
                 <a href="#features" style={navLink}>Features</a>
                 <a href="/guides" style={navLink}>Guides</a>
                 <a href="/contact" style={navLink}>Contact</a>
               </nav>
 
-              <a href="/how-it-works" style={navButton}>
-                Try the Tool Free
-              </a>
+              <a href="/how-it-works#schedule-tool" style={navButton}>
+  Schedule a Meeting
+</a>
             </header>
 
             <section style={heroSection}>
@@ -96,9 +96,9 @@ export default function HomePage() {
                   <strong>9:00 AM – 12:00 PM New York time</strong>
                 </div>
 
-                <a href="/how-it-works" style={mockButton}>
-                  Try the Tool Free
-                </a>
+                <a href="/how-it-works#schedule-tool" style={mockButton}>
+  Schedule a Meeting
+</a>
               </div>
             </section>
 
@@ -174,9 +174,9 @@ export default function HomePage() {
               <div style={ctaBand}>
                 <span>Ready to find the best time for your next meeting?</span>
 
-                <a href="/how-it-works" style={ctaButton}>
-                  Try the Free Tool Now
-                </a>
+                <a href="/how-it-works#schedule-tool" style={ctaButton}>
+  Schedule a Meeting
+</a>
               </div>
             </section>
           </main>
