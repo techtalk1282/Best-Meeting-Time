@@ -500,8 +500,7 @@ const safeNow = now || new Date();
 
 
   return (
-  <section style={toolShell}>
-    <>
+    <section style={toolShell}>
       {successMessage && (
         <div style={successBanner}>
           {successMessage}
@@ -702,7 +701,7 @@ const safeNow = now || new Date();
 
       {hasCalculated && (
          <>
-          <div style={resultStack}>
+         <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
             <div style={bestFoundCard}>
               <div>
                 <strong style={bestFoundTitle}>Best Time Found</strong>
@@ -859,8 +858,9 @@ const safeNow = now || new Date();
           >
             Add to Apple Calendar
           </button>
-       </div>
+        </div>
       </div>
+    </div>
         </>
       )}
 
