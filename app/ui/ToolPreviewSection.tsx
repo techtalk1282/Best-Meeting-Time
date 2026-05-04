@@ -699,167 +699,165 @@ const safeNow = now || new Date();
         </section>
       </div>
 
-      {hasCalculated && (
-         <>
-         <div style={bestFoundCard}>
-            <div>
-              <strong style={bestFoundTitle}>Best Time Found</strong>
-              <div style={bestFoundText}>
-                {bestStartA} – {bestEndA} ({cityATZ}) works best for {cityA.name}.
-              </div>
-              <div style={bestFoundSubtext}>
-                That matches {bestStartB} – {bestEndB} ({cityBTZ}) for {cityB.name}.
-              </div>
+   {hasCalculated && (
+        <div style={compactResultRow}>
+          <div style={bestFoundCard}>
+            <strong style={bestFoundTitle}>Best Time Found</strong>
+            <div style={bestFoundText}>
+              {bestStartA} – {bestEndA} ({cityATZ}) works best for {cityA.name}.
+            </div>
+            <div style={bestFoundSubtext}>
+              Matches {bestStartB} – {bestEndB} ({cityBTZ}) for {cityB.name}.
             </div>
           </div>
 
           <div style={sharePanel}>
-        <div style={shareHeader}>
-          <strong>Share Your Results</strong>
-          <button
-            type="button"
-            onClick={async () => {
-              if (!requirePremiumFeature()) return;
+            <div style={shareHeader}>
+              <strong>Share Your Results</strong>
+              <button
+                type="button"
+                onClick={async () => {
+                  if (!requirePremiumFeature()) return;
 
-              try {
-                const res = await fetch("/api/share", {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                    cities: [
-                      { name: cityA.name, tz: cityA.tz },
-                      { name: cityB.name, tz: cityB.tz },
-                    ],
-                    windows: [
-                      {
-                        startUtc: selectedWindow.startUtc,
-                        endUtc: selectedWindow.endUtc,
+                  try {
+                    const res = await fetch("/api/share", {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
                       },
-                    ],
-                  }),
-                });
+                      body: JSON.stringify({
+                        cities: [
+                          { name: cityA.name, tz: cityA.tz },
+                          { name: cityB.name, tz: cityB.tz },
+                        ],
+                        windows: [
+                          {
+                            startUtc: selectedWindow.startUtc,
+                            endUtc: selectedWindow.endUtc,
+                          },
+                        ],
+                      }),
+                    });
 
-                const data = await res.json();
+                    const data = await res.json();
 
-                if (data.url) {
-                  const fullUrl = window.location.origin + data.url;
-                  setShareUrl(fullUrl);
-                  setShareCopied(false);
-                }
-              } catch (err) {
-                console.error("Share error:", err);
-              }
-            }}
-            style={copySmallButton}
-          >
-            Create Link
-          </button>
+                    if (data.url) {
+                      const fullUrl = window.location.origin + data.url;
+                      setShareUrl(fullUrl);
+                      setShareCopied(false);
+                    }
+                  } catch (err) {
+                    console.error("Share error:", err);
+                  }
+                }}
+                style={copySmallButton}
+              >
+                Create Link
+              </button>
+            </div>
+
+            {premiumMessage && (
+              <button
+                type="button"
+                onClick={scrollToUpgrade}
+                style={premiumNotice}
+              >
+                {premiumMessage}
+              </button>
+            )}
+
+            <div style={compactShareRow}>
+              <a
+                href={shareUrl || "#"}
+                target={shareUrl ? "_blank" : undefined}
+                rel={shareUrl ? "noopener noreferrer" : undefined}
+                style={shareInput}
+              >
+                {shareUrl
+                  ? shareUrl.replace(/^https?:\/\//, "")
+                  : "bestmeetingtimeapp.com/meeting-link"}
+              </a>
+
+              <button
+                type="button"
+                onClick={async () => {
+                  if (!shareUrl) {
+                    if (!requirePremiumFeature()) return;
+                    return;
+                  }
+
+                  await navigator.clipboard.writeText(shareUrl);
+                  setShareCopied(true);
+                }}
+                style={copyButton}
+              >
+                {shareCopied ? "Copied" : "Copy"}
+              </button>
+            </div>
+
+            <div style={calendarActions}>
+              <button
+                type="button"
+                onClick={() => {
+                  if (!requirePremiumFeature()) return;
+
+                  const start =
+                    selectedWindow.startUtc.replace(/[-:]/g, "").split(".")[0] +
+                    "Z";
+                  const end =
+                    selectedWindow.endUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
+
+                  const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+                    "Meeting: " + cityA.name + " ↔ " + cityB.name
+                  )}&dates=${start}/${end}&details=${encodeURIComponent(
+                    "Suggested meeting window"
+                  )}`;
+
+                  window.open(url, "_blank");
+                }}
+                style={calendarButton}
+              >
+                Add to Google
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  if (!requirePremiumFeature()) return;
+
+                  const url = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(
+                    "Meeting: " + cityA.name + " ↔ " + cityB.name
+                  )}&startdt=${selectedWindow.startUtc}&enddt=${
+                    selectedWindow.endUtc
+                  }&body=${encodeURIComponent("Suggested meeting window")}`;
+
+                  window.open(url, "_blank");
+                }}
+                style={calendarButton}
+              >
+                Add to Outlook
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  if (!requirePremiumFeature()) return;
+
+                  const url = `/api/calendar?cityA=${encodeURIComponent(
+                    cityA.name
+                  )}&cityB=${encodeURIComponent(cityB.name)}&start=${
+                    selectedWindow.startUtc
+                  }&end=${selectedWindow.endUtc}`;
+
+                  window.open(url, "_blank");
+                }}
+                style={calendarButton}
+              >
+                Add to Apple Calendar
+              </button>
+            </div>
+          </div>
         </div>
-
-        {premiumMessage && (
-          <button
-            type="button"
-            onClick={scrollToUpgrade}
-            style={premiumNotice}
-          >
-            {premiumMessage}
-          </button>
-        )}
-
-        <div style={shareInputRow}>
-          <a
-            href={shareUrl || "#"}
-            target={shareUrl ? "_blank" : undefined}
-            rel={shareUrl ? "noopener noreferrer" : undefined}
-            style={shareInput}
-          >
-            {shareUrl
-              ? shareUrl.replace(/^https?:\/\//, "")
-              : "bestmeetingtimeapp.com/meeting-link"}
-          </a>
-
-          <button
-            type="button"
-            onClick={async () => {
-              if (!shareUrl) {
-                if (!requirePremiumFeature()) return;
-                return;
-              }
-
-              await navigator.clipboard.writeText(shareUrl);
-              setShareCopied(true);
-            }}
-            style={copyButton}
-          >
-            {shareCopied ? "Copied" : "Copy"}
-          </button>
-        </div>
-
-        <div style={calendarActions}>
-          <button
-            type="button"
-            onClick={() => {
-              if (!requirePremiumFeature()) return;
-
-              const start =
-                selectedWindow.startUtc.replace(/[-:]/g, "").split(".")[0] +
-                "Z";
-              const end =
-                selectedWindow.endUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
-
-              const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
-                "Meeting: " + cityA.name + " ↔ " + cityB.name
-              )}&dates=${start}/${end}&details=${encodeURIComponent(
-                "Suggested meeting window"
-              )}`;
-
-              window.open(url, "_blank");
-            }}
-            style={calendarButton}
-          >
-            Add to Google
-          </button>
-
-          <button
-            type="button"
-            onClick={() => {
-              if (!requirePremiumFeature()) return;
-
-              const url = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(
-                "Meeting: " + cityA.name + " ↔ " + cityB.name
-              )}&startdt=${selectedWindow.startUtc}&enddt=${
-                selectedWindow.endUtc
-              }&body=${encodeURIComponent("Suggested meeting window")}`;
-
-              window.open(url, "_blank");
-            }}
-            style={calendarButton}
-          >
-            Add to Outlook
-          </button>
-
-          <button
-            type="button"
-            onClick={() => {
-              if (!requirePremiumFeature()) return;
-
-              const url = `/api/calendar?cityA=${encodeURIComponent(
-                cityA.name
-              )}&cityB=${encodeURIComponent(cityB.name)}&start=${
-                selectedWindow.startUtc
-              }&end=${selectedWindow.endUtc}`;
-
-              window.open(url, "_blank");
-            }}
-            style={calendarButton}
-          >
-            Add to Apple Calendar
-          </button>
-        </div>
-      </div>
-        </>
       )}
 
       {viewerTZ && (
@@ -1184,15 +1182,26 @@ const scoreGood = {
   background: "#f0fdf4",
   color: "#15803d",
 };
+const compactResultRow = {
+  display: "grid",
+  gridTemplateColumns: "0.86fr 1.34fr",
+  gap: "12px",
+  alignItems: "start",
+  marginTop: "10px",
+};
 
+const compactShareRow = {
+  display: "grid",
+  gridTemplateColumns: "1fr auto",
+  gap: "8px",
+  alignItems: "center",
+};
 const bestFoundCard = {
-  margin: "6px auto 0",
-  maxWidth: "820px",
   background: "#fef3c7",
   border: "1px solid #facc15",
   color: "#3b2600",
   borderRadius: "12px",
-  padding: "10px 14px",
+  padding: "12px 14px",
 };
 
 const bestFoundTitle = {
@@ -1215,8 +1224,6 @@ const bestFoundSubtext = {
 };
 
 const sharePanel = {
-  margin: "6px auto 0",
-  maxWidth: "820px",
   background: "#ffffff",
   border: "1px solid #ede9fe",
   borderRadius: "12px",
