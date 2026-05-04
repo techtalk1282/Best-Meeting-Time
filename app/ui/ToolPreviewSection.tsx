@@ -887,7 +887,13 @@ const timeDisplayCard = {
   borderRadius: "14px",
   padding: "12px 14px",
 };
-
+const flagStyle = {
+  width: "20px",
+  height: "14px",
+  borderRadius: "3px",
+  objectFit: "cover" as const,
+  boxShadow: "0 1px 2px rgba(0,0,0,0.2)",
+};
 const cityNameLine = {
   display: "flex",
   alignItems: "center",
