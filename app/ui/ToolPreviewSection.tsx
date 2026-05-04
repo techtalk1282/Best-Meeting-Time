@@ -283,7 +283,7 @@ export default function ToolPreviewSection({
   const [cityB, setCityB] = useState<City>(CITY_OPTIONS[12]);
 
   const [meetingDuration, setMeetingDuration] = useState("60 minutes");
-  const [preferredWindow, setPreferredWindow] = useState("9:00 AM – 5:00 PM");
+ 
   const [now, setNow] = useState<Date | null>(null);
 
   const [shareUrl, setShareUrl] = useState<string | null>(null);
@@ -597,28 +597,13 @@ const safeNow = now || new Date();
             </select>
           </label>
 
-          <div style={inputGroup}>
-            <div style={sliderHeader}>
-              <span style={inputLabel}>Preferred Time Window</span>
-              <span style={sliderValue}>{preferredWindow}</span>
-            </div>
-
-            <div style={sliderTrack}>
-              <div style={sliderFill} />
-              <div style={sliderDot} />
-            </div>
-
-            <div style={sliderLabels}>
-              <span>9:00 AM</span>
-              <span>8:00 PM</span>
-            </div>
-          </div>
+          
 
           <button
             type="button"
             onClick={() => {
               if (handlePlannerInteraction()) return;
-              setPreferredWindow("9:00 AM – 5:00 PM");
+             
               setPremiumMessage(null);
               setHasCalculated(true);
             }}
@@ -629,15 +614,7 @@ const safeNow = now || new Date();
         </aside>
 
         <section style={resultsCard}>
-          <div style={resultsHeader}>
-            <div>
-               <div style={cardLabel}>Current Local Times</div>
-              <h3 style={resultsTitle}>Time right now</h3>
-            </div>
-
-            <div style={todayPill}>Today</div>
-          </div>
-
+          
           <div style={currentTimeGrid}>
             <div style={currentTimeCard}>
               <div style={cityNameLine}>
@@ -669,7 +646,7 @@ const safeNow = now || new Date();
           </div>
 
           <div style={meetingList}>
-            {meetingOptions.map((option) => {
+            {meetingOptions.map((option, index) => {
               const startA = formatTimeInZone(option.startUtc, cityA.tz);
               const endA = formatTimeInZone(option.endUtc, cityA.tz);
               const startB = formatTimeInZone(option.startUtc, cityB.tz);
@@ -679,10 +656,13 @@ const safeNow = now || new Date();
                 <div key={option.label} style={meetingRow}>
                   <div style={meetingTimes}>
                     <strong>
-                      {startA} – {endA}
+                      {index === 0 ? "Recommended meeting time" : "Alternative meeting time"}
                     </strong>
                     <span>
-                      {cityA.name} · {cityB.name}: {startB} – {endB}
+                      {cityA.name}: {startA} – {endA}
+                    </span>
+                    <span>
+                      {cityB.name}: {startB} – {endB}
                     </span>
                   </div>
 
@@ -696,7 +676,7 @@ const safeNow = now || new Date();
                         : scoreGood),
                     }}
                   >
-                    {option.score}
+                     {index === 0 ? "Recommended" : index === 1 ? "Strong" : "Available"}
                   </span>
                 </div>
               );
