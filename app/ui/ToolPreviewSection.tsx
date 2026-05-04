@@ -877,9 +877,9 @@ const safeNow = now || new Date();
 
 const toolShell = {
   width: "100%",
-  maxWidth: "1080px",
+  maxWidth: "1180px",
   margin: "0 auto",
-  padding: "16px 18px",
+  padding: "12px 16px 8px",
   background: "#ffffff",
   border: "1px solid #ede9fe",
   borderRadius: "14px",
@@ -1187,8 +1187,8 @@ const scoreGood = {
 };
 
 const bestFoundCard = {
-  margin: "10px auto 0",
-  maxWidth: "720px",
+  margin: "6px auto 0",
+  maxWidth: "820px",
   background: "#fef3c7",
   border: "1px solid #facc15",
   color: "#3b2600",
@@ -1216,8 +1216,8 @@ const bestFoundSubtext = {
 };
 
 const sharePanel = {
-  margin: "10px auto 0",
-  maxWidth: "720px",
+  margin: "6px auto 0",
+  maxWidth: "820px",
   background: "#ffffff",
   border: "1px solid #ede9fe",
   borderRadius: "12px",
