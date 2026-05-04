@@ -1,12 +1,12 @@
 /**
  * File: app/how-it-works/page.tsx
- * Version: v1.1 (RENDER REAL TOOL)
+ * Version: v1.2 (TOOL FIRST LAYOUT)
  * Date: 2026-05-03
  *
  * PURPOSE:
  * - Keep How It Works education page
- * - Add real ToolPreviewSection directly on this page
- * - Make Try Tool buttons scroll to the real tool
+ * - Move the real ToolPreviewSection above the education content
+ * - Improve desktop and mobile conversion by showing the usable tool sooner
  *
  * PROTECTED:
  * - No Stripe changes
@@ -16,7 +16,7 @@
  * - No premium/payment logic changes
  *
  * ROLLBACK:
- * - Revert to v1.0 if this page layout fails
+ * - Revert to v1.1 if this page layout fails
  */
 
 import SiteNav from "../ui/SiteNav";
@@ -32,12 +32,16 @@ export default function HowItWorksPage() {
       <section style={heroSection}>
         <div style={heroCard}>
           <p style={eyebrow}>Simple Scheduling Across Time Zones</p>
-          <h1 style={heading}>How Best Meeting Time Works</h1>
+          <h1 style={heading}>Find the Best Meeting Time</h1>
           <p style={subtext}>
-            Best Meeting Time helps you compare locations, review overlapping
-            work hours, and choose a meeting window that is easier for everyone.
+            Compare locations, review overlapping work hours, and choose a
+            meeting window that is easier for everyone.
           </p>
         </div>
+      </section>
+
+      <section id="schedule-tool" style={toolSection}>
+        <ToolPreviewSection />
       </section>
 
       <section style={stepsSection}>
@@ -66,14 +70,14 @@ export default function HowItWorksPage() {
           </p>
 
           <div style={ctaRow}>
-            <a href="#schedule-tool" style={primaryButton}>Try the Free Tool</a>
-            <a href="/guides" style={secondaryButton}>View Scheduling Guides</a>
+            <a href="#schedule-tool" style={primaryButton}>
+              Try the Free Tool
+            </a>
+            <a href="/guides" style={secondaryButton}>
+              View Scheduling Guides
+            </a>
           </div>
         </div>
-      </section>
-
-      <section id="schedule-tool" style={toolSection}>
-        <ToolPreviewSection />
       </section>
 
       <footer style={footer}>
@@ -95,7 +99,7 @@ const pageWrap = {
   color: "#ffffff",
 };
 
-const heroSection = { padding: "72px 20px 28px" };
+const heroSection = { padding: "48px 20px 18px" };
 
 const heroCard = {
   maxWidth: "900px",
@@ -115,7 +119,7 @@ const eyebrow = {
 };
 
 const heading = {
-  fontSize: "clamp(36px, 5vw, 58px)",
+  fontSize: "clamp(34px, 5vw, 56px)",
   lineHeight: 1.05,
   margin: "0 0 16px",
   fontWeight: 900,
@@ -129,10 +133,17 @@ const subtext = {
   lineHeight: 1.6,
 };
 
+const toolSection = {
+  maxWidth: "1120px",
+  margin: "0 auto",
+  padding: "18px 20px 36px",
+  scrollMarginTop: "30px",
+};
+
 const stepsSection = {
   maxWidth: "1120px",
   margin: "0 auto",
-  padding: "38px 20px",
+  padding: "20px 20px 38px",
 };
 
 const stepsGrid = {
@@ -229,13 +240,6 @@ const secondaryButton = {
   borderRadius: "999px",
   fontWeight: 900,
   textDecoration: "none",
-};
-
-const toolSection = {
-  maxWidth: "1120px",
-  margin: "0 auto",
-  padding: "20px 20px 70px",
-  scrollMarginTop: "30px",
 };
 
 const footer = {
