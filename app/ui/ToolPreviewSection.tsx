@@ -850,8 +850,9 @@ const lockedBanner = {
   marginBottom: "12px",
   padding: "14px 16px",
   borderRadius: "12px",
-  background: "rgba(250, 204, 21, 0.14)",
-  border: "1px solid #facc15",
+  background: "#ede9fe",
+  border: "1px solid #c4b5fd",
+  boxShadow: "0 6px 16px rgba(76,29,149,0.10)",
 };
 
 const lockedTitle = {
