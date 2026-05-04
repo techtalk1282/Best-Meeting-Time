@@ -1035,10 +1035,8 @@ const sharePanel = {
 };
 
 const shareHeader = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  gap: "10px",
+  display: "grid",
+  gap: "6px",
   marginBottom: "10px",
   color: "#111827",
   fontSize: "14px",
@@ -1077,11 +1075,11 @@ const calendarButton = {
 };
 
 const premiumNotice = {
-  border: "1px solid #f59e0b",
+  border: "1px solid #c4b5fd",
   borderRadius: "10px",
-  background: "#fff7ed",
-  color: "#9a3412",
-  padding: "8px 10px",
+  background: "#ede9fe",
+  color: "#111827",
+  padding: "8px 12px",
   fontSize: "12px",
   fontWeight: 900,
   cursor: "pointer",
