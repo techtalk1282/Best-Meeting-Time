@@ -876,9 +876,9 @@ const safeNow = now || new Date();
 
 const toolShell = {
   width: "100%",
-  maxWidth: "900px",
+  maxWidth: "860px",
   margin: "0 auto",
-  padding: "14px",
+  padding: "10px 12px",
   background: "#ffffff",
   border: "1px solid #ede9fe",
   borderRadius: "14px",
@@ -919,12 +919,12 @@ const lockedText = {
 
 const toolHeader = {
   textAlign: "center" as const,
-  marginBottom: "10px",
+  marginBottom: "6px",
 };
 
 const toolTitle = {
-  margin: "0 0 4px",
-  fontSize: "24px",
+  margin: "0 0 2px",
+  fontSize: "21px",
   fontWeight: 950,
   letterSpacing: "-0.03em",
   color: "#111827",
@@ -933,8 +933,8 @@ const toolTitle = {
 const toolSubtitle = {
   margin: 0,
   color: "#6b7280",
-  fontSize: "13px",
-  lineHeight: 1.45,
+  fontSize: "11px",
+  lineHeight: 1.25,
 };
 
 const appGrid = {
@@ -1146,8 +1146,8 @@ const meetingRow = {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  gap: "12px",
-  padding: "11px",
+  gap: "10px",
+  padding: "8px 10px",
   border: "1px solid #ede9fe",
   borderRadius: "10px",
   background: "#ffffff",
@@ -1186,13 +1186,13 @@ const scoreGood = {
 };
 
 const bestFoundCard = {
-  margin: "18px auto 0",
+  margin: "10px auto 0",
   maxWidth: "720px",
-  background: "#dcfce7",
-  border: "1px solid #bbf7d0",
-  color: "#166534",
+  background: "#fef3c7",
+  border: "1px solid #facc15",
+  color: "#3b2600",
   borderRadius: "12px",
-  padding: "14px 16px",
+  padding: "10px 14px",
 };
 
 const bestFoundTitle = {
@@ -1215,12 +1215,12 @@ const bestFoundSubtext = {
 };
 
 const sharePanel = {
-  margin: "14px auto 0",
+  margin: "10px auto 0",
   maxWidth: "720px",
   background: "#ffffff",
   border: "1px solid #ede9fe",
   borderRadius: "12px",
-  padding: "14px",
+  padding: "10px",
 };
 
 const shareHeader = {
