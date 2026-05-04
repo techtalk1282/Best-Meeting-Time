@@ -1,15 +1,16 @@
 /**
  * File: app/page.tsx
- * Version: v4.5 (COHESIVE HOMEPAGE REDESIGN)
+ * Version: v4.6 (REFINED HOMEPAGE HERO + BRAND CLEANUP)
  * Date: 2026-05-04
  *
  * PURPOSE:
- * - Redesign homepage into a cleaner, more premium scheduling landing page
- * - Remove cluttered duplicate navigation behavior
- * - Keep primary CTA clear: Schedule a Meeting
- * - Add free-to-try reassurance near CTA buttons
- * - Upgrade preview card to look more like the real planner UI
- * - Keep homepage as marketing-only preview
+ * - Clean up homepage visual hierarchy
+ * - Remove duplicate Schedule a Meeting CTA from hero-left area
+ * - Keep primary CTAs in top-right nav, planner preview, and bottom CTA only
+ * - Replace off-brand green planner highlight with branded gold
+ * - Improve first-viewport framing at 100% zoom
+ * - Make headline read cleaner and less jumbled
+ * - Improve feature cards so they feel more useful and polished
  *
  * PROTECTED:
  * - No Stripe changes
@@ -19,7 +20,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert app/page.tsx to v4.4 if this layout does not test cleanly
+ * - Revert app/page.tsx to v4.5 if this layout does not test cleanly
  */
 
 import dynamic from "next/dynamic";
@@ -71,11 +72,11 @@ export default function HomePage() {
                 <p style={eyebrow}>Trusted Time Zone Meeting Planner</p>
 
                 <h1 style={heroHeading}>
-                  Find the Best Meeting Time Across Any Time Zone
+                  Find the Best Meeting Time Across Time Zones
                 </h1>
 
                 <p style={heroText}>
-                  Compare time zones, avoid scheduling confusion, and choose a
+                  Compare local times, avoid scheduling confusion, and choose a
                   meeting window that works better for everyone.
                 </p>
 
@@ -85,19 +86,22 @@ export default function HomePage() {
                   <span>Works Worldwide</span>
                 </div>
 
-                <div style={heroActions}>
-                  <a href="/how-it-works#schedule-tool" style={primaryHeroButton}>
-                    Schedule a Meeting
-                  </a>
+                <div style={heroBulletBox}>
+                  <div style={heroBullet}>
+                    <strong>Compare two cities instantly</strong>
+                    <span>See local times side by side before you schedule.</span>
+                  </div>
 
-                  <a href="#how-it-works" style={secondaryHeroButton}>
-                    See How It Works
-                  </a>
+                  <div style={heroBullet}>
+                    <strong>Find recommended meeting windows</strong>
+                    <span>Quickly pick a practical time for both locations.</span>
+                  </div>
+
+                  <div style={heroBullet}>
+                    <strong>Start without an account</strong>
+                    <span>Use the planner first, then upgrade later if needed.</span>
+                  </div>
                 </div>
-
-                <p style={heroSmallNote}>
-                  Start with two cities. Get recommended meeting windows instantly.
-                </p>
               </div>
 
               <div style={plannerCard}>
@@ -164,26 +168,26 @@ export default function HomePage() {
             <section id="features" style={featureStrip}>
               <div style={featureCard}>
                 <span style={featureIcon}>◷</span>
-                <strong>Compare Time Zones</strong>
-                <span>See both local times side by side.</span>
+                <strong>Live Time Comparison</strong>
+                <span>Check both locations before choosing a meeting time.</span>
               </div>
 
               <div style={featureCard}>
                 <span style={featureIcon}>↯</span>
-                <strong>Save Scheduling Time</strong>
-                <span>Reduce back-and-forth messages.</span>
+                <strong>Faster Scheduling</strong>
+                <span>Reduce long message threads and timezone mistakes.</span>
               </div>
 
               <div style={featureCard}>
                 <span style={featureIcon}>♙</span>
-                <strong>Built for Teams</strong>
-                <span>Useful for remote teams and clients.</span>
+                <strong>Remote Team Friendly</strong>
+                <span>Useful for clients, teams, freelancers, and partners.</span>
               </div>
 
               <div style={featureCard}>
                 <span style={featureIcon}>♡</span>
-                <strong>Free to Try</strong>
-                <span>No account required to start.</span>
+                <strong>Free to Start</strong>
+                <span>No account required to test your meeting time.</span>
               </div>
             </section>
 
@@ -291,18 +295,20 @@ const pageWrap = {
   background: "#ffffff",
   color: "#111827",
   maxWidth: "1120px",
-  margin: "0 auto",
+  margin: "18px auto 0",
   padding: "18px 18px 28px",
+  border: "1px solid rgba(237,233,254,0.9)",
+  boxShadow: "0 24px 70px rgba(30,27,75,0.18)",
 };
 
 const header = {
-  minHeight: "72px",
+  minHeight: "66px",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
   gap: "18px",
   borderBottom: "1px solid #ede9fe",
-  marginBottom: "16px",
+  marginBottom: "14px",
 };
 
 const brandLink = {
@@ -370,19 +376,19 @@ const navButtonSub = {
 
 const heroSection = {
   display: "grid",
-  gridTemplateColumns: "0.92fr 1fr",
+  gridTemplateColumns: "0.9fr 1fr",
   alignItems: "center",
   gap: "42px",
-  padding: "34px 10px 28px",
+  padding: "24px 10px 22px",
 };
 
 const heroLeft = {
-  maxWidth: "520px",
+  maxWidth: "500px",
 };
 
 const eyebrow = {
   display: "inline-block",
-  margin: "0 0 14px",
+  margin: "0 0 13px",
   padding: "7px 13px",
   borderRadius: "999px",
   background: "#f3efff",
@@ -393,8 +399,8 @@ const eyebrow = {
 
 const heroHeading = {
   color: "#111827",
-  fontSize: "clamp(36px, 4.25vw, 52px)",
-  lineHeight: "1.05",
+  fontSize: "clamp(36px, 4vw, 48px)",
+  lineHeight: "1.06",
   margin: "0 0 14px",
   fontWeight: 950,
   letterSpacing: "-0.04em",
@@ -403,9 +409,9 @@ const heroHeading = {
 const heroText = {
   color: "#374151",
   fontSize: "15px",
-  lineHeight: "1.6",
-  margin: "0 0 16px",
-  maxWidth: "480px",
+  lineHeight: "1.55",
+  margin: "0 0 14px",
+  maxWidth: "470px",
 };
 
 const trustRow = {
@@ -415,43 +421,26 @@ const trustRow = {
   color: "#4c1d95",
   fontSize: "12px",
   fontWeight: 850,
-  marginBottom: "20px",
+  marginBottom: "14px",
 };
 
-const heroActions = {
+const heroBulletBox = {
+  display: "grid",
+  gap: "8px",
+  marginTop: "8px",
+};
+
+const heroBullet = {
+  background: "#faf9ff",
+  border: "1px solid #ede9fe",
+  borderRadius: "10px",
+  padding: "9px 11px",
   display: "flex",
-  flexWrap: "wrap" as const,
-  alignItems: "center",
-  gap: "12px",
-  marginBottom: "10px",
-};
-
-const primaryHeroButton = {
-  background: "#5b21b6",
-  color: "#ffffff",
-  padding: "12px 18px",
-  borderRadius: "9px",
-  fontSize: "13px",
-  fontWeight: 900,
-  textDecoration: "none",
-  boxShadow: "0 12px 26px rgba(91,33,182,0.22)",
-};
-
-const secondaryHeroButton = {
-  background: "#f3efff",
-  color: "#5b21b6",
-  padding: "12px 18px",
-  borderRadius: "9px",
-  fontSize: "13px",
-  fontWeight: 900,
-  textDecoration: "none",
-};
-
-const heroSmallNote = {
-  color: "#6b7280",
+  flexDirection: "column" as const,
+  gap: "2px",
+  color: "#374151",
   fontSize: "12px",
-  fontWeight: 700,
-  margin: 0,
+  lineHeight: "1.35",
 };
 
 const plannerCard = {
@@ -487,8 +476,8 @@ const plannerTitle = {
 };
 
 const plannerBadge = {
-  background: "#dcfce7",
-  color: "#166534",
+  background: "#fef3c7",
+  color: "#92400e",
   borderRadius: "999px",
   padding: "5px 9px",
   fontSize: "10px",
@@ -564,8 +553,9 @@ const durationRow = {
 };
 
 const bestTimeCard = {
-  background: "#dcfce7",
-  color: "#166534",
+  background: "#fef3c7",
+  color: "#78350f",
+  border: "1px solid #fde68a",
   borderRadius: "12px",
   padding: "13px",
   display: "flex",
@@ -577,7 +567,7 @@ const bestTimeCard = {
 };
 
 const bestTimeLabel = {
-  color: "#166534",
+  color: "#78350f",
   fontSize: "12px",
   fontWeight: 950,
 };
@@ -607,7 +597,7 @@ const featureStrip = {
   display: "grid",
   gridTemplateColumns: "repeat(4, 1fr)",
   gap: "12px",
-  margin: "10px 0 14px",
+  margin: "8px 0 14px",
 };
 
 const featureCard = {
