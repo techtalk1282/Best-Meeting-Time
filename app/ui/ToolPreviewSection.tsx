@@ -499,7 +499,7 @@ const safeNow = now || new Date();
   }
 
 
-  return (
+   return (
     <section style={toolShell}>
       {successMessage && <div style={successBanner}>{successMessage}</div>}
 
@@ -521,35 +521,21 @@ const safeNow = now || new Date();
       )}
 
       <div style={toolLayout}>
-        <div style={timeDisplayGrid}>
-          <div style={timeDisplayCard}>
+        <div style={citySelectorGrid}>
+          <div style={cityToolCard}>
             <div style={cityNameLine}>
               <span>{cityA.name}</span>
               <Flag city={cityA.name} />
             </div>
+
             <span style={currentTimeLabel}>Current Time</span>
+
             <strong style={liveTime}>
               {cityATime} {cityATZ}
             </strong>
+
             <span style={localDate}>{cityADate}</span>
-          </div>
 
-          <div style={timeDisplayCard}>
-            <div style={cityNameLine}>
-              <span>{cityB.name}</span>
-              <Flag city={cityB.name} />
-            </div>
-            <span style={currentTimeLabel}>Current Time</span>
-            <strong style={liveTime}>
-              {cityBTime} {cityBTZ}
-            </strong>
-            <span style={localDate}>{cityBDate}</span>
-          </div>
-        </div>
-
-        <div style={plannerControls}>
-          <label style={compactInputGroup}>
-            <span style={inputLabel}>Time Zone 1</span>
             <select
               value={cityA.name}
               onChange={(event) => {
@@ -567,22 +553,36 @@ const safeNow = now || new Date();
                 </option>
               ))}
             </select>
-          </label>
+          </div>
 
-          <button
-            type="button"
-            onClick={() => {
-              const temp = cityA;
-              setCityA(cityB);
-              setCityB(temp);
-            }}
-            style={swapButton}
-          >
-            Swap Time Zones
-          </button>
+          <div style={swapColumn}>
+            <button
+              type="button"
+              onClick={() => {
+                const temp = cityA;
+                setCityA(cityB);
+                setCityB(temp);
+              }}
+              style={swapButton}
+            >
+              Swap Time Zones
+            </button>
+          </div>
 
-          <label style={compactInputGroup}>
-            <span style={inputLabel}>Time Zone 2</span>
+          <div style={cityToolCard}>
+            <div style={cityNameLine}>
+              <span>{cityB.name}</span>
+              <Flag city={cityB.name} />
+            </div>
+
+            <span style={currentTimeLabel}>Current Time</span>
+
+            <strong style={liveTime}>
+              {cityBTime} {cityBTZ}
+            </strong>
+
+            <span style={localDate}>{cityBDate}</span>
+
             <select
               value={cityB.name}
               onChange={(event) => {
@@ -600,7 +600,7 @@ const safeNow = now || new Date();
                 </option>
               ))}
             </select>
-          </label>
+          </div>
         </div>
 
         <div style={actionControls}>
@@ -633,9 +633,7 @@ const safeNow = now || new Date();
         </div>
 
         <section style={resultsCard}>
-          <div style={meetingSectionHeader}>
-            Recommended meeting windows
-          </div>
+          <div style={meetingSectionHeader}>Recommended meeting windows</div>
 
           <div style={meetingList}>
             {meetingOptions.map((option, index) => {
@@ -669,6 +667,7 @@ const safeNow = now || new Date();
           <section style={sharePanel}>
             <div style={shareHeader}>
               <strong>Premium planning tools</strong>
+
               {premiumMessage && (
                 <button
                   type="button"
@@ -828,7 +827,7 @@ const toolShell = {
   width: "100%",
   maxWidth: "1180px",
   margin: "0 auto",
-  padding: "10px 16px 8px",
+  padding: "12px 16px 10px",
   background: "#ffffff",
   border: "1px solid #ede9fe",
   borderRadius: "18px",
@@ -869,44 +868,46 @@ const lockedText = {
 
 const toolLayout = {
   display: "grid",
-  gridTemplateColumns: "0.92fr 1.08fr",
-  gap: "14px",
-  alignItems: "start",
-};
-
-const timeDisplayGrid = {
-  gridColumn: "1 / -1",
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
+  gridTemplateColumns: "1fr",
   gap: "12px",
 };
 
-const timeDisplayCard = {
+const citySelectorGrid = {
+  display: "grid",
+  gridTemplateColumns: "1fr auto 1fr",
+  gap: "12px",
+  alignItems: "stretch",
+};
+
+const cityToolCard = {
   background: "#f8f7ff",
   border: "1px solid #ddd6fe",
   borderRadius: "14px",
-  padding: "12px 14px",
+  padding: "14px",
+  display: "grid",
+  gap: "8px",
 };
-const flagStyle = {
-  width: "20px",
-  height: "14px",
-  borderRadius: "3px",
-  objectFit: "cover" as const,
-  boxShadow: "0 1px 2px rgba(0,0,0,0.2)",
-};
+
 const cityNameLine = {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
   gap: "10px",
   color: "#111827",
-  fontSize: "13px",
+  fontSize: "14px",
   fontWeight: 950,
+};
+
+const flagStyle = {
+  width: "30px",
+  height: "22px",
+  borderRadius: "3px",
+  objectFit: "cover" as const,
+  boxShadow: "0 1px 2px rgba(0,0,0,0.2)",
 };
 
 const currentTimeLabel = {
   display: "block",
-  marginTop: "7px",
   color: "#6b7280",
   fontSize: "10px",
   fontWeight: 900,
@@ -916,46 +917,48 @@ const currentTimeLabel = {
 
 const liveTime = {
   display: "block",
-  marginTop: "5px",
   color: "#020617",
-  fontSize: "26px",
+  fontSize: "28px",
   lineHeight: 1,
   fontWeight: 950,
 };
 
 const localDate = {
   display: "block",
-  marginTop: "8px",
   color: "#4b5563",
   fontSize: "12px",
-  fontWeight: 700,
+  fontWeight: 800,
 };
 
-const plannerControls = {
-  display: "grid",
-  gridTemplateColumns: "1fr auto 1fr",
-  gap: "10px",
+const swapColumn = {
+  display: "flex",
   alignItems: "end",
+  justifyContent: "center",
 };
 
-const compactInputGroup = {
-  display: "grid",
-  gap: "6px",
+const swapButton = {
+  height: "46px",
+  minWidth: "150px",
+  border: "1px solid #d8ccff",
+  borderRadius: "10px",
+  background: "#ede9fe",
+  color: "#4c1d95",
+  fontSize: "13px",
+  fontWeight: 950,
+  cursor: "pointer",
+  boxShadow: "0 3px 8px rgba(76,29,149,0.12)",
 };
 
 const actionControls = {
   display: "grid",
-  gridTemplateColumns: "1fr 1fr",
+  gridTemplateColumns: "1fr",
   gap: "10px",
-  alignItems: "end",
+  maxWidth: "420px",
+  margin: "0 auto",
+  width: "100%",
 };
 
 const durationGroup = {
-  display: "grid",
-  gap: "6px",
-};
-
-const inputGroup = {
   display: "grid",
   gap: "6px",
 };
@@ -968,36 +971,23 @@ const inputLabel = {
 
 const selectStyle = {
   width: "100%",
-  height: "44px",
+  height: "46px",
   border: "1px solid #ddd6fe",
   borderRadius: "10px",
-  background: "#f8f7ff",
+  background: "#ffffff",
   color: "#111827",
-  fontSize: "13px",
+  fontSize: "14px",
   fontWeight: 900,
   padding: "0 12px",
 };
 
-const swapButton = {
-  height: "44px",
-  minWidth: "142px",
-  border: "1px solid #d8ccff",
-  borderRadius: "10px",
-  background: "#ede9fe",
-  color: "#4c1d95",
-  fontSize: "13px",
-  fontWeight: 950,
-  cursor: "pointer",
-  boxShadow: "0 3px 8px rgba(76,29,149,0.12)",
-};
-
 const findButton = {
-  height: "44px",
+  height: "48px",
   border: "none",
   borderRadius: "10px",
   background: "#5b21b6",
   color: "#ffffff",
-  fontSize: "14px",
+  fontSize: "15px",
   fontWeight: 950,
   cursor: "pointer",
   boxShadow: "0 10px 22px rgba(91,33,182,0.24)",
@@ -1012,21 +1002,19 @@ const resultsCard = {
 
 const meetingSectionHeader = {
   color: "#4c1d95",
-  fontSize: "13px",
+  fontSize: "14px",
   fontWeight: 950,
   marginBottom: "10px",
 };
 
 const meetingList = {
   display: "grid",
-  gap: "9px",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "10px",
 };
 
 const meetingRow = {
-  display: "grid",
-  gridTemplateColumns: "1fr",
-  gap: "4px",
-  padding: "11px 12px",
+  padding: "12px 14px",
   border: "1px solid #ede9fe",
   borderRadius: "12px",
   background: "#ffffff",
@@ -1034,13 +1022,12 @@ const meetingRow = {
 
 const meetingTimes = {
   display: "grid",
-  gap: "4px",
+  gap: "5px",
   color: "#111827",
   fontSize: "13px",
 };
 
 const sharePanel = {
-  gridColumn: "1 / -1",
   background: "#ffffff",
   border: "1px solid #ede9fe",
   borderRadius: "14px",
@@ -1101,139 +1088,7 @@ const premiumNotice = {
 };
 
 const viewerTimezone = {
-  gridColumn: "1 / -1",
   textAlign: "center" as const,
   color: "#6b7280",
   fontSize: "12px",
 };
-
-const cardLabel = {
-  color: "#4c1d95",
-  fontSize: "12px",
-  fontWeight: 950,
-};
-
-const resultsTitle = {
-  margin: "4px 0 0",
-  color: "#111827",
-  fontSize: "18px",
-  lineHeight: 1.15,
-  fontWeight: 950,
-};
-
-const resultsHeader = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  gap: "10px",
-  marginBottom: "10px",
-};
-
-const todayPill = {
-  border: "1px solid #ddd6fe",
-  borderRadius: "999px",
-  padding: "7px 12px",
-  color: "#5b21b6",
-  background: "#ffffff",
-  fontSize: "12px",
-  fontWeight: 950,
-};
-
-const copySmallButton = calendarButton;
-const copyButton = calendarButton;
-const calendarActions = premiumToolRow;
-const shareInputRow = premiumToolRow;
-
-const bestFoundCard = {
-  background: "#fef3c7",
-  border: "1px solid #facc15",
-  color: "#3b2600",
-  borderRadius: "12px",
-  padding: "12px 14px",
-};
-
-const bestFoundTitle = {
-  display: "block",
-  marginBottom: "6px",
-  fontSize: "13px",
-  fontWeight: 950,
-};
-
-const bestFoundText = {
-  fontSize: "13px",
-  fontWeight: 900,
-};
-
-const bestFoundSubtext = {
-  marginTop: "4px",
-  fontSize: "12px",
-  fontWeight: 700,
-  color: "#4b5563",
-};
-
-const compactResultRow = {
-  display: "grid",
-  gridTemplateColumns: "0.86fr 1.34fr",
-  gap: "12px",
-  alignItems: "start",
-  marginTop: "10px",
-};
-
-const compactShareRow = {
-  display: "grid",
-  gridTemplateColumns: "1fr auto",
-  gap: "8px",
-  alignItems: "center",
-};
-
-const sliderHeader = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-};
-
-const sliderValue = {
-  color: "#4c1d95",
-  fontSize: "12px",
-  fontWeight: 950,
-};
-
-const sliderTrack = {
-  position: "relative" as const,
-  height: "8px",
-  borderRadius: "999px",
-  background: "#ede9fe",
-  marginTop: "4px",
-};
-
-const sliderFill = {
-  position: "absolute" as const,
-  left: "10%",
-  right: "32%",
-  top: "0",
-  bottom: "0",
-  borderRadius: "999px",
-  background: "#8b5cf6",
-};
-
-const sliderDot = {
-  position: "absolute" as const,
-  left: "62%",
-  top: "50%",
-  width: "18px",
-  height: "18px",
-  borderRadius: "999px",
-  background: "#7c3aed",
-  transform: "translate(-50%, -50%)",
-  boxShadow: "0 0 0 6px rgba(124,58,237,0.14)",
-};
-
-const sliderLabels = {
-  display: "flex",
-  justifyContent: "space-between",
-  color: "#6b7280",
-  fontSize: "11px",
-  fontWeight: 800,
-};
-
-
