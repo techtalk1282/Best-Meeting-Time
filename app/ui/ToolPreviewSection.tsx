@@ -706,18 +706,7 @@ const safeNow = now || new Date();
       </div>
 
    {hasCalculated && (
-        <div style={compactResultRow}>
-          <div style={bestFoundCard}>
-            <strong style={bestFoundTitle}>Best Time Found</strong>
-            <div style={bestFoundText}>
-              {bestStartA} – {bestEndA} ({cityATZ}) works best for {cityA.name}.
-            </div>
-            <div style={bestFoundSubtext}>
-              Matches {bestStartB} – {bestEndB} ({cityBTZ}) for {cityB.name}.
-            </div>
-          </div>
-
-          <div style={sharePanel}>
+        <div style={sharePanel}>
             <div style={shareHeader}>
               <strong>Share Your Results</strong>
               <button
@@ -863,8 +852,7 @@ const safeNow = now || new Date();
               </button>
             </div>
           </div>
-        </div>
-      )}
+            )}
 
       {viewerTZ && (
         <div style={viewerTimezone}>
