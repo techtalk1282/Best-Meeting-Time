@@ -379,7 +379,20 @@ const [isMobile, setIsMobile] = useState(false);
       isPremium,
     });
   }, [isPremium]);
+function handleContinueFreeBonus() {
+  if (isPremium) return;
 
+  const freeUsed = parseInt(
+    localStorage.getItem("free_sessions_used") || "0",
+    10
+  );
+
+  const adjustedFreeUsed = Math.max(0, freeUsed - 2);
+
+  localStorage.setItem("free_sessions_used", String(adjustedFreeUsed));
+  setIsLocked(false);
+  setPremiumMessage(null);
+}
   function handlePlannerInteraction(): boolean {
     const freeUsed = parseInt(
       localStorage.getItem("free_sessions_used") || "0",
@@ -530,11 +543,12 @@ const safeNow = now || new Date();
         </button>
 
         <button
-          type="button"
-          style={secondaryButton}
-        >
-          Continue Free — Coming Soon
-        </button>
+  type="button"
+  onClick={handleContinueFreeBonus}
+  style={secondaryButton}
+>
+  Continue Free — Get 2 More Sessions
+</button>
       </div>
     </div>
   </div>
@@ -911,7 +925,7 @@ const secondaryButton = {
   fontSize: "12px",
   fontWeight: 900,
   padding: "10px 16px",
-  cursor: "default",
+  cursor: "pointer",
 };
 const toolLayout = {
   display: "grid",
