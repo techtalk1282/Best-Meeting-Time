@@ -500,13 +500,13 @@ const safeNow = now || new Date();
 
 
   return (
-    <section style={toolShell}>
+  <section style={toolShell}>
+    <>
       {successMessage && (
         <div style={successBanner}>
           {successMessage}
         </div>
       )}
-
       {isLocked && (
         <div style={lockedBanner}>
           <div>
