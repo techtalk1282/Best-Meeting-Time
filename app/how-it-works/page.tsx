@@ -134,7 +134,7 @@ const toolSection = {
 const stepsSection = {
   maxWidth: "1120px",
   margin: "0 auto",
-  padding: "20px 20px 38px",
+  padding: "90px 20px 38px",
 };
 
 const stepsGrid = {
