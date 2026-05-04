@@ -289,9 +289,10 @@ export default function ToolPreviewSection({
   const [shareUrl, setShareUrl] = useState<string | null>(null);
   const [shareCopied, setShareCopied] = useState(false);
   const [premiumMessage, setPremiumMessage] = useState<string | null>(null);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+ const [successMessage, setSuccessMessage] = useState<string | null>(null);
+const [hasCalculated, setHasCalculated] = useState(false);
 
-  const [isMobile, setIsMobile] = useState(false);
+const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -620,6 +621,7 @@ const safeNow = now || new Date();
               if (handlePlannerInteraction()) return;
               setPreferredWindow("9:00 AM – 5:00 PM");
               setPremiumMessage(null);
+              setHasCalculated(true);
             }}
             style={findButton}
           >
@@ -698,7 +700,9 @@ const safeNow = now || new Date();
         </section>
       </div>
 
-      <div style={bestFoundCard}>
+      {hasCalculated && (
+        <>
+          <div style={bestFoundCard}>
         <div>
           <strong style={bestFoundTitle}>Best Time Found</strong>
           <div style={bestFoundText}>
@@ -854,8 +858,10 @@ const safeNow = now || new Date();
           >
             Add to Apple Calendar
           </button>
-        </div>
+       </div>
       </div>
+        </>
+      )}
 
       {viewerTZ && (
         <div style={viewerTimezone}>
