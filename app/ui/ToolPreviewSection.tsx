@@ -877,9 +877,9 @@ const safeNow = now || new Date();
 
 const toolShell = {
   width: "100%",
-  maxWidth: "960px",
+  maxWidth: "1080px",
   margin: "0 auto",
-  padding: "10px 12px",
+  padding: "16px 18px",
   background: "#ffffff",
   border: "1px solid #ede9fe",
   borderRadius: "14px",
