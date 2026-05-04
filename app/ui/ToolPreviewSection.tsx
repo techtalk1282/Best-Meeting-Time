@@ -411,22 +411,7 @@ export default function ToolPreviewSection({
     return false;
   }
 
-  if (isMobile) {
-    return (
-      <div style={{ width: "100%", padding: 0 }}>
-        <ToolPreviewMobile
-          cityA={cityA}
-          cityB={cityB}
-          setCityA={setCityA}
-          setCityB={setCityB}
-          CITY_OPTIONS={CITY_OPTIONS}
-          handlePlannerInteraction={handlePlannerInteraction}
-        />
-      </div>
-    );
-  }
-
-  const safeNow = now || new Date();
+const safeNow = now || new Date();
   const meetingWindow = calculateOverlap(cityA, cityB);
 
   const meetingOptions: MeetingOption[] = useMemo(() => {
@@ -494,6 +479,23 @@ export default function ToolPreviewSection({
   const bestEndA = formatTimeInZone(selectedWindow.endUtc, cityA.tz);
   const bestStartB = formatTimeInZone(selectedWindow.startUtc, cityB.tz);
   const bestEndB = formatTimeInZone(selectedWindow.endUtc, cityB.tz);
+
+  if (isMobile) {
+    return (
+      <div style={{ width: "100%", padding: 0 }}>
+        <ToolPreviewMobile
+          cityA={cityA}
+          cityB={cityB}
+          setCityA={setCityA}
+          setCityB={setCityB}
+          CITY_OPTIONS={CITY_OPTIONS}
+          handlePlannerInteraction={handlePlannerInteraction}
+          startLocal={bestStartA}
+          endLocal={bestEndA}
+        />
+      </div>
+    );
+  }
 
 
   return (
