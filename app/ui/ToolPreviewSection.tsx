@@ -658,7 +658,7 @@ const safeNow = now || new Date();
               </div>
               <span style={currentTimeLabel}>Current Time</span>
               <strong style={liveTime}>
-                {cityATime} {cityATZ}
+                {cityBTime} {cityBTZ}
               </strong>
               <span style={localDate}>{cityBDate}</span>
             </div>
