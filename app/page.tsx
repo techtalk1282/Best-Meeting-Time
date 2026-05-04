@@ -1,16 +1,14 @@
 /**
  * File: app/page.tsx
- * Version: v4.6 (REFINED HOMEPAGE HERO + BRAND CLEANUP)
+ * Version: v4.7 (HOMEPAGE BRAND + SECTION CLARITY CLEANUP)
  * Date: 2026-05-04
  *
  * PURPOSE:
- * - Clean up homepage visual hierarchy
- * - Remove duplicate Schedule a Meeting CTA from hero-left area
- * - Keep primary CTAs in top-right nav, planner preview, and bottom CTA only
- * - Replace off-brand green planner highlight with branded gold
- * - Improve first-viewport framing at 100% zoom
- * - Make headline read cleaner and less jumbled
- * - Improve feature cards so they feel more useful and polished
+ * - Remove off-brand yellow/brown planner highlight
+ * - Remove misleading “Free” badge from planner preview
+ * - Improve hero headline and SEO-supporting value cards
+ * - Make Features and How It Works sections clearer when nav links are clicked
+ * - Keep homepage as marketing-only preview
  *
  * PROTECTED:
  * - No Stripe changes
@@ -20,7 +18,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert app/page.tsx to v4.5 if this layout does not test cleanly
+ * - Revert app/page.tsx to v4.6 if this layout does not test cleanly
  */
 
 import dynamic from "next/dynamic";
@@ -47,18 +45,10 @@ export default function HomePage() {
               </a>
 
               <nav style={nav} aria-label="Homepage navigation">
-                <a href="#features" style={navLink}>
-                  Features
-                </a>
-                <a href="#how-it-works" style={navLink}>
-                  How It Works
-                </a>
-                <a href="/guides" style={navLink}>
-                  Guides
-                </a>
-                <a href="/contact" style={navLink}>
-                  Contact
-                </a>
+                <a href="#features" style={navLink}>Features</a>
+                <a href="#how-it-works" style={navLink}>How It Works</a>
+                <a href="/guides" style={navLink}>Guides</a>
+                <a href="/contact" style={navLink}>Contact</a>
               </nav>
 
               <a href="/how-it-works#schedule-tool" style={navButton}>
@@ -72,35 +62,39 @@ export default function HomePage() {
                 <p style={eyebrow}>Trusted Time Zone Meeting Planner</p>
 
                 <h1 style={heroHeading}>
-                  Find the Best Meeting Time Across Time Zones
+                  Find a Meeting Time That Works Across Time Zones
                 </h1>
-
-                <p style={heroText}>
-                  Compare local times, avoid scheduling confusion, and choose a
-                  meeting window that works better for everyone.
-                </p>
-
-                <div style={trustRow}>
-                  <span>100% Free to Try</span>
-                  <span>No Sign-up</span>
-                  <span>Works Worldwide</span>
-                </div>
 
                 <div style={heroBulletBox}>
                   <div style={heroBullet}>
-                    <strong>Compare two cities instantly</strong>
-                    <span>See local times side by side before you schedule.</span>
+                    <strong>Compare cities and time zones instantly</strong>
+                    <span>
+                      View local times side by side for teams, clients, freelancers,
+                      and remote meetings across different regions.
+                    </span>
                   </div>
 
                   <div style={heroBullet}>
-                    <strong>Find recommended meeting windows</strong>
-                    <span>Quickly pick a practical time for both locations.</span>
+                    <strong>Find recommended meeting windows faster</strong>
+                    <span>
+                      Avoid manual time zone conversion and quickly choose a practical
+                      meeting time that works for both locations.
+                    </span>
                   </div>
 
                   <div style={heroBullet}>
-                    <strong>Start without an account</strong>
-                    <span>Use the planner first, then upgrade later if needed.</span>
+                    <strong>Start planning without an account</strong>
+                    <span>
+                      Use the meeting time planner first, then unlock more scheduling
+                      options if you need premium planning tools.
+                    </span>
                   </div>
+                </div>
+
+                <div style={trustRow}>
+                  <span>Free to Try</span>
+                  <span>No Sign-up</span>
+                  <span>Works Worldwide</span>
                 </div>
               </div>
 
@@ -110,8 +104,6 @@ export default function HomePage() {
                     <p style={plannerEyebrow}>Planner Preview</p>
                     <h2 style={plannerTitle}>Recommended meeting window</h2>
                   </div>
-
-                  <span style={plannerBadge}>Free</span>
                 </div>
 
                 <div style={cityGrid}>
@@ -165,38 +157,49 @@ export default function HomePage() {
               </div>
             </section>
 
-            <section id="features" style={featureStrip}>
-              <div style={featureCard}>
-                <span style={featureIcon}>◷</span>
-                <strong>Live Time Comparison</strong>
-                <span>Check both locations before choosing a meeting time.</span>
+            <section id="features" style={featuresSection}>
+              <div style={sectionHeader}>
+                <p style={sectionEyebrow}>Features</p>
+                <h2 style={sectionTitle}>Plan Meetings Across Time Zones Faster</h2>
+                <p style={sectionSubtitle}>
+                  Best Meeting Time helps you compare cities, review local times,
+                  and choose better meeting windows without guesswork.
+                </p>
               </div>
 
-              <div style={featureCard}>
-                <span style={featureIcon}>↯</span>
-                <strong>Faster Scheduling</strong>
-                <span>Reduce long message threads and timezone mistakes.</span>
-              </div>
+              <div style={featureGrid}>
+                <div style={featureCard}>
+                  <span style={featureLabel}>01</span>
+                  <strong>Live Time Comparison</strong>
+                  <span>Check both locations before choosing a meeting time.</span>
+                </div>
 
-              <div style={featureCard}>
-                <span style={featureIcon}>♙</span>
-                <strong>Remote Team Friendly</strong>
-                <span>Useful for clients, teams, freelancers, and partners.</span>
-              </div>
+                <div style={featureCard}>
+                  <span style={featureLabel}>02</span>
+                  <strong>Recommended Meeting Windows</strong>
+                  <span>See practical time options for both cities.</span>
+                </div>
 
-              <div style={featureCard}>
-                <span style={featureIcon}>♡</span>
-                <strong>Free to Start</strong>
-                <span>No account required to test your meeting time.</span>
+                <div style={featureCard}>
+                  <span style={featureLabel}>03</span>
+                  <strong>Remote Team Scheduling</strong>
+                  <span>Useful for teams, consultants, clients, and partners.</span>
+                </div>
+
+                <div style={featureCard}>
+                  <span style={featureLabel}>04</span>
+                  <strong>Free Planning Start</strong>
+                  <span>Begin without creating an account or signing in.</span>
+                </div>
               </div>
             </section>
 
             <section id="how-it-works" style={howSection}>
               <div style={sectionHeader}>
+                <p style={sectionEyebrow}>How It Works</p>
                 <h2 style={sectionTitle}>How Best Meeting Time Works</h2>
                 <p style={sectionSubtitle}>
-                  A simple way to compare locations and pick a practical meeting
-                  window.
+                  A simple three-step flow for scheduling across time zones.
                 </p>
               </div>
 
@@ -223,45 +226,37 @@ export default function HomePage() {
 
             <section id="resources" style={resourcesSection}>
               <div style={sectionHeader}>
+                <p style={sectionEyebrow}>Resources</p>
                 <h2 style={sectionTitle}>
                   Helpful Resources to Schedule Better Meetings
                 </h2>
-
                 <p style={sectionSubtitle}>
                   Guides and tips to help you collaborate across time zones.
                 </p>
               </div>
 
               <div style={resourcesGrid}>
-                <a
-                  href="/how-to-schedule-meetings-across-time-zones"
-                  style={resourceCard}
-                >
-                  <span style={resourceIcon}>▣</span>
+                <a href="/how-to-schedule-meetings-across-time-zones" style={resourceCard}>
                   <strong>How to Schedule Across Time Zones</strong>
                   <span>Step-by-step guide for global teams.</span>
                 </a>
 
                 <a href="/best-meeting-times-remote-teams" style={resourceCard}>
-                  <span style={resourceIcon}>⌘</span>
                   <strong>Best Meeting Times for Remote Teams</strong>
                   <span>Practical tips that actually work.</span>
                 </a>
 
                 <a href="/time-zone-meeting-planner-guide" style={resourceCard}>
-                  <span style={resourceIcon}>☷</span>
                   <strong>Time Zone Meeting Planner Guide</strong>
                   <span>Master your zone planning.</span>
                 </a>
 
                 <a href="/global-meeting-scheduling-tips" style={resourceCard}>
-                  <span style={resourceIcon}>✣</span>
                   <strong>Global Meeting Scheduling Tips</strong>
                   <span>Expert tips for faster scheduling.</span>
                 </a>
 
                 <a href="/guides" style={resourceCard}>
-                  <span style={resourceIcon}>⌁</span>
                   <strong>Meeting Time Zone Converter Guide</strong>
                   <span>Understand time zones easily.</span>
                 </a>
@@ -406,14 +401,6 @@ const heroHeading = {
   letterSpacing: "-0.04em",
 };
 
-const heroText = {
-  color: "#374151",
-  fontSize: "15px",
-  lineHeight: "1.55",
-  margin: "0 0 14px",
-  maxWidth: "470px",
-};
-
 const trustRow = {
   display: "flex",
   flexWrap: "wrap" as const,
@@ -421,7 +408,7 @@ const trustRow = {
   color: "#4c1d95",
   fontSize: "12px",
   fontWeight: 850,
-  marginBottom: "14px",
+  marginTop: "14px",
 };
 
 const heroBulletBox = {
@@ -473,15 +460,6 @@ const plannerTitle = {
   fontSize: "18px",
   fontWeight: 950,
   margin: 0,
-};
-
-const plannerBadge = {
-  background: "#fef3c7",
-  color: "#92400e",
-  borderRadius: "999px",
-  padding: "5px 9px",
-  fontSize: "10px",
-  fontWeight: 950,
 };
 
 const cityGrid = {
@@ -553,9 +531,9 @@ const durationRow = {
 };
 
 const bestTimeCard = {
-  background: "#fef3c7",
-  color: "#78350f",
-  border: "1px solid #fde68a",
+  background: "#f3efff",
+  color: "#4c1d95",
+  border: "1px solid #ddd6fe",
   borderRadius: "12px",
   padding: "13px",
   display: "flex",
@@ -567,7 +545,7 @@ const bestTimeCard = {
 };
 
 const bestTimeLabel = {
-  color: "#78350f",
+  color: "#4c1d95",
   fontSize: "12px",
   fontWeight: 950,
 };
@@ -593,49 +571,27 @@ const plannerFreeNote = {
   textAlign: "center" as const,
 };
 
-const featureStrip = {
-  display: "grid",
-  gridTemplateColumns: "repeat(4, 1fr)",
-  gap: "12px",
-  margin: "8px 0 14px",
-};
-
-const featureCard = {
-  background: "#ffffff",
-  border: "1px solid #ede9fe",
-  borderRadius: "12px",
-  padding: "13px",
-  display: "flex",
-  flexDirection: "column" as const,
-  gap: "5px",
-  boxShadow: "0 8px 18px rgba(0,0,0,0.04)",
-  fontSize: "11px",
-};
-
-const featureIcon = {
-  width: "20px",
-  height: "20px",
-  borderRadius: "7px",
-  background: "#ede9fe",
-  color: "#5b21b6",
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontSize: "11px",
-  fontWeight: 900,
-};
-
-const howSection = {
-  marginTop: "14px",
+const featuresSection = {
+  marginTop: "8px",
   padding: "20px 16px",
   background: "#ffffff",
   borderRadius: "14px",
   border: "1px solid #ede9fe",
+  scrollMarginTop: "24px",
 };
 
 const sectionHeader = {
   textAlign: "center" as const,
   marginBottom: "14px",
+};
+
+const sectionEyebrow = {
+  color: "#6d28d9",
+  fontSize: "11px",
+  fontWeight: 950,
+  margin: "0 0 4px",
+  textTransform: "uppercase" as const,
+  letterSpacing: "0.04em",
 };
 
 const sectionTitle = {
@@ -649,6 +605,39 @@ const sectionSubtitle = {
   color: "#6b7280",
   fontSize: "13px",
   margin: 0,
+};
+
+const featureGrid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(4, 1fr)",
+  gap: "12px",
+};
+
+const featureCard = {
+  background: "#faf9ff",
+  border: "1px solid #ede9fe",
+  borderRadius: "12px",
+  padding: "14px",
+  display: "flex",
+  flexDirection: "column" as const,
+  gap: "6px",
+  fontSize: "12px",
+  lineHeight: "1.4",
+};
+
+const featureLabel = {
+  color: "#5b21b6",
+  fontSize: "11px",
+  fontWeight: 950,
+};
+
+const howSection = {
+  marginTop: "14px",
+  padding: "20px 16px",
+  background: "#ffffff",
+  borderRadius: "14px",
+  border: "1px solid #ede9fe",
+  scrollMarginTop: "24px",
 };
 
 const howGrid = {
@@ -709,19 +698,6 @@ const resourceCard = {
   color: "#111827",
   fontSize: "10px",
   lineHeight: "1.25",
-};
-
-const resourceIcon = {
-  width: "20px",
-  height: "20px",
-  borderRadius: "7px",
-  background: "#ede9fe",
-  color: "#5b21b6",
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontSize: "10px",
-  fontWeight: 900,
 };
 
 const ctaBand = {
