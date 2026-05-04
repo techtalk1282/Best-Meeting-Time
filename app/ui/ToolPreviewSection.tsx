@@ -504,21 +504,41 @@ const safeNow = now || new Date();
       {successMessage && <div style={successBanner}>{successMessage}</div>}
 
       {isLocked && (
-        <div style={lockedBanner}>
-          <div>
-            <div style={lockedTitle}>
-              {isPremium
-                ? "You’ve used your 6 premium planning sessions"
-                : "You’ve used your 4 free planning sessions"}
-            </div>
-            <div style={lockedText}>
-              {isPremium
-                ? "Unlock more sessions to continue scheduling."
-                : "Upgrade to unlock more planning sessions and premium features."}
-            </div>
-          </div>
+  <div style={lockedBanner}>
+    <div style={{ display: "grid", gap: "10px" }}>
+      <div>
+        <div style={lockedTitle}>
+          {isPremium
+            ? "You’ve used your 6 premium planning sessions"
+            : "You’ve used your 4 free planning sessions"}
         </div>
-      )}
+
+        <div style={lockedText}>
+          {isPremium
+            ? "Unlock more sessions to continue scheduling."
+            : "Upgrade for $7 one-time or continue free when ad access becomes available."}
+        </div>
+      </div>
+
+      <div style={lockedActions}>
+        <button
+          type="button"
+          onClick={scrollToUpgrade}
+          style={unlockButton}
+        >
+          Unlock Premium — $7
+        </button>
+
+        <button
+          type="button"
+          style={secondaryButton}
+        >
+          Continue Free — Coming Soon
+        </button>
+      </div>
+    </div>
+  </div>
+)}
 
       <div style={toolLayout}>
         <div style={citySelectorGrid}>
@@ -866,7 +886,33 @@ const lockedText = {
   fontSize: "12px",
   color: "#6b7280",
 };
+const lockedActions = {
+  display: "flex",
+  gap: "10px",
+  flexWrap: "wrap" as const,
+};
+const unlockButton = {
+  border: "none",
+  borderRadius: "999px",
+  background: "#5b21b6",
+  color: "#ffffff",
+  fontSize: "12px",
+  fontWeight: 950,
+  padding: "10px 16px",
+  cursor: "pointer",
+  boxShadow: "0 8px 18px rgba(91,33,182,0.35)",
+};
 
+const secondaryButton = {
+  border: "1px solid #c4b5fd",
+  borderRadius: "999px",
+  background: "#ede9fe",
+  color: "#4c1d95",
+  fontSize: "12px",
+  fontWeight: 900,
+  padding: "10px 16px",
+  cursor: "default",
+};
 const toolLayout = {
   display: "grid",
   gridTemplateColumns: "1fr",
