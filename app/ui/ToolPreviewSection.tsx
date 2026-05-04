@@ -949,7 +949,7 @@ const controlCard = {
   background: "#ffffff",
   border: "1px solid #ede9fe",
   borderRadius: "12px",
-  padding: "11px",
+  padding: "16px",
   boxShadow: "0 8px 24px rgba(76,29,149,0.08)",
 };
 
@@ -957,7 +957,7 @@ const resultsCard = {
   background: "#ffffff",
   border: "1px solid #ede9fe",
   borderRadius: "12px",
-  padding: "11px",
+  padding: "16px",
   boxShadow: "0 8px 24px rgba(76,29,149,0.08)",
 };
 
@@ -986,7 +986,7 @@ const selectStyle = {
   background: "#f8f7ff",
   border: "1px solid #ddd6fe",
   borderRadius: "8px",
-  padding: "10px 11px",
+  padding: "12px 13px",
   color: "#111827",
   fontSize: "12px",
   fontWeight: 800,
@@ -1125,7 +1125,7 @@ const liveTime = {
   display: "block",
   marginTop: "7px",
   color: "#111827",
-  fontSize: "20px",
+  fontSize: "23px",
   fontWeight: 950,
 };
 
@@ -1148,7 +1148,7 @@ const meetingRow = {
   alignItems: "center",
   justifyContent: "space-between",
   gap: "10px",
-  padding: "8px 10px",
+  padding: "10px 12px",
   border: "1px solid #ede9fe",
   borderRadius: "10px",
   background: "#ffffff",
