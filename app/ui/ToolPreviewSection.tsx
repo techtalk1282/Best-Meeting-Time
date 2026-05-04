@@ -832,7 +832,7 @@ const toolShell = {
   border: "1px solid #ede9fe",
   borderRadius: "18px",
   color: "#111827",
-  boxShadow: "0 18px 45px rgba(76,29,149,0.12)",
+  boxShadow: "0 28px 70px rgba(0,0,0,0.28)",
 };
 
 const successBanner = {
@@ -886,6 +886,7 @@ const cityToolCard = {
   padding: "14px",
   display: "grid",
   gap: "8px",
+  boxShadow: "0 10px 28px rgba(0,0,0,0.10)",
 };
 
 const cityNameLine = {
@@ -990,7 +991,7 @@ const findButton = {
   fontSize: "15px",
   fontWeight: 950,
   cursor: "pointer",
-  boxShadow: "0 10px 22px rgba(91,33,182,0.24)",
+  boxShadow: "0 14px 32px rgba(91,33,182,0.35)",
 };
 
 const resultsCard = {
@@ -998,6 +999,7 @@ const resultsCard = {
   border: "1px solid #ede9fe",
   borderRadius: "14px",
   padding: "12px",
+  boxShadow: "0 12px 32px rgba(0,0,0,0.10)",
 };
 
 const meetingSectionHeader = {
@@ -1018,8 +1020,8 @@ const meetingRow = {
   border: "1px solid #ede9fe",
   borderRadius: "12px",
   background: "#ffffff",
+  boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
 };
-
 const meetingTimes = {
   display: "grid",
   gap: "5px",
