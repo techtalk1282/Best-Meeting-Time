@@ -523,12 +523,7 @@ const safeNow = now || new Date();
         </div>
       )}
 
-      <div style={toolHeader}>
-        <h2 style={toolTitle}>Find the Best Meeting Time</h2>
-        <p style={toolSubtitle}>
-          Choose two time zones, compare local times, and get clear meeting windows instantly.
-        </p>
-      </div>
+      
 
       <div style={appGrid}>
         <aside style={controlCard}>
