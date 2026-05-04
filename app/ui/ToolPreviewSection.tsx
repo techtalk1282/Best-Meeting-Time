@@ -15,7 +15,7 @@
  * - No KV changes
  * - No premium verification route changes
  *
- * ROLLBACK:
+ * ROLLBACK:f
  * - Restore previous app/ui/ToolPreviewSection.tsx vSTABLE-2.0 baseline
  */
 
@@ -631,8 +631,8 @@ const safeNow = now || new Date();
         <section style={resultsCard}>
           <div style={resultsHeader}>
             <div>
-              <div style={cardLabel}>Best Meeting Times</div>
-              <h3 style={resultsTitle}>Today’s strongest overlap</h3>
+               <div style={cardLabel}>Current Local Times</div>
+              <h3 style={resultsTitle}>Time right now</h3>
             </div>
 
             <div style={todayPill}>Today</div>
@@ -644,6 +644,7 @@ const safeNow = now || new Date();
                 <span>{cityA.name}</span>
                 <Flag city={cityA.name} />
               </div>
+              <span style={currentTimeLabel}>Current Time</span>
               <strong style={liveTime}>
                 {cityATime} {cityATZ}
               </strong>
@@ -655,11 +656,16 @@ const safeNow = now || new Date();
                 <span>{cityB.name}</span>
                 <Flag city={cityB.name} />
               </div>
+              <span style={currentTimeLabel}>Current Time</span>
               <strong style={liveTime}>
-                {cityBTime} {cityBTZ}
+                {cityATime} {cityATZ}
               </strong>
               <span style={localDate}>{cityBDate}</span>
             </div>
+          </div>
+
+         <div style={meetingSectionHeader}>
+            Recommended meeting windows
           </div>
 
           <div style={meetingList}>
@@ -1117,7 +1123,22 @@ const cityNameLine = {
   fontSize: "11px",
   fontWeight: 900,
 };
+const currentTimeLabel = {
+  display: "block",
+  marginTop: "6px",
+  color: "#6b7280",
+  fontSize: "10px",
+  fontWeight: 850,
+  textTransform: "uppercase" as const,
+  letterSpacing: "0.04em",
+};
 
+const meetingSectionHeader = {
+  color: "#4c1d95",
+  fontSize: "12px",
+  fontWeight: 950,
+  margin: "2px 0 8px",
+};
 const liveTime = {
   display: "block",
   marginTop: "7px",
