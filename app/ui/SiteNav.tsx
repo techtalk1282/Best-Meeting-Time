@@ -1,15 +1,22 @@
 /**
  * File: app/ui/SiteNav.tsx
- * Version: v1.0 (SIMPLE ADSENSE NAVIGATION)
- * Date: 2026-04-23
+ * Version: v1.1 (SCHEDULE CTA NAVIGATION)
+ * Date: 2026-05-04
  *
  * PURPOSE:
- * - Add a simple, reusable site navigation bar
- * - Improve AdSense trust and crawlability
- * - Keep navigation clean: Home, Guides, Blog, Contact, Try Tool
+ * - Keep reusable site navigation clean and AdSense-friendly
+ * - Make the primary CTA clearer than “Try Tool”
+ * - Route Schedule a Meeting to the real planner section
+ * - Add small free-to-try reassurance below the CTA
+ *
+ * PROTECTED:
+ * - No Stripe changes
+ * - No checkout changes
+ * - No webhook changes
+ * - No KV changes
  *
  * ROLLBACK:
- * - Delete this file and remove SiteNav imports/usages
+ * - Restore app/ui/SiteNav.tsx v1.0
  */
 
 export default function SiteNav() {
@@ -24,7 +31,11 @@ export default function SiteNav() {
         <a href="/guides" style={navLink}>Guides</a>
         <a href="/blog" style={navLink}>Blog</a>
         <a href="/contact" style={navLink}>Contact</a>
-        <a href="/#schedule-tool" style={ctaLink}>Try Tool</a>
+
+        <a href="/how-it-works#schedule-tool" style={ctaLink}>
+          <span style={ctaMainText}>Schedule a Meeting</span>
+          <span style={ctaSubText}>Free to try — no sign-up</span>
+        </a>
       </nav>
     </header>
   );
@@ -33,14 +44,12 @@ export default function SiteNav() {
 const navWrap = {
   maxWidth: "1200px",
   margin: "0 auto",
-  padding: "22px 24px",
+  padding: "18px 24px",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
   gap: "20px",
   flexWrap: "wrap" as const,
-
-  // NEW (important)
   borderBottom: "1px solid rgba(255,255,255,0.12)",
 };
 
@@ -68,9 +77,24 @@ const navLink = {
 const ctaLink = {
   background: "#facc15",
   color: "#1e1b4b",
-  padding: "8px 14px",
+  padding: "8px 16px",
   borderRadius: "999px",
-  fontSize: "14px",
-  fontWeight: 800,
+  fontWeight: 900,
   textDecoration: "none",
+  display: "flex",
+  flexDirection: "column" as const,
+  alignItems: "center",
+  justifyContent: "center",
+  lineHeight: 1.15,
+};
+
+const ctaMainText = {
+  fontSize: "14px",
+  fontWeight: 900,
+};
+
+const ctaSubText = {
+  fontSize: "10px",
+  fontWeight: 800,
+  opacity: 0.86,
 };
