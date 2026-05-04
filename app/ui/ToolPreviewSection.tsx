@@ -876,9 +876,9 @@ const safeNow = now || new Date();
 
 const toolShell = {
   width: "100%",
-  maxWidth: "980px",
+  maxWidth: "900px",
   margin: "0 auto",
-  padding: "22px",
+  padding: "14px",
   background: "#ffffff",
   border: "1px solid #ede9fe",
   borderRadius: "14px",
@@ -919,12 +919,12 @@ const lockedText = {
 
 const toolHeader = {
   textAlign: "center" as const,
-  marginBottom: "18px",
+  marginBottom: "10px",
 };
 
 const toolTitle = {
-  margin: "0 0 6px",
-  fontSize: "28px",
+  margin: "0 0 4px",
+  fontSize: "24px",
   fontWeight: 950,
   letterSpacing: "-0.03em",
   color: "#111827",
@@ -940,7 +940,7 @@ const toolSubtitle = {
 const appGrid = {
   display: "grid",
   gridTemplateColumns: "0.86fr 1.34fr",
-  gap: "18px",
+  gap: "12px",
   alignItems: "start",
 };
 
@@ -948,7 +948,7 @@ const controlCard = {
   background: "#ffffff",
   border: "1px solid #ede9fe",
   borderRadius: "12px",
-  padding: "16px",
+  padding: "11px",
   boxShadow: "0 8px 24px rgba(76,29,149,0.08)",
 };
 
@@ -956,7 +956,7 @@ const resultsCard = {
   background: "#ffffff",
   border: "1px solid #ede9fe",
   borderRadius: "12px",
-  padding: "16px",
+  padding: "11px",
   boxShadow: "0 8px 24px rgba(76,29,149,0.08)",
 };
 
