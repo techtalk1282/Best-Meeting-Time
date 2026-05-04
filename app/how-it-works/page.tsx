@@ -29,16 +29,7 @@ export default function HowItWorksPage() {
         <SiteNav />
       </div>
 
-      <section style={heroSection}>
-        <div style={heroCard}>
-          <p style={eyebrow}>Simple Scheduling Across Time Zones</p>
-          <h1 style={heading}>Find the Best Meeting Time</h1>
-          <p style={subtext}>
-            Compare locations, review overlapping work hours, and choose a
-            meeting window that is easier for everyone.
-          </p>
-        </div>
-      </section>
+            <section style={introSpacer} />
 
       <section id="schedule-tool" style={toolSection}>
         <ToolPreviewSection />
@@ -99,7 +90,7 @@ const pageWrap = {
   color: "#ffffff",
 };
 
-const heroSection = { padding: "48px 20px 18px" };
+const introSpacer = { padding: "14px 20px 4px" };
 
 const heroCard = {
   maxWidth: "900px",
