@@ -1,15 +1,15 @@
 /**
  * File: app/page.tsx
- * Version: v4.4 (HOMEPAGE CTA + PLANNER PREVIEW ALIGNMENT)
+ * Version: v4.5 (COHESIVE HOMEPAGE REDESIGN)
  * Date: 2026-05-04
  *
  * PURPOSE:
- * - Clarify homepage navigation and CTA language
- * - Remove confusing “Try Tool” language from homepage
- * - Add “Free to try — no sign-up” reassurance to the primary CTA
- * - Update homepage preview card to better match the redesigned planner flow
+ * - Redesign homepage into a cleaner, more premium scheduling landing page
+ * - Remove cluttered duplicate navigation behavior
+ * - Keep primary CTA clear: Schedule a Meeting
+ * - Add free-to-try reassurance near CTA buttons
+ * - Upgrade preview card to look more like the real planner UI
  * - Keep homepage as marketing-only preview
- * - Send users to the real scheduling planner section
  *
  * PROTECTED:
  * - No Stripe changes
@@ -19,7 +19,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert app/page.tsx to v4.3 if this layout does not test cleanly
+ * - Revert app/page.tsx to v4.4 if this layout does not test cleanly
  */
 
 import dynamic from "next/dynamic";
@@ -46,11 +46,11 @@ export default function HomePage() {
               </a>
 
               <nav style={nav} aria-label="Homepage navigation">
-                <a href="#how-it-works-preview" style={navLink}>
-                  How It Works
-                </a>
                 <a href="#features" style={navLink}>
                   Features
+                </a>
+                <a href="#how-it-works" style={navLink}>
+                  How It Works
                 </a>
                 <a href="/guides" style={navLink}>
                   Guides
@@ -68,129 +68,163 @@ export default function HomePage() {
 
             <section style={heroSection}>
               <div style={heroLeft}>
-                <p style={eyebrow}>The Trusted Time Zone Meeting Planner</p>
+                <p style={eyebrow}>Trusted Time Zone Meeting Planner</p>
 
                 <h1 style={heroHeading}>
                   Find the Best Meeting Time Across Any Time Zone
                 </h1>
 
                 <p style={heroText}>
-                  Smart scheduling for global teams. Save hours of back-and-forth
-                  and find the perfect time for everyone, instantly.
+                  Compare time zones, avoid scheduling confusion, and choose a
+                  meeting window that works better for everyone.
                 </p>
 
                 <div style={trustRow}>
-                  <span>100% Free to Use</span>
+                  <span>100% Free to Try</span>
                   <span>No Sign-up</span>
                   <span>Works Worldwide</span>
                 </div>
+
+                <div style={heroActions}>
+                  <a href="/how-it-works#schedule-tool" style={primaryHeroButton}>
+                    Schedule a Meeting
+                  </a>
+
+                  <a href="#how-it-works" style={secondaryHeroButton}>
+                    See How It Works
+                  </a>
+                </div>
+
+                <p style={heroSmallNote}>
+                  Start with two cities. Get recommended meeting windows instantly.
+                </p>
               </div>
 
-              <div style={heroCard}>
-                <p style={mockTitle}>Meeting Time Preview</p>
-
-                <div style={plannerPreviewGrid}>
-                  <div style={cityPreviewCard}>
-                    <div style={cityTopRow}>
-                      <strong style={cityName}>New York, USA</strong>
-                      <span style={flagText}>🇺🇸</span>
-                    </div>
-                    <span style={cityLabel}>Current Time</span>
-                    <strong style={cityTime}>9:00 AM EDT</strong>
-                    <span style={cityDate}>Local time</span>
+              <div style={plannerCard}>
+                <div style={plannerCardHeader}>
+                  <div>
+                    <p style={plannerEyebrow}>Planner Preview</p>
+                    <h2 style={plannerTitle}>Recommended meeting window</h2>
                   </div>
 
-                  <div style={cityPreviewCard}>
-                    <div style={cityTopRow}>
-                      <strong style={cityName}>London, UK</strong>
-                      <span style={flagText}>🇬🇧</span>
+                  <span style={plannerBadge}>Free</span>
+                </div>
+
+                <div style={cityGrid}>
+                  <div style={cityCard}>
+                    <div style={cityHeader}>
+                      <strong>New York, USA</strong>
+                      <img
+                        src="https://flagcdn.com/w40/us.png"
+                        alt="United States flag"
+                        style={flagImage}
+                      />
                     </div>
-                    <span style={cityLabel}>Current Time</span>
-                    <strong style={cityTime}>2:00 PM BST</strong>
-                    <span style={cityDate}>Same meeting time</span>
+
+                    <span style={labelText}>Current Time</span>
+                    <strong style={timeText}>9:00 AM EDT</strong>
+                    <span style={subText}>Local time</span>
+                  </div>
+
+                  <div style={cityCard}>
+                    <div style={cityHeader}>
+                      <strong>London, UK</strong>
+                      <img
+                        src="https://flagcdn.com/w40/gb.png"
+                        alt="United Kingdom flag"
+                        style={flagImage}
+                      />
+                    </div>
+
+                    <span style={labelText}>Current Time</span>
+                    <strong style={timeText}>2:00 PM BST</strong>
+                    <span style={subText}>Same meeting time</span>
                   </div>
                 </div>
 
-                <div style={durationPreview}>
+                <div style={durationRow}>
                   <span>Meeting Duration</span>
                   <strong>60 minutes</strong>
                 </div>
 
-                <div style={recommendedPreview}>
-                  <span style={recommendedLabel}>Recommended meeting time</span>
+                <div style={bestTimeCard}>
+                  <span style={bestTimeLabel}>Best Meeting Time</span>
                   <strong>New York: 9:00 AM – 10:00 AM</strong>
                   <strong>London: 2:00 PM – 3:00 PM</strong>
                 </div>
 
-                <a href="/how-it-works#schedule-tool" style={mockButton}>
+                <a href="/how-it-works#schedule-tool" style={plannerButton}>
                   Schedule a Meeting
                 </a>
 
-                <p style={freeNote}>Free to try — no sign-up required.</p>
+                <p style={plannerFreeNote}>Free to try — no sign-up required.</p>
               </div>
             </section>
 
             <section id="features" style={featureStrip}>
               <div style={featureCard}>
                 <span style={featureIcon}>◷</span>
-                <strong>Accurate & Reliable</strong>
-                <span>Uses real time zone data.</span>
+                <strong>Compare Time Zones</strong>
+                <span>See both local times side by side.</span>
               </div>
 
               <div style={featureCard}>
                 <span style={featureIcon}>↯</span>
-                <strong>Save Hours</strong>
-                <span>Eliminate endless emails.</span>
+                <strong>Save Scheduling Time</strong>
+                <span>Reduce back-and-forth messages.</span>
               </div>
 
               <div style={featureCard}>
                 <span style={featureIcon}>♙</span>
-                <strong>For Teams of Any Size</strong>
-                <span>Perfect for remote teams.</span>
+                <strong>Built for Teams</strong>
+                <span>Useful for remote teams and clients.</span>
               </div>
 
               <div style={featureCard}>
                 <span style={featureIcon}>♡</span>
-                <strong>100% Free</strong>
-                <span>Free to try, no sign-up.</span>
+                <strong>Free to Try</strong>
+                <span>No account required to start.</span>
               </div>
             </section>
 
-            <section id="how-it-works-preview" style={howItWorksSection}>
-              <div style={howItWorksHeader}>
+            <section id="how-it-works" style={howSection}>
+              <div style={sectionHeader}>
                 <h2 style={sectionTitle}>How Best Meeting Time Works</h2>
                 <p style={sectionSubtitle}>
-                  Pick two locations, compare local times, and choose a meeting
-                  window that works better for everyone.
+                  A simple way to compare locations and pick a practical meeting
+                  window.
                 </p>
               </div>
 
-              <div style={howItWorksGrid}>
+              <div style={howGrid}>
                 <div style={howCard}>
-                  <strong>1. Select locations</strong>
+                  <span style={stepNumber}>1</span>
+                  <strong>Select locations</strong>
                   <span>Choose the cities or time zones for your meeting.</span>
                 </div>
 
                 <div style={howCard}>
-                  <strong>2. Compare times</strong>
-                  <span>See both local times side by side.</span>
+                  <span style={stepNumber}>2</span>
+                  <strong>Compare local times</strong>
+                  <span>View both locations side by side before scheduling.</span>
                 </div>
 
                 <div style={howCard}>
-                  <strong>3. Pick a window</strong>
-                  <span>Use recommended meeting times to schedule faster.</span>
+                  <span style={stepNumber}>3</span>
+                  <strong>Pick the best window</strong>
+                  <span>Use recommended times to schedule with confidence.</span>
                 </div>
               </div>
             </section>
 
             <section id="resources" style={resourcesSection}>
-              <div style={resourcesHeader}>
+              <div style={sectionHeader}>
                 <h2 style={sectionTitle}>
                   Helpful Resources to Schedule Better Meetings
                 </h2>
 
                 <p style={sectionSubtitle}>
-                  In-depth guides and tips to help you collaborate across time zones.
+                  Guides and tips to help you collaborate across time zones.
                 </p>
               </div>
 
@@ -258,7 +292,7 @@ const pageWrap = {
   color: "#111827",
   maxWidth: "1120px",
   margin: "0 auto",
-  padding: "20px 18px 28px",
+  padding: "18px 18px 28px",
 };
 
 const header = {
@@ -268,7 +302,7 @@ const header = {
   justifyContent: "space-between",
   gap: "18px",
   borderBottom: "1px solid #ede9fe",
-  marginBottom: "14px",
+  marginBottom: "16px",
 };
 
 const brandLink = {
@@ -311,7 +345,7 @@ const navButton = {
   background: "#5b21b6",
   color: "#ffffff",
   padding: "9px 16px",
-  borderRadius: "7px",
+  borderRadius: "8px",
   fontWeight: 900,
   textDecoration: "none",
   display: "flex",
@@ -319,7 +353,8 @@ const navButton = {
   alignItems: "center",
   justifyContent: "center",
   lineHeight: 1.15,
-  minWidth: "150px",
+  minWidth: "154px",
+  boxShadow: "0 10px 22px rgba(91,33,182,0.22)",
 };
 
 const navButtonMain = {
@@ -330,15 +365,15 @@ const navButtonMain = {
 const navButtonSub = {
   fontSize: "10px",
   fontWeight: 800,
-  opacity: 0.86,
+  opacity: 0.9,
 };
 
 const heroSection = {
   display: "grid",
-  gridTemplateColumns: "1fr 1fr",
+  gridTemplateColumns: "0.92fr 1fr",
   alignItems: "center",
-  gap: "36px",
-  padding: "24px 10px 14px",
+  gap: "42px",
+  padding: "34px 10px 28px",
 };
 
 const heroLeft = {
@@ -347,8 +382,8 @@ const heroLeft = {
 
 const eyebrow = {
   display: "inline-block",
-  margin: "0 0 12px",
-  padding: "6px 12px",
+  margin: "0 0 14px",
+  padding: "7px 13px",
   borderRadius: "999px",
   background: "#f3efff",
   color: "#5b21b6",
@@ -358,18 +393,19 @@ const eyebrow = {
 
 const heroHeading = {
   color: "#111827",
-  fontSize: "clamp(34px, 4vw, 46px)",
-  lineHeight: "1.08",
-  margin: "0 0 12px",
+  fontSize: "clamp(36px, 4.25vw, 52px)",
+  lineHeight: "1.05",
+  margin: "0 0 14px",
   fontWeight: 950,
-  letterSpacing: "-0.03em",
+  letterSpacing: "-0.04em",
 };
 
 const heroText = {
   color: "#374151",
-  fontSize: "14px",
-  lineHeight: "1.5",
+  fontSize: "15px",
+  lineHeight: "1.6",
   margin: "0 0 16px",
+  maxWidth: "480px",
 };
 
 const trustRow = {
@@ -379,127 +415,190 @@ const trustRow = {
   color: "#4c1d95",
   fontSize: "12px",
   fontWeight: 850,
+  marginBottom: "20px",
 };
 
-const heroCard = {
-  background: "#ffffff",
-  border: "1px solid #e9d5ff",
-  borderRadius: "12px",
-  padding: "14px",
-  boxShadow: "0 10px 30px rgba(76,29,149,0.12)",
-};
-
-const mockTitle = {
-  color: "#4c1d95",
-  fontSize: "12px",
-  fontWeight: 950,
-  margin: "0 0 10px",
-};
-
-const plannerPreviewGrid = {
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  gap: "10px",
+const heroActions = {
+  display: "flex",
+  flexWrap: "wrap" as const,
+  alignItems: "center",
+  gap: "12px",
   marginBottom: "10px",
 };
 
-const cityPreviewCard = {
-  background: "#f8f7ff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "8px",
-  padding: "10px",
-  display: "flex",
-  flexDirection: "column" as const,
-  gap: "4px",
+const primaryHeroButton = {
+  background: "#5b21b6",
+  color: "#ffffff",
+  padding: "12px 18px",
+  borderRadius: "9px",
+  fontSize: "13px",
+  fontWeight: 900,
+  textDecoration: "none",
+  boxShadow: "0 12px 26px rgba(91,33,182,0.22)",
 };
 
-const cityTopRow = {
+const secondaryHeroButton = {
+  background: "#f3efff",
+  color: "#5b21b6",
+  padding: "12px 18px",
+  borderRadius: "9px",
+  fontSize: "13px",
+  fontWeight: 900,
+  textDecoration: "none",
+};
+
+const heroSmallNote = {
+  color: "#6b7280",
+  fontSize: "12px",
+  fontWeight: 700,
+  margin: 0,
+};
+
+const plannerCard = {
+  background: "#ffffff",
+  border: "1px solid #ddd6fe",
+  borderRadius: "18px",
+  padding: "18px",
+  boxShadow: "0 22px 55px rgba(76,29,149,0.16)",
+};
+
+const plannerCardHeader = {
+  display: "flex",
+  alignItems: "flex-start",
+  justifyContent: "space-between",
+  gap: "12px",
+  marginBottom: "14px",
+};
+
+const plannerEyebrow = {
+  color: "#6d28d9",
+  fontSize: "11px",
+  fontWeight: 950,
+  margin: "0 0 4px",
+  textTransform: "uppercase" as const,
+  letterSpacing: "0.04em",
+};
+
+const plannerTitle = {
+  color: "#111827",
+  fontSize: "18px",
+  fontWeight: 950,
+  margin: 0,
+};
+
+const plannerBadge = {
+  background: "#dcfce7",
+  color: "#166534",
+  borderRadius: "999px",
+  padding: "5px 9px",
+  fontSize: "10px",
+  fontWeight: 950,
+};
+
+const cityGrid = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "12px",
+  marginBottom: "12px",
+};
+
+const cityCard = {
+  background: "#f8f7ff",
+  border: "1px solid #ddd6fe",
+  borderRadius: "12px",
+  padding: "13px",
+  display: "flex",
+  flexDirection: "column" as const,
+  gap: "5px",
+};
+
+const cityHeader = {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  gap: "8px",
-};
-
-const cityName = {
-  fontSize: "11px",
-  fontWeight: 900,
+  gap: "10px",
   color: "#111827",
+  fontSize: "13px",
+  fontWeight: 900,
 };
 
-const flagText = {
-  fontSize: "18px",
-  lineHeight: 1,
+const flagImage = {
+  width: "32px",
+  height: "22px",
+  objectFit: "cover" as const,
+  borderRadius: "3px",
+  boxShadow: "0 2px 5px rgba(0,0,0,0.15)",
 };
 
-const cityLabel = {
+const labelText = {
   color: "#6b7280",
-  fontSize: "9px",
+  fontSize: "10px",
   fontWeight: 900,
   textTransform: "uppercase" as const,
 };
 
-const cityTime = {
-  fontSize: "16px",
-  fontWeight: 950,
+const timeText = {
   color: "#111827",
+  fontSize: "22px",
+  fontWeight: 950,
+  letterSpacing: "-0.02em",
 };
 
-const cityDate = {
-  fontSize: "10px",
+const subText = {
   color: "#6b7280",
+  fontSize: "11px",
 };
 
-const durationPreview = {
+const durationRow = {
   background: "#ffffff",
   border: "1px solid #ddd6fe",
-  borderRadius: "8px",
-  padding: "9px 10px",
+  borderRadius: "10px",
+  padding: "11px 12px",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  color: "#4b5563",
-  fontSize: "11px",
-  fontWeight: 800,
-  marginBottom: "10px",
+  color: "#374151",
+  fontSize: "12px",
+  fontWeight: 900,
+  marginBottom: "12px",
 };
 
-const recommendedPreview = {
+const bestTimeCard = {
   background: "#dcfce7",
   color: "#166534",
-  borderRadius: "8px",
-  padding: "10px",
+  borderRadius: "12px",
+  padding: "13px",
   display: "flex",
   flexDirection: "column" as const,
-  gap: "4px",
-  fontSize: "11px",
+  gap: "5px",
+  fontSize: "12px",
   fontWeight: 900,
-  marginBottom: "8px",
+  marginBottom: "12px",
 };
 
-const recommendedLabel = {
+const bestTimeLabel = {
   color: "#166534",
-  fontSize: "11px",
+  fontSize: "12px",
   fontWeight: 950,
 };
 
-const mockButton = {
+const plannerButton = {
   display: "block",
   width: "100%",
   background: "#5b21b6",
   color: "#ffffff",
   textAlign: "center" as const,
-  padding: "10px",
-  borderRadius: "6px",
-  fontSize: "12px",
+  padding: "12px",
+  borderRadius: "9px",
+  fontSize: "13px",
   fontWeight: 900,
   textDecoration: "none",
-  marginTop: "6px",
 };
 
-const freeNote = {
-  margin: "7px 0 0",
+const plannerFreeNote = {
+  margin: "9px 0 0",
   color: "#5b21b6",
-  fontSize: "10px",
+  fontSize: "11px",
   fontWeight: 900,
   textAlign: "center" as const,
 };
@@ -507,26 +606,26 @@ const freeNote = {
 const featureStrip = {
   display: "grid",
   gridTemplateColumns: "repeat(4, 1fr)",
-  gap: "10px",
-  margin: "12px 0",
+  gap: "12px",
+  margin: "10px 0 14px",
 };
 
 const featureCard = {
   background: "#ffffff",
   border: "1px solid #ede9fe",
-  borderRadius: "9px",
-  padding: "10px",
+  borderRadius: "12px",
+  padding: "13px",
   display: "flex",
   flexDirection: "column" as const,
-  gap: "4px",
-  boxShadow: "0 4px 12px rgba(0,0,0,0.035)",
+  gap: "5px",
+  boxShadow: "0 8px 18px rgba(0,0,0,0.04)",
   fontSize: "11px",
 };
 
 const featureIcon = {
-  width: "18px",
-  height: "18px",
-  borderRadius: "6px",
+  width: "20px",
+  height: "20px",
+  borderRadius: "7px",
   background: "#ede9fe",
   color: "#5b21b6",
   display: "inline-flex",
@@ -536,68 +635,76 @@ const featureIcon = {
   fontWeight: 900,
 };
 
-const howItWorksSection = {
-  marginTop: "8px",
-  padding: "16px 14px",
+const howSection = {
+  marginTop: "14px",
+  padding: "20px 16px",
   background: "#ffffff",
-  borderRadius: "10px",
+  borderRadius: "14px",
   border: "1px solid #ede9fe",
 };
 
-const howItWorksHeader = {
+const sectionHeader = {
   textAlign: "center" as const,
-  marginBottom: "12px",
+  marginBottom: "14px",
 };
 
-const howItWorksGrid = {
+const sectionTitle = {
+  fontSize: "22px",
+  fontWeight: 950,
+  color: "#111827",
+  margin: "0 0 6px",
+};
+
+const sectionSubtitle = {
+  color: "#6b7280",
+  fontSize: "13px",
+  margin: 0,
+};
+
+const howGrid = {
   display: "grid",
   gridTemplateColumns: "repeat(3, 1fr)",
-  gap: "10px",
+  gap: "12px",
 };
 
 const howCard = {
   background: "#f9fafb",
   border: "1px solid #ede9fe",
-  borderRadius: "9px",
-  padding: "12px",
+  borderRadius: "12px",
+  padding: "14px",
   display: "flex",
   flexDirection: "column" as const,
-  gap: "5px",
-  fontSize: "11px",
-  lineHeight: "1.35",
+  gap: "6px",
+  fontSize: "12px",
+  lineHeight: "1.4",
+};
+
+const stepNumber = {
+  width: "26px",
+  height: "26px",
+  borderRadius: "999px",
+  background: "#ede9fe",
+  color: "#5b21b6",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontSize: "12px",
+  fontWeight: 950,
 };
 
 const resourcesSection = {
-  marginTop: "12px",
-  padding: "16px 14px",
+  marginTop: "14px",
+  padding: "20px 16px",
   background: "#ffffff",
-  borderRadius: "10px",
+  borderRadius: "14px",
   border: "1px solid #ede9fe",
-};
-
-const resourcesHeader = {
-  textAlign: "center" as const,
-  marginBottom: "12px",
-};
-
-const sectionTitle = {
-  fontSize: "20px",
-  fontWeight: 950,
-  color: "#111827",
-  margin: "0 0 5px",
-};
-
-const sectionSubtitle = {
-  color: "#6b7280",
-  fontSize: "12px",
-  margin: 0,
 };
 
 const resourcesGrid = {
   display: "grid",
   gridTemplateColumns: "repeat(5, 1fr)",
   gap: "10px",
-  marginBottom: "12px",
+  marginBottom: "14px",
 };
 
 const resourceCard = {
@@ -606,8 +713,8 @@ const resourceCard = {
   gap: "5px",
   background: "#f9fafb",
   border: "1px solid #ede9fe",
-  borderRadius: "9px",
-  padding: "10px",
+  borderRadius: "12px",
+  padding: "11px",
   textDecoration: "none",
   color: "#111827",
   fontSize: "10px",
@@ -615,9 +722,9 @@ const resourceCard = {
 };
 
 const resourceIcon = {
-  width: "18px",
-  height: "18px",
-  borderRadius: "6px",
+  width: "20px",
+  height: "20px",
+  borderRadius: "7px",
   background: "#ede9fe",
   color: "#5b21b6",
   display: "inline-flex",
@@ -634,8 +741,8 @@ const ctaBand = {
   gap: "14px",
   background: "#5b21b6",
   color: "#ffffff",
-  padding: "12px 16px",
-  borderRadius: "9px",
+  padding: "14px 16px",
+  borderRadius: "12px",
   fontWeight: 900,
   fontSize: "12px",
 };
@@ -649,8 +756,8 @@ const ctaBandText = {
 const ctaButton = {
   background: "#facc15",
   color: "#111827",
-  padding: "8px 12px",
-  borderRadius: "7px",
+  padding: "9px 13px",
+  borderRadius: "8px",
   fontSize: "11px",
   fontWeight: 900,
   textDecoration: "none",
