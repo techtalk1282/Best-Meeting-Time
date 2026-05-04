@@ -1,12 +1,12 @@
 /**
  * File: app/how-it-works/page.tsx
- * Version: v1.0 (V3 HOW IT WORKS PAGE)
+ * Version: v1.1 (RENDER REAL TOOL)
  * Date: 2026-05-03
  *
  * PURPOSE:
- * - Add the missing How It Works page from the V3 mockup system
- * - Improve AdSense trust, navigation depth, and user clarity
- * - Explain how the meeting time tool works without touching tool logic
+ * - Keep How It Works education page
+ * - Add real ToolPreviewSection directly on this page
+ * - Make Try Tool buttons scroll to the real tool
  *
  * PROTECTED:
  * - No Stripe changes
@@ -14,13 +14,13 @@
  * - No webhook changes
  * - No KV changes
  * - No premium/payment logic changes
- * - No ToolPreviewSection logic changes
  *
  * ROLLBACK:
- * - Delete app/how-it-works/page.tsx if this route causes issues
+ * - Revert to v1.0 if this page layout fails
  */
 
 import SiteNav from "../ui/SiteNav";
+import ToolPreviewSection from "../ui/ToolPreviewSection";
 
 export default function HowItWorksPage() {
   return (
@@ -32,9 +32,7 @@ export default function HowItWorksPage() {
       <section style={heroSection}>
         <div style={heroCard}>
           <p style={eyebrow}>Simple Scheduling Across Time Zones</p>
-
           <h1 style={heading}>How Best Meeting Time Works</h1>
-
           <p style={subtext}>
             Best Meeting Time helps you compare locations, review overlapping
             work hours, and choose a meeting window that is easier for everyone.
@@ -44,71 +42,38 @@ export default function HowItWorksPage() {
 
       <section style={stepsSection}>
         <div style={stepsGrid}>
-          <div style={stepCard}>
-            <div style={stepNumber}>1</div>
-            <h2 style={stepTitle}>Select Time Zones</h2>
-            <p style={stepText}>
-              Choose the cities or time zones for the people attending your
-              meeting.
-            </p>
-          </div>
-
-          <div style={stepCard}>
-            <div style={stepNumber}>2</div>
-            <h2 style={stepTitle}>Compare Local Times</h2>
-            <p style={stepText}>
-              See both locations side by side so you can avoid manual time
-              conversion mistakes.
-            </p>
-          </div>
-
-          <div style={stepCard}>
-            <div style={stepNumber}>3</div>
-            <h2 style={stepTitle}>Review the Best Window</h2>
-            <p style={stepText}>
-              Use the highlighted overlap to find a practical time during normal
-              working hours.
-            </p>
-          </div>
-
-          <div style={stepCard}>
-            <div style={stepNumber}>4</div>
-            <h2 style={stepTitle}>Plan With Confidence</h2>
-            <p style={stepText}>
-              Share or save the meeting time so your team can schedule faster
-              and avoid confusion.
-            </p>
-          </div>
+          {[
+            ["1", "Select Time Zones", "Choose the cities or time zones for the people attending your meeting."],
+            ["2", "Compare Local Times", "See both locations side by side so you can avoid manual time conversion mistakes."],
+            ["3", "Review the Best Window", "Use the highlighted overlap to find a practical time during normal working hours."],
+            ["4", "Plan With Confidence", "Share or save the meeting time so your team can schedule faster and avoid confusion."],
+          ].map(([num, title, text]) => (
+            <div key={num} style={stepCard}>
+              <div style={stepNumber}>{num}</div>
+              <h2 style={stepTitle}>{title}</h2>
+              <p style={stepText}>{text}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       <section style={whySection}>
         <div style={whyCard}>
           <h2 style={sectionHeading}>Why It Works</h2>
-
           <p style={bodyText}>
             Scheduling across time zones becomes easier when each location is
-            shown clearly and the overlap is visible. Instead of guessing, you
-            can quickly compare local times and choose a meeting window that
-            respects everyone’s schedule.
-          </p>
-
-          <p style={bodyText}>
-            This is especially useful for remote teams, consultants,
-            freelancers, sales calls, interviews, and client meetings across
-            countries.
+            shown clearly and the overlap is visible.
           </p>
 
           <div style={ctaRow}>
-            <a href="/#schedule-tool" style={primaryButton}>
-              Try the Free Tool
-            </a>
-
-            <a href="/guides" style={secondaryButton}>
-              View Scheduling Guides
-            </a>
+            <a href="#schedule-tool" style={primaryButton}>Try the Free Tool</a>
+            <a href="/guides" style={secondaryButton}>View Scheduling Guides</a>
           </div>
         </div>
+      </section>
+
+      <section id="schedule-tool" style={toolSection}>
+        <ToolPreviewSection />
       </section>
 
       <footer style={footer}>
@@ -130,9 +95,7 @@ const pageWrap = {
   color: "#ffffff",
 };
 
-const heroSection = {
-  padding: "72px 20px 28px",
-};
+const heroSection = { padding: "72px 20px 28px" };
 
 const heroCard = {
   maxWidth: "900px",
@@ -215,9 +178,7 @@ const stepText = {
   fontSize: "15px",
 };
 
-const whySection = {
-  padding: "18px 20px 70px",
-};
+const whySection = { padding: "18px 20px 34px" };
 
 const whyCard = {
   maxWidth: "920px",
@@ -268,6 +229,13 @@ const secondaryButton = {
   borderRadius: "999px",
   fontWeight: 900,
   textDecoration: "none",
+};
+
+const toolSection = {
+  maxWidth: "1120px",
+  margin: "0 auto",
+  padding: "20px 20px 70px",
+  scrollMarginTop: "30px",
 };
 
 const footer = {
