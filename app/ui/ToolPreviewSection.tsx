@@ -701,20 +701,21 @@ const safeNow = now || new Date();
       </div>
 
       {hasCalculated && (
-        <>
-          <div style={bestFoundCard}>
-        <div>
-          <strong style={bestFoundTitle}>Best Time Found</strong>
-          <div style={bestFoundText}>
-            {bestStartA} – {bestEndA} ({cityATZ}) works best for {cityA.name}.
-          </div>
-          <div style={bestFoundSubtext}>
-            That matches {bestStartB} – {bestEndB} ({cityBTZ}) for {cityB.name}.
-          </div>
-        </div>
-      </div>
+         <>
+          <div style={resultStack}>
+            <div style={bestFoundCard}>
+              <div>
+                <strong style={bestFoundTitle}>Best Time Found</strong>
+                <div style={bestFoundText}>
+                  {bestStartA} – {bestEndA} ({cityATZ}) works best for {cityA.name}.
+                </div>
+                <div style={bestFoundSubtext}>
+                  That matches {bestStartB} – {bestEndB} ({cityBTZ}) for {cityB.name}.
+                </div>
+              </div>
+            </div>
 
-      <div style={sharePanel}>
+            <div style={sharePanel}>
         <div style={shareHeader}>
           <strong>Share Your Results</strong>
           <button
