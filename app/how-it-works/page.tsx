@@ -38,11 +38,28 @@ export default function HowItWorksPage() {
       <section style={stepsSection}>
         <div style={stepsGrid}>
           {[
-            ["1", "Select Time Zones", "Choose the cities or time zones for the people attending your meeting."],
-            ["2", "Compare Local Times", "See both locations side by side so you can avoid manual time conversion mistakes."],
-            ["3", "Review the Best Window", "Use the highlighted overlap to find a practical time during normal working hours."],
-            ["4", "Plan With Confidence", "Share or save the meeting time so your team can schedule faster and avoid confusion."],
-          ].map(([num, title, text]) => (
+            [
+  [
+    "1",
+    "Select Time Zones",
+    "Choose the cities or time zones for everyone attending your meeting. This helps you instantly compare global time differences without manual calculations."
+  ],
+  [
+    "2",
+    "Compare Local Times",
+    "View both locations side by side in real time. Avoid costly scheduling mistakes caused by incorrect time conversions or daylight saving changes."
+  ],
+  [
+    "3",
+    "Review the Best Window",
+    "Instantly see the best overlapping working hours between both locations so you can schedule meetings that work for everyone."
+  ],
+  [
+    "4",
+    "Plan With Confidence",
+    "Create links or add meetings directly to your calendar so your team can schedule faster, stay aligned, and avoid confusion."
+  ],
+].map(([num, title, text]) => (
             <div key={num} style={stepCard}>
               <div style={stepNumber}>{num}</div>
               <h2 style={stepTitle}>{title}</h2>
@@ -56,18 +73,59 @@ export default function HowItWorksPage() {
         <div style={whyCard}>
           <h2 style={sectionHeading}>Why It Works</h2>
           <p style={bodyText}>
-            Scheduling across time zones becomes easier when each location is
-            shown clearly and the overlap is visible.
-          </p>
+  Scheduling meetings across time zones can be challenging, especially when teams are spread across different regions. 
+  This tool automatically calculates the best overlapping working hours between cities, so you can avoid early mornings, 
+  late nights, and scheduling conflicts.
+</p>
 
+<p style={{ ...bodyText, marginTop: "10px" }}>
+  Instead of manually converting time zones or relying on guesswork, you get a clear, accurate view of when both locations 
+  are available. This makes it easier to plan meetings, coordinate global teams, and stay productive without confusion.
+</p>
+<div style={{ marginTop: "18px" }}>
+  <h3 style={{ fontSize: "18px", marginBottom: "8px", color: "#1e1b4b" }}>
+    Common Problems This Solves
+  </h3>
+
+  <ul style={{ ...bodyText, paddingLeft: "18px" }}>
+    <li>Avoid scheduling meetings outside working hours</li>
+    <li>Eliminate manual time zone conversions</li>
+    <li>Prevent confusion across international teams</li>
+    <li>Quickly find the best meeting time for remote teams</li>
+  </ul>
+</div>
           <div style={ctaRow}>
             <a href="#schedule-tool" style={primaryButton}>
-              Try the Free Tool
+              Try the Free Meeting Time Tool
             </a>
             <a href="/guides" style={secondaryButton}>
-              View Scheduling Guides
+             View Time Zone Scheduling Guides
             </a>
           </div>
+        </div>
+      </section>
+
+      <section style={seoSection}>
+        <div style={seoCard}>
+          <h2 style={sectionHeading}>How to Schedule Meetings Across Time Zones</h2>
+
+          <p style={bodyText}>
+            Scheduling meetings across different time zones can be difficult when team members,
+            clients, or partners are located in different regions. Best Meeting Time helps you
+            compare local times, review recommended meeting windows, and choose a time that works
+            better for everyone.
+          </p>
+
+          <p style={{ ...bodyText, marginTop: "10px" }}>
+            This is useful for remote teams, freelancers, consultants, and businesses that work
+            with people across the United States, Europe, Asia, and other global time zones.
+            Instead of manually calculating time differences, you can use the tool to quickly
+            identify practical meeting options.
+          </p>
+
+          <p style={{ ...bodyText, marginTop: "10px", fontWeight: 700 }}>
+            Built for remote teams, freelancers, consultants, and businesses scheduling meetings worldwide.
+          </p>
         </div>
       </section>
 
@@ -236,7 +294,20 @@ const secondaryButton = {
   fontWeight: 900,
   textDecoration: "none",
 };
+const seoSection = {
+  padding: "0 20px 42px",
+};
 
+const seoCard = {
+  maxWidth: "920px",
+  margin: "0 auto",
+  background: "rgba(255,255,255,0.96)",
+  color: "#1e1b4b",
+  borderRadius: "24px",
+  padding: "30px 34px",
+  boxShadow: "0 14px 38px rgba(0,0,0,0.18)",
+  border: "1px solid rgba(196,181,253,0.65)",
+};
 const footer = {
   borderTop: "1px solid rgba(255,255,255,0.14)",
   padding: "24px 20px 34px",
