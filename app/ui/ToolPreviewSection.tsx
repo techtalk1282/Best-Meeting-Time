@@ -501,11 +501,8 @@ const safeNow = now || new Date();
 
   return (
     <section style={toolShell}>
-      {successMessage && (
-        <div style={successBanner}>
-          {successMessage}
-        </div>
-      )}
+      {successMessage && <div style={successBanner}>{successMessage}</div>}
+
       {isLocked && (
         <div style={lockedBanner}>
           <div>
@@ -523,13 +520,35 @@ const safeNow = now || new Date();
         </div>
       )}
 
-      
+      <div style={toolLayout}>
+        <div style={timeDisplayGrid}>
+          <div style={timeDisplayCard}>
+            <div style={cityNameLine}>
+              <span>{cityA.name}</span>
+              <Flag city={cityA.name} />
+            </div>
+            <span style={currentTimeLabel}>Current Time</span>
+            <strong style={liveTime}>
+              {cityATime} {cityATZ}
+            </strong>
+            <span style={localDate}>{cityADate}</span>
+          </div>
 
-      <div style={appGrid}>
-        <aside style={controlCard}>
-          <div style={cardLabel}>Select Time Zones</div>
+          <div style={timeDisplayCard}>
+            <div style={cityNameLine}>
+              <span>{cityB.name}</span>
+              <Flag city={cityB.name} />
+            </div>
+            <span style={currentTimeLabel}>Current Time</span>
+            <strong style={liveTime}>
+              {cityBTime} {cityBTZ}
+            </strong>
+            <span style={localDate}>{cityBDate}</span>
+          </div>
+        </div>
 
-          <label style={inputGroup}>
+        <div style={plannerControls}>
+          <label style={compactInputGroup}>
             <span style={inputLabel}>Time Zone 1</span>
             <select
               value={cityA.name}
@@ -539,27 +558,6 @@ const safeNow = now || new Date();
                   (option) => option.name === event.target.value
                 );
                 if (city) setCityA(city);
-              }}
-              style={selectStyle}
-            >
-              {CITY_OPTIONS.map((city) => (
-                <option key={city.name} value={city.name}>
-                  {city.name}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label style={inputGroup}>
-            <span style={inputLabel}>Time Zone 2</span>
-            <select
-              value={cityB.name}
-              onChange={(event) => {
-                if (handlePlannerInteraction()) return;
-                const city = CITY_OPTIONS.find(
-                  (option) => option.name === event.target.value
-                );
-                if (city) setCityB(city);
               }}
               style={selectStyle}
             >
@@ -583,7 +581,30 @@ const safeNow = now || new Date();
             Swap Time Zones
           </button>
 
-          <label style={inputGroup}>
+          <label style={compactInputGroup}>
+            <span style={inputLabel}>Time Zone 2</span>
+            <select
+              value={cityB.name}
+              onChange={(event) => {
+                if (handlePlannerInteraction()) return;
+                const city = CITY_OPTIONS.find(
+                  (option) => option.name === event.target.value
+                );
+                if (city) setCityB(city);
+              }}
+              style={selectStyle}
+            >
+              {CITY_OPTIONS.map((city) => (
+                <option key={city.name} value={city.name}>
+                  {city.name}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        <div style={actionControls}>
+          <label style={durationGroup}>
             <span style={inputLabel}>Meeting Duration</span>
             <select
               value={meetingDuration}
@@ -597,13 +618,11 @@ const safeNow = now || new Date();
             </select>
           </label>
 
-          
-
           <button
             type="button"
             onClick={() => {
               if (handlePlannerInteraction()) return;
-             
+
               setPremiumMessage(null);
               setHasCalculated(true);
             }}
@@ -611,37 +630,10 @@ const safeNow = now || new Date();
           >
             Find Best Time
           </button>
-        </aside>
+        </div>
 
         <section style={resultsCard}>
-          
-          <div style={currentTimeGrid}>
-            <div style={currentTimeCard}>
-              <div style={cityNameLine}>
-                <span>{cityA.name}</span>
-                <Flag city={cityA.name} />
-              </div>
-              <span style={currentTimeLabel}>Current Time</span>
-              <strong style={liveTime}>
-                {cityATime} {cityATZ}
-              </strong>
-              <span style={localDate}>{cityADate}</span>
-            </div>
-
-            <div style={currentTimeCard}>
-              <div style={cityNameLine}>
-                <span>{cityB.name}</span>
-                <Flag city={cityB.name} />
-              </div>
-              <span style={currentTimeLabel}>Current Time</span>
-              <strong style={liveTime}>
-                {cityBTime} {cityBTZ}
-              </strong>
-              <span style={localDate}>{cityBDate}</span>
-            </div>
-          </div>
-
-         <div style={meetingSectionHeader}>
+          <div style={meetingSectionHeader}>
             Recommended meeting windows
           </div>
 
@@ -656,7 +648,9 @@ const safeNow = now || new Date();
                 <div key={option.label} style={meetingRow}>
                   <div style={meetingTimes}>
                     <strong>
-                      {index === 0 ? "Recommended meeting time" : "Alternative meeting time"}
+                      {index === 0
+                        ? "Recommended meeting time"
+                        : "Alternative meeting time"}
                     </strong>
                     <span>
                       {cityA.name}: {startA} – {endA}
@@ -665,30 +659,28 @@ const safeNow = now || new Date();
                       {cityB.name}: {startB} – {endB}
                     </span>
                   </div>
-
-                  <span
-                    style={{
-                      ...scoreBadge,
-                      ...(option.score === "Best"
-                        ? scoreBest
-                        : option.score === "Great"
-                        ? scoreGreat
-                        : scoreGood),
-                    }}
-                  >
-                     {index === 0 ? "Recommended" : index === 1 ? "Strong" : "Available"}
-                  </span>
                 </div>
               );
             })}
           </div>
         </section>
-      </div>
 
-   {hasCalculated && (
-        <div style={sharePanel}>
+        {hasCalculated && (
+          <section style={sharePanel}>
             <div style={shareHeader}>
-              <strong>Share Your Results</strong>
+              <strong>Premium planning tools</strong>
+              {premiumMessage && (
+                <button
+                  type="button"
+                  onClick={scrollToUpgrade}
+                  style={premiumNotice}
+                >
+                  {premiumMessage}
+                </button>
+              )}
+            </div>
+
+            <div style={premiumToolRow}>
               <button
                 type="button"
                 onClick={async () => {
@@ -725,33 +717,10 @@ const safeNow = now || new Date();
                     console.error("Share error:", err);
                   }
                 }}
-                style={copySmallButton}
+                style={calendarButton}
               >
                 Create Link
               </button>
-            </div>
-
-            {premiumMessage && (
-              <button
-                type="button"
-                onClick={scrollToUpgrade}
-                style={premiumNotice}
-              >
-                {premiumMessage}
-              </button>
-            )}
-
-            <div style={compactShareRow}>
-              <a
-                href={shareUrl || "#"}
-                target={shareUrl ? "_blank" : undefined}
-                rel={shareUrl ? "noopener noreferrer" : undefined}
-                style={shareInput}
-              >
-                {shareUrl
-                  ? shareUrl.replace(/^https?:\/\//, "")
-                  : "bestmeetingtimeapp.com/meeting-link"}
-              </a>
 
               <button
                 type="button"
@@ -764,13 +733,11 @@ const safeNow = now || new Date();
                   await navigator.clipboard.writeText(shareUrl);
                   setShareCopied(true);
                 }}
-                style={copyButton}
+                style={calendarButton}
               >
-                {shareCopied ? "Copied" : "Copy"}
+                {shareCopied ? "Copied" : "Copy Link"}
               </button>
-            </div>
 
-            <div style={calendarActions}>
               <button
                 type="button"
                 onClick={() => {
@@ -780,7 +747,8 @@ const safeNow = now || new Date();
                     selectedWindow.startUtc.replace(/[-:]/g, "").split(".")[0] +
                     "Z";
                   const end =
-                    selectedWindow.endUtc.replace(/[-:]/g, "").split(".")[0] + "Z";
+                    selectedWindow.endUtc.replace(/[-:]/g, "").split(".")[0] +
+                    "Z";
 
                   const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
                     "Meeting: " + cityA.name + " ↔ " + cityB.name
@@ -831,35 +799,45 @@ const safeNow = now || new Date();
                 Add to Apple Calendar
               </button>
             </div>
-          </div>
-            )}
 
-      {viewerTZ && (
-        <div style={viewerTimezone}>
-          Your detected time zone: <strong>{viewerTZ}</strong>
-        </div>
-      )}
+            {shareUrl && (
+              <a
+                href={shareUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={shareInput}
+              >
+                {shareUrl.replace(/^https?:\/\//, "")}
+              </a>
+            )}
+          </section>
+        )}
+
+        {viewerTZ && (
+          <div style={viewerTimezone}>
+            Your detected time zone: <strong>{viewerTZ}</strong>
+          </div>
+        )}
+      </div>
     </section>
   );
 }
-
-
 /* STYLES */
 
 const toolShell = {
   width: "100%",
   maxWidth: "1180px",
   margin: "0 auto",
-  padding: "12px 16px 8px",
+  padding: "10px 16px 8px",
   background: "#ffffff",
   border: "1px solid #ede9fe",
-  borderRadius: "14px",
+  borderRadius: "18px",
   color: "#111827",
   boxShadow: "0 18px 45px rgba(76,29,149,0.12)",
 };
 
 const successBanner = {
-  marginBottom: "14px",
+  marginBottom: "12px",
   padding: "12px 14px",
   borderRadius: "10px",
   background: "#dcfce7",
@@ -870,7 +848,7 @@ const successBanner = {
 };
 
 const lockedBanner = {
-  marginBottom: "14px",
+  marginBottom: "12px",
   padding: "14px 16px",
   borderRadius: "12px",
   background: "rgba(250, 204, 21, 0.14)",
@@ -879,7 +857,7 @@ const lockedBanner = {
 
 const lockedTitle = {
   fontSize: "14px",
-  fontWeight: 900,
+  fontWeight: 950,
   color: "#1f1147",
 };
 
@@ -889,288 +867,304 @@ const lockedText = {
   color: "#6b7280",
 };
 
-const toolHeader = {
-  textAlign: "center" as const,
-  marginBottom: "6px",
-};
-
-const toolTitle = {
-  margin: "0 0 2px",
-  fontSize: "21px",
-  fontWeight: 950,
-  letterSpacing: "-0.03em",
-  color: "#111827",
-};
-
-const toolSubtitle = {
-  margin: 0,
-  color: "#6b7280",
-  fontSize: "11px",
-  lineHeight: 1.25,
-};
-
-const appGrid = {
+const toolLayout = {
   display: "grid",
-  gridTemplateColumns: "0.86fr 1.34fr",
-  gap: "12px",
+  gridTemplateColumns: "0.92fr 1.08fr",
+  gap: "14px",
   alignItems: "start",
 };
 
-const controlCard = {
-  background: "#ffffff",
-  border: "1px solid #ede9fe",
-  borderRadius: "12px",
-  padding: "16px",
-  boxShadow: "0 8px 24px rgba(76,29,149,0.08)",
-};
-
-const resultsCard = {
-  background: "#ffffff",
-  border: "1px solid #ede9fe",
-  borderRadius: "12px",
-  padding: "16px",
-  boxShadow: "0 8px 24px rgba(76,29,149,0.08)",
-};
-
-const cardLabel = {
-  color: "#4c1d95",
-  fontSize: "12px",
-  fontWeight: 950,
-  marginBottom: "12px",
-};
-
-const inputGroup = {
-  display: "flex",
-  flexDirection: "column" as const,
-  gap: "6px",
-  marginBottom: "13px",
-};
-
-const inputLabel = {
-  color: "#6b7280",
-  fontSize: "11px",
-  fontWeight: 900,
-};
-
-const selectStyle = {
-  width: "100%",
-  background: "#f8f7ff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "8px",
-  padding: "12px 13px",
-  color: "#111827",
-  fontSize: "12px",
-  fontWeight: 800,
-  outline: "none",
-};
-
-const swapButton = {
-  width: "100%",
-  margin: "0 0 13px",
-  background: "#ede9fe",
-  color: "#4c1d95",
-  fontWeight: 900,
-  padding: "9px 12px",
-  borderRadius: "8px",
-  border: "1px solid #ddd6fe",
-  cursor: "pointer",
-  fontSize: "12px",
-};
-
-const sliderHeader = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  gap: "10px",
-};
-
-const sliderValue = {
-  color: "#4c1d95",
-  fontSize: "10px",
-  fontWeight: 900,
-  whiteSpace: "nowrap" as const,
-};
-
-const sliderTrack = {
-  height: "7px",
-  background: "#ede9fe",
-  borderRadius: "999px",
-  position: "relative" as const,
-  marginTop: "8px",
-};
-
-const sliderFill = {
-  position: "absolute" as const,
-  left: "8%",
-  width: "58%",
-  top: 0,
-  bottom: 0,
-  borderRadius: "999px",
-  background: "#8b5cf6",
-};
-
-const sliderDot = {
-  position: "absolute" as const,
-  left: "62%",
-  top: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "15px",
-  height: "15px",
-  borderRadius: "999px",
-  background: "#7c3aed",
-  boxShadow: "0 0 0 4px rgba(124,58,237,0.14)",
-};
-
-const sliderLabels = {
-  display: "flex",
-  justifyContent: "space-between",
-  color: "#6b7280",
-  fontSize: "10px",
-  fontWeight: 800,
-  marginTop: "6px",
-};
-
-const findButton = {
-  width: "100%",
-  background: "#5b21b6",
-  color: "#ffffff",
-  fontWeight: 950,
-  padding: "11px 14px",
-  borderRadius: "8px",
-  border: "none",
-  cursor: "pointer",
-  fontSize: "13px",
-  boxShadow: "0 8px 20px rgba(91,33,182,0.22)",
-};
-
-const resultsHeader = {
-  display: "flex",
-  alignItems: "flex-start",
-  justifyContent: "space-between",
-  gap: "12px",
-  marginBottom: "12px",
-};
-
-const resultsTitle = {
-  margin: "-6px 0 0",
-  color: "#111827",
-  fontSize: "17px",
-  fontWeight: 950,
-};
-
-const todayPill = {
-  background: "#f8f7ff",
-  border: "1px solid #ddd6fe",
-  color: "#4c1d95",
-  borderRadius: "999px",
-  padding: "6px 10px",
-  fontSize: "11px",
-  fontWeight: 900,
-};
-
-const currentTimeGrid = {
+const timeDisplayGrid = {
+  gridColumn: "1 / -1",
   display: "grid",
   gridTemplateColumns: "1fr 1fr",
-  gap: "10px",
-  marginBottom: "13px",
+  gap: "12px",
 };
 
-const currentTimeCard = {
+const timeDisplayCard = {
   background: "#f8f7ff",
   border: "1px solid #ddd6fe",
-  borderRadius: "10px",
-  padding: "11px",
+  borderRadius: "14px",
+  padding: "12px 14px",
 };
 
 const cityNameLine = {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  gap: "8px",
-  color: "#374151",
-  fontSize: "11px",
-  fontWeight: 900,
+  gap: "10px",
+  color: "#111827",
+  fontSize: "13px",
+  fontWeight: 950,
 };
+
 const currentTimeLabel = {
   display: "block",
-  marginTop: "6px",
+  marginTop: "7px",
   color: "#6b7280",
   fontSize: "10px",
-  fontWeight: 850,
+  fontWeight: 900,
   textTransform: "uppercase" as const,
   letterSpacing: "0.04em",
 };
 
-const meetingSectionHeader = {
-  color: "#4c1d95",
-  fontSize: "12px",
-  fontWeight: 950,
-  margin: "2px 0 8px",
-};
 const liveTime = {
   display: "block",
-  marginTop: "7px",
-  color: "#111827",
-  fontSize: "23px",
+  marginTop: "5px",
+  color: "#020617",
+  fontSize: "26px",
+  lineHeight: 1,
   fontWeight: 950,
 };
 
 const localDate = {
   display: "block",
-  marginTop: "4px",
-  color: "#6b7280",
-  fontSize: "10px",
+  marginTop: "8px",
+  color: "#4b5563",
+  fontSize: "12px",
   fontWeight: 700,
 };
 
+const plannerControls = {
+  display: "grid",
+  gridTemplateColumns: "1fr auto 1fr",
+  gap: "10px",
+  alignItems: "end",
+};
+
+const compactInputGroup = {
+  display: "grid",
+  gap: "6px",
+};
+
+const actionControls = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "10px",
+  alignItems: "end",
+};
+
+const durationGroup = {
+  display: "grid",
+  gap: "6px",
+};
+
+const inputGroup = {
+  display: "grid",
+  gap: "6px",
+};
+
+const inputLabel = {
+  color: "#6b7280",
+  fontSize: "12px",
+  fontWeight: 900,
+};
+
+const selectStyle = {
+  width: "100%",
+  height: "44px",
+  border: "1px solid #ddd6fe",
+  borderRadius: "10px",
+  background: "#f8f7ff",
+  color: "#111827",
+  fontSize: "13px",
+  fontWeight: 900,
+  padding: "0 12px",
+};
+
+const swapButton = {
+  height: "44px",
+  minWidth: "142px",
+  border: "1px solid #d8ccff",
+  borderRadius: "10px",
+  background: "#ede9fe",
+  color: "#4c1d95",
+  fontSize: "13px",
+  fontWeight: 950,
+  cursor: "pointer",
+  boxShadow: "0 3px 8px rgba(76,29,149,0.12)",
+};
+
+const findButton = {
+  height: "44px",
+  border: "none",
+  borderRadius: "10px",
+  background: "#5b21b6",
+  color: "#ffffff",
+  fontSize: "14px",
+  fontWeight: 950,
+  cursor: "pointer",
+  boxShadow: "0 10px 22px rgba(91,33,182,0.24)",
+};
+
+const resultsCard = {
+  background: "#ffffff",
+  border: "1px solid #ede9fe",
+  borderRadius: "14px",
+  padding: "12px",
+};
+
+const meetingSectionHeader = {
+  color: "#4c1d95",
+  fontSize: "13px",
+  fontWeight: 950,
+  marginBottom: "10px",
+};
+
 const meetingList = {
-  display: "flex",
-  flexDirection: "column" as const,
+  display: "grid",
   gap: "9px",
 };
 
 const meetingRow = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  gap: "10px",
-  padding: "10px 12px",
+  display: "grid",
+  gridTemplateColumns: "1fr",
+  gap: "4px",
+  padding: "11px 12px",
   border: "1px solid #ede9fe",
-  borderRadius: "10px",
+  borderRadius: "12px",
   background: "#ffffff",
 };
 
 const meetingTimes = {
-  display: "flex",
-  flexDirection: "column" as const,
+  display: "grid",
   gap: "4px",
   color: "#111827",
+  fontSize: "13px",
+};
+
+const sharePanel = {
+  gridColumn: "1 / -1",
+  background: "#ffffff",
+  border: "1px solid #ede9fe",
+  borderRadius: "14px",
+  padding: "12px",
+};
+
+const shareHeader = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: "10px",
+  marginBottom: "10px",
+  color: "#111827",
+  fontSize: "14px",
+};
+
+const premiumToolRow = {
+  display: "flex",
+  alignItems: "center",
+  flexWrap: "wrap" as const,
+  gap: "9px",
+};
+
+const shareInput = {
+  display: "block",
+  marginTop: "10px",
+  padding: "10px 12px",
+  borderRadius: "10px",
+  background: "#f8f7ff",
+  border: "1px solid #ede9fe",
+  color: "#4c1d95",
+  fontSize: "13px",
+  fontWeight: 900,
+  textDecoration: "none",
+};
+
+const calendarButton = {
+  border: "none",
+  borderRadius: "999px",
+  background: "#facc15",
+  color: "#111827",
+  fontSize: "12px",
+  fontWeight: 950,
+  padding: "10px 14px",
+  cursor: "pointer",
+  boxShadow: "0 8px 18px rgba(202,138,4,0.22)",
+};
+
+const premiumNotice = {
+  border: "1px solid #f59e0b",
+  borderRadius: "10px",
+  background: "#fff7ed",
+  color: "#9a3412",
+  padding: "8px 10px",
+  fontSize: "12px",
+  fontWeight: 900,
+  cursor: "pointer",
+};
+
+const viewerTimezone = {
+  gridColumn: "1 / -1",
+  textAlign: "center" as const,
+  color: "#6b7280",
   fontSize: "12px",
 };
 
-const scoreBadge = {
-  minWidth: "54px",
-  textAlign: "center" as const,
-  padding: "6px 8px",
-  borderRadius: "999px",
-  fontSize: "11px",
+const cardLabel = {
+  color: "#4c1d95",
+  fontSize: "12px",
   fontWeight: 950,
 };
 
-const scoreBest = {
-  background: "#dcfce7",
-  color: "#166534",
+const resultsTitle = {
+  margin: "4px 0 0",
+  color: "#111827",
+  fontSize: "18px",
+  lineHeight: 1.15,
+  fontWeight: 950,
 };
 
-const scoreGreat = {
-  background: "#ecfdf5",
-  color: "#047857",
+const resultsHeader = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: "10px",
+  marginBottom: "10px",
 };
 
-const scoreGood = {
-  background: "#f0fdf4",
-  color: "#15803d",
+const todayPill = {
+  border: "1px solid #ddd6fe",
+  borderRadius: "999px",
+  padding: "7px 12px",
+  color: "#5b21b6",
+  background: "#ffffff",
+  fontSize: "12px",
+  fontWeight: 950,
 };
+
+const copySmallButton = calendarButton;
+const copyButton = calendarButton;
+const calendarActions = premiumToolRow;
+const shareInputRow = premiumToolRow;
+
+const bestFoundCard = {
+  background: "#fef3c7",
+  border: "1px solid #facc15",
+  color: "#3b2600",
+  borderRadius: "12px",
+  padding: "12px 14px",
+};
+
+const bestFoundTitle = {
+  display: "block",
+  marginBottom: "6px",
+  fontSize: "13px",
+  fontWeight: 950,
+};
+
+const bestFoundText = {
+  fontSize: "13px",
+  fontWeight: 900,
+};
+
+const bestFoundSubtext = {
+  marginTop: "4px",
+  fontSize: "12px",
+  fontWeight: 700,
+  color: "#4b5563",
+};
+
 const compactResultRow = {
   display: "grid",
   gridTemplateColumns: "0.86fr 1.34fr",
@@ -1185,138 +1179,55 @@ const compactShareRow = {
   gap: "8px",
   alignItems: "center",
 };
-const bestFoundCard = {
-  background: "#fef3c7",
-  border: "1px solid #facc15",
-  color: "#3b2600",
-  borderRadius: "12px",
-  padding: "12px 14px",
-};
 
-const bestFoundTitle = {
-  display: "block",
-  fontSize: "14px",
-  fontWeight: 950,
-  marginBottom: "4px",
-};
-
-const bestFoundText = {
-  fontSize: "13px",
-  fontWeight: 850,
-};
-
-const bestFoundSubtext = {
-  marginTop: "3px",
-  fontSize: "12px",
-  fontWeight: 700,
-  opacity: 0.85,
-};
-
-const sharePanel = {
-  background: "#ffffff",
-  border: "1px solid #ede9fe",
-  borderRadius: "12px",
-  padding: "10px",
-};
-
-const shareHeader = {
+const sliderHeader = {
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  gap: "12px",
-  marginBottom: "10px",
-  color: "#111827",
-  fontSize: "13px",
 };
 
-const copySmallButton = {
-  background: "#f8f7ff",
-  border: "1px solid #ddd6fe",
-  color: "#5b21b6",
-  borderRadius: "8px",
-  padding: "7px 10px",
-  cursor: "pointer",
-  fontSize: "11px",
-  fontWeight: 900,
-};
-
-const premiumNotice = {
-  width: "100%",
-  textAlign: "left" as const,
-  marginBottom: "10px",
-  padding: "10px 12px",
-  borderRadius: "9px",
-  background: "#fff7ed",
-  border: "1px solid #fdba74",
-  color: "#9a3412",
-  fontSize: "12px",
-  fontWeight: 850,
-  cursor: "pointer",
-};
-
-const shareInputRow = {
-  display: "grid",
-  gridTemplateColumns: "1fr auto",
-  gap: "8px",
-  alignItems: "center",
-};
-
-const shareInput = {
-  display: "block",
-  minWidth: 0,
-  background: "#f8f7ff",
-  border: "1px solid #ede9fe",
-  borderRadius: "8px",
-  padding: "10px 11px",
+const sliderValue = {
   color: "#4c1d95",
   fontSize: "12px",
-  fontWeight: 800,
-  textDecoration: "none",
-  overflow: "hidden",
-  textOverflow: "ellipsis",
-  whiteSpace: "nowrap" as const,
-};
-
-const copyButton = {
-  background: "#5b21b6",
-  color: "#ffffff",
-  border: "none",
-  borderRadius: "8px",
-  padding: "10px 14px",
-  cursor: "pointer",
-  fontSize: "12px",
   fontWeight: 950,
 };
 
-const calendarActions = {
-  display: "flex",
-  flexWrap: "wrap" as const,
-  gap: "9px",
-  marginTop: "12px",
-};
-
-const calendarButton = {
-  background: "#facc15",
-  color: "#111827",
-  border: "none",
+const sliderTrack = {
+  position: "relative" as const,
+  height: "8px",
   borderRadius: "999px",
-  padding: "8px 13px",
-  cursor: "pointer",
-  fontSize: "12px",
-  fontWeight: 950,
-  boxShadow: "0 4px 12px rgba(0,0,0,0.12)",
+  background: "#ede9fe",
+  marginTop: "4px",
 };
 
-const viewerTimezone = {
-  marginTop: "12px",
+const sliderFill = {
+  position: "absolute" as const,
+  left: "10%",
+  right: "32%",
+  top: "0",
+  bottom: "0",
+  borderRadius: "999px",
+  background: "#8b5cf6",
+};
+
+const sliderDot = {
+  position: "absolute" as const,
+  left: "62%",
+  top: "50%",
+  width: "18px",
+  height: "18px",
+  borderRadius: "999px",
+  background: "#7c3aed",
+  transform: "translate(-50%, -50%)",
+  boxShadow: "0 0 0 6px rgba(124,58,237,0.14)",
+};
+
+const sliderLabels = {
+  display: "flex",
+  justifyContent: "space-between",
   color: "#6b7280",
   fontSize: "11px",
-  textAlign: "center" as const,
+  fontWeight: 800,
 };
 
-const flagStyle = {
-  width: 24,
-  height: 16,
-  borderRadius: 2,
-  objectFit: "cover" as const,
-};
+
