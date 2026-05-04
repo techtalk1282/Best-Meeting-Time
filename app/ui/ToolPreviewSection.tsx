@@ -826,7 +826,7 @@ const safeNow = now || new Date();
 const toolShell = {
   width: "100%",
   maxWidth: "1180px",
-  margin: "0 auto",
+  margin: "-42px auto 0",
   padding: "12px 16px 10px",
   background: "#ffffff",
   border: "1px solid #ede9fe",
@@ -869,7 +869,7 @@ const lockedText = {
 const toolLayout = {
   display: "grid",
   gridTemplateColumns: "1fr",
-  gap: "12px",
+  gap: "8px",
 };
 
 const citySelectorGrid = {
@@ -1031,7 +1031,7 @@ const sharePanel = {
   background: "#ffffff",
   border: "1px solid #ede9fe",
   borderRadius: "14px",
-  padding: "12px",
+  padding: "9px 12px",
 };
 
 const shareHeader = {
