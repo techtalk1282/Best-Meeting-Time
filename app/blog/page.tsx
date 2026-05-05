@@ -105,7 +105,7 @@ export default function BlogPage() {
 /* STYLES */
 
 const pageShell = {
-  maxWidth: "1120px",
+  maxWidth: "1280px",
   margin: "0 auto 0",
   padding: "18px 18px 42px",
   background: "#ffffff",
