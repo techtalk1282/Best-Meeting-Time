@@ -1,63 +1,56 @@
 /**
  * File: app/ui/SiteNav.tsx
- * Version: v2.2 (HOMEPAGE HEADER MATCH)
+ * Version: v2.3 (INTEGRATED WHITE SITE HEADER)
  * Date: 2026-05-05
  *
  * PURPOSE:
- * - Rebuild shared navigation to match the homepage white header style
- * - Keep full AdSense-ready navigation
- * - Keep Schedule a Meeting CTA polished and readable
+ * - Make shared navigation feel attached to page content
+ * - Match homepage white-header branding
+ * - Remove disconnected floating-header appearance
  *
  * ROLLBACK:
- * - Revert to v2.1 if shared page header spacing does not test cleanly
+ * - Revert to v2.2 if shared header alignment breaks
  */
 
 export default function SiteNav() {
   return (
-    <div style={navOuter}>
-      <header style={navShell}>
-        <a href="/" style={brand}>
-          <span style={brandIcon}>⌘</span>
-          <span>Best Meeting Time</span>
-        </a>
+    <header style={navShell}>
+      <a href="/" style={brand}>
+        <span style={brandIcon}>⌘</span>
+        <span>Best Meeting Time</span>
+      </a>
 
-        <nav style={navLinks} aria-label="Main navigation">
-          <a href="/" style={navLink}>Home</a>
-          <a href="/how-it-works" style={navLink}>How It Works</a>
-          <a href="/features" style={navLink}>Features</a>
-          <a href="/guides" style={navLink}>Guides</a>
-          <a href="/blog" style={navLink}>Blog</a>
-          <a href="/about" style={navLink}>About</a>
-          <a href="/contact" style={navLink}>Contact</a>
-        </nav>
+      <nav style={navLinks} aria-label="Main navigation">
+        <a href="/" style={navLink}>Home</a>
+        <a href="/how-it-works" style={navLink}>How It Works</a>
+        <a href="/features" style={navLink}>Features</a>
+        <a href="/guides" style={navLink}>Guides</a>
+        <a href="/blog" style={navLink}>Blog</a>
+        <a href="/about" style={navLink}>About</a>
+        <a href="/contact" style={navLink}>Contact</a>
+      </nav>
 
-        <a href="/how-it-works#schedule-tool" style={ctaButton}>
-          <span style={ctaMain}>Schedule a Meeting</span>
-          <span style={ctaSub}>Free to try — no sign-up</span>
-        </a>
-      </header>
-    </div>
+      <a href="/how-it-works#schedule-tool" style={ctaButton}>
+        <span style={ctaMain}>Schedule a Meeting</span>
+        <span style={ctaSub}>Free to try — no sign-up</span>
+      </a>
+    </header>
   );
 }
 
 /* STYLES */
 
-const navOuter = {
-  maxWidth: "1120px",
-  margin: "0 auto",
-  marginTop: "0",
-  background: "#ffffff",
-  border: "1px solid rgba(237,233,254,0.9)",
-  borderBottom: "none",
-};
-
 const navShell = {
-  minHeight: "64px",
-  padding: "0 20px",
+  maxWidth: "1120px",
+  minHeight: "66px",
+  margin: "18px auto 0",
+  padding: "0 18px",
+  background: "#ffffff",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
   gap: "18px",
+  border: "1px solid rgba(237,233,254,0.9)",
   borderBottom: "1px solid #ede9fe",
 };
 
