@@ -1,13 +1,13 @@
 /**
  * File: app/blog/page.tsx
- * Version: v3.0 (PREMIUM BLOG HUB - HOMEPAGE MATCH)
+ * Version: v3.1 (INTEGRATED BLOG PAGE HEADER)
  * Date: 2026-05-05
  *
  * PURPOSE:
- * - Rebuild the blog page from scratch
- * - Match the homepage white-card branding and target UI direction
- * - Improve article titles, descriptions, spacing, and click appeal
- * - Keep the page useful for users and stronger for AdSense review
+ * - Put the blog navigation inside the same white page shell
+ * - Remove the disconnected two-block layout
+ * - Match the homepage-style structure more closely
+ * - Keep blog hub polished, useful, and AdSense-ready
  *
  * PROTECTED:
  * - No Stripe changes
@@ -17,18 +17,37 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert to v2.1 if this page does not test cleanly
+ * - Revert to v3.0 if this layout does not test cleanly
  */
 
-import SiteNav from "../ui/SiteNav";
 import FooterSection from "../ui/FooterSection";
 
 export default function BlogPage() {
   return (
     <>
-      <SiteNav />
-
       <main style={pageShell}>
+        <header style={header}>
+          <a href="/" style={brandLink}>
+            <span style={brandIcon}>⌘</span>
+            <span>Best Meeting Time</span>
+          </a>
+
+          <nav style={nav} aria-label="Blog navigation">
+            <a href="/" style={navLink}>Home</a>
+            <a href="/how-it-works" style={navLink}>How It Works</a>
+            <a href="/features" style={navLink}>Features</a>
+            <a href="/guides" style={navLink}>Guides</a>
+            <a href="/blog" style={navLink}>Blog</a>
+            <a href="/about" style={navLink}>About</a>
+            <a href="/contact" style={navLink}>Contact</a>
+          </nav>
+
+          <a href="/how-it-works#schedule-tool" style={navButton}>
+            <span style={navButtonMain}>Schedule a Meeting</span>
+            <span style={navButtonSub}>Free to try — no sign-up</span>
+          </a>
+        </header>
+
         <section style={heroCard}>
           <p style={eyebrow}>Time Zone Scheduling Insights</p>
 
@@ -105,13 +124,88 @@ export default function BlogPage() {
 /* STYLES */
 
 const pageShell = {
-  maxWidth: "1280px",
-  margin: "0 auto 0",
+  maxWidth: "1120px",
+  margin: "18px auto 0",
   padding: "18px 18px 42px",
   background: "#ffffff",
   color: "#111827",
   border: "1px solid rgba(237,233,254,0.9)",
   boxShadow: "0 24px 70px rgba(30,27,75,0.18)",
+};
+
+const header = {
+  minHeight: "66px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: "18px",
+  borderBottom: "1px solid #ede9fe",
+  marginBottom: "14px",
+};
+
+const brandLink = {
+  display: "flex",
+  alignItems: "center",
+  gap: "8px",
+  color: "#5b21b6",
+  fontSize: "18px",
+  fontWeight: 900,
+  textDecoration: "none",
+  whiteSpace: "nowrap" as const,
+};
+
+const brandIcon = {
+  width: "24px",
+  height: "24px",
+  borderRadius: "7px",
+  background: "#ede9fe",
+  color: "#5b21b6",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontSize: "14px",
+};
+
+const nav = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "18px",
+};
+
+const navLink = {
+  color: "#374151",
+  fontSize: "13px",
+  fontWeight: 800,
+  textDecoration: "none",
+  whiteSpace: "nowrap" as const,
+};
+
+const navButton = {
+  background: "#5b21b6",
+  color: "#ffffff",
+  padding: "9px 16px",
+  borderRadius: "8px",
+  fontWeight: 900,
+  textDecoration: "none",
+  display: "flex",
+  flexDirection: "column" as const,
+  alignItems: "center",
+  justifyContent: "center",
+  lineHeight: 1.18,
+  minWidth: "154px",
+  boxShadow: "0 10px 22px rgba(91,33,182,0.22)",
+};
+
+const navButtonMain = {
+  fontSize: "13px",
+  fontWeight: 900,
+};
+
+const navButtonSub = {
+  fontSize: "10px",
+  fontWeight: 800,
+  opacity: 0.92,
 };
 
 const heroCard = {
