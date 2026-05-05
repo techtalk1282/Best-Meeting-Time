@@ -62,8 +62,8 @@ export default function HomePage() {
                 <p style={eyebrow}>Trusted Time Zone Meeting Planner</p>
 
                 <h1 style={heroHeading}>
-                  Find a Meeting Time That Works Across Time Zones
-                </h1>
+  Find the Best Time to Meet Across Time Zones
+</h1>
 
                 <div style={heroBulletBox}>
                   <div style={heroBullet}>
@@ -371,12 +371,11 @@ const navButtonSub = {
 
 const heroSection = {
   display: "grid",
-  gridTemplateColumns: "0.9fr 1fr",
-  alignItems: "center",
-  gap: "42px",
-  padding: "24px 10px 22px",
+  gridTemplateColumns: "0.95fr 1fr",
+  alignItems: "start",
+  gap: "36px",
+  padding: "18px 10px 12px",
 };
-
 const heroLeft = {
   maxWidth: "500px",
 };
@@ -531,9 +530,9 @@ const durationRow = {
 };
 
 const bestTimeCard = {
-  background: "#f3efff",
-  color: "#4c1d95",
-  border: "1px solid #ddd6fe",
+  background: "#ede9fe",
+  color: "#5b21b6",
+  border: "1px solid #c4b5fd",
   borderRadius: "12px",
   padding: "13px",
   display: "flex",
@@ -614,21 +613,20 @@ const featureGrid = {
 };
 
 const featureCard = {
-  background: "#faf9ff",
-  border: "1px solid #ede9fe",
-  borderRadius: "12px",
-  padding: "14px",
+  background: "#ffffff",
+  border: "1px solid #ddd6fe",
+  borderRadius: "14px",
+  padding: "18px",
   display: "flex",
   flexDirection: "column" as const,
-  gap: "6px",
-  fontSize: "12px",
-  lineHeight: "1.4",
+  gap: "8px",
+  fontSize: "13px",
+  lineHeight: "1.5",
+  boxShadow: "0 10px 25px rgba(91,33,182,0.08)",
 };
 
 const featureLabel = {
-  color: "#5b21b6",
-  fontSize: "11px",
-  fontWeight: 950,
+  display: "none",
 };
 
 const howSection = {
@@ -659,8 +657,8 @@ const howCard = {
 };
 
 const stepNumber = {
-  width: "26px",
-  height: "26px",
+  display: "none",
+};
   borderRadius: "999px",
   background: "#ede9fe",
   color: "#5b21b6",
@@ -689,15 +687,16 @@ const resourcesGrid = {
 const resourceCard = {
   display: "flex",
   flexDirection: "column" as const,
-  gap: "5px",
-  background: "#f9fafb",
-  border: "1px solid #ede9fe",
+  gap: "6px",
+  background: "#ffffff",
+  border: "1px solid #ddd6fe",
   borderRadius: "12px",
-  padding: "11px",
+  padding: "14px",
   textDecoration: "none",
   color: "#111827",
-  fontSize: "10px",
-  lineHeight: "1.25",
+  fontSize: "12px",
+  lineHeight: "1.4",
+  fontWeight: 700,
 };
 
 const ctaBand = {
