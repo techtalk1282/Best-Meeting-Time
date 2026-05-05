@@ -1,22 +1,7 @@
 /**
  * File: app/blog/page.tsx
- * Version: v2.0 (POLISHED BLOG OVERVIEW - ADSENSE READY)
+ * Version: v2.1 (LAYOUT POLISH - ABOVE THE FOLD FIX)
  * Date: 2026-05-05
- *
- * PURPOSE:
- * - Replace thin /blog page with a polished article hub
- * - Match the target UI direction: clean cards, useful article previews, branded layout
- * - Improve AdSense trust by removing empty-looking cards and adding meaningful content
- *
- * PROTECTED:
- * - No Stripe changes
- * - No checkout changes
- * - No webhook changes
- * - No KV changes
- * - No ToolPreviewSection changes
- *
- * ROLLBACK:
- * - Revert to v1.0 if this page does not test cleanly
  */
 
 import SiteNav from "../ui/SiteNav";
@@ -49,8 +34,7 @@ export default function BlogPage() {
                 Best Meeting Times for Remote Teams
               </h2>
               <p style={articleText}>
-                Learn how to find practical overlap times for distributed teams,
-                clients, consultants, and global partners.
+                Find overlap times for distributed teams and global partners.
               </p>
               <span style={readMore}>Read Article →</span>
             </div>
@@ -65,8 +49,7 @@ export default function BlogPage() {
                 How to Schedule Meetings Across Time Zones
               </h2>
               <p style={articleText}>
-                A simple step-by-step guide to avoiding confusion when meeting
-                across different cities and regions.
+                Avoid confusion when planning meetings across cities.
               </p>
               <span style={readMore}>Read Article →</span>
             </div>
@@ -81,8 +64,7 @@ export default function BlogPage() {
                 Time Zone Meeting Planner Guide
               </h2>
               <p style={articleText}>
-                Understand how a meeting planner helps compare cities, local
-                times, meeting duration, and recommended windows.
+                Compare cities, local times, and recommended windows.
               </p>
               <span style={readMore}>Read Article →</span>
             </div>
@@ -93,21 +75,20 @@ export default function BlogPage() {
           <div style={infoCard}>
             <h2 style={infoTitle}>Why These Articles Matter</h2>
             <p style={infoText}>
-              Scheduling across time zones can create missed meetings, late calls,
-              and avoidable confusion. These guides are designed to help teams
-              choose better times quickly and plan with more confidence.
+              Scheduling across time zones can create missed meetings and
+              confusion. These guides help teams choose better times quickly.
             </p>
           </div>
 
           <div style={ctaCard}>
-            <h2 style={infoTitle}>Ready to Find a Better Meeting Time?</h2>
+            <h2 style={infoTitle}>Ready to Schedule a Meeting?</h2>
             <p style={infoText}>
-              Use the free planner to compare cities and find recommended meeting
-              windows.
+              Compare cities and find recommended meeting windows instantly.
             </p>
 
             <a href="/how-it-works#schedule-tool" style={ctaButton}>
               Schedule a Meeting
+              <span style={ctaSub}>Free to try — no sign-up</span>
             </a>
           </div>
         </section>
@@ -123,101 +104,86 @@ export default function BlogPage() {
 const pageWrap = {
   maxWidth: "1120px",
   margin: "0 auto",
-  padding: "36px 20px 80px",
+  padding: "28px 20px 80px",
   color: "#ffffff",
 };
 
 const heroSection = {
   textAlign: "center" as const,
-  marginBottom: "34px",
+  marginBottom: "24px",
 };
 
 const eyebrow = {
   color: "#facc15",
-  fontSize: "13px",
+  fontSize: "12px",
   fontWeight: 900,
-  margin: "0 0 8px",
-  textTransform: "uppercase" as const,
-  letterSpacing: "0.05em",
+  marginBottom: "6px",
 };
 
 const title = {
-  color: "#ffffff",
-  fontSize: "clamp(34px, 4vw, 46px)",
+  fontSize: "clamp(32px, 4vw, 42px)",
   fontWeight: 950,
-  lineHeight: "1.08",
-  margin: "0 0 12px",
+  marginBottom: "8px",
 };
 
 const subtitle = {
-  color: "rgba(255,255,255,0.82)",
-  fontSize: "17px",
-  lineHeight: "1.6",
-  maxWidth: "720px",
+  fontSize: "16px",
+  opacity: 0.85,
+  maxWidth: "640px",
   margin: "0 auto",
 };
 
 const featuredWrap = {
   display: "grid",
   gridTemplateColumns: "repeat(3, 1fr)",
-  gap: "20px",
-  marginBottom: "24px",
+  gap: "18px",
+  marginBottom: "40px", // ← KEY FIX (push next section down)
 };
 
 const featuredCard = {
   background: "#ffffff",
   color: "#111827",
-  borderRadius: "18px",
+  borderRadius: "16px",
   overflow: "hidden",
   textDecoration: "none",
-  boxShadow: "0 18px 45px rgba(0,0,0,0.18)",
-  border: "1px solid rgba(221,214,254,0.9)",
+  boxShadow: "0 14px 35px rgba(0,0,0,0.16)",
 };
 
 const imageBlock = {
-  minHeight: "138px",
-  background: "linear-gradient(135deg, #ede9fe 0%, #c4b5fd 100%)",
-  color: "#4c1d95",
+  minHeight: "100px", // ← REDUCED (was 138px)
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  fontSize: "18px",
-  fontWeight: 950,
+  fontWeight: 900,
+  background: "linear-gradient(135deg, #ede9fe, #c4b5fd)",
 };
 
 const articleContent = {
-  padding: "20px",
+  padding: "16px", // tighter
 };
 
 const category = {
-  display: "inline-block",
-  color: "#6d28d9",
-  fontSize: "12px",
+  fontSize: "11px",
   fontWeight: 900,
-  marginBottom: "8px",
-  textTransform: "uppercase" as const,
-  letterSpacing: "0.04em",
+  color: "#6d28d9",
 };
 
 const articleTitle = {
-  color: "#111827",
-  fontSize: "21px",
-  fontWeight: 950,
-  lineHeight: "1.2",
-  margin: "0 0 10px",
+  fontSize: "18px",
+  fontWeight: 900,
+  margin: "6px 0",
 };
 
 const articleText = {
+  fontSize: "14px",
   color: "#4b5563",
-  fontSize: "15px",
-  lineHeight: "1.55",
-  margin: "0 0 14px",
+  marginBottom: "10px",
 };
 
 const readMore = {
-  color: "#5b21b6",
-  fontSize: "14px",
+  fontSize: "13px",
   fontWeight: 900,
+  color: "#5b21b6",
 };
 
 const infoSection = {
@@ -228,40 +194,42 @@ const infoSection = {
 
 const infoCard = {
   background: "rgba(255,255,255,0.08)",
-  border: "1px solid rgba(255,255,255,0.16)",
-  borderRadius: "18px",
-  padding: "24px",
+  borderRadius: "16px",
+  padding: "20px",
 };
 
 const ctaCard = {
   background: "#ffffff",
   color: "#111827",
-  borderRadius: "18px",
-  padding: "24px",
-  boxShadow: "0 18px 45px rgba(0,0,0,0.16)",
+  borderRadius: "16px",
+  padding: "20px",
 };
 
 const infoTitle = {
-  fontSize: "22px",
-  fontWeight: 950,
-  margin: "0 0 10px",
+  fontSize: "20px",
+  fontWeight: 900,
+  marginBottom: "8px",
 };
 
 const infoText = {
-  fontSize: "15px",
-  lineHeight: "1.6",
-  margin: "0 0 18px",
-  color: "inherit",
-  opacity: 0.9,
+  fontSize: "14px",
+  lineHeight: "1.5",
 };
 
 const ctaButton = {
-  display: "inline-block",
+  display: "inline-flex",
+  flexDirection: "column" as const,
+  alignItems: "center",
   background: "#5b21b6",
-  color: "#ffffff",
-  padding: "12px 18px",
+  color: "#fff",
+  padding: "10px 16px",
   borderRadius: "10px",
-  fontSize: "14px",
   fontWeight: 900,
   textDecoration: "none",
+  marginTop: "10px",
+};
+
+const ctaSub = {
+  fontSize: "11px",
+  opacity: 0.85,
 };
