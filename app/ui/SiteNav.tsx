@@ -1,23 +1,23 @@
 /**
  * File: app/ui/SiteNav.tsx
- * Version: v2.0 (FULL NAV ARCHITECTURE - ADSENSE READY)
+ * Version: v2.1 (HOMEPAGE-MATCHED SHARED NAV)
  * Date: 2026-05-05
  *
  * PURPOSE:
- * - Expand navigation to full site architecture
- * - Match AdSense expectations (no missing core pages)
- * - Align with homepage nav structure
- * - Keep CTA separate (not styled like yellow pill)
+ * - Match shared page navigation to the homepage white-header style
+ * - Improve spacing between nav links and CTA button
+ * - Keep full AdSense-ready page map
  *
  * ROLLBACK:
- * - Revert to v1.0 if layout breaks or nav overflows
+ * - Revert to v2.0 if page spacing or nav wrapping breaks
  */
 
 export default function SiteNav() {
   return (
-    <header style={navWrap}>
+    <header style={navShell}>
       <a href="/" style={brand}>
-        Best Meeting Time
+        <span style={brandIcon}>⌘</span>
+        <span>Best Meeting Time</span>
       </a>
 
       <nav style={navLinks} aria-label="Main navigation">
@@ -40,43 +40,61 @@ export default function SiteNav() {
 
 /* STYLES */
 
-const navWrap = {
-  maxWidth: "1200px",
-  margin: "0 auto",
-  padding: "22px 24px",
+const navShell = {
+  maxWidth: "1120px",
+  margin: "18px auto 0",
+  padding: "18px",
+  background: "#ffffff",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  gap: "20px",
-  flexWrap: "wrap" as const,
-  borderBottom: "1px solid rgba(255,255,255,0.12)",
+  gap: "22px",
+  borderBottom: "1px solid #ede9fe",
 };
 
 const brand = {
-  color: "#facc15",
-  fontSize: "20px",
+  display: "flex",
+  alignItems: "center",
+  gap: "8px",
+  color: "#5b21b6",
+  fontSize: "18px",
   fontWeight: 900,
   textDecoration: "none",
+  whiteSpace: "nowrap" as const,
+};
+
+const brandIcon = {
+  width: "24px",
+  height: "24px",
+  borderRadius: "7px",
+  background: "#ede9fe",
+  color: "#5b21b6",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontSize: "14px",
 };
 
 const navLinks = {
   display: "flex",
   alignItems: "center",
-  gap: "16px",
-  flexWrap: "wrap" as const,
+  justifyContent: "center",
+  gap: "18px",
+  flex: 1,
 };
 
 const navLink = {
-  color: "rgba(255,255,255,0.9)",
-  fontSize: "15px",
-  fontWeight: 700,
+  color: "#374151",
+  fontSize: "13px",
+  fontWeight: 800,
   textDecoration: "none",
+  whiteSpace: "nowrap" as const,
 };
 
 const ctaButton = {
   background: "#5b21b6",
   color: "#ffffff",
-  padding: "10px 16px",
+  padding: "9px 16px",
   borderRadius: "8px",
   fontWeight: 900,
   textDecoration: "none",
@@ -84,9 +102,9 @@ const ctaButton = {
   flexDirection: "column" as const,
   alignItems: "center",
   justifyContent: "center",
-  lineHeight: 1.1,
-  minWidth: "160px",
-  boxShadow: "0 10px 22px rgba(91,33,182,0.25)",
+  lineHeight: 1.2,
+  minWidth: "154px",
+  boxShadow: "0 10px 22px rgba(91,33,182,0.22)",
 };
 
 const ctaMain = {
