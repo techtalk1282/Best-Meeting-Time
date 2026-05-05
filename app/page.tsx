@@ -403,7 +403,13 @@ const heroHeading = {
   fontWeight: 950,
   letterSpacing: "-0.04em",
 };
-
+const heroSubtitle = {
+  color: "#6b7280",
+  fontSize: "15px",
+  lineHeight: "1.6",
+  margin: "0 0 14px",
+  fontWeight: 500,
+};
 const trustRow = {
   display: "flex",
   flexWrap: "wrap" as const,
