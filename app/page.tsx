@@ -45,12 +45,14 @@ export default function HomePage() {
               </a>
 
               <nav style={nav} aria-label="Homepage navigation">
-                <a href="#premium-tools" style={navLink}>Premium Tools</a>
-<a href="#features" style={navLink}>Features</a>
-<a href="#how-it-works" style={navLink}>How It Works</a>
-                <a href="/guides" style={navLink}>Guides</a>
-                <a href="/contact" style={navLink}>Contact</a>
-              </nav>
+  <a href="/" style={navLink}>Home</a>
+  <a href="/how-it-works" style={navLink}>How It Works</a>
+  <a href="/features" style={navLink}>Features</a>
+  <a href="/guides" style={navLink}>Guides</a>
+  <a href="/blog" style={navLink}>Blog</a>
+  <a href="/about" style={navLink}>About</a>
+  <a href="/contact" style={navLink}>Contact</a>
+</nav>
 
               <a href="/how-it-works#schedule-tool" style={navButton}>
                 <span style={navButtonMain}>Schedule a Meeting</span>
