@@ -659,15 +659,6 @@ const howCard = {
 const stepNumber = {
   display: "none",
 };
-  borderRadius: "999px",
-  background: "#ede9fe",
-  color: "#5b21b6",
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontSize: "12px",
-  fontWeight: 950,
-};
 
 const resourcesSection = {
   marginTop: "14px",
