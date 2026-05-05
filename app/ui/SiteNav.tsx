@@ -1,15 +1,16 @@
 /**
  * File: app/ui/SiteNav.tsx
- * Version: v1.0 (SIMPLE ADSENSE NAVIGATION)
- * Date: 2026-04-23
+ * Version: v2.0 (FULL NAV ARCHITECTURE - ADSENSE READY)
+ * Date: 2026-05-05
  *
  * PURPOSE:
- * - Add a simple, reusable site navigation bar
- * - Improve AdSense trust and crawlability
- * - Keep navigation clean: Home, Guides, Blog, Contact, Try Tool
+ * - Expand navigation to full site architecture
+ * - Match AdSense expectations (no missing core pages)
+ * - Align with homepage nav structure
+ * - Keep CTA separate (not styled like yellow pill)
  *
  * ROLLBACK:
- * - Delete this file and remove SiteNav imports/usages
+ * - Revert to v1.0 if layout breaks or nav overflows
  */
 
 export default function SiteNav() {
@@ -21,14 +22,23 @@ export default function SiteNav() {
 
       <nav style={navLinks} aria-label="Main navigation">
         <a href="/" style={navLink}>Home</a>
+        <a href="/how-it-works" style={navLink}>How It Works</a>
+        <a href="/features" style={navLink}>Features</a>
         <a href="/guides" style={navLink}>Guides</a>
         <a href="/blog" style={navLink}>Blog</a>
+        <a href="/about" style={navLink}>About</a>
         <a href="/contact" style={navLink}>Contact</a>
-        <a href="/#schedule-tool" style={ctaLink}>Try Tool</a>
       </nav>
+
+      <a href="/how-it-works#schedule-tool" style={ctaButton}>
+        <span style={ctaMain}>Schedule a Meeting</span>
+        <span style={ctaSub}>Free to try — no sign-up</span>
+      </a>
     </header>
   );
 }
+
+/* STYLES */
 
 const navWrap = {
   maxWidth: "1200px",
@@ -63,12 +73,29 @@ const navLink = {
   textDecoration: "none",
 };
 
-const ctaLink = {
-  background: "#facc15",
-  color: "#1e1b4b",
-  padding: "8px 14px",
-  borderRadius: "999px",
-  fontSize: "14px",
-  fontWeight: 800,
+const ctaButton = {
+  background: "#5b21b6",
+  color: "#ffffff",
+  padding: "10px 16px",
+  borderRadius: "8px",
+  fontWeight: 900,
   textDecoration: "none",
+  display: "flex",
+  flexDirection: "column" as const,
+  alignItems: "center",
+  justifyContent: "center",
+  lineHeight: 1.1,
+  minWidth: "160px",
+  boxShadow: "0 10px 22px rgba(91,33,182,0.25)",
+};
+
+const ctaMain = {
+  fontSize: "13px",
+  fontWeight: 900,
+};
+
+const ctaSub = {
+  fontSize: "10px",
+  fontWeight: 800,
+  opacity: 0.9,
 };
