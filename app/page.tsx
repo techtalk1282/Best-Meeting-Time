@@ -712,18 +712,20 @@ const howGrid = {
   display: "grid",
   gridTemplateColumns: "repeat(3, 1fr)",
   gap: "12px",
+  marginTop: "10px",
 };
 
 const howCard = {
-  background: "#f9fafb",
-  border: "1px solid #ede9fe",
-  borderRadius: "12px",
-  padding: "14px",
+  background: "#ffffff",
+  border: "1px solid #ddd6fe",
+  borderRadius: "14px",
+  padding: "18px",
   display: "flex",
   flexDirection: "column" as const,
-  gap: "6px",
-  fontSize: "12px",
-  lineHeight: "1.4",
+  gap: "8px",
+  fontSize: "13px",
+  lineHeight: "1.5",
+  boxShadow: "0 10px 25px rgba(91,33,182,0.08)",
 };
 
 const stepNumber = {
@@ -741,23 +743,25 @@ const resourcesSection = {
 const resourcesGrid = {
   display: "grid",
   gridTemplateColumns: "repeat(5, 1fr)",
-  gap: "10px",
+  gap: "12px",
+  marginTop: "10px",
   marginBottom: "14px",
 };
 
 const resourceCard = {
   display: "flex",
   flexDirection: "column" as const,
-  gap: "6px",
+  gap: "8px",
   background: "#ffffff",
   border: "1px solid #ddd6fe",
-  borderRadius: "12px",
-  padding: "14px",
+  borderRadius: "14px",
+  padding: "18px",
   textDecoration: "none",
   color: "#111827",
-  fontSize: "12px",
-  lineHeight: "1.4",
+  fontSize: "13px",
+  lineHeight: "1.5",
   fontWeight: 700,
+  boxShadow: "0 10px 25px rgba(91,33,182,0.08)",
 };
 
 const ctaBand = {
