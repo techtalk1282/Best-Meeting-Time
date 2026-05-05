@@ -42,14 +42,14 @@ export default function SiteNav() {
 
 const navShell = {
   maxWidth: "1120px",
-  margin: "18px auto 0",
-  padding: "18px",
-  background: "#ffffff",
+  margin: "0 auto",
+  padding: "18px 18px 14px",
+  background: "transparent",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
   gap: "22px",
-  borderBottom: "1px solid #ede9fe",
+    borderBottom: "1px solid rgba(255,255,255,0.15)",
 };
 
 const brand = {
