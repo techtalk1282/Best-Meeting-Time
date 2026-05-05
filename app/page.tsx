@@ -61,9 +61,13 @@ export default function HomePage() {
               <div style={heroLeft}>
                 <p style={eyebrow}>Trusted Time Zone Meeting Planner</p>
 
-                <h1 style={heroHeading}>
-  Find the Best Time to Meet Across Time Zones
+               <h1 style={heroTitle}>
+  Schedule the Best Meeting Times Worldwide
 </h1>
+
+<p style={heroSubtitle}>
+  Smarter scheduling across time zones — fast, simple, and accurate.
+</p>
 
                 <div style={heroBulletBox}>
                   <div style={heroBullet}>
