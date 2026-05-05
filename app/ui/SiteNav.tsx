@@ -44,15 +44,16 @@ export default function SiteNav() {
 
 const navOuter = {
   maxWidth: "1120px",
-  margin: "18px auto 0",
+  margin: "0 auto",
+  marginTop: "0",
   background: "#ffffff",
   border: "1px solid rgba(237,233,254,0.9)",
   borderBottom: "none",
 };
 
 const navShell = {
-  minHeight: "66px",
-  padding: "0 18px",
+  minHeight: "64px",
+  padding: "0 20px",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
