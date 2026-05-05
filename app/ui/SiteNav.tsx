@@ -41,7 +41,7 @@ export default function SiteNav() {
 /* STYLES */
 
 const navShell = {
-  maxWidth: "1120px",
+  maxWidth: "1280px",
   minHeight: "66px",
   margin: "18px auto 0",
   padding: "0 18px",
