@@ -45,8 +45,9 @@ export default function HomePage() {
               </a>
 
               <nav style={nav} aria-label="Homepage navigation">
-                <a href="#features" style={navLink}>Features</a>
-                <a href="#how-it-works" style={navLink}>How It Works</a>
+                <a href="#premium-tools" style={navLink}>Premium Tools</a>
+<a href="#features" style={navLink}>Features</a>
+<a href="#how-it-works" style={navLink}>How It Works</a>
                 <a href="/guides" style={navLink}>Guides</a>
                 <a href="/contact" style={navLink}>Contact</a>
               </nav>
@@ -158,6 +159,35 @@ export default function HomePage() {
                 </a>
 
                 <p style={plannerFreeNote}>Free to try — no sign-up required.</p>
+              </div>
+           </section>
+
+            <section id="premium-tools" style={premiumToolsSection}>
+              <div style={premiumToolsHeader}>
+                <p style={sectionEyebrow}>Premium Tools</p>
+                <h2 style={sectionTitle}>Plan, Share, and Add Meetings Faster</h2>
+                <p style={sectionSubtitle}>
+                  After finding the best meeting time, unlock planning tools to share
+                  your selected window and add it to your calendar workflow.
+                </p>
+              </div>
+
+              <div style={premiumToolRow}>
+                <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
+                  Create Link
+                </a>
+                <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
+                  Copy Link
+                </a>
+                <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
+                  Add to Google
+                </a>
+                <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
+                  Add to Outlook
+                </a>
+                <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
+                  Add to Apple Calendar
+                </a>
               </div>
             </section>
 
@@ -579,7 +609,37 @@ const plannerFreeNote = {
   fontWeight: 900,
   textAlign: "center" as const,
 };
+const premiumToolsSection = {
+  marginTop: "8px",
+  padding: "18px 16px",
+  background: "#ffffff",
+  borderRadius: "14px",
+  border: "1px solid #ede9fe",
+  scrollMarginTop: "24px",
+};
 
+const premiumToolsHeader = {
+  textAlign: "center" as const,
+  marginBottom: "12px",
+};
+
+const premiumToolRow = {
+  display: "flex",
+  flexWrap: "wrap" as const,
+  justifyContent: "center",
+  gap: "10px",
+};
+
+const premiumToolPill = {
+  background: "#facc15",
+  color: "#111827",
+  padding: "10px 16px",
+  borderRadius: "999px",
+  fontSize: "12px",
+  fontWeight: 900,
+  textDecoration: "none",
+  boxShadow: "0 8px 18px rgba(250,204,21,0.22)",
+};
 const featuresSection = {
   marginTop: "8px",
   padding: "20px 16px",
