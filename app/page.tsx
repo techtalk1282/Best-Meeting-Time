@@ -61,7 +61,7 @@ export default function HomePage() {
               <div style={heroLeft}>
                 <p style={eyebrow}>Trusted Time Zone Meeting Planner</p>
 
-               <h1 style={heroTitle}>
+               <h1 style={heroHeading}>
   Schedule the Best Meeting Times Worldwide
 </h1>
 
