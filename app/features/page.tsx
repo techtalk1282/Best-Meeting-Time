@@ -1,13 +1,13 @@
 /**
  * File: app/features/page.tsx
- * Version: v3.1 (COLLABORATION IMAGE + GOLD PREMIUM ACTIONS)
+ * Version: v3.2 (GLOBAL COLLABORATION + GOLD ACTIONS)
  * Date: 2026-05-06
  *
  * PURPOSE:
- * - Preserve 100% desktop landing fit
- * - Replace repeated planner preview with collaboration image
- * - Add four gold premium action buttons
- * - Highlight Share Link, Google, Outlook, and Apple Calendar workflow
+ * - Restore clean 100% desktop landing fit
+ * - Replace planner preview with global collaboration image
+ * - Keep stronger workflow content section
+ * - Add gold premium action buttons
  *
  * PROTECTED:
  * - No Stripe changes
@@ -17,7 +17,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert to v3.0 if this version does not test cleanly
+ * - Revert to v3.1 if needed
  */
 
 export default function FeaturesPage() {
@@ -61,6 +61,7 @@ export default function FeaturesPage() {
 
         <div style={accessCard}>
           <p style={accessLabel}>Free + Premium Access</p>
+
           <div style={accessRows}>
             <span><strong>Free:</strong> try a planning session first</span>
             <span><strong>Premium:</strong> $7 one-time unlock</span>
@@ -71,29 +72,46 @@ export default function FeaturesPage() {
       <section style={showcase}>
         <div style={imageCard}>
           <img
-            src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1100&q=80"
-            alt="Team collaborating on a meeting plan across locations"
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+            alt="Global remote team collaboration meeting"
             style={featureImage}
           />
+
           <div style={imageOverlay}>
-            <strong>Remote teams. Client calls. Global schedules.</strong>
-            <span>Choose the best window before the invite goes out.</span>
+            <div style={locationRow}>
+              <span>New York</span>
+              <span>London</span>
+              <span>Tokyo</span>
+            </div>
+
+            <strong>
+              Remote teams. Client calls. Global schedules.
+            </strong>
+
+            <span>
+              Choose the best meeting window before the invite goes out.
+            </span>
           </div>
         </div>
 
         <div style={featureCopy}>
-          <p style={sectionEyebrow}>Premium workflow features</p>
-          <h2 style={sectionTitle}>Turn a selected meeting window into action.</h2>
+          <p style={sectionEyebrow}>Real workflow features</p>
+
+          <h2 style={sectionTitle}>
+            Built around how people actually schedule.
+          </h2>
+
           <p style={sectionText}>
-            Once the best time is selected, premium tools help users share the
-            meeting window and move it into Google, Outlook, or Apple Calendar.
+            Select cities, compare local times, review recommended windows, and
+            move directly into sharing or calendar actions without rebuilding
+            the meeting details from scratch.
           </p>
 
           <div style={goldButtonGrid}>
-            <span>Share Link</span>
-            <span>Add to Google</span>
-            <span>Add to Outlook</span>
-            <span>Add to Apple Calendar</span>
+            <button style={goldButton}>Share Link</button>
+            <button style={goldButton}>Add to Google</button>
+            <button style={goldButton}>Add to Outlook</button>
+            <button style={goldButton}>Add to Calendar</button>
           </div>
         </div>
       </section>
@@ -101,25 +119,39 @@ export default function FeaturesPage() {
       <section style={featureGrid}>
         <article style={card}>
           <p style={cardLabel}>City Selection</p>
-          <h2 style={cardTitle}>Choose cities fast.</h2>
+
+          <h2 style={cardTitle}>
+            Choose cities fast.
+          </h2>
+
           <p style={cardText}>
-            Compare locations side by side and swap cities when plans change.
+            Compare locations side by side and quickly swap cities when plans
+            change.
           </p>
         </article>
 
         <article style={card}>
           <p style={cardLabel}>Smart Windows</p>
-          <h2 style={cardTitle}>See best times and alternatives.</h2>
+
+          <h2 style={cardTitle}>
+            See best times and alternatives.
+          </h2>
+
           <p style={cardText}>
-            Review the recommended meeting time plus backup windows.
+            Review recommended meeting windows plus backup time options across
+            different regions.
           </p>
         </article>
 
         <article style={card}>
           <p style={cardLabel}>Premium Workflow</p>
-          <h2 style={cardTitle}>Share and add to calendars.</h2>
+
+          <h2 style={cardTitle}>
+            Share and add to calendars.
+          </h2>
+
           <p style={cardText}>
-            Unlock sharing and Google, Outlook, and Apple Calendar actions.
+            Unlock sharing and Google, Outlook, and calendar scheduling actions.
           </p>
         </article>
       </section>
@@ -127,10 +159,14 @@ export default function FeaturesPage() {
       <section style={ctaBand}>
         <div>
           <p style={ctaEyebrow}>Start Planning</p>
-          <h2 style={ctaTitle}>Ready to try the scheduler?</h2>
+
+          <h2 style={ctaTitle}>
+            Ready to try the scheduler?
+          </h2>
+
           <p style={ctaText}>
-            Compare meeting times first, then unlock premium tools when you need
-            to share and schedule faster.
+            Compare meeting times first, then unlock premium tools when you
+            need to share and schedule faster.
           </p>
         </div>
 
@@ -218,8 +254,16 @@ const navButton = {
   boxShadow: "0 10px 22px rgba(91,33,182,0.24)",
 };
 
-const navButtonMain = { fontSize: "13px", fontWeight: 950 };
-const navButtonSub = { fontSize: "10px", fontWeight: 850, opacity: 0.94 };
+const navButtonMain = {
+  fontSize: "13px",
+  fontWeight: 950,
+};
+
+const navButtonSub = {
+  fontSize: "10px",
+  fontWeight: 850,
+  opacity: 0.94,
+};
 
 const heroGrid = {
   display: "grid",
@@ -289,8 +333,8 @@ const showcase = {
 
 const imageCard = {
   position: "relative" as const,
-  minHeight: "232px",
   overflow: "hidden",
+  minHeight: "250px",
   borderRadius: "18px",
   border: "1px solid #ddd6fe",
   background: "#faf9ff",
@@ -299,7 +343,7 @@ const imageCard = {
 const featureImage = {
   width: "100%",
   height: "100%",
-  minHeight: "232px",
+  minHeight: "250px",
   objectFit: "cover" as const,
   display: "block",
 };
@@ -314,10 +358,16 @@ const imageOverlay = {
   background: "rgba(255,255,255,0.92)",
   color: "#111827",
   display: "grid",
-  gap: "3px",
+  gap: "4px",
   fontSize: "13px",
   lineHeight: "1.32",
   boxShadow: "0 10px 24px rgba(30,27,75,0.18)",
+};
+
+const locationRow = {
+  display: "flex",
+  gap: "8px",
+  flexWrap: "wrap" as const,
 };
 
 const featureCopy = {
@@ -347,13 +397,25 @@ const sectionText = {
   color: "#4b5563",
   fontSize: "14px",
   lineHeight: "1.38",
-  margin: "0 0 13px",
+  margin: "0 0 14px",
 };
 
 const goldButtonGrid = {
   display: "grid",
   gridTemplateColumns: "repeat(2, 1fr)",
   gap: "10px",
+};
+
+const goldButton = {
+  background: "#facc15",
+  color: "#111827",
+  border: "none",
+  borderRadius: "999px",
+  padding: "12px 14px",
+  fontSize: "14px",
+  fontWeight: 900,
+  cursor: "pointer",
+  boxShadow: "0 6px 14px rgba(250,204,21,0.28)",
 };
 
 const featureGrid = {
@@ -440,5 +502,13 @@ const ctaButton = {
   minWidth: "158px",
 };
 
-const ctaMain = { fontSize: "13px", fontWeight: 950 };
-const ctaSub = { fontSize: "10px", fontWeight: 850, opacity: 0.9 };
+const ctaMain = {
+  fontSize: "13px",
+  fontWeight: 950,
+};
+
+const ctaSub = {
+  fontSize: "10px",
+  fontWeight: 850,
+  opacity: 0.9,
+};
