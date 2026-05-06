@@ -1,13 +1,12 @@
 /**
  * File: app/features/page.tsx
- * Version: v3.2 (GLOBAL COLLABORATION + GOLD ACTIONS)
+ * Version: v3.3 (HEIGHT FIT - GLOBAL COLLABORATION + GOLD ACTIONS)
  * Date: 2026-05-06
  *
  * PURPOSE:
- * - Restore clean 100% desktop landing fit
- * - Replace planner preview with global collaboration image
- * - Keep stronger workflow content section
- * - Add gold premium action buttons
+ * - Preserve the preferred collaboration image and gold action buttons
+ * - Tighten vertical spacing so the page lands cleanly at 100% desktop zoom
+ * - Keep the premium product showcase structure
  *
  * PROTECTED:
  * - No Stripe changes
@@ -17,7 +16,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert to v3.1 if needed
+ * - Revert to v3.2 if this version does not test cleanly
  */
 
 export default function FeaturesPage() {
@@ -84,13 +83,9 @@ export default function FeaturesPage() {
               <span>Tokyo</span>
             </div>
 
-            <strong>
-              Remote teams. Client calls. Global schedules.
-            </strong>
+            <strong>Remote teams. Client calls. Global schedules.</strong>
 
-            <span>
-              Choose the best meeting window before the invite goes out.
-            </span>
+            <span>Choose the best meeting window before the invite goes out.</span>
           </div>
         </div>
 
@@ -120,9 +115,7 @@ export default function FeaturesPage() {
         <article style={card}>
           <p style={cardLabel}>City Selection</p>
 
-          <h2 style={cardTitle}>
-            Choose cities fast.
-          </h2>
+          <h2 style={cardTitle}>Choose cities fast.</h2>
 
           <p style={cardText}>
             Compare locations side by side and quickly swap cities when plans
@@ -133,9 +126,7 @@ export default function FeaturesPage() {
         <article style={card}>
           <p style={cardLabel}>Smart Windows</p>
 
-          <h2 style={cardTitle}>
-            See best times and alternatives.
-          </h2>
+          <h2 style={cardTitle}>See best times and alternatives.</h2>
 
           <p style={cardText}>
             Review recommended meeting windows plus backup time options across
@@ -146,9 +137,7 @@ export default function FeaturesPage() {
         <article style={card}>
           <p style={cardLabel}>Premium Workflow</p>
 
-          <h2 style={cardTitle}>
-            Share and add to calendars.
-          </h2>
+          <h2 style={cardTitle}>Share and add to calendars.</h2>
 
           <p style={cardText}>
             Unlock sharing and Google, Outlook, and calendar scheduling actions.
@@ -160,13 +149,11 @@ export default function FeaturesPage() {
         <div>
           <p style={ctaEyebrow}>Start Planning</p>
 
-          <h2 style={ctaTitle}>
-            Ready to try the scheduler?
-          </h2>
+          <h2 style={ctaTitle}>Ready to try the scheduler?</h2>
 
           <p style={ctaText}>
-            Compare meeting times first, then unlock premium tools when you
-            need to share and schedule faster.
+            Compare meeting times first, then unlock premium tools when you need
+            to share and schedule faster.
           </p>
         </div>
 
@@ -183,8 +170,8 @@ export default function FeaturesPage() {
 
 const pageShell = {
   maxWidth: "1120px",
-  margin: "14px auto",
-  padding: "14px",
+  margin: "10px auto",
+  padding: "12px",
   background: "#ffffff",
   color: "#111827",
   border: "1px solid rgba(237,233,254,0.95)",
@@ -192,13 +179,13 @@ const pageShell = {
 };
 
 const header = {
-  minHeight: "58px",
+  minHeight: "52px",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
   gap: "16px",
   borderBottom: "1px solid #ede9fe",
-  marginBottom: "18px",
+  marginBottom: "12px",
 };
 
 const brandLink = {
@@ -268,9 +255,9 @@ const navButtonSub = {
 const heroGrid = {
   display: "grid",
   gridTemplateColumns: "1fr 280px",
-  gap: "18px",
+  gap: "14px",
   alignItems: "end",
-  marginBottom: "12px",
+  marginBottom: "10px",
 };
 
 const eyebrow = {
@@ -286,17 +273,17 @@ const eyebrow = {
 
 const headline = {
   color: "#111827",
-  fontSize: "clamp(32px, 3.9vw, 46px)",
+  fontSize: "clamp(30px, 3.7vw, 43px)",
   lineHeight: "1.02",
-  margin: "0 0 8px",
+  margin: "0 0 6px",
   fontWeight: 950,
   letterSpacing: "-0.045em",
 };
 
 const subheadline = {
   color: "#4b5563",
-  fontSize: "15.5px",
-  lineHeight: "1.38",
+  fontSize: "14px",
+  lineHeight: "1.34",
   margin: 0,
 };
 
@@ -304,11 +291,11 @@ const accessCard = {
   border: "1px solid #ddd6fe",
   borderRadius: "16px",
   background: "#faf9ff",
-  padding: "14px",
+  padding: "12px",
 };
 
 const accessLabel = {
-  margin: "0 0 8px",
+  margin: "0 0 7px",
   color: "#6d28d9",
   fontSize: "12px",
   fontWeight: 950,
@@ -317,24 +304,24 @@ const accessLabel = {
 
 const accessRows = {
   display: "grid",
-  gap: "7px",
+  gap: "6px",
   color: "#4b5563",
   fontSize: "13px",
-  lineHeight: "1.35",
+  lineHeight: "1.3",
 };
 
 const showcase = {
   display: "grid",
   gridTemplateColumns: "1fr 1fr",
-  gap: "14px",
+  gap: "12px",
   alignItems: "stretch",
-  marginBottom: "12px",
+  marginBottom: "10px",
 };
 
 const imageCard = {
   position: "relative" as const,
   overflow: "hidden",
-  minHeight: "250px",
+  minHeight: "228px",
   borderRadius: "18px",
   border: "1px solid #ddd6fe",
   background: "#faf9ff",
@@ -343,24 +330,24 @@ const imageCard = {
 const featureImage = {
   width: "100%",
   height: "100%",
-  minHeight: "250px",
+  minHeight: "228px",
   objectFit: "cover" as const,
   display: "block",
 };
 
 const imageOverlay = {
   position: "absolute" as const,
-  left: "14px",
-  right: "14px",
-  bottom: "14px",
-  padding: "11px 13px",
+  left: "12px",
+  right: "12px",
+  bottom: "12px",
+  padding: "10px 12px",
   borderRadius: "14px",
   background: "rgba(255,255,255,0.92)",
   color: "#111827",
   display: "grid",
-  gap: "4px",
-  fontSize: "13px",
-  lineHeight: "1.32",
+  gap: "3px",
+  fontSize: "12.5px",
+  lineHeight: "1.25",
   boxShadow: "0 10px 24px rgba(30,27,75,0.18)",
 };
 
@@ -374,7 +361,7 @@ const featureCopy = {
   border: "1px solid #ddd6fe",
   borderRadius: "18px",
   background: "#faf9ff",
-  padding: "18px",
+  padding: "15px",
 };
 
 const sectionEyebrow = {
@@ -387,23 +374,23 @@ const sectionEyebrow = {
 
 const sectionTitle = {
   color: "#111827",
-  fontSize: "25px",
-  lineHeight: "1.1",
+  fontSize: "22px",
+  lineHeight: "1.08",
   fontWeight: 950,
-  margin: "0 0 8px",
+  margin: "0 0 7px",
 };
 
 const sectionText = {
   color: "#4b5563",
-  fontSize: "14px",
-  lineHeight: "1.38",
-  margin: "0 0 14px",
+  fontSize: "13px",
+  lineHeight: "1.32",
+  margin: "0 0 10px",
 };
 
 const goldButtonGrid = {
   display: "grid",
   gridTemplateColumns: "repeat(2, 1fr)",
-  gap: "10px",
+  gap: "9px",
 };
 
 const goldButton = {
@@ -411,8 +398,8 @@ const goldButton = {
   color: "#111827",
   border: "none",
   borderRadius: "999px",
-  padding: "12px 14px",
-  fontSize: "14px",
+  padding: "10px 12px",
+  fontSize: "13px",
   fontWeight: 900,
   cursor: "pointer",
   boxShadow: "0 6px 14px rgba(250,204,21,0.28)",
@@ -421,42 +408,42 @@ const goldButton = {
 const featureGrid = {
   display: "grid",
   gridTemplateColumns: "repeat(3, 1fr)",
-  gap: "12px",
-  marginBottom: "12px",
+  gap: "10px",
+  marginBottom: "10px",
 };
 
 const card = {
   background: "#faf9ff",
   border: "1px solid #ddd6fe",
   borderRadius: "18px",
-  padding: "15px",
+  padding: "13px",
 };
 
 const cardLabel = {
   color: "#6d28d9",
-  fontSize: "12px",
+  fontSize: "11.5px",
   fontWeight: 950,
-  margin: "0 0 7px",
+  margin: "0 0 6px",
   textTransform: "uppercase" as const,
 };
 
 const cardTitle = {
   color: "#111827",
-  fontSize: "20px",
-  lineHeight: "1.12",
+  fontSize: "19px",
+  lineHeight: "1.1",
   fontWeight: 950,
-  margin: "0 0 6px",
+  margin: "0 0 5px",
 };
 
 const cardText = {
   color: "#4b5563",
-  fontSize: "13.5px",
-  lineHeight: "1.34",
+  fontSize: "13px",
+  lineHeight: "1.28",
   margin: 0,
 };
 
 const ctaBand = {
-  padding: "14px 20px",
+  padding: "12px 18px",
   borderRadius: "16px",
   background: "#5b21b6",
   color: "#ffffff",
@@ -467,7 +454,7 @@ const ctaBand = {
 };
 
 const ctaEyebrow = {
-  margin: "0 0 3px",
+  margin: "0 0 2px",
   color: "#facc15",
   fontSize: "12px",
   fontWeight: 950,
@@ -475,30 +462,30 @@ const ctaEyebrow = {
 };
 
 const ctaTitle = {
-  margin: "0 0 3px",
+  margin: "0 0 2px",
   color: "#ffffff",
-  fontSize: "22px",
+  fontSize: "20px",
   fontWeight: 950,
 };
 
 const ctaText = {
   margin: 0,
   color: "rgba(255,255,255,0.88)",
-  fontSize: "13.5px",
-  lineHeight: "1.32",
+  fontSize: "12.5px",
+  lineHeight: "1.25",
 };
 
 const ctaButton = {
   background: "#ffffff",
   color: "#5b21b6",
-  padding: "10px 17px",
+  padding: "9px 16px",
   borderRadius: "9px",
   textDecoration: "none",
   display: "flex",
   flexDirection: "column" as const,
   alignItems: "center",
   justifyContent: "center",
-  lineHeight: 1.1,
+  lineHeight: 1.08,
   minWidth: "158px",
 };
 
