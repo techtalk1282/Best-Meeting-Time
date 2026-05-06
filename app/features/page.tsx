@@ -1,13 +1,13 @@
 /**
  * File: app/features/page.tsx
- * Version: v3.0 (PREMIUM PRODUCT SHOWCASE - 100% FIT)
+ * Version: v3.1 (COLLABORATION IMAGE + GOLD PREMIUM ACTIONS)
  * Date: 2026-05-06
  *
  * PURPOSE:
- * - Rebuild Features page as a product showcase, not a generic text page
- * - Keep 100% desktop landing fit with CTA visible
- * - Spotlight city selection, swap, best time, alternatives, share links, and calendar actions
- * - Use gold action buttons and premium Best Meeting Time branding
+ * - Preserve 100% desktop landing fit
+ * - Replace repeated planner preview with collaboration image
+ * - Add four gold premium action buttons
+ * - Highlight Share Link, Google, Outlook, and Apple Calendar workflow
  *
  * PROTECTED:
  * - No Stripe changes
@@ -17,7 +17,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert to v2.0 if this version does not test cleanly
+ * - Revert to v3.0 if this version does not test cleanly
  */
 
 export default function FeaturesPage() {
@@ -69,52 +69,28 @@ export default function FeaturesPage() {
       </section>
 
       <section style={showcase}>
-        <div style={plannerMock}>
-          <div style={mockTop}>
-            <span style={mockPill}>Planner Preview</span>
-            <span style={swapBadge}>Swap Cities</span>
-          </div>
-
-          <div style={cityRow}>
-            <div style={cityBox}>
-              <span>From</span>
-              <strong>New York</strong>
-              <em>9:00 AM EDT</em>
-            </div>
-
-            <div style={swapCircle}>⇄</div>
-
-            <div style={cityBox}>
-              <span>To</span>
-              <strong>London</strong>
-              <em>2:00 PM BST</em>
-            </div>
-          </div>
-
-          <div style={bestWindow}>
-            <span>Best Meeting Time</span>
-            <strong>9:00 AM — 10:00 AM New York</strong>
-            <em>2:00 PM — 3:00 PM London</em>
-          </div>
-
-          <div style={altRow}>
-            <span>Alternative: 10:00 AM ET</span>
-            <span>Duration: 60 min</span>
+        <div style={imageCard}>
+          <img
+            src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1100&q=80"
+            alt="Team collaborating on a meeting plan across locations"
+            style={featureImage}
+          />
+          <div style={imageOverlay}>
+            <strong>Remote teams. Client calls. Global schedules.</strong>
+            <span>Choose the best window before the invite goes out.</span>
           </div>
         </div>
 
         <div style={featureCopy}>
-          <p style={sectionEyebrow}>Real workflow features</p>
-          <h2 style={sectionTitle}>Built around how people actually schedule.</h2>
+          <p style={sectionEyebrow}>Premium workflow features</p>
+          <h2 style={sectionTitle}>Turn a selected meeting window into action.</h2>
           <p style={sectionText}>
-            Select cities, compare local times, review recommended windows, and
-            move directly into sharing or calendar actions without rebuilding
-            the meeting details from scratch.
+            Once the best time is selected, premium tools help users share the
+            meeting window and move it into Google, Outlook, or Apple Calendar.
           </p>
 
           <div style={goldButtonGrid}>
-            <span>Create Link</span>
-            <span>Copy Link</span>
+            <span>Share Link</span>
             <span>Add to Google</span>
             <span>Add to Outlook</span>
             <span>Add to Apple Calendar</span>
@@ -143,7 +119,7 @@ export default function FeaturesPage() {
           <p style={cardLabel}>Premium Workflow</p>
           <h2 style={cardTitle}>Share and add to calendars.</h2>
           <p style={cardText}>
-            Unlock link sharing and Google, Outlook, and Apple Calendar actions.
+            Unlock sharing and Google, Outlook, and Apple Calendar actions.
           </p>
         </article>
       </section>
@@ -311,83 +287,37 @@ const showcase = {
   marginBottom: "12px",
 };
 
-const plannerMock = {
+const imageCard = {
+  position: "relative" as const,
+  minHeight: "232px",
+  overflow: "hidden",
   borderRadius: "18px",
-  padding: "14px",
-  background: "linear-gradient(135deg, #4c1d95 0%, #6d28d9 55%, #7c3aed 100%)",
-  color: "#ffffff",
+  border: "1px solid #ddd6fe",
+  background: "#faf9ff",
+};
+
+const featureImage = {
+  width: "100%",
+  height: "100%",
+  minHeight: "232px",
+  objectFit: "cover" as const,
+  display: "block",
+};
+
+const imageOverlay = {
+  position: "absolute" as const,
+  left: "14px",
+  right: "14px",
+  bottom: "14px",
+  padding: "11px 13px",
+  borderRadius: "14px",
+  background: "rgba(255,255,255,0.92)",
+  color: "#111827",
   display: "grid",
-  gap: "10px",
-  boxShadow: "0 12px 24px rgba(91,33,182,0.2)",
-};
-
-const mockTop = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-};
-
-const mockPill = {
-  color: "#facc15",
-  fontSize: "12px",
-  fontWeight: 950,
-  textTransform: "uppercase" as const,
-};
-
-const swapBadge = {
-  padding: "5px 10px",
-  borderRadius: "999px",
-  background: "rgba(255,255,255,0.16)",
-  fontSize: "11px",
-  fontWeight: 900,
-};
-
-const cityRow = {
-  display: "grid",
-  gridTemplateColumns: "1fr 34px 1fr",
-  gap: "8px",
-  alignItems: "center",
-};
-
-const cityBox = {
-  display: "grid",
-  gap: "2px",
-  padding: "10px",
-  borderRadius: "12px",
-  background: "rgba(255,255,255,0.15)",
-  border: "1px solid rgba(255,255,255,0.2)",
-  fontSize: "11px",
-};
-
-const swapCircle = {
-  width: "34px",
-  height: "34px",
-  borderRadius: "999px",
-  background: "#facc15",
-  color: "#4c1d95",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontSize: "19px",
-  fontWeight: 950,
-};
-
-const bestWindow = {
-  display: "grid",
-  gap: "2px",
-  padding: "10px",
-  borderRadius: "12px",
-  background: "#ffffff",
-  color: "#4c1d95",
-  fontSize: "12px",
-};
-
-const altRow = {
-  display: "flex",
-  justifyContent: "space-between",
-  gap: "10px",
-  fontSize: "11px",
-  fontWeight: 850,
+  gap: "3px",
+  fontSize: "13px",
+  lineHeight: "1.32",
+  boxShadow: "0 10px 24px rgba(30,27,75,0.18)",
 };
 
 const featureCopy = {
@@ -417,13 +347,13 @@ const sectionText = {
   color: "#4b5563",
   fontSize: "14px",
   lineHeight: "1.38",
-  margin: "0 0 12px",
+  margin: "0 0 13px",
 };
 
 const goldButtonGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
-  gap: "8px",
+  gridTemplateColumns: "repeat(2, 1fr)",
+  gap: "10px",
 };
 
 const featureGrid = {
