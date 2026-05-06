@@ -296,13 +296,40 @@ const valueGrid = {
   padding: "0 10px 18px",
 };
 
-const valueCard = {
-  background: "#ffffff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "16px",
-  padding: "18px",
-  boxShadow: "0 10px 25px rgba(91,33,182,0.08)",
-};
+<section style={valueGrid}>
+  <div style={valueCard}>
+    <div style={valueHeader}>
+      <span style={valueNumber}>01</span>
+      <strong style={valueTitle}>Simple planning</strong>
+    </div>
+    <p style={valueText}>
+      Compare multiple cities instantly without manually converting time zones
+      or calculating offsets.
+    </p>
+  </div>
+
+  <div style={valueCard}>
+    <div style={valueHeader}>
+      <span style={valueNumber}>02</span>
+      <strong style={valueTitle}>Better meeting windows</strong>
+    </div>
+    <p style={valueText}>
+      Identify practical overlap times so meetings are not too early or too late
+      for anyone involved.
+    </p>
+  </div>
+
+  <div style={valueCard}>
+    <div style={valueHeader}>
+      <span style={valueNumber}>03</span>
+      <strong style={valueTitle}>Built for global work</strong>
+    </div>
+    <p style={valueText}>
+      Designed for remote teams, clients, freelancers, and international
+      collaboration across time zones.
+    </p>
+  </div>
+</section>
 
 const valueLabel = {
   color: "#6d28d9",
@@ -398,4 +425,28 @@ const ctaSub = {
   fontSize: "10px",
   fontWeight: 800,
   opacity: 0.9,
+};
+const valueHeader = {
+  display: "flex",
+  alignItems: "center",
+  gap: "10px",
+  marginBottom: "8px",
+};
+
+const valueNumber = {
+  color: "#7c3aed",
+  fontSize: "12px",
+  fontWeight: 900,
+};
+
+const valueTitle = {
+  color: "#111827",
+  fontSize: "15px",
+  fontWeight: 900,
+};
+
+const valueText = {
+  color: "#4b5563",
+  fontSize: "14px",
+  lineHeight: "1.6",
 };
