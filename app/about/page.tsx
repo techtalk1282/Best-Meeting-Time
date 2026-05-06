@@ -1,12 +1,12 @@
 /**
  * File: app/about/page.tsx
- * Version: v1.0 (PREMIUM ABOUT PAGE - ADSENSE TRUST)
+ * Version: v1.1 (PREMIUM ABOUT PAGE - BUILD FIX + POLISH)
  * Date: 2026-05-05
  *
  * PURPOSE:
- * - Fix /about 404
- * - Add trust-focused About page for AdSense readiness
- * - Match homepage/blog white-container layout style
+ * - Fix build error caused by JSX outside the component
+ * - Complete the value cards with real content
+ * - Keep About page aligned with homepage/blog white-container style
  *
  * PROTECTED:
  * - No Stripe changes
@@ -16,7 +16,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Delete this file if About is removed from navigation
+ * - Revert to v1.0 if this layout does not test cleanly
  */
 
 import FooterSection from "../ui/FooterSection";
@@ -57,8 +57,8 @@ export default function AboutPage() {
 
             <p style={intro}>
               Best Meeting Time is built for remote teams, clients, freelancers,
-              consultants, and global collaborators who need a faster way to compare
-              local times and choose better meeting windows.
+              consultants, and global collaborators who need a faster way to
+              compare local times and choose better meeting windows.
             </p>
           </div>
 
@@ -73,21 +73,36 @@ export default function AboutPage() {
 
         <section style={valueGrid}>
           <div style={valueCard}>
-            <span style={valueLabel}>01</span>
-            <strong>Simple planning</strong>
-            <p>Compare locations without manually converting time zones.</p>
+            <div style={valueHeader}>
+              <span style={valueNumber}>01</span>
+              <strong style={valueTitle}>Simple planning</strong>
+            </div>
+            <p style={valueText}>
+              Compare multiple cities instantly without manually converting time
+              zones or calculating offsets.
+            </p>
           </div>
 
           <div style={valueCard}>
-            <span style={valueLabel}>02</span>
-            <strong>Better meeting windows</strong>
-            <p>Review recommended times before choosing a schedule.</p>
+            <div style={valueHeader}>
+              <span style={valueNumber}>02</span>
+              <strong style={valueTitle}>Better meeting windows</strong>
+            </div>
+            <p style={valueText}>
+              Identify practical overlap times so meetings are not too early or
+              too late for anyone involved.
+            </p>
           </div>
 
           <div style={valueCard}>
-            <span style={valueLabel}>03</span>
-            <strong>Useful for global work</strong>
-            <p>Plan across cities, countries, teams, clients, and partners.</p>
+            <div style={valueHeader}>
+              <span style={valueNumber}>03</span>
+              <strong style={valueTitle}>Built for global work</strong>
+            </div>
+            <p style={valueText}>
+              Designed for remote teams, clients, freelancers, and international
+              collaboration across time zones.
+            </p>
           </div>
         </section>
 
@@ -296,45 +311,38 @@ const valueGrid = {
   padding: "0 10px 18px",
 };
 
-<section style={valueGrid}>
-  <div style={valueCard}>
-    <div style={valueHeader}>
-      <span style={valueNumber}>01</span>
-      <strong style={valueTitle}>Simple planning</strong>
-    </div>
-    <p style={valueText}>
-      Compare multiple cities instantly without manually converting time zones
-      or calculating offsets.
-    </p>
-  </div>
+const valueCard = {
+  background: "#ffffff",
+  border: "1px solid #ddd6fe",
+  borderRadius: "16px",
+  padding: "18px",
+  boxShadow: "0 10px 25px rgba(91,33,182,0.08)",
+};
 
-  <div style={valueCard}>
-    <div style={valueHeader}>
-      <span style={valueNumber}>02</span>
-      <strong style={valueTitle}>Better meeting windows</strong>
-    </div>
-    <p style={valueText}>
-      Identify practical overlap times so meetings are not too early or too late
-      for anyone involved.
-    </p>
-  </div>
+const valueHeader = {
+  display: "flex",
+  alignItems: "center",
+  gap: "10px",
+  marginBottom: "8px",
+};
 
-  <div style={valueCard}>
-    <div style={valueHeader}>
-      <span style={valueNumber}>03</span>
-      <strong style={valueTitle}>Built for global work</strong>
-    </div>
-    <p style={valueText}>
-      Designed for remote teams, clients, freelancers, and international
-      collaboration across time zones.
-    </p>
-  </div>
-</section>
-
-const valueLabel = {
-  color: "#6d28d9",
+const valueNumber = {
+  color: "#7c3aed",
   fontSize: "12px",
-  fontWeight: 950,
+  fontWeight: 900,
+};
+
+const valueTitle = {
+  color: "#111827",
+  fontSize: "15px",
+  fontWeight: 900,
+};
+
+const valueText = {
+  color: "#4b5563",
+  fontSize: "14px",
+  lineHeight: "1.6",
+  margin: 0,
 };
 
 const contentSection = {
@@ -425,28 +433,4 @@ const ctaSub = {
   fontSize: "10px",
   fontWeight: 800,
   opacity: 0.9,
-};
-const valueHeader = {
-  display: "flex",
-  alignItems: "center",
-  gap: "10px",
-  marginBottom: "8px",
-};
-
-const valueNumber = {
-  color: "#7c3aed",
-  fontSize: "12px",
-  fontWeight: 900,
-};
-
-const valueTitle = {
-  color: "#111827",
-  fontSize: "15px",
-  fontWeight: 900,
-};
-
-const valueText = {
-  color: "#4b5563",
-  fontSize: "14px",
-  lineHeight: "1.6",
 };
