@@ -1,12 +1,12 @@
 /**
  * File: app/about/page.tsx
- * Version: v7.1 (100% VIEWPORT FIT FIX)
+ * Version: v7.2 (BRANDED VISUAL PANEL REPLACE IMAGE)
  * Date: 2026-05-06
  *
  * PURPOSE:
- * - Keep Blog-page matching structure
- * - Reduce vertical height so About page lands cleanly at 100% desktop zoom
- * - Preserve premium content, image, CTA, and SEO-focused copy
+ * - Replace awkward cropped photo with controlled branded scheduling visual
+ * - Preserve current 100% desktop viewport fit
+ * - Keep Blog-page matching white-shell structure
  *
  * PROTECTED:
  * - No Stripe changes
@@ -16,7 +16,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert to v7.0 if this version does not test cleanly
+ * - Revert to v7.1 if this visual panel does not test cleanly
  */
 
 export default function AboutPage() {
@@ -59,11 +59,35 @@ export default function AboutPage() {
       </section>
 
       <section style={imagePanel}>
-        <img
-          src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80"
-          alt="Team planning a meeting across locations"
-          style={image}
-        />
+        <div style={mockVisual}>
+          <div style={mockHeader}>
+            <span style={mockDot}></span>
+            <strong>Best Overlap Window</strong>
+            <span style={mockBadge}>Recommended</span>
+          </div>
+
+          <div style={cityGrid}>
+            <div style={cityCard}>
+              <span>New York</span>
+              <strong>9:00 AM</strong>
+            </div>
+
+            <div style={cityCard}>
+              <span>London</span>
+              <strong>2:00 PM</strong>
+            </div>
+
+            <div style={cityCard}>
+              <span>Tokyo</span>
+              <strong>11:00 PM</strong>
+            </div>
+          </div>
+
+          <div style={windowBar}>
+            <span>Best meeting window</span>
+            <strong>9:00 AM — 11:00 AM ET</strong>
+          </div>
+        </div>
 
         <div style={imageText}>
           <strong>Built for practical scheduling decisions.</strong>
@@ -255,12 +279,69 @@ const imagePanel = {
   background: "#faf9ff",
 };
 
-const image = {
-  width: "100%",
+const mockVisual = {
   height: "92px",
-  objectFit: "cover" as const,
   borderRadius: "14px",
-  display: "block",
+  padding: "10px",
+  background: "linear-gradient(135deg, #4c1d95 0%, #6d28d9 55%, #7c3aed 100%)",
+  color: "#ffffff",
+  display: "grid",
+  gap: "7px",
+  boxShadow: "0 10px 22px rgba(91,33,182,0.18)",
+};
+
+const mockHeader = {
+  display: "flex",
+  alignItems: "center",
+  gap: "7px",
+  fontSize: "11px",
+  lineHeight: 1,
+};
+
+const mockDot = {
+  width: "7px",
+  height: "7px",
+  borderRadius: "999px",
+  background: "#facc15",
+};
+
+const mockBadge = {
+  marginLeft: "auto",
+  padding: "4px 7px",
+  borderRadius: "999px",
+  background: "rgba(255,255,255,0.16)",
+  color: "#ffffff",
+  fontSize: "9px",
+  fontWeight: 900,
+};
+
+const cityGrid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  gap: "6px",
+};
+
+const cityCard = {
+  display: "grid",
+  gap: "2px",
+  padding: "6px 7px",
+  borderRadius: "10px",
+  background: "rgba(255,255,255,0.14)",
+  border: "1px solid rgba(255,255,255,0.18)",
+  fontSize: "10px",
+};
+
+const windowBar = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: "8px",
+  padding: "5px 8px",
+  borderRadius: "10px",
+  background: "#ffffff",
+  color: "#4c1d95",
+  fontSize: "10px",
+  fontWeight: 850,
 };
 
 const imageText = {
