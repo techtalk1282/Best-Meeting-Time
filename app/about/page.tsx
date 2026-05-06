@@ -1,13 +1,13 @@
 /**
  * File: app/about/page.tsx
- * Version: v6.0 (PREMIUM ABOUT PAGE REBUILD)
+ * Version: v7.0 (BLOG-MATCH ABOUT PAGE RESET)
  * Date: 2026-05-06
  *
  * PURPOSE:
- * - Rebuild failed About page using the Blog page white-shell visual system
- * - Remove empty-card feeling and weak whitespace
- * - Improve premium content density, visual balance, and SEO value
- * - Keep first desktop viewport clean at 100% zoom
+ * - Match the successful Blog page white-shell layout
+ * - Remove oversized split cards and wasted white space
+ * - Fit cleanly at 100% desktop zoom
+ * - Keep About content relevant to time zones, remote teams, and global scheduling
  *
  * PROTECTED:
  * - No Stripe changes
@@ -17,7 +17,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert to v5.1 if this rebuild does not test cleanly
+ * - Revert to v6.0 if this version does not test cleanly
  */
 
 export default function AboutPage() {
@@ -45,104 +45,64 @@ export default function AboutPage() {
         </a>
       </header>
 
-      <section style={heroSection}>
-        <div style={heroCopy}>
-          <p style={eyebrow}>About Best Meeting Time</p>
+      <section style={hero}>
+        <p style={eyebrow}>About Best Meeting Time</p>
 
-          <h1 style={headline}>
-            A Practical Meeting Time Planner for Global Work
-          </h1>
+        <h1 style={headline}>
+          Smarter Scheduling for Remote Teams, Clients, and Global Work
+        </h1>
 
-          <p style={intro}>
-            Best Meeting Time helps remote teams, consultants, agencies,
-            clients, and global professionals compare time zones before the
-            invite goes out.
-          </p>
+        <p style={subheadline}>
+          Best Meeting Time helps people compare time zones faster, find fair
+          overlap windows, and schedule meetings with more confidence before the
+          invite goes out.
+        </p>
+      </section>
 
-          <p style={introSmall}>
-            The goal is simple: make it easier to find fair meeting windows,
-            reduce scheduling mistakes, and move faster across locations.
-          </p>
-        </div>
+      <section style={imagePanel}>
+        <img
+          src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80"
+          alt="Team planning a meeting across locations"
+          style={image}
+        />
 
-        <div style={visualPanel}>
-          <img
-            src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=80"
-            alt="Remote team planning a meeting across locations"
-            style={visualImage}
-          />
-
-          <div style={visualCaption}>
-            <strong>Built for real scheduling decisions.</strong>
-            <span>
-              Compare cities, review local times, and choose a practical window
-              before sending the meeting invite.
-            </span>
-          </div>
+        <div style={imageText}>
+          <strong>Built for practical scheduling decisions.</strong>
+          <span>
+            Compare cities, local times, working hours, and meeting windows
+            before sending a remote team or client invite.
+          </span>
         </div>
       </section>
 
-      <section style={missionGrid}>
-        <div style={missionCard}>
-          <p style={sectionEyebrow}>Our Mission</p>
-          <h2 style={sectionTitle}>
-            Make time zone scheduling easier, clearer, and more fair.
-          </h2>
-
-          <p style={sectionText}>
-            Scheduling across time zones should not require guesswork, repeated
-            manual conversions, or long back-and-forth messages. Best Meeting
-            Time gives users a faster way to compare local times and identify
-            meeting windows that make sense for everyone involved.
-          </p>
-        </div>
-
-        <div style={focusCard}>
-          <p style={sectionEyebrow}>What We Focus On</p>
-
-          <div style={focusItem}>
-            <strong>Clarity</strong>
-            <span>Side-by-side local times that are easy to compare.</span>
-          </div>
-
-          <div style={focusItem}>
-            <strong>Fairness</strong>
-            <span>Better overlap windows for distributed teams.</span>
-          </div>
-
-          <div style={focusItem}>
-            <strong>Speed</strong>
-            <span>Less back-and-forth before the invite is sent.</span>
-          </div>
-        </div>
-      </section>
-
-      <section style={valueGrid}>
-        <article style={valueCard}>
-          <p style={cardLabel}>Avoid Mistakes</p>
-          <h3 style={cardTitle}>Reduce time zone confusion</h3>
+      <section style={cardGrid}>
+        <article style={card}>
+          <p style={cardLabel}>Our Mission</p>
+          <h2 style={cardTitle}>Make time zone planning easier.</h2>
           <p style={cardText}>
-            Compare cities before scheduling so meetings do not get missed
-            because of wrong local times, daylight-saving confusion, or manual
-            conversion errors.
+            Scheduling across locations should not depend on guesswork,
+            repeated conversions, or long message threads. The planner gives
+            users a clearer way to review local times side by side.
           </p>
         </article>
 
-        <article style={valueCard}>
-          <p style={cardLabel}>Schedule Fairly</p>
-          <h3 style={cardTitle}>Find better overlap windows</h3>
+        <article style={card}>
+          <p style={cardLabel}>Why It Matters</p>
+          <h2 style={cardTitle}>Better meetings start with better timing.</h2>
           <p style={cardText}>
-            Review realistic windows that help keep one region from always
-            taking the earliest or latest meeting slot.
+            A good meeting time helps reduce missed calls, late-night meetings,
+            daylight-saving mistakes, and confusion between teams in different
+            cities or countries.
           </p>
         </article>
 
-        <article style={valueCard}>
-          <p style={cardLabel}>Move Faster</p>
-          <h3 style={cardTitle}>Send clearer meeting invites</h3>
+        <article style={card}>
+          <p style={cardLabel}>Who It Helps</p>
+          <h2 style={cardTitle}>Remote teams, clients, and consultants.</h2>
           <p style={cardText}>
-            Give clients, partners, and remote teammates a practical time
-            choice without endless timezone messages.
+            Best Meeting Time is useful for distributed teams, freelancers,
+            agencies, sales calls, support teams, interviews, and anyone
+            scheduling across time zones.
           </p>
         </article>
       </section>
@@ -185,7 +145,7 @@ const header = {
   justifyContent: "space-between",
   gap: "16px",
   borderBottom: "1px solid #ede9fe",
-  marginBottom: "22px",
+  marginBottom: "42px",
 };
 
 const brandLink = {
@@ -253,172 +213,103 @@ const navButtonSub = {
   opacity: 0.94,
 };
 
-const heroSection = {
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  gap: "14px",
-  marginBottom: "14px",
-};
-
-const heroCopy = {
-  background: "#faf9ff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "18px",
-  padding: "28px",
+const hero = {
+  maxWidth: "820px",
+  margin: "0 auto 28px",
+  textAlign: "center" as const,
 };
 
 const eyebrow = {
   display: "inline-block",
-  margin: "0 0 12px",
-  padding: "7px 14px",
+  margin: "0 0 16px",
+  padding: "8px 16px",
   borderRadius: "999px",
   background: "#f3efff",
   color: "#5b21b6",
-  fontSize: "12px",
+  fontSize: "13px",
   fontWeight: 950,
 };
 
 const headline = {
   color: "#111827",
-  fontSize: "clamp(34px, 4vw, 48px)",
-  lineHeight: "1.04",
-  margin: "0 0 12px",
+  fontSize: "clamp(38px, 4.4vw, 54px)",
+  lineHeight: "1.05",
+  margin: "0 0 14px",
   fontWeight: 950,
   letterSpacing: "-0.045em",
 };
 
-const intro = {
+const subheadline = {
+  maxWidth: "780px",
+  margin: "0 auto",
   color: "#4b5563",
-  fontSize: "15px",
+  fontSize: "17px",
   lineHeight: "1.55",
-  margin: "0 0 10px",
 };
 
-const introSmall = {
-  color: "#4b5563",
-  fontSize: "14px",
-  lineHeight: "1.5",
-  margin: 0,
-};
-
-const visualPanel = {
-  background: "#ffffff",
+const imagePanel = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1.15fr",
+  gap: "18px",
+  alignItems: "center",
+  marginBottom: "24px",
+  padding: "16px",
   border: "1px solid #ddd6fe",
   borderRadius: "18px",
-  padding: "10px",
-  boxShadow: "0 8px 24px rgba(91,33,182,0.08)",
+  background: "#faf9ff",
 };
 
-const visualImage = {
+const image = {
   width: "100%",
-  height: "190px",
+  height: "118px",
   objectFit: "cover" as const,
   borderRadius: "14px",
   display: "block",
 };
 
-const visualCaption = {
-  padding: "12px 4px 2px",
-  display: "flex",
-  flexDirection: "column" as const,
-  gap: "4px",
-  color: "#4b5563",
-  fontSize: "13.5px",
-  lineHeight: "1.42",
-};
-
-const missionGrid = {
+const imageText = {
   display: "grid",
-  gridTemplateColumns: "1.35fr 0.65fr",
-  gap: "14px",
-  marginBottom: "14px",
+  gap: "6px",
+  color: "#4b5563",
+  fontSize: "15px",
+  lineHeight: "1.48",
 };
 
-const missionCard = {
-  background: "#ffffff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "18px",
-  padding: "22px",
-  boxShadow: "0 7px 18px rgba(91,33,182,0.06)",
+const cardGrid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  gap: "16px",
+  marginBottom: "20px",
 };
 
-const focusCard = {
+const card = {
   background: "#faf9ff",
   border: "1px solid #ddd6fe",
   borderRadius: "18px",
   padding: "22px",
 };
 
-const sectionEyebrow = {
-  color: "#6d28d9",
-  fontSize: "12px",
-  fontWeight: 950,
-  margin: "0 0 8px",
-  textTransform: "uppercase" as const,
-  letterSpacing: "0.05em",
-};
-
-const sectionTitle = {
-  color: "#111827",
-  fontSize: "24px",
-  lineHeight: "1.18",
-  fontWeight: 950,
-  margin: "0 0 10px",
-};
-
-const sectionText = {
-  color: "#4b5563",
-  fontSize: "14px",
-  lineHeight: "1.55",
-  margin: 0,
-};
-
-const focusItem = {
-  display: "grid",
-  gap: "3px",
-  padding: "9px 0",
-  color: "#4b5563",
-  fontSize: "13.5px",
-  lineHeight: "1.4",
-  borderTop: "1px solid #ede9fe",
-};
-
-const valueGrid = {
-  display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
-  gap: "14px",
-  marginBottom: "14px",
-};
-
-const valueCard = {
-  background: "#ffffff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "18px",
-  padding: "20px",
-  boxShadow: "0 7px 18px rgba(91,33,182,0.06)",
-};
-
 const cardLabel = {
   color: "#6d28d9",
-  fontSize: "12px",
+  fontSize: "13px",
   fontWeight: 950,
-  margin: "0 0 8px",
+  margin: "0 0 12px",
   textTransform: "uppercase" as const,
   letterSpacing: "0.05em",
 };
 
 const cardTitle = {
   color: "#111827",
-  fontSize: "19px",
-  lineHeight: "1.18",
+  fontSize: "23px",
+  lineHeight: "1.15",
   fontWeight: 950,
-  margin: "0 0 8px",
+  margin: "0 0 10px",
 };
 
 const cardText = {
   color: "#4b5563",
-  fontSize: "13.5px",
-  lineHeight: "1.52",
+  fontSize: "15px",
+  lineHeight: "1.5",
   margin: 0,
 };
 
