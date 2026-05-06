@@ -1,13 +1,13 @@
 /**
  * File: app/features/page.tsx
- * Version: v2.0 (FEATURES PAGE - PREMIUM VALUE REBUILD)
+ * Version: v3.0 (PREMIUM PRODUCT SHOWCASE - 100% FIT)
  * Date: 2026-05-06
  *
  * PURPOSE:
- * - Replace generic Features page with concrete product feature content
- * - Keep 100% desktop landing fit
- * - Show free planning, premium unlock, share link, and calendar workflow
- * - Avoid repeating About-page visual panel
+ * - Rebuild Features page as a product showcase, not a generic text page
+ * - Keep 100% desktop landing fit with CTA visible
+ * - Spotlight city selection, swap, best time, alternatives, share links, and calendar actions
+ * - Use gold action buttons and premium Best Meeting Time branding
  *
  * PROTECTED:
  * - No Stripe changes
@@ -17,7 +17,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert to v1.0 if this version does not test cleanly
+ * - Revert to v2.0 if this version does not test cleanly
  */
 
 export default function FeaturesPage() {
@@ -50,100 +50,111 @@ export default function FeaturesPage() {
           <p style={eyebrow}>Best Meeting Time Features</p>
 
           <h1 style={headline}>
-            Plan, Compare, Share, and Add Meetings Faster
+            Plan the Time. Share the Link. Add It to Your Calendar.
           </h1>
 
           <p style={subheadline}>
-            Start with free time zone planning, then unlock premium tools for
-            sharing meeting links and adding selected windows to your calendar
-            workflow.
+            Compare cities, swap locations, review the best meeting window, then
+            unlock premium tools to share and add meetings faster.
           </p>
+        </div>
 
-          <div style={miniStack}>
-            <div style={miniItem}>
-              <strong>Free planning session</strong>
-              <span>Compare cities and review recommended windows first.</span>
+        <div style={accessCard}>
+          <p style={accessLabel}>Free + Premium Access</p>
+          <div style={accessRows}>
+            <span><strong>Free:</strong> try a planning session first</span>
+            <span><strong>Premium:</strong> $7 one-time unlock</span>
+          </div>
+        </div>
+      </section>
+
+      <section style={showcase}>
+        <div style={plannerMock}>
+          <div style={mockTop}>
+            <span style={mockPill}>Planner Preview</span>
+            <span style={swapBadge}>Swap Cities</span>
+          </div>
+
+          <div style={cityRow}>
+            <div style={cityBox}>
+              <span>From</span>
+              <strong>New York</strong>
+              <em>9:00 AM EDT</em>
             </div>
 
-            <div style={miniItem}>
-              <strong>Premium unlock — $7 one time</strong>
-              <span>More planning access, share links, and calendar actions.</span>
+            <div style={swapCircle}>⇄</div>
+
+            <div style={cityBox}>
+              <span>To</span>
+              <strong>London</strong>
+              <em>2:00 PM BST</em>
             </div>
+          </div>
+
+          <div style={bestWindow}>
+            <span>Best Meeting Time</span>
+            <strong>9:00 AM — 10:00 AM New York</strong>
+            <em>2:00 PM — 3:00 PM London</em>
+          </div>
+
+          <div style={altRow}>
+            <span>Alternative: 10:00 AM ET</span>
+            <span>Duration: 60 min</span>
           </div>
         </div>
 
-        <div style={toolCard}>
-          <p style={toolLabel}>Premium Tools Preview</p>
-          <h2 style={toolTitle}>After you find the right time</h2>
+        <div style={featureCopy}>
+          <p style={sectionEyebrow}>Real workflow features</p>
+          <h2 style={sectionTitle}>Built around how people actually schedule.</h2>
+          <p style={sectionText}>
+            Select cities, compare local times, review recommended windows, and
+            move directly into sharing or calendar actions without rebuilding
+            the meeting details from scratch.
+          </p>
 
-          <div style={buttonGrid}>
+          <div style={goldButtonGrid}>
             <span>Create Link</span>
             <span>Copy Link</span>
             <span>Add to Google</span>
             <span>Add to Outlook</span>
             <span>Add to Apple Calendar</span>
           </div>
-
-          <div style={toolNote}>
-            Selected window: <strong>New York 9:00 AM / London 2:00 PM</strong>
-          </div>
         </div>
       </section>
 
       <section style={featureGrid}>
         <article style={card}>
-          <p style={cardLabel}>Compare Cities</p>
-          <h2 style={cardTitle}>See local times side by side.</h2>
+          <p style={cardLabel}>City Selection</p>
+          <h2 style={cardTitle}>Choose cities fast.</h2>
           <p style={cardText}>
-            Review city times before sending an invite so remote teams and
-            clients can quickly understand the same meeting window.
+            Compare locations side by side and swap cities when plans change.
           </p>
         </article>
 
         <article style={card}>
-          <p style={cardLabel}>Recommended Windows</p>
-          <h2 style={cardTitle}>Find practical overlap faster.</h2>
+          <p style={cardLabel}>Smart Windows</p>
+          <h2 style={cardTitle}>See best times and alternatives.</h2>
           <p style={cardText}>
-            Use the planner to identify better meeting windows across working
-            hours, time zones, and global team schedules.
+            Review the recommended meeting time plus backup windows.
           </p>
         </article>
 
         <article style={card}>
-          <p style={cardLabel}>Premium Sharing</p>
-          <h2 style={cardTitle}>Share and calendar-ready actions.</h2>
+          <p style={cardLabel}>Premium Workflow</p>
+          <h2 style={cardTitle}>Share and add to calendars.</h2>
           <p style={cardText}>
-            Premium unlocks stronger workflow actions for creating links,
-            copying links, and adding meeting windows to calendar tools.
+            Unlock link sharing and Google, Outlook, and Apple Calendar actions.
           </p>
         </article>
-      </section>
-
-      <section style={accessBand}>
-        <div>
-          <p style={accessEyebrow}>Access Model</p>
-          <h2 style={accessTitle}>Try the scheduler first. Upgrade when it helps.</h2>
-          <p style={accessText}>
-            Free access gives users a starting planning session. Premium is a
-            $7 one-time unlock for users who schedule across time zones more
-            often and want faster follow-through.
-          </p>
-        </div>
-
-        <div style={priceCard}>
-          <span>Premium</span>
-          <strong>$7</strong>
-          <em>one-time unlock</em>
-        </div>
       </section>
 
       <section style={ctaBand}>
         <div>
           <p style={ctaEyebrow}>Start Planning</p>
-          <h2 style={ctaTitle}>Ready to compare meeting times?</h2>
+          <h2 style={ctaTitle}>Ready to try the scheduler?</h2>
           <p style={ctaText}>
-            Use the planner to review time zones and meeting windows before the
-            invite goes out.
+            Compare meeting times first, then unlock premium tools when you need
+            to share and schedule faster.
           </p>
         </div>
 
@@ -175,7 +186,7 @@ const header = {
   justifyContent: "space-between",
   gap: "16px",
   borderBottom: "1px solid #ede9fe",
-  marginBottom: "22px",
+  marginBottom: "18px",
 };
 
 const brandLink = {
@@ -236,15 +247,15 @@ const navButtonSub = { fontSize: "10px", fontWeight: 850, opacity: 0.94 };
 
 const heroGrid = {
   display: "grid",
-  gridTemplateColumns: "1fr 0.88fr",
+  gridTemplateColumns: "1fr 280px",
   gap: "18px",
-  alignItems: "center",
-  marginBottom: "14px",
+  alignItems: "end",
+  marginBottom: "12px",
 };
 
 const eyebrow = {
   display: "inline-block",
-  margin: "0 0 11px",
+  margin: "0 0 9px",
   padding: "7px 15px",
   borderRadius: "999px",
   background: "#f3efff",
@@ -255,45 +266,138 @@ const eyebrow = {
 
 const headline = {
   color: "#111827",
-  fontSize: "clamp(34px, 4vw, 48px)",
-  lineHeight: "1.04",
-  margin: "0 0 10px",
+  fontSize: "clamp(32px, 3.9vw, 46px)",
+  lineHeight: "1.02",
+  margin: "0 0 8px",
   fontWeight: 950,
   letterSpacing: "-0.045em",
 };
 
 const subheadline = {
   color: "#4b5563",
-  fontSize: "16px",
-  lineHeight: "1.45",
-  margin: "0 0 12px",
+  fontSize: "15.5px",
+  lineHeight: "1.38",
+  margin: 0,
 };
 
-const miniStack = {
-  display: "grid",
-  gap: "8px",
-};
-
-const miniItem = {
-  padding: "10px 12px",
-  borderRadius: "12px",
+const accessCard = {
   border: "1px solid #ddd6fe",
+  borderRadius: "16px",
   background: "#faf9ff",
+  padding: "14px",
+};
+
+const accessLabel = {
+  margin: "0 0 8px",
+  color: "#6d28d9",
+  fontSize: "12px",
+  fontWeight: 950,
+  textTransform: "uppercase" as const,
+};
+
+const accessRows = {
   display: "grid",
-  gap: "3px",
+  gap: "7px",
   color: "#4b5563",
   fontSize: "13px",
   lineHeight: "1.35",
 };
 
-const toolCard = {
-  border: "1px solid #ddd6fe",
-  borderRadius: "18px",
-  padding: "16px",
-  background: "#faf9ff",
+const showcase = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "14px",
+  alignItems: "stretch",
+  marginBottom: "12px",
 };
 
-const toolLabel = {
+const plannerMock = {
+  borderRadius: "18px",
+  padding: "14px",
+  background: "linear-gradient(135deg, #4c1d95 0%, #6d28d9 55%, #7c3aed 100%)",
+  color: "#ffffff",
+  display: "grid",
+  gap: "10px",
+  boxShadow: "0 12px 24px rgba(91,33,182,0.2)",
+};
+
+const mockTop = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+};
+
+const mockPill = {
+  color: "#facc15",
+  fontSize: "12px",
+  fontWeight: 950,
+  textTransform: "uppercase" as const,
+};
+
+const swapBadge = {
+  padding: "5px 10px",
+  borderRadius: "999px",
+  background: "rgba(255,255,255,0.16)",
+  fontSize: "11px",
+  fontWeight: 900,
+};
+
+const cityRow = {
+  display: "grid",
+  gridTemplateColumns: "1fr 34px 1fr",
+  gap: "8px",
+  alignItems: "center",
+};
+
+const cityBox = {
+  display: "grid",
+  gap: "2px",
+  padding: "10px",
+  borderRadius: "12px",
+  background: "rgba(255,255,255,0.15)",
+  border: "1px solid rgba(255,255,255,0.2)",
+  fontSize: "11px",
+};
+
+const swapCircle = {
+  width: "34px",
+  height: "34px",
+  borderRadius: "999px",
+  background: "#facc15",
+  color: "#4c1d95",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontSize: "19px",
+  fontWeight: 950,
+};
+
+const bestWindow = {
+  display: "grid",
+  gap: "2px",
+  padding: "10px",
+  borderRadius: "12px",
+  background: "#ffffff",
+  color: "#4c1d95",
+  fontSize: "12px",
+};
+
+const altRow = {
+  display: "flex",
+  justifyContent: "space-between",
+  gap: "10px",
+  fontSize: "11px",
+  fontWeight: 850,
+};
+
+const featureCopy = {
+  border: "1px solid #ddd6fe",
+  borderRadius: "18px",
+  background: "#faf9ff",
+  padding: "18px",
+};
+
+const sectionEyebrow = {
   color: "#6d28d9",
   fontSize: "12px",
   fontWeight: 950,
@@ -301,116 +405,66 @@ const toolLabel = {
   textTransform: "uppercase" as const,
 };
 
-const toolTitle = {
+const sectionTitle = {
   color: "#111827",
-  fontSize: "24px",
+  fontSize: "25px",
+  lineHeight: "1.1",
   fontWeight: 950,
+  margin: "0 0 8px",
+};
+
+const sectionText = {
+  color: "#4b5563",
+  fontSize: "14px",
+  lineHeight: "1.38",
   margin: "0 0 12px",
 };
 
-const buttonGrid = {
+const goldButtonGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(2, 1fr)",
+  gridTemplateColumns: "repeat(3, 1fr)",
   gap: "8px",
-  marginBottom: "10px",
-};
-
-const toolNote = {
-  padding: "10px",
-  borderRadius: "12px",
-  background: "#ede9fe",
-  color: "#4c1d95",
-  fontSize: "13px",
-  fontWeight: 850,
 };
 
 const featureGrid = {
   display: "grid",
   gridTemplateColumns: "repeat(3, 1fr)",
-  gap: "14px",
-  marginBottom: "14px",
+  gap: "12px",
+  marginBottom: "12px",
 };
 
 const card = {
   background: "#faf9ff",
   border: "1px solid #ddd6fe",
   borderRadius: "18px",
-  padding: "17px",
+  padding: "15px",
 };
 
 const cardLabel = {
   color: "#6d28d9",
   fontSize: "12px",
   fontWeight: 950,
-  margin: "0 0 8px",
+  margin: "0 0 7px",
   textTransform: "uppercase" as const,
 };
 
 const cardTitle = {
   color: "#111827",
-  fontSize: "21px",
-  lineHeight: "1.14",
+  fontSize: "20px",
+  lineHeight: "1.12",
   fontWeight: 950,
-  margin: "0 0 7px",
+  margin: "0 0 6px",
 };
 
 const cardText = {
   color: "#4b5563",
   fontSize: "13.5px",
-  lineHeight: "1.38",
+  lineHeight: "1.34",
   margin: 0,
-};
-
-const accessBand = {
-  display: "grid",
-  gridTemplateColumns: "1fr auto",
-  gap: "18px",
-  alignItems: "center",
-  marginBottom: "14px",
-  padding: "14px 18px",
-  borderRadius: "16px",
-  background: "#f5f0ff",
-  border: "1px solid #ddd6fe",
-};
-
-const accessEyebrow = {
-  margin: "0 0 3px",
-  color: "#6d28d9",
-  fontSize: "12px",
-  fontWeight: 950,
-  textTransform: "uppercase" as const,
-};
-
-const accessTitle = {
-  margin: "0 0 4px",
-  color: "#111827",
-  fontSize: "22px",
-  fontWeight: 950,
-};
-
-const accessText = {
-  margin: 0,
-  color: "#4b5563",
-  fontSize: "13.5px",
-  lineHeight: "1.35",
-};
-
-const priceCard = {
-  minWidth: "140px",
-  padding: "11px",
-  borderRadius: "14px",
-  background: "#ffffff",
-  color: "#4c1d95",
-  border: "1px solid #ddd6fe",
-  display: "grid",
-  gap: "2px",
-  textAlign: "center" as const,
-  fontSize: "12px",
-  fontWeight: 850,
 };
 
 const ctaBand = {
-  padding: "15px 20px",
+  padding: "14px 20px",
   borderRadius: "16px",
   background: "#5b21b6",
   color: "#ffffff",
@@ -439,7 +493,7 @@ const ctaText = {
   margin: 0,
   color: "rgba(255,255,255,0.88)",
   fontSize: "13.5px",
-  lineHeight: "1.35",
+  lineHeight: "1.32",
 };
 
 const ctaButton = {
