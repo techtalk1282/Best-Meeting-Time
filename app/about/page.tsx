@@ -1,423 +1,251 @@
 /**
  * File: app/about/page.tsx
- * Version: v2.0 (COMPACT PREMIUM ABOUT PAGE - SEO + UX)
- * Date: 2026-05-05
+ * Version: v3.0 (FINAL OPTIMIZED ABOUT PAGE)
+ * Date: 2026-05-06
  *
  * PURPOSE:
- * - Improve About page content quality, SEO value, and first-screen fit
- * - Remove weak numbered cards and empty mission spacing
- * - Create a polished, compact trust page aligned with homepage/blog design
- *
- * PROTECTED:
- * - No Stripe changes
- * - No checkout changes
- * - No webhook changes
- * - No KV changes
- * - No ToolPreviewSection changes
+ * - Fix mission content (real, strong, SEO-focused)
+ * - Eliminate empty space and weak layout
+ * - Ensure clean 100% viewport landing (no cutoff)
+ * - Restore meaningful value cards
+ * - Match homepage design quality
  *
  * ROLLBACK:
- * - Revert to v1.1 if this layout does not test cleanly
+ * - Revert to previous version if layout spacing breaks
  */
 
-import FooterSection from "../ui/FooterSection";
+import SiteNav from "@/app/ui/SiteNav";
 
 export default function AboutPage() {
   return (
-    <>
-      <main style={pageShell}>
-        <header style={header}>
-          <a href="/" style={brandLink}>
-            <span style={brandIcon}>⌘</span>
-            <span>Best Meeting Time</span>
-          </a>
+    <div style={page}>
+      <SiteNav />
 
-          <nav style={nav} aria-label="About page navigation">
-            <a href="/" style={navLink}>Home</a>
-            <a href="/how-it-works" style={navLink}>How It Works</a>
-            <a href="/features" style={navLink}>Features</a>
-            <a href="/guides" style={navLink}>Guides</a>
-            <a href="/blog" style={navLink}>Blog</a>
-            <a href="/about" style={navLink}>About</a>
-            <a href="/contact" style={navLink}>Contact</a>
-          </nav>
+      <main style={container}>
+        
+        {/* HERO + MISSION */}
+        <section style={topGrid}>
+          <div style={heroCard}>
+            <span style={pill}>About Best Meeting Time</span>
 
-          <a href="/how-it-works#schedule-tool" style={navButton}>
-            <span style={navButtonMain}>Schedule a Meeting</span>
-            <span style={navButtonSub}>Free to try — no sign-up</span>
-          </a>
-        </header>
-
-        <section style={heroSection}>
-          <div style={heroCopy}>
-            <p style={eyebrow}>About Best Meeting Time</p>
-
-            <h1 style={headline}>
-              A Faster Way to Plan Meetings Across Time Zones
+            <h1 style={title}>
+              A Better Way to Schedule Meetings Across Time Zones
             </h1>
 
-            <p style={intro}>
-              Best Meeting Time helps people compare cities, review local times,
-              and choose practical meeting windows before sending an invite.
-              It is built for remote teams, client calls, freelancers,
-              consultants, agencies, and global collaboration.
+            <p style={subtitle}>
+              Best Meeting Time helps remote teams, clients, and global professionals compare time zones,
+              find practical meeting windows, and schedule with confidence—without guesswork.
             </p>
 
-            <div style={quickRow}>
-              <span>Time zone planning</span>
-              <span>Remote team scheduling</span>
-              <span>Client meeting coordination</span>
+            <div style={seoRow}>
+              Time zone scheduling • Remote team meetings • Global meeting planner • Client scheduling
             </div>
           </div>
 
           <div style={missionCard}>
-            <p style={missionLabel}>Our Mission</p>
-            <h2 style={missionTitle}>Make scheduling feel clear before the invite goes out.</h2>
+            <h2 style={missionTitle}>Our Mission</h2>
+
             <p style={missionText}>
-              The goal is simple: reduce confusion, prevent bad meeting times,
-              and help people find a fair window that works across different
-              locations.
+              Our mission is to make time zone scheduling clear before a meeting invite is ever sent.
+              When teams work across different cities, countries, and time zones, choosing a meeting time
+              can quickly become confusing, frustrating, and inefficient.
+            </p>
+
+            <p style={missionText}>
+              Best Meeting Time simplifies that process by showing local times side by side and highlighting
+              practical meeting windows. Instead of guessing or manually converting time zones, users can
+              instantly see what works—and what doesn’t—for everyone involved.
+            </p>
+
+            <p style={missionText}>
+              The goal is simple: reduce scheduling friction, prevent bad meeting times, and help people
+              coordinate faster across global teams, client calls, and remote collaboration.
             </p>
           </div>
         </section>
 
+        {/* VALUE CARDS */}
         <section style={valueGrid}>
           <div style={valueCard}>
-            <strong>Compare locations quickly</strong>
-            <p>
-              See how meeting times line up across cities instead of manually
-              calculating offsets or guessing the right time.
+            <h3 style={valueTitle}>Compare locations instantly</h3>
+            <p style={valueText}>
+              View multiple cities side by side to quickly understand time differences without manual conversion.
             </p>
           </div>
 
           <div style={valueCard}>
-            <strong>Choose better time windows</strong>
-            <p>
-              Review practical overlap times so meetings are less likely to land
-              too early, too late, or outside normal working hours.
+            <h3 style={valueTitle}>Find better meeting windows</h3>
+            <p style={valueText}>
+              Identify realistic overlap times so meetings are not too early, too late, or disruptive for participants.
             </p>
           </div>
 
           <div style={valueCard}>
-            <strong>Support real global work</strong>
-            <p>
-              Useful for distributed teams, customer calls, international
-              projects, remote workers, and cross-region planning.
+            <h3 style={valueTitle}>Built for real global work</h3>
+            <p style={valueText}>
+              Designed for remote teams, freelancers, agencies, and businesses coordinating across time zones.
             </p>
           </div>
         </section>
 
-        <section style={contentSection}>
-          <div style={contentBlock}>
-            <h2 style={sectionTitle}>Why This Matters</h2>
-            <p style={sectionText}>
-              Time zone mistakes can cause missed meetings, low attendance, late
-              calls, and avoidable scheduling friction. A clearer planning view
-              helps teams respect local time and make better decisions faster.
+        {/* SUPPORTING CONTENT */}
+        <section style={bottomGrid}>
+          <div style={infoCard}>
+            <h3 style={infoTitle}>Why This Matters</h3>
+            <p style={infoText}>
+              Poor meeting times lead to missed calls, low attendance, and unnecessary scheduling friction.
+              A meeting that works for one person may be outside working hours for someone else.
+            </p>
+            <p style={infoText}>
+              A clearer planning view helps teams respect time zones, improve collaboration, and make
+              better scheduling decisions faster.
             </p>
           </div>
 
-          <div style={contentBlock}>
-            <h2 style={sectionTitle}>Who It Helps</h2>
-            <p style={sectionText}>
-              Best Meeting Time is designed for people who coordinate across
-              more than one location: remote teams, founders, sales teams,
-              consultants, agencies, freelancers, educators, and client-facing
-              businesses.
+          <div style={infoCard}>
+            <h3 style={infoTitle}>Who It Helps</h3>
+            <p style={infoText}>
+              Best Meeting Time is designed for professionals who coordinate meetings across locations,
+              including remote teams, founders, consultants, freelancers, agencies, and client-facing businesses.
+            </p>
+            <p style={infoText}>
+              It is especially useful for anyone managing international meetings, cross-time-zone teams,
+              or client calls that require fair and practical scheduling.
             </p>
           </div>
         </section>
 
-        <section style={ctaBand}>
-          <div>
-            <p style={ctaEyebrow}>Start Planning</p>
-            <h2 style={ctaTitle}>Ready to choose a better meeting time?</h2>
-            <p style={ctaText}>
-              Compare cities and review recommended meeting windows before you
-              send the invite.
-            </p>
-          </div>
-
-          <a href="/how-it-works#schedule-tool" style={ctaButton}>
-            <span style={ctaMain}>Schedule a Meeting</span>
-            <span style={ctaSub}>Free to try — no sign-up</span>
-          </a>
-        </section>
       </main>
-
-      <FooterSection />
-    </>
+    </div>
   );
 }
 
 /* STYLES */
 
-const pageShell = {
-  maxWidth: "1120px",
-  margin: "18px auto 0",
-  padding: "18px 18px 34px",
-  background: "#ffffff",
-  color: "#111827",
-  border: "1px solid rgba(237,233,254,0.9)",
-  boxShadow: "0 24px 70px rgba(30,27,75,0.18)",
+const page = {
+  minHeight: "100vh",
+  background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
 };
 
-const header = {
-  minHeight: "66px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  gap: "18px",
-  borderBottom: "1px solid #ede9fe",
-  marginBottom: "14px",
+const container = {
+  maxWidth: "1100px",
+  margin: "0 auto",
+  padding: "20px 20px 40px",
 };
 
-const brandLink = {
-  display: "flex",
-  alignItems: "center",
-  gap: "8px",
-  color: "#5b21b6",
-  fontSize: "18px",
-  fontWeight: 900,
-  textDecoration: "none",
-  whiteSpace: "nowrap" as const,
-};
+/* TOP SECTION */
 
-const brandIcon = {
-  width: "24px",
-  height: "24px",
-  borderRadius: "7px",
-  background: "#ede9fe",
-  color: "#5b21b6",
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontSize: "14px",
-};
-
-const nav = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: "18px",
-};
-
-const navLink = {
-  color: "#374151",
-  fontSize: "13px",
-  fontWeight: 800,
-  textDecoration: "none",
-  whiteSpace: "nowrap" as const,
-};
-
-const navButton = {
-  background: "#5b21b6",
-  color: "#ffffff",
-  padding: "9px 16px",
-  borderRadius: "8px",
-  fontWeight: 900,
-  textDecoration: "none",
-  display: "flex",
-  flexDirection: "column" as const,
-  alignItems: "center",
-  justifyContent: "center",
-  lineHeight: 1.18,
-  minWidth: "154px",
-  boxShadow: "0 10px 22px rgba(91,33,182,0.22)",
-};
-
-const navButtonMain = {
-  fontSize: "13px",
-  fontWeight: 900,
-};
-
-const navButtonSub = {
-  fontSize: "10px",
-  fontWeight: 800,
-  opacity: 0.92,
-};
-
-const heroSection = {
+const topGrid = {
   display: "grid",
-  gridTemplateColumns: "1.15fr 0.85fr",
-  gap: "14px",
-  padding: "8px 10px 14px",
+  gridTemplateColumns: "1.2fr 1fr",
+  gap: "18px",
+  marginBottom: "18px",
 };
 
-const heroCopy = {
-  background: "#faf9ff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "18px",
-  padding: "24px",
-};
-
-const eyebrow = {
-  display: "inline-block",
-  margin: "0 0 10px",
-  padding: "7px 13px",
-  borderRadius: "999px",
-  background: "#f3efff",
-  color: "#5b21b6",
-  fontSize: "12px",
-  fontWeight: 900,
-};
-
-const headline = {
-  color: "#111827",
-  fontSize: "clamp(32px, 4vw, 44px)",
-  lineHeight: "1.06",
-  margin: "0 0 12px",
-  fontWeight: 950,
-  letterSpacing: "-0.04em",
-};
-
-const intro = {
-  color: "#4b5563",
-  fontSize: "15px",
-  lineHeight: "1.55",
-  margin: "0 0 14px",
-};
-
-const quickRow = {
-  display: "flex",
-  flexWrap: "wrap" as const,
-  gap: "8px",
+const heroCard = {
+  background: "#ffffff",
+  padding: "22px",
+  borderRadius: "12px",
 };
 
 const missionCard = {
   background: "#ffffff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "18px",
-  padding: "24px",
-  boxShadow: "0 14px 32px rgba(91,33,182,0.1)",
+  padding: "22px",
+  borderRadius: "12px",
 };
 
-const missionLabel = {
-  color: "#6d28d9",
+const pill = {
+  display: "inline-block",
+  background: "#ede9fe",
+  color: "#5b21b6",
   fontSize: "12px",
-  fontWeight: 950,
-  margin: "0 0 8px",
-  textTransform: "uppercase" as const,
-  letterSpacing: "0.04em",
+  fontWeight: 800,
+  padding: "6px 10px",
+  borderRadius: "999px",
+  marginBottom: "10px",
 };
+
+const title = {
+  fontSize: "34px",
+  fontWeight: 900,
+  marginBottom: "10px",
+  color: "#111827",
+  lineHeight: 1.2,
+};
+
+const subtitle = {
+  fontSize: "14px",
+  color: "#4b5563",
+  marginBottom: "10px",
+};
+
+const seoRow = {
+  fontSize: "12px",
+  color: "#6b7280",
+};
+
+/* MISSION */
 
 const missionTitle = {
-  color: "#111827",
-  fontSize: "24px",
-  lineHeight: "1.18",
-  fontWeight: 950,
-  margin: "0 0 10px",
+  fontSize: "20px",
+  fontWeight: 900,
+  marginBottom: "10px",
 };
 
 const missionText = {
+  fontSize: "14px",
   color: "#4b5563",
-  fontSize: "15px",
-  lineHeight: "1.6",
-  margin: 0,
+  marginBottom: "8px",
 };
+
+/* VALUE CARDS */
 
 const valueGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
-  gap: "12px",
-  padding: "0 10px 14px",
+  gridTemplateColumns: "1fr 1fr 1fr",
+  gap: "14px",
+  marginBottom: "18px",
 };
 
 const valueCard = {
   background: "#ffffff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "16px",
   padding: "16px",
-  boxShadow: "0 10px 25px rgba(91,33,182,0.08)",
-  fontSize: "14px",
-  lineHeight: "1.55",
+  borderRadius: "10px",
 };
 
-const contentSection = {
+const valueTitle = {
+  fontSize: "14px",
+  fontWeight: 900,
+  marginBottom: "6px",
+};
+
+const valueText = {
+  fontSize: "13px",
+  color: "#4b5563",
+};
+
+/* BOTTOM SECTION */
+
+const bottomGrid = {
   display: "grid",
   gridTemplateColumns: "1fr 1fr",
-  gap: "12px",
-  padding: "0 10px 14px",
+  gap: "16px",
 };
 
-const contentBlock = {
-  background: "#faf9ff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "16px",
-  padding: "18px",
-};
-
-const sectionTitle = {
-  color: "#111827",
-  fontSize: "21px",
-  fontWeight: 950,
-  margin: "0 0 8px",
-};
-
-const sectionText = {
-  color: "#4b5563",
-  fontSize: "14px",
-  lineHeight: "1.6",
-  margin: 0,
-};
-
-const ctaBand = {
-  margin: "0 10px",
-  padding: "16px 18px",
-  borderRadius: "14px",
-  background: "#5b21b6",
-  color: "#ffffff",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  gap: "18px",
-};
-
-const ctaEyebrow = {
-  margin: "0 0 4px",
-  color: "#facc15",
-  fontSize: "12px",
-  fontWeight: 950,
-  textTransform: "uppercase" as const,
-  letterSpacing: "0.04em",
-};
-
-const ctaTitle = {
-  margin: "0 0 4px",
-  color: "#ffffff",
-  fontSize: "21px",
-  fontWeight: 950,
-};
-
-const ctaText = {
-  margin: 0,
-  color: "rgba(255,255,255,0.86)",
-  fontSize: "14px",
-  lineHeight: "1.5",
-};
-
-const ctaButton = {
+const infoCard = {
   background: "#ffffff",
-  color: "#5b21b6",
-  padding: "10px 16px",
-  borderRadius: "8px",
-  fontWeight: 900,
-  textDecoration: "none",
-  display: "flex",
-  flexDirection: "column" as const,
-  alignItems: "center",
-  justifyContent: "center",
-  lineHeight: 1.15,
-  minWidth: "160px",
-  boxShadow: "0 10px 22px rgba(30,27,75,0.18)",
+  padding: "18px",
+  borderRadius: "10px",
 };
 
-const ctaMain = {
-  fontSize: "13px",
+const infoTitle = {
+  fontSize: "18px",
   fontWeight: 900,
+  marginBottom: "8px",
 };
 
-const ctaSub = {
-  fontSize: "10px",
-  fontWeight: 800,
-  opacity: 0.9,
+const infoText = {
+  fontSize: "14px",
+  color: "#4b5563",
+  marginBottom: "6px",
 };
