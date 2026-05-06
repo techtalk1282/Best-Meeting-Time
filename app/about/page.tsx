@@ -1,13 +1,12 @@
 /**
  * File: app/about/page.tsx
- * Version: v7.0 (BLOG-MATCH ABOUT PAGE RESET)
+ * Version: v7.1 (100% VIEWPORT FIT FIX)
  * Date: 2026-05-06
  *
  * PURPOSE:
- * - Match the successful Blog page white-shell layout
- * - Remove oversized split cards and wasted white space
- * - Fit cleanly at 100% desktop zoom
- * - Keep About content relevant to time zones, remote teams, and global scheduling
+ * - Keep Blog-page matching structure
+ * - Reduce vertical height so About page lands cleanly at 100% desktop zoom
+ * - Preserve premium content, image, CTA, and SEO-focused copy
  *
  * PROTECTED:
  * - No Stripe changes
@@ -17,7 +16,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert to v6.0 if this version does not test cleanly
+ * - Revert to v7.0 if this version does not test cleanly
  */
 
 export default function AboutPage() {
@@ -81,8 +80,7 @@ export default function AboutPage() {
           <h2 style={cardTitle}>Make time zone planning easier.</h2>
           <p style={cardText}>
             Scheduling across locations should not depend on guesswork,
-            repeated conversions, or long message threads. The planner gives
-            users a clearer way to review local times side by side.
+            repeated conversions, or long message threads.
           </p>
         </article>
 
@@ -90,9 +88,8 @@ export default function AboutPage() {
           <p style={cardLabel}>Why It Matters</p>
           <h2 style={cardTitle}>Better meetings start with better timing.</h2>
           <p style={cardText}>
-            A good meeting time helps reduce missed calls, late-night meetings,
-            daylight-saving mistakes, and confusion between teams in different
-            cities or countries.
+            Good timing helps reduce missed calls, late-night meetings,
+            daylight-saving mistakes, and team confusion.
           </p>
         </article>
 
@@ -100,9 +97,8 @@ export default function AboutPage() {
           <p style={cardLabel}>Who It Helps</p>
           <h2 style={cardTitle}>Remote teams, clients, and consultants.</h2>
           <p style={cardText}>
-            Best Meeting Time is useful for distributed teams, freelancers,
-            agencies, sales calls, support teams, interviews, and anyone
-            scheduling across time zones.
+            Useful for distributed teams, freelancers, agencies, sales calls,
+            interviews, and global client scheduling.
           </p>
         </article>
       </section>
@@ -130,8 +126,8 @@ export default function AboutPage() {
 
 const pageShell = {
   maxWidth: "1120px",
-  margin: "24px auto",
-  padding: "18px",
+  margin: "14px auto",
+  padding: "14px",
   background: "#ffffff",
   color: "#111827",
   border: "1px solid rgba(237,233,254,0.95)",
@@ -139,13 +135,13 @@ const pageShell = {
 };
 
 const header = {
-  minHeight: "70px",
+  minHeight: "58px",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
   gap: "16px",
   borderBottom: "1px solid #ede9fe",
-  marginBottom: "42px",
+  marginBottom: "26px",
 };
 
 const brandLink = {
@@ -189,7 +185,7 @@ const navLink = {
 const navButton = {
   background: "#5b21b6",
   color: "#ffffff",
-  padding: "10px 18px",
+  padding: "9px 17px",
   borderRadius: "9px",
   fontWeight: 950,
   textDecoration: "none",
@@ -215,14 +211,14 @@ const navButtonSub = {
 
 const hero = {
   maxWidth: "820px",
-  margin: "0 auto 28px",
+  margin: "0 auto 18px",
   textAlign: "center" as const,
 };
 
 const eyebrow = {
   display: "inline-block",
-  margin: "0 0 16px",
-  padding: "8px 16px",
+  margin: "0 0 12px",
+  padding: "7px 15px",
   borderRadius: "999px",
   background: "#f3efff",
   color: "#5b21b6",
@@ -232,9 +228,9 @@ const eyebrow = {
 
 const headline = {
   color: "#111827",
-  fontSize: "clamp(38px, 4.4vw, 54px)",
-  lineHeight: "1.05",
-  margin: "0 0 14px",
+  fontSize: "clamp(34px, 4vw, 48px)",
+  lineHeight: "1.04",
+  margin: "0 0 10px",
   fontWeight: 950,
   letterSpacing: "-0.045em",
 };
@@ -243,17 +239,17 @@ const subheadline = {
   maxWidth: "780px",
   margin: "0 auto",
   color: "#4b5563",
-  fontSize: "17px",
-  lineHeight: "1.55",
+  fontSize: "16px",
+  lineHeight: "1.45",
 };
 
 const imagePanel = {
   display: "grid",
   gridTemplateColumns: "1fr 1.15fr",
-  gap: "18px",
+  gap: "16px",
   alignItems: "center",
-  marginBottom: "24px",
-  padding: "16px",
+  marginBottom: "14px",
+  padding: "12px",
   border: "1px solid #ddd6fe",
   borderRadius: "18px",
   background: "#faf9ff",
@@ -261,7 +257,7 @@ const imagePanel = {
 
 const image = {
   width: "100%",
-  height: "118px",
+  height: "92px",
   objectFit: "cover" as const,
   borderRadius: "14px",
   display: "block",
@@ -269,52 +265,52 @@ const image = {
 
 const imageText = {
   display: "grid",
-  gap: "6px",
+  gap: "5px",
   color: "#4b5563",
-  fontSize: "15px",
-  lineHeight: "1.48",
+  fontSize: "14px",
+  lineHeight: "1.42",
 };
 
 const cardGrid = {
   display: "grid",
   gridTemplateColumns: "repeat(3, 1fr)",
-  gap: "16px",
-  marginBottom: "20px",
+  gap: "14px",
+  marginBottom: "14px",
 };
 
 const card = {
   background: "#faf9ff",
   border: "1px solid #ddd6fe",
   borderRadius: "18px",
-  padding: "22px",
+  padding: "18px",
 };
 
 const cardLabel = {
   color: "#6d28d9",
-  fontSize: "13px",
+  fontSize: "12px",
   fontWeight: 950,
-  margin: "0 0 12px",
+  margin: "0 0 9px",
   textTransform: "uppercase" as const,
   letterSpacing: "0.05em",
 };
 
 const cardTitle = {
   color: "#111827",
-  fontSize: "23px",
-  lineHeight: "1.15",
+  fontSize: "21px",
+  lineHeight: "1.14",
   fontWeight: 950,
-  margin: "0 0 10px",
+  margin: "0 0 8px",
 };
 
 const cardText = {
   color: "#4b5563",
-  fontSize: "15px",
-  lineHeight: "1.5",
+  fontSize: "14px",
+  lineHeight: "1.42",
   margin: 0,
 };
 
 const ctaBand = {
-  padding: "18px 22px",
+  padding: "15px 20px",
   borderRadius: "16px",
   background: "#5b21b6",
   color: "#ffffff",
@@ -325,7 +321,7 @@ const ctaBand = {
 };
 
 const ctaEyebrow = {
-  margin: "0 0 4px",
+  margin: "0 0 3px",
   color: "#facc15",
   fontSize: "12px",
   fontWeight: 950,
@@ -334,9 +330,9 @@ const ctaEyebrow = {
 };
 
 const ctaTitle = {
-  margin: "0 0 4px",
+  margin: "0 0 3px",
   color: "#ffffff",
-  fontSize: "24px",
+  fontSize: "22px",
   fontWeight: 950,
   letterSpacing: "-0.02em",
 };
@@ -344,14 +340,14 @@ const ctaTitle = {
 const ctaText = {
   margin: 0,
   color: "rgba(255,255,255,0.88)",
-  fontSize: "14px",
-  lineHeight: "1.45",
+  fontSize: "13.5px",
+  lineHeight: "1.35",
 };
 
 const ctaButton = {
   background: "#ffffff",
   color: "#5b21b6",
-  padding: "11px 18px",
+  padding: "10px 17px",
   borderRadius: "9px",
   fontWeight: 950,
   textDecoration: "none",
