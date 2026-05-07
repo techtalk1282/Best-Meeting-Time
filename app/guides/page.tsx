@@ -1,12 +1,14 @@
 /**
  * File: app/guides/page.tsx
- * Version: v3.3 (MOCKUP-CLOSER VISUAL GUIDE HUB)
+ * Version: v3.4 (VISUAL POLISH IMAGE QUALITY PASS)
  * Date: 2026-05-06
  *
  * PURPOSE:
- * - Replicate the approved colorful Guides mockup more closely
- * - Fix invisible/washed-out guide card headings caused by global heading styles
- * - Improve hero image, card image styling, guide card spacing, and CTA polish
+ * - Improve hero globe realism and glow
+ * - Make hero globe appear larger and closer to approved mockup
+ * - Replace weak/missing Time Zone Basics image
+ * - Replace CTA placeholder with realistic planner/laptop image
+ * - Tighten guide-card spacing without restructuring layout
  *
  * PROTECTED:
  * - No Stripe changes
@@ -16,7 +18,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert to app/guides/page.tsx v3.2 if this layout does not test cleanly
+ * - Revert to app/guides/page.tsx v3.3 if this visual pass does not test cleanly
  */
 
 export default function GuidesPage() {
@@ -75,7 +77,7 @@ export default function GuidesPage() {
 
           <div className="hero-visual">
             <img
-              src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?q=80&w=1600&auto=format&fit=crop"
+              src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=1800&auto=format&fit=crop"
               alt="Glowing earth showing global connection across time zones"
             />
 
@@ -113,7 +115,7 @@ export default function GuidesPage() {
         <section className="guide-grid">
           <a href="/how-to-schedule-meetings-across-time-zones" className="guide-card guide-blue">
             <img
-              src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?q=80&w=1200&auto=format&fit=crop"
+              src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?q=80&w=1400&auto=format&fit=crop"
               alt="Blue world map for learning time zone basics"
             />
             <div className="guide-body">
@@ -130,7 +132,7 @@ export default function GuidesPage() {
 
           <a href="/best-meeting-times-remote-teams" className="guide-card guide-gold">
             <img
-              src="https://images.unsplash.com/photo-1492571350019-22de08371fd3?q=80&w=1200&auto=format&fit=crop"
+              src="https://images.unsplash.com/photo-1492571350019-22de08371fd3?q=80&w=1400&auto=format&fit=crop"
               alt="Japan and cultural timing guide"
             />
             <div className="guide-body">
@@ -147,7 +149,7 @@ export default function GuidesPage() {
 
           <a href="/time-zone-meeting-planner-guide" className="guide-card guide-green">
             <img
-              src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop"
+              src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1400&auto=format&fit=crop"
               alt="Entertainment timing for gaming and live events"
             />
             <div className="guide-body">
@@ -178,11 +180,10 @@ export default function GuidesPage() {
 
         <section className="cta">
           <div className="planner-card">
-            <div className="planner-screen">
-              <span />
-              <span />
-              <span />
-            </div>
+            <img
+              src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=900&auto=format&fit=crop"
+              alt="Laptop showing meeting planning workflow"
+            />
           </div>
 
           <div>
@@ -354,28 +355,30 @@ export default function GuidesPage() {
 
         .hero-visual {
           position: relative;
-          min-height: clamp(360px, 38vw, 430px);
+          min-height: clamp(390px, 41vw, 465px);
           border-radius: 18px;
           overflow: hidden;
-          box-shadow: 0 24px 55px rgba(30,27,75,0.22);
+          box-shadow: 0 28px 62px rgba(30,27,75,0.26);
           background: #0f172a;
         }
 
         .hero-visual img {
-          width: 100%;
-          height: 100%;
+          width: 118%;
+          height: 118%;
           position: absolute;
-          inset: 0;
+          inset: -8% -8% auto -8%;
           object-fit: cover;
-          filter: saturate(1.35) contrast(1.08);
+          object-position: center center;
+          filter: saturate(1.42) contrast(1.1) brightness(1.08);
         }
 
         .hero-glow {
           position: absolute;
           inset: 0;
           background:
-            radial-gradient(circle at 20% 20%, rgba(250,204,21,0.55), transparent 28%),
-            linear-gradient(90deg, rgba(15,23,42,0.05), rgba(15,23,42,0.25));
+            radial-gradient(circle at 14% 18%, rgba(250,204,21,0.72), transparent 31%),
+            radial-gradient(circle at 72% 28%, rgba(59,130,246,0.34), transparent 34%),
+            linear-gradient(90deg, rgba(251,191,36,0.16), rgba(15,23,42,0.12) 45%, rgba(15,23,42,0.25));
           z-index: 1;
         }
 
@@ -388,20 +391,20 @@ export default function GuidesPage() {
           z-index: 2;
         }
 
-        .pin-one { left: 28%; top: 33%; background: #8b5cf6; }
-        .pin-two { left: 58%; top: 25%; background: #facc15; }
-        .pin-three { right: 22%; top: 42%; background: #fb7185; }
-        .pin-four { right: 16%; bottom: 32%; background: #22c55e; }
+        .pin-one { left: 25%; top: 34%; background: #8b5cf6; }
+        .pin-two { left: 63%; top: 23%; background: #facc15; }
+        .pin-three { right: 20%; top: 43%; background: #fb7185; }
+        .pin-four { right: 14%; bottom: 32%; background: #22c55e; }
 
         .line {
           position: absolute;
-          border-top: 2px dashed rgba(250,204,21,0.88);
+          border-top: 2px dashed rgba(250,204,21,0.9);
           z-index: 2;
         }
 
-        .line-one { left: 30%; top: 43%; width: 48%; transform: rotate(-13deg); }
-        .line-two { left: 32%; top: 49%; width: 53%; transform: rotate(19deg); }
-        .line-three { left: 48%; top: 35%; width: 31%; transform: rotate(31deg); }
+        .line-one { left: 28%; top: 43%; width: 52%; transform: rotate(-13deg); }
+        .line-two { left: 29%; top: 51%; width: 58%; transform: rotate(20deg); }
+        .line-three { left: 47%; top: 34%; width: 35%; transform: rotate(32deg); }
 
         .time-panel {
           position: absolute;
@@ -414,6 +417,7 @@ export default function GuidesPage() {
           grid-template-columns: repeat(4, 1fr);
           overflow: hidden;
           z-index: 3;
+          box-shadow: 0 18px 40px rgba(15,23,42,0.2);
         }
 
         .time-panel div {
@@ -490,7 +494,20 @@ export default function GuidesPage() {
           height: 198px;
           object-fit: cover;
           display: block;
-          filter: saturate(1.14) contrast(1.03);
+          filter: saturate(1.16) contrast(1.04) brightness(1.04);
+        }
+
+        .guide-blue img {
+          object-position: center center;
+          filter: saturate(1.28) contrast(1.08) brightness(1.08);
+        }
+
+        .guide-gold img {
+          object-position: center center;
+        }
+
+        .guide-green img {
+          object-position: center center;
         }
 
         .guide-blue { background: linear-gradient(180deg, #ffffff 0%, #f7f5ff 100%); }
@@ -498,7 +515,7 @@ export default function GuidesPage() {
         .guide-green { background: linear-gradient(180deg, #ffffff 0%, #ecfdf5 100%); }
 
         .guide-body {
-          padding: 22px;
+          padding: 20px 22px 21px;
         }
 
         .guide-number {
@@ -510,7 +527,8 @@ export default function GuidesPage() {
           align-items: center;
           justify-content: center;
           font-weight: 950;
-          margin-bottom: 14px;
+          margin-bottom: 12px;
+          box-shadow: 0 8px 18px rgba(91,33,182,0.22);
         }
 
         .purple { background: #7c3aed; }
@@ -523,15 +541,15 @@ export default function GuidesPage() {
           line-height: 1.12;
           letter-spacing: -0.02em;
           font-weight: 950;
-          margin: 0 0 14px;
+          margin: 0 0 12px;
         }
 
         .guide-card ul {
           color: #374151;
           font-size: 15px;
-          line-height: 1.62;
+          line-height: 1.56;
           padding-left: 18px;
-          margin: 0 0 18px;
+          margin: 0 0 16px;
         }
 
         .guide-card strong:last-child {
@@ -592,32 +610,22 @@ export default function GuidesPage() {
           gap: 24px;
           align-items: center;
           color: #ffffff;
+          box-shadow: 0 20px 48px rgba(49,46,129,0.22);
         }
 
         .planner-card {
-          min-height: 120px;
+          height: 120px;
           border-radius: 15px;
-          background: linear-gradient(135deg, #1e1b4b, #7c3aed);
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          overflow: hidden;
+          background: #1e1b4b;
+          box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
         }
 
-        .planner-screen {
-          width: 150px;
-          height: 82px;
-          border-radius: 10px;
-          background: #ede9fe;
-          padding: 12px;
-          display: grid;
-          gap: 8px;
-        }
-
-        .planner-screen span {
-          display: block;
-          height: 10px;
-          border-radius: 999px;
-          background: #8b5cf6;
+        .planner-card img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: saturate(1.16) contrast(1.06) brightness(0.96);
         }
 
         .cta h2 {
@@ -647,6 +655,7 @@ export default function GuidesPage() {
           align-items: center;
           line-height: 1.15;
           min-width: 220px;
+          box-shadow: 0 12px 24px rgba(250,204,21,0.24);
         }
 
         .cta small {
@@ -706,7 +715,7 @@ export default function GuidesPage() {
           }
 
           .hero-visual {
-            min-height: 390px;
+            min-height: 410px;
           }
 
           .time-panel {
