@@ -1,13 +1,13 @@
 /**
  * File: app/guides/page.tsx
- * Version: v3.0 (GLOBAL TIME EDUCATION HUB)
+ * Version: v3.1 (POLISHED GLOBAL TIME LEARNING HUB)
  * Date: 2026-05-06
  *
  * PURPOSE:
- * - Transform Guides into a visual educational resource center
- * - Focus on global time education, scheduling psychology, world coordination, and international timing
- * - Improve SEO + AdSense authority with evergreen educational content
- * - Integrate Best Meeting Time naturally instead of making the page feel like marketing
+ * - Replace weak/broken image layout with polished built-in visual guide panels
+ * - Make Guides feel like an educational time-zone learning hub
+ * - Improve visual impact, SEO value, and AdSense-friendly informational depth
+ * - Keep branding aligned with homepage/blog/about/features
  *
  * PROTECTED:
  * - No Stripe changes
@@ -18,7 +18,7 @@
  * - No payment or premium logic changes
  *
  * ROLLBACK:
- * - Revert to app/guides/page.tsx v2.2 if needed
+ * - Revert to app/guides/page.tsx v3.0 if needed
  */
 
 export default function GuidesPage() {
@@ -47,260 +47,207 @@ export default function GuidesPage() {
       </header>
 
       <section style={heroSection}>
-        <div style={heroLeft}>
-          <p style={eyebrow}>Global Time & Scheduling Education</p>
+        <div style={heroCopy}>
+          <p style={eyebrow}>Global Time Learning Center</p>
 
           <h1 style={heroTitle}>
-            Understanding Time Zones, Global Meetings, and Worldwide Scheduling
+            Learn Time Zones, World Schedules, and Smarter Global Planning
           </h1>
 
           <p style={heroText}>
-            Educational guides for remote teams, international collaboration,
-            entertainment events, travel planning, global communication, and
-            better meeting coordination across time zones.
+            Explore how time zones affect meetings, travel, sports, streaming,
+            gaming, remote work, and international communication — then use the
+            planner when you are ready to compare real cities.
           </p>
-
-          <div style={heroFacts}>
-            <div style={factBox}>
-              <strong>24</strong>
-              <span>Primary global time zones</span>
-            </div>
-
-            <div style={factBox}>
-              <strong>38+</strong>
-              <span>Actual local time offsets used worldwide</span>
-            </div>
-
-            <div style={factBox}>
-              <strong>Billions</strong>
-              <span>Of people coordinating across regions daily</span>
-            </div>
-          </div>
         </div>
 
-        <div style={heroMapPanel}>
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/8/88/World_Time_Zones_Map.png"
-            alt="World time zone map"
-            style={heroMap}
-          />
-
-          <div style={mapOverlay}>
-            <strong>Global coordination starts with understanding time.</strong>
+        <div style={heroVisual}>
+          <div style={worldStrip}>
+            <div style={zoneBlockA}>Pacific</div>
+            <div style={zoneBlockB}>Central</div>
+            <div style={zoneBlockC}>London</div>
+            <div style={zoneBlockD}>Dubai</div>
+            <div style={zoneBlockE}>Tokyo</div>
           </div>
-        </div>
-      </section>
 
-      <section style={learningGrid}>
-        <article style={learningCard}>
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/2/24/Timezones2008_UTC-6_gray.png"
-            alt="United States time zones"
-            style={learningImage}
-          />
-
-          <div style={learningBody}>
-            <span style={learningTag}>Time Zone Basics</span>
-
-            <h2 style={learningTitle}>
-              Why Time Zones Exist and Why They Still Confuse People
-            </h2>
-
-            <p style={learningText}>
-              Learn how global time zones were created, why countries use
-              different offsets, and why daylight-saving changes still create
-              scheduling problems today.
-            </p>
-
-            <a href="/blog" style={readMore}>
-              Explore time zone articles →
-            </a>
-          </div>
-        </article>
-
-        <article style={learningCard}>
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/7/7f/World_Time_Zones_Map.png"
-            alt="Global world time zone illustration"
-            style={learningImage}
-          />
-
-          <div style={learningBody}>
-            <span style={learningTag}>Global Scheduling</span>
-
-            <h2 style={learningTitle}>
-              Best Overlap Windows Between Major World Cities
-            </h2>
-
-            <p style={learningText}>
-              Discover practical overlap windows between cities like New York,
-              London, Tokyo, Sydney, and Los Angeles for remote work and
-              international collaboration.
-            </p>
-
-            <a href="/how-it-works#schedule-tool" style={readMore}>
-              Compare cities with the planner →
-            </a>
-          </div>
-        </article>
-
-        <article style={learningCard}>
-          <img
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
-            alt="International remote team collaboration"
-            style={learningImage}
-          />
-
-          <div style={learningBody}>
-            <span style={learningTag}>Remote Teams</span>
-
-            <h2 style={learningTitle}>
-              Why Poor Meeting Times Hurt Productivity and Team Morale
-            </h2>
-
-            <p style={learningText}>
-              Explore how scheduling fatigue affects global teams, why fairness
-              matters in distributed work, and how smarter overlap planning
-              reduces burnout.
-            </p>
-
-            <a href="/features" style={readMore}>
-              Learn about planning tools →
-            </a>
-          </div>
-        </article>
-      </section>
-
-      <section style={infoSection}>
-        <div style={infoLeft}>
-          <p style={sectionEyebrow}>Interesting Global Time Facts</p>
-
-          <h2 style={sectionTitle}>
-            Time zones affect much more than business meetings.
-          </h2>
-
-          <p style={sectionText}>
-            Global timing impacts entertainment, livestreams, gaming events,
-            sports broadcasts, travel coordination, online communities, and
-            social communication around the world.
-          </p>
-
-          <div style={factList}>
-            <div style={factItem}>
-              <strong>Sports & Streaming</strong>
-              <span>
-                Global fans often wake up early or stay up late to watch live
-                international events.
-              </span>
+          <div style={clockRow}>
+            <div style={clockCard}>
+              <strong>9 AM</strong>
+              <span>New York</span>
             </div>
-
-            <div style={factItem}>
-              <strong>Travel Coordination</strong>
-              <span>
-                Travelers regularly manage flight schedules, hotel check-ins,
-                and meeting times across multiple regions.
-              </span>
+            <div style={clockCard}>
+              <strong>2 PM</strong>
+              <span>London</span>
             </div>
-
-            <div style={factItem}>
-              <strong>Remote Gaming</strong>
-              <span>
-                International gaming communities coordinate tournaments and
-                events across multiple continents daily.
-              </span>
-            </div>
-
-            <div style={factItem}>
-              <strong>Global Work Hours</strong>
-              <span>
-                Different countries start and end their workdays at very
-                different local times and cultural expectations.
-              </span>
+            <div style={clockCard}>
+              <strong>11 PM</strong>
+              <span>Tokyo</span>
             </div>
           </div>
-        </div>
 
-        <div style={infoRight}>
-          <img
-            src="https://images.unsplash.com/photo-1521790797524-b2497295b8a0?auto=format&fit=crop&w=1200&q=80"
-            alt="People from different countries collaborating"
-            style={sideImage}
-          />
-
-          <div style={quoteCard}>
-            <p style={quoteText}>
-              “Global coordination is no longer optional — modern work, social
-              events, and entertainment all depend on understanding time zones.”
-            </p>
+          <div style={visualCaption}>
+            One meeting can feel normal in one city and exhausting in another.
           </div>
         </div>
       </section>
 
-      <section style={educationSection}>
-        <div style={educationCard}>
-          <p style={sectionEyebrow}>Scheduling Education</p>
+      <section style={featureGrid}>
+        <article style={featureCard}>
+          <div style={visualCardBlue}>
+            <span style={visualLabel}>Time Zone Basics</span>
+            <div style={miniMapGrid}>
+              <span>UTC−8</span>
+              <span>UTC−5</span>
+              <span>UTC+0</span>
+              <span>UTC+4</span>
+              <span>UTC+9</span>
+            </div>
+          </div>
 
-          <h2 style={sectionTitle}>
-            Why global scheduling is harder than most people realize
-          </h2>
-
-          <p style={educationText}>
-            Scheduling across time zones is not just converting one clock into
-            another. Good scheduling depends on overlap windows, local working
-            hours, daylight-saving rules, meeting duration, regional customs,
-            and whether the selected time is practical for everyone involved.
+          <h2 style={cardTitle}>Why Time Zones Exist</h2>
+          <p style={cardText}>
+            Learn why the world does not run on one clock, how offsets work,
+            and why countries sometimes use unusual time-zone rules.
           </p>
+        </article>
 
-          <p style={educationText}>
-            Many remote teams unknowingly create unfair meeting patterns where
-            the same region is repeatedly forced into late-night or early-morning
-            calls. Over time, this can create frustration, fatigue, and lower
-            participation.
-          </p>
+        <article style={featureCard}>
+          <div style={visualCardGold}>
+            <span style={visualLabelDark}>Sports, Streaming & Events</span>
+            <div style={eventRows}>
+              <span>Live Match</span>
+              <span>Global Stream</span>
+              <span>Online Watch Party</span>
+            </div>
+          </div>
 
-          <p style={educationText}>
-            Educational scheduling guides help people understand how global
-            timing works before they send invites. The Best Meeting Time planner
-            is designed to help turn that knowledge into practical scheduling
-            decisions using real overlap windows and recommended meeting times.
+          <h2 style={cardTitle}>Timing Beyond Meetings</h2>
+          <p style={cardText}>
+            Time zones affect fans, creators, gamers, travelers, families, and
+            online communities trying to connect at the same moment.
           </p>
+        </article>
+
+        <article style={featureCard}>
+          <div style={visualCardPurple}>
+            <span style={visualLabelLight}>Remote Work</span>
+            <div style={overlapBox}>
+              <strong>Best overlap window</strong>
+              <span>Fair for both sides</span>
+            </div>
+          </div>
+
+          <h2 style={cardTitle}>Better Global Work Hours</h2>
+          <p style={cardText}>
+            Understand how to avoid repeatedly forcing one location into early
+            morning or late-night meetings.
+          </p>
+        </article>
+      </section>
+
+      <section style={learningSection}>
+        <div style={learningMain}>
+          <p style={sectionEyebrow}>What You Can Learn Here</p>
+          <h2 style={sectionTitle}>A practical guide to how global time works.</h2>
+
+          <div style={lessonGrid}>
+            <div style={lessonCard}>
+              <strong>Time zone basics</strong>
+              <span>
+                Learn UTC, GMT, offsets, regional clocks, and why some countries
+                have multiple time zones.
+              </span>
+            </div>
+
+            <div style={lessonCard}>
+              <strong>Daylight-saving confusion</strong>
+              <span>
+                Understand why clock changes do not happen everywhere at the
+                same time and why that causes scheduling errors.
+              </span>
+            </div>
+
+            <div style={lessonCard}>
+              <strong>Entertainment timing</strong>
+              <span>
+                Plan livestreams, sports viewing, gaming events, and global
+                online gatherings across multiple regions.
+              </span>
+            </div>
+
+            <div style={lessonCard}>
+              <strong>Meeting fairness</strong>
+              <span>
+                Learn how to choose better overlap windows so one city does not
+                always carry the scheduling burden.
+              </span>
+            </div>
+          </div>
         </div>
 
-        <div style={toolPanel}>
-          <p style={sectionEyebrow}>Interactive Planning</p>
-
-          <h2 style={toolTitle}>
-            Use the planner after learning the basics.
-          </h2>
-
-          <p style={toolText}>
-            Compare cities, review overlap windows, and find better meeting
-            times using the interactive scheduling tool.
+        <div style={spotlightCard}>
+          <p style={sectionEyebrow}>Guide Spotlight</p>
+          <h2 style={spotlightTitle}>When it is convenient for one city, it may be impossible for another.</h2>
+          <p style={spotlightText}>
+            That is the hidden challenge behind global scheduling. A good guide
+            does not just show the time — it explains what that time means for
+            real people in different places.
           </p>
+          <a href="/how-it-works#schedule-tool" style={goldButton}>
+            Try the Planner
+          </a>
+        </div>
+      </section>
 
-          <a href="/how-it-works#schedule-tool" style={toolButton}>
-            Open the Meeting Planner
+      <section style={deepGuideSection}>
+        <div style={deepGuideHeader}>
+          <p style={sectionEyebrow}>Popular Learning Paths</p>
+          <h2 style={sectionTitle}>Choose the guide path that matches your goal.</h2>
+        </div>
+
+        <div style={pathGrid}>
+          <a href="/how-to-schedule-meetings-across-time-zones" style={pathCard}>
+            <span style={pathNumber}>01</span>
+            <strong>Schedule across time zones</strong>
+            <p>
+              Learn the step-by-step process for comparing locations and choosing
+              a better meeting time.
+            </p>
+          </a>
+
+          <a href="/best-meeting-times-remote-teams" style={pathCard}>
+            <span style={pathNumber}>02</span>
+            <strong>Plan for remote teams</strong>
+            <p>
+              Understand overlap windows, fairness, workday boundaries, and
+              rotating inconvenient meeting times.
+            </p>
+          </a>
+
+          <a href="/time-zone-meeting-planner-guide" style={pathCard}>
+            <span style={pathNumber}>03</span>
+            <strong>Use the meeting planner</strong>
+            <p>
+              Compare cities, review recommended windows, and move into sharing
+              or calendar actions when needed.
+            </p>
           </a>
         </div>
       </section>
 
       <section style={bottomBand}>
         <div>
-          <p style={bottomEyebrow}>Explore More</p>
-
-          <h2 style={bottomTitle}>
-            Continue learning about global time coordination
-          </h2>
-
+          <p style={bottomEyebrow}>Start Learning</p>
+          <h2 style={bottomTitle}>Explore global time, then plan smarter.</h2>
           <p style={bottomText}>
-            Educational scheduling resources, world time guides, and interactive
-            planning tools designed for global collaboration.
+            Learn how time zones affect real life, then use Best Meeting Time to
+            compare cities and find better meeting windows.
           </p>
         </div>
 
-        <a href="/blog" style={bottomButton}>
-          <span style={bottomButtonMain}>Read More Guides</span>
-          <span style={bottomButtonSub}>Educational articles & resources</span>
+        <a href="/how-it-works#schedule-tool" style={bottomButton}>
+          <span style={bottomButtonMain}>Open the Planner</span>
+          <span style={bottomButtonSub}>Free to try — no sign-up</span>
         </a>
       </section>
     </main>
@@ -379,6 +326,7 @@ const navButton = {
   justifyContent: "center",
   lineHeight: 1.18,
   minWidth: "154px",
+  boxShadow: "0 10px 22px rgba(91,33,182,0.22)",
 };
 
 const navButtonMain = {
@@ -393,13 +341,14 @@ const navButtonSub = {
 
 const heroSection = {
   display: "grid",
-  gridTemplateColumns: "1fr 0.95fr",
-  gap: "22px",
-  padding: "12px 10px 22px",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "28px",
   alignItems: "center",
+  padding: "18px 10px 22px",
+  borderBottom: "1px solid #ede9fe",
 };
 
-const heroLeft = {};
+const heroCopy = {};
 
 const eyebrow = {
   display: "inline-block",
@@ -413,133 +362,218 @@ const eyebrow = {
 };
 
 const heroTitle = {
-  color: "#111827",
-  fontSize: "clamp(36px, 4.5vw, 54px)",
-  lineHeight: "1.02",
+  fontSize: "clamp(36px, 4vw, 50px)",
+  lineHeight: "1.04",
   fontWeight: 950,
-  letterSpacing: "-0.05em",
+  letterSpacing: "-0.045em",
   margin: "0 0 14px",
 };
 
 const heroText = {
   color: "#4b5563",
   fontSize: "16px",
-  lineHeight: "1.62",
-  margin: "0 0 18px",
+  lineHeight: "1.6",
+  margin: 0,
 };
 
-const heroFacts = {
+const heroVisual = {
+  background: "#faf9ff",
+  border: "1px solid #ddd6fe",
+  borderRadius: "22px",
+  padding: "18px",
+  boxShadow: "0 18px 40px rgba(91,33,182,0.12)",
+};
+
+const worldStrip = {
+  height: "140px",
+  display: "grid",
+  gridTemplateColumns: "0.9fr 1fr 1.1fr 1fr 0.9fr",
+  overflow: "hidden",
+  borderRadius: "18px",
+  border: "1px solid #ddd6fe",
+  marginBottom: "14px",
+};
+
+const zoneBlockA = {
+  background: "#38bdf8",
+  color: "#0f172a",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontWeight: 950,
+};
+
+const zoneBlockB = {
+  background: "#facc15",
+  color: "#0f172a",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontWeight: 950,
+};
+
+const zoneBlockC = {
+  background: "#8b5cf6",
+  color: "#ffffff",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontWeight: 950,
+};
+
+const zoneBlockD = {
+  background: "#fb7185",
+  color: "#ffffff",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontWeight: 950,
+};
+
+const zoneBlockE = {
+  background: "#22c55e",
+  color: "#0f172a",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontWeight: 950,
+};
+
+const clockRow = {
   display: "grid",
   gridTemplateColumns: "repeat(3, 1fr)",
   gap: "10px",
 };
 
-const factBox = {
-  background: "#faf9ff",
+const clockCard = {
+  background: "#ffffff",
   border: "1px solid #ddd6fe",
   borderRadius: "14px",
-  padding: "14px",
+  padding: "12px",
   display: "grid",
-  gap: "6px",
+  gap: "4px",
 };
 
-const heroMapPanel = {
-  position: "relative" as const,
-  overflow: "hidden",
-  borderRadius: "20px",
-  border: "1px solid #ddd6fe",
-  background: "#faf9ff",
-};
-
-const heroMap = {
-  width: "100%",
-  height: "100%",
-  objectFit: "cover" as const,
-  display: "block",
-};
-
-const mapOverlay = {
-  position: "absolute" as const,
-  left: "18px",
-  bottom: "18px",
-  background: "rgba(17,24,39,0.82)",
+const visualCaption = {
+  marginTop: "12px",
+  background: "#5b21b6",
   color: "#ffffff",
-  padding: "10px 14px",
-  borderRadius: "12px",
-  fontSize: "14px",
+  borderRadius: "14px",
+  padding: "12px",
+  fontWeight: 850,
+  lineHeight: 1.4,
 };
 
-const learningGrid = {
+const featureGrid = {
   display: "grid",
   gridTemplateColumns: "repeat(3, 1fr)",
   gap: "16px",
-  padding: "0 10px 18px",
+  padding: "20px 10px 18px",
 };
 
-const learningCard = {
+const featureCard = {
   background: "#ffffff",
   border: "1px solid #ddd6fe",
   borderRadius: "18px",
-  overflow: "hidden",
+  padding: "16px",
   boxShadow: "0 12px 28px rgba(91,33,182,0.08)",
 };
 
-const learningImage = {
-  width: "100%",
-  height: "180px",
-  objectFit: "cover" as const,
-  display: "block",
+const visualCardBlue = {
+  height: "150px",
+  borderRadius: "16px",
+  background: "linear-gradient(135deg, #dbeafe 0%, #ede9fe 100%)",
+  padding: "14px",
+  display: "grid",
+  alignContent: "space-between",
 };
 
-const learningBody = {
-  padding: "18px",
+const visualCardGold = {
+  height: "150px",
+  borderRadius: "16px",
+  background: "linear-gradient(135deg, #facc15 0%, #fed7aa 100%)",
+  padding: "14px",
+  display: "grid",
+  alignContent: "space-between",
 };
 
-const learningTag = {
-  color: "#6d28d9",
+const visualCardPurple = {
+  height: "150px",
+  borderRadius: "16px",
+  background: "linear-gradient(135deg, #5b21b6 0%, #312e81 100%)",
+  padding: "14px",
+  display: "grid",
+  alignContent: "space-between",
+};
+
+const visualLabel = {
+  color: "#4c1d95",
   fontSize: "12px",
   fontWeight: 950,
   textTransform: "uppercase" as const,
 };
 
-const learningTitle = {
-  fontSize: "28px",
-  lineHeight: "1.08",
+const visualLabelDark = {
+  color: "#111827",
+  fontSize: "12px",
   fontWeight: 950,
-  margin: "10px 0",
+  textTransform: "uppercase" as const,
 };
 
-const learningText = {
+const visualLabelLight = {
+  color: "#ffffff",
+  fontSize: "12px",
+  fontWeight: 950,
+  textTransform: "uppercase" as const,
+};
+
+const miniMapGrid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(5, 1fr)",
+  gap: "5px",
+};
+
+const eventRows = {
+  display: "grid",
+  gap: "6px",
+};
+
+const overlapBox = {
+  background: "rgba(255,255,255,0.14)",
+  color: "#ffffff",
+  border: "1px solid rgba(255,255,255,0.3)",
+  borderRadius: "14px",
+  padding: "12px",
+  display: "grid",
+  gap: "4px",
+};
+
+const cardTitle = {
+  fontSize: "24px",
+  lineHeight: "1.12",
+  margin: "14px 0 8px",
+  fontWeight: 950,
+};
+
+const cardText = {
   color: "#4b5563",
   fontSize: "15px",
-  lineHeight: "1.6",
-  marginBottom: "14px",
+  lineHeight: "1.55",
+  margin: 0,
 };
 
-const readMore = {
-  color: "#5b21b6",
-  fontWeight: 900,
-  textDecoration: "none",
-  fontSize: "14px",
-};
-
-const infoSection = {
+const learningSection = {
   display: "grid",
   gridTemplateColumns: "1.1fr 0.9fr",
   gap: "18px",
   padding: "0 10px 18px",
 };
 
-const infoLeft = {
+const learningMain = {
   background: "#faf9ff",
   border: "1px solid #ddd6fe",
   borderRadius: "18px",
   padding: "22px",
-};
-
-const infoRight = {
-  display: "grid",
-  gap: "14px",
 };
 
 const sectionEyebrow = {
@@ -547,102 +581,52 @@ const sectionEyebrow = {
   fontSize: "12px",
   fontWeight: 950,
   textTransform: "uppercase" as const,
-  marginBottom: "8px",
+  margin: "0 0 8px",
 };
 
 const sectionTitle = {
-  fontSize: "34px",
+  fontSize: "32px",
   lineHeight: "1.05",
   fontWeight: 950,
-  margin: "0 0 12px",
+  margin: "0 0 14px",
 };
 
-const sectionText = {
-  color: "#4b5563",
-  fontSize: "16px",
-  lineHeight: "1.65",
-};
-
-const factList = {
+const lessonGrid = {
   display: "grid",
+  gridTemplateColumns: "repeat(2, 1fr)",
   gap: "12px",
-  marginTop: "18px",
 };
 
-const factItem = {
+const lessonCard = {
   background: "#ffffff",
   border: "1px solid #ddd6fe",
   borderRadius: "14px",
   padding: "14px",
   display: "grid",
-  gap: "5px",
+  gap: "6px",
 };
 
-const sideImage = {
-  width: "100%",
-  height: "300px",
-  objectFit: "cover" as const,
-  borderRadius: "18px",
-  border: "1px solid #ddd6fe",
-};
-
-const quoteCard = {
+const spotlightCard = {
   background: "#5b21b6",
   color: "#ffffff",
   borderRadius: "18px",
-  padding: "20px",
-};
-
-const quoteText = {
-  fontSize: "18px",
-  lineHeight: "1.6",
-  fontWeight: 700,
-  margin: 0,
-};
-
-const educationSection = {
-  display: "grid",
-  gridTemplateColumns: "1.2fr 0.8fr",
-  gap: "18px",
-  padding: "0 10px 18px",
-};
-
-const educationCard = {
-  background: "#ffffff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "18px",
   padding: "24px",
 };
 
-const educationText = {
-  color: "#4b5563",
-  fontSize: "15px",
-  lineHeight: "1.68",
-  marginBottom: "14px",
-};
-
-const toolPanel = {
-  background: "#faf9ff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "18px",
-  padding: "24px",
-};
-
-const toolTitle = {
+const spotlightTitle = {
   fontSize: "30px",
   lineHeight: "1.05",
   fontWeight: 950,
   margin: "0 0 12px",
 };
 
-const toolText = {
-  color: "#4b5563",
-  fontSize: "15px",
+const spotlightText = {
+  color: "rgba(255,255,255,0.88)",
+  fontSize: "16px",
   lineHeight: "1.65",
-  marginBottom: "18px",
 };
 
-const toolButton = {
+const goldButton = {
   display: "inline-block",
   background: "#facc15",
   color: "#111827",
@@ -650,6 +634,37 @@ const toolButton = {
   borderRadius: "999px",
   fontWeight: 950,
   textDecoration: "none",
+};
+
+const deepGuideSection = {
+  padding: "0 10px 18px",
+};
+
+const deepGuideHeader = {
+  marginBottom: "12px",
+};
+
+const pathGrid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  gap: "16px",
+};
+
+const pathCard = {
+  background: "#ffffff",
+  border: "1px solid #ddd6fe",
+  borderRadius: "18px",
+  padding: "20px",
+  textDecoration: "none",
+  color: "#111827",
+  display: "grid",
+  gap: "10px",
+};
+
+const pathNumber = {
+  color: "#6d28d9",
+  fontSize: "13px",
+  fontWeight: 950,
 };
 
 const bottomBand = {
@@ -669,19 +684,21 @@ const bottomEyebrow = {
   fontSize: "12px",
   fontWeight: 950,
   textTransform: "uppercase" as const,
+  margin: "0 0 4px",
 };
 
 const bottomTitle = {
   fontSize: "28px",
   lineHeight: "1.08",
   fontWeight: 950,
-  margin: "6px 0",
+  margin: "0 0 6px",
 };
 
 const bottomText = {
   color: "rgba(255,255,255,0.88)",
   fontSize: "15px",
   lineHeight: "1.6",
+  margin: 0,
 };
 
 const bottomButton = {
@@ -694,7 +711,7 @@ const bottomButton = {
   flexDirection: "column" as const,
   alignItems: "center",
   justifyContent: "center",
-  minWidth: "190px",
+  minWidth: "170px",
 };
 
 const bottomButtonMain = {
