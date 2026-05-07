@@ -23,10 +23,10 @@ import SiteNav from "../ui/SiteNav";
 
 export default function ContactPage() {
   return (
-    <>
+    <main style={pageShell}>
       <SiteNav />
 
-      <main style={pageShell}>
+      <div style={contentShell}>
         <section style={hero}>
           <p style={eyebrow}>Contact Best Meeting Time</p>
 
@@ -101,9 +101,9 @@ export default function ContactPage() {
             <span style={ctaMain}>Schedule a Meeting</span>
             <span style={ctaSub}>Free to try — no sign-up</span>
           </a>
-        </section>
-      </main>
-    </>
+         </section>
+      </div>
+    </main>
   );
 }
 
@@ -111,14 +111,15 @@ export default function ContactPage() {
 
 const pageShell = {
   maxWidth: "1120px",
-  margin: "0 auto 14px",
-  padding: "18px",
+  margin: "18px auto 14px",
   background: "#ffffff",
   color: "#111827",
   border: "1px solid rgba(237,233,254,0.95)",
   boxShadow: "0 18px 50px rgba(30,27,75,0.16)",
 };
-
+const contentShell = {
+  padding: "18px",
+};
 const hero = {
   maxWidth: "820px",
   margin: "0 auto 24px",
