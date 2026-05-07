@@ -177,7 +177,7 @@ const introSpacer = {
 
 const toolSection = {
   maxWidth: "1120px",
-  margin: "-8px auto 0",
+  margin: "18px auto 0",
   padding: "0 20px 20px",
   scrollMarginTop: "30px",
   minHeight: "calc(100vh - 120px)",
