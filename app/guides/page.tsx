@@ -92,9 +92,7 @@ export default function GuidesPage() {
 
            
 
-<div className="hero-caption">
-  Different places. Different times. One connected world.
-</div>
+
           </div>
         </section>
 
