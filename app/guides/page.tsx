@@ -77,9 +77,9 @@ export default function GuidesPage() {
 
           <div className="hero-visual">
             <img
-              src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=1800&auto=format&fit=crop"
-              alt="Glowing earth showing global connection across time zones"
-            />
+  src="/images/guides/guides-hero-world.png"
+  alt="Glowing earth showing global connection across time zones"
+/>
 
             <div className="hero-glow" />
             <span className="pin pin-one" />
@@ -115,9 +115,9 @@ export default function GuidesPage() {
         <section className="guide-grid">
           <a href="/how-to-schedule-meetings-across-time-zones" className="guide-card guide-blue">
             <img
-              src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?q=80&w=1400&auto=format&fit=crop"
-              alt="Blue world map for learning time zone basics"
-            />
+  src="/images/guides/guides-timezone-basics.png"
+  alt="Blue world map for learning time zone basics"
+/>
             <div className="guide-body">
               <span className="guide-number purple">1</span>
               <h3>Time Zone Basics</h3>
@@ -132,9 +132,9 @@ export default function GuidesPage() {
 
           <a href="/best-meeting-times-remote-teams" className="guide-card guide-gold">
             <img
-              src="https://images.unsplash.com/photo-1492571350019-22de08371fd3?q=80&w=1400&auto=format&fit=crop"
-              alt="Japan and cultural timing guide"
-            />
+  src="/images/guides/guides-cultural-timing.png"
+  alt="Japan and cultural timing guide"
+/>
             <div className="guide-body">
               <span className="guide-number gold">2</span>
               <h3>Cultural Timing Guides</h3>
@@ -149,9 +149,9 @@ export default function GuidesPage() {
 
           <a href="/time-zone-meeting-planner-guide" className="guide-card guide-green">
             <img
-              src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1400&auto=format&fit=crop"
-              alt="Entertainment timing for gaming and live events"
-            />
+  src="/images/guides/guides-entertainment-social.png"
+  alt="Entertainment timing for gaming and live events"
+/>
             <div className="guide-body">
               <span className="guide-number green">3</span>
               <h3>Entertainment & Social Timing</h3>
