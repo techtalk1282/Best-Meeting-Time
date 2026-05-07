@@ -1,585 +1,674 @@
-// FILE: app/guides/page.tsx
-// VERSION: v3.0
-// PURPOSE: Premium educational Guides hub with visual SEO-driven layout
-// ROLLBACK: Restore previous guides/page.tsx if needed
+/**
+ * File: app/guides/page.tsx
+ * Version: v3.2 (RESPONSIVE VISUAL GUIDE HUB FIX)
+ * Date: 2026-05-06
+ *
+ * PURPOSE:
+ * - Fix page shrinking / microscopic rendering issue
+ * - Preserve approved colorful Guides mockup direction
+ * - Restore responsive desktop, tablet, and mobile behavior
+ * - Keep Guides as a visual SEO education hub
+ *
+ * PROTECTED:
+ * - No Stripe changes
+ * - No checkout changes
+ * - No webhook changes
+ * - No KV changes
+ * - No ToolPreviewSection changes
+ *
+ * ROLLBACK:
+ * - Revert to app/guides/page.tsx v3.0 if this layout does not test cleanly
+ */
 
 export default function GuidesPage() {
   return (
-    <main style={page}>
-      <div style={shell}>
-        {/* HERO */}
-        <section style={heroSection}>
-          <div style={heroLeft}>
-            <div style={eyebrow}>
-              GLOBAL TIME GUIDES & RESOURCES
-            </div>
+    <main className="guides-page">
+      <section className="guides-shell">
+        <header className="guides-header">
+          <a href="/" className="brand">
+            <span className="brand-icon">⌘</span>
+            <span>Best Meeting Time</span>
+          </a>
 
-            <h1 style={heroTitle}>
-              Understand Time
-              <br />
-              Zones. Connect
-              <br />
-              Across the World.
-            </h1>
+          <nav className="nav" aria-label="Guides navigation">
+            <a href="/">Home</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/features">Features</a>
+            <a href="/guides" className="active">Guides</a>
+            <a href="/blog">Blog</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+          </nav>
 
-            <p style={heroText}>
+          <a href="/how-it-works#schedule-tool" className="nav-cta">
+            <span>Schedule a Meeting</span>
+            <small>Free to try — no sign-up</small>
+          </a>
+        </header>
+
+        <section className="hero">
+          <div className="hero-copy">
+            <p className="pill">Global Time Guides & Resources</p>
+
+            <h1>Understand Time Zones. Connect Across the World.</h1>
+
+            <p className="hero-text">
               Learn how time zones affect meetings, work, travel,
-              entertainment, and daily life. Explore guides,
-              cultural insights, and practical planning tips for
-              a world that never stops.
+              entertainment, and daily life. Explore guides, cultural insights,
+              and practical planning tips for a world that never stops.
             </p>
 
-            <div style={statsRow}>
-              <div style={statCard}>
-                <div style={statNumber}>24</div>
-                <div style={statLabel}>Primary time zones</div>
+            <div className="stats">
+              <div>
+                <strong>24</strong>
+                <span>Primary time zones</span>
               </div>
-
-              <div style={statCard}>
-                <div style={statNumber}>195+</div>
-                <div style={statLabel}>
-                  Countries with local schedules
-                </div>
+              <div>
+                <strong>195+</strong>
+                <span>Countries with local schedules</span>
               </div>
-
-              <div style={statCard}>
-                <div style={statNumber}>24/7</div>
-                <div style={statLabel}>
-                  The world never stops moving
-                </div>
+              <div>
+                <strong>24/7</strong>
+                <span>The world never stops moving</span>
               </div>
             </div>
           </div>
 
-          <div style={heroRight}>
+          <div className="hero-visual">
             <img
-              src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?q=80&w=1400&auto=format&fit=crop"
-              alt="Global connected world"
-              style={heroImage}
+              src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=1600&auto=format&fit=crop"
+              alt="Glowing planet earth showing global time coordination"
             />
 
-            <div style={heroTimePanel}>
-              <div style={timeBox}>
-                <div style={timeValueOrange}>9:00 AM</div>
-                <div style={timeCity}>New York</div>
-              </div>
+            <span className="pin pin-one" />
+            <span className="pin pin-two" />
+            <span className="pin pin-three" />
+            <span className="pin pin-four" />
+            <span className="line line-one" />
+            <span className="line line-two" />
 
-              <div style={timeBox}>
-                <div style={timeValuePurple}>2:00 PM</div>
-                <div style={timeCity}>London</div>
-              </div>
-
-              <div style={timeBox}>
-                <div style={timeValueBlue}>11:00 PM</div>
-                <div style={timeCity}>Tokyo</div>
-              </div>
-
-              <div style={timeBox}>
-                <div style={timeValueGreen}>6:00 AM</div>
-                <div style={timeCity}>Sydney</div>
-              </div>
+            <div className="time-panel">
+              <div><strong>9:00 AM</strong><span>New York</span></div>
+              <div><strong>2:00 PM</strong><span>London</span></div>
+              <div><strong>11:00 PM</strong><span>Tokyo</span></div>
+              <div><strong>6:00 AM</strong><span>Sydney</span></div>
             </div>
 
-            <div style={heroBottom}>
+            <div className="hero-caption">
               Different places. Different times. One connected world.
             </div>
           </div>
         </section>
 
-        {/* SECTION TITLE */}
-        <section style={guidesHeader}>
-          <div style={eyebrowCentered}>EXPLORE OUR GUIDES</div>
-
-          <h2 style={sectionTitle}>
-            Choose a Guide to Start Learning
-          </h2>
-
-          <p style={sectionText}>
+        <section className="guide-intro">
+          <p className="pill">Explore Our Guides</p>
+          <h2>Choose a Guide to Start Learning</h2>
+          <p>
             From time zone basics to cultural tips and entertainment timing,
             these guides help you understand the world and plan with confidence.
           </p>
         </section>
 
-        {/* GUIDE CARDS */}
-        <section style={cardsGrid}>
-          {/* CARD 1 */}
-          <div style={guideCard}>
+        <section className="guide-grid">
+          <a href="/how-to-schedule-meetings-across-time-zones" className="guide-card">
             <img
-              src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?q=80&w=1200&auto=format&fit=crop"
-              alt="Time zone basics"
-              style={cardImage}
+              src="https://images.unsplash.com/photo-1502920514313-52581002a659?q=80&w=1200&auto=format&fit=crop"
+              alt="World map for time zone basics"
             />
-
-            <div style={cardBody}>
-              <div style={purpleCircle}>1</div>
-
-              <h3 style={cardTitle}>Time Zone Basics</h3>
-
-              <ul style={bulletList}>
+            <div className="guide-body">
+              <span className="guide-number purple">1</span>
+              <h3>Time Zone Basics</h3>
+              <ul>
                 <li>How many time zones are there?</li>
                 <li>Why do time zones exist?</li>
                 <li>Why do clocks change?</li>
               </ul>
-
-              <a
-                href="/how-to-schedule-meetings-across-time-zones"
-                style={cardLink}
-              >
-                Read more on this guide →
-              </a>
+              <strong>Read more on this guide →</strong>
             </div>
-          </div>
+          </a>
 
-          {/* CARD 2 */}
-          <div style={guideCard}>
+          <a href="/best-meeting-times-remote-teams" className="guide-card">
             <img
               src="https://images.unsplash.com/photo-1492571350019-22de08371fd3?q=80&w=1200&auto=format&fit=crop"
-              alt="Cultural timing"
-              style={cardImage}
+              alt="Japan and cultural timing guide"
             />
-
-            <div style={cardBody}>
-              <div style={goldCircle}>2</div>
-
-              <h3 style={cardTitle}>Cultural Timing Guides</h3>
-
-              <ul style={bulletList}>
+            <div className="guide-body">
+              <span className="guide-number gold">2</span>
+              <h3>Cultural Timing Guides</h3>
+              <ul>
                 <li>Best time to contact Japan</li>
                 <li>Work hours around the world</li>
                 <li>Weekend differences globally</li>
               </ul>
-
-              <a
-                href="/best-meeting-times-remote-teams"
-                style={cardLink}
-              >
-                Read more on this guide →
-              </a>
+              <strong>Read more on this guide →</strong>
             </div>
-          </div>
+          </a>
 
-          {/* CARD 3 */}
-          <div style={guideCard}>
+          <a href="/time-zone-meeting-planner-guide" className="guide-card">
             <img
               src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop"
-              alt="Entertainment timing"
-              style={cardImage}
+              alt="Gaming and entertainment timing"
             />
-
-            <div style={cardBody}>
-              <div style={greenCircle}>3</div>
-
-              <h3 style={cardTitle}>
-                Entertainment & Social Timing
-              </h3>
-
-              <ul style={bulletList}>
+            <div className="guide-body">
+              <span className="guide-number green">3</span>
+              <h3>Entertainment & Social Timing</h3>
+              <ul>
                 <li>Best time for global gaming events</li>
                 <li>Streaming across time zones</li>
                 <li>International sports viewing times</li>
               </ul>
-
-              <a
-                href="/time-zone-meeting-planner-guide"
-                style={cardLink}
-              >
-                Read more on this guide →
-              </a>
+              <strong>Read more on this guide →</strong>
             </div>
+          </a>
+        </section>
+
+        <section className="why">
+          <p className="pill">Why Learning Matters</p>
+          <h2>Time zones affect more than just meetings.</h2>
+
+          <div className="why-grid">
+            <div><strong>Work & Business</strong><span>Plan fair meetings and respect work hours around the world.</span></div>
+            <div><strong>Travel & Lifestyle</strong><span>Avoid missed flights, confusion, and scheduling surprises.</span></div>
+            <div><strong>Family & Friends</strong><span>Stay connected with loved ones across different time zones.</span></div>
+            <div><strong>Entertainment</strong><span>Catch live events, streams, and games at the right time.</span></div>
+            <div><strong>Global Community</strong><span>Join online communities and events happening worldwide.</span></div>
           </div>
         </section>
 
-        {/* WHY IT MATTERS */}
-        <section style={whySection}>
-          <div style={eyebrowCentered}>WHY LEARNING MATTERS</div>
-
-          <h2 style={whyTitle}>
-            Time zones affect more than just meetings.
-          </h2>
-
-          <div style={whyGrid}>
-            <div style={whyCard}>
-              <div style={whyIcon}>💼</div>
-              <h4 style={whyHeading}>Work & Business</h4>
-              <p style={whyText}>
-                Plan fair meetings and respect work hours around the world.
-              </p>
-            </div>
-
-            <div style={whyCard}>
-              <div style={whyIcon}>✈️</div>
-              <h4 style={whyHeading}>Travel & Lifestyle</h4>
-              <p style={whyText}>
-                Avoid missed flights, confusion, and scheduling surprises.
-              </p>
-            </div>
-
-            <div style={whyCard}>
-              <div style={whyIcon}>🎮</div>
-              <h4 style={whyHeading}>Entertainment</h4>
-              <p style={whyText}>
-                Catch live events, streams, and games at the right time.
-              </p>
-            </div>
-
-            <div style={whyCard}>
-              <div style={whyIcon}>🌎</div>
-              <h4 style={whyHeading}>Global Community</h4>
-              <p style={whyText}>
-                Join online communities and events happening worldwide.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section style={ctaSection}>
-          <div style={ctaLeft}>
-            <h2 style={ctaTitle}>
-              Ready to find the best time to connect?
-            </h2>
-
-            <p style={ctaText}>
-              Use our planner to compare cities, find overlap windows,
-              and schedule with confidence.
+        <section className="cta">
+          <div>
+            <h2>Ready to find the best time to connect?</h2>
+            <p>
+              Use our planner to compare cities, find overlap windows, and
+              schedule with confidence.
             </p>
           </div>
 
-          <a href="/" style={ctaButton}>
-            Open the Meeting Planner
+          <a href="/how-it-works#schedule-tool">
+            <span>Open the Meeting Planner</span>
+            <small>Free to try — no sign-up</small>
           </a>
         </section>
-      </div>
+      </section>
+
+      <style>{`
+        .guides-page {
+          min-height: 100vh;
+          background: linear-gradient(180deg, #4c1d95 0%, #312e81 100%);
+          padding: 30px 20px 70px;
+        }
+
+        .guides-shell {
+          width: 100%;
+          max-width: 1120px;
+          margin: 0 auto;
+          background: #ffffff;
+          color: #111827;
+          border: 1px solid rgba(237,233,254,0.9);
+          box-shadow: 0 24px 70px rgba(30,27,75,0.18);
+          padding: 18px 18px 28px;
+        }
+
+        .guides-header {
+          min-height: 66px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 18px;
+          border-bottom: 1px solid #ede9fe;
+          margin-bottom: 24px;
+        }
+
+        .brand {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          color: #5b21b6;
+          font-size: 18px;
+          font-weight: 900;
+          text-decoration: none;
+          white-space: nowrap;
+        }
+
+        .brand-icon {
+          width: 24px;
+          height: 24px;
+          border-radius: 7px;
+          background: #ede9fe;
+          color: #5b21b6;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 14px;
+        }
+
+        .nav {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 18px;
+        }
+
+        .nav a {
+          color: #374151;
+          font-size: 13px;
+          font-weight: 800;
+          text-decoration: none;
+          white-space: nowrap;
+        }
+
+        .nav .active {
+          color: #5b21b6;
+          border-bottom: 2px solid #5b21b6;
+          padding-bottom: 6px;
+        }
+
+        .nav-cta {
+          background: #5b21b6;
+          color: #ffffff;
+          padding: 9px 16px;
+          border-radius: 8px;
+          font-weight: 900;
+          text-decoration: none;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          line-height: 1.16;
+          min-width: 154px;
+          box-shadow: 0 10px 22px rgba(91,33,182,0.22);
+        }
+
+        .nav-cta span {
+          font-size: 13px;
+        }
+
+        .nav-cta small {
+          font-size: 10px;
+          font-weight: 800;
+        }
+
+        .hero {
+          display: grid;
+          grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+          gap: 38px;
+          align-items: center;
+          padding: 22px 10px 34px;
+        }
+
+        .pill {
+          display: inline-block;
+          margin: 0 0 14px;
+          padding: 7px 13px;
+          border-radius: 999px;
+          background: #f3efff;
+          color: #5b21b6;
+          font-size: 12px;
+          font-weight: 950;
+          text-transform: uppercase;
+        }
+
+        .hero h1 {
+          font-size: clamp(38px, 4.8vw, 58px);
+          line-height: 1.02;
+          letter-spacing: -0.05em;
+          font-weight: 950;
+          color: #111827;
+          margin: 0 0 16px;
+        }
+
+        .hero-text {
+          color: #4b5563;
+          font-size: 16px;
+          line-height: 1.65;
+          margin: 0 0 24px;
+        }
+
+        .stats {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 14px;
+        }
+
+        .stats div {
+          border-right: 1px solid #ddd6fe;
+          padding-right: 12px;
+          display: grid;
+          gap: 5px;
+        }
+
+        .stats strong {
+          color: #5b21b6;
+          font-size: 25px;
+          font-weight: 950;
+        }
+
+        .stats span {
+          font-size: 12px;
+          font-weight: 800;
+          line-height: 1.35;
+        }
+
+        .hero-visual {
+          position: relative;
+          min-height: clamp(340px, 36vw, 430px);
+          border-radius: 18px;
+          overflow: hidden;
+          box-shadow: 0 24px 55px rgba(30,27,75,0.22);
+          background: #0f172a;
+        }
+
+        .hero-visual img {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          inset: 0;
+          object-fit: cover;
+          filter: saturate(1.2) contrast(1.05);
+        }
+
+        .pin {
+          position: absolute;
+          width: 16px;
+          height: 16px;
+          border-radius: 999px;
+          box-shadow: 0 0 0 7px rgba(255,255,255,0.22);
+          z-index: 2;
+        }
+
+        .pin-one { left: 28%; top: 32%; background: #8b5cf6; }
+        .pin-two { left: 55%; top: 26%; background: #facc15; }
+        .pin-three { right: 24%; top: 42%; background: #fb7185; }
+        .pin-four { right: 16%; bottom: 31%; background: #22c55e; }
+
+        .line {
+          position: absolute;
+          border-top: 2px dashed rgba(250,204,21,0.82);
+          z-index: 2;
+        }
+
+        .line-one {
+          left: 30%;
+          top: 42%;
+          width: 46%;
+          transform: rotate(-13deg);
+        }
+
+        .line-two {
+          left: 33%;
+          top: 48%;
+          width: 52%;
+          transform: rotate(19deg);
+        }
+
+        .time-panel {
+          position: absolute;
+          left: 28px;
+          right: 28px;
+          bottom: 86px;
+          background: #ffffff;
+          border-radius: 14px;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          overflow: hidden;
+          z-index: 3;
+        }
+
+        .time-panel div {
+          padding: 14px;
+          display: grid;
+          gap: 5px;
+          border-right: 1px solid #ede9fe;
+        }
+
+        .time-panel div:nth-child(1) strong { color: #f97316; }
+        .time-panel div:nth-child(2) strong { color: #6d28d9; }
+        .time-panel div:nth-child(3) strong { color: #2563eb; }
+        .time-panel div:nth-child(4) strong { color: #16a34a; }
+
+        .time-panel strong {
+          font-size: 17px;
+          font-weight: 950;
+        }
+
+        .time-panel span {
+          font-size: 13px;
+          color: #111827;
+        }
+
+        .hero-caption {
+          position: absolute;
+          left: 28px;
+          right: 28px;
+          bottom: 24px;
+          background: rgba(76,29,149,0.94);
+          color: #ffffff;
+          padding: 13px 16px;
+          border-radius: 14px;
+          text-align: center;
+          font-weight: 950;
+          z-index: 3;
+        }
+
+        .guide-intro {
+          text-align: center;
+          padding: 18px 10px 24px;
+        }
+
+        .guide-intro h2,
+        .why h2 {
+          font-size: clamp(30px, 3vw, 40px);
+          line-height: 1.08;
+          font-weight: 950;
+          letter-spacing: -0.035em;
+          margin: 0 0 10px;
+        }
+
+        .guide-intro p:last-child {
+          max-width: 680px;
+          margin: 0 auto;
+          color: #4b5563;
+          font-size: 15px;
+          line-height: 1.55;
+        }
+
+        .guide-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 20px;
+          padding: 0 10px 26px;
+        }
+
+        .guide-card {
+          background: #ffffff;
+          border: 1px solid #ddd6fe;
+          border-radius: 18px;
+          overflow: hidden;
+          text-decoration: none;
+          color: #111827;
+          box-shadow: 0 16px 36px rgba(91,33,182,0.10);
+        }
+
+        .guide-card img {
+          width: 100%;
+          height: 198px;
+          object-fit: cover;
+          display: block;
+        }
+
+        .guide-body {
+          padding: 22px;
+        }
+
+        .guide-number {
+          width: 42px;
+          height: 42px;
+          border-radius: 999px;
+          color: #ffffff;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 950;
+          margin-bottom: 14px;
+        }
+
+        .purple { background: #7c3aed; }
+        .gold { background: #facc15; color: #111827; }
+        .green { background: #22c55e; }
+
+        .guide-card h3 {
+          font-size: 26px;
+          line-height: 1.12;
+          letter-spacing: -0.02em;
+          font-weight: 950;
+          margin: 0 0 14px;
+        }
+
+        .guide-card ul {
+          color: #374151;
+          font-size: 15px;
+          line-height: 1.65;
+          padding-left: 18px;
+          margin: 0 0 18px;
+        }
+
+        .guide-card strong:last-child {
+          color: #5b21b6;
+          font-size: 15px;
+          font-weight: 950;
+        }
+
+        .why {
+          border-top: 1px solid #ede9fe;
+          text-align: center;
+          padding: 26px 10px 28px;
+        }
+
+        .why-grid {
+          display: grid;
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          gap: 16px;
+          margin-top: 24px;
+        }
+
+        .why-grid div {
+          border-right: 1px solid #ede9fe;
+          padding: 0 12px;
+          display: grid;
+          gap: 8px;
+          color: #374151;
+          font-size: 13px;
+          line-height: 1.45;
+        }
+
+        .why-grid strong {
+          color: #111827;
+          font-size: 14px;
+          font-weight: 950;
+        }
+
+        .cta {
+          background: linear-gradient(135deg, #312e81 0%, #6d28d9 100%);
+          border-radius: 18px;
+          padding: 24px 28px;
+          display: grid;
+          grid-template-columns: 1fr auto;
+          gap: 24px;
+          align-items: center;
+          color: #ffffff;
+        }
+
+        .cta h2 {
+          font-size: clamp(26px, 3vw, 34px);
+          line-height: 1.08;
+          font-weight: 950;
+          margin: 0 0 8px;
+        }
+
+        .cta p {
+          color: #ede9fe;
+          font-size: 15px;
+          line-height: 1.55;
+          margin: 0;
+        }
+
+        .cta a {
+          background: #facc15;
+          color: #111827;
+          padding: 16px 18px;
+          border-radius: 12px;
+          text-decoration: none;
+          font-weight: 950;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          line-height: 1.15;
+          min-width: 220px;
+        }
+
+        .cta small {
+          font-weight: 800;
+          font-size: 11px;
+        }
+
+        @media (max-width: 900px) {
+          .guides-header {
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+
+          .nav {
+            flex-wrap: wrap;
+          }
+
+          .hero {
+            grid-template-columns: 1fr;
+          }
+
+          .guide-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .why-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .cta {
+            grid-template-columns: 1fr;
+            text-align: center;
+          }
+        }
+
+        @media (max-width: 560px) {
+          .guides-page {
+            padding: 16px 10px 50px;
+          }
+
+          .guides-shell {
+            padding: 14px;
+          }
+
+          .hero h1 {
+            font-size: 38px;
+          }
+
+          .stats,
+          .time-panel {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .hero-visual {
+            min-height: 390px;
+          }
+
+          .time-panel {
+            bottom: 95px;
+          }
+
+          .why-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
     </main>
   );
 }
-
-const page = {
-  background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
-  minHeight: "100vh",
-  padding: "30px 20px 80px",
-};
-
-const shell = {
-  maxWidth: "1180px",
-  margin: "0 auto",
-  background: "#ffffff",
-  borderRadius: "24px",
-  padding: "40px",
-};
-
-const heroSection = {
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  gap: "40px",
-  alignItems: "center",
-};
-
-const heroLeft = {};
-
-const heroRight = {
-  position: "relative" as const,
-};
-
-const eyebrow = {
-  display: "inline-block",
-  background: "#ede9fe",
-  color: "#5b21b6",
-  padding: "10px 16px",
-  borderRadius: "999px",
-  fontWeight: 700,
-  fontSize: "13px",
-  marginBottom: "20px",
-};
-
-const heroTitle = {
-  fontSize: "72px",
-  lineHeight: "0.95",
-  fontWeight: 900,
-  color: "#0f172a",
-  marginBottom: "24px",
-};
-
-const heroText = {
-  fontSize: "22px",
-  lineHeight: "1.7",
-  color: "#475569",
-  maxWidth: "620px",
-};
-
-const heroImage = {
-  width: "100%",
-  height: "620px",
-  objectFit: "cover" as const,
-  borderRadius: "28px",
-};
-
-const heroTimePanel = {
-  position: "absolute" as const,
-  left: "24px",
-  right: "24px",
-  bottom: "96px",
-  background: "#ffffff",
-  borderRadius: "24px",
-  display: "grid",
-  gridTemplateColumns: "repeat(4, 1fr)",
-  padding: "18px",
-  gap: "12px",
-};
-
-const timeBox = {
-  textAlign: "center" as const,
-};
-
-const timeValueOrange = {
-  color: "#f97316",
-  fontWeight: 800,
-  fontSize: "26px",
-};
-
-const timeValuePurple = {
-  color: "#7c3aed",
-  fontWeight: 800,
-  fontSize: "26px",
-};
-
-const timeValueBlue = {
-  color: "#2563eb",
-  fontWeight: 800,
-  fontSize: "26px",
-};
-
-const timeValueGreen = {
-  color: "#16a34a",
-  fontWeight: 800,
-  fontSize: "26px",
-};
-
-const timeCity = {
-  color: "#334155",
-  marginTop: "6px",
-  fontSize: "16px",
-};
-
-const heroBottom = {
-  position: "absolute" as const,
-  left: "24px",
-  right: "24px",
-  bottom: "24px",
-  background: "#5b21b6",
-  color: "white",
-  textAlign: "center" as const,
-  padding: "18px",
-  borderRadius: "18px",
-  fontWeight: 700,
-  fontSize: "18px",
-};
-
-const statsRow = {
-  display: "flex",
-  gap: "18px",
-  marginTop: "34px",
-};
-
-const statCard = {
-  border: "1px solid #ddd6fe",
-  borderRadius: "18px",
-  padding: "20px",
-  minWidth: "160px",
-};
-
-const statNumber = {
-  fontSize: "42px",
-  fontWeight: 900,
-  color: "#5b21b6",
-};
-
-const statLabel = {
-  color: "#475569",
-  marginTop: "8px",
-  lineHeight: "1.5",
-};
-
-const guidesHeader = {
-  textAlign: "center" as const,
-  marginTop: "90px",
-  marginBottom: "50px",
-};
-
-const eyebrowCentered = {
-  display: "inline-block",
-  background: "#ede9fe",
-  color: "#5b21b6",
-  padding: "10px 16px",
-  borderRadius: "999px",
-  fontWeight: 700,
-  fontSize: "13px",
-  marginBottom: "20px",
-};
-
-const sectionTitle = {
-  fontSize: "56px",
-  fontWeight: 900,
-  color: "#0f172a",
-  marginBottom: "18px",
-};
-
-const sectionText = {
-  fontSize: "22px",
-  color: "#475569",
-  maxWidth: "780px",
-  margin: "0 auto",
-  lineHeight: "1.7",
-};
-
-const cardsGrid = {
-  display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
-  gap: "30px",
-};
-
-const guideCard = {
-  border: "1px solid #ddd6fe",
-  borderRadius: "24px",
-  overflow: "hidden",
-  background: "#ffffff",
-};
-
-const cardImage = {
-  width: "100%",
-  height: "260px",
-  objectFit: "cover" as const,
-};
-
-const cardBody = {
-  padding: "28px",
-};
-
-const purpleCircle = {
-  width: "52px",
-  height: "52px",
-  borderRadius: "999px",
-  background: "#7c3aed",
-  color: "white",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontWeight: 800,
-  marginBottom: "20px",
-};
-
-const goldCircle = {
-  ...purpleCircle,
-  background: "#facc15",
-  color: "#111827",
-};
-
-const greenCircle = {
-  ...purpleCircle,
-  background: "#22c55e",
-};
-
-const cardTitle = {
-  fontSize: "42px",
-  lineHeight: "1.05",
-  fontWeight: 900,
-  color: "#0f172a",
-  marginBottom: "22px",
-};
-
-const bulletList = {
-  paddingLeft: "24px",
-  color: "#334155",
-  lineHeight: "2",
-  fontSize: "20px",
-  marginBottom: "24px",
-};
-
-const cardLink = {
-  color: "#5b21b6",
-  textDecoration: "none",
-  fontWeight: 800,
-  fontSize: "18px",
-};
-
-const whySection = {
-  marginTop: "90px",
-  textAlign: "center" as const,
-};
-
-const whyTitle = {
-  fontSize: "52px",
-  fontWeight: 900,
-  color: "#0f172a",
-  marginBottom: "40px",
-};
-
-const whyGrid = {
-  display: "grid",
-  gridTemplateColumns: "repeat(4, 1fr)",
-  gap: "24px",
-};
-
-const whyCard = {
-  border: "1px solid #e2e8f0",
-  borderRadius: "20px",
-  padding: "28px",
-};
-
-const whyIcon = {
-  fontSize: "42px",
-  marginBottom: "16px",
-};
-
-const whyHeading = {
-  fontSize: "24px",
-  fontWeight: 800,
-  color: "#0f172a",
-  marginBottom: "12px",
-};
-
-const whyText = {
-  color: "#475569",
-  lineHeight: "1.7",
-  fontSize: "17px",
-};
-
-const ctaSection = {
-  marginTop: "90px",
-  background: "linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%)",
-  borderRadius: "28px",
-  padding: "48px",
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  gap: "40px",
-};
-
-const ctaLeft = {
-  maxWidth: "700px",
-};
-
-const ctaTitle = {
-  fontSize: "48px",
-  lineHeight: "1.1",
-  color: "white",
-  fontWeight: 900,
-  marginBottom: "16px",
-};
-
-const ctaText = {
-  color: "#ede9fe",
-  lineHeight: "1.7",
-  fontSize: "20px",
-};
-
-const ctaButton = {
-  background: "#facc15",
-  color: "#111827",
-  padding: "20px 34px",
-  borderRadius: "18px",
-  textDecoration: "none",
-  fontWeight: 900,
-  fontSize: "18px",
-  whiteSpace: "nowrap" as const,
-};
