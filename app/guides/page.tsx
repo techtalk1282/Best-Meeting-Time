@@ -90,7 +90,16 @@ export default function GuidesPage() {
             <span className="line line-two" />
             <span className="line line-three" />
 
-            
+            <div className="time-panel">
+  <div><strong>9:00 AM</strong><span>New York</span></div>
+  <div><strong>2:00 PM</strong><span>London</span></div>
+  <div><strong>11:00 PM</strong><span>Tokyo</span></div>
+  <div><strong>6:00 AM</strong><span>Sydney</span></div>
+</div>
+
+<div className="hero-caption">
+  Different places. Different times. One connected world.
+</div>
           </div>
         </section>
 
@@ -354,14 +363,14 @@ export default function GuidesPage() {
         }
 
         .hero-visual img {
-          width: 118%;
-          height: 118%;
-          position: absolute;
-          inset: -8% -8% auto -8%;
-          object-fit: cover;
-          object-position: center center;
-          filter: saturate(1.42) contrast(1.1) brightness(1.08);
-        }
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  object-position: center center;
+  filter: saturate(1.08) contrast(1.02) brightness(1);
+}
 
         .hero-glow {
           position: absolute;
