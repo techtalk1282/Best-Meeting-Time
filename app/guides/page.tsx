@@ -1,725 +1,653 @@
-/**
- * File: app/guides/page.tsx
- * Version: v3.1 (POLISHED GLOBAL TIME LEARNING HUB)
- * Date: 2026-05-06
- *
- * PURPOSE:
- * - Replace weak/broken image layout with polished built-in visual guide panels
- * - Make Guides feel like an educational time-zone learning hub
- * - Improve visual impact, SEO value, and AdSense-friendly informational depth
- * - Keep branding aligned with homepage/blog/about/features
- *
- * PROTECTED:
- * - No Stripe changes
- * - No checkout changes
- * - No webhook changes
- * - No KV changes
- * - No ToolPreviewSection changes
- * - No payment or premium logic changes
- *
- * ROLLBACK:
- * - Revert to app/guides/page.tsx v3.0 if needed
- */
+// FILE: app/guides/page.tsx
+// VERSION: v3.0
+// PURPOSE: Premium educational Guides Hub redesign
 
 export default function GuidesPage() {
   return (
-    <main style={pageShell}>
-      <header style={header}>
-        <a href="/" style={brandLink}>
-          <span style={brandIcon}>⌘</span>
-          <span>Best Meeting Time</span>
-        </a>
-
-        <nav style={nav} aria-label="Main navigation">
-          <a href="/" style={navLink}>Home</a>
-          <a href="/how-it-works" style={navLink}>How It Works</a>
-          <a href="/features" style={navLink}>Features</a>
-          <a href="/guides" style={navLink}>Guides</a>
-          <a href="/blog" style={navLink}>Blog</a>
-          <a href="/about" style={navLink}>About</a>
-          <a href="/contact" style={navLink}>Contact</a>
-        </nav>
-
-        <a href="/how-it-works#schedule-tool" style={navButton}>
-          <span style={navButtonMain}>Schedule a Meeting</span>
-          <span style={navButtonSub}>Free to try — no sign-up</span>
-        </a>
-      </header>
-
-      <section style={heroSection}>
-        <div style={heroCopy}>
-          <p style={eyebrow}>Global Time Learning Center</p>
-
-          <h1 style={heroTitle}>
-            Learn Time Zones, World Schedules, and Smarter Global Planning
-          </h1>
-
-          <p style={heroText}>
-            Explore how time zones affect meetings, travel, sports, streaming,
-            gaming, remote work, and international communication — then use the
-            planner when you are ready to compare real cities.
-          </p>
-        </div>
-
-        <div style={heroVisual}>
-          <div style={worldStrip}>
-            <div style={zoneBlockA}>Pacific</div>
-            <div style={zoneBlockB}>Central</div>
-            <div style={zoneBlockC}>London</div>
-            <div style={zoneBlockD}>Dubai</div>
-            <div style={zoneBlockE}>Tokyo</div>
-          </div>
-
-          <div style={clockRow}>
-            <div style={clockCard}>
-              <strong>9 AM</strong>
-              <span>New York</span>
-            </div>
-            <div style={clockCard}>
-              <strong>2 PM</strong>
-              <span>London</span>
-            </div>
-            <div style={clockCard}>
-              <strong>11 PM</strong>
-              <span>Tokyo</span>
-            </div>
-          </div>
-
-          <div style={visualCaption}>
-            One meeting can feel normal in one city and exhausting in another.
-          </div>
-        </div>
-      </section>
-
-      <section style={featureGrid}>
-        <article style={featureCard}>
-          <div style={visualCardBlue}>
-            <span style={visualLabel}>Time Zone Basics</span>
-            <div style={miniMapGrid}>
-              <span>UTC−8</span>
-              <span>UTC−5</span>
-              <span>UTC+0</span>
-              <span>UTC+4</span>
-              <span>UTC+9</span>
-            </div>
-          </div>
-
-          <h2 style={cardTitle}>Why Time Zones Exist</h2>
-          <p style={cardText}>
-            Learn why the world does not run on one clock, how offsets work,
-            and why countries sometimes use unusual time-zone rules.
-          </p>
-        </article>
-
-        <article style={featureCard}>
-          <div style={visualCardGold}>
-            <span style={visualLabelDark}>Sports, Streaming & Events</span>
-            <div style={eventRows}>
-              <span>Live Match</span>
-              <span>Global Stream</span>
-              <span>Online Watch Party</span>
-            </div>
-          </div>
-
-          <h2 style={cardTitle}>Timing Beyond Meetings</h2>
-          <p style={cardText}>
-            Time zones affect fans, creators, gamers, travelers, families, and
-            online communities trying to connect at the same moment.
-          </p>
-        </article>
-
-        <article style={featureCard}>
-          <div style={visualCardPurple}>
-            <span style={visualLabelLight}>Remote Work</span>
-            <div style={overlapBox}>
-              <strong>Best overlap window</strong>
-              <span>Fair for both sides</span>
-            </div>
-          </div>
-
-          <h2 style={cardTitle}>Better Global Work Hours</h2>
-          <p style={cardText}>
-            Understand how to avoid repeatedly forcing one location into early
-            morning or late-night meetings.
-          </p>
-        </article>
-      </section>
-
-      <section style={learningSection}>
-        <div style={learningMain}>
-          <p style={sectionEyebrow}>What You Can Learn Here</p>
-          <h2 style={sectionTitle}>A practical guide to how global time works.</h2>
-
-          <div style={lessonGrid}>
-            <div style={lessonCard}>
-              <strong>Time zone basics</strong>
-              <span>
-                Learn UTC, GMT, offsets, regional clocks, and why some countries
-                have multiple time zones.
-              </span>
+    <main style={page}>
+      {/* MAIN WRAPPER */}
+      <div style={container}>
+        
+        {/* HERO */}
+        <section style={heroSection}>
+          <div style={heroLeft}>
+            <div style={pill}>
+              Global Time Guides & Resources
             </div>
 
-            <div style={lessonCard}>
-              <strong>Daylight-saving confusion</strong>
-              <span>
-                Understand why clock changes do not happen everywhere at the
-                same time and why that causes scheduling errors.
-              </span>
-            </div>
+            <h1 style={heroTitle}>
+              Understand Time Zones. Connect Across the World.
+            </h1>
 
-            <div style={lessonCard}>
-              <strong>Entertainment timing</strong>
-              <span>
-                Plan livestreams, sports viewing, gaming events, and global
-                online gatherings across multiple regions.
-              </span>
-            </div>
-
-            <div style={lessonCard}>
-              <strong>Meeting fairness</strong>
-              <span>
-                Learn how to choose better overlap windows so one city does not
-                always carry the scheduling burden.
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div style={spotlightCard}>
-          <p style={sectionEyebrow}>Guide Spotlight</p>
-          <h2 style={spotlightTitle}>When it is convenient for one city, it may be impossible for another.</h2>
-          <p style={spotlightText}>
-            That is the hidden challenge behind global scheduling. A good guide
-            does not just show the time — it explains what that time means for
-            real people in different places.
-          </p>
-          <a href="/how-it-works#schedule-tool" style={goldButton}>
-            Try the Planner
-          </a>
-        </div>
-      </section>
-
-      <section style={deepGuideSection}>
-        <div style={deepGuideHeader}>
-          <p style={sectionEyebrow}>Popular Learning Paths</p>
-          <h2 style={sectionTitle}>Choose the guide path that matches your goal.</h2>
-        </div>
-
-        <div style={pathGrid}>
-          <a href="/how-to-schedule-meetings-across-time-zones" style={pathCard}>
-            <span style={pathNumber}>01</span>
-            <strong>Schedule across time zones</strong>
-            <p>
-              Learn the step-by-step process for comparing locations and choosing
-              a better meeting time.
+            <p style={heroText}>
+              Learn how time zones affect meetings, work, travel,
+              entertainment, and daily life. Explore guides,
+              cultural insights, and practical planning tips
+              for a world that never stops.
             </p>
-          </a>
 
-          <a href="/best-meeting-times-remote-teams" style={pathCard}>
-            <span style={pathNumber}>02</span>
-            <strong>Plan for remote teams</strong>
-            <p>
-              Understand overlap windows, fairness, workday boundaries, and
-              rotating inconvenient meeting times.
-            </p>
-          </a>
+            <div style={statsRow}>
+              <div style={statCard}>
+                <div style={statNumber}>24</div>
+                <div style={statText}>Primary time zones</div>
+              </div>
 
-          <a href="/time-zone-meeting-planner-guide" style={pathCard}>
-            <span style={pathNumber}>03</span>
-            <strong>Use the meeting planner</strong>
-            <p>
-              Compare cities, review recommended windows, and move into sharing
-              or calendar actions when needed.
-            </p>
-          </a>
-        </div>
-      </section>
+              <div style={statCard}>
+                <div style={statNumber}>195+</div>
+                <div style={statText}>
+                  Countries with different times
+                </div>
+              </div>
 
-      <section style={bottomBand}>
-        <div>
-          <p style={bottomEyebrow}>Start Learning</p>
-          <h2 style={bottomTitle}>Explore global time, then plan smarter.</h2>
-          <p style={bottomText}>
-            Learn how time zones affect real life, then use Best Meeting Time to
-            compare cities and find better meeting windows.
+              <div style={statCard}>
+                <div style={statNumber}>24/7</div>
+                <div style={statText}>
+                  The world never stops moving
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* HERO IMAGE */}
+          <div style={heroImageWrapper}>
+            <img
+              src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?q=80&w=1600&auto=format&fit=crop"
+              alt="Global time zones and worldwide communication"
+              style={heroImage}
+            />
+
+            <div style={overlayCard}>
+              <div style={timeBox}>
+                <span style={timeValueNY}>9:00 AM</span>
+                <span style={timeCity}>New York</span>
+              </div>
+
+              <div style={timeBox}>
+                <span style={timeValueLondon}>2:00 PM</span>
+                <span style={timeCity}>London</span>
+              </div>
+
+              <div style={timeBox}>
+                <span style={timeValueTokyo}>11:00 PM</span>
+                <span style={timeCity}>Tokyo</span>
+              </div>
+
+              <div style={timeBox}>
+                <span style={timeValueSydney}>6:00 AM</span>
+                <span style={timeCity}>Sydney</span>
+              </div>
+            </div>
+
+            <div style={heroBottomBanner}>
+              Different places. Different times. One connected world.
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION TITLE */}
+        <section style={guideIntroSection}>
+          <div style={smallPill}>
+            Explore Our Guides
+          </div>
+
+          <h2 style={sectionTitle}>
+            Choose a Guide to Start Learning
+          </h2>
+
+          <p style={sectionText}>
+            From time zone basics to cultural tips and entertainment timing,
+            these guides help people understand the world and plan with confidence.
           </p>
-        </div>
+        </section>
 
-        <a href="/how-it-works#schedule-tool" style={bottomButton}>
-          <span style={bottomButtonMain}>Open the Planner</span>
-          <span style={bottomButtonSub}>Free to try — no sign-up</span>
-        </a>
-      </section>
+        {/* GUIDE GRID */}
+        <section style={guideGrid}>
+
+          {/* CARD 1 */}
+          <a
+            href="/guides/time-zone-basics"
+            style={guideCard}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1502920514313-52581002a659?q=80&w=1200&auto=format&fit=crop"
+              alt="World map showing global time zones"
+              style={cardImage}
+            />
+
+            <div style={cardBody}>
+              <div style={cardNumberPurple}>1</div>
+
+              <h3 style={cardTitle}>
+                Time Zone Basics
+              </h3>
+
+              <ul style={bulletList}>
+                <li>How many time zones are there?</li>
+                <li>Why do time zones exist?</li>
+                <li>Why do clocks change?</li>
+              </ul>
+
+              <div style={cardLink}>
+                Read more on this guide →
+              </div>
+            </div>
+          </a>
+
+          {/* CARD 2 */}
+          <a
+            href="/guides/cultural-timing-guides"
+            style={guideCard}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1528164344705-47542687000d?q=80&w=1200&auto=format&fit=crop"
+              alt="Cultural scheduling and global communication"
+              style={cardImage}
+            />
+
+            <div style={cardBody}>
+              <div style={cardNumberGold}>2</div>
+
+              <h3 style={cardTitle}>
+                Cultural Timing Guides
+              </h3>
+
+              <ul style={bulletList}>
+                <li>Best time to contact Japan</li>
+                <li>Work hours around the world</li>
+                <li>Weekend differences globally</li>
+              </ul>
+
+              <div style={cardLink}>
+                Read more on this guide →
+              </div>
+            </div>
+          </a>
+
+          {/* CARD 3 */}
+          <a
+            href="/guides/entertainment-social-timing"
+            style={guideCard}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop"
+              alt="Gaming streams and global entertainment events"
+              style={cardImage}
+            />
+
+            <div style={cardBody}>
+              <div style={cardNumberGreen}>3</div>
+
+              <h3 style={cardTitle}>
+                Entertainment & Social Timing
+              </h3>
+
+              <ul style={bulletList}>
+                <li>Best time for global gaming events</li>
+                <li>Streaming across time zones</li>
+                <li>International sports viewing times</li>
+              </ul>
+
+              <div style={cardLink}>
+                Read more on this guide →
+              </div>
+            </div>
+          </a>
+        </section>
+
+        {/* WHY IT MATTERS */}
+        <section style={whySection}>
+          <div style={smallPill}>
+            Why Learning Matters
+          </div>
+
+          <h2 style={whyTitle}>
+            Time zones affect more than just meetings.
+          </h2>
+
+          <div style={iconGrid}>
+            <div style={iconItem}>
+              <div style={emoji}>💼</div>
+              <h4 style={iconHeading}>Work & Business</h4>
+              <p style={iconText}>
+                Plan fair meetings and respect work hours around the world.
+              </p>
+            </div>
+
+            <div style={iconItem}>
+              <div style={emoji}>✈️</div>
+              <h4 style={iconHeading}>Travel & Lifestyle</h4>
+              <p style={iconText}>
+                Avoid missed flights, confusion, and scheduling surprises.
+              </p>
+            </div>
+
+            <div style={iconItem}>
+              <div style={emoji}>🎮</div>
+              <h4 style={iconHeading}>Entertainment</h4>
+              <p style={iconText}>
+                Catch live events, streams, and games at the right time.
+              </p>
+            </div>
+
+            <div style={iconItem}>
+              <div style={emoji}>🌍</div>
+              <h4 style={iconHeading}>Global Community</h4>
+              <p style={iconText}>
+                Join worldwide communities and online events more easily.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section style={ctaSection}>
+          <div style={ctaLeft}>
+            <img
+              src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop"
+              alt="Laptop showing meeting planning"
+              style={ctaImage}
+            />
+          </div>
+
+          <div style={ctaCenter}>
+            <h2 style={ctaTitle}>
+              Ready to find the best time to connect?
+            </h2>
+
+            <p style={ctaText}>
+              Use our planner to compare cities, find overlap windows,
+              and schedule with confidence.
+            </p>
+          </div>
+
+          <div style={ctaRight}>
+            <a href="/" style={ctaButton}>
+              Open the Meeting Planner
+            </a>
+
+            <div style={ctaSmallText}>
+              Free to try — no sign-up
+            </div>
+          </div>
+        </section>
+
+      </div>
     </main>
   );
 }
 
-/* STYLES */
+/* PAGE */
 
-const pageShell = {
-  maxWidth: "1120px",
-  margin: "18px auto 0",
-  padding: "18px 18px 28px",
+const page = {
+  background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
+  minHeight: "100vh",
+  padding: "40px 20px",
+};
+
+const container = {
+  maxWidth: "1180px",
+  margin: "0 auto",
   background: "#ffffff",
-  color: "#111827",
-  border: "1px solid rgba(237,233,254,0.9)",
-  boxShadow: "0 24px 70px rgba(30,27,75,0.18)",
+  borderRadius: "24px",
+  padding: "40px",
 };
 
-const header = {
-  minHeight: "66px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  gap: "18px",
-  borderBottom: "1px solid #ede9fe",
-  marginBottom: "14px",
-};
-
-const brandLink = {
-  display: "flex",
-  alignItems: "center",
-  gap: "8px",
-  color: "#5b21b6",
-  fontSize: "18px",
-  fontWeight: 900,
-  textDecoration: "none",
-  whiteSpace: "nowrap" as const,
-};
-
-const brandIcon = {
-  width: "24px",
-  height: "24px",
-  borderRadius: "7px",
-  background: "#ede9fe",
-  color: "#5b21b6",
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontSize: "14px",
-};
-
-const nav = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: "18px",
-};
-
-const navLink = {
-  color: "#374151",
-  fontSize: "13px",
-  fontWeight: 800,
-  textDecoration: "none",
-};
-
-const navButton = {
-  background: "#5b21b6",
-  color: "#ffffff",
-  padding: "9px 16px",
-  borderRadius: "8px",
-  fontWeight: 900,
-  textDecoration: "none",
-  display: "flex",
-  flexDirection: "column" as const,
-  alignItems: "center",
-  justifyContent: "center",
-  lineHeight: 1.18,
-  minWidth: "154px",
-  boxShadow: "0 10px 22px rgba(91,33,182,0.22)",
-};
-
-const navButtonMain = {
-  fontSize: "13px",
-  fontWeight: 900,
-};
-
-const navButtonSub = {
-  fontSize: "10px",
-  fontWeight: 800,
-};
+/* HERO */
 
 const heroSection = {
   display: "grid",
   gridTemplateColumns: "1fr 1fr",
-  gap: "28px",
+  gap: "40px",
   alignItems: "center",
-  padding: "18px 10px 22px",
-  borderBottom: "1px solid #ede9fe",
+  marginBottom: "80px",
 };
 
-const heroCopy = {};
+const heroLeft = {};
 
-const eyebrow = {
+const pill = {
   display: "inline-block",
-  margin: "0 0 12px",
-  padding: "7px 13px",
-  borderRadius: "999px",
-  background: "#f3efff",
+  background: "#ede9fe",
   color: "#5b21b6",
-  fontSize: "12px",
-  fontWeight: 900,
+  padding: "10px 18px",
+  borderRadius: "999px",
+  fontWeight: 700,
+  fontSize: "14px",
+  marginBottom: "24px",
 };
 
 const heroTitle = {
-  fontSize: "clamp(36px, 4vw, 50px)",
-  lineHeight: "1.04",
-  fontWeight: 950,
-  letterSpacing: "-0.045em",
-  margin: "0 0 14px",
+  fontSize: "72px",
+  lineHeight: "0.95",
+  fontWeight: 900,
+  color: "#0f172a",
+  marginBottom: "28px",
 };
 
 const heroText = {
-  color: "#4b5563",
-  fontSize: "16px",
-  lineHeight: "1.6",
-  margin: 0,
-};
-
-const heroVisual = {
-  background: "#faf9ff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "22px",
-  padding: "18px",
-  boxShadow: "0 18px 40px rgba(91,33,182,0.12)",
-};
-
-const worldStrip = {
-  height: "140px",
-  display: "grid",
-  gridTemplateColumns: "0.9fr 1fr 1.1fr 1fr 0.9fr",
-  overflow: "hidden",
-  borderRadius: "18px",
-  border: "1px solid #ddd6fe",
-  marginBottom: "14px",
-};
-
-const zoneBlockA = {
-  background: "#38bdf8",
-  color: "#0f172a",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontWeight: 950,
-};
-
-const zoneBlockB = {
-  background: "#facc15",
-  color: "#0f172a",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontWeight: 950,
-};
-
-const zoneBlockC = {
-  background: "#8b5cf6",
-  color: "#ffffff",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontWeight: 950,
-};
-
-const zoneBlockD = {
-  background: "#fb7185",
-  color: "#ffffff",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontWeight: 950,
-};
-
-const zoneBlockE = {
-  background: "#22c55e",
-  color: "#0f172a",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontWeight: 950,
-};
-
-const clockRow = {
-  display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
-  gap: "10px",
-};
-
-const clockCard = {
-  background: "#ffffff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "14px",
-  padding: "12px",
-  display: "grid",
-  gap: "4px",
-};
-
-const visualCaption = {
-  marginTop: "12px",
-  background: "#5b21b6",
-  color: "#ffffff",
-  borderRadius: "14px",
-  padding: "12px",
-  fontWeight: 850,
-  lineHeight: 1.4,
-};
-
-const featureGrid = {
-  display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
-  gap: "16px",
-  padding: "20px 10px 18px",
-};
-
-const featureCard = {
-  background: "#ffffff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "18px",
-  padding: "16px",
-  boxShadow: "0 12px 28px rgba(91,33,182,0.08)",
-};
-
-const visualCardBlue = {
-  height: "150px",
-  borderRadius: "16px",
-  background: "linear-gradient(135deg, #dbeafe 0%, #ede9fe 100%)",
-  padding: "14px",
-  display: "grid",
-  alignContent: "space-between",
-};
-
-const visualCardGold = {
-  height: "150px",
-  borderRadius: "16px",
-  background: "linear-gradient(135deg, #facc15 0%, #fed7aa 100%)",
-  padding: "14px",
-  display: "grid",
-  alignContent: "space-between",
-};
-
-const visualCardPurple = {
-  height: "150px",
-  borderRadius: "16px",
-  background: "linear-gradient(135deg, #5b21b6 0%, #312e81 100%)",
-  padding: "14px",
-  display: "grid",
-  alignContent: "space-between",
-};
-
-const visualLabel = {
-  color: "#4c1d95",
-  fontSize: "12px",
-  fontWeight: 950,
-  textTransform: "uppercase" as const,
-};
-
-const visualLabelDark = {
-  color: "#111827",
-  fontSize: "12px",
-  fontWeight: 950,
-  textTransform: "uppercase" as const,
-};
-
-const visualLabelLight = {
-  color: "#ffffff",
-  fontSize: "12px",
-  fontWeight: 950,
-  textTransform: "uppercase" as const,
-};
-
-const miniMapGrid = {
-  display: "grid",
-  gridTemplateColumns: "repeat(5, 1fr)",
-  gap: "5px",
-};
-
-const eventRows = {
-  display: "grid",
-  gap: "6px",
-};
-
-const overlapBox = {
-  background: "rgba(255,255,255,0.14)",
-  color: "#ffffff",
-  border: "1px solid rgba(255,255,255,0.3)",
-  borderRadius: "14px",
-  padding: "12px",
-  display: "grid",
-  gap: "4px",
-};
-
-const cardTitle = {
   fontSize: "24px",
-  lineHeight: "1.12",
-  margin: "14px 0 8px",
-  fontWeight: 950,
+  lineHeight: "1.6",
+  color: "#475569",
+  marginBottom: "40px",
 };
 
-const cardText = {
-  color: "#4b5563",
-  fontSize: "15px",
-  lineHeight: "1.55",
-  margin: 0,
-};
-
-const learningSection = {
-  display: "grid",
-  gridTemplateColumns: "1.1fr 0.9fr",
+const statsRow = {
+  display: "flex",
   gap: "18px",
-  padding: "0 10px 18px",
 };
 
-const learningMain = {
-  background: "#faf9ff",
+const statCard = {
+  flex: 1,
   border: "1px solid #ddd6fe",
   borderRadius: "18px",
-  padding: "22px",
+  padding: "20px",
 };
 
-const sectionEyebrow = {
-  color: "#6d28d9",
-  fontSize: "12px",
-  fontWeight: 950,
-  textTransform: "uppercase" as const,
-  margin: "0 0 8px",
+const statNumber = {
+  fontSize: "34px",
+  fontWeight: 900,
+  color: "#4c1d95",
+  marginBottom: "8px",
+};
+
+const statText = {
+  color: "#475569",
+  lineHeight: "1.5",
+};
+
+/* HERO IMAGE */
+
+const heroImageWrapper = {
+  position: "relative" as const,
+  borderRadius: "28px",
+  overflow: "hidden",
+};
+
+const heroImage = {
+  width: "100%",
+  height: "640px",
+  objectFit: "cover" as const,
+};
+
+const overlayCard = {
+  position: "absolute" as const,
+  left: "30px",
+  right: "30px",
+  bottom: "110px",
+  background: "#ffffff",
+  borderRadius: "22px",
+  display: "grid",
+  gridTemplateColumns: "repeat(4, 1fr)",
+  overflow: "hidden",
+};
+
+const timeBox = {
+  padding: "24px",
+  borderRight: "1px solid #e5e7eb",
+};
+
+const timeValueNY = {
+  display: "block",
+  fontSize: "34px",
+  fontWeight: 900,
+  color: "#f97316",
+};
+
+const timeValueLondon = {
+  display: "block",
+  fontSize: "34px",
+  fontWeight: 900,
+  color: "#7c3aed",
+};
+
+const timeValueTokyo = {
+  display: "block",
+  fontSize: "34px",
+  fontWeight: 900,
+  color: "#2563eb",
+};
+
+const timeValueSydney = {
+  display: "block",
+  fontSize: "34px",
+  fontWeight: 900,
+  color: "#16a34a",
+};
+
+const timeCity = {
+  display: "block",
+  marginTop: "8px",
+  color: "#334155",
+  fontSize: "18px",
+};
+
+const heroBottomBanner = {
+  position: "absolute" as const,
+  left: "30px",
+  right: "30px",
+  bottom: "30px",
+  background: "rgba(76, 29, 149, 0.95)",
+  color: "#ffffff",
+  padding: "20px",
+  borderRadius: "18px",
+  fontWeight: 800,
+  fontSize: "22px",
+  textAlign: "center" as const,
+};
+
+/* INTRO */
+
+const guideIntroSection = {
+  textAlign: "center" as const,
+  marginBottom: "50px",
+};
+
+const smallPill = {
+  display: "inline-block",
+  background: "#ede9fe",
+  color: "#5b21b6",
+  padding: "10px 18px",
+  borderRadius: "999px",
+  fontWeight: 700,
+  fontSize: "14px",
+  marginBottom: "20px",
 };
 
 const sectionTitle = {
-  fontSize: "32px",
-  lineHeight: "1.05",
-  fontWeight: 950,
-  margin: "0 0 14px",
+  fontSize: "52px",
+  fontWeight: 900,
+  color: "#0f172a",
+  marginBottom: "18px",
 };
 
-const lessonGrid = {
+const sectionText = {
+  maxWidth: "760px",
+  margin: "0 auto",
+  fontSize: "22px",
+  lineHeight: "1.6",
+  color: "#475569",
+};
+
+/* GUIDE GRID */
+
+const guideGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(2, 1fr)",
-  gap: "12px",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  gap: "28px",
+  marginBottom: "80px",
 };
 
-const lessonCard = {
+const guideCard = {
   background: "#ffffff",
   border: "1px solid #ddd6fe",
-  borderRadius: "14px",
-  padding: "14px",
-  display: "grid",
-  gap: "6px",
+  borderRadius: "28px",
+  overflow: "hidden",
+  textDecoration: "none",
+  boxShadow: "0 10px 40px rgba(0,0,0,0.06)",
 };
 
-const spotlightCard = {
-  background: "#5b21b6",
+const cardImage = {
+  width: "100%",
+  height: "260px",
+  objectFit: "cover" as const,
+};
+
+const cardBody = {
+  padding: "28px",
+};
+
+const cardTitle = {
+  fontSize: "38px",
+  lineHeight: "1.15",
+  fontWeight: 900,
+  color: "#0f172a",
+  marginBottom: "22px",
+};
+
+const bulletList = {
+  color: "#334155",
+  fontSize: "22px",
+  lineHeight: "1.8",
+  paddingLeft: "22px",
+  marginBottom: "26px",
+};
+
+const cardLink = {
+  color: "#5b21b6",
+  fontWeight: 800,
+  fontSize: "22px",
+};
+
+const cardNumberPurple = {
+  width: "52px",
+  height: "52px",
+  borderRadius: "999px",
+  background: "#7c3aed",
   color: "#ffffff",
-  borderRadius: "18px",
-  padding: "24px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontWeight: 900,
+  marginBottom: "20px",
 };
 
-const spotlightTitle = {
-  fontSize: "30px",
-  lineHeight: "1.05",
-  fontWeight: 950,
-  margin: "0 0 12px",
-};
-
-const spotlightText = {
-  color: "rgba(255,255,255,0.88)",
-  fontSize: "16px",
-  lineHeight: "1.65",
-};
-
-const goldButton = {
-  display: "inline-block",
+const cardNumberGold = {
+  width: "52px",
+  height: "52px",
+  borderRadius: "999px",
   background: "#facc15",
   color: "#111827",
-  padding: "12px 18px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontWeight: 900,
+  marginBottom: "20px",
+};
+
+const cardNumberGreen = {
+  width: "52px",
+  height: "52px",
   borderRadius: "999px",
-  fontWeight: 950,
-  textDecoration: "none",
+  background: "#22c55e",
+  color: "#ffffff",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontWeight: 900,
+  marginBottom: "20px",
 };
 
-const deepGuideSection = {
-  padding: "0 10px 18px",
+/* WHY SECTION */
+
+const whySection = {
+  textAlign: "center" as const,
+  marginBottom: "80px",
 };
 
-const deepGuideHeader = {
+const whyTitle = {
+  fontSize: "52px",
+  fontWeight: 900,
+  color: "#0f172a",
+  marginBottom: "50px",
+};
+
+const iconGrid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(4, 1fr)",
+  gap: "30px",
+};
+
+const iconItem = {};
+
+const emoji = {
+  fontSize: "48px",
+  marginBottom: "14px",
+};
+
+const iconHeading = {
+  fontSize: "28px",
+  fontWeight: 800,
+  color: "#111827",
   marginBottom: "12px",
 };
 
-const pathGrid = {
-  display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
-  gap: "16px",
-};
-
-const pathCard = {
-  background: "#ffffff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "18px",
-  padding: "20px",
-  textDecoration: "none",
-  color: "#111827",
-  display: "grid",
-  gap: "10px",
-};
-
-const pathNumber = {
-  color: "#6d28d9",
-  fontSize: "13px",
-  fontWeight: 950,
-};
-
-const bottomBand = {
-  margin: "0 10px",
-  padding: "20px",
-  borderRadius: "16px",
-  background: "#5b21b6",
-  color: "#ffffff",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  gap: "20px",
-};
-
-const bottomEyebrow = {
-  color: "#facc15",
-  fontSize: "12px",
-  fontWeight: 950,
-  textTransform: "uppercase" as const,
-  margin: "0 0 4px",
-};
-
-const bottomTitle = {
-  fontSize: "28px",
-  lineHeight: "1.08",
-  fontWeight: 950,
-  margin: "0 0 6px",
-};
-
-const bottomText = {
-  color: "rgba(255,255,255,0.88)",
-  fontSize: "15px",
+const iconText = {
+  fontSize: "18px",
   lineHeight: "1.6",
-  margin: 0,
+  color: "#475569",
 };
 
-const bottomButton = {
-  background: "#ffffff",
-  color: "#5b21b6",
-  padding: "12px 18px",
-  borderRadius: "10px",
-  textDecoration: "none",
-  display: "flex",
-  flexDirection: "column" as const,
+/* CTA */
+
+const ctaSection = {
+  background: "linear-gradient(135deg, #312e81 0%, #6d28d9 100%)",
+  borderRadius: "30px",
+  padding: "40px",
+  display: "grid",
+  gridTemplateColumns: "260px 1fr 320px",
+  gap: "30px",
   alignItems: "center",
-  justifyContent: "center",
-  minWidth: "170px",
 };
 
-const bottomButtonMain = {
-  fontSize: "14px",
-  fontWeight: 950,
+const ctaLeft = {};
+
+const ctaImage = {
+  width: "100%",
+  borderRadius: "18px",
 };
 
-const bottomButtonSub = {
-  fontSize: "11px",
-  fontWeight: 700,
+const ctaCenter = {};
+
+const ctaTitle = {
+  fontSize: "48px",
+  lineHeight: "1.1",
+  color: "#ffffff",
+  fontWeight: 900,
+  marginBottom: "18px",
+};
+
+const ctaText = {
+  fontSize: "22px",
+  lineHeight: "1.6",
+  color: "#e9d5ff",
+};
+
+const ctaRight = {
+  textAlign: "center" as const,
+};
+
+const ctaButton = {
+  display: "block",
+  background: "#facc15",
+  color: "#111827",
+  padding: "24px",
+  borderRadius: "18px",
+  textDecoration: "none",
+  fontWeight: 900,
+  fontSize: "24px",
+};
+
+const ctaSmallText = {
+  color: "#ffffff",
+  marginTop: "16px",
+  fontSize: "16px",
 };
