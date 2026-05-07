@@ -90,16 +90,7 @@ export default function GuidesPage() {
             <span className="line line-two" />
             <span className="line line-three" />
 
-            <div className="time-panel">
-              <div><strong>9:00 AM</strong><span>New York</span></div>
-              <div><strong>2:00 PM</strong><span>London</span></div>
-              <div><strong>11:00 PM</strong><span>Tokyo</span></div>
-              <div><strong>6:00 AM</strong><span>Sydney</span></div>
-            </div>
-
-            <div className="hero-caption">
-              Different places. Different times. One connected world.
-            </div>
+            
           </div>
         </section>
 
