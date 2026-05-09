@@ -1,13 +1,13 @@
 /**
  * File: app/how-to-schedule-meetings-across-time-zones/page.tsx
- * Version: v2.2 (LIGHTWEIGHT HERO MOTION PASS)
+ * Version: v2.3 (VISIBLE HERO MOTION PASS)
  * Date: 2026-05-09
  *
  * PURPOSE:
  * - Preserve the working premium Time Zone Basics article structure
- * - Add lightweight CSS-only hero motion to make the time zone visual feel more dynamic
- * - Keep motion limited to transform, opacity, and box-shadow for safe performance
- * - Respect prefers-reduced-motion for accessibility
+ * - Add visible animated time zone hero effects
+ * - Make the hero image feel active, global, and eye-catching
+ * - Keep animation CSS-powered with reduced-motion accessibility support
  *
  * PROTECTED:
  * - No Stripe changes
@@ -18,7 +18,7 @@
  * - No premium/payment logic changes
  *
  * ROLLBACK:
- * - Revert to v2.1 if the motion pass does not test cleanly
+ * - Revert to v2.2 if the motion pass does not test cleanly
  */
 
 import type { Metadata } from "next";
@@ -83,6 +83,25 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
             />
 
             <div className="hero-light-sweep" />
+            <div className="time-scan-line" />
+            <div className="time-scan-line second" />
+
+            <svg className="motion-lines" viewBox="0 0 600 420" aria-hidden="true">
+              <path
+                className="motion-path path-one"
+                d="M90 210 C190 110, 340 100, 520 175"
+              />
+              <path
+                className="motion-path path-two"
+                d="M120 300 C245 210, 380 255, 535 110"
+              />
+              <circle className="moving-dot dot-one" r="7" />
+              <circle className="moving-dot dot-two" r="7" />
+            </svg>
+
+            <span className="pulse-ring ring-one" />
+            <span className="pulse-ring ring-two" />
+            <span className="pulse-ring ring-three" />
 
             <div className="zone-strip">
               <span>UTC-8</span>
@@ -458,14 +477,8 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           box-shadow: 0 10px 22px rgba(91,33,182,0.22);
         }
 
-        .nav-cta span {
-          font-size: 13px;
-        }
-
-        .nav-cta small {
-          font-size: 10px;
-          font-weight: 800;
-        }
+        .nav-cta span { font-size: 13px; }
+        .nav-cta small { font-size: 10px; font-weight: 800; }
 
         .hero {
           display: grid;
@@ -538,9 +551,9 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          filter: saturate(1.25) contrast(1.06) brightness(1.04);
+          filter: saturate(1.35) contrast(1.08) brightness(1.06);
           transform-origin: center center;
-          animation: heroMapFloat 18s ease-in-out infinite alternate;
+          animation: heroMapFloat 9s ease-in-out infinite alternate;
           will-change: transform;
           z-index: 1;
         }
@@ -552,16 +565,96 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
             linear-gradient(
               115deg,
               rgba(255,255,255,0) 0%,
-              rgba(255,255,255,0) 36%,
-              rgba(255,255,255,0.22) 48%,
-              rgba(255,255,255,0) 60%,
+              rgba(255,255,255,0) 32%,
+              rgba(255,255,255,0.38) 48%,
+              rgba(255,255,255,0) 64%,
               rgba(255,255,255,0) 100%
             );
           transform: translateX(-120%);
-          animation: heroLightSweep 8s ease-in-out infinite;
+          animation: heroLightSweep 5.5s ease-in-out infinite;
           pointer-events: none;
           z-index: 2;
         }
+
+        .time-scan-line {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 4px;
+          background: linear-gradient(
+            180deg,
+            rgba(250,204,21,0) 0%,
+            rgba(250,204,21,0.95) 42%,
+            rgba(255,255,255,0.95) 50%,
+            rgba(250,204,21,0.95) 58%,
+            rgba(250,204,21,0) 100%
+          );
+          box-shadow:
+            0 0 18px rgba(250,204,21,0.95),
+            0 0 40px rgba(124,58,237,0.65);
+          animation: scanAcrossMap 4.2s linear infinite;
+          z-index: 3;
+          opacity: 0.95;
+        }
+
+        .time-scan-line.second {
+          animation-delay: 2.1s;
+          opacity: 0.55;
+        }
+
+        .motion-lines {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 3;
+          pointer-events: none;
+        }
+
+        .motion-path {
+          fill: none;
+          stroke: rgba(250,204,21,0.92);
+          stroke-width: 3;
+          stroke-dasharray: 12 12;
+          filter: drop-shadow(0 0 8px rgba(250,204,21,0.75));
+          animation: dashMove 3.8s linear infinite;
+        }
+
+        .path-two {
+          stroke: rgba(255,255,255,0.76);
+          animation-duration: 4.6s;
+        }
+
+        .moving-dot {
+          fill: #facc15;
+          filter: drop-shadow(0 0 12px rgba(250,204,21,0.95));
+        }
+
+        .dot-one {
+          offset-path: path("M90 210 C190 110, 340 100, 520 175");
+          animation: dotTravelOne 4.2s ease-in-out infinite;
+        }
+
+        .dot-two {
+          offset-path: path("M120 300 C245 210, 380 255, 535 110");
+          animation: dotTravelTwo 5s ease-in-out infinite;
+        }
+
+        .pulse-ring {
+          position: absolute;
+          width: 76px;
+          height: 76px;
+          border-radius: 999px;
+          border: 3px solid rgba(250,204,21,0.92);
+          box-shadow: 0 0 28px rgba(250,204,21,0.82);
+          animation: ringPulse 2.4s ease-out infinite;
+          z-index: 4;
+          pointer-events: none;
+        }
+
+        .ring-one { left: 17%; top: 34%; }
+        .ring-two { left: 33%; top: 58%; animation-delay: 0.75s; }
+        .ring-three { right: 16%; top: 35%; animation-delay: 1.4s; }
 
         .zone-strip {
           position: absolute;
@@ -574,7 +667,7 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           border-radius: 14px;
           background: rgba(255,255,255,0.94);
           box-shadow: 0 18px 40px rgba(15,23,42,0.2);
-          z-index: 3;
+          z-index: 5;
         }
 
         .zone-strip::after {
@@ -582,15 +675,17 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           position: absolute;
           top: 0;
           bottom: 0;
-          width: 120px;
+          width: 150px;
           background:
             linear-gradient(
               90deg,
               rgba(255,255,255,0) 0%,
-              rgba(255,255,255,0.5) 50%,
+              rgba(250,204,21,0.45) 35%,
+              rgba(255,255,255,0.85) 50%,
+              rgba(250,204,21,0.45) 65%,
               rgba(255,255,255,0) 100%
             );
-          animation: utcShimmer 5.5s linear infinite;
+          animation: utcShimmer 3.2s linear infinite;
           pointer-events: none;
         }
 
@@ -615,8 +710,8 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           display: grid;
           gap: 5px;
           text-align: center;
-          animation: calloutPulse 4.5s ease-in-out infinite;
-          z-index: 4;
+          animation: calloutPulse 2.8s ease-in-out infinite;
+          z-index: 6;
         }
 
         .hero-callout strong {
@@ -820,13 +915,8 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           font-weight: 950;
         }
 
-        .day-side {
-          left: 38px;
-        }
-
-        .night-side {
-          right: 28px;
-        }
+        .day-side { left: 38px; }
+        .night-side { right: 28px; }
 
         .orbit-line {
           position: absolute;
@@ -1017,14 +1107,8 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           color: #facc15;
         }
 
-        .planner-cta h2 {
-          color: #ffffff;
-        }
-
-        .planner-cta p {
-          color: #ede9fe;
-          margin-bottom: 0;
-        }
+        .planner-cta h2 { color: #ffffff; }
+        .planner-cta p { color: #ede9fe; margin-bottom: 0; }
 
         .planner-cta a {
           background: #facc15;
@@ -1041,50 +1125,110 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           box-shadow: 0 12px 24px rgba(250,204,21,0.24);
         }
 
-        .planner-cta a span {
-          font-size: 14px;
-        }
-
-        .planner-cta a small {
-          font-size: 11px;
-          font-weight: 800;
-        }
+        .planner-cta a span { font-size: 14px; }
+        .planner-cta a small { font-size: 11px; font-weight: 800; }
 
         @keyframes heroMapFloat {
           0% {
-            transform: scale(1) translate3d(0px, 0px, 0px);
+            transform: scale(1.02) translate3d(0px, 0px, 0px);
           }
 
           100% {
-            transform: scale(1.045) translate3d(-10px, -6px, 0px);
+            transform: scale(1.09) translate3d(-18px, -10px, 0px);
           }
         }
 
         @keyframes heroLightSweep {
           0%,
-          42% {
+          28% {
             transform: translateX(-120%);
             opacity: 0;
           }
 
-          52% {
+          40% {
             opacity: 1;
           }
 
-          72% {
+          62% {
             transform: translateX(120%);
             opacity: 0;
           }
 
           100% {
             transform: translateX(120%);
+            opacity: 0;
+          }
+        }
+
+        @keyframes scanAcrossMap {
+          0% {
+            left: -8%;
+          }
+
+          100% {
+            left: 108%;
+          }
+        }
+
+        @keyframes dashMove {
+          0% {
+            stroke-dashoffset: 0;
+          }
+
+          100% {
+            stroke-dashoffset: -48;
+          }
+        }
+
+        @keyframes dotTravelOne {
+          0% {
+            offset-distance: 0%;
+            opacity: 0;
+          }
+
+          15%,
+          85% {
+            opacity: 1;
+          }
+
+          100% {
+            offset-distance: 100%;
+            opacity: 0;
+          }
+        }
+
+        @keyframes dotTravelTwo {
+          0% {
+            offset-distance: 0%;
+            opacity: 0;
+          }
+
+          18%,
+          82% {
+            opacity: 1;
+          }
+
+          100% {
+            offset-distance: 100%;
+            opacity: 0;
+          }
+        }
+
+        @keyframes ringPulse {
+          0% {
+            transform: scale(0.45);
+            opacity: 0.95;
+          }
+
+          100% {
+            transform: scale(1.55);
             opacity: 0;
           }
         }
 
         @keyframes utcShimmer {
           0% {
-            transform: translateX(-160px);
+            transform: translateX(-180px);
           }
 
           100% {
@@ -1095,21 +1239,27 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
         @keyframes calloutPulse {
           0%,
           100% {
+            transform: translateY(0);
             box-shadow:
               0 0 0 rgba(124,58,237,0),
               0 12px 28px rgba(91,33,182,0.22);
           }
 
           50% {
+            transform: translateY(-4px);
             box-shadow:
-              0 0 24px rgba(167,139,250,0.35),
-              0 16px 34px rgba(91,33,182,0.28);
+              0 0 34px rgba(250,204,21,0.34),
+              0 18px 38px rgba(91,33,182,0.34);
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
           .hero-visual img,
           .hero-light-sweep,
+          .time-scan-line,
+          .motion-path,
+          .moving-dot,
+          .pulse-ring,
           .zone-strip::after,
           .hero-callout {
             animation: none !important;
