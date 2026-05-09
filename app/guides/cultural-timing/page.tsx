@@ -1,16 +1,12 @@
 /**
  * File: app/guides/cultural-timing/page.tsx
- * Version: v1.1 (JAPAN-FOCUSED CULTURAL TIMING GUIDE)
+ * Version: v1.2 (CULTURAL COLLABORATION HERO UPGRADE)
  * Date: 2026-05-09
  *
  * PURPOSE:
- * - Rebuild the Cultural Timing guide with stronger Japan-first content
- * - Replace vague visuals with clearer cultural, people, workday, and weekend timing sections
- * - Answer the Guides card promises:
- *   1. Best time to contact Japan
- *   2. Work hours around the world
- *   3. Weekend differences globally
- * - Improve SEO depth, user clarity, and visual usefulness
+ * - Keep the existing Cultural Timing guide content structure
+ * - Replace the weak abstract hero visual with a people-first global collaboration visual
+ * - Emphasize Japan, cultural respect, teamwork, and international coordination
  *
  * PROTECTED:
  * - No Stripe changes
@@ -21,7 +17,7 @@
  * - No premium/payment logic changes
  *
  * ROLLBACK:
- * - Revert to v1.0 if this rewrite does not test cleanly
+ * - Revert to v1.1 if this visual upgrade does not test cleanly
  */
 
 import type { Metadata } from "next";
@@ -77,43 +73,46 @@ export default function CulturalTimingGuidePage() {
             </div>
           </div>
 
-          <div className="hero-visual" aria-label="Japan focused global timing visual">
-            <div className="japan-sky">
-              <div className="sun-disc" />
-              <div className="moon-disc" />
-
-              <div className="tokyo-gate">
-                <span />
-                <span />
-                <span />
+          <div className="hero-visual" aria-label="Global team collaborating respectfully with Japan timing">
+            <div className="collab-hero">
+              <div className="tokyo-skyline">
+                <span className="tower" />
+                <span className="building b1" />
+                <span className="building b2" />
+                <span className="building b3" />
+                <span className="building b4" />
               </div>
 
-              <div className="people-row">
-                <span>Tokyo</span>
-                <span>London</span>
-                <span>New York</span>
-              </div>
-
-              <div className="hero-time-card tokyo-card">
+              <div className="main-person japan-person">
+                <div className="person-head" />
+                <div className="person-body" />
                 <strong>Tokyo</strong>
                 <span>10:00 AM</span>
-                <small>Good business contact window</small>
               </div>
 
-              <div className="hero-time-card london-card">
+              <div className="video-card london-video">
+                <div className="avatar" />
                 <strong>London</strong>
                 <span>1:00 AM</span>
                 <small>Too early for most teams</small>
               </div>
 
-              <div className="hero-time-card newyork-card">
+              <div className="video-card newyork-video">
+                <div className="avatar" />
                 <strong>New York</strong>
                 <span>8:00 PM</span>
-                <small>Possible, but after hours</small>
+                <small>Late evening collaboration</small>
               </div>
 
+              <div className="connection-line line-one" />
+              <div className="connection-line line-two" />
+
+              <div className="culture-chip chip-one">Respect local hours</div>
+              <div className="culture-chip chip-two">Plan around people</div>
+              <div className="culture-chip chip-three">Coordinate globally</div>
+
               <div className="hero-caption">
-                Japan timing starts with Tokyo local time.
+                Better global meetings start with cultural respect.
               </div>
             </div>
           </div>
@@ -578,158 +577,190 @@ export default function CulturalTimingGuidePage() {
           border-radius: 20px;
           overflow: hidden;
           box-shadow: 0 28px 62px rgba(30,27,75,0.24);
-          background: linear-gradient(135deg, #fde68a 0%, #f97316 28%, #312e81 72%, #111827 100%);
+          background: #111827;
         }
 
-        .japan-sky {
+        .collab-hero {
           position: relative;
           height: 500px;
           overflow: hidden;
           background:
-            radial-gradient(circle at 24% 28%, rgba(250,204,21,0.9), transparent 20%),
-            linear-gradient(90deg, #fef3c7 0%, #fb923c 24%, #818cf8 52%, #312e81 76%, #0f172a 100%);
+            radial-gradient(circle at 18% 18%, rgba(250,204,21,0.55), transparent 24%),
+            radial-gradient(circle at 82% 16%, rgba(167,139,250,0.5), transparent 26%),
+            linear-gradient(135deg, #fff7ed 0%, #f97316 25%, #5b21b6 62%, #111827 100%);
         }
 
-        .sun-disc {
-          position: absolute;
-          left: 42px;
-          top: 58px;
-          width: 150px;
-          height: 150px;
-          border-radius: 999px;
-          background: #facc15;
-          box-shadow: 0 0 80px rgba(250,204,21,0.88);
-          animation: sunFloat 3.4s ease-in-out infinite alternate;
-        }
-
-        .moon-disc {
-          position: absolute;
-          right: 42px;
-          top: 58px;
-          width: 96px;
-          height: 96px;
-          border-radius: 999px;
-          background: #fef3c7;
-          box-shadow: 0 0 48px rgba(254,243,199,0.8);
-        }
-
-        .moon-disc::after {
-          content: "";
-          position: absolute;
-          right: -8px;
-          top: -3px;
-          width: 96px;
-          height: 96px;
-          border-radius: 999px;
-          background: #111827;
-        }
-
-        .tokyo-gate {
-          position: absolute;
-          left: 64px;
-          bottom: 150px;
-          width: 190px;
-          height: 150px;
-          animation: gateGlow 3s ease-in-out infinite alternate;
-        }
-
-        .tokyo-gate span:nth-child(1) {
+        .tokyo-skyline {
           position: absolute;
           left: 0;
           right: 0;
-          top: 0;
-          height: 22px;
-          background: #7f1d1d;
-          border-radius: 8px;
-          box-shadow: 0 0 24px rgba(250,204,21,0.3);
+          bottom: 0;
+          height: 190px;
+          background: linear-gradient(to top, rgba(15,23,42,0.9), transparent);
+          z-index: 1;
         }
 
-        .tokyo-gate span:nth-child(2),
-        .tokyo-gate span:nth-child(3) {
+        .building {
           position: absolute;
-          top: 22px;
-          width: 24px;
-          height: 128px;
-          background: #991b1b;
-          border-radius: 8px;
+          bottom: 0;
+          border-radius: 14px 14px 0 0;
+          background: rgba(17,24,39,0.86);
+          box-shadow: 0 0 28px rgba(250,204,21,0.16);
         }
 
-        .tokyo-gate span:nth-child(2) { left: 34px; }
-        .tokyo-gate span:nth-child(3) { right: 34px; }
+        .b1 { left: 38px; width: 70px; height: 104px; }
+        .b2 { left: 118px; width: 88px; height: 148px; }
+        .b3 { right: 128px; width: 92px; height: 124px; }
+        .b4 { right: 40px; width: 70px; height: 94px; }
 
-        .people-row {
+        .tower {
           position: absolute;
-          left: 38px;
-          right: 38px;
-          bottom: 102px;
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 14px;
+          left: 50%;
+          bottom: 0;
+          width: 78px;
+          height: 210px;
+          transform: translateX(-50%);
+          clip-path: polygon(50% 0%, 70% 100%, 30% 100%);
+          background: linear-gradient(180deg, #f97316 0%, #991b1b 100%);
+          filter: drop-shadow(0 0 22px rgba(250,204,21,0.45));
+          animation: towerGlow 3.2s ease-in-out infinite alternate;
+        }
+
+        .main-person {
+          position: absolute;
+          left: 54px;
+          top: 54px;
+          width: 170px;
+          height: 200px;
           z-index: 4;
+          display: grid;
+          place-items: center;
+          border-radius: 28px;
+          background: rgba(255,255,255,0.9);
+          border: 1px solid rgba(255,255,255,0.65);
+          box-shadow: 0 20px 46px rgba(15,23,42,0.22);
         }
 
-        .people-row span {
-          background: rgba(255,255,255,0.94);
-          border: 1px solid #fde68a;
+        .person-head {
+          width: 62px;
+          height: 62px;
           border-radius: 999px;
-          padding: 12px;
-          text-align: center;
-          color: #4c1d95;
-          font-weight: 950;
-          box-shadow: 0 12px 28px rgba(15,23,42,0.16);
+          background: linear-gradient(135deg, #facc15 0%, #fb923c 100%);
+          margin-top: 16px;
         }
 
-        .hero-time-card {
+        .person-body {
+          width: 104px;
+          height: 70px;
+          border-radius: 42px 42px 18px 18px;
+          background: #5b21b6;
+          margin-top: -8px;
+        }
+
+        .main-person strong {
+          color: #111827;
+          font-size: 18px;
+          font-weight: 950;
+          margin-top: -4px;
+        }
+
+        .main-person span {
+          color: #5b21b6;
+          font-size: 24px;
+          font-weight: 950;
+          margin-top: -12px;
+        }
+
+        .video-card {
           position: absolute;
-          width: 150px;
-          background: rgba(255,255,255,0.94);
-          border: 1px solid #ddd6fe;
-          border-radius: 16px;
-          padding: 14px;
+          width: 172px;
+          border-radius: 22px;
+          background: rgba(255,255,255,0.92);
+          border: 1px solid rgba(255,255,255,0.7);
+          padding: 16px;
           display: grid;
           gap: 5px;
           z-index: 5;
-          box-shadow: 0 18px 38px rgba(15,23,42,0.2);
+          box-shadow: 0 18px 38px rgba(15,23,42,0.24);
+          animation: cardFloat 3.4s ease-in-out infinite;
         }
 
-        .hero-time-card strong {
+        .london-video {
+          right: 48px;
+          top: 70px;
+        }
+
+        .newyork-video {
+          right: 78px;
+          top: 230px;
+          animation-delay: 0.55s;
+        }
+
+        .avatar {
+          width: 44px;
+          height: 44px;
+          border-radius: 999px;
+          background: linear-gradient(135deg, #ddd6fe 0%, #5b21b6 100%);
+          margin-bottom: 4px;
+        }
+
+        .video-card strong {
           color: #111827;
-          font-size: 15px;
+          font-size: 16px;
           font-weight: 950;
         }
 
-        .hero-time-card span {
+        .video-card span {
           color: #5b21b6;
-          font-size: 20px;
+          font-size: 24px;
           font-weight: 950;
         }
 
-        .hero-time-card small {
+        .video-card small {
           color: #4b5563;
-          font-size: 11px;
+          font-size: 12px;
           line-height: 1.35;
           font-weight: 800;
         }
 
-        .tokyo-card {
-          right: 28px;
-          top: 138px;
-          animation: cardPulse 2.6s ease-in-out infinite;
+        .connection-line {
+          position: absolute;
+          height: 3px;
+          border-top: 3px dashed rgba(250,204,21,0.92);
+          z-index: 3;
+          filter: drop-shadow(0 0 8px rgba(250,204,21,0.72));
         }
 
-        .london-card {
-          left: 220px;
-          top: 216px;
-          animation: cardPulse 2.6s ease-in-out infinite;
-          animation-delay: 0.35s;
+        .line-one {
+          left: 200px;
+          top: 150px;
+          width: 245px;
+          transform: rotate(-8deg);
         }
 
-        .newyork-card {
-          left: 30px;
-          top: 235px;
-          animation: cardPulse 2.6s ease-in-out infinite;
-          animation-delay: 0.7s;
+        .line-two {
+          left: 190px;
+          top: 248px;
+          width: 275px;
+          transform: rotate(15deg);
+          border-color: rgba(255,255,255,0.78);
         }
+
+        .culture-chip {
+          position: absolute;
+          z-index: 6;
+          border-radius: 999px;
+          background: rgba(255,255,255,0.95);
+          color: #4c1d95;
+          padding: 12px 15px;
+          font-size: 13px;
+          font-weight: 950;
+          box-shadow: 0 12px 28px rgba(15,23,42,0.18);
+        }
+
+        .chip-one { left: 42px; bottom: 126px; }
+        .chip-two { left: 220px; bottom: 104px; }
+        .chip-three { right: 34px; bottom: 122px; }
 
         .hero-caption {
           position: absolute;
@@ -743,7 +774,7 @@ export default function CulturalTimingGuidePage() {
           text-align: center;
           font-size: 18px;
           font-weight: 950;
-          z-index: 6;
+          z-index: 7;
         }
 
         .answer-section {
@@ -1087,25 +1118,19 @@ export default function CulturalTimingGuidePage() {
         .planner-cta a span { font-size: 14px; }
         .planner-cta a small { font-size: 11px; font-weight: 800; }
 
-        @keyframes sunFloat {
-          0% { transform: translateY(16px) scale(0.96); }
-          100% { transform: translateY(-10px) scale(1.05); }
-        }
-
-        @keyframes gateGlow {
+        @keyframes towerGlow {
           0% { filter: drop-shadow(0 0 8px rgba(250,204,21,0.25)); }
-          100% { filter: drop-shadow(0 0 22px rgba(250,204,21,0.55)); }
+          100% { filter: drop-shadow(0 0 26px rgba(250,204,21,0.75)); }
         }
 
-        @keyframes cardPulse {
+        @keyframes cardFloat {
           0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-6px); }
+          50% { transform: translateY(-8px); }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .sun-disc,
-          .tokyo-gate,
-          .hero-time-card {
+          .tower,
+          .video-card {
             animation: none !important;
           }
         }
@@ -1148,27 +1173,46 @@ export default function CulturalTimingGuidePage() {
           }
 
           .hero-visual,
-          .japan-sky {
-            min-height: 520px;
+          .collab-hero {
+            min-height: 560px;
           }
 
-          .hero-time-card {
-            width: 128px;
+          .main-person {
+            left: 24px;
+            top: 36px;
+            width: 150px;
           }
 
-          .london-card {
+          .london-video {
+            right: 22px;
+            top: 60px;
+            width: 145px;
+          }
+
+          .newyork-video {
+            right: 22px;
+            top: 218px;
+            width: 145px;
+          }
+
+          .line-one,
+          .line-two {
+            display: none;
+          }
+
+          .chip-one {
             left: 20px;
-            top: 292px;
+            bottom: 156px;
           }
 
-          .newyork-card {
-            left: 154px;
-            top: 292px;
+          .chip-two {
+            left: 20px;
+            bottom: 108px;
           }
 
-          .tokyo-card {
+          .chip-three {
             right: 20px;
-            top: 164px;
+            bottom: 108px;
           }
 
           .people-row,
