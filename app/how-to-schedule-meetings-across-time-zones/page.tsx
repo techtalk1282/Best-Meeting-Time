@@ -1,13 +1,13 @@
 /**
  * File: app/how-to-schedule-meetings-across-time-zones/page.tsx
- * Version: v2.3 (VISIBLE HERO MOTION PASS)
+ * Version: v2.4 (GUARANTEED VISIBLE CSS HERO MOTION)
  * Date: 2026-05-09
  *
  * PURPOSE:
  * - Preserve the working premium Time Zone Basics article structure
- * - Add visible animated time zone hero effects
- * - Make the hero image feel active, global, and eye-catching
- * - Keep animation CSS-powered with reduced-motion accessibility support
+ * - Remove unsupported/subtle SVG offset-path animation
+ * - Add obvious CSS-only hero motion using scan beams, moving glow orbs, UTC label pulses, and callout movement
+ * - Keep animation lightweight and accessibility-safe with prefers-reduced-motion
  *
  * PROTECTED:
  * - No Stripe changes
@@ -18,7 +18,7 @@
  * - No premium/payment logic changes
  *
  * ROLLBACK:
- * - Revert to v2.2 if the motion pass does not test cleanly
+ * - Revert to v2.3 if this motion pass does not test cleanly
  */
 
 import type { Metadata } from "next";
@@ -43,9 +43,7 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
             <a href="/">Home</a>
             <a href="/how-it-works">How It Works</a>
             <a href="/features">Features</a>
-            <a href="/guides" className="active">
-              Guides
-            </a>
+            <a href="/guides" className="active">Guides</a>
             <a href="/blog">Blog</a>
             <a href="/about">About</a>
             <a href="/contact">Contact</a>
@@ -60,9 +58,7 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
         <section className="hero">
           <div className="hero-copy">
             <p className="pill">Time Zone Basics Guide</p>
-
             <h1>Time Zones Explained: Clocks, Sunlight, and Global Time</h1>
-
             <p className="hero-text">
               Before you schedule across countries, it helps to understand why
               the world uses time zones, why there are about 24 main time zones,
@@ -82,22 +78,19 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
               alt="World map divided into time zone regions"
             />
 
-            <div className="hero-light-sweep" />
-            <div className="time-scan-line" />
-            <div className="time-scan-line second" />
+            <div className="wide-scan-beam" />
+            <div className="animated-time-band">
+              <span>UTC-8</span>
+              <span>UTC-5</span>
+              <span>UTC+0</span>
+              <span>UTC+5:30</span>
+              <span>UTC+9</span>
+              <span>UTC+10</span>
+            </div>
 
-            <svg className="motion-lines" viewBox="0 0 600 420" aria-hidden="true">
-              <path
-                className="motion-path path-one"
-                d="M90 210 C190 110, 340 100, 520 175"
-              />
-              <path
-                className="motion-path path-two"
-                d="M120 300 C245 210, 380 255, 535 110"
-              />
-              <circle className="moving-dot dot-one" r="7" />
-              <circle className="moving-dot dot-two" r="7" />
-            </svg>
+            <span className="moving-glow glow-one" />
+            <span className="moving-glow glow-two" />
+            <span className="moving-glow glow-three" />
 
             <span className="pulse-ring ring-one" />
             <span className="pulse-ring ring-two" />
@@ -121,7 +114,6 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
 
         <section className="answer-map">
           <p className="section-pill">What this guide answers</p>
-
           <h2>Three simple questions explain most time zone confusion.</h2>
 
           <div className="answer-grid">
@@ -148,22 +140,18 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
         <section id="how-many-time-zones" className="feature-section">
           <div className="feature-copy">
             <p className="section-pill">Question 1</p>
-
             <h2>How many time zones are there?</h2>
-
             <p>
               The world is commonly organized around 24 main time zones because
               Earth rotates once every 24 hours. As the planet turns, different
               regions face the sun at different times.
             </p>
-
             <p>
               Each main time zone roughly represents one hour of difference from
               the next region. That is why New York, London, Tokyo, and Sydney
               can all be living in the same day but reading very different local
               clocks.
             </p>
-
             <p>
               Real life is more detailed than a perfect 24-zone grid. Some
               countries use half-hour or quarter-hour offsets, and some large
@@ -173,13 +161,11 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
 
           <div className="visual-panel zone-panel">
             <div className="zone-title">A 24-hour planet</div>
-
             <div className="zone-bars">
               {Array.from({ length: 24 }).map((_, index) => (
                 <span key={index}>{index % 6 === 0 ? index : ""}</span>
               ))}
             </div>
-
             <div className="zone-caption">
               Earth rotates through a full day, so global time is divided into
               hour-based regions.
@@ -203,22 +189,18 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
 
           <div className="feature-copy">
             <p className="section-pill">Question 2</p>
-
             <h2>Why do time zones exist?</h2>
-
             <p>
               Time zones exist because local sunlight changes as Earth rotates.
               Noon is not the same moment everywhere. When the sun is high over
               one region, another region may be waking up, working late, or
               already asleep.
             </p>
-
             <p>
               Before standardized time zones, many towns used local solar time.
               That worked for small communities, but it became confusing as
               railroads, travel, business, and global communication expanded.
             </p>
-
             <p>
               Time zones created a shared system. They make it easier for people
               to plan flights, run businesses, schedule calls, and coordinate
@@ -230,21 +212,17 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
         <section id="why-clocks-change" className="feature-section">
           <div className="feature-copy">
             <p className="section-pill">Question 3</p>
-
             <h2>Why do clocks change?</h2>
-
             <p>
               Clocks change in places that use daylight saving time. During part
               of the year, those regions shift the clock forward or backward to
               move daylight into different parts of the day.
             </p>
-
             <p>
               This can create confusion for international meetings because not
               every country changes clocks, and the countries that do change may
               not switch on the same date.
             </p>
-
             <p>
               A meeting that was five hours apart one month may become four
               hours apart temporarily. That is why global scheduling should be
@@ -258,9 +236,7 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
               <strong>Forward</strong>
               <p>Some clocks move ahead by one hour.</p>
             </div>
-
             <div className="clock-center">DST</div>
-
             <div className="clock-card fall">
               <span>Fall</span>
               <strong>Back</strong>
@@ -272,9 +248,7 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
         <section className="example-section">
           <div>
             <p className="section-pill">Real meeting example</p>
-
             <h2>One meeting can feel normal in one city and painful in another.</h2>
-
             <p>
               A 9:00 AM meeting in New York may be convenient for London, but it
               can be late at night in Tokyo. That is why comparing local times
@@ -283,21 +257,9 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           </div>
 
           <div className="meeting-card">
-            <div>
-              <strong>New York</strong>
-              <span>9:00 AM</span>
-            </div>
-
-            <div>
-              <strong>London</strong>
-              <span>2:00 PM</span>
-            </div>
-
-            <div>
-              <strong>Tokyo</strong>
-              <span>11:00 PM</span>
-            </div>
-
+            <div><strong>New York</strong><span>9:00 AM</span></div>
+            <div><strong>London</strong><span>2:00 PM</span></div>
+            <div><strong>Tokyo</strong><span>11:00 PM</span></div>
             <p>
               This is why the best meeting time is not always the first overlap
               you find. It should also respect how reasonable that time feels
@@ -308,65 +270,40 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
 
         <section className="mistakes-section">
           <p className="section-pill">Common mistakes</p>
-
           <h2>Time zone basics prevent expensive scheduling errors.</h2>
 
           <div className="mistake-grid">
             <div>
               <strong>Using abbreviations</strong>
-              <p>
-                EST, CST, GMT, and similar labels can be misunderstood. City
-                names are clearer.
-              </p>
+              <p>EST, CST, GMT, and similar labels can be misunderstood. City names are clearer.</p>
             </div>
-
             <div>
               <strong>Forgetting seasonal changes</strong>
-              <p>
-                Daylight saving time can temporarily change the offset between
-                two cities.
-              </p>
+              <p>Daylight saving time can temporarily change the offset between two cities.</p>
             </div>
-
             <div>
               <strong>Ignoring local work hours</strong>
-              <p>
-                A technically available time may still be too early or too late
-                for a real person.
-              </p>
+              <p>A technically available time may still be too early or too late for a real person.</p>
             </div>
           </div>
         </section>
 
         <section className="faq-section">
           <p className="section-pill">Quick answers</p>
-
           <h2>Time Zone Basics FAQ</h2>
 
           <div className="faq-grid">
             <div>
               <h3>Are there exactly 24 time zones?</h3>
-              <p>
-                There are 24 main hour-based time zones, but real-world offsets
-                include half-hour and quarter-hour variations.
-              </p>
+              <p>There are 24 main hour-based time zones, but real-world offsets include half-hour and quarter-hour variations.</p>
             </div>
-
             <div>
               <h3>Why not use one global time?</h3>
-              <p>
-                A single global time would make local daily life confusing
-                because sunrise, lunch, work, and evening would happen at very
-                different clock hours around the world.
-              </p>
+              <p>A single global time would make local daily life confusing because sunrise, lunch, work, and evening would happen at very different clock hours around the world.</p>
             </div>
-
             <div>
               <h3>Why does daylight saving time affect meetings?</h3>
-              <p>
-                It changes the time difference between cities, especially when
-                one country changes clocks and another does not.
-              </p>
+              <p>It changes the time difference between cities, especially when one country changes clocks and another does not.</p>
             </div>
           </div>
         </section>
@@ -374,9 +311,7 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
         <section className="planner-cta">
           <div>
             <p className="section-pill gold-pill">Plan with confidence</p>
-
             <h2>Ready to compare cities instead of guessing?</h2>
-
             <p>
               Use Best Meeting Time to compare local times, review overlap
               windows, and choose a better time before sending the invite.
@@ -551,110 +486,97 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          filter: saturate(1.35) contrast(1.08) brightness(1.06);
+          filter: saturate(1.32) contrast(1.08) brightness(1.06);
           transform-origin: center center;
-          animation: heroMapFloat 9s ease-in-out infinite alternate;
-          will-change: transform;
+          animation: mapZoomPan 6s ease-in-out infinite alternate;
           z-index: 1;
         }
 
-        .hero-light-sweep {
-          position: absolute;
-          inset: 0;
-          background:
-            linear-gradient(
-              115deg,
-              rgba(255,255,255,0) 0%,
-              rgba(255,255,255,0) 32%,
-              rgba(255,255,255,0.38) 48%,
-              rgba(255,255,255,0) 64%,
-              rgba(255,255,255,0) 100%
-            );
-          transform: translateX(-120%);
-          animation: heroLightSweep 5.5s ease-in-out infinite;
-          pointer-events: none;
-          z-index: 2;
-        }
-
-        .time-scan-line {
+        .wide-scan-beam {
           position: absolute;
           top: 0;
           bottom: 0;
-          width: 4px;
+          width: 130px;
           background: linear-gradient(
-            180deg,
+            90deg,
             rgba(250,204,21,0) 0%,
-            rgba(250,204,21,0.95) 42%,
-            rgba(255,255,255,0.95) 50%,
-            rgba(250,204,21,0.95) 58%,
+            rgba(250,204,21,0.32) 28%,
+            rgba(255,255,255,0.78) 50%,
+            rgba(250,204,21,0.32) 72%,
             rgba(250,204,21,0) 100%
           );
-          box-shadow:
-            0 0 18px rgba(250,204,21,0.95),
-            0 0 40px rgba(124,58,237,0.65);
-          animation: scanAcrossMap 4.2s linear infinite;
+          box-shadow: 0 0 34px rgba(250,204,21,0.9);
+          animation: scanBeam 3.2s linear infinite;
+          z-index: 2;
+        }
+
+        .animated-time-band {
+          position: absolute;
+          top: 20px;
+          left: 0;
+          display: flex;
+          gap: 10px;
+          white-space: nowrap;
+          animation: timeBandSlide 9s linear infinite;
           z-index: 3;
           opacity: 0.95;
         }
 
-        .time-scan-line.second {
-          animation-delay: 2.1s;
-          opacity: 0.55;
+        .animated-time-band span {
+          background: rgba(255,255,255,0.92);
+          color: #5b21b6;
+          padding: 8px 12px;
+          border-radius: 999px;
+          font-size: 12px;
+          font-weight: 950;
+          box-shadow: 0 8px 22px rgba(30,27,75,0.16);
         }
 
-        .motion-lines {
+        .moving-glow {
           position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          z-index: 3;
-          pointer-events: none;
+          width: 22px;
+          height: 22px;
+          border-radius: 999px;
+          background: #facc15;
+          box-shadow:
+            0 0 0 8px rgba(250,204,21,0.25),
+            0 0 30px rgba(250,204,21,0.9);
+          z-index: 4;
         }
 
-        .motion-path {
-          fill: none;
-          stroke: rgba(250,204,21,0.92);
-          stroke-width: 3;
-          stroke-dasharray: 12 12;
-          filter: drop-shadow(0 0 8px rgba(250,204,21,0.75));
-          animation: dashMove 3.8s linear infinite;
+        .glow-one {
+          left: 10%;
+          top: 52%;
+          animation: glowTravelOne 4.8s ease-in-out infinite;
         }
 
-        .path-two {
-          stroke: rgba(255,255,255,0.76);
-          animation-duration: 4.6s;
+        .glow-two {
+          left: 38%;
+          top: 38%;
+          animation: glowTravelTwo 5.6s ease-in-out infinite;
         }
 
-        .moving-dot {
-          fill: #facc15;
-          filter: drop-shadow(0 0 12px rgba(250,204,21,0.95));
-        }
-
-        .dot-one {
-          offset-path: path("M90 210 C190 110, 340 100, 520 175");
-          animation: dotTravelOne 4.2s ease-in-out infinite;
-        }
-
-        .dot-two {
-          offset-path: path("M120 300 C245 210, 380 255, 535 110");
-          animation: dotTravelTwo 5s ease-in-out infinite;
+        .glow-three {
+          right: 18%;
+          top: 35%;
+          animation: glowTravelThree 6.2s ease-in-out infinite;
         }
 
         .pulse-ring {
           position: absolute;
-          width: 76px;
-          height: 76px;
+          width: 72px;
+          height: 72px;
           border-radius: 999px;
-          border: 3px solid rgba(250,204,21,0.92);
-          box-shadow: 0 0 28px rgba(250,204,21,0.82);
-          animation: ringPulse 2.4s ease-out infinite;
+          border: 4px solid rgba(250,204,21,0.95);
+          box-shadow: 0 0 30px rgba(250,204,21,0.9);
+          animation: ringPulse 1.9s ease-out infinite;
           z-index: 4;
           pointer-events: none;
         }
 
         .ring-one { left: 17%; top: 34%; }
-        .ring-two { left: 33%; top: 58%; animation-delay: 0.75s; }
-        .ring-three { right: 16%; top: 35%; animation-delay: 1.4s; }
+        .ring-two { left: 33%; top: 58%; animation-delay: 0.45s; }
+        .ring-three { right: 16%; top: 35%; animation-delay: 0.9s; }
 
         .zone-strip {
           position: absolute;
@@ -670,25 +592,6 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           z-index: 5;
         }
 
-        .zone-strip::after {
-          content: "";
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          width: 150px;
-          background:
-            linear-gradient(
-              90deg,
-              rgba(255,255,255,0) 0%,
-              rgba(250,204,21,0.45) 35%,
-              rgba(255,255,255,0.85) 50%,
-              rgba(250,204,21,0.45) 65%,
-              rgba(255,255,255,0) 100%
-            );
-          animation: utcShimmer 3.2s linear infinite;
-          pointer-events: none;
-        }
-
         .zone-strip span {
           padding: 16px 8px;
           text-align: center;
@@ -696,7 +599,14 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           font-size: 15px;
           font-weight: 950;
           border-right: 1px solid #ddd6fe;
+          animation: utcPulse 2.4s ease-in-out infinite;
         }
+
+        .zone-strip span:nth-child(2) { animation-delay: 0.2s; }
+        .zone-strip span:nth-child(3) { animation-delay: 0.4s; }
+        .zone-strip span:nth-child(4) { animation-delay: 0.6s; }
+        .zone-strip span:nth-child(5) { animation-delay: 0.8s; }
+        .zone-strip span:nth-child(6) { animation-delay: 1s; }
 
         .hero-callout {
           position: absolute;
@@ -710,7 +620,7 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           display: grid;
           gap: 5px;
           text-align: center;
-          animation: calloutPulse 2.8s ease-in-out infinite;
+          animation: calloutLift 2.8s ease-in-out infinite;
           z-index: 6;
         }
 
@@ -1128,139 +1038,76 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
         .planner-cta a span { font-size: 14px; }
         .planner-cta a small { font-size: 11px; font-weight: 800; }
 
-        @keyframes heroMapFloat {
-          0% {
-            transform: scale(1.02) translate3d(0px, 0px, 0px);
-          }
-
-          100% {
-            transform: scale(1.09) translate3d(-18px, -10px, 0px);
-          }
+        @keyframes mapZoomPan {
+          0% { transform: scale(1.02) translate3d(0, 0, 0); }
+          100% { transform: scale(1.12) translate3d(-28px, -12px, 0); }
         }
 
-        @keyframes heroLightSweep {
-          0%,
-          28% {
-            transform: translateX(-120%);
-            opacity: 0;
-          }
-
-          40% {
-            opacity: 1;
-          }
-
-          62% {
-            transform: translateX(120%);
-            opacity: 0;
-          }
-
-          100% {
-            transform: translateX(120%);
-            opacity: 0;
-          }
+        @keyframes scanBeam {
+          0% { transform: translateX(-180px); opacity: 0.15; }
+          12% { opacity: 1; }
+          88% { opacity: 1; }
+          100% { transform: translateX(760px); opacity: 0.15; }
         }
 
-        @keyframes scanAcrossMap {
-          0% {
-            left: -8%;
-          }
-
-          100% {
-            left: 108%;
-          }
+        @keyframes timeBandSlide {
+          0% { transform: translateX(-62%); }
+          100% { transform: translateX(112%); }
         }
 
-        @keyframes dashMove {
-          0% {
-            stroke-dashoffset: 0;
-          }
-
-          100% {
-            stroke-dashoffset: -48;
-          }
+        @keyframes glowTravelOne {
+          0%, 100% { transform: translate3d(0, 0, 0) scale(0.9); }
+          50% { transform: translate3d(210px, -82px, 0) scale(1.35); }
         }
 
-        @keyframes dotTravelOne {
-          0% {
-            offset-distance: 0%;
-            opacity: 0;
-          }
-
-          15%,
-          85% {
-            opacity: 1;
-          }
-
-          100% {
-            offset-distance: 100%;
-            opacity: 0;
-          }
+        @keyframes glowTravelTwo {
+          0%, 100% { transform: translate3d(0, 0, 0) scale(0.9); }
+          50% { transform: translate3d(160px, 120px, 0) scale(1.35); }
         }
 
-        @keyframes dotTravelTwo {
-          0% {
-            offset-distance: 0%;
-            opacity: 0;
-          }
-
-          18%,
-          82% {
-            opacity: 1;
-          }
-
-          100% {
-            offset-distance: 100%;
-            opacity: 0;
-          }
+        @keyframes glowTravelThree {
+          0%, 100% { transform: translate3d(0, 0, 0) scale(0.9); }
+          50% { transform: translate3d(-220px, 95px, 0) scale(1.35); }
         }
 
         @keyframes ringPulse {
-          0% {
-            transform: scale(0.45);
-            opacity: 0.95;
-          }
-
-          100% {
-            transform: scale(1.55);
-            opacity: 0;
-          }
+          0% { transform: scale(0.35); opacity: 0.95; }
+          100% { transform: scale(1.85); opacity: 0; }
         }
 
-        @keyframes utcShimmer {
-          0% {
-            transform: translateX(-180px);
-          }
-
-          100% {
-            transform: translateX(980px);
-          }
-        }
-
-        @keyframes calloutPulse {
-          0%,
-          100% {
-            transform: translateY(0);
-            box-shadow:
-              0 0 0 rgba(124,58,237,0),
-              0 12px 28px rgba(91,33,182,0.22);
+        @keyframes utcPulse {
+          0%, 100% {
+            background: rgba(255,255,255,0);
+            color: #5b21b6;
           }
 
           50% {
-            transform: translateY(-4px);
+            background: rgba(250,204,21,0.38);
+            color: #312e81;
+          }
+        }
+
+        @keyframes calloutLift {
+          0%, 100% {
+            transform: translateY(0) scale(1);
+            box-shadow: 0 12px 28px rgba(91,33,182,0.22);
+          }
+
+          50% {
+            transform: translateY(-6px) scale(1.015);
             box-shadow:
-              0 0 34px rgba(250,204,21,0.34),
-              0 18px 38px rgba(91,33,182,0.34);
+              0 0 36px rgba(250,204,21,0.36),
+              0 18px 38px rgba(91,33,182,0.36);
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
           .hero-visual img,
-          .hero-light-sweep,
-          .time-scan-line,
-          .motion-path,
-          .moving-dot,
+          .wide-scan-beam,
+          .animated-time-band,
+          .moving-glow,
           .pulse-ring,
-          .zone-strip::after,
+          .zone-strip span,
           .hero-callout {
             animation: none !important;
           }
