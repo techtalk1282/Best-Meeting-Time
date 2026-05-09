@@ -354,7 +354,7 @@ const brandLink = {
 
 const brandLogo = {
   display: "block",
-  width: "190px",
+  width: "228px",
   height: "auto",
   objectFit: "contain" as const,
 };
@@ -363,13 +363,12 @@ const nav = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  gap: "18px",
+  gap: "16px",
 };
-
 const navLink = {
   color: "#374151",
   fontSize: "13px",
-  fontWeight: 800,
+  fontWeight: 700,
   textDecoration: "none",
 };
 
@@ -385,7 +384,7 @@ const navButton = {
   alignItems: "center",
   justifyContent: "center",
   lineHeight: 1.15,
-  minWidth: "154px",
+minWidth: "146px",
   boxShadow: "0 10px 22px rgba(91,33,182,0.22)",
 };
 
