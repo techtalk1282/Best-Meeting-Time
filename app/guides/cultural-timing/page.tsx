@@ -1,12 +1,15 @@
 /**
  * File: app/guides/cultural-timing/page.tsx
- * Version: v1.2 (CULTURAL COLLABORATION HERO UPGRADE)
+ * Version: v1.3 (APPROVED CULTURAL IMAGE SYSTEM)
  * Date: 2026-05-09
  *
  * PURPOSE:
- * - Keep the existing Cultural Timing guide content structure
- * - Replace the weak abstract hero visual with a people-first global collaboration visual
- * - Emphasize Japan, cultural respect, teamwork, and international coordination
+ * - Replace weak CSS-drawn visuals with approved image-based cultural visuals
+ * - Use people-first cultural collaboration imagery
+ * - Keep SEO-focused guide content for:
+ *   1. Best time to contact Japan
+ *   2. Work hours around the world
+ *   3. Weekend differences globally
  *
  * PROTECTED:
  * - No Stripe changes
@@ -17,7 +20,7 @@
  * - No premium/payment logic changes
  *
  * ROLLBACK:
- * - Revert to v1.1 if this visual upgrade does not test cleanly
+ * - Revert to v1.2 if this visual image pass does not test cleanly
  */
 
 import type { Metadata } from "next";
@@ -73,48 +76,11 @@ export default function CulturalTimingGuidePage() {
             </div>
           </div>
 
-          <div className="hero-visual" aria-label="Global team collaborating respectfully with Japan timing">
-            <div className="collab-hero">
-              <div className="tokyo-skyline">
-                <span className="tower" />
-                <span className="building b1" />
-                <span className="building b2" />
-                <span className="building b3" />
-                <span className="building b4" />
-              </div>
-
-              <div className="main-person japan-person">
-                <div className="person-head" />
-                <div className="person-body" />
-                <strong>Tokyo</strong>
-                <span>10:00 AM</span>
-              </div>
-
-              <div className="video-card london-video">
-                <div className="avatar" />
-                <strong>London</strong>
-                <span>1:00 AM</span>
-                <small>Too early for most teams</small>
-              </div>
-
-              <div className="video-card newyork-video">
-                <div className="avatar" />
-                <strong>New York</strong>
-                <span>8:00 PM</span>
-                <small>Late evening collaboration</small>
-              </div>
-
-              <div className="connection-line line-one" />
-              <div className="connection-line line-two" />
-
-              <div className="culture-chip chip-one">Respect local hours</div>
-              <div className="culture-chip chip-two">Plan around people</div>
-              <div className="culture-chip chip-three">Coordinate globally</div>
-
-              <div className="hero-caption">
-                Better global meetings start with cultural respect.
-              </div>
-            </div>
+          <div className="hero-image-card">
+            <img
+              src="/images/guides/cultural-hero-global-collaboration.png"
+              alt="Global team collaborating with Japan timing, Tokyo scenery, and meeting time labels"
+            />
           </div>
         </section>
 
@@ -127,25 +93,19 @@ export default function CulturalTimingGuidePage() {
             <a href="#contact-japan" className="answer-card">
               <span>01</span>
               <strong>Best time to contact Japan</strong>
-              <p>
-                See practical Tokyo-friendly contact windows for US and European teams.
-              </p>
+              <p>See practical Tokyo-friendly contact windows for US and European teams.</p>
             </a>
 
             <a href="#work-hours" className="answer-card">
               <span>02</span>
               <strong>Work hours around the world</strong>
-              <p>
-                Compare normal business rhythms across major regions.
-              </p>
+              <p>Compare normal business rhythms across major regions.</p>
             </a>
 
             <a href="#weekends" className="answer-card">
               <span>03</span>
               <strong>Weekend differences globally</strong>
-              <p>
-                Understand why Friday, Saturday, and Sunday can mean different things globally.
-              </p>
+              <p>Understand why Friday, Saturday, and Sunday can mean different things globally.</p>
             </a>
           </div>
         </section>
@@ -157,56 +117,31 @@ export default function CulturalTimingGuidePage() {
             <h2>What is the best time to contact Japan?</h2>
 
             <p>
-              The best time to contact Japan is usually during Tokyo business hours,
-              especially mid-morning through late afternoon on a Japanese weekday.
-              For most professional communication, aim for a window that lands
-              somewhere between 9:00 AM and 6:00 PM in Japan.
+              The best time to contact Japan is usually during Tokyo business
+              hours, especially mid-morning through late afternoon on a Japanese
+              weekday. For most professional communication, aim for a window
+              that lands somewhere between 9:00 AM and 6:00 PM in Japan.
             </p>
 
             <p>
-              The challenge is that Tokyo is far ahead of North America and several
-              hours ahead of Europe. That means a good time in Japan may be late
-              evening in the United States or very early in Europe.
+              The challenge is that Tokyo is far ahead of North America and
+              several hours ahead of Europe. That means a good time in Japan may
+              be late evening in the United States or very early in Europe.
             </p>
 
             <p>
               For US teams, the most realistic Japan-friendly window is often
-              evening in the US, which becomes the next business morning in Tokyo.
-              For European teams, early morning in Europe may connect with late
-              afternoon in Japan.
+              evening in the US, which becomes the next business morning in
+              Tokyo. For European teams, early morning in Europe may connect
+              with late afternoon in Japan.
             </p>
           </div>
 
-          <div className="japan-contact-card">
-            <div className="contact-header">
-              <span>Japan contact window</span>
-              <strong>Start with Tokyo first</strong>
-            </div>
-
-            <div className="contact-grid">
-              <div className="contact-good">
-                <strong>Tokyo</strong>
-                <span>10:00 AM</span>
-                <small>Good weekday business time</small>
-              </div>
-
-              <div className="contact-warning">
-                <strong>New York</strong>
-                <span>8:00 PM</span>
-                <small>After-hours, but possible for urgent contact</small>
-              </div>
-
-              <div className="contact-warning">
-                <strong>London</strong>
-                <span>1:00 AM</span>
-                <small>Usually too early for live meetings</small>
-              </div>
-            </div>
-
-            <div className="contact-note">
-              Best practice: use Tokyo local time as the anchor, then check
-              whether the other cities can reasonably participate.
-            </div>
+          <div className="section-image-card">
+            <img
+              src="/images/guides/cultural-contact-japan-harmony.png"
+              alt="Laptop meeting with Japan garden view showing best time to contact Japan across Tokyo, New York, and London"
+            />
           </div>
         </section>
 
@@ -308,35 +243,11 @@ export default function CulturalTimingGuidePage() {
             </p>
           </div>
 
-          <div className="weekend-card">
-            <h3>Weekend awareness map</h3>
-
-            <div className="weekend-grid">
-              <div>
-                <strong>Saturday–Sunday</strong>
-                <span>Common in the US, Canada, UK, Japan, and much of Europe.</span>
-              </div>
-
-              <div>
-                <strong>Friday–Saturday</strong>
-                <span>Used in parts of the Middle East and nearby regions.</span>
-              </div>
-
-              <div>
-                <strong>Friday caution</strong>
-                <span>Even when Friday is a workday, response patterns may slow down.</span>
-              </div>
-            </div>
-
-            <div className="calendar-row">
-              <span>Mon</span>
-              <span>Tue</span>
-              <span>Wed</span>
-              <span>Thu</span>
-              <span className="friday">Fri</span>
-              <span className="weekend">Sat</span>
-              <span className="weekend">Sun</span>
-            </div>
+          <div className="section-image-card">
+            <img
+              src="/images/guides/cultural-weekend-differences-global.png"
+              alt="Global weekend differences map with people relaxing and time labels across New York, London, Tokyo, Mumbai, Sydney, and São Paulo"
+            />
           </div>
         </section>
 
@@ -365,8 +276,8 @@ export default function CulturalTimingGuidePage() {
             <div>
               <strong>Forgetting weekend patterns</strong>
               <p>
-                A normal Friday meeting can be inconvenient or near-weekend timing
-                for another country.
+                A normal Friday meeting can be inconvenient or near-weekend
+                timing for another country.
               </p>
             </div>
           </div>
@@ -572,209 +483,37 @@ export default function CulturalTimingGuidePage() {
           box-shadow: 0 10px 24px rgba(91,33,182,0.08);
         }
 
-        .hero-visual {
-          min-height: 500px;
-          border-radius: 20px;
-          overflow: hidden;
-          box-shadow: 0 28px 62px rgba(30,27,75,0.24);
-          background: #111827;
-        }
-
-        .collab-hero {
-          position: relative;
-          height: 500px;
-          overflow: hidden;
-          background:
-            radial-gradient(circle at 18% 18%, rgba(250,204,21,0.55), transparent 24%),
-            radial-gradient(circle at 82% 16%, rgba(167,139,250,0.5), transparent 26%),
-            linear-gradient(135deg, #fff7ed 0%, #f97316 25%, #5b21b6 62%, #111827 100%);
-        }
-
-        .tokyo-skyline {
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          height: 190px;
-          background: linear-gradient(to top, rgba(15,23,42,0.9), transparent);
-          z-index: 1;
-        }
-
-        .building {
-          position: absolute;
-          bottom: 0;
-          border-radius: 14px 14px 0 0;
-          background: rgba(17,24,39,0.86);
-          box-shadow: 0 0 28px rgba(250,204,21,0.16);
-        }
-
-        .b1 { left: 38px; width: 70px; height: 104px; }
-        .b2 { left: 118px; width: 88px; height: 148px; }
-        .b3 { right: 128px; width: 92px; height: 124px; }
-        .b4 { right: 40px; width: 70px; height: 94px; }
-
-        .tower {
-          position: absolute;
-          left: 50%;
-          bottom: 0;
-          width: 78px;
-          height: 210px;
-          transform: translateX(-50%);
-          clip-path: polygon(50% 0%, 70% 100%, 30% 100%);
-          background: linear-gradient(180deg, #f97316 0%, #991b1b 100%);
-          filter: drop-shadow(0 0 22px rgba(250,204,21,0.45));
-          animation: towerGlow 3.2s ease-in-out infinite alternate;
-        }
-
-        .main-person {
-          position: absolute;
-          left: 54px;
-          top: 54px;
-          width: 170px;
-          height: 200px;
-          z-index: 4;
-          display: grid;
-          place-items: center;
-          border-radius: 28px;
-          background: rgba(255,255,255,0.9);
-          border: 1px solid rgba(255,255,255,0.65);
-          box-shadow: 0 20px 46px rgba(15,23,42,0.22);
-        }
-
-        .person-head {
-          width: 62px;
-          height: 62px;
-          border-radius: 999px;
-          background: linear-gradient(135deg, #facc15 0%, #fb923c 100%);
-          margin-top: 16px;
-        }
-
-        .person-body {
-          width: 104px;
-          height: 70px;
-          border-radius: 42px 42px 18px 18px;
-          background: #5b21b6;
-          margin-top: -8px;
-        }
-
-        .main-person strong {
-          color: #111827;
-          font-size: 18px;
-          font-weight: 950;
-          margin-top: -4px;
-        }
-
-        .main-person span {
-          color: #5b21b6;
-          font-size: 24px;
-          font-weight: 950;
-          margin-top: -12px;
-        }
-
-        .video-card {
-          position: absolute;
-          width: 172px;
+        .hero-image-card,
+        .section-image-card {
           border-radius: 22px;
-          background: rgba(255,255,255,0.92);
-          border: 1px solid rgba(255,255,255,0.7);
-          padding: 16px;
-          display: grid;
-          gap: 5px;
-          z-index: 5;
-          box-shadow: 0 18px 38px rgba(15,23,42,0.24);
-          animation: cardFloat 3.4s ease-in-out infinite;
+          overflow: hidden;
+          border: 1px solid #ddd6fe;
+          box-shadow: 0 24px 60px rgba(30,27,75,0.18);
+          background: #ffffff;
         }
 
-        .london-video {
-          right: 48px;
-          top: 70px;
+        .hero-image-card img,
+        .section-image-card img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
 
-        .newyork-video {
-          right: 78px;
-          top: 230px;
-          animation-delay: 0.55s;
+        .hero-image-card {
+          min-height: 470px;
         }
 
-        .avatar {
-          width: 44px;
-          height: 44px;
-          border-radius: 999px;
-          background: linear-gradient(135deg, #ddd6fe 0%, #5b21b6 100%);
-          margin-bottom: 4px;
+        .hero-image-card img {
+          min-height: 470px;
         }
 
-        .video-card strong {
-          color: #111827;
-          font-size: 16px;
-          font-weight: 950;
+        .section-image-card {
+          min-height: 390px;
         }
 
-        .video-card span {
-          color: #5b21b6;
-          font-size: 24px;
-          font-weight: 950;
-        }
-
-        .video-card small {
-          color: #4b5563;
-          font-size: 12px;
-          line-height: 1.35;
-          font-weight: 800;
-        }
-
-        .connection-line {
-          position: absolute;
-          height: 3px;
-          border-top: 3px dashed rgba(250,204,21,0.92);
-          z-index: 3;
-          filter: drop-shadow(0 0 8px rgba(250,204,21,0.72));
-        }
-
-        .line-one {
-          left: 200px;
-          top: 150px;
-          width: 245px;
-          transform: rotate(-8deg);
-        }
-
-        .line-two {
-          left: 190px;
-          top: 248px;
-          width: 275px;
-          transform: rotate(15deg);
-          border-color: rgba(255,255,255,0.78);
-        }
-
-        .culture-chip {
-          position: absolute;
-          z-index: 6;
-          border-radius: 999px;
-          background: rgba(255,255,255,0.95);
-          color: #4c1d95;
-          padding: 12px 15px;
-          font-size: 13px;
-          font-weight: 950;
-          box-shadow: 0 12px 28px rgba(15,23,42,0.18);
-        }
-
-        .chip-one { left: 42px; bottom: 126px; }
-        .chip-two { left: 220px; bottom: 104px; }
-        .chip-three { right: 34px; bottom: 122px; }
-
-        .hero-caption {
-          position: absolute;
-          left: 26px;
-          right: 26px;
-          bottom: 26px;
-          background: rgba(76,29,149,0.95);
-          color: #ffffff;
-          padding: 18px;
-          border-radius: 16px;
-          text-align: center;
-          font-size: 18px;
-          font-weight: 950;
-          z-index: 7;
+        .section-image-card img {
+          min-height: 390px;
         }
 
         .answer-section {
@@ -862,94 +601,6 @@ export default function CulturalTimingGuidePage() {
           border-top: 1px solid #ede9fe;
         }
 
-        .japan-contact-card,
-        .world-hours-card,
-        .weekend-card {
-          min-height: 390px;
-          border-radius: 22px;
-          border: 1px solid #ddd6fe;
-          box-shadow: 0 20px 42px rgba(91,33,182,0.11);
-          padding: 26px;
-          position: relative;
-          overflow: hidden;
-          background: linear-gradient(135deg, #fff7ed 0%, #f5f3ff 55%, #ffffff 100%);
-        }
-
-        .contact-header {
-          background: #5b21b6;
-          color: #ffffff;
-          border-radius: 18px;
-          padding: 20px;
-          display: grid;
-          gap: 6px;
-          margin-bottom: 18px;
-        }
-
-        .contact-header span {
-          color: #facc15;
-          font-size: 12px;
-          font-weight: 950;
-          text-transform: uppercase;
-        }
-
-        .contact-header strong {
-          font-size: 28px;
-          font-weight: 950;
-        }
-
-        .contact-grid {
-          display: grid;
-          gap: 14px;
-        }
-
-        .contact-grid div {
-          border-radius: 16px;
-          padding: 18px;
-          display: grid;
-          gap: 6px;
-          background: #ffffff;
-          border: 1px solid #ddd6fe;
-        }
-
-        .contact-good {
-          box-shadow: 0 0 0 3px rgba(34,197,94,0.18);
-        }
-
-        .contact-warning {
-          box-shadow: 0 0 0 3px rgba(250,204,21,0.18);
-        }
-
-        .contact-grid strong {
-          color: #111827;
-          font-size: 18px;
-          font-weight: 950;
-        }
-
-        .contact-grid span {
-          color: #5b21b6;
-          font-size: 26px;
-          font-weight: 950;
-        }
-
-        .contact-grid small {
-          color: #4b5563;
-          font-size: 13px;
-          line-height: 1.45;
-          font-weight: 800;
-        }
-
-        .contact-note {
-          margin-top: 18px;
-          background: #fef3c7;
-          border: 1px solid #facc15;
-          border-radius: 16px;
-          padding: 16px;
-          color: #374151;
-          font-size: 14px;
-          line-height: 1.6;
-          font-weight: 800;
-        }
-
         .culture-strip {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -979,8 +630,16 @@ export default function CulturalTimingGuidePage() {
           line-height: 1.55;
         }
 
-        .world-hours-card h3,
-        .weekend-card h3 {
+        .world-hours-card {
+          min-height: 390px;
+          border-radius: 22px;
+          border: 1px solid #ddd6fe;
+          box-shadow: 0 20px 42px rgba(91,33,182,0.11);
+          padding: 26px;
+          background: linear-gradient(135deg, #fff7ed 0%, #f5f3ff 55%, #ffffff 100%);
+        }
+
+        .world-hours-card h3 {
           color: #111827;
           font-size: 26px;
           font-weight: 950;
@@ -1015,60 +674,6 @@ export default function CulturalTimingGuidePage() {
           font-size: 13px;
           line-height: 1.45;
           font-weight: 800;
-        }
-
-        .weekend-grid {
-          display: grid;
-          gap: 14px;
-          margin-bottom: 20px;
-        }
-
-        .weekend-grid div {
-          background: #ffffff;
-          border: 1px solid #ddd6fe;
-          border-radius: 16px;
-          padding: 16px;
-          display: grid;
-          gap: 6px;
-        }
-
-        .weekend-grid strong {
-          color: #111827;
-          font-size: 17px;
-          font-weight: 950;
-        }
-
-        .weekend-grid span {
-          color: #4b5563;
-          font-size: 14px;
-          line-height: 1.5;
-        }
-
-        .calendar-row {
-          display: grid;
-          grid-template-columns: repeat(7, 1fr);
-          gap: 8px;
-        }
-
-        .calendar-row span {
-          background: #ffffff;
-          border: 1px solid #ddd6fe;
-          border-radius: 12px;
-          padding: 13px 6px;
-          text-align: center;
-          color: #111827;
-          font-size: 13px;
-          font-weight: 950;
-        }
-
-        .calendar-row .friday {
-          background: #fef3c7;
-          border-color: #facc15;
-        }
-
-        .calendar-row .weekend {
-          background: #ede9fe;
-          color: #4c1d95;
         }
 
         .mistakes-section,
@@ -1118,23 +723,6 @@ export default function CulturalTimingGuidePage() {
         .planner-cta a span { font-size: 14px; }
         .planner-cta a small { font-size: 11px; font-weight: 800; }
 
-        @keyframes towerGlow {
-          0% { filter: drop-shadow(0 0 8px rgba(250,204,21,0.25)); }
-          100% { filter: drop-shadow(0 0 26px rgba(250,204,21,0.75)); }
-        }
-
-        @keyframes cardFloat {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-8px); }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .tower,
-          .video-card {
-            animation: none !important;
-          }
-        }
-
         @media (max-width: 900px) {
           .site-header {
             flex-wrap: wrap;
@@ -1170,54 +758,6 @@ export default function CulturalTimingGuidePage() {
 
           .hero h1 {
             font-size: 38px;
-          }
-
-          .hero-visual,
-          .collab-hero {
-            min-height: 560px;
-          }
-
-          .main-person {
-            left: 24px;
-            top: 36px;
-            width: 150px;
-          }
-
-          .london-video {
-            right: 22px;
-            top: 60px;
-            width: 145px;
-          }
-
-          .newyork-video {
-            right: 22px;
-            top: 218px;
-            width: 145px;
-          }
-
-          .line-one,
-          .line-two {
-            display: none;
-          }
-
-          .chip-one {
-            left: 20px;
-            bottom: 156px;
-          }
-
-          .chip-two {
-            left: 20px;
-            bottom: 108px;
-          }
-
-          .chip-three {
-            right: 20px;
-            bottom: 108px;
-          }
-
-          .people-row,
-          .calendar-row {
-            grid-template-columns: 1fr;
           }
 
           .planner-cta a {
