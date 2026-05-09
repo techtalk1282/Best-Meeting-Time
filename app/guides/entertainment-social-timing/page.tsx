@@ -191,7 +191,7 @@ export default function EntertainmentSocialTimingPage() {
         </section>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .page-shell {
           background: linear-gradient(
             180deg,
