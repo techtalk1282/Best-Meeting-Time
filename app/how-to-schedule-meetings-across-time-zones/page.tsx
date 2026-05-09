@@ -1,16 +1,13 @@
 /**
  * File: app/how-to-schedule-meetings-across-time-zones/page.tsx
- * Version: v2.1 (FOCUSED TIME ZONE BASICS PREMIUM ARTICLE)
+ * Version: v2.2 (LIGHTWEIGHT HERO MOTION PASS)
  * Date: 2026-05-09
  *
  * PURPOSE:
- * - Fully migrate the legacy article into the premium Guides ecosystem
- * - Focus the article around the three Time Zone Basics guide promises:
- *   1. How many time zones are there?
- *   2. Why do time zones exist?
- *   3. Why do clocks change?
- * - Use a different visual direction from the Guides hub so this feels like a new page
- * - Add richer educational sections, visual learning blocks, examples, FAQs, and planner CTA
+ * - Preserve the working premium Time Zone Basics article structure
+ * - Add lightweight CSS-only hero motion to make the time zone visual feel more dynamic
+ * - Keep motion limited to transform, opacity, and box-shadow for safe performance
+ * - Respect prefers-reduced-motion for accessibility
  *
  * PROTECTED:
  * - No Stripe changes
@@ -21,7 +18,7 @@
  * - No premium/payment logic changes
  *
  * ROLLBACK:
- * - Revert to v1.0 if this article migration does not test cleanly
+ * - Revert to v2.1 if the motion pass does not test cleanly
  */
 
 import type { Metadata } from "next";
@@ -84,6 +81,8 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
               src="/images/guides/guides-timezone-basics.png"
               alt="World map divided into time zone regions"
             />
+
+            <div className="hero-light-sweep" />
 
             <div className="zone-strip">
               <span>UTC-8</span>
@@ -530,6 +529,7 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           overflow: hidden;
           background: linear-gradient(135deg, #1d4ed8 0%, #7c3aed 100%);
           box-shadow: 0 28px 62px rgba(30,27,75,0.24);
+          isolation: isolate;
         }
 
         .hero-visual img {
@@ -539,6 +539,28 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           height: 100%;
           object-fit: cover;
           filter: saturate(1.25) contrast(1.06) brightness(1.04);
+          transform-origin: center center;
+          animation: heroMapFloat 18s ease-in-out infinite alternate;
+          will-change: transform;
+          z-index: 1;
+        }
+
+        .hero-light-sweep {
+          position: absolute;
+          inset: 0;
+          background:
+            linear-gradient(
+              115deg,
+              rgba(255,255,255,0) 0%,
+              rgba(255,255,255,0) 36%,
+              rgba(255,255,255,0.22) 48%,
+              rgba(255,255,255,0) 60%,
+              rgba(255,255,255,0) 100%
+            );
+          transform: translateX(-120%);
+          animation: heroLightSweep 8s ease-in-out infinite;
+          pointer-events: none;
+          z-index: 2;
         }
 
         .zone-strip {
@@ -552,6 +574,24 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           border-radius: 14px;
           background: rgba(255,255,255,0.94);
           box-shadow: 0 18px 40px rgba(15,23,42,0.2);
+          z-index: 3;
+        }
+
+        .zone-strip::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 120px;
+          background:
+            linear-gradient(
+              90deg,
+              rgba(255,255,255,0) 0%,
+              rgba(255,255,255,0.5) 50%,
+              rgba(255,255,255,0) 100%
+            );
+          animation: utcShimmer 5.5s linear infinite;
+          pointer-events: none;
         }
 
         .zone-strip span {
@@ -575,6 +615,8 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           display: grid;
           gap: 5px;
           text-align: center;
+          animation: calloutPulse 4.5s ease-in-out infinite;
+          z-index: 4;
         }
 
         .hero-callout strong {
@@ -1006,6 +1048,72 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
         .planner-cta a small {
           font-size: 11px;
           font-weight: 800;
+        }
+
+        @keyframes heroMapFloat {
+          0% {
+            transform: scale(1) translate3d(0px, 0px, 0px);
+          }
+
+          100% {
+            transform: scale(1.045) translate3d(-10px, -6px, 0px);
+          }
+        }
+
+        @keyframes heroLightSweep {
+          0%,
+          42% {
+            transform: translateX(-120%);
+            opacity: 0;
+          }
+
+          52% {
+            opacity: 1;
+          }
+
+          72% {
+            transform: translateX(120%);
+            opacity: 0;
+          }
+
+          100% {
+            transform: translateX(120%);
+            opacity: 0;
+          }
+        }
+
+        @keyframes utcShimmer {
+          0% {
+            transform: translateX(-160px);
+          }
+
+          100% {
+            transform: translateX(980px);
+          }
+        }
+
+        @keyframes calloutPulse {
+          0%,
+          100% {
+            box-shadow:
+              0 0 0 rgba(124,58,237,0),
+              0 12px 28px rgba(91,33,182,0.22);
+          }
+
+          50% {
+            box-shadow:
+              0 0 24px rgba(167,139,250,0.35),
+              0 16px 34px rgba(91,33,182,0.28);
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .hero-visual img,
+          .hero-light-sweep,
+          .zone-strip::after,
+          .hero-callout {
+            animation: none !important;
+          }
         }
 
         @media (max-width: 900px) {
