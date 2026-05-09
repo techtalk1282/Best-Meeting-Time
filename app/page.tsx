@@ -7,7 +7,7 @@
  * - Remove off-brand yellow/brown planner highlight
  * - Remove misleading “Free” badge from planner preview
  * - Improve hero headline and SEO-supporting value cards
- * - Make Features and How It Works sections clearer when nav links are clicked
+ * - Make Features and How It Works sections clearer when nav links are clickedf
  * - Keep homepage as marketing-only preview
  *
  * PROTECTED:
@@ -178,22 +178,22 @@ export default function HomePage() {
               </div>
 
               <div style={premiumToolRow}>
-                <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
-                  Create Link
-                </a>
-                <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
-                  Copy Link
-                </a>
-                <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
-                  Add to Google
-                </a>
-                <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
-                  Add to Outlook
-                </a>
-                <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
-                  Add to Apple Calendar
-                </a>
-              </div>
+  <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
+    Share Link
+  </a>
+
+  <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
+    Add to Google
+  </a>
+
+  <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
+    Add to Outlook
+  </a>
+
+  <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
+    Add to Calendar
+  </a>
+</div>
             </section>
 
             <section id="features" style={featuresSection}>
