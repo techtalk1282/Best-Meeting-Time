@@ -140,7 +140,7 @@ export default function GuidesPage() {
             </div>
           </a>
 
-          <a href="/time-zone-meeting-planner-guide" className="guide-card guide-green">
+         <a href="/guides/entertainment-social-timing" className="guide-card guide-green">
             <img
   src="/images/guides/guides-entertainment-social.png"
   alt="Entertainment timing for gaming and live events"
