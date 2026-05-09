@@ -50,9 +50,7 @@ export default function HowItWorksPage() {
 
   return (
     <main style={pageWrap}>
-      <div style={{ background: "#4c1d95" }}>
-        <SiteNav />
-      </div>
+    <SiteNav />
 
       <section style={introSpacer} />
 
@@ -177,8 +175,8 @@ const introSpacer = {
 
 const toolSection = {
   maxWidth: "1120px",
-  margin: "0 auto",
-  padding: "18px 20px 20px",
+  margin: "-8px auto 0",
+  padding: "0 20px 20px",
   scrollMarginTop: "30px",
   minHeight: "calc(100vh - 120px)",
   display: "flex",
