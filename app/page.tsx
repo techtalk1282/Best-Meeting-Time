@@ -354,9 +354,10 @@ const brandLink = {
 
 const brandLogo = {
   display: "block",
-  width: "228px",
-  height: "auto",
+  width: "210px",
+  height: "54px",
   objectFit: "contain" as const,
+  objectPosition: "left center",
 };
 
 const nav = {
