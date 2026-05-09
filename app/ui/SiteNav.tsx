@@ -1,23 +1,23 @@
 /**
  * File: app/ui/SiteNav.tsx
- * Version: v2.3 (INTEGRATED WHITE SITE HEADER)
- * Date: 2026-05-05
+ * Version: v2.4 (PREMIUM HEADER LOGO REFINEMENT)
+ * Date: 2026-05-09
  *
  * PURPOSE:
- * - Make shared navigation feel attached to page content
- * - Match homepage white-header branding
- * - Remove disconnected floating-header appearance
+ * - Refine Best Meeting Time header branding so it feels more premium
+ * - Reduce oversized logo weight while preserving integrated white-shell navigation
+ * - Preserve Schedule a Meeting CTA route until planner anchor is reviewed
  *
  * ROLLBACK:
- * - Revert to v2.2 if shared header alignment breaks
+ * - Revert to v2.3 if shared header alignment or spacing regresses
  */
 
 export default function SiteNav() {
   return (
     <header style={navShell}>
-      <a href="/" style={brand}>
+      <a href="/" style={brand} aria-label="Best Meeting Time home">
         <span style={brandIcon}>⌘</span>
-        <span>Best Meeting Time</span>
+        <span style={brandText}>Best Meeting Time</span>
       </a>
 
       <nav style={navLinks} aria-label="Main navigation">
@@ -57,24 +57,31 @@ const navShell = {
 const brand = {
   display: "flex",
   alignItems: "center",
-  gap: "8px",
+  gap: "9px",
   color: "#5b21b6",
-  fontSize: "18px",
-  fontWeight: 900,
   textDecoration: "none",
   whiteSpace: "nowrap" as const,
 };
 
 const brandIcon = {
-  width: "24px",
-  height: "24px",
+  width: "23px",
+  height: "23px",
   borderRadius: "7px",
-  background: "#ede9fe",
+  background: "#f3efff",
   color: "#5b21b6",
+  border: "1px solid #ddd6fe",
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
-  fontSize: "14px",
+  fontSize: "13px",
+  fontWeight: 900,
+  boxShadow: "0 4px 10px rgba(91,33,182,0.08)",
+};
+
+const brandText = {
+  fontSize: "17px",
+  fontWeight: 900,
+  letterSpacing: "-0.03em",
 };
 
 const navLinks = {
