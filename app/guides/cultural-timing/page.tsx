@@ -78,9 +78,9 @@ export default function CulturalTimingGuidePage() {
 
           <div className="hero-image-card">
             <img
-              src="/images/guides/cultural-hero-global-collaboration.png"
-              alt="Global team collaborating with Japan timing, Tokyo scenery, and meeting time labels"
-            />
+  src="/images/guides/cultural-timing-hero.png"
+  alt="Global team collaborating with Japan timing, Tokyo scenery, and meeting time labels"
+/>
           </div>
         </section>
 
@@ -139,9 +139,9 @@ export default function CulturalTimingGuidePage() {
 
           <div className="section-image-card">
             <img
-              src="/images/guides/cultural-contact-japan-harmony.png"
-              alt="Laptop meeting with Japan garden view showing best time to contact Japan across Tokyo, New York, and London"
-            />
+  src="/images/guides/contact_japan_business_hours.png"
+  alt="Laptop meeting with Japan garden view showing best time to contact Japan across Tokyo, New York, and London"
+/>
           </div>
         </section>
 
@@ -245,9 +245,9 @@ export default function CulturalTimingGuidePage() {
 
           <div className="section-image-card">
             <img
-              src="/images/guides/cultural-weekend-differences-global.png"
-              alt="Global weekend differences map with people relaxing and time labels across New York, London, Tokyo, Mumbai, Sydney, and São Paulo"
-            />
+  src="/images/guides/weekend_differences_global.png"
+  alt="Global weekend differences map with people relaxing and time labels across New York, London, Tokyo, Mumbai, Sydney, and São Paulo"
+/>
           </div>
         </section>
 
