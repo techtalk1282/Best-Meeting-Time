@@ -286,7 +286,7 @@ const introSpacer = {
 const toolSection = {
   maxWidth: "1120px",
   margin: "0 auto",
-  padding: "42px 0 0",
+  padding: "28px 0 0",
   scrollMarginTop: "30px",
 };
 const stepsSection = {
