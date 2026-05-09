@@ -493,28 +493,17 @@ export default function CulturalTimingGuidePage() {
         }
 
         .hero-image-card img,
-        .section-image-card img {
-          display: block;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
+.section-image-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
 
-        .hero-image-card {
-          min-height: 470px;
-        }
-
-        .hero-image-card img {
-          min-height: 470px;
-        }
-
-        .section-image-card {
-          min-height: 390px;
-        }
-
-        .section-image-card img {
-          min-height: 390px;
-        }
+.hero-image-card,
+.section-image-card {
+  height: auto;
+}
 
         .answer-section {
           border-top: 1px solid #ede9fe;
