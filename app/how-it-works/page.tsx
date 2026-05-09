@@ -21,7 +21,6 @@
  * - Revert to v1.2 if this page layout fails
  */
 
-import SiteNav from "../ui/SiteNav";
 import ToolPreviewSection from "../ui/ToolPreviewSection";
 
 export default function HowItWorksPage() {
@@ -50,12 +49,32 @@ export default function HowItWorksPage() {
 
   return (
     <main style={pageWrap}>
-    <SiteNav />
+      <section style={pageShell}>
+        <header style={header}>
+          <a href="/" style={brand}>
+            <span style={brandIcon}>⌘</span>
+            <span>Best Meeting Time</span>
+          </a>
 
-      <section style={introSpacer} />
+          <nav style={nav} aria-label="How It Works navigation">
+            <a href="/" style={navLink}>Home</a>
+            <a href="/how-it-works" style={activeNavLink}>How It Works</a>
+            <a href="/features" style={navLink}>Features</a>
+            <a href="/guides" style={navLink}>Guides</a>
+            <a href="/blog" style={navLink}>Blog</a>
+            <a href="/about" style={navLink}>About</a>
+            <a href="/contact" style={navLink}>Contact</a>
+          </nav>
 
-      <section id="schedule-tool" style={toolSection}>
-        <ToolPreviewSection />
+          <a href="/how-it-works#schedule-tool" style={navCta}>
+            <span style={navCtaMain}>Schedule a Meeting</span>
+            <span style={navCtaSub}>Free to try — no sign-up</span>
+          </a>
+        </header>
+
+        <section id="schedule-tool" style={toolSection}>
+          <ToolPreviewSection />
+        </section>
       </section>
 
       <section style={stepsSection}>
@@ -167,22 +186,109 @@ const pageWrap = {
   minHeight: "100vh",
   background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
   color: "#ffffff",
+  padding: "30px 20px 70px",
+};
+const pageShell = {
+  width: "100%",
+  maxWidth: "1120px",
+  margin: "0 auto",
+  background: "#ffffff",
+  color: "#111827",
+  border: "1px solid rgba(237,233,254,0.9)",
+  boxShadow: "0 24px 70px rgba(30,27,75,0.18)",
+  padding: "18px 18px 28px",
 };
 
+const header = {
+  minHeight: "66px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: "18px",
+  borderBottom: "1px solid #ede9fe",
+  marginBottom: "24px",
+};
+
+const brand = {
+  display: "flex",
+  alignItems: "center",
+  gap: "8px",
+  color: "#5b21b6",
+  fontSize: "18px",
+  fontWeight: 900,
+  textDecoration: "none",
+  whiteSpace: "nowrap" as const,
+};
+
+const brandIcon = {
+  width: "24px",
+  height: "24px",
+  borderRadius: "7px",
+  background: "#ede9fe",
+  color: "#5b21b6",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontSize: "14px",
+};
+
+const nav = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "18px",
+};
+
+const navLink = {
+  color: "#374151",
+  fontSize: "13px",
+  fontWeight: 800,
+  textDecoration: "none",
+  whiteSpace: "nowrap" as const,
+};
+
+const activeNavLink = {
+  ...navLink,
+  color: "#5b21b6",
+  borderBottom: "2px solid #5b21b6",
+  paddingBottom: "6px",
+};
+
+const navCta = {
+  background: "#5b21b6",
+  color: "#ffffff",
+  padding: "9px 16px",
+  borderRadius: "8px",
+  fontWeight: 900,
+  textDecoration: "none",
+  display: "flex",
+  flexDirection: "column" as const,
+  alignItems: "center",
+  lineHeight: 1.16,
+  minWidth: "154px",
+  boxShadow: "0 10px 22px rgba(91,33,182,0.22)",
+};
+
+const navCtaMain = {
+  fontSize: "13px",
+  fontWeight: 900,
+};
+
+const navCtaSub = {
+  fontSize: "10px",
+  fontWeight: 800,
+  opacity: 0.92,
+};
 const introSpacer = {
   display: "none",
 };
 
 const toolSection = {
   maxWidth: "1120px",
-  margin: "-8px auto 0",
-  padding: "0 20px 20px",
+  margin: "0 auto",
+  padding: "42px 0 0",
   scrollMarginTop: "30px",
-  minHeight: "calc(100vh - 120px)",
-  display: "flex",
-  alignItems: "flex-start",
 };
-
 const stepsSection = {
   maxWidth: "1120px",
   margin: "0 auto",
