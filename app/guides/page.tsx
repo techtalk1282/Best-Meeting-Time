@@ -123,7 +123,7 @@ export default function GuidesPage() {
             </div>
           </a>
 
-          <a href="/best-meeting-times-remote-teams" className="guide-card guide-gold">
+         <a href="/guides/cultural-timing" className="guide-card guide-gold">
             <img
   src="/images/guides/guides-cultural-timing.png"
   alt="Japan and cultural timing guide"
