@@ -77,7 +77,17 @@ export default function HowItWorksPage() {
 
         
 
-        <section id="schedule-tool" style={toolSection}>
+    <section id="schedule-tool" style={toolSection}>
+          <div style={plannerIntro}>
+            <h1 style={plannerHeadline}>
+              Find the Best Meeting Times Across Time Zones
+            </h1>
+
+            <p style={plannerSubtitle}>
+              Compare local times, review overlap windows, and schedule global meetings faster.
+            </p>
+          </div>
+
           <ToolPreviewSection />
         </section>
       </section>
@@ -230,10 +240,32 @@ const navCtaSub = {
 };
 
 
+const plannerIntro = {
+  textAlign: "center" as const,
+  margin: "0 auto 14px",
+  maxWidth: "760px",
+};
+
+const plannerHeadline = {
+  color: "#111827",
+  fontSize: "clamp(24px, 2.8vw, 38px)",
+  lineHeight: "1.02",
+  fontWeight: 950,
+  letterSpacing: "-0.045em",
+  margin: "0 0 6px",
+};
+
+const plannerSubtitle = {
+  color: "#6b7280",
+  fontSize: "14px",
+  lineHeight: "1.45",
+  margin: 0,
+};
+
 const toolSection = {
   maxWidth: "1120px",
   margin: "0 auto",
-  padding: "10px 0 0",
+  padding: "14px 0 0",
   scrollMarginTop: "24px",
 };
 const stepsSection = {
