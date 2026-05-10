@@ -54,8 +54,8 @@ export async function POST(req: Request) {
           quantity: 1,
         },
       ],
-      success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/cancel`,
+       success_url: `${origin}/how-it-works?session_id={CHECKOUT_SESSION_ID}#schedule-tool`,
+      cancel_url: `${origin}/how-it-works#schedule-tool`,
       // Metadata for webhook tracking (optional but helpful)
       metadata: {
         created_at: new Date().toISOString(),
