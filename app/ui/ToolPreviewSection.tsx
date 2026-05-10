@@ -503,7 +503,7 @@ function handleContinueFreeBonus() {
         10
       );
 
-      if (premiumUsed >= 6) {
+      if (premiumUsed >= 10) {
         setIsLocked(true);
         scrollToUpgrade();
         return true;
@@ -628,7 +628,7 @@ const safeNow = now || new Date();
       <div>
         <div style={lockedTitle}>
           {isPremium
-            ? "You’ve used your 6 premium planning sessions"
+           ? "You’ve used your 10 premium planning sessions"
             : "You’ve used your 4 free planning sessions"}
         </div>
 
@@ -640,12 +640,17 @@ const safeNow = now || new Date();
       </div>
 
       <div style={lockedActions}>
-        <button
+ <button
           type="button"
           onClick={scrollToUpgrade}
           style={unlockButton}
         >
-          Unlock Premium — $7
+          <span style={unlockButtonMain}>
+            Unlock 10 Premium Planning Sessions ($7)
+          </span>
+          <span style={unlockButtonSubtext}>
+            Share Links • Google Calendar • Outlook • Apple Calendar
+          </span>
         </button>
 
         <button
@@ -1055,6 +1060,20 @@ const unlockButton = {
   padding: "10px 16px",
   cursor: "pointer",
   boxShadow: "0 8px 18px rgba(91,33,182,0.35)",
+};
+
+const unlockButtonMain = {
+  display: "block",
+  lineHeight: 1.2,
+};
+
+const unlockButtonSubtext = {
+  display: "block",
+  marginTop: "4px",
+  color: "#fef3c7",
+  fontSize: "10px",
+  fontWeight: 800,
+  lineHeight: 1.2,
 };
 
 const secondaryButton = {
