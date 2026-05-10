@@ -505,6 +505,7 @@ function handleContinueFreeBonus() {
 
       if (premiumUsed >= 10) {
         setIsLocked(true);
+        setSuccessMessage(null);
         scrollToUpgrade();
         return true;
       }
@@ -1023,11 +1024,12 @@ const successBanner = {
   marginBottom: "12px",
   padding: "12px 14px",
   borderRadius: "10px",
-  background: "#dcfce7",
-  border: "1px solid #86efac",
-  color: "#166534",
+  background: "#f3e8ff",
+  border: "1px solid #c4b5fd",
+  color: "#4c1d95",
   fontSize: "13px",
   fontWeight: 900,
+  boxShadow: "0 6px 16px rgba(76,29,149,0.10)",
 };
 
 const lockedBanner = {
