@@ -66,7 +66,7 @@ const CITY_OPTIONS: City[] = [
   { name: "Portland, USA", time: "", tz: "America/Los_Angeles" },
   { name: "San Francisco, USA", time: "", tz: "America/Los_Angeles" },
   { name: "Seattle, USA", time: "", tz: "America/Los_Angeles" },
-  { name: "Washington DC, USA", time: "", tz: "America/New_York" }
+{ name: "Washington DC, USA", time: "", tz: "America/New_York" },
 
   { name: "Toronto, Canada", time: "", tz: "America/Toronto" },
   { name: "Vancouver, Canada", time: "", tz: "America/Vancouver" },
