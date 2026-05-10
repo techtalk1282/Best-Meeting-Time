@@ -350,6 +350,9 @@ export default function ToolPreviewSection({
   const [citySearchA, setCitySearchA] = useState("");
   const [showCityDropdownA, setShowCityDropdownA] = useState(false);
 
+  const [citySearchB, setCitySearchB] = useState("");
+  const [showCityDropdownB, setShowCityDropdownB] = useState(false);
+
   const [meetingDuration, setMeetingDuration] = useState("60 minutes");
  
   const [now, setNow] = useState<Date | null>(null);
@@ -496,8 +499,12 @@ function handleContinueFreeBonus() {
 const safeNow = now || new Date();
   const meetingWindow = calculateOverlap(cityA, cityB);
 
-  const filteredCitiesA = CITY_OPTIONS.filter((city) =>
+    const filteredCitiesA = CITY_OPTIONS.filter((city) =>
     city.name.toLowerCase().includes(citySearchA.toLowerCase())
+  );
+
+  const filteredCitiesB = CITY_OPTIONS.filter((city) =>
+    city.name.toLowerCase().includes(citySearchB.toLowerCase())
   );
 
   const meetingOptions: MeetingOption[] = useMemo(() => {
