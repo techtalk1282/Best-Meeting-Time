@@ -405,15 +405,12 @@ const cityDropdownRefB = useRef<HTMLDivElement | null>(null);
     };
   }, []); 
 
- function scrollToUpgrade() {
+function scrollToUpgrade() {
     const el = document.getElementById("premium-features");
 
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "center" });
-      return;
     }
-
-    window.location.href = "/#premium-features";
   }
 
   function requirePremiumFeature(): boolean {
