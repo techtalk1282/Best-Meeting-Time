@@ -642,23 +642,40 @@ const safeNow = now || new Date();
 
             <span style={localDate}>{cityADate}</span>
 
-            <select
-              value={cityA.name}
-              onChange={(event) => {
-                if (handlePlannerInteraction()) return;
-                const city = CITY_OPTIONS.find(
-                  (option) => option.name === event.target.value
-                );
-                if (city) setCityA(city);
-              }}
-              style={selectStyle}
-            >
-              {CITY_OPTIONS.map((city) => (
-                <option key={city.name} value={city.name}>
-                  {city.name}
-                </option>
-              ))}
-            </select>
+            <div style={searchableDropdownWrap}>
+              <input
+                type="text"
+                value={citySearchA}
+                placeholder={cityA.name}
+                onFocus={() => setShowCityDropdownA(true)}
+                onChange={(event) => {
+                  setCitySearchA(event.target.value);
+                  setShowCityDropdownA(true);
+                }}
+                style={searchInput}
+              />
+
+              {showCityDropdownA && (
+                <div style={searchDropdownMenu}>
+                  {filteredCitiesA.slice(0, 12).map((city) => (
+                    <button
+                      key={city.name}
+                      type="button"
+                      onClick={() => {
+                        if (handlePlannerInteraction()) return;
+
+                        setCityA(city);
+                        setCitySearchA("");
+                        setShowCityDropdownA(false);
+                      }}
+                      style={searchDropdownItem}
+                    >
+                      {city.name}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
           <div style={swapColumn}>
@@ -1217,6 +1234,49 @@ const premiumNotice = {
   padding: "8px 12px",
   fontSize: "12px",
   fontWeight: 900,
+  cursor: "pointer",
+};
+
+const searchableDropdownWrap = {
+  position: "relative" as const,
+};
+
+const searchInput = {
+  width: "100%",
+  height: "46px",
+  border: "1px solid #ddd6fe",
+  borderRadius: "10px",
+  background: "#ffffff",
+  color: "#111827",
+  fontSize: "14px",
+  fontWeight: 900,
+  padding: "0 12px",
+};
+
+const searchDropdownMenu = {
+  position: "absolute" as const,
+  top: "52px",
+  left: 0,
+  right: 0,
+  maxHeight: "260px",
+  overflowY: "auto" as const,
+  background: "#ffffff",
+  border: "1px solid #ddd6fe",
+  borderRadius: "12px",
+  boxShadow: "0 12px 32px rgba(0,0,0,0.14)",
+  zIndex: 50,
+};
+
+const searchDropdownItem = {
+  width: "100%",
+  border: "none",
+  borderBottom: "1px solid #f3f4f6",
+  background: "#ffffff",
+  color: "#111827",
+  textAlign: "left" as const,
+  padding: "12px 14px",
+  fontSize: "14px",
+  fontWeight: 800,
   cursor: "pointer",
 };
 
