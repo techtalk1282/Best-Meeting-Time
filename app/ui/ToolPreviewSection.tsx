@@ -881,62 +881,60 @@ const safeNow = now || new Date();
             </div>
 
             <div style={premiumToolRow}>
-              <button
-                type="button"
-                onClick={async () => {
-                  if (!requirePremiumFeature()) return;
+             <button
+  type="button"
+  onClick={async () => {
+    if (!requirePremiumFeature()) return;
 
-                  try {
-                    const res = await fetch("/api/share", {
-                      method: "POST",
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                      body: JSON.stringify({
-                        cities: [
-                          { name: cityA.name, tz: cityA.tz },
-                          { name: cityB.name, tz: cityB.tz },
-                        ],
-                        windows: [
-                          {
-                            startUtc: selectedWindow.startUtc,
-                            endUtc: selectedWindow.endUtc,
-                          },
-                        ],
-                      }),
-                    });
+    try {
+      let finalShareUrl = shareUrl;
 
-                    const data = await res.json();
+      if (!finalShareUrl) {
+        const res = await fetch("/api/share", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            cities: [
+              { name: cityA.name, tz: cityA.tz },
+              { name: cityB.name, tz: cityB.tz },
+            ],
+            windows: [
+              {
+                startUtc: selectedWindow.startUtc,
+                endUtc: selectedWindow.endUtc,
+              },
+            ],
+          }),
+        });
 
-                    if (data.url) {
-                      const fullUrl = window.location.origin + data.url;
-                      setShareUrl(fullUrl);
-                      setShareCopied(false);
-                    }
-                  } catch (err) {
-                    console.error("Share error:", err);
-                  }
-                }}
-                style={calendarButton}
-              >
-                Create Link
-              </button>
+        const data = await res.json();
 
-              <button
-                type="button"
-                onClick={async () => {
-                  if (!shareUrl) {
-                    if (!requirePremiumFeature()) return;
-                    return;
-                  }
+        if (!data.url) {
+          throw new Error("Share URL generation failed");
+        }
 
-                  await navigator.clipboard.writeText(shareUrl);
-                  setShareCopied(true);
-                }}
-                style={calendarButton}
-              >
-                {shareCopied ? "Copied" : "Copy Link"}
-              </button>
+        finalShareUrl = window.location.origin + data.url;
+
+        setShareUrl(finalShareUrl);
+      }
+
+      await navigator.clipboard.writeText(finalShareUrl);
+
+      setShareCopied(true);
+
+      setTimeout(() => {
+        setShareCopied(false);
+      }, 2000);
+    } catch (err) {
+      console.error("Share error:", err);
+    }
+  }}
+  style={calendarButton}
+>
+  {shareCopied ? "Copied!" : "Share Link"}
+</button>
 
               <button
                 type="button"
