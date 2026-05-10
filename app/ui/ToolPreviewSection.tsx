@@ -496,6 +496,10 @@ function handleContinueFreeBonus() {
 const safeNow = now || new Date();
   const meetingWindow = calculateOverlap(cityA, cityB);
 
+  const filteredCitiesA = CITY_OPTIONS.filter((city) =>
+    city.name.toLowerCase().includes(citySearchA.toLowerCase())
+  );
+
   const meetingOptions: MeetingOption[] = useMemo(() => {
     const firstStart = meetingWindow.startUtc;
     const firstEnd = addMinutesToUtc(firstStart, 60);
