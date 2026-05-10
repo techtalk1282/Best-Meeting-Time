@@ -653,19 +653,18 @@ const safeNow = now || new Date();
           </span>
         </button>
 
-        <div style={freeOptionWrap}>
-          <button
-            type="button"
-            onClick={handleContinueFreeBonus}
-            style={secondaryButton}
-          >
+        <button
+          type="button"
+          onClick={handleContinueFreeBonus}
+          style={secondaryButton}
+        >
+          <span style={secondaryButtonMain}>
             Continue Free — Watch Ad for 2 More Sessions
-          </button>
-
-          <div style={freeOptionSubtext}>
-            Free sessions do not include Share Links or Calendar exports.
-          </div>
-        </div>
+          </span>
+          <span style={secondaryButtonSubtext}>
+            Planner access only • No Share Links or Calendar exports
+          </span>
+        </button>
       </div>
     </div>
   </div>
@@ -1082,19 +1081,18 @@ const unlockButtonSubtext = {
   lineHeight: 1.2,
 };
 
-const freeOptionWrap = {
-  display: "flex",
-  flexDirection: "column" as const,
-  alignItems: "center",
+const secondaryButtonMain = {
+  display: "block",
+  lineHeight: 1.2,
 };
 
-const freeOptionSubtext = {
-  marginTop: "6px",
+const secondaryButtonSubtext = {
+  display: "block",
+  marginTop: "4px",
   color: "#6b7280",
   fontSize: "10px",
-  fontWeight: 700,
-  textAlign: "center" as const,
-  lineHeight: 1.3,
+  fontWeight: 800,
+  lineHeight: 1.2,
 };
 
 const secondaryButton = {
