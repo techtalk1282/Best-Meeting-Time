@@ -117,18 +117,27 @@ const CITY_OPTIONS: City[] = [
   { name: "Riyadh, Saudi Arabia", time: "", tz: "Asia/Riyadh" },
   { name: "Tel Aviv, Israel", time: "", tz: "Asia/Jerusalem" },
 
-  { name: "Mumbai, India", time: "", tz: "Asia/Kolkata" },
+  { name: "Bangalore, India", time: "", tz: "Asia/Kolkata" },
   { name: "Delhi, India", time: "", tz: "Asia/Kolkata" },
+  { name: "Hyderabad, India", time: "", tz: "Asia/Kolkata" },
+  { name: "Mumbai, India", time: "", tz: "Asia/Kolkata" },
 
-  { name: "Singapore", time: "", tz: "Asia/Singapore" },
-  { name: "Hong Kong", time: "", tz: "Asia/Hong_Kong" },
-  { name: "Shanghai, China", time: "", tz: "Asia/Shanghai" },
-  { name: "Beijing, China", time: "", tz: "Asia/Shanghai" },
-  { name: "Tokyo, Japan", time: "", tz: "Asia/Tokyo" },
-  { name: "Seoul, South Korea", time: "", tz: "Asia/Seoul" },
   { name: "Bangkok, Thailand", time: "", tz: "Asia/Bangkok" },
+  { name: "Beijing, China", time: "", tz: "Asia/Shanghai" },
+  { name: "Hanoi, Vietnam", time: "", tz: "Asia/Bangkok" },
+  { name: "Ho Chi Minh City, Vietnam", time: "", tz: "Asia/Bangkok" },
+  { name: "Hong Kong", time: "", tz: "Asia/Hong_Kong" },
   { name: "Jakarta, Indonesia", time: "", tz: "Asia/Jakarta" },
-
+  { name: "Karachi, Pakistan", time: "", tz: "Asia/Karachi" },
+  { name: "Kuala Lumpur, Malaysia", time: "", tz: "Asia/Kuala_Lumpur" },
+  { name: "Lahore, Pakistan", time: "", tz: "Asia/Karachi" },
+  { name: "Manila, Philippines", time: "", tz: "Asia/Manila" },
+  { name: "Osaka, Japan", time: "", tz: "Asia/Tokyo" },
+  { name: "Seoul, South Korea", time: "", tz: "Asia/Seoul" },
+  { name: "Shanghai, China", time: "", tz: "Asia/Shanghai" },
+  { name: "Singapore", time: "", tz: "Asia/Singapore" },
+  { name: "Taipei, Taiwan", time: "", tz: "Asia/Taipei" },
+  { name: "Tokyo, Japan", time: "", tz: "Asia/Tokyo" },
   { name: "Sydney, Australia", time: "", tz: "Australia/Sydney" },
   { name: "Melbourne, Australia", time: "", tz: "Australia/Melbourne" },
   { name: "Brisbane, Australia", time: "", tz: "Australia/Brisbane" },
@@ -181,8 +190,13 @@ function getCountryCode(city: string): string {
   if (city.includes("China")) return "cn";
   if (city.includes("Japan")) return "jp";
   if (city.includes("South Korea")) return "kr";
-  if (city.includes("Thailand")) return "th";
+ if (city.includes("Thailand")) return "th";
   if (city.includes("Indonesia")) return "id";
+  if (city.includes("Pakistan")) return "pk";
+  if (city.includes("Malaysia")) return "my";
+  if (city.includes("Philippines")) return "ph";
+  if (city.includes("Taiwan")) return "tw";
+  if (city.includes("Vietnam")) return "vn";
 
   if (city.includes("Australia")) return "au";
   if (city.includes("New Zealand")) return "nz";
