@@ -430,7 +430,10 @@ function scrollToUpgrade() {
 
     if (sessionId) {
       document.cookie = "premium=1; path=/; max-age=31536000";
-     setSuccessMessage("10 Premium Planning Sessions Unlocked");
+      localStorage.setItem("premium_sessions_used", "0");
+      setIsPremium(true);
+      setIsLocked(false);
+      setSuccessMessage("10 Premium Planning Sessions Unlocked");
       window.history.replaceState({}, "", window.location.pathname);
     }
   }, []);
