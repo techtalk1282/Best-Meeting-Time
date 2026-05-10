@@ -443,9 +443,16 @@ console.log("PREMIUM COOKIE CHECK:", premiumCookie);
   }, []);
 
   useEffect(() => {
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const premiumCookie = checkPremiumCookie();
+
     setViewerTZ(tz);
-    setIsPremium(checkPremiumCookie());
+    setIsPremium(premiumCookie);
+
+    if (premiumCookie) {
+      setSuccessMessage("Premium Features Unlocked");
+    }
+
     setNow(new Date());
 
     const timer = window.setInterval(() => {
