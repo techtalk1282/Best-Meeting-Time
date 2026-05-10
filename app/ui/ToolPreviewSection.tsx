@@ -405,11 +405,15 @@ const cityDropdownRefB = useRef<HTMLDivElement | null>(null);
     };
   }, []); 
 
-  function scrollToUpgrade() {
+ function scrollToUpgrade() {
     const el = document.getElementById("premium-features");
+
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
     }
+
+    window.location.href = "/#premium-features";
   }
 
   function requirePremiumFeature(): boolean {
@@ -478,7 +482,9 @@ const cityDropdownRefB = useRef<HTMLDivElement | null>(null);
     });
   }, [isPremium]);
 function handleContinueFreeBonus() {
-  if (isPremium) return;
+  document.cookie = "premium=; path=/; max-age=0";
+  setIsPremium(false);
+  setSuccessMessage(null);
 
   const freeUsed = parseInt(
     localStorage.getItem("free_sessions_used") || "0",
@@ -633,11 +639,7 @@ const safeNow = now || new Date();
             : "You’ve used your 4 free planning sessions"}
         </div>
 
-        {isPremium && (
-          <div style={lockedText}>
-            Your premium session pack has ended. Unlock another pack to continue scheduling.
-          </div>
-        )}
+        
       </div>
 
       <div style={lockedActions}>
