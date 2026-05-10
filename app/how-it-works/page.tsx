@@ -238,7 +238,8 @@ const navCtaSub = {
 const toolIntro = {
   textAlign: "center" as const,
   maxWidth: "760px",
-  margin: "0 auto 12px",
+  margin: "0 auto 2px",
+  paddingTop: "2px",
 };
 
 const eyebrow = {
@@ -254,18 +255,18 @@ const eyebrow = {
 
 const toolHeadline = {
   color: "#111827",
-  fontSize: "clamp(28px, 3.2vw, 38px)",
-  lineHeight: "1.02",
-  margin: "0 0 6px",
+  fontSize: "clamp(28px, 3vw, 36px)",
+  lineHeight: "0.96",
+  margin: "0 0 2px",
   fontWeight: 950,
-  letterSpacing: "-0.045em",
+  letterSpacing: "-0.05em",
 };
 
 const toolSubtitle = {
   color: "#4b5563",
-  fontSize: "14px",
-  lineHeight: "1.42",
-  margin: 0,
+  fontSize: "13px",
+  lineHeight: "1.32",
+  margin: "0 0 4px",
 };
 
 const toolSection = {
