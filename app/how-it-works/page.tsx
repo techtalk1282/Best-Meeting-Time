@@ -1,13 +1,13 @@
 /**
  * File: app/how-it-works/page.tsx
- * Version: v1.3 (SEO EXPANDED TOOL-FIRST PAGE)
- * Date: 2026-05-04
+ * Version: v1.4 (PREMIUM TOOL PAGE SHELL + OFFICIAL LOGO)
+ * Date: 2026-05-09
  *
  * PURPOSE:
- * - Keep the real ToolPreviewSection first on the How It Works page
- * - Preserve the simplified planner-first user flow
- * - Add stronger SEO / AdSense-supporting educational content below the tool
- * - Fix JSX syntax issues from prior partial edits
+ * - Add official Best Meeting Time logo branding
+ * - Improve the tool page premium presentation without touching ToolPreviewSection
+ * - Keep the real ToolPreviewSection first and protected
+ * - Preserve Stripe, premium, KV, checkout, and planner logic boundaries
  *
  * PROTECTED:
  * - No Stripe changes
@@ -15,10 +15,10 @@
  * - No webhook changes
  * - No KV changes
  * - No premium/payment logic changes
- * - No ToolPreviewSection changes in this file
+ * - No ToolPreviewSection logic changes
  *
  * ROLLBACK:
- * - Revert to v1.2 if this page layout fails
+ * - Revert to v1.3 if this page layout does not test cleanly
  */
 
 import ToolPreviewSection from "../ui/ToolPreviewSection";
@@ -28,22 +28,22 @@ export default function HowItWorksPage() {
     [
       "1",
       "Select Time Zones",
-      "Choose the cities or time zones for everyone attending your meeting. This helps you instantly compare global time differences without manual calculations.",
+      "Choose the cities or time zones for everyone attending your meeting.",
     ],
     [
       "2",
       "Compare Local Times",
-      "View both locations side by side in real time. Avoid scheduling mistakes caused by incorrect time conversions or daylight saving changes.",
+      "View both locations side by side before choosing a meeting window.",
     ],
     [
       "3",
       "Review Meeting Windows",
-      "Instantly review recommended meeting windows between both locations so you can choose a practical time that works for everyone.",
+      "See recommended meeting times and backup options.",
     ],
     [
       "4",
       "Plan With Confidence",
-      "Create links or add meetings directly to your calendar so your team can schedule faster, stay aligned, and avoid confusion.",
+      "Share the selected time or add it to your calendar workflow.",
     ],
   ];
 
@@ -51,9 +51,12 @@ export default function HowItWorksPage() {
     <main style={pageWrap}>
       <section style={pageShell}>
         <header style={header}>
-          <a href="/" style={brand}>
-            <span style={brandIcon}>⌘</span>
-            <span>Best Meeting Time</span>
+          <a href="/" style={brand} aria-label="Best Meeting Time home">
+            <img
+              src="/images/branding/logo.png"
+              alt="Best Meeting Time"
+              style={brandLogo}
+            />
           </a>
 
           <nav style={nav} aria-label="How It Works navigation">
@@ -71,6 +74,14 @@ export default function HowItWorksPage() {
             <span style={navCtaSub}>Free to try — no sign-up</span>
           </a>
         </header>
+
+        <section style={toolIntro}>
+          <p style={eyebrow}>Live Meeting Time Planner</p>
+          <h1 style={toolHeadline}>Find the Best Meeting Time Across Time Zones</h1>
+          <p style={toolSubtitle}>
+            Compare cities, review recommended meeting windows, and schedule global meetings faster.
+          </p>
+        </section>
 
         <section id="schedule-tool" style={toolSection}>
           <ToolPreviewSection />
@@ -94,18 +105,9 @@ export default function HowItWorksPage() {
           <h2 style={sectionHeading}>Why It Works</h2>
 
           <p style={bodyText}>
-            Scheduling meetings across time zones can be challenging,
-            especially when teams are spread across different regions. This
-            tool helps calculate practical overlapping working hours between
-            cities, so you can avoid early mornings, late nights, and scheduling
-            conflicts.
-          </p>
-
-          <p style={{ ...bodyText, marginTop: "10px" }}>
-            Instead of manually converting time zones or relying on guesswork,
-            you get a clear view of when both locations are available. This
-            makes it easier to plan meetings, coordinate global teams, and stay
-            productive without confusion.
+            Scheduling meetings across time zones can be challenging when teams,
+            clients, or partners are spread across different regions. Best Meeting
+            Time helps compare local times and identify practical overlap windows.
           </p>
 
           <div style={problemBlock}>
@@ -115,7 +117,7 @@ export default function HowItWorksPage() {
               <li>Avoid scheduling meetings outside working hours</li>
               <li>Eliminate manual time zone conversions</li>
               <li>Prevent confusion across international teams</li>
-              <li>Quickly find the best meeting time for remote teams</li>
+              <li>Quickly find better meeting times for remote teams</li>
             </ul>
           </div>
 
@@ -130,51 +132,12 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      <section style={seoSection}>
-        <div style={seoCard}>
-          <h2 style={sectionHeading}>
-            How to Schedule Meetings Across Time Zones
-          </h2>
-
-          <p style={bodyText}>
-            Scheduling meetings across different time zones can be difficult
-            when team members, clients, or partners are located in different
-            regions. Best Meeting Time helps you compare local times, review
-            recommended meeting windows, and choose a time that works better for
-            everyone.
-          </p>
-
-          <p style={{ ...bodyText, marginTop: "10px" }}>
-            This is useful for remote teams, freelancers, consultants, and
-            businesses that work with people across the United States, Europe,
-            Asia, and other global time zones. Instead of manually calculating
-            time differences, you can use the tool to quickly identify practical
-            meeting options.
-          </p>
-
-          <p style={{ ...bodyText, marginTop: "10px", fontWeight: 700 }}>
-            Built for remote teams, freelancers, consultants, and businesses
-            scheduling meetings worldwide.
-          </p>
-        </div>
-      </section>
-
       <footer style={footer}>
-        <a href="/" style={footerLink}>
-          Home
-        </a>
-        <a href="/guides" style={footerLink}>
-          Guides
-        </a>
-        <a href="/contact" style={footerLink}>
-          Contact
-        </a>
-        <a href="/privacy-policy" style={footerLink}>
-          Privacy Policy
-        </a>
-        <a href="/terms-of-service" style={footerLink}>
-          Terms of Service
-        </a>
+        <a href="/" style={footerLink}>Home</a>
+        <a href="/guides" style={footerLink}>Guides</a>
+        <a href="/contact" style={footerLink}>Contact</a>
+        <a href="/privacy-policy" style={footerLink}>Privacy Policy</a>
+        <a href="/terms-of-service" style={footerLink}>Terms of Service</a>
       </footer>
     </main>
   );
@@ -186,8 +149,9 @@ const pageWrap = {
   minHeight: "100vh",
   background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
   color: "#ffffff",
-  padding: "30px 20px 70px",
+  padding: "22px 20px 58px",
 };
+
 const pageShell = {
   width: "100%",
   maxWidth: "1120px",
@@ -196,40 +160,31 @@ const pageShell = {
   color: "#111827",
   border: "1px solid rgba(237,233,254,0.9)",
   boxShadow: "0 24px 70px rgba(30,27,75,0.18)",
-  padding: "18px 18px 28px",
+  padding: "14px 18px 22px",
 };
 
 const header = {
-  minHeight: "66px",
+  minHeight: "58px",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
   gap: "18px",
   borderBottom: "1px solid #ede9fe",
-  marginBottom: "24px",
+  marginBottom: "14px",
 };
 
 const brand = {
   display: "flex",
   alignItems: "center",
-  gap: "8px",
-  color: "#5b21b6",
-  fontSize: "18px",
-  fontWeight: 900,
   textDecoration: "none",
-  whiteSpace: "nowrap" as const,
+  flexShrink: 0,
 };
 
-const brandIcon = {
-  width: "24px",
-  height: "24px",
-  borderRadius: "7px",
-  background: "#ede9fe",
-  color: "#5b21b6",
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontSize: "14px",
+const brandLogo = {
+  display: "block",
+  width: "170px",
+  height: "auto",
+  objectFit: "contain" as const,
 };
 
 const nav = {
@@ -279,42 +234,73 @@ const navCtaSub = {
   fontWeight: 800,
   opacity: 0.92,
 };
-const introSpacer = {
-  display: "none",
+
+const toolIntro = {
+  textAlign: "center" as const,
+  maxWidth: "760px",
+  margin: "0 auto 12px",
+};
+
+const eyebrow = {
+  display: "inline-block",
+  margin: "0 0 7px",
+  padding: "6px 13px",
+  borderRadius: "999px",
+  background: "#f3efff",
+  color: "#5b21b6",
+  fontSize: "12px",
+  fontWeight: 950,
+};
+
+const toolHeadline = {
+  color: "#111827",
+  fontSize: "clamp(28px, 3.2vw, 38px)",
+  lineHeight: "1.02",
+  margin: "0 0 6px",
+  fontWeight: 950,
+  letterSpacing: "-0.045em",
+};
+
+const toolSubtitle = {
+  color: "#4b5563",
+  fontSize: "14px",
+  lineHeight: "1.42",
+  margin: 0,
 };
 
 const toolSection = {
   maxWidth: "1120px",
   margin: "0 auto",
-  padding: "28px 0 0",
-  scrollMarginTop: "30px",
+  padding: "4px 0 0",
+  scrollMarginTop: "24px",
 };
+
 const stepsSection = {
   maxWidth: "1120px",
   margin: "0 auto",
-  padding: "90px 20px 38px",
+  padding: "34px 20px 24px",
 };
 
 const stepsGrid = {
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-  gap: "18px",
+  gap: "14px",
 };
 
 const stepCard = {
   background: "rgba(255,255,255,0.96)",
   color: "#1e1b4b",
-  borderRadius: "22px",
-  padding: "24px",
+  borderRadius: "18px",
+  padding: "18px",
   textAlign: "center" as const,
   boxShadow: "0 12px 30px rgba(0,0,0,0.18)",
   border: "1px solid rgba(196,181,253,0.65)",
 };
 
 const stepNumber = {
-  width: "46px",
-  height: "46px",
-  margin: "0 auto 14px",
+  width: "38px",
+  height: "38px",
+  margin: "0 auto 10px",
   borderRadius: "999px",
   background: "#6d28d9",
   color: "#ffffff",
@@ -322,24 +308,24 @@ const stepNumber = {
   alignItems: "center",
   justifyContent: "center",
   fontWeight: 900,
-  fontSize: "18px",
+  fontSize: "16px",
 };
 
 const stepTitle = {
-  fontSize: "20px",
-  margin: "0 0 10px",
+  fontSize: "18px",
+  margin: "0 0 7px",
   color: "#1e1b4b",
 };
 
 const stepText = {
   margin: 0,
   color: "#4b5563",
-  lineHeight: 1.55,
-  fontSize: "15px",
+  lineHeight: 1.45,
+  fontSize: "14px",
 };
 
 const whySection = {
-  padding: "18px 20px 34px",
+  padding: "10px 20px 28px",
 };
 
 const whyCard = {
@@ -347,15 +333,15 @@ const whyCard = {
   margin: "0 auto",
   background: "rgba(255,255,255,0.96)",
   color: "#1e1b4b",
-  borderRadius: "24px",
-  padding: "34px",
+  borderRadius: "22px",
+  padding: "28px",
   boxShadow: "0 14px 38px rgba(0,0,0,0.22)",
   border: "1px solid rgba(196,181,253,0.65)",
 };
 
 const sectionHeading = {
-  fontSize: "30px",
-  margin: "0 0 14px",
+  fontSize: "28px",
+  margin: "0 0 12px",
   color: "#1e1b4b",
 };
 
@@ -367,13 +353,13 @@ const subHeading = {
 
 const bodyText = {
   color: "#374151",
-  lineHeight: 1.65,
-  fontSize: "16px",
-  margin: "0 0 14px",
+  lineHeight: 1.6,
+  fontSize: "15px",
+  margin: "0 0 12px",
 };
 
 const problemBlock = {
-  marginTop: "18px",
+  marginTop: "14px",
 };
 
 const problemList = {
@@ -385,7 +371,7 @@ const ctaRow = {
   display: "flex",
   flexWrap: "wrap" as const,
   gap: "12px",
-  marginTop: "24px",
+  marginTop: "20px",
 };
 
 const primaryButton = {
@@ -408,24 +394,9 @@ const secondaryButton = {
   textDecoration: "none",
 };
 
-const seoSection = {
-  padding: "0 20px 42px",
-};
-
-const seoCard = {
-  maxWidth: "920px",
-  margin: "0 auto",
-  background: "rgba(255,255,255,0.96)",
-  color: "#1e1b4b",
-  borderRadius: "24px",
-  padding: "30px 34px",
-  boxShadow: "0 14px 38px rgba(0,0,0,0.18)",
-  border: "1px solid rgba(196,181,253,0.65)",
-};
-
 const footer = {
   borderTop: "1px solid rgba(255,255,255,0.14)",
-  padding: "24px 20px 34px",
+  padding: "22px 20px 30px",
   display: "flex",
   justifyContent: "center",
   flexWrap: "wrap" as const,
