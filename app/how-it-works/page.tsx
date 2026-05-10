@@ -78,13 +78,15 @@ export default function HowItWorksPage() {
         
 
     <section id="schedule-tool" style={toolSection}>
-          <div style={plannerIntro}>
+         <div style={plannerIntro}>
             <h1 style={plannerHeadline}>
               Find the Best Meeting Times Across Time Zones
             </h1>
           </div>
 
-          <ToolPreviewSection />
+          <div style={plannerToolWrap}>
+            <ToolPreviewSection />
+          </div>
         </section>
       </section>
 
@@ -238,25 +240,22 @@ const navCtaSub = {
 
 const plannerIntro = {
   textAlign: "center" as const,
-  margin: "0 auto 18px",
+  margin: "0 auto 26px",
   maxWidth: "100%",
 };
 
 const plannerHeadline = {
   color: "#111827",
-  fontSize: "clamp(26px, 2.45vw, 34px)",
-  lineHeight: "1",
+  fontSize: "clamp(24px, 2.25vw, 31px)",
+  lineHeight: "1.08",
   fontWeight: 950,
-  letterSpacing: "-0.045em",
+  letterSpacing: "-0.04em",
   margin: 0,
   whiteSpace: "nowrap" as const,
 };
 
-const toolSection = {
-  maxWidth: "1120px",
-  margin: "0 auto",
-  padding: "14px 0 0",
-  scrollMarginTop: "24px",
+const plannerToolWrap = {
+  marginTop: "10px",
 };
 const stepsSection = {
   maxWidth: "1120px",
