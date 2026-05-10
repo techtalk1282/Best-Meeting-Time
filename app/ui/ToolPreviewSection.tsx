@@ -632,11 +632,11 @@ const safeNow = now || new Date();
             : "You’ve used your 4 free planning sessions"}
         </div>
 
-        <div style={lockedText}>
-          {isPremium
-            ? "Unlock more sessions to continue scheduling."
-            : "Upgrade for $7 one-time or continue free when ad access becomes available."}
-        </div>
+        {isPremium && (
+          <div style={lockedText}>
+            Your premium session pack has ended. Unlock another pack to continue scheduling.
+          </div>
+        )}
       </div>
 
       <div style={lockedActions}>
@@ -653,13 +653,19 @@ const safeNow = now || new Date();
           </span>
         </button>
 
-        <button
-  type="button"
-  onClick={handleContinueFreeBonus}
-  style={secondaryButton}
->
-  Continue Free — Get 2 More Sessions
-</button>
+        <div style={freeOptionWrap}>
+          <button
+            type="button"
+            onClick={handleContinueFreeBonus}
+            style={secondaryButton}
+          >
+            Continue Free — Watch Ad for 2 More Sessions
+          </button>
+
+          <div style={freeOptionSubtext}>
+            Free sessions do not include Share Links or Calendar exports.
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1074,6 +1080,21 @@ const unlockButtonSubtext = {
   fontSize: "10px",
   fontWeight: 800,
   lineHeight: 1.2,
+};
+
+const freeOptionWrap = {
+  display: "flex",
+  flexDirection: "column" as const,
+  alignItems: "center",
+};
+
+const freeOptionSubtext = {
+  marginTop: "6px",
+  color: "#6b7280",
+  fontSize: "10px",
+  fontWeight: 700,
+  textAlign: "center" as const,
+  lineHeight: 1.3,
 };
 
 const secondaryButton = {
