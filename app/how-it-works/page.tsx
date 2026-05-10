@@ -257,6 +257,13 @@ const plannerHeadline = {
 const plannerToolWrap = {
   marginTop: "10px",
 };
+
+const toolSection = {
+  maxWidth: "1120px",
+  margin: "0 auto",
+  padding: "18px 0 0",
+  scrollMarginTop: "24px",
+};
 const stepsSection = {
   maxWidth: "1120px",
   margin: "0 auto",
