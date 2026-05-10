@@ -26,10 +26,13 @@ export default function GuidesPage() {
     <main className="guides-page">
       <section className="guides-shell">
         <header className="guides-header">
-          <a href="/" className="brand">
-            <span className="brand-icon">⌘</span>
-            <span>Best Meeting Time</span>
-          </a>
+          <a href="/" className="brand" aria-label="Best Meeting Time home">
+  <img
+    src="/images/branding/logo.png"
+    alt="Best Meeting Time"
+    className="brand-logo"
+  />
+</a>
 
           <nav className="nav" aria-label="Guides navigation">
             <a href="/">Home</a>
@@ -223,28 +226,18 @@ export default function GuidesPage() {
         }
 
         .brand {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          color: #5b21b6;
-          font-size: 18px;
-          font-weight: 900;
-          text-decoration: none;
-          white-space: nowrap;
-        }
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
 
-        .brand-icon {
-          width: 24px;
-          height: 24px;
-          border-radius: 7px;
-          background: #ede9fe;
-          color: #5b21b6;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 14px;
-        }
-
+.brand-logo {
+  display: block;
+  width: 160px;
+  height: auto;
+  object-fit: contain;
+}
         .nav {
           display: flex;
           align-items: center;
