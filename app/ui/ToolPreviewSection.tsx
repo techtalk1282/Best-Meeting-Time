@@ -68,8 +68,15 @@ const CITY_OPTIONS: City[] = [
   { name: "Seattle, USA", time: "", tz: "America/Los_Angeles" },
 { name: "Washington DC, USA", time: "", tz: "America/New_York" },
 
+  { name: "Calgary, Canada", time: "", tz: "America/Edmonton" },
+  { name: "Montreal, Canada", time: "", tz: "America/Toronto" },
+  { name: "Ottawa, Canada", time: "", tz: "America/Toronto" },
   { name: "Toronto, Canada", time: "", tz: "America/Toronto" },
   { name: "Vancouver, Canada", time: "", tz: "America/Vancouver" },
+
+  { name: "Guadalajara, Mexico", time: "", tz: "America/Mexico_City" },
+  { name: "Mexico City, Mexico", time: "", tz: "America/Mexico_City" },
+  { name: "Monterrey, Mexico", time: "", tz: "America/Monterrey" },
 
   { name: "São Paulo, Brazil", time: "", tz: "America/Sao_Paulo" },
   {
@@ -115,7 +122,8 @@ const CITY_OPTIONS: City[] = [
 
 function getCountryCode(city: string): string {
   if (city.includes("USA")) return "us";
-  if (city.includes("Canada")) return "ca";
+ if (city.includes("Canada")) return "ca";
+  if (city.includes("Mexico")) return "mx";
   if (city.includes("Brazil")) return "br";
   if (city.includes("Argentina")) return "ar";
 
