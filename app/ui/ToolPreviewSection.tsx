@@ -105,12 +105,17 @@ const CITY_OPTIONS: City[] = [
   { name: "Warsaw, Poland", time: "", tz: "Europe/Warsaw" },
   { name: "Zurich, Switzerland", time: "", tz: "Europe/Zurich" },
 
-  { name: "Dubai, UAE", time: "", tz: "Asia/Dubai" },
-  { name: "Tel Aviv, Israel", time: "", tz: "Asia/Jerusalem" },
-  { name: "Riyadh, Saudi Arabia", time: "", tz: "Asia/Riyadh" },
-
+  { name: "Abu Dhabi, UAE", time: "", tz: "Asia/Dubai" },
+  { name: "Cairo, Egypt", time: "", tz: "Africa/Cairo" },
   { name: "Cape Town, South Africa", time: "", tz: "Africa/Johannesburg" },
+  { name: "Casablanca, Morocco", time: "", tz: "Africa/Casablanca" },
+  { name: "Doha, Qatar", time: "", tz: "Asia/Qatar" },
+  { name: "Dubai, UAE", time: "", tz: "Asia/Dubai" },
+  { name: "Johannesburg, South Africa", time: "", tz: "Africa/Johannesburg" },
+  { name: "Lagos, Nigeria", time: "", tz: "Africa/Lagos" },
   { name: "Nairobi, Kenya", time: "", tz: "Africa/Nairobi" },
+  { name: "Riyadh, Saudi Arabia", time: "", tz: "Asia/Riyadh" },
+  { name: "Tel Aviv, Israel", time: "", tz: "Asia/Jerusalem" },
 
   { name: "Mumbai, India", time: "", tz: "Asia/Kolkata" },
   { name: "Delhi, India", time: "", tz: "Asia/Kolkata" },
@@ -162,8 +167,12 @@ function getCountryCode(city: string): string {
   if (city.includes("Israel")) return "il";
   if (city.includes("Saudi")) return "sa";
 
-  if (city.includes("South Africa")) return "za";
+ if (city.includes("South Africa")) return "za";
   if (city.includes("Kenya")) return "ke";
+  if (city.includes("Egypt")) return "eg";
+  if (city.includes("Morocco")) return "ma";
+  if (city.includes("Qatar")) return "qa";
+  if (city.includes("Nigeria")) return "ng";
 
   if (city.includes("India")) return "in";
 
