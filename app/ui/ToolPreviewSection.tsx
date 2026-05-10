@@ -21,7 +21,7 @@
 
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import ToolPreviewMobile from "./ToolPreviewMobile";
 
 function checkPremiumCookie(): boolean {
@@ -365,6 +365,9 @@ const [hasCalculated, setHasCalculated] = useState(false);
 
 const [isMobile, setIsMobile] = useState(false);
 
+const cityDropdownRefA = useRef<HTMLDivElement | null>(null);
+const cityDropdownRefB = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -377,6 +380,30 @@ const [isMobile, setIsMobile] = useState(false);
 
     return () => window.removeEventListener("resize", check);
   }, []);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        cityDropdownRefA.current &&
+        !cityDropdownRefA.current.contains(event.target as Node)
+      ) {
+        setShowCityDropdownA(false);
+      }
+
+      if (
+        cityDropdownRefB.current &&
+        !cityDropdownRefB.current.contains(event.target as Node)
+      ) {
+        setShowCityDropdownB(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []); 
 
   function scrollToUpgrade() {
     const el = document.getElementById("premium-features");
@@ -649,7 +676,7 @@ const safeNow = now || new Date();
 
             <span style={localDate}>{cityADate}</span>
 
-            <div style={searchableDropdownWrap}>
+            <div ref={cityDropdownRefA} style={searchableDropdownWrap}>
               <input
                 type="text"
                 value={citySearchA}
@@ -713,7 +740,7 @@ const safeNow = now || new Date();
 
             <span style={localDate}>{cityBDate}</span>
 
-             <div style={searchableDropdownWrap}>
+              <div ref={cityDropdownRefB} style={searchableDropdownWrap}>
               <input
                 type="text"
                 value={citySearchB}
