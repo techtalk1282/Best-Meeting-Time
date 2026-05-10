@@ -75,13 +75,7 @@ export default function HowItWorksPage() {
           </a>
         </header>
 
-        <section style={toolIntro}>
-          <p style={eyebrow}>Live Meeting Time Planner</p>
-          <h1 style={toolHeadline}>Find the Best Meeting Time Across Time Zones</h1>
-          <p style={toolSubtitle}>
-            Compare cities, review recommended meeting windows, and schedule global meetings faster.
-          </p>
-        </section>
+        
 
         <section id="schedule-tool" style={toolSection}>
           <ToolPreviewSection />
@@ -235,47 +229,13 @@ const navCtaSub = {
   opacity: 0.92,
 };
 
-const toolIntro = {
-  textAlign: "center" as const,
-  maxWidth: "760px",
-  margin: "0 auto 2px",
-  paddingTop: "2px",
-};
-
-const eyebrow = {
-  display: "inline-block",
-  margin: "0 0 7px",
-  padding: "6px 13px",
-  borderRadius: "999px",
-  background: "#f3efff",
-  color: "#5b21b6",
-  fontSize: "12px",
-  fontWeight: 950,
-};
-
-const toolHeadline = {
-  color: "#111827",
-  fontSize: "clamp(28px, 3vw, 36px)",
-  lineHeight: "0.96",
-  margin: "0 0 2px",
-  fontWeight: 950,
-  letterSpacing: "-0.05em",
-};
-
-const toolSubtitle = {
-  color: "#4b5563",
-  fontSize: "13px",
-  lineHeight: "1.32",
-  margin: "0 0 4px",
-};
 
 const toolSection = {
   maxWidth: "1120px",
   margin: "0 auto",
-  padding: "4px 0 0",
+  padding: "10px 0 0",
   scrollMarginTop: "24px",
 };
-
 const stepsSection = {
   maxWidth: "1120px",
   margin: "0 auto",
