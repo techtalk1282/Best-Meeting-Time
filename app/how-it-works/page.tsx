@@ -240,7 +240,7 @@ const navCtaSub = {
 
 const plannerIntro = {
   textAlign: "center" as const,
-  margin: "0 auto 18px",
+  margin: "0 auto 44px",
   maxWidth: "100%",
   position: "relative" as const,
   zIndex: 2,
