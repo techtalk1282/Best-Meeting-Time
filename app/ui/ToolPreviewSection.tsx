@@ -713,23 +713,40 @@ const safeNow = now || new Date();
 
             <span style={localDate}>{cityBDate}</span>
 
-            <select
-              value={cityB.name}
-              onChange={(event) => {
-                if (handlePlannerInteraction()) return;
-                const city = CITY_OPTIONS.find(
-                  (option) => option.name === event.target.value
-                );
-                if (city) setCityB(city);
-              }}
-              style={selectStyle}
-            >
-              {CITY_OPTIONS.map((city) => (
-                <option key={city.name} value={city.name}>
-                  {city.name}
-                </option>
-              ))}
-            </select>
+             <div style={searchableDropdownWrap}>
+              <input
+                type="text"
+                value={citySearchB}
+                placeholder={cityB.name}
+                onFocus={() => setShowCityDropdownB(true)}
+                onChange={(event) => {
+                  setCitySearchB(event.target.value);
+                  setShowCityDropdownB(true);
+                }}
+                style={searchInput}
+              />
+
+              {showCityDropdownB && (
+                <div style={searchDropdownMenu}>
+                  {filteredCitiesB.slice(0, 12).map((city) => (
+                    <button
+                      key={city.name}
+                      type="button"
+                      onClick={() => {
+                        if (handlePlannerInteraction()) return;
+
+                        setCityB(city);
+                        setCitySearchB("");
+                        setShowCityDropdownB(false);
+                      }}
+                      style={searchDropdownItem}
+                    >
+                      {city.name}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
