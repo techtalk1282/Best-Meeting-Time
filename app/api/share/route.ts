@@ -63,8 +63,8 @@ export async function POST(req: NextRequest) {
       ex: SHARE_TTL_SECONDS,
     });
 
-    await kv.incr("analytics:share_created");
-    await kv.incr(`analytics:share_created:${id}`);
+     // TEMPORARILY DISABLED
+    // Analytics counters isolated during Share Link recovery
 
     return NextResponse.json(
       { id, url: `/s/${id}` },
