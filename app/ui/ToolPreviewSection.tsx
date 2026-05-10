@@ -881,7 +881,7 @@ const safeNow = now || new Date();
             </div>
 
             <div style={premiumToolRow}>
-             <button
+<button
   type="button"
   onClick={async () => {
     if (!requirePremiumFeature()) return;
@@ -909,26 +909,34 @@ const safeNow = now || new Date();
           }),
         });
 
+        if (!res.ok) {
+          throw new Error("Share API request failed");
+        }
+
         const data = await res.json();
 
-        if (!data.url) {
+        if (!data?.url) {
           throw new Error("Share URL generation failed");
         }
 
-        finalShareUrl = window.location.origin + data.url;
-
+        finalShareUrl = `${window.location.origin}${data.url}`;
         setShareUrl(finalShareUrl);
       }
 
-      await navigator.clipboard.writeText(finalShareUrl);
-
-      setShareCopied(true);
+      try {
+        await navigator.clipboard.writeText(finalShareUrl);
+        setShareCopied(true);
+        setPremiumMessage("Share link copied. The link is also shown below.");
+      } catch {
+        setPremiumMessage("Share link created. Copy the link shown below.");
+      }
 
       setTimeout(() => {
         setShareCopied(false);
       }, 2000);
     } catch (err) {
       console.error("Share error:", err);
+      setPremiumMessage("Share link could not be created. Please try again.");
     }
   }}
   style={calendarButton}
