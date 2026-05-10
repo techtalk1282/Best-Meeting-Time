@@ -25,7 +25,7 @@ export default function SiteNav() {
 
       <nav style={navLinks} aria-label="Main navigation">
         <a href="/" style={navLink}>Home</a>
-        <a href="/how-it-works" style={navLink}>How It Works</a>
+       <a href="/how-it-works" style={navLink}>Schedule a Meeting</a>
         <a href="/features" style={navLink}>Features</a>
         <a href="/guides" style={navLink}>Guides</a>
         <a href="/blog" style={navLink}>Blog</a>
