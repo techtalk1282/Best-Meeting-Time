@@ -340,11 +340,15 @@ export default function ToolPreviewSection({
   const [viewerTZ, setViewerTZ] = useState<string | null>(null);
   const [isLocked, setIsLocked] = useState(false);
 
-  const [cityA, setCityA] = useState<City>(
+    const [cityA, setCityA] = useState<City>(
     CITY_OPTIONS.find((city) => city.name === defaultCityLeft) ||
       CITY_OPTIONS[0]
   );
+
   const [cityB, setCityB] = useState<City>(CITY_OPTIONS[12]);
+
+  const [citySearchA, setCitySearchA] = useState("");
+  const [showCityDropdownA, setShowCityDropdownA] = useState(false);
 
   const [meetingDuration, setMeetingDuration] = useState("60 minutes");
  
