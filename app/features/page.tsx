@@ -24,10 +24,13 @@ export default function FeaturesPage() {
   return (
     <main style={pageShell}>
       <header style={header}>
-        <a href="/" style={brandLink}>
-          <span style={brandIcon}>⌘</span>
-          <span>Best Meeting Time</span>
-        </a>
+        <a href="/" style={brandLink} aria-label="Best Meeting Time home">
+  <img
+    src="/images/branding/logo.png"
+    alt="Best Meeting Time"
+    style={brandLogo}
+  />
+</a>
 
         <nav style={nav} aria-label="Features page navigation">
           <a href="/" style={navLink}>Home</a>
@@ -181,24 +184,16 @@ const header = {
 const brandLink = {
   display: "flex",
   alignItems: "center",
-  gap: "10px",
-  color: "#5b21b6",
-  fontSize: "20px",
-  fontWeight: 950,
   textDecoration: "none",
-  whiteSpace: "nowrap" as const,
+  flexShrink: 0,
 };
 
-const brandIcon = {
-  width: "28px",
-  height: "28px",
-  borderRadius: "8px",
-  background: "#ede9fe",
-  color: "#5b21b6",
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontSize: "15px",
+const brandLogo = {
+  display: "block",
+  width: "210px",
+  height: "54px",
+  objectFit: "contain" as const,
+  objectPosition: "left center",
 };
 
 const nav = {
