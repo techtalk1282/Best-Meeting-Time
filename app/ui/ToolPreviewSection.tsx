@@ -85,14 +85,25 @@ const CITY_OPTIONS: City[] = [
     tz: "America/Argentina/Buenos_Aires",
   },
 
-  { name: "London, UK", time: "", tz: "Europe/London" },
-  { name: "Paris, France", time: "", tz: "Europe/Paris" },
+{ name: "Amsterdam, Netherlands", time: "", tz: "Europe/Amsterdam" },
+  { name: "Athens, Greece", time: "", tz: "Europe/Athens" },
   { name: "Berlin, Germany", time: "", tz: "Europe/Berlin" },
+  { name: "Brussels, Belgium", time: "", tz: "Europe/Brussels" },
+  { name: "Copenhagen, Denmark", time: "", tz: "Europe/Copenhagen" },
+  { name: "Dublin, Ireland", time: "", tz: "Europe/Dublin" },
+  { name: "Helsinki, Finland", time: "", tz: "Europe/Helsinki" },
+  { name: "Istanbul, Turkey", time: "", tz: "Europe/Istanbul" },
+  { name: "Lisbon, Portugal", time: "", tz: "Europe/Lisbon" },
+  { name: "London, UK", time: "", tz: "Europe/London" },
   { name: "Madrid, Spain", time: "", tz: "Europe/Madrid" },
+  { name: "Oslo, Norway", time: "", tz: "Europe/Oslo" },
+  { name: "Paris, France", time: "", tz: "Europe/Paris" },
+  { name: "Prague, Czech Republic", time: "", tz: "Europe/Prague" },
   { name: "Rome, Italy", time: "", tz: "Europe/Rome" },
-  { name: "Amsterdam, Netherlands", time: "", tz: "Europe/Amsterdam" },
-  { name: "Zurich, Switzerland", time: "", tz: "Europe/Zurich" },
   { name: "Stockholm, Sweden", time: "", tz: "Europe/Stockholm" },
+  { name: "Vienna, Austria", time: "", tz: "Europe/Vienna" },
+  { name: "Warsaw, Poland", time: "", tz: "Europe/Warsaw" },
+  { name: "Zurich, Switzerland", time: "", tz: "Europe/Zurich" },
 
   { name: "Dubai, UAE", time: "", tz: "Asia/Dubai" },
   { name: "Tel Aviv, Israel", time: "", tz: "Asia/Jerusalem" },
@@ -130,6 +141,17 @@ function getCountryCode(city: string): string {
   if (city.includes("UK")) return "gb";
   if (city.includes("France")) return "fr";
   if (city.includes("Germany")) return "de";
+  if (city.includes("Belgium")) return "be";
+  if (city.includes("Denmark")) return "dk";
+  if (city.includes("Ireland")) return "ie";
+  if (city.includes("Finland")) return "fi";
+  if (city.includes("Greece")) return "gr";
+  if (city.includes("Portugal")) return "pt";
+  if (city.includes("Norway")) return "no";
+  if (city.includes("Czech Republic")) return "cz";
+  if (city.includes("Austria")) return "at";
+  if (city.includes("Poland")) return "pl";
+  if (city.includes("Turkey")) return "tr";
   if (city.includes("Spain")) return "es";
   if (city.includes("Italy")) return "it";
   if (city.includes("Netherlands")) return "nl";
