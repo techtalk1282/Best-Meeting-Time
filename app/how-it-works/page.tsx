@@ -240,14 +240,16 @@ const navCtaSub = {
 
 const plannerIntro = {
   textAlign: "center" as const,
-  margin: "0 auto 26px",
+  margin: "0 auto 44px",
   maxWidth: "100%",
+  position: "relative" as const,
+  zIndex: 2,
 };
 
 const plannerHeadline = {
   color: "#111827",
-  fontSize: "clamp(24px, 2.25vw, 31px)",
-  lineHeight: "1.08",
+  fontSize: "clamp(22px, 2.1vw, 29px)",
+  lineHeight: "1.1",
   fontWeight: 950,
   letterSpacing: "-0.04em",
   margin: 0,
@@ -255,7 +257,9 @@ const plannerHeadline = {
 };
 
 const plannerToolWrap = {
-  marginTop: "10px",
+  marginTop: "0",
+  position: "relative" as const,
+  zIndex: 1,
 };
 
 const toolSection = {
