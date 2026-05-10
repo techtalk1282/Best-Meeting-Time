@@ -82,10 +82,6 @@ export default function HowItWorksPage() {
             <h1 style={plannerHeadline}>
               Find the Best Meeting Times Across Time Zones
             </h1>
-
-            <p style={plannerSubtitle}>
-              Compare local times, review overlap windows, and schedule global meetings faster.
-            </p>
           </div>
 
           <ToolPreviewSection />
@@ -242,24 +238,18 @@ const navCtaSub = {
 
 const plannerIntro = {
   textAlign: "center" as const,
-  margin: "0 auto 14px",
-  maxWidth: "760px",
+  margin: "0 auto 18px",
+  maxWidth: "100%",
 };
 
 const plannerHeadline = {
   color: "#111827",
-  fontSize: "clamp(24px, 2.8vw, 38px)",
-  lineHeight: "1.02",
+  fontSize: "clamp(26px, 2.45vw, 34px)",
+  lineHeight: "1",
   fontWeight: 950,
   letterSpacing: "-0.045em",
-  margin: "0 0 6px",
-};
-
-const plannerSubtitle = {
-  color: "#6b7280",
-  fontSize: "14px",
-  lineHeight: "1.45",
   margin: 0,
+  whiteSpace: "nowrap" as const,
 };
 
 const toolSection = {
