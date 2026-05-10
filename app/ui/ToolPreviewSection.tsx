@@ -429,7 +429,7 @@ const cityDropdownRefB = useRef<HTMLDivElement | null>(null);
 
     if (sessionId) {
       document.cookie = "premium=1; path=/; max-age=31536000";
-      setSuccessMessage("Premium unlocked successfully");
+     setSuccessMessage("10 Premium Planning Sessions Unlocked");
       window.history.replaceState({}, "", window.location.pathname);
     }
   }, []);
