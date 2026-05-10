@@ -642,7 +642,9 @@ const safeNow = now || new Date();
       <div style={lockedActions}>
  <button
           type="button"
-          onClick={scrollToUpgrade}
+         onClick={() => {
+  window.location.href = "/api/checkout";
+}}
           style={unlockButton}
         >
           <span style={unlockButtonMain}>
