@@ -24,29 +24,7 @@
 import ToolPreviewSection from "../ui/ToolPreviewSection";
 
 export default function HowItWorksPage() {
-  const steps = [
-    [
-      "1",
-      "Select Time Zones",
-      "Choose the cities or time zones for everyone attending your meeting.",
-    ],
-    [
-      "2",
-      "Compare Local Times",
-      "View both locations side by side before choosing a meeting window.",
-    ],
-    [
-      "3",
-      "Review Meeting Windows",
-      "See recommended meeting times and backup options.",
-    ],
-    [
-      "4",
-      "Plan With Confidence",
-      "Share the selected time or add it to your calendar workflow.",
-    ],
-  ];
-
+  
   return (
     <main style={pageWrap}>
       <section style={pageShell}>
@@ -90,17 +68,7 @@ export default function HowItWorksPage() {
         </section>
       </section>
 
-      <section style={stepsSection}>
-        <div style={stepsGrid}>
-          {steps.map(([num, title, text]) => (
-            <div key={num} style={stepCard}>
-              <div style={stepNumber}>{num}</div>
-              <h2 style={stepTitle}>{title}</h2>
-              <p style={stepText}>{text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      
 
       <section style={whySection}>
         <div style={whyCard}>
