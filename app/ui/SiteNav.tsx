@@ -1,43 +1,161 @@
 /**
  * File: app/ui/SiteNav.tsx
- * Version: v2.5 (OFFICIAL LOGO ASSET INTEGRATION)
- * Date: 2026-05-09
+ * Version: v2.6 (SAFE RESPONSIVE MOBILE NAV FIX)
+ * Date: 2026-05-11
  *
  * PURPOSE:
- * - Replace text/icon placeholder branding with official Best Meeting Time logo asset
- * - Keep integrated white-shell navigation intact
- * - Preserve Schedule a Meeting CTA route until planner anchor is reviewed
+ * - Fix mobile/tablet nav overflow and cutoff issues
+ * - Preserve desktop layout completely
+ * - Add responsive behavior ONLY below 1100px
+ * - Prevent logo/nav/CTA overlap on Samsung + iPad
+ *
+ * SAFE RULE:
+ * - Desktop styles remain unchanged
+ * - Mobile behavior handled ONLY through media queries
  *
  * ROLLBACK:
- * - Revert to v2.4 if logo sizing or header alignment regresses
+ * - Revert to v2.5 if any regression occurs
  */
 
 export default function SiteNav() {
   return (
-    <header style={navShell}>
-      <a href="/" style={brand} aria-label="Best Meeting Time home">
-        <img
-          src="/images/branding/logo.png"
-          alt="Best Meeting Time"
-          style={brandLogo}
-        />
-      </a>
+    <>
+      <style>{`
+        @media (max-width: 1100px) {
+          .bmt-site-nav {
+            flex-direction: column;
+            align-items: stretch !important;
+            gap: 12px !important;
+            padding: 14px 16px !important;
+          }
 
-      <nav style={navLinks} aria-label="Main navigation">
-        <a href="/" style={navLink}>Home</a>
-       <a href="/how-it-works" style={navLink}>Schedule a Meeting</a>
-        <a href="/features" style={navLink}>Features</a>
-        <a href="/guides" style={navLink}>Guides</a>
-        <a href="/blog" style={navLink}>Blog</a>
-        <a href="/about" style={navLink}>About</a>
-        <a href="/contact" style={navLink}>Contact</a>
-      </nav>
+          .bmt-site-brand {
+            justify-content: center;
+          }
 
-      <a href="/how-it-works#schedule-tool" style={ctaButton}>
-        <span style={ctaMain}>Schedule a Meeting</span>
-        <span style={ctaSub}>Free to try — no sign-up</span>
-      </a>
-    </header>
+          .bmt-site-logo {
+            width: 180px !important;
+            max-width: 100%;
+            height: auto !important;
+          }
+
+          .bmt-site-links {
+            overflow-x: auto;
+            overflow-y: hidden;
+            flex-wrap: nowrap !important;
+            justify-content: flex-start !important;
+            gap: 18px !important;
+            padding-bottom: 6px;
+            scrollbar-width: thin;
+          }
+
+          .bmt-site-links::-webkit-scrollbar {
+            height: 6px;
+          }
+
+          .bmt-site-links::-webkit-scrollbar-thumb {
+            background: rgba(107, 114, 128, 0.35);
+            border-radius: 999px;
+          }
+
+          .bmt-site-link {
+            flex-shrink: 0;
+            font-size: 15px !important;
+          }
+
+          .bmt-site-cta {
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .bmt-site-logo {
+            width: 165px !important;
+          }
+
+          .bmt-site-link {
+            font-size: 14px !important;
+          }
+
+          .bmt-site-cta {
+            min-width: unset !important;
+          }
+        }
+      `}</style>
+
+      <header style={navShell} className="bmt-site-nav">
+        <a
+          href="/"
+          style={brand}
+          className="bmt-site-brand"
+          aria-label="Best Meeting Time home"
+        >
+          <img
+            src="/images/branding/logo.png"
+            alt="Best Meeting Time"
+            style={brandLogo}
+            className="bmt-site-logo"
+          />
+        </a>
+
+        <nav
+          style={navLinks}
+          className="bmt-site-links"
+          aria-label="Main navigation"
+        >
+          <a href="/" style={navLink} className="bmt-site-link">
+            Home
+          </a>
+
+          <a
+            href="/how-it-works"
+            style={navLink}
+            className="bmt-site-link"
+          >
+            Schedule a Meeting
+          </a>
+
+          <a
+            href="/features"
+            style={navLink}
+            className="bmt-site-link"
+          >
+            Features
+          </a>
+
+          <a
+            href="/guides"
+            style={navLink}
+            className="bmt-site-link"
+          >
+            Guides
+          </a>
+
+          <a href="/blog" style={navLink} className="bmt-site-link">
+            Blog
+          </a>
+
+          <a href="/about" style={navLink} className="bmt-site-link">
+            About
+          </a>
+
+          <a href="/contact" style={navLink} className="bmt-site-link">
+            Contact
+          </a>
+        </nav>
+
+        <a
+          href="/how-it-works#schedule-tool"
+          style={ctaButton}
+          className="bmt-site-cta"
+        >
+          <span style={ctaMain}>Schedule a Meeting</span>
+          <span style={ctaSub}>Free to try — no sign-up</span>
+        </a>
+      </header>
+    </>
   );
 }
 
