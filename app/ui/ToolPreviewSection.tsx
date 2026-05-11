@@ -353,7 +353,7 @@ export default function ToolPreviewSection({
   const [citySearchB, setCitySearchB] = useState("");
   const [showCityDropdownB, setShowCityDropdownB] = useState(false);
 
-  const [meetingDuration, setMeetingDuration] = useState("60 minutes");
+  
  
   const [now, setNow] = useState<Date | null>(null);
 
@@ -816,19 +816,9 @@ const safeNow = now || new Date();
         </div>
 
         <div style={actionControls}>
-          <label style={durationGroup}>
-            <span style={inputLabel}>Meeting Duration</span>
-            <select
-              value={meetingDuration}
-              onChange={(event) => setMeetingDuration(event.target.value)}
-              style={selectStyle}
-            >
-              <option>30 minutes</option>
-              <option>45 minutes</option>
-              <option>60 minutes</option>
-              <option>90 minutes</option>
-            </select>
-          </label>
+          <div style={meetingDurationNotice}>
+            Recommended for standard 60-minute meetings
+          </div>
 
           <button
             type="button"
@@ -1257,7 +1247,13 @@ const selectStyle = {
   fontWeight: 900,
   padding: "0 12px",
 };
-
+const meetingDurationNotice = {
+  textAlign: "center" as const,
+  color: "#6b7280",
+  fontSize: "12px",
+  fontWeight: 800,
+  padding: "4px 0 2px",
+};
 const findButton = {
   height: "48px",
   border: "none",
