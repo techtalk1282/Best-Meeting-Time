@@ -416,7 +416,7 @@ function scrollToUpgrade() {
   function requirePremiumFeature(): boolean {
   const premiumCookie = checkPremiumCookie();
     
-console.log("PREMIUM COOKIE CHECK:", premiumCookie);
+
     
   if (!premiumCookie) {
       setPremiumMessage("Premium feature — unlock all features for $7 below");
