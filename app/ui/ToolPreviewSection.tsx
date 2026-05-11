@@ -844,189 +844,191 @@ const safeNow = now || new Date();
           </button>
         </div>
 
-        <section style={resultsCard}>
-          <div style={meetingSectionHeader}>Recommended meeting windows</div>
+     {hasCalculated && (
+          <section style={resultsAndToolsPanel}>
+            <div style={meetingSectionHeader}>Recommended meeting windows</div>
 
-          <div style={meetingList}>
-            {meetingOptions.map((option, index) => {
-              const startA = formatTimeInZone(option.startUtc, cityA.tz);
-              const endA = formatTimeInZone(option.endUtc, cityA.tz);
-              const startB = formatTimeInZone(option.startUtc, cityB.tz);
-              const endB = formatTimeInZone(option.endUtc, cityB.tz);
+            <div style={meetingCardRow}>
+              {meetingOptions.map((option, index) => {
+                const startA = formatTimeInZone(option.startUtc, cityA.tz);
+                const endA = formatTimeInZone(option.endUtc, cityA.tz);
+                const startB = formatTimeInZone(option.startUtc, cityB.tz);
+                const endB = formatTimeInZone(option.endUtc, cityB.tz);
 
-              return (
-                <div key={option.label} style={meetingRow}>
-                  <div style={meetingTimes}>
-                    <strong>
+                return (
+                  <div key={option.label} style={compactMeetingCard}>
+                    <strong style={compactMeetingTitle}>
                       {index === 0
-                        ? "Recommended meeting time"
-                        : "Alternative meeting time"}
+                        ? "Recommended"
+                        : `Alternate ${index}`}
                     </strong>
-                    <span>
+
+                    <span style={compactMeetingLabel}>{option.label}</span>
+
+                    <span style={compactMeetingTime}>
                       {cityA.name}: {startA} – {endA}
                     </span>
-                    <span>
+
+                    <span style={compactMeetingTime}>
                       {cityB.name}: {startB} – {endB}
                     </span>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
+                );
+              })}
+            </div>
 
-        {hasCalculated && (
-          <section style={sharePanel}>
-            <div style={shareHeader}>
-              <strong>Premium planning tools</strong>
+            <div style={compactPremiumTools}>
+              <div style={shareHeader}>
+                <strong>Premium planning tools</strong>
 
-              {premiumMessage && (
+                {premiumMessage && (
+                  <button
+                    type="button"
+                    onClick={scrollToUpgrade}
+                    style={premiumNotice}
+                  >
+                    {premiumMessage}
+                  </button>
+                )}
+              </div>
+
+              <div style={premiumToolRow}>
                 <button
                   type="button"
-                  onClick={scrollToUpgrade}
-                  style={premiumNotice}
+                  onClick={async () => {
+                    if (!requirePremiumFeature()) return;
+
+                    try {
+                      let finalShareUrl = shareUrl;
+
+                      if (!finalShareUrl) {
+                        const res = await fetch("/api/share", {
+                          method: "POST",
+                          headers: {
+                            "Content-Type": "application/json",
+                          },
+                          body: JSON.stringify({
+                            cities: [
+                              { name: cityA.name, tz: cityA.tz },
+                              { name: cityB.name, tz: cityB.tz },
+                            ],
+                            windows: [
+                              {
+                                startUtc: selectedWindow.startUtc,
+                                endUtc: selectedWindow.endUtc,
+                              },
+                            ],
+                          }),
+                        });
+
+                        if (!res.ok) {
+                          throw new Error("Share API request failed");
+                        }
+
+                        const data = await res.json();
+
+                        if (!data?.url) {
+                          throw new Error("Share URL generation failed");
+                        }
+
+                        finalShareUrl = `${window.location.origin}${data.url}`;
+                        setShareUrl(finalShareUrl);
+                      }
+
+                      try {
+                        await navigator.clipboard.writeText(finalShareUrl);
+                        setShareCopied(true);
+                        setPremiumMessage("Share link copied. The link is also shown below.");
+                      } catch {
+                        setPremiumMessage("Share link created. Copy the link shown below.");
+                      }
+
+                      setTimeout(() => {
+                        setShareCopied(false);
+                      }, 2000);
+                    } catch (err) {
+                      console.error("Share error:", err);
+                      setPremiumMessage("Share link could not be created. Please try again.");
+                    }
+                  }}
+                  style={calendarButton}
                 >
-                  {premiumMessage}
+                  {shareCopied ? "Copied!" : "Share Link"}
                 </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (!requirePremiumFeature()) return;
+
+                    const start =
+                      selectedWindow.startUtc.replace(/[-:]/g, "").split(".")[0] +
+                      "Z";
+                    const end =
+                      selectedWindow.endUtc.replace(/[-:]/g, "").split(".")[0] +
+                      "Z";
+
+                    const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+                      "Meeting: " + cityA.name + " ↔ " + cityB.name
+                    )}&dates=${start}/${end}&details=${encodeURIComponent(
+                      "Suggested meeting window"
+                    )}`;
+
+                    window.open(url, "_blank");
+                  }}
+                  style={calendarButton}
+                >
+                  Add to Google
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (!requirePremiumFeature()) return;
+
+                    const url = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(
+                      "Meeting: " + cityA.name + " ↔ " + cityB.name
+                    )}&startdt=${selectedWindow.startUtc}&enddt=${
+                      selectedWindow.endUtc
+                    }&body=${encodeURIComponent("Suggested meeting window")}`;
+
+                    window.open(url, "_blank");
+                  }}
+                  style={calendarButton}
+                >
+                  Add to Outlook
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (!requirePremiumFeature()) return;
+
+                    const url = `/api/calendar?cityA=${encodeURIComponent(
+                      cityA.name
+                    )}&cityB=${encodeURIComponent(cityB.name)}&start=${
+                      selectedWindow.startUtc
+                    }&end=${selectedWindow.endUtc}`;
+
+                    window.open(url, "_blank");
+                  }}
+                  style={calendarButton}
+                >
+                  Add to Apple Calendar
+                </button>
+              </div>
+
+              {shareUrl && (
+                <a
+                  href={shareUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={shareInput}
+                >
+                  {shareUrl.replace(/^https?:\/\//, "")}
+                </a>
               )}
             </div>
-
-            <div style={premiumToolRow}>
-<button
-  type="button"
-  onClick={async () => {
-    if (!requirePremiumFeature()) return;
-
-    try {
-      let finalShareUrl = shareUrl;
-
-      if (!finalShareUrl) {
-        const res = await fetch("/api/share", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            cities: [
-              { name: cityA.name, tz: cityA.tz },
-              { name: cityB.name, tz: cityB.tz },
-            ],
-            windows: [
-              {
-                startUtc: selectedWindow.startUtc,
-                endUtc: selectedWindow.endUtc,
-              },
-            ],
-          }),
-        });
-
-        if (!res.ok) {
-          throw new Error("Share API request failed");
-        }
-
-        const data = await res.json();
-
-        if (!data?.url) {
-          throw new Error("Share URL generation failed");
-        }
-
-        finalShareUrl = `${window.location.origin}${data.url}`;
-        setShareUrl(finalShareUrl);
-      }
-
-      try {
-        await navigator.clipboard.writeText(finalShareUrl);
-        setShareCopied(true);
-        setPremiumMessage("Share link copied. The link is also shown below.");
-      } catch {
-        setPremiumMessage("Share link created. Copy the link shown below.");
-      }
-
-      setTimeout(() => {
-        setShareCopied(false);
-      }, 2000);
-    } catch (err) {
-      console.error("Share error:", err);
-      setPremiumMessage("Share link could not be created. Please try again.");
-    }
-  }}
-  style={calendarButton}
->
-  {shareCopied ? "Copied!" : "Share Link"}
-</button>
-
-              <button
-                type="button"
-                onClick={() => {
-                  if (!requirePremiumFeature()) return;
-
-                  const start =
-                    selectedWindow.startUtc.replace(/[-:]/g, "").split(".")[0] +
-                    "Z";
-                  const end =
-                    selectedWindow.endUtc.replace(/[-:]/g, "").split(".")[0] +
-                    "Z";
-
-                  const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
-                    "Meeting: " + cityA.name + " ↔ " + cityB.name
-                  )}&dates=${start}/${end}&details=${encodeURIComponent(
-                    "Suggested meeting window"
-                  )}`;
-
-                  window.open(url, "_blank");
-                }}
-                style={calendarButton}
-              >
-                Add to Google
-              </button>
-
-              <button
-                type="button"
-                onClick={() => {
-                  if (!requirePremiumFeature()) return;
-
-                  const url = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(
-                    "Meeting: " + cityA.name + " ↔ " + cityB.name
-                  )}&startdt=${selectedWindow.startUtc}&enddt=${
-                    selectedWindow.endUtc
-                  }&body=${encodeURIComponent("Suggested meeting window")}`;
-
-                  window.open(url, "_blank");
-                }}
-                style={calendarButton}
-              >
-                Add to Outlook
-              </button>
-
-              <button
-                type="button"
-                onClick={() => {
-                  if (!requirePremiumFeature()) return;
-
-                  const url = `/api/calendar?cityA=${encodeURIComponent(
-                    cityA.name
-                  )}&cityB=${encodeURIComponent(cityB.name)}&start=${
-                    selectedWindow.startUtc
-                  }&end=${selectedWindow.endUtc}`;
-
-                  window.open(url, "_blank");
-                }}
-                style={calendarButton}
-              >
-                Add to Apple Calendar
-              </button>
-            </div>
-
-            {shareUrl && (
-              <a
-                href={shareUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={shareInput}
-              >
-                {shareUrl.replace(/^https?:\/\//, "")}
-              </a>
-            )}
           </section>
         )}
 
@@ -1403,7 +1405,54 @@ const searchDropdownItem = {
   fontWeight: 800,
   cursor: "pointer",
 };
+const resultsAndToolsPanel = {
+  background: "#ffffff",
+  border: "1px solid #ede9fe",
+  borderRadius: "14px",
+  padding: "12px",
+  boxShadow: "0 12px 32px rgba(0,0,0,0.10)",
+};
 
+const meetingCardRow = {
+  display: "grid",
+  gridTemplateColumns: "repeat(4, 1fr)",
+  gap: "10px",
+};
+
+const compactMeetingCard = {
+  padding: "10px",
+  border: "1px solid #ede9fe",
+  borderRadius: "12px",
+  background: "#f8f7ff",
+  display: "grid",
+  gap: "5px",
+  minHeight: "118px",
+};
+
+const compactMeetingTitle = {
+  color: "#4c1d95",
+  fontSize: "13px",
+  fontWeight: 950,
+};
+
+const compactMeetingLabel = {
+  color: "#6b7280",
+  fontSize: "11px",
+  fontWeight: 900,
+};
+
+const compactMeetingTime = {
+  color: "#111827",
+  fontSize: "11px",
+  fontWeight: 800,
+  lineHeight: 1.3,
+};
+
+const compactPremiumTools = {
+  marginTop: "10px",
+  paddingTop: "10px",
+  borderTop: "1px solid #ede9fe",
+};
 const viewerTimezone = {
   textAlign: "center" as const,
   color: "#6b7280",
