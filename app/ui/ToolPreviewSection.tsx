@@ -488,10 +488,7 @@ function scrollToUpgrade() {
       setIsLocked(false);
     }
 
-    console.log("GATING STATUS:", {
-      freeSessionsUsed: freeUsed,
-      premiumSessionsUsed: premiumUsed,
-      isPremium,
+    
     });
   }, [isPremium]);
 function handleContinueFreeBonus() {
