@@ -372,7 +372,7 @@ const cityDropdownRefB = useRef<HTMLDivElement | null>(null);
     if (typeof window === "undefined") return;
 
     const check = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 1100);
     };
 
     check();
