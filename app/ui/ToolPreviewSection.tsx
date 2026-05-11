@@ -1231,28 +1231,7 @@ const actionControls = {
   width: "100%",
 };
 
-const durationGroup = {
-  display: "grid",
-  gap: "6px",
-};
 
-const inputLabel = {
-  color: "#6b7280",
-  fontSize: "12px",
-  fontWeight: 900,
-};
-
-const selectStyle = {
-  width: "100%",
-  height: "46px",
-  border: "1px solid #ddd6fe",
-  borderRadius: "10px",
-  background: "#ffffff",
-  color: "#111827",
-  fontSize: "14px",
-  fontWeight: 900,
-  padding: "0 12px",
-};
 const meetingDurationNotice = {
   textAlign: "center" as const,
   color: "#6b7280",
@@ -1272,47 +1251,6 @@ const findButton = {
   boxShadow: "0 14px 32px rgba(91,33,182,0.35)",
 };
 
-const resultsCard = {
-  background: "#ffffff",
-  border: "1px solid #ede9fe",
-  borderRadius: "14px",
-  padding: "12px",
-  boxShadow: "0 12px 32px rgba(0,0,0,0.10)",
-};
-
-const meetingSectionHeader = {
-  color: "#4c1d95",
-  fontSize: "14px",
-  fontWeight: 950,
-  marginBottom: "10px",
-};
-
-const meetingList = {
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  gap: "10px",
-};
-
-const meetingRow = {
-  padding: "12px 14px",
-  border: "1px solid #ede9fe",
-  borderRadius: "12px",
-  background: "#ffffff",
-  boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
-};
-const meetingTimes = {
-  display: "grid",
-  gap: "5px",
-  color: "#111827",
-  fontSize: "13px",
-};
-
-const sharePanel = {
-  background: "#ffffff",
-  border: "1px solid #ede9fe",
-  borderRadius: "14px",
-  padding: "9px 12px",
-};
 
 const shareHeader = {
   display: "grid",
