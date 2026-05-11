@@ -1251,7 +1251,12 @@ const findButton = {
   boxShadow: "0 14px 32px rgba(91,33,182,0.35)",
 };
 
-
+const meetingSectionHeader = {
+  color: "#4c1d95",
+  fontSize: "14px",
+  fontWeight: 950,
+  marginBottom: "10px",
+};
 const shareHeader = {
   display: "grid",
   gap: "6px",
