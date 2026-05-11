@@ -489,8 +489,7 @@ function scrollToUpgrade() {
     }
 
     
-    });
-  }, [isPremium]);
+     }, [isPremium]);
 function handleContinueFreeBonus() {
   document.cookie = "premium=; path=/; max-age=0";
   setIsPremium(false);
