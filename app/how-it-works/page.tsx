@@ -70,37 +70,7 @@ export default function HowItWorksPage() {
 
       
 
-      <section style={whySection}>
-        <div style={whyCard}>
-          <h2 style={sectionHeading}>Why It Works</h2>
-
-          <p style={bodyText}>
-            Scheduling meetings across time zones can be challenging when teams,
-            clients, or partners are spread across different regions. Best Meeting
-            Time helps compare local times and identify practical overlap windows.
-          </p>
-
-          <div style={problemBlock}>
-            <h3 style={subHeading}>Common Problems This Solves</h3>
-
-            <ul style={problemList}>
-              <li>Avoid scheduling meetings outside working hours</li>
-              <li>Eliminate manual time zone conversions</li>
-              <li>Prevent confusion across international teams</li>
-              <li>Quickly find better meeting times for remote teams</li>
-            </ul>
-          </div>
-
-          <div style={ctaRow}>
-            <a href="#schedule-tool" style={primaryButton}>
-              Try the Free Meeting Time Tool
-            </a>
-            <a href="/guides" style={secondaryButton}>
-              View Time Zone Scheduling Guides
-            </a>
-          </div>
-        </div>
-      </section>
+     
 
       <footer style={footer}>
         <a href="/" style={footerLink}>Home</a>
