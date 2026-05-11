@@ -36,7 +36,7 @@ export default function GuidesPage() {
 
           <nav className="nav" aria-label="Guides navigation">
             <a href="/">Home</a>
-            <a href="/how-it-works">How It Works</a>
+           <a href="/how-it-works">Schedule a Meeting</a>
             <a href="/features">Features</a>
             <a href="/guides" className="active">Guides</a>
             <a href="/blog">Blog</a>
