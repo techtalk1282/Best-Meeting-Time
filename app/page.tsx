@@ -1,13 +1,12 @@
 /**
  * File: app/page.tsx
- * Version: v4.7 (HOMEPAGE BRAND + SECTION CLARITY CLEANUP)
- * Date: 2026-05-04
+ * Version: v4.8 (HOMEPAGE MOBILE OVERFLOW FIX)
+ * Date: 2026-05-11
  *
  * PURPOSE:
- * - Remove off-brand yellow/brown planner highlight
- * - Remove misleading “Free” badge from planner preview
- * - Improve hero headline and SEO-supporting value cards
- * - Make Features and How It Works sections clearer when nav links are clickedf
+ * - Fix homepage mobile and tablet horizontal overflow
+ * - Preserve current homepage marketing layout and content
+ * - Add responsive class-based overrides for mobile grids, nav, cards, and CTA sections
  * - Keep homepage as marketing-only preview
  *
  * PROTECTED:
@@ -16,9 +15,10 @@
  * - No webhook changes
  * - No KV changes
  * - No ToolPreviewSection changes
+ * - No ToolPreviewMobile changes
  *
  * ROLLBACK:
- * - Revert app/page.tsx to v4.6 if this layout does not test cleanly
+ * - Revert app/page.tsx to v4.7 if this layout does not test cleanly
  */
 
 import dynamic from "next/dynamic";
@@ -33,70 +33,183 @@ const VerifyPremium = dynamic(() => import("./ui/VerifyPremium"), {
 export default function HomePage() {
   return (
     <>
+      <style>{`
+        html,
+        body {
+          max-width: 100%;
+          overflow-x: hidden;
+        }
+
+        @media (max-width: 1100px) {
+          .bmt-home-wrap {
+            width: calc(100% - 24px) !important;
+            max-width: 100% !important;
+            margin: 12px auto 0 !important;
+            padding: 14px !important;
+            overflow: hidden !important;
+            box-sizing: border-box !important;
+          }
+
+          .bmt-home-header {
+            display: grid !important;
+            grid-template-columns: 1fr !important;
+            justify-items: center !important;
+            gap: 10px !important;
+          }
+
+          .bmt-home-nav {
+            width: 100% !important;
+            display: flex !important;
+            overflow-x: auto !important;
+            justify-content: flex-start !important;
+            padding-bottom: 6px !important;
+            scrollbar-width: thin;
+          }
+
+          .bmt-home-nav-button {
+            display: none !important;
+          }
+
+          .bmt-home-hero {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+            padding: 14px 0 8px !important;
+          }
+
+          .bmt-home-left {
+            max-width: 100% !important;
+          }
+
+          .bmt-home-planner-card {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+          }
+
+          .bmt-home-city-grid,
+          .bmt-home-feature-grid,
+          .bmt-home-how-grid,
+          .bmt-home-resources-grid {
+            grid-template-columns: 1fr !important;
+          }
+
+          .bmt-home-premium-row {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+          }
+
+          .bmt-home-cta-band {
+            display: grid !important;
+            grid-template-columns: 1fr !important;
+            text-align: center !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .bmt-home-brand-logo {
+            width: 160px !important;
+            height: auto !important;
+          }
+
+          .bmt-home-heading {
+            font-size: 34px !important;
+          }
+
+          .bmt-home-premium-row {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
+
       <VerifyPremium />
 
       <LayoutShell
         hero={
-          <main style={pageWrap}>
-            <header style={header}>
+          <main className="bmt-home-wrap" style={pageWrap}>
+            <header className="bmt-home-header" style={header}>
               <a href="/" style={brandLink} aria-label="Best Meeting Time home">
-  <img
-    src="/images/branding/logo.png"
-    alt="Best Meeting Time"
-    style={brandLogo}
-  />
-</a>
+                <img
+                  className="bmt-home-brand-logo"
+                  src="/images/branding/logo.png"
+                  alt="Best Meeting Time"
+                  style={brandLogo}
+                />
+              </a>
 
-              <nav style={nav} aria-label="Homepage navigation">
-  <a href="/" style={navLink}>Home</a>
- <a href="/how-it-works" style={navLink}>Schedule a Meeting</a>
-  <a href="/features" style={navLink}>Features</a>
-  <a href="/guides" style={navLink}>Guides</a>
-  <a href="/blog" style={navLink}>Blog</a>
-  <a href="/about" style={navLink}>About</a>
-  <a href="/contact" style={navLink}>Contact</a>
-</nav>
+              <nav
+                className="bmt-home-nav"
+                style={nav}
+                aria-label="Homepage navigation"
+              >
+                <a href="/" style={navLink}>
+                  Home
+                </a>
+                <a href="/how-it-works" style={navLink}>
+                  Schedule a Meeting
+                </a>
+                <a href="/features" style={navLink}>
+                  Features
+                </a>
+                <a href="/guides" style={navLink}>
+                  Guides
+                </a>
+                <a href="/blog" style={navLink}>
+                  Blog
+                </a>
+                <a href="/about" style={navLink}>
+                  About
+                </a>
+                <a href="/contact" style={navLink}>
+                  Contact
+                </a>
+              </nav>
 
-              <a href="/how-it-works#schedule-tool" style={navButton}>
+              <a
+                href="/how-it-works#schedule-tool"
+                className="bmt-home-nav-button"
+                style={navButton}
+              >
                 <span style={navButtonMain}>Schedule a Meeting</span>
                 <span style={navButtonSub}>Free to try — no sign-up</span>
               </a>
             </header>
 
-            <section style={heroSection}>
-              <div style={heroLeft}>
+            <section className="bmt-home-hero" style={heroSection}>
+              <div className="bmt-home-left" style={heroLeft}>
                 <p style={eyebrow}>Trusted Time Zone Meeting Planner</p>
 
-               <h1 style={heroHeading}>
-  Schedule the Best Meeting Times Worldwide
-</h1>
+                <h1 className="bmt-home-heading" style={heroHeading}>
+                  Schedule the Best Meeting Times Worldwide
+                </h1>
 
-<p style={heroSubtitle}>
-  Smarter scheduling across time zones — fast, simple, and accurate.
-</p>
+                <p style={heroSubtitle}>
+                  Smarter scheduling across time zones — fast, simple, and
+                  accurate.
+                </p>
 
                 <div style={heroBulletBox}>
                   <div style={heroBullet}>
                     <strong>Compare cities and time zones instantly</strong>
                     <span>
-                      View local times side by side for teams, clients, freelancers,
-                      and remote meetings across different regions.
+                      View local times side by side for teams, clients,
+                      freelancers, and remote meetings across different regions.
                     </span>
                   </div>
 
                   <div style={heroBullet}>
                     <strong>Find recommended meeting windows faster</strong>
                     <span>
-                      Avoid manual time zone conversion and quickly choose a practical
-                      meeting time that works for both locations.
+                      Avoid manual time zone conversion and quickly choose a
+                      practical meeting time that works for both locations.
                     </span>
                   </div>
 
                   <div style={heroBullet}>
                     <strong>Start planning without an account</strong>
                     <span>
-                      Use the meeting time planner first, then unlock more scheduling
-                      options if you need premium planning tools.
+                      Use the meeting time planner first, then unlock more
+                      scheduling options if you need premium planning tools.
                     </span>
                   </div>
                 </div>
@@ -108,7 +221,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div style={plannerCard}>
+              <div className="bmt-home-planner-card" style={plannerCard}>
                 <div style={plannerCardHeader}>
                   <div>
                     <p style={plannerEyebrow}>Planner Preview</p>
@@ -116,7 +229,7 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div style={cityGrid}>
+                <div className="bmt-home-city-grid" style={cityGrid}>
                   <div style={cityCard}>
                     <div style={cityHeader}>
                       <strong>New York, USA</strong>
@@ -163,54 +276,63 @@ export default function HomePage() {
                   Schedule a Meeting
                 </a>
 
-                <p style={plannerFreeNote}>Free to try — no sign-up required.</p>
+                <p style={plannerFreeNote}>
+                  Free to try — no sign-up required.
+                </p>
               </div>
-           </section>
+            </section>
 
             <section id="premium-tools" style={premiumToolsSection}>
               <div style={premiumToolsHeader}>
                 <p style={sectionEyebrow}>Premium Tools</p>
-                <h2 style={sectionTitle}>Plan, Share, and Add Meetings Faster</h2>
+                <h2 style={sectionTitle}>
+                  Plan, Share, and Add Meetings Faster
+                </h2>
                 <p style={sectionSubtitle}>
-                  After finding the best meeting time, unlock planning tools to share
-                  your selected window and add it to your calendar workflow.
+                  After finding the best meeting time, unlock planning tools to
+                  share your selected window and add it to your calendar
+                  workflow.
                 </p>
               </div>
 
-              <div style={premiumToolRow}>
-  <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
-    Share Link
-  </a>
+              <div className="bmt-home-premium-row" style={premiumToolRow}>
+                <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
+                  Share Link
+                </a>
 
-  <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
-    Add to Google
-  </a>
+                <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
+                  Add to Google
+                </a>
 
-  <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
-    Add to Outlook
-  </a>
+                <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
+                  Add to Outlook
+                </a>
 
-  <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
-    Add to Calendar
-  </a>
-</div>
+                <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
+                  Add to Calendar
+                </a>
+              </div>
             </section>
 
             <section id="features" style={featuresSection}>
               <div style={sectionHeader}>
                 <p style={sectionEyebrow}>Features</p>
-                <h2 style={sectionTitle}>Plan Meetings Across Time Zones Faster</h2>
+                <h2 style={sectionTitle}>
+                  Plan Meetings Across Time Zones Faster
+                </h2>
                 <p style={sectionSubtitle}>
-                  Best Meeting Time helps you compare cities, review local times,
-                  and choose better meeting windows without guesswork.
+                  Best Meeting Time helps you compare cities, review local
+                  times, and choose better meeting windows without guesswork.
                 </p>
               </div>
 
-              <div style={featureGrid}>
+              <div className="bmt-home-feature-grid" style={featureGrid}>
                 <div style={featureCard}>
                   <span style={featureLabel}>01</span>
                   <strong>Live Time Comparison</strong>
-                  <span>Check both locations before choosing a meeting time.</span>
+                  <span>
+                    Check both locations before choosing a meeting time.
+                  </span>
                 </div>
 
                 <div style={featureCard}>
@@ -242,7 +364,7 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div style={howGrid}>
+              <div className="bmt-home-how-grid" style={howGrid}>
                 <div style={howCard}>
                   <span style={stepNumber}>1</span>
                   <strong>Select locations</strong>
@@ -252,13 +374,17 @@ export default function HomePage() {
                 <div style={howCard}>
                   <span style={stepNumber}>2</span>
                   <strong>Compare local times</strong>
-                  <span>View both locations side by side before scheduling.</span>
+                  <span>
+                    View both locations side by side before scheduling.
+                  </span>
                 </div>
 
                 <div style={howCard}>
                   <span style={stepNumber}>3</span>
                   <strong>Pick the best window</strong>
-                  <span>Use recommended times to schedule with confidence.</span>
+                  <span>
+                    Use recommended times to schedule with confidence.
+                  </span>
                 </div>
               </div>
             </section>
@@ -274,13 +400,19 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div style={resourcesGrid}>
-                <a href="/how-to-schedule-meetings-across-time-zones" style={resourceCard}>
+              <div className="bmt-home-resources-grid" style={resourcesGrid}>
+                <a
+                  href="/how-to-schedule-meetings-across-time-zones"
+                  style={resourceCard}
+                >
                   <strong>How to Schedule Across Time Zones</strong>
                   <span>Step-by-step guide for global teams.</span>
                 </a>
 
-                <a href="/best-meeting-times-remote-teams" style={resourceCard}>
+                <a
+                  href="/best-meeting-times-remote-teams"
+                  style={resourceCard}
+                >
                   <strong>Best Meeting Times for Remote Teams</strong>
                   <span>Practical tips that actually work.</span>
                 </a>
@@ -301,7 +433,7 @@ export default function HomePage() {
                 </a>
               </div>
 
-              <div style={ctaBand}>
+              <div className="bmt-home-cta-band" style={ctaBand}>
                 <div style={ctaBandText}>
                   <span>Ready to find the best time for your next meeting?</span>
                   <small>Start free — no sign-up required.</small>
@@ -366,11 +498,13 @@ const nav = {
   justifyContent: "center",
   gap: "16px",
 };
+
 const navLink = {
   color: "#374151",
   fontSize: "13px",
   fontWeight: 700,
   textDecoration: "none",
+  whiteSpace: "nowrap" as const,
 };
 
 const navButton = {
@@ -385,7 +519,7 @@ const navButton = {
   alignItems: "center",
   justifyContent: "center",
   lineHeight: 1.15,
-minWidth: "146px",
+  minWidth: "146px",
   boxShadow: "0 10px 22px rgba(91,33,182,0.22)",
 };
 
@@ -407,6 +541,7 @@ const heroSection = {
   gap: "36px",
   padding: "18px 10px 12px",
 };
+
 const heroLeft = {
   maxWidth: "500px",
 };
@@ -430,6 +565,7 @@ const heroHeading = {
   fontWeight: 950,
   letterSpacing: "-0.04em",
 };
+
 const heroSubtitle = {
   color: "#6b7280",
   fontSize: "15px",
@@ -437,6 +573,7 @@ const heroSubtitle = {
   margin: "0 0 14px",
   fontWeight: 500,
 };
+
 const trustRow = {
   display: "flex",
   flexWrap: "wrap" as const,
@@ -606,6 +743,7 @@ const plannerFreeNote = {
   fontWeight: 900,
   textAlign: "center" as const,
 };
+
 const premiumToolsSection = {
   marginTop: "8px",
   padding: "18px 16px",
@@ -637,6 +775,7 @@ const premiumToolPill = {
   textDecoration: "none",
   boxShadow: "0 8px 18px rgba(250,204,21,0.22)",
 };
+
 const featuresSection = {
   marginTop: "8px",
   padding: "20px 16px",
