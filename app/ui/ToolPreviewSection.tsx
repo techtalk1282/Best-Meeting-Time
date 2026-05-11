@@ -419,7 +419,9 @@ function scrollToUpgrade() {
 
     
   if (!premiumCookie) {
-      setPremiumMessage("Premium feature — unlock all features for $7 below");
+      setPremiumMessage(
+  "Unlock 10 Premium Planning Sessions for $7 below"
+);
       scrollToUpgrade();
       return false;
     }
@@ -450,7 +452,7 @@ function scrollToUpgrade() {
     setIsPremium(premiumCookie);
 
     if (premiumCookie) {
-      setSuccessMessage("Premium Features Unlocked");
+    setSuccessMessage("10 Premium Planning Sessions Activated");
     }
 
     setNow(new Date());
@@ -869,7 +871,7 @@ const safeNow = now || new Date();
 
             <div style={compactPremiumTools}>
               <div style={shareHeader}>
-                <strong>Premium planning tools</strong>
+               <strong>Premium Planning Session Tools</strong>
 
                 {premiumMessage && (
                   <button
@@ -928,9 +930,13 @@ const safeNow = now || new Date();
                       try {
                         await navigator.clipboard.writeText(finalShareUrl);
                         setShareCopied(true);
-                        setPremiumMessage("Share link copied. The link is also shown below.");
+                        setPremiumMessage(
+  "Share link copied. Premium planning session tools are active."
+);
                       } catch {
-                        setPremiumMessage("Share link created. Copy the link shown below.");
+                       setPremiumMessage(
+  "Share link created. Premium planning session tools are active."
+);
                       }
 
                       setTimeout(() => {
