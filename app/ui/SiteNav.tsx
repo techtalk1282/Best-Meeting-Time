@@ -40,14 +40,15 @@ export default function SiteNav() {
           }
 
           .bmt-site-links {
-            overflow-x: auto;
-            overflow-y: hidden;
-            flex-wrap: nowrap !important;
-            justify-content: flex-start !important;
-            gap: 18px !important;
-            padding-bottom: 6px;
-            scrollbar-width: thin;
-          }
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap !important;
+  justify-content: flex-start !important;
+  gap: 14px !important;
+  padding-bottom: 6px;
+  padding-right: 12px;
+  scrollbar-width: thin;
+}
 
           .bmt-site-links::-webkit-scrollbar {
             height: 6px;
@@ -58,10 +59,10 @@ export default function SiteNav() {
             border-radius: 999px;
           }
 
-          .bmt-site-link {
-            flex-shrink: 0;
-            font-size: 15px !important;
-          }
+         .bmt-site-link {
+  flex-shrink: 0;
+  font-size: 13px !important;
+}
 
           .bmt-site-cta {
             width: 100%;
