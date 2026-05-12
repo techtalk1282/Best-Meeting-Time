@@ -1,13 +1,13 @@
 /**
  * File: app/how-it-works/page.tsx
- * Version: v1.5 (MOBILE FIT FIX FOR SCHEDULE PAGE)
- * Date: 2026-05-11
+ * Version: v1.6 (PREMIUM INTENT BANNER FOR FEATURE CTA TRAFFIC)
+ * Date: 2026-05-12
  *
  * PURPOSE:
- * - Fix Schedule a Meeting mobile cutoff on iPhone, Samsung, and tablet widths
- * - Match the successful responsive pattern used on Features, Blog, About, and Contact
- * - Preserve the real ToolPreviewSection first and protected
- * - Keep desktop presentation intact
+ * - Preserve Schedule a Meeting mobile/tablet responsive layout
+ * - Add a soft premium-intent banner when users arrive from Features page premium buttons
+ * - Keep users inside the real planner workflow instead of duplicating premium logic
+ * - Preserve ToolPreviewSection logic and all protected payment behavior
  *
  * PROTECTED:
  * - No Stripe changes
@@ -18,12 +18,26 @@
  * - No ToolPreviewSection logic changes
  *
  * ROLLBACK:
- * - Revert to v1.4 if this page layout does not test cleanly
+ * - Revert to v1.5 if the premium intent banner does not test cleanly
  */
 
 import ToolPreviewSection from "../ui/ToolPreviewSection";
 
-export default function HowItWorksPage() {
+type HowItWorksPageProps = {
+  searchParams?: {
+    premium?: string;
+  };
+};
+
+export default function HowItWorksPage({ searchParams }: HowItWorksPageProps) {
+  const premiumIntent = searchParams?.premium;
+
+  const showPremiumBanner =
+    premiumIntent === "share" ||
+    premiumIntent === "google" ||
+    premiumIntent === "outlook" ||
+    premiumIntent === "calendar";
+
   return (
     <main className="schedule-page">
       <section className="schedule-shell">
@@ -56,6 +70,16 @@ export default function HowItWorksPage() {
           <div className="planner-intro">
             <h1>Find the Best Meeting Times Across Time Zones</h1>
           </div>
+
+          {showPremiumBanner && (
+            <div className="premium-intent-banner">
+              <strong>Premium sharing and calendar tools</strong>
+              <span>
+                Start by finding the best meeting time below. After your free
+                planning sessions, you can unlock sharing and calendar tools.
+              </span>
+            </div>
+          )}
 
           <div className="planner-tool-wrap">
             <ToolPreviewSection />
@@ -189,6 +213,33 @@ export default function HowItWorksPage() {
           white-space: nowrap;
         }
 
+        .premium-intent-banner {
+          max-width: 880px;
+          margin: -24px auto 22px;
+          padding: 14px 18px;
+          border: 1px solid #ddd6fe;
+          border-radius: 14px;
+          background: #faf9ff;
+          color: #111827;
+          display: grid;
+          gap: 5px;
+          text-align: center;
+          box-shadow: 0 12px 28px rgba(91,33,182,0.08);
+        }
+
+        .premium-intent-banner strong {
+          color: #5b21b6;
+          font-size: 14px;
+          font-weight: 950;
+        }
+
+        .premium-intent-banner span {
+          color: #4b5563;
+          font-size: 13px;
+          line-height: 1.45;
+          font-weight: 700;
+        }
+
         .planner-tool-wrap {
           margin-top: 0;
           position: relative;
@@ -263,6 +314,11 @@ export default function HowItWorksPage() {
             white-space: normal;
           }
 
+          .premium-intent-banner {
+            margin: -8px auto 18px;
+            padding: 13px 14px;
+          }
+
           .planner-tool-wrap {
             width: 100%;
             max-width: 100%;
@@ -294,6 +350,14 @@ export default function HowItWorksPage() {
           .planner-intro h1 {
             font-size: 26px;
             line-height: 1.12;
+          }
+
+          .premium-intent-banner strong {
+            font-size: 13px;
+          }
+
+          .premium-intent-banner span {
+            font-size: 12.5px;
           }
         }
       `}</style>
