@@ -1,13 +1,12 @@
 /**
  * File: app/blog/page.tsx
- * Version: v3.1 (INTEGRATED BLOG PAGE HEADER)
- * Date: 2026-05-05
+ * Version: v3.2 (RESPONSIVE BLOG PAGE FIX)
+ * Date: 2026-05-11
  *
  * PURPOSE:
- * - Put the blog navigation inside the same white page shell
- * - Remove the disconnected two-block layout
- * - Match the homepage-style structure more closely
- * - Keep blog hub polished, useful, and AdSense-ready
+ * - Fix mobile/Samsung/iPhone blog page cutoff
+ * - Match the proven responsive structure used on Guides/Features
+ * - Preserve desktop layout and all blog content
  *
  * PROTECTED:
  * - No Stripe changes
@@ -17,7 +16,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert to v3.0 if this layout does not test cleanly
+ * - Revert to v3.1 if this layout does not test cleanly
  */
 
 import FooterSection from "../ui/FooterSection";
@@ -25,327 +24,437 @@ import FooterSection from "../ui/FooterSection";
 export default function BlogPage() {
   return (
     <>
-      <main style={pageShell}>
-        <header style={header}>
-          <a href="/" style={brandLink} aria-label="Best Meeting Time home">
-  <img
-    src="/images/branding/logo.png"
-    alt="Best Meeting Time"
-    style={brandLogo}
-  />
-</a>
-          <nav style={nav} aria-label="Blog navigation">
-            <a href="/" style={navLink}>Home</a>
-           <a href="/how-it-works" style={navLink}>Schedule a Meeting</a>
-            <a href="/features" style={navLink}>Features</a>
-            <a href="/guides" style={navLink}>Guides</a>
-            <a href="/blog" style={navLink}>Blog</a>
-            <a href="/about" style={navLink}>About</a>
-            <a href="/contact" style={navLink}>Contact</a>
+      <main className="blog-page">
+        <header className="blog-header">
+          <a href="/" className="brand" aria-label="Best Meeting Time home">
+            <img
+              src="/images/branding/logo.png"
+              alt="Best Meeting Time"
+              className="brand-logo"
+            />
+          </a>
+
+          <nav className="nav" aria-label="Blog navigation">
+            <a href="/">Home</a>
+            <a href="/how-it-works">Schedule a Meeting</a>
+            <a href="/features">Features</a>
+            <a href="/guides">Guides</a>
+            <a href="/blog" className="active">Blog</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
           </nav>
 
-          <a href="/how-it-works#schedule-tool" style={navButton}>
-            <span style={navButtonMain}>Schedule a Meeting</span>
-            <span style={navButtonSub}>Free to try — no sign-up</span>
+          <a href="/how-it-works#schedule-tool" className="nav-cta">
+            <span>Schedule a Meeting</span>
+            <small>Free to try — no sign-up</small>
           </a>
         </header>
 
-        <section style={heroCard}>
-          <p style={eyebrow}>Time Zone Scheduling Insights</p>
+        <section className="hero-card">
+          <p className="eyebrow">Time Zone Scheduling Insights</p>
 
-          <h1 style={heroTitle}>
+          <h1>
             Better Meeting Times for Remote Teams, Clients, and Global Work
           </h1>
 
-          <p style={heroText}>
+          <p>
             Practical articles to help you avoid bad meeting times, compare time
             zones faster, and schedule with more confidence.
           </p>
         </section>
 
-        <section style={articleGrid} aria-label="Featured scheduling articles">
-          <a href="/best-meeting-times-remote-teams" style={articleCard}>
-            <span style={articleTag}>Remote Teams</span>
-            <h2 style={articleTitle}>
-              Stop Scheduling Remote Meetings at the Worst Possible Time
-            </h2>
-            <p style={articleText}>
+        <section className="article-grid" aria-label="Featured scheduling articles">
+          <a href="/best-meeting-times-remote-teams" className="article-card">
+            <span>Remote Teams</span>
+            <h2>Stop Scheduling Remote Meetings at the Worst Possible Time</h2>
+            <p>
               Learn how to find fair overlap windows for teams working across
               cities, countries, and different workdays.
             </p>
-            <span style={readLink}>Read the remote team guide →</span>
+            <strong>Read the remote team guide →</strong>
           </a>
 
-          <a href="/how-to-schedule-meetings-across-time-zones" style={articleCard}>
-            <span style={articleTag}>Time Zones</span>
-            <h2 style={articleTitle}>
-              How to Schedule Across Time Zones Without Guessing
-            </h2>
-            <p style={articleText}>
+          <a href="/how-to-schedule-meetings-across-time-zones" className="article-card">
+            <span>Time Zones</span>
+            <h2>How to Schedule Across Time Zones Without Guessing</h2>
+            <p>
               A clear step-by-step guide for choosing meeting times that make
               sense for everyone invited.
             </p>
-            <span style={readLink}>Read the scheduling guide →</span>
+            <strong>Read the scheduling guide →</strong>
           </a>
 
-          <a href="/time-zone-meeting-planner-guide" style={articleCard}>
-            <span style={articleTag}>Planner Guide</span>
-            <h2 style={articleTitle}>
-              What a Time Zone Meeting Planner Actually Helps You Do
-            </h2>
-            <p style={articleText}>
+          <a href="/time-zone-meeting-planner-guide" className="article-card">
+            <span>Planner Guide</span>
+            <h2>What a Time Zone Meeting Planner Actually Helps You Do</h2>
+            <p>
               See how comparing cities, local times, duration, and recommended
               windows can make scheduling faster.
             </p>
-            <span style={readLink}>Read the planner guide →</span>
+            <strong>Read the planner guide →</strong>
           </a>
         </section>
 
-        <section style={bottomBand}>
+        <section className="bottom-band">
           <div>
-            <p style={bottomEyebrow}>Start Planning</p>
-            <h2 style={bottomTitle}>Ready to find a better meeting time?</h2>
-            <p style={bottomText}>
+            <p>Start Planning</p>
+            <h2>Ready to find a better meeting time?</h2>
+            <span>
               Compare cities and review recommended meeting windows before you
               send the invite.
-            </p>
+            </span>
           </div>
 
-          <a href="/how-it-works#schedule-tool" style={ctaButton}>
-            <span style={ctaMain}>Schedule a Meeting</span>
-            <span style={ctaSub}>Free to try — no sign-up</span>
+          <a href="/how-it-works#schedule-tool">
+            <strong>Schedule a Meeting</strong>
+            <small>Free to try — no sign-up</small>
           </a>
         </section>
       </main>
 
       <FooterSection />
+
+      <style>{`
+        .blog-page {
+          width: 100%;
+          max-width: 1120px;
+          margin: 18px auto 0;
+          padding: 18px 18px 42px;
+          background: #ffffff;
+          color: #111827;
+          border: 1px solid rgba(237,233,254,0.9);
+          box-shadow: 0 24px 70px rgba(30,27,75,0.18);
+          box-sizing: border-box;
+          overflow: hidden;
+        }
+
+        .blog-header {
+          min-height: 66px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 18px;
+          border-bottom: 1px solid #ede9fe;
+          margin-bottom: 14px;
+        }
+
+        .brand {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          flex-shrink: 0;
+        }
+
+        .brand-logo {
+          display: block;
+          width: 170px;
+          height: auto;
+          object-fit: contain;
+        }
+
+        .nav {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 18px;
+        }
+
+        .nav a {
+          color: #374151;
+          font-size: 13px;
+          font-weight: 800;
+          text-decoration: none;
+          white-space: nowrap;
+        }
+
+        .nav .active {
+          color: #5b21b6;
+          border-bottom: 2px solid #5b21b6;
+          padding-bottom: 6px;
+        }
+
+        .nav-cta {
+          background: #5b21b6;
+          color: #ffffff;
+          padding: 9px 16px;
+          border-radius: 8px;
+          font-weight: 900;
+          text-decoration: none;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          line-height: 1.18;
+          min-width: 154px;
+          box-shadow: 0 10px 22px rgba(91,33,182,0.22);
+        }
+
+        .nav-cta span {
+          font-size: 13px;
+          font-weight: 900;
+        }
+
+        .nav-cta small {
+          font-size: 10px;
+          font-weight: 800;
+          color: #ffffff;
+          opacity: 0.92;
+        }
+
+        .hero-card {
+          text-align: center;
+          padding: 30px 24px 22px;
+          border-bottom: 1px solid #ede9fe;
+        }
+
+        .eyebrow {
+          display: inline-block;
+          margin: 0 0 12px;
+          padding: 7px 13px;
+          border-radius: 999px;
+          background: #f3efff;
+          color: #5b21b6;
+          font-size: 12px;
+          font-weight: 900;
+        }
+
+        .hero-card h1 {
+          max-width: 780px;
+          margin: 0 auto 12px;
+          color: #111827;
+          font-size: clamp(34px, 4vw, 48px);
+          line-height: 1.06;
+          font-weight: 950;
+          letter-spacing: -0.04em;
+        }
+
+        .hero-card p:last-child {
+          max-width: 720px;
+          margin: 0 auto;
+          color: #6b7280;
+          font-size: 16px;
+          line-height: 1.6;
+          font-weight: 500;
+        }
+
+        .article-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 16px;
+          padding: 22px 10px 18px;
+        }
+
+        .article-card {
+          min-height: 250px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 12px;
+          background: #faf9ff;
+          border: 1px solid #ddd6fe;
+          border-radius: 16px;
+          padding: 22px;
+          text-decoration: none;
+          color: #111827;
+          box-shadow: 0 12px 28px rgba(91,33,182,0.08);
+        }
+
+        .article-card span {
+          color: #6d28d9;
+          font-size: 12px;
+          font-weight: 950;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+        }
+
+        .article-card h2 {
+          color: #111827;
+          font-size: 22px;
+          line-height: 1.15;
+          font-weight: 950;
+          margin: 0;
+        }
+
+        .article-card p {
+          color: #4b5563;
+          font-size: 15px;
+          line-height: 1.55;
+          margin: 0;
+        }
+
+        .article-card strong {
+          color: #5b21b6;
+          font-size: 14px;
+          font-weight: 900;
+        }
+
+        .bottom-band {
+          margin: 0 10px;
+          padding: 18px 20px;
+          border-radius: 14px;
+          background: #5b21b6;
+          color: #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 18px;
+        }
+
+        .bottom-band p {
+          margin: 0 0 4px;
+          color: #facc15;
+          font-size: 12px;
+          font-weight: 950;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+        }
+
+        .bottom-band h2 {
+          margin: 0 0 4px;
+          color: #ffffff;
+          font-size: 22px;
+          font-weight: 950;
+        }
+
+        .bottom-band span {
+          display: block;
+          color: rgba(255,255,255,0.86);
+          font-size: 14px;
+          line-height: 1.5;
+        }
+
+        .bottom-band a {
+          background: #ffffff;
+          color: #5b21b6;
+          padding: 10px 16px;
+          border-radius: 8px;
+          text-decoration: none;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          line-height: 1.15;
+          min-width: 160px;
+          box-shadow: 0 10px 22px rgba(30,27,75,0.18);
+        }
+
+        .bottom-band a strong {
+          font-size: 13px;
+          font-weight: 900;
+        }
+
+        .bottom-band a small {
+          font-size: 10px;
+          font-weight: 800;
+          opacity: 0.9;
+        }
+
+        @media (max-width: 900px) {
+          .blog-page {
+            margin: 16px auto 0;
+            padding: 16px;
+            max-width: calc(100% - 24px);
+          }
+
+          .blog-header {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            text-align: center;
+          }
+
+          .brand {
+            width: 100%;
+            justify-content: center;
+          }
+
+          .brand-logo {
+            width: 170px;
+          }
+
+          .nav {
+            width: 100%;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px 18px;
+          }
+
+          .nav a {
+            font-size: 13px;
+          }
+
+          .nav-cta {
+            width: 100%;
+            max-width: 320px;
+            min-width: 0;
+          }
+
+          .hero-card {
+            padding: 28px 10px 20px;
+          }
+
+          .hero-card h1 {
+            font-size: 38px;
+          }
+
+          .article-grid {
+            grid-template-columns: 1fr;
+            padding: 20px 0 18px;
+          }
+
+          .article-card {
+            min-height: auto;
+          }
+
+          .bottom-band {
+            margin: 0;
+            flex-direction: column;
+            text-align: center;
+            align-items: stretch;
+          }
+
+          .bottom-band a {
+            width: 100%;
+            min-width: 0;
+            box-sizing: border-box;
+          }
+        }
+
+        @media (max-width: 560px) {
+          .blog-page {
+            max-width: calc(100% - 20px);
+            padding: 14px;
+          }
+
+          .brand-logo {
+            width: 155px;
+          }
+
+          .nav {
+            gap: 10px 14px;
+          }
+
+          .nav a {
+            font-size: 12px;
+          }
+
+          .hero-card h1 {
+            font-size: 34px;
+          }
+
+          .hero-card p:last-child {
+            font-size: 15px;
+          }
+
+          .article-card {
+            padding: 20px;
+          }
+
+          .article-card h2 {
+            font-size: 24px;
+          }
+        }
+      `}</style>
     </>
   );
 }
-
-/* STYLES */
-
-const pageShell = {
-  maxWidth: "1120px",
-  margin: "18px auto 0",
-  padding: "18px 18px 42px",
-  background: "#ffffff",
-  color: "#111827",
-  border: "1px solid rgba(237,233,254,0.9)",
-  boxShadow: "0 24px 70px rgba(30,27,75,0.18)",
-};
-
-const header = {
-  minHeight: "66px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  gap: "18px",
-  borderBottom: "1px solid #ede9fe",
-  marginBottom: "14px",
-};
-
-const brandLink = {
-  display: "flex",
-  alignItems: "center",
-  textDecoration: "none",
-  flexShrink: 0,
-};
-
-const brandLogo = {
-  display: "block",
-  width: "170px",
-  height: "auto",
-  objectFit: "contain" as const,
-};
-
-const nav = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: "18px",
-};
-
-const navLink = {
-  color: "#374151",
-  fontSize: "13px",
-  fontWeight: 800,
-  textDecoration: "none",
-  whiteSpace: "nowrap" as const,
-};
-
-const navButton = {
-  background: "#5b21b6",
-  color: "#ffffff",
-  padding: "9px 16px",
-  borderRadius: "8px",
-  fontWeight: 900,
-  textDecoration: "none",
-  display: "flex",
-  flexDirection: "column" as const,
-  alignItems: "center",
-  justifyContent: "center",
-  lineHeight: 1.18,
-  minWidth: "154px",
-  boxShadow: "0 10px 22px rgba(91,33,182,0.22)",
-};
-
-const navButtonMain = {
-  fontSize: "13px",
-  fontWeight: 900,
-};
-
-const navButtonSub = {
-  fontSize: "10px",
-  fontWeight: 800,
-  opacity: 0.92,
-};
-
-const heroCard = {
-  textAlign: "center" as const,
-  padding: "30px 24px 22px",
-  borderBottom: "1px solid #ede9fe",
-};
-
-const eyebrow = {
-  display: "inline-block",
-  margin: "0 0 12px",
-  padding: "7px 13px",
-  borderRadius: "999px",
-  background: "#f3efff",
-  color: "#5b21b6",
-  fontSize: "12px",
-  fontWeight: 900,
-};
-
-const heroTitle = {
-  maxWidth: "780px",
-  margin: "0 auto 12px",
-  color: "#111827",
-  fontSize: "clamp(34px, 4vw, 48px)",
-  lineHeight: "1.06",
-  fontWeight: 950,
-  letterSpacing: "-0.04em",
-};
-
-const heroText = {
-  maxWidth: "720px",
-  margin: "0 auto",
-  color: "#6b7280",
-  fontSize: "16px",
-  lineHeight: "1.6",
-  fontWeight: 500,
-};
-
-const articleGrid = {
-  display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
-  gap: "16px",
-  padding: "22px 10px 18px",
-};
-
-const articleCard = {
-  minHeight: "250px",
-  display: "flex",
-  flexDirection: "column" as const,
-  justifyContent: "space-between",
-  gap: "12px",
-  background: "#faf9ff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "16px",
-  padding: "22px",
-  textDecoration: "none",
-  color: "#111827",
-  boxShadow: "0 12px 28px rgba(91,33,182,0.08)",
-};
-
-const articleTag = {
-  color: "#6d28d9",
-  fontSize: "12px",
-  fontWeight: 950,
-  textTransform: "uppercase" as const,
-  letterSpacing: "0.04em",
-};
-
-const articleTitle = {
-  color: "#111827",
-  fontSize: "22px",
-  lineHeight: "1.15",
-  fontWeight: 950,
-  margin: 0,
-};
-
-const articleText = {
-  color: "#4b5563",
-  fontSize: "15px",
-  lineHeight: "1.55",
-  margin: 0,
-};
-
-const readLink = {
-  color: "#5b21b6",
-  fontSize: "14px",
-  fontWeight: 900,
-};
-
-const bottomBand = {
-  margin: "0 10px",
-  padding: "18px 20px",
-  borderRadius: "14px",
-  background: "#5b21b6",
-  color: "#ffffff",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  gap: "18px",
-};
-
-const bottomEyebrow = {
-  margin: "0 0 4px",
-  color: "#facc15",
-  fontSize: "12px",
-  fontWeight: 950,
-  textTransform: "uppercase" as const,
-  letterSpacing: "0.04em",
-};
-
-const bottomTitle = {
-  margin: "0 0 4px",
-  color: "#ffffff",
-  fontSize: "22px",
-  fontWeight: 950,
-};
-
-const bottomText = {
-  margin: 0,
-  color: "rgba(255,255,255,0.86)",
-  fontSize: "14px",
-  lineHeight: "1.5",
-};
-
-const ctaButton = {
-  background: "#ffffff",
-  color: "#5b21b6",
-  padding: "10px 16px",
-  borderRadius: "8px",
-  fontWeight: 900,
-  textDecoration: "none",
-  display: "flex",
-  flexDirection: "column" as const,
-  alignItems: "center",
-  justifyContent: "center",
-  lineHeight: 1.15,
-  minWidth: "160px",
-  boxShadow: "0 10px 22px rgba(30,27,75,0.18)",
-};
-
-const ctaMain = {
-  fontSize: "13px",
-  fontWeight: 900,
-};
-
-const ctaSub = {
-  fontSize: "10px",
-  fontWeight: 800,
-  opacity: 0.9,
-};
