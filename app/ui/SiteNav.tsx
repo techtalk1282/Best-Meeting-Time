@@ -1,20 +1,20 @@
 /**
  * File: app/ui/SiteNav.tsx
- * Version: v2.7 (SAFE WRAPPING MOBILE NAV)
+ * Version: v2.8 (STABLE TWO-COLUMN MOBILE NAV)
  * Date: 2026-05-11
  *
  * PURPOSE:
- * - Eliminate mobile nav cutoff issues on Samsung/iPhone devices
- * - Preserve desktop navigation completely
- * - Replace horizontal scrolling with wrapped responsive rows
- * - Keep CTA accessible on all screen sizes
+ * - Stop mobile nav cutoff on Samsung, iPhone, and narrow tablet widths
+ * - Preserve desktop navigation above 1100px
+ * - Force phone navigation into a stable two-column grid
+ * - Keep logo and CTA visible without horizontal overflow
  *
  * SAFE RULE:
  * - Desktop layout untouched above 1100px
  * - Mobile behavior isolated to media queries only
  *
  * ROLLBACK:
- * - Revert to v2.6 if regression occurs
+ * - Revert to v2.7 if regression occurs
  */
 
 export default function SiteNav() {
@@ -27,6 +27,8 @@ export default function SiteNav() {
             align-items: stretch !important;
             gap: 14px !important;
             padding: 14px 16px !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
           }
 
           .bmt-site-brand {
@@ -43,7 +45,9 @@ export default function SiteNav() {
             flex-wrap: wrap !important;
             justify-content: center !important;
             gap: 12px 18px !important;
-            width: 100%;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
           }
 
           .bmt-site-link {
@@ -55,12 +59,14 @@ export default function SiteNav() {
             width: 100%;
             max-width: 320px;
             margin: 0 auto;
+            box-sizing: border-box !important;
           }
         }
 
         @media (max-width: 640px) {
           .bmt-site-nav {
             gap: 12px !important;
+            padding: 14px 12px !important;
           }
 
           .bmt-site-logo {
@@ -68,11 +74,19 @@ export default function SiteNav() {
           }
 
           .bmt-site-links {
-            gap: 10px 14px !important;
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 10px !important;
+            width: 100% !important;
+            max-width: 100% !important;
           }
 
           .bmt-site-link {
             font-size: 12px !important;
+            text-align: center !important;
+            white-space: normal !important;
+            line-height: 1.2 !important;
+            min-width: 0 !important;
           }
 
           .bmt-site-cta {
@@ -105,27 +119,15 @@ export default function SiteNav() {
             Home
           </a>
 
-          <a
-            href="/how-it-works"
-            style={navLink}
-            className="bmt-site-link"
-          >
+          <a href="/how-it-works" style={navLink} className="bmt-site-link">
             Schedule a Meeting
           </a>
 
-          <a
-            href="/features"
-            style={navLink}
-            className="bmt-site-link"
-          >
+          <a href="/features" style={navLink} className="bmt-site-link">
             Features
           </a>
 
-          <a
-            href="/guides"
-            style={navLink}
-            className="bmt-site-link"
-          >
+          <a href="/guides" style={navLink} className="bmt-site-link">
             Guides
           </a>
 
