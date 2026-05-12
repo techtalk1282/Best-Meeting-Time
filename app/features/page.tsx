@@ -98,11 +98,20 @@ export default function FeaturesPage() {
             </p>
 
             <div className="gold-button-grid">
-              <button>Share Link</button>
-              <button>Add to Google</button>
-              <button>Add to Outlook</button>
-              <button>Add to Calendar</button>
-            </div>
+  <a href="/how-it-works#schedule-tool">Share Link</a>
+
+  <a href="/how-it-works#schedule-tool">
+    Add to Google
+  </a>
+
+  <a href="/how-it-works#schedule-tool">
+    Add to Outlook
+  </a>
+
+  <a href="/how-it-works#schedule-tool">
+    Add to Calendar
+  </a>
+</div>
           </div>
         </section>
 
@@ -383,17 +392,26 @@ export default function FeaturesPage() {
           gap: 10px;
         }
 
-        .gold-button-grid button {
-          background: #facc15;
-          color: #111827;
-          border: none;
-          border-radius: 999px;
-          padding: 11px 12px;
-          font-size: 13px;
-          font-weight: 900;
-          cursor: pointer;
-          box-shadow: 0 6px 14px rgba(250,204,21,0.28);
-        }
+       .gold-button-grid a {
+  background: #facc15;
+  color: #111827;
+  border-radius: 999px;
+  padding: 11px 12px;
+  font-size: 13px;
+  font-weight: 900;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 14px rgba(250,204,21,0.28);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.gold-button-grid a:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(250,204,21,0.34);
+}
 
         .feature-grid {
           display: grid;
