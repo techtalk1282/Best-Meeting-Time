@@ -108,7 +108,7 @@ export default function HomePage() {
               </div>
 
               <div className="planner-card">
-                <p className="section-eyebrow">Planner Preview</p>
+              <p className="section-eyebrow">Preview of the Best Meeting Time scheduler</p>
                 <h2>Recommended meeting window</h2>
 
                 <div className="city-grid">
@@ -338,20 +338,21 @@ export default function HomePage() {
               }
 
               .nav-cta {
-                background: #5b21b6;
-                color: #ffffff;
-                padding: 9px 16px;
-                border-radius: 8px;
-                font-weight: 900;
-                text-decoration: none;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                line-height: 1.15;
-                min-width: 146px;
-                box-shadow: 0 10px 22px rgba(91,33,182,0.22);
-              }
+  background: #5b21b6;
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 900;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  line-height: 1.18;
+  min-width: 146px;
+  box-shadow: 0 10px 22px rgba(91,33,182,0.22);
+}
 
               .nav-cta span {
                 color: #ffffff;
