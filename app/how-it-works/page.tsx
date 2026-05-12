@@ -196,8 +196,8 @@ export default function HowItWorksPage({ searchParams }: HowItWorksPageProps) {
         }
 
         .planner-intro {
-          text-align: center;
-          margin: 0 auto 44px;
+  text-align: center;
+  margin: 0 auto 24px;
           max-width: 100%;
           position: relative;
           z-index: 2;
@@ -214,9 +214,9 @@ export default function HowItWorksPage({ searchParams }: HowItWorksPageProps) {
         }
 
         .premium-intent-banner {
-          max-width: 880px;
-          margin: -24px auto 22px;
-          padding: 14px 18px;
+  max-width: 880px;
+  margin: -18px auto 18px;
+  padding: 12px 18px;
           border: 1px solid #ddd6fe;
           border-radius: 14px;
           background: #faf9ff;
