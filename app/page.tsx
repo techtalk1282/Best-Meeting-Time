@@ -1,13 +1,13 @@
 /**
  * File: app/page.tsx
- * Version: v4.8 (HOMEPAGE MOBILE OVERFLOW FIX)
+ * Version: v4.9 (FINAL HOMEPAGE RESPONSIVE MOBILE FIT)
  * Date: 2026-05-11
  *
  * PURPOSE:
- * - Fix homepage mobile and tablet horizontal overflow
- * - Preserve current homepage marketing layout and content
- * - Add responsive class-based overrides for mobile grids, nav, cards, and CTA sections
- * - Keep homepage as marketing-only preview
+ * - Fix homepage mobile and tablet cutoff using the same successful pattern as Features, Blog, About, Contact, and Schedule pages
+ * - Replace fragile inline mobile overrides with scoped class-based responsive CSS
+ * - Preserve homepage marketing content, routing, premium preview, and desktop presentation
+ * - Keep homepage as marketing preview
  *
  * PROTECTED:
  * - No Stripe changes
@@ -18,7 +18,7 @@
  * - No ToolPreviewMobile changes
  *
  * ROLLBACK:
- * - Revert app/page.tsx to v4.7 if this layout does not test cleanly
+ * - Revert app/page.tsx to v4.8 if this layout does not test cleanly
  */
 
 import dynamic from "next/dynamic";
@@ -33,163 +33,49 @@ const VerifyPremium = dynamic(() => import("./ui/VerifyPremium"), {
 export default function HomePage() {
   return (
     <>
-      <style>{`
-        html,
-        body {
-          max-width: 100%;
-          overflow-x: hidden;
-        }
-
-        @media (max-width: 1100px) {
-          .bmt-home-wrap {
-            width: calc(100% - 24px) !important;
-            max-width: 100% !important;
-            margin: 12px auto 0 !important;
-            padding: 14px !important;
-            overflow: hidden !important;
-            box-sizing: border-box !important;
-          }
-
-          .bmt-home-header {
-            display: grid !important;
-            grid-template-columns: 1fr !important;
-            justify-items: center !important;
-            gap: 10px !important;
-          }
-
-          .bmt-home-nav {
-            width: 100% !important;
-            display: flex !important;
-            overflow-x: auto !important;
-            justify-content: flex-start !important;
-            padding-bottom: 6px !important;
-            scrollbar-width: thin;
-          }
-
-          .bmt-home-nav-button {
-            display: none !important;
-          }
-
-          .bmt-home-hero {
-            grid-template-columns: 1fr !important;
-            gap: 16px !important;
-            padding: 14px 0 8px !important;
-          }
-
-          .bmt-home-left {
-            max-width: 100% !important;
-          }
-
-          .bmt-home-planner-card {
-            width: 100% !important;
-            max-width: 100% !important;
-            box-sizing: border-box !important;
-            overflow: hidden !important;
-          }
-
-          .bmt-home-city-grid,
-          .bmt-home-feature-grid,
-          .bmt-home-how-grid,
-          .bmt-home-resources-grid {
-            grid-template-columns: 1fr !important;
-          }
-
-          .bmt-home-premium-row {
-            display: grid !important;
-            grid-template-columns: 1fr 1fr !important;
-          }
-
-          .bmt-home-cta-band {
-            display: grid !important;
-            grid-template-columns: 1fr !important;
-            text-align: center !important;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .bmt-home-brand-logo {
-            width: 160px !important;
-            height: auto !important;
-          }
-
-          .bmt-home-heading {
-            font-size: 34px !important;
-          }
-
-          .bmt-home-premium-row {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
-
       <VerifyPremium />
 
       <LayoutShell
         hero={
-          <main className="bmt-home-wrap" style={pageWrap}>
-            <header className="bmt-home-header" style={header}>
-              <a href="/" style={brandLink} aria-label="Best Meeting Time home">
+          <main className="home-page">
+            <header className="home-header">
+              <a href="/" className="brand" aria-label="Best Meeting Time home">
                 <img
-                  className="bmt-home-brand-logo"
                   src="/images/branding/logo.png"
                   alt="Best Meeting Time"
-                  style={brandLogo}
+                  className="brand-logo"
                 />
               </a>
 
-              <nav
-                className="bmt-home-nav"
-                style={nav}
-                aria-label="Homepage navigation"
-              >
-                <a href="/" style={navLink}>
-                  Home
-                </a>
-                <a href="/how-it-works" style={navLink}>
-                  Schedule a Meeting
-                </a>
-                <a href="/features" style={navLink}>
-                  Features
-                </a>
-                <a href="/guides" style={navLink}>
-                  Guides
-                </a>
-                <a href="/blog" style={navLink}>
-                  Blog
-                </a>
-                <a href="/about" style={navLink}>
-                  About
-                </a>
-                <a href="/contact" style={navLink}>
-                  Contact
-                </a>
+              <nav className="nav" aria-label="Homepage navigation">
+                <a href="/">Home</a>
+                <a href="/how-it-works">Schedule a Meeting</a>
+                <a href="/features">Features</a>
+                <a href="/guides">Guides</a>
+                <a href="/blog">Blog</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
               </nav>
 
-              <a
-                href="/how-it-works#schedule-tool"
-                className="bmt-home-nav-button"
-                style={navButton}
-              >
-                <span style={navButtonMain}>Schedule a Meeting</span>
-                <span style={navButtonSub}>Free to try — no sign-up</span>
+              <a href="/how-it-works#schedule-tool" className="nav-cta">
+                <span>Schedule a Meeting</span>
+                <small>Free to try — no sign-up</small>
               </a>
             </header>
 
-            <section className="bmt-home-hero" style={heroSection}>
-              <div className="bmt-home-left" style={heroLeft}>
-                <p style={eyebrow}>Trusted Time Zone Meeting Planner</p>
+            <section className="hero">
+              <div className="hero-copy">
+                <p className="pill">Trusted Time Zone Meeting Planner</p>
 
-                <h1 className="bmt-home-heading" style={heroHeading}>
-                  Schedule the Best Meeting Times Worldwide
-                </h1>
+                <h1>Schedule the Best Meeting Times Worldwide</h1>
 
-                <p style={heroSubtitle}>
+                <p className="hero-text">
                   Smarter scheduling across time zones — fast, simple, and
                   accurate.
                 </p>
 
-                <div style={heroBulletBox}>
-                  <div style={heroBullet}>
+                <div className="hero-bullets">
+                  <div>
                     <strong>Compare cities and time zones instantly</strong>
                     <span>
                       View local times side by side for teams, clients,
@@ -197,7 +83,7 @@ export default function HomePage() {
                     </span>
                   </div>
 
-                  <div style={heroBullet}>
+                  <div>
                     <strong>Find recommended meeting windows faster</strong>
                     <span>
                       Avoid manual time zone conversion and quickly choose a
@@ -205,7 +91,7 @@ export default function HomePage() {
                     </span>
                   </div>
 
-                  <div style={heroBullet}>
+                  <div>
                     <strong>Start planning without an account</strong>
                     <span>
                       Use the meeting time planner first, then unlock more
@@ -214,236 +100,694 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div style={trustRow}>
+                <div className="trust-row">
                   <span>Free to Try</span>
                   <span>No Sign-up</span>
                   <span>Works Worldwide</span>
                 </div>
               </div>
 
-              <div className="bmt-home-planner-card" style={plannerCard}>
-                <div style={plannerCardHeader}>
-                  <div>
-                    <p style={plannerEyebrow}>Planner Preview</p>
-                    <h2 style={plannerTitle}>Recommended meeting window</h2>
-                  </div>
-                </div>
+              <div className="planner-card">
+                <p className="section-eyebrow">Planner Preview</p>
+                <h2>Recommended meeting window</h2>
 
-                <div className="bmt-home-city-grid" style={cityGrid}>
-                  <div style={cityCard}>
-                    <div style={cityHeader}>
+                <div className="city-grid">
+                  <div className="city-card">
+                    <div className="city-header">
                       <strong>New York, USA</strong>
                       <img
                         src="https://flagcdn.com/w40/us.png"
                         alt="United States flag"
-                        style={flagImage}
                       />
                     </div>
 
-                    <span style={labelText}>Current Time</span>
-                    <strong style={timeText}>9:00 AM EDT</strong>
-                    <span style={subText}>Local time</span>
+                    <span className="label">Current Time</span>
+                    <strong className="time">9:00 AM EDT</strong>
+                    <span className="muted">Local time</span>
                   </div>
 
-                  <div style={cityCard}>
-                    <div style={cityHeader}>
+                  <div className="city-card">
+                    <div className="city-header">
                       <strong>London, UK</strong>
                       <img
                         src="https://flagcdn.com/w40/gb.png"
                         alt="United Kingdom flag"
-                        style={flagImage}
                       />
                     </div>
 
-                    <span style={labelText}>Current Time</span>
-                    <strong style={timeText}>2:00 PM BST</strong>
-                    <span style={subText}>Same meeting time</span>
+                    <span className="label">Current Time</span>
+                    <strong className="time">2:00 PM BST</strong>
+                    <span className="muted">Same meeting time</span>
                   </div>
                 </div>
 
-                <div style={durationRow}>
+                <div className="duration-row">
                   <span>Meeting Duration</span>
                   <strong>60 minutes</strong>
                 </div>
 
-                <div style={bestTimeCard}>
-                  <span style={bestTimeLabel}>Best Meeting Time</span>
+                <div className="best-time-card">
+                  <span>Best Meeting Time</span>
                   <strong>New York: 9:00 AM – 10:00 AM</strong>
                   <strong>London: 2:00 PM – 3:00 PM</strong>
                 </div>
 
-                <a href="/how-it-works#schedule-tool" style={plannerButton}>
+                <a href="/how-it-works#schedule-tool" className="planner-button">
                   Schedule a Meeting
                 </a>
 
-                <p style={plannerFreeNote}>
-                  Free to try — no sign-up required.
-                </p>
+                <p className="free-note">Free to try — no sign-up required.</p>
               </div>
             </section>
 
-            <section id="premium-tools" style={premiumToolsSection}>
-              <div style={premiumToolsHeader}>
-                <p style={sectionEyebrow}>Premium Tools</p>
-                <h2 style={sectionTitle}>
-                  Plan, Share, and Add Meetings Faster
-                </h2>
-                <p style={sectionSubtitle}>
+            <section id="premium-tools" className="content-section">
+              <div className="section-header">
+                <p className="section-eyebrow">Premium Tools</p>
+                <h2>Plan, Share, and Add Meetings Faster</h2>
+                <p>
                   After finding the best meeting time, unlock planning tools to
                   share your selected window and add it to your calendar
                   workflow.
                 </p>
               </div>
 
-              <div className="bmt-home-premium-row" style={premiumToolRow}>
-                <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
-                  Share Link
-                </a>
-
-                <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
-                  Add to Google
-                </a>
-
-                <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
-                  Add to Outlook
-                </a>
-
-                <a href="/how-it-works#schedule-tool" style={premiumToolPill}>
-                  Add to Calendar
-                </a>
+              <div className="premium-row">
+                <a href="/how-it-works#schedule-tool">Share Link</a>
+                <a href="/how-it-works#schedule-tool">Add to Google</a>
+                <a href="/how-it-works#schedule-tool">Add to Outlook</a>
+                <a href="/how-it-works#schedule-tool">Add to Calendar</a>
               </div>
             </section>
 
-            <section id="features" style={featuresSection}>
-              <div style={sectionHeader}>
-                <p style={sectionEyebrow}>Features</p>
-                <h2 style={sectionTitle}>
-                  Plan Meetings Across Time Zones Faster
-                </h2>
-                <p style={sectionSubtitle}>
+            <section id="features" className="content-section">
+              <div className="section-header">
+                <p className="section-eyebrow">Features</p>
+                <h2>Plan Meetings Across Time Zones Faster</h2>
+                <p>
                   Best Meeting Time helps you compare cities, review local
                   times, and choose better meeting windows without guesswork.
                 </p>
               </div>
 
-              <div className="bmt-home-feature-grid" style={featureGrid}>
-                <div style={featureCard}>
-                  <span style={featureLabel}>01</span>
+              <div className="feature-grid">
+                <article>
                   <strong>Live Time Comparison</strong>
-                  <span>
-                    Check both locations before choosing a meeting time.
-                  </span>
-                </div>
+                  <span>Check both locations before choosing a meeting time.</span>
+                </article>
 
-                <div style={featureCard}>
-                  <span style={featureLabel}>02</span>
+                <article>
                   <strong>Recommended Meeting Windows</strong>
                   <span>See practical time options for both cities.</span>
-                </div>
+                </article>
 
-                <div style={featureCard}>
-                  <span style={featureLabel}>03</span>
+                <article>
                   <strong>Remote Team Scheduling</strong>
                   <span>Useful for teams, consultants, clients, and partners.</span>
-                </div>
+                </article>
 
-                <div style={featureCard}>
-                  <span style={featureLabel}>04</span>
+                <article>
                   <strong>Free Planning Start</strong>
                   <span>Begin without creating an account or signing in.</span>
-                </div>
+                </article>
               </div>
             </section>
 
-            <section id="how-it-works" style={howSection}>
-              <div style={sectionHeader}>
-                <p style={sectionEyebrow}>How It Works</p>
-                <h2 style={sectionTitle}>How Best Meeting Time Works</h2>
-                <p style={sectionSubtitle}>
-                  A simple three-step flow for scheduling across time zones.
-                </p>
+            <section id="how-it-works" className="content-section">
+              <div className="section-header">
+                <p className="section-eyebrow">How It Works</p>
+                <h2>How Best Meeting Time Works</h2>
+                <p>A simple three-step flow for scheduling across time zones.</p>
               </div>
 
-              <div className="bmt-home-how-grid" style={howGrid}>
-                <div style={howCard}>
-                  <span style={stepNumber}>1</span>
+              <div className="how-grid">
+                <article>
                   <strong>Select locations</strong>
                   <span>Choose the cities or time zones for your meeting.</span>
-                </div>
+                </article>
 
-                <div style={howCard}>
-                  <span style={stepNumber}>2</span>
+                <article>
                   <strong>Compare local times</strong>
-                  <span>
-                    View both locations side by side before scheduling.
-                  </span>
-                </div>
+                  <span>View both locations side by side before scheduling.</span>
+                </article>
 
-                <div style={howCard}>
-                  <span style={stepNumber}>3</span>
+                <article>
                   <strong>Pick the best window</strong>
-                  <span>
-                    Use recommended times to schedule with confidence.
-                  </span>
-                </div>
+                  <span>Use recommended times to schedule with confidence.</span>
+                </article>
               </div>
             </section>
 
-            <section id="resources" style={resourcesSection}>
-              <div style={sectionHeader}>
-                <p style={sectionEyebrow}>Resources</p>
-                <h2 style={sectionTitle}>
-                  Helpful Resources to Schedule Better Meetings
-                </h2>
-                <p style={sectionSubtitle}>
-                  Guides and tips to help you collaborate across time zones.
-                </p>
+            <section id="resources" className="content-section">
+              <div className="section-header">
+                <p className="section-eyebrow">Resources</p>
+                <h2>Helpful Resources to Schedule Better Meetings</h2>
+                <p>Guides and tips to help you collaborate across time zones.</p>
               </div>
 
-              <div className="bmt-home-resources-grid" style={resourcesGrid}>
-                <a
-                  href="/how-to-schedule-meetings-across-time-zones"
-                  style={resourceCard}
-                >
+              <div className="resources-grid">
+                <a href="/how-to-schedule-meetings-across-time-zones">
                   <strong>How to Schedule Across Time Zones</strong>
                   <span>Step-by-step guide for global teams.</span>
                 </a>
 
-                <a
-                  href="/best-meeting-times-remote-teams"
-                  style={resourceCard}
-                >
+                <a href="/best-meeting-times-remote-teams">
                   <strong>Best Meeting Times for Remote Teams</strong>
                   <span>Practical tips that actually work.</span>
                 </a>
 
-                <a href="/time-zone-meeting-planner-guide" style={resourceCard}>
+                <a href="/time-zone-meeting-planner-guide">
                   <strong>Time Zone Meeting Planner Guide</strong>
                   <span>Master your zone planning.</span>
                 </a>
 
-                <a href="/global-meeting-scheduling-tips" style={resourceCard}>
+                <a href="/global-meeting-scheduling-tips">
                   <strong>Global Meeting Scheduling Tips</strong>
                   <span>Expert tips for faster scheduling.</span>
                 </a>
 
-                <a href="/guides" style={resourceCard}>
+                <a href="/guides">
                   <strong>Meeting Time Zone Converter Guide</strong>
                   <span>Understand time zones easily.</span>
                 </a>
               </div>
 
-              <div className="bmt-home-cta-band" style={ctaBand}>
-                <div style={ctaBandText}>
-                  <span>Ready to find the best time for your next meeting?</span>
-                  <small>Start free — no sign-up required.</small>
+              <div className="cta-band">
+                <div>
+                  <strong>Ready to find the best time for your next meeting?</strong>
+                  <span>Start free — no sign-up required.</span>
                 </div>
 
-                <a href="/how-it-works#schedule-tool" style={ctaButton}>
+                <a href="/how-it-works#schedule-tool">
                   Schedule a Free Meeting
                 </a>
               </div>
             </section>
+
+            <style>{`
+              .home-page {
+                width: 100%;
+                max-width: 1120px;
+                margin: 18px auto 0;
+                padding: 18px 18px 28px;
+                background: #ffffff;
+                color: #111827;
+                border: 1px solid rgba(237,233,254,0.9);
+                box-shadow: 0 24px 70px rgba(30,27,75,0.18);
+                box-sizing: border-box;
+                overflow: hidden;
+              }
+
+              .home-header {
+                min-height: 66px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 18px;
+                border-bottom: 1px solid #ede9fe;
+                margin-bottom: 14px;
+              }
+
+              .brand {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                flex-shrink: 0;
+              }
+
+              .brand-logo {
+                display: block;
+                width: 210px;
+                height: 54px;
+                object-fit: contain;
+                object-position: left center;
+              }
+
+              .nav {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 16px;
+              }
+
+              .nav a {
+                color: #374151;
+                font-size: 13px;
+                font-weight: 700;
+                text-decoration: none;
+                white-space: nowrap;
+              }
+
+              .nav-cta {
+                background: #5b21b6;
+                color: #ffffff;
+                padding: 9px 16px;
+                border-radius: 8px;
+                font-weight: 900;
+                text-decoration: none;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                line-height: 1.15;
+                min-width: 146px;
+                box-shadow: 0 10px 22px rgba(91,33,182,0.22);
+              }
+
+              .nav-cta span {
+                color: #ffffff;
+                font-size: 13px;
+                font-weight: 900;
+              }
+
+              .nav-cta small {
+                color: #ffffff;
+                font-size: 10px;
+                font-weight: 800;
+                opacity: 0.9;
+              }
+
+              .hero {
+                display: grid;
+                grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
+                align-items: start;
+                gap: 36px;
+                padding: 18px 10px 12px;
+              }
+
+              .hero-copy {
+                max-width: 500px;
+              }
+
+              .pill {
+                display: inline-block;
+                margin: 0 0 13px;
+                padding: 7px 13px;
+                border-radius: 999px;
+                background: #f3efff;
+                color: #5b21b6;
+                font-size: 12px;
+                font-weight: 900;
+              }
+
+              .hero h1 {
+                color: #111827;
+                font-size: clamp(36px, 4vw, 48px);
+                line-height: 1.06;
+                margin: 0 0 14px;
+                font-weight: 950;
+                letter-spacing: -0.04em;
+              }
+
+              .hero-text {
+                color: #6b7280;
+                font-size: 15px;
+                line-height: 1.6;
+                margin: 0 0 14px;
+                font-weight: 500;
+              }
+
+              .hero-bullets {
+                display: grid;
+                gap: 8px;
+                margin-top: 8px;
+              }
+
+              .hero-bullets div {
+                background: #faf9ff;
+                border: 1px solid #ede9fe;
+                border-radius: 10px;
+                padding: 9px 11px;
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                color: #374151;
+                font-size: 12px;
+                line-height: 1.35;
+              }
+
+              .trust-row {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 14px;
+                color: #4c1d95;
+                font-size: 12px;
+                font-weight: 850;
+                margin-top: 14px;
+              }
+
+              .planner-card {
+                background: #ffffff;
+                border: 1px solid #ddd6fe;
+                border-radius: 18px;
+                padding: 18px;
+                box-shadow: 0 22px 55px rgba(76,29,149,0.16);
+                box-sizing: border-box;
+              }
+
+              .planner-card h2 {
+                color: #111827;
+                font-size: 18px;
+                font-weight: 950;
+                margin: 0 0 14px;
+              }
+
+              .section-eyebrow {
+                color: #6d28d9;
+                font-size: 11px;
+                font-weight: 950;
+                margin: 0 0 4px;
+                text-transform: uppercase;
+                letter-spacing: 0.04em;
+              }
+
+              .city-grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+                margin-bottom: 12px;
+              }
+
+              .city-card {
+                background: #f8f7ff;
+                border: 1px solid #ddd6fe;
+                border-radius: 12px;
+                padding: 13px;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+              }
+
+              .city-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                color: #111827;
+                font-size: 13px;
+                font-weight: 900;
+              }
+
+              .city-header img {
+                width: 32px;
+                height: 22px;
+                object-fit: cover;
+                border-radius: 3px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+              }
+
+              .label {
+                color: #6b7280;
+                font-size: 10px;
+                font-weight: 900;
+                text-transform: uppercase;
+              }
+
+              .time {
+                color: #111827;
+                font-size: 22px;
+                font-weight: 950;
+                letter-spacing: -0.02em;
+              }
+
+              .muted {
+                color: #6b7280;
+                font-size: 11px;
+              }
+
+              .duration-row {
+                background: #ffffff;
+                border: 1px solid #ddd6fe;
+                border-radius: 10px;
+                padding: 11px 12px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: #374151;
+                font-size: 12px;
+                font-weight: 900;
+                margin-bottom: 12px;
+              }
+
+              .best-time-card {
+                background: #ede9fe;
+                color: #5b21b6;
+                border: 1px solid #c4b5fd;
+                border-radius: 12px;
+                padding: 13px;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                font-size: 12px;
+                font-weight: 900;
+                margin-bottom: 12px;
+              }
+
+              .planner-button {
+                display: block;
+                width: 100%;
+                background: #5b21b6;
+                color: #ffffff;
+                text-align: center;
+                padding: 12px;
+                border-radius: 9px;
+                font-size: 13px;
+                font-weight: 900;
+                text-decoration: none;
+                box-sizing: border-box;
+              }
+
+              .free-note {
+                margin: 9px 0 0;
+                color: #5b21b6;
+                font-size: 11px;
+                font-weight: 900;
+                text-align: center;
+              }
+
+              .content-section {
+                margin-top: 14px;
+                padding: 20px 16px;
+                background: #ffffff;
+                border-radius: 14px;
+                border: 1px solid #ede9fe;
+                scroll-margin-top: 24px;
+              }
+
+              .section-header {
+                text-align: center;
+                margin-bottom: 14px;
+              }
+
+              .section-header h2 {
+                font-size: 22px;
+                font-weight: 950;
+                color: #111827;
+                margin: 0 0 6px;
+              }
+
+              .section-header p:last-child {
+                color: #6b7280;
+                font-size: 13px;
+                margin: 0;
+              }
+
+              .premium-row {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+              }
+
+              .premium-row a {
+                background: #facc15;
+                color: #111827;
+                padding: 10px 16px;
+                border-radius: 999px;
+                font-size: 12px;
+                font-weight: 900;
+                text-decoration: none;
+                box-shadow: 0 8px 18px rgba(250,204,21,0.22);
+              }
+
+              .feature-grid {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 12px;
+              }
+
+              .how-grid {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 12px;
+                margin-top: 10px;
+              }
+
+              .resources-grid {
+                display: grid;
+                grid-template-columns: repeat(5, minmax(0, 1fr));
+                gap: 12px;
+                margin-top: 10px;
+                margin-bottom: 14px;
+              }
+
+              .feature-grid article,
+              .how-grid article,
+              .resources-grid a {
+                background: #ffffff;
+                border: 1px solid #ddd6fe;
+                border-radius: 14px;
+                padding: 18px;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                font-size: 13px;
+                line-height: 1.5;
+                box-shadow: 0 10px 25px rgba(91,33,182,0.08);
+                text-decoration: none;
+                color: #111827;
+              }
+
+              .cta-band {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 14px;
+                background: #5b21b6;
+                color: #ffffff;
+                padding: 14px 16px;
+                border-radius: 12px;
+                font-weight: 900;
+                font-size: 12px;
+              }
+
+              .cta-band div {
+                display: flex;
+                flex-direction: column;
+                gap: 3px;
+              }
+
+              .cta-band a {
+                background: #facc15;
+                color: #111827;
+                padding: 9px 13px;
+                border-radius: 8px;
+                font-size: 11px;
+                font-weight: 900;
+                text-decoration: none;
+                white-space: nowrap;
+              }
+
+              @media (max-width: 900px) {
+                .home-page {
+                  width: calc(100% - 20px);
+                  margin: 12px auto 0;
+                  padding: 14px;
+                }
+
+                .home-header {
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 14px;
+                  padding-bottom: 14px;
+                }
+
+                .brand-logo {
+                  width: 165px;
+                  height: auto;
+                }
+
+                .nav {
+                  width: 100%;
+                  flex-wrap: wrap;
+                  justify-content: center;
+                  gap: 12px 18px;
+                }
+
+                .nav a {
+                  font-size: 13px;
+                  font-weight: 850;
+                }
+
+                .nav-cta {
+                  width: 100%;
+                  max-width: 320px;
+                  min-width: 0;
+                }
+
+                .hero {
+                  grid-template-columns: 1fr;
+                  gap: 16px;
+                  padding: 16px 0 8px;
+                }
+
+                .hero-copy {
+                  max-width: 100%;
+                }
+
+                .hero h1 {
+                  font-size: 34px;
+                }
+
+                .city-grid,
+                .feature-grid,
+                .how-grid,
+                .resources-grid {
+                  grid-template-columns: 1fr;
+                }
+
+                .premium-row {
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                }
+
+                .premium-row a {
+                  text-align: center;
+                }
+
+                .cta-band {
+                  display: grid;
+                  grid-template-columns: 1fr;
+                  text-align: center;
+                }
+
+                .cta-band a {
+                  white-space: normal;
+                }
+              }
+
+              @media (max-width: 520px) {
+                .home-page {
+                  width: calc(100% - 18px);
+                  padding: 12px;
+                }
+
+                .brand-logo {
+                  width: 155px;
+                }
+
+                .nav {
+                  gap: 10px 14px;
+                }
+
+                .nav a {
+                  font-size: 12px;
+                }
+
+                .hero h1 {
+                  font-size: 32px;
+                }
+
+                .premium-row {
+                  grid-template-columns: 1fr;
+                }
+
+                .content-section {
+                  padding: 18px 12px;
+                }
+              }
+            `}</style>
           </main>
         }
         toolPreview={null}
@@ -454,478 +798,3 @@ export default function HomePage() {
     </>
   );
 }
-
-/* STYLES */
-
-const pageWrap = {
-  background: "#ffffff",
-  color: "#111827",
-  maxWidth: "1120px",
-  margin: "18px auto 0",
-  padding: "18px 18px 28px",
-  border: "1px solid rgba(237,233,254,0.9)",
-  boxShadow: "0 24px 70px rgba(30,27,75,0.18)",
-};
-
-const header = {
-  minHeight: "66px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  gap: "18px",
-  borderBottom: "1px solid #ede9fe",
-  marginBottom: "14px",
-};
-
-const brandLink = {
-  display: "flex",
-  alignItems: "center",
-  textDecoration: "none",
-  flexShrink: 0,
-};
-
-const brandLogo = {
-  display: "block",
-  width: "210px",
-  height: "54px",
-  objectFit: "contain" as const,
-  objectPosition: "left center",
-};
-
-const nav = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: "16px",
-};
-
-const navLink = {
-  color: "#374151",
-  fontSize: "13px",
-  fontWeight: 700,
-  textDecoration: "none",
-  whiteSpace: "nowrap" as const,
-};
-
-const navButton = {
-  background: "#5b21b6",
-  color: "#ffffff",
-  padding: "9px 16px",
-  borderRadius: "8px",
-  fontWeight: 900,
-  textDecoration: "none",
-  display: "flex",
-  flexDirection: "column" as const,
-  alignItems: "center",
-  justifyContent: "center",
-  lineHeight: 1.15,
-  minWidth: "146px",
-  boxShadow: "0 10px 22px rgba(91,33,182,0.22)",
-};
-
-const navButtonMain = {
-  fontSize: "13px",
-  fontWeight: 900,
-};
-
-const navButtonSub = {
-  fontSize: "10px",
-  fontWeight: 800,
-  opacity: 0.9,
-};
-
-const heroSection = {
-  display: "grid",
-  gridTemplateColumns: "0.95fr 1fr",
-  alignItems: "start",
-  gap: "36px",
-  padding: "18px 10px 12px",
-};
-
-const heroLeft = {
-  maxWidth: "500px",
-};
-
-const eyebrow = {
-  display: "inline-block",
-  margin: "0 0 13px",
-  padding: "7px 13px",
-  borderRadius: "999px",
-  background: "#f3efff",
-  color: "#5b21b6",
-  fontSize: "12px",
-  fontWeight: 900,
-};
-
-const heroHeading = {
-  color: "#111827",
-  fontSize: "clamp(36px, 4vw, 48px)",
-  lineHeight: "1.06",
-  margin: "0 0 14px",
-  fontWeight: 950,
-  letterSpacing: "-0.04em",
-};
-
-const heroSubtitle = {
-  color: "#6b7280",
-  fontSize: "15px",
-  lineHeight: "1.6",
-  margin: "0 0 14px",
-  fontWeight: 500,
-};
-
-const trustRow = {
-  display: "flex",
-  flexWrap: "wrap" as const,
-  gap: "14px",
-  color: "#4c1d95",
-  fontSize: "12px",
-  fontWeight: 850,
-  marginTop: "14px",
-};
-
-const heroBulletBox = {
-  display: "grid",
-  gap: "8px",
-  marginTop: "8px",
-};
-
-const heroBullet = {
-  background: "#faf9ff",
-  border: "1px solid #ede9fe",
-  borderRadius: "10px",
-  padding: "9px 11px",
-  display: "flex",
-  flexDirection: "column" as const,
-  gap: "2px",
-  color: "#374151",
-  fontSize: "12px",
-  lineHeight: "1.35",
-};
-
-const plannerCard = {
-  background: "#ffffff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "18px",
-  padding: "18px",
-  boxShadow: "0 22px 55px rgba(76,29,149,0.16)",
-};
-
-const plannerCardHeader = {
-  display: "flex",
-  alignItems: "flex-start",
-  justifyContent: "space-between",
-  gap: "12px",
-  marginBottom: "14px",
-};
-
-const plannerEyebrow = {
-  color: "#6d28d9",
-  fontSize: "11px",
-  fontWeight: 950,
-  margin: "0 0 4px",
-  textTransform: "uppercase" as const,
-  letterSpacing: "0.04em",
-};
-
-const plannerTitle = {
-  color: "#111827",
-  fontSize: "18px",
-  fontWeight: 950,
-  margin: 0,
-};
-
-const cityGrid = {
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  gap: "12px",
-  marginBottom: "12px",
-};
-
-const cityCard = {
-  background: "#f8f7ff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "12px",
-  padding: "13px",
-  display: "flex",
-  flexDirection: "column" as const,
-  gap: "5px",
-};
-
-const cityHeader = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  gap: "10px",
-  color: "#111827",
-  fontSize: "13px",
-  fontWeight: 900,
-};
-
-const flagImage = {
-  width: "32px",
-  height: "22px",
-  objectFit: "cover" as const,
-  borderRadius: "3px",
-  boxShadow: "0 2px 5px rgba(0,0,0,0.15)",
-};
-
-const labelText = {
-  color: "#6b7280",
-  fontSize: "10px",
-  fontWeight: 900,
-  textTransform: "uppercase" as const,
-};
-
-const timeText = {
-  color: "#111827",
-  fontSize: "22px",
-  fontWeight: 950,
-  letterSpacing: "-0.02em",
-};
-
-const subText = {
-  color: "#6b7280",
-  fontSize: "11px",
-};
-
-const durationRow = {
-  background: "#ffffff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "10px",
-  padding: "11px 12px",
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  color: "#374151",
-  fontSize: "12px",
-  fontWeight: 900,
-  marginBottom: "12px",
-};
-
-const bestTimeCard = {
-  background: "#ede9fe",
-  color: "#5b21b6",
-  border: "1px solid #c4b5fd",
-  borderRadius: "12px",
-  padding: "13px",
-  display: "flex",
-  flexDirection: "column" as const,
-  gap: "5px",
-  fontSize: "12px",
-  fontWeight: 900,
-  marginBottom: "12px",
-};
-
-const bestTimeLabel = {
-  color: "#4c1d95",
-  fontSize: "12px",
-  fontWeight: 950,
-};
-
-const plannerButton = {
-  display: "block",
-  width: "100%",
-  background: "#5b21b6",
-  color: "#ffffff",
-  textAlign: "center" as const,
-  padding: "12px",
-  borderRadius: "9px",
-  fontSize: "13px",
-  fontWeight: 900,
-  textDecoration: "none",
-};
-
-const plannerFreeNote = {
-  margin: "9px 0 0",
-  color: "#5b21b6",
-  fontSize: "11px",
-  fontWeight: 900,
-  textAlign: "center" as const,
-};
-
-const premiumToolsSection = {
-  marginTop: "8px",
-  padding: "18px 16px",
-  background: "#ffffff",
-  borderRadius: "14px",
-  border: "1px solid #ede9fe",
-  scrollMarginTop: "24px",
-};
-
-const premiumToolsHeader = {
-  textAlign: "center" as const,
-  marginBottom: "12px",
-};
-
-const premiumToolRow = {
-  display: "flex",
-  flexWrap: "wrap" as const,
-  justifyContent: "center",
-  gap: "10px",
-};
-
-const premiumToolPill = {
-  background: "#facc15",
-  color: "#111827",
-  padding: "10px 16px",
-  borderRadius: "999px",
-  fontSize: "12px",
-  fontWeight: 900,
-  textDecoration: "none",
-  boxShadow: "0 8px 18px rgba(250,204,21,0.22)",
-};
-
-const featuresSection = {
-  marginTop: "8px",
-  padding: "20px 16px",
-  background: "#ffffff",
-  borderRadius: "14px",
-  border: "1px solid #ede9fe",
-  scrollMarginTop: "24px",
-};
-
-const sectionHeader = {
-  textAlign: "center" as const,
-  marginBottom: "14px",
-};
-
-const sectionEyebrow = {
-  color: "#6d28d9",
-  fontSize: "11px",
-  fontWeight: 950,
-  margin: "0 0 4px",
-  textTransform: "uppercase" as const,
-  letterSpacing: "0.04em",
-};
-
-const sectionTitle = {
-  fontSize: "22px",
-  fontWeight: 950,
-  color: "#111827",
-  margin: "0 0 6px",
-};
-
-const sectionSubtitle = {
-  color: "#6b7280",
-  fontSize: "13px",
-  margin: 0,
-};
-
-const featureGrid = {
-  display: "grid",
-  gridTemplateColumns: "repeat(4, 1fr)",
-  gap: "12px",
-};
-
-const featureCard = {
-  background: "#ffffff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "14px",
-  padding: "18px",
-  display: "flex",
-  flexDirection: "column" as const,
-  gap: "8px",
-  fontSize: "13px",
-  lineHeight: "1.5",
-  boxShadow: "0 10px 25px rgba(91,33,182,0.08)",
-};
-
-const featureLabel = {
-  display: "none",
-};
-
-const howSection = {
-  marginTop: "14px",
-  padding: "20px 16px",
-  background: "#ffffff",
-  borderRadius: "14px",
-  border: "1px solid #ede9fe",
-  scrollMarginTop: "24px",
-};
-
-const howGrid = {
-  display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
-  gap: "12px",
-  marginTop: "10px",
-};
-
-const howCard = {
-  background: "#ffffff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "14px",
-  padding: "18px",
-  display: "flex",
-  flexDirection: "column" as const,
-  gap: "8px",
-  fontSize: "13px",
-  lineHeight: "1.5",
-  boxShadow: "0 10px 25px rgba(91,33,182,0.08)",
-};
-
-const stepNumber = {
-  display: "none",
-};
-
-const resourcesSection = {
-  marginTop: "14px",
-  padding: "20px 16px",
-  background: "#ffffff",
-  borderRadius: "14px",
-  border: "1px solid #ede9fe",
-};
-
-const resourcesGrid = {
-  display: "grid",
-  gridTemplateColumns: "repeat(5, 1fr)",
-  gap: "12px",
-  marginTop: "10px",
-  marginBottom: "14px",
-};
-
-const resourceCard = {
-  display: "flex",
-  flexDirection: "column" as const,
-  gap: "8px",
-  background: "#ffffff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "14px",
-  padding: "18px",
-  textDecoration: "none",
-  color: "#111827",
-  fontSize: "13px",
-  lineHeight: "1.5",
-  fontWeight: 700,
-  boxShadow: "0 10px 25px rgba(91,33,182,0.08)",
-};
-
-const ctaBand = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  gap: "14px",
-  background: "#5b21b6",
-  color: "#ffffff",
-  padding: "14px 16px",
-  borderRadius: "12px",
-  fontWeight: 900,
-  fontSize: "12px",
-};
-
-const ctaBandText = {
-  display: "flex",
-  flexDirection: "column" as const,
-  gap: "3px",
-};
-
-const ctaButton = {
-  background: "#facc15",
-  color: "#111827",
-  padding: "9px 13px",
-  borderRadius: "8px",
-  fontSize: "11px",
-  fontWeight: 900,
-  textDecoration: "none",
-  whiteSpace: "nowrap" as const,
-};
