@@ -1,13 +1,13 @@
 /**
  * File: app/how-it-works/page.tsx
- * Version: v1.6 (PREMIUM INTENT BANNER FOR FEATURE CTA TRAFFIC)
- * Date: 2026-05-12
+ * Version: v1.5 (MOBILE FIT FIX FOR SCHEDULE PAGE)
+ * Date: 2026-05-11
  *
  * PURPOSE:
- * - Preserve Schedule a Meeting mobile/tablet responsive layout
- * - Add a soft premium-intent banner when users arrive from Features page premium buttons
- * - Keep users inside the real planner workflow instead of duplicating premium logic
- * - Preserve ToolPreviewSection logic and all protected payment behavior
+ * - Fix Schedule a Meeting mobile cutoff on iPhone, Samsung, and tablet widths
+ * - Match the successful responsive pattern used on Features, Blog, About, and Contact
+ * - Preserve the real ToolPreviewSection first and protected
+ * - Keep desktop presentation intact
  *
  * PROTECTED:
  * - No Stripe changes
@@ -18,26 +18,12 @@
  * - No ToolPreviewSection logic changes
  *
  * ROLLBACK:
- * - Revert to v1.5 if the premium intent banner does not test cleanly
+ * - Revert to v1.4 if this page layout does not test cleanly
  */
 
 import ToolPreviewSection from "../ui/ToolPreviewSection";
 
-type HowItWorksPageProps = {
-  searchParams?: {
-    premium?: string;
-  };
-};
-
-export default function HowItWorksPage({ searchParams }: HowItWorksPageProps) {
-  const premiumIntent = searchParams?.premium;
-
-  const showPremiumBanner =
-    premiumIntent === "share" ||
-    premiumIntent === "google" ||
-    premiumIntent === "outlook" ||
-    premiumIntent === "calendar";
-
+export default function HowItWorksPage() {
   return (
     <main className="schedule-page">
       <section className="schedule-shell">
@@ -70,12 +56,6 @@ export default function HowItWorksPage({ searchParams }: HowItWorksPageProps) {
           <div className="planner-intro">
             <h1>Find the Best Meeting Times Across Time Zones</h1>
           </div>
-
-         {showPremiumBanner && (
-  <p className="premium-intent-inline">
-    Premium sharing and calendar tools unlock after your free planning sessions.
-  </p>
-)}
 
           <div className="planner-tool-wrap">
             <ToolPreviewSection />
@@ -192,8 +172,8 @@ export default function HowItWorksPage({ searchParams }: HowItWorksPageProps) {
         }
 
         .planner-intro {
-  text-align: center;
-  margin: 0 auto 24px;
+          text-align: center;
+          margin: 0 auto 44px;
           max-width: 100%;
           position: relative;
           z-index: 2;
@@ -208,14 +188,6 @@ export default function HowItWorksPage({ searchParams }: HowItWorksPageProps) {
           margin: 0;
           white-space: nowrap;
         }
-
-        .premium-intent-inline {
-  margin: 10px 0 0;
-  color: #6d28d9;
-  font-size: 13px;
-  font-weight: 800;
-  text-align: center;
-}
 
         .planner-tool-wrap {
           margin-top: 0;
@@ -291,11 +263,6 @@ export default function HowItWorksPage({ searchParams }: HowItWorksPageProps) {
             white-space: normal;
           }
 
-          .premium-intent-banner {
-            margin: -8px auto 18px;
-            padding: 13px 14px;
-          }
-
           .planner-tool-wrap {
             width: 100%;
             max-width: 100%;
@@ -327,14 +294,6 @@ export default function HowItWorksPage({ searchParams }: HowItWorksPageProps) {
           .planner-intro h1 {
             font-size: 26px;
             line-height: 1.12;
-          }
-
-          .premium-intent-banner strong {
-            font-size: 13px;
-          }
-
-          .premium-intent-banner span {
-            font-size: 12.5px;
           }
         }
       `}</style>
