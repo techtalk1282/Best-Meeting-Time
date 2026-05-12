@@ -1,13 +1,12 @@
 /**
  * File: app/ui/LayoutShell.tsx
- * Version: v3.6 (MOBILE WIDTH FIT WITHOUT CLIPPING)
+ * Version: v3.5 (MOBILE OVERFLOW CONTAINMENT)
  * Date: 2026-05-11
  *
  * PURPOSE:
- * - Fix mobile page width by forcing shared main containers to fit the viewport
- * - Remove hard horizontal clipping that made pages worse on Samsung/iPhone
- * - Preserve desktop layout above 1100px
- * - Preserve footer behavior and ad-gated book section
+ * - Add safe mobile/tablet overflow containment at the shared shell level
+ * - Prevent child sections from forcing horizontal page overflow
+ * - Preserve current layout, styling, footer behavior, and ad-gated book section
  *
  * PROTECTED:
  * - No Stripe changes
@@ -17,7 +16,7 @@
  * - No planner logic changes
  *
  * ROLLBACK:
- * - Revert to v3.5 if layout regresses
+ * - Revert to v3.4 if layout regresses
  */
 
 "use client";
@@ -65,48 +64,18 @@ export default function LayoutShell({
     <>
       <style>{`
         @media (max-width: 1100px) {
-          .bmt-layout-shell {
-            width: 100%;
+          html,
+          body {
             max-width: 100%;
+            overflow-x: hidden;
+          }
+
+          .bmt-layout-shell,
+          .bmt-layout-shell section,
+          .bmt-layout-shell footer {
+            max-width: 100%;
+            overflow-x: hidden;
             box-sizing: border-box;
-          }
-
-          .bmt-layout-shell main {
-            width: calc(100% - 24px) !important;
-            max-width: 100% !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-            box-sizing: border-box !important;
-          }
-
-          .bmt-layout-shell main,
-          .bmt-layout-shell main * {
-            min-width: 0 !important;
-            box-sizing: border-box !important;
-          }
-
-          .bmt-layout-shell img {
-            max-width: 100% !important;
-            height: auto !important;
-          }
-
-          .bmt-layout-shell h1 {
-            font-size: clamp(30px, 8vw, 42px) !important;
-            line-height: 1.08 !important;
-            overflow-wrap: anywhere;
-          }
-
-          .bmt-layout-shell h2 {
-            font-size: clamp(22px, 6vw, 32px) !important;
-            line-height: 1.12 !important;
-            overflow-wrap: anywhere;
-          }
-
-          .bmt-layout-shell p,
-          .bmt-layout-shell span,
-          .bmt-layout-shell strong,
-          .bmt-layout-shell a {
-            overflow-wrap: anywhere;
           }
 
           .bmt-layout-inner {
@@ -120,12 +89,6 @@ export default function LayoutShell({
             grid-template-columns: 1fr !important;
             gap: 10px !important;
             justify-items: center !important;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .bmt-layout-shell main {
-            width: calc(100% - 20px) !important;
           }
         }
       `}</style>
