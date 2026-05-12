@@ -1,20 +1,20 @@
 /**
  * File: app/ui/SiteNav.tsx
- * Version: v2.6 (SAFE RESPONSIVE MOBILE NAV FIX)
+ * Version: v2.7 (SAFE WRAPPING MOBILE NAV)
  * Date: 2026-05-11
  *
  * PURPOSE:
- * - Fix mobile/tablet nav overflow and cutoff issues
- * - Preserve desktop layout completely
- * - Add responsive behavior ONLY below 1100px
- * - Prevent logo/nav/CTA overlap on Samsung + iPad
+ * - Eliminate mobile nav cutoff issues on Samsung/iPhone devices
+ * - Preserve desktop navigation completely
+ * - Replace horizontal scrolling with wrapped responsive rows
+ * - Keep CTA accessible on all screen sizes
  *
  * SAFE RULE:
- * - Desktop styles remain unchanged
- * - Mobile behavior handled ONLY through media queries
+ * - Desktop layout untouched above 1100px
+ * - Mobile behavior isolated to media queries only
  *
  * ROLLBACK:
- * - Revert to v2.5 if any regression occurs
+ * - Revert to v2.6 if regression occurs
  */
 
 export default function SiteNav() {
@@ -25,7 +25,7 @@ export default function SiteNav() {
           .bmt-site-nav {
             flex-direction: column;
             align-items: stretch !important;
-            gap: 12px !important;
+            gap: 14px !important;
             padding: 14px 16px !important;
           }
 
@@ -34,35 +34,22 @@ export default function SiteNav() {
           }
 
           .bmt-site-logo {
-            width: 180px !important;
+            width: 170px !important;
             max-width: 100%;
             height: auto !important;
           }
 
           .bmt-site-links {
-  overflow-x: auto;
-  overflow-y: hidden;
-  flex-wrap: nowrap !important;
-  justify-content: flex-start !important;
-  gap: 14px !important;
-  padding-bottom: 6px;
-  padding-right: 12px;
-  scrollbar-width: thin;
-}
-
-          .bmt-site-links::-webkit-scrollbar {
-            height: 6px;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            gap: 12px 18px !important;
+            width: 100%;
           }
 
-          .bmt-site-links::-webkit-scrollbar-thumb {
-            background: rgba(107, 114, 128, 0.35);
-            border-radius: 999px;
+          .bmt-site-link {
+            font-size: 13px !important;
+            flex-shrink: 0;
           }
-
-         .bmt-site-link {
-  flex-shrink: 0;
-  font-size: 13px !important;
-}
 
           .bmt-site-cta {
             width: 100%;
@@ -72,12 +59,20 @@ export default function SiteNav() {
         }
 
         @media (max-width: 640px) {
+          .bmt-site-nav {
+            gap: 12px !important;
+          }
+
           .bmt-site-logo {
-            width: 165px !important;
+            width: 155px !important;
+          }
+
+          .bmt-site-links {
+            gap: 10px 14px !important;
           }
 
           .bmt-site-link {
-            font-size: 14px !important;
+            font-size: 12px !important;
           }
 
           .bmt-site-cta {
