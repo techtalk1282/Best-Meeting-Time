@@ -1036,7 +1036,12 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
         }
 
         .planner-cta a span { font-size: 14px; }
-        .planner-cta a small { font-size: 11px; font-weight: 800; }
+       .planner-cta a small {
+  font-size: 11px;
+  font-weight: 900;
+  color: #111827;
+  opacity: 1;
+}
 
         @keyframes mapZoomPan {
           0% { transform: scale(1.02) translate3d(0, 0, 0); }
