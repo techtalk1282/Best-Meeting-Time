@@ -1042,7 +1042,7 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
   font-weight: 950;
 }
 
-.planner-cta a small {
+.time-basics-page .planner-cta a small {
   font-size: 11px;
   font-weight: 900;
   color: #111827;
