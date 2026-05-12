@@ -112,6 +112,9 @@ export default function FeaturesPage() {
     Add to Calendar
   </a>
 </div>
+            <div className="premium-note">
+  These are Premium Features — Unlock for $7
+</div>
           </div>
         </section>
 
@@ -412,7 +415,14 @@ export default function FeaturesPage() {
   transform: translateY(-1px);
   box-shadow: 0 10px 18px rgba(250,204,21,0.34);
 }
-
+.premium-note {
+  margin-top: 10px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.4;
+}
         .feature-grid {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
