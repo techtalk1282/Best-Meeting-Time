@@ -1021,28 +1021,34 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
         .planner-cta p { color: #ede9fe; margin-bottom: 0; }
 
         .planner-cta a {
-          background: #facc15;
-          color: #111827;
-          padding: 16px 18px;
-          border-radius: 12px;
-          text-decoration: none;
-          font-weight: 950;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          line-height: 1.15;
-          min-width: 220px;
-          box-shadow: 0 12px 24px rgba(250,204,21,0.24);
-        }
+  background: #facc15;
+  color: #111827;
+  padding: 18px 22px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 950;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  line-height: 1.2;
+  min-width: 240px;
+  box-shadow: 0 12px 24px rgba(250,204,21,0.24);
+}
 
-        .planner-cta a span { font-size: 14px; }
-       .planner-cta a small {
+.planner-cta a span {
+  font-size: 15px;
+  font-weight: 950;
+}
+
+.planner-cta a small {
   font-size: 11px;
   font-weight: 900;
   color: #111827;
   opacity: 1;
+  letter-spacing: 0.01em;
 }
-
         @keyframes mapZoomPan {
           0% { transform: scale(1.02) translate3d(0, 0, 0); }
           100% { transform: scale(1.12) translate3d(-28px, -12px, 0); }
