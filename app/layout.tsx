@@ -12,9 +12,20 @@ export const metadata = {
   },
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      style={{
+        maxWidth: "100%",
+        overflowX: "hidden",
+      }}
+    >
       <head>
         {/* Google AdSense */}
         <script
@@ -23,14 +34,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           crossOrigin="anonymous"
         ></script>
       </head>
-     <body
-  style={{
-    background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column"
-  }}
->
+
+      <body
+        style={{
+          background: "linear-gradient(180deg, #4c1d95 0%, #312e81 100%)",
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          maxWidth: "100%",
+          overflowX: "hidden",
+          margin: 0,
+        }}
+      >
         {children}
       </body>
     </html>
