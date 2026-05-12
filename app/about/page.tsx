@@ -450,10 +450,12 @@ export default function AboutPage() {
         }
 
         .cta a small {
-          font-size: 10px;
-          font-weight: 850;
-          opacity: 0.9;
-        }
+  font-size: 10px;
+  font-weight: 900;
+  color: #5b21b6;
+  opacity: 1;
+  margin-top: 2px;
+}
 
         @media (max-width: 900px) {
           .about-page {
