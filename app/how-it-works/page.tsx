@@ -71,15 +71,11 @@ export default function HowItWorksPage({ searchParams }: HowItWorksPageProps) {
             <h1>Find the Best Meeting Times Across Time Zones</h1>
           </div>
 
-          {showPremiumBanner && (
-            <div className="premium-intent-banner">
-              <strong>Premium sharing and calendar tools</strong>
-              <span>
-                Start by finding the best meeting time below. After your free
-                planning sessions, you can unlock sharing and calendar tools.
-              </span>
-            </div>
-          )}
+         {showPremiumBanner && (
+  <p className="premium-intent-inline">
+    Premium sharing and calendar tools unlock after your free planning sessions.
+  </p>
+)}
 
           <div className="planner-tool-wrap">
             <ToolPreviewSection />
@@ -213,32 +209,13 @@ export default function HowItWorksPage({ searchParams }: HowItWorksPageProps) {
           white-space: nowrap;
         }
 
-        .premium-intent-banner {
-  max-width: 880px;
-  margin: -18px auto 18px;
-  padding: 12px 18px;
-          border: 1px solid #ddd6fe;
-          border-radius: 14px;
-          background: #faf9ff;
-          color: #111827;
-          display: grid;
-          gap: 5px;
-          text-align: center;
-          box-shadow: 0 12px 28px rgba(91,33,182,0.08);
-        }
-
-        .premium-intent-banner strong {
-          color: #5b21b6;
-          font-size: 14px;
-          font-weight: 950;
-        }
-
-        .premium-intent-banner span {
-          color: #4b5563;
-          font-size: 13px;
-          line-height: 1.45;
-          font-weight: 700;
-        }
+        .premium-intent-inline {
+  margin: 10px 0 0;
+  color: #6d28d9;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+}
 
         .planner-tool-wrap {
           margin-top: 0;
