@@ -1,13 +1,13 @@
 /**
  * File: app/features/page.tsx
- * Version: v3.4 (100% FIT + BALANCED GOLD ACTIONS)
- * Date: 2026-05-06
+ * Version: v3.5 (GUIDES-STYLE RESPONSIVE MOBILE FIX)
+ * Date: 2026-05-11
  *
  * PURPOSE:
- * - Keep preferred collaboration image
- * - Restore full 100% desktop landing fit
- * - Keep gold buttons balanced inside the workflow card
- * - Preserve premium feature showcase content
+ * - Fix mobile right-side cutoff on Features page
+ * - Rebuild layout using the working Guides page responsive structure
+ * - Preserve existing Features content, image, gold buttons, and CTA
+ * - Keep desktop layout premium and stable
  *
  * PROTECTED:
  * - No Stripe changes
@@ -17,474 +17,571 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert to v3.3 if this version does not test cleanly
+ * - Revert to app/features/page.tsx v3.4 if this version does not test cleanly
  */
 
 export default function FeaturesPage() {
   return (
-    <main style={pageShell}>
-      <header style={header}>
-        <a href="/" style={brandLink} aria-label="Best Meeting Time home">
-  <img
-    src="/images/branding/logo.png"
-    alt="Best Meeting Time"
-    style={brandLogo}
-  />
-</a>
+    <main className="features-page">
+      <section className="features-shell">
+        <header className="features-header">
+          <a href="/" className="brand" aria-label="Best Meeting Time home">
+            <img
+              src="/images/branding/logo.png"
+              alt="Best Meeting Time"
+              className="brand-logo"
+            />
+          </a>
 
-        <nav style={nav} aria-label="Features page navigation">
-          <a href="/" style={navLink}>Home</a>
-         <a href="/how-it-works" style={navLink}>Schedule a Meeting</a>
-          <a href="/features" style={navLink}>Features</a>
-          <a href="/guides" style={navLink}>Guides</a>
-          <a href="/blog" style={navLink}>Blog</a>
-          <a href="/about" style={navLink}>About</a>
-          <a href="/contact" style={navLink}>Contact</a>
-        </nav>
+          <nav className="nav" aria-label="Features page navigation">
+            <a href="/">Home</a>
+            <a href="/how-it-works">Schedule a Meeting</a>
+            <a href="/features" className="active">Features</a>
+            <a href="/guides">Guides</a>
+            <a href="/blog">Blog</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+          </nav>
 
-        <a href="/how-it-works#schedule-tool" style={navButton}>
-          <span style={navButtonMain}>Schedule a Meeting</span>
-          <span style={navButtonSub}>Free to try — no sign-up</span>
-        </a>
-      </header>
+          <a href="/how-it-works#schedule-tool" className="nav-cta">
+            <span>Schedule a Meeting</span>
+            <small>Free to try — no sign-up</small>
+          </a>
+        </header>
 
-      <section style={heroGrid}>
-        <div>
-          <p style={eyebrow}>Best Meeting Time Features</p>
+        <section className="hero">
+          <div className="hero-copy">
+            <p className="pill">Best Meeting Time Features</p>
 
-          <h1 style={headline}>
-            Plan the Time. Share the Link. Add It to Your Calendar.
-          </h1>
+            <h1>Plan the Time. Share the Link. Add It to Your Calendar.</h1>
 
-          <p style={subheadline}>
-            Compare cities, swap locations, review the best meeting window, then
-            unlock premium tools to share and add meetings faster.
-          </p>
-        </div>
-
-        <div style={accessCard}>
-          <p style={accessLabel}>Free + Premium Access</p>
-          <div style={accessRows}>
-            <span><strong>Free:</strong> try a planning session first</span>
-            <span><strong>Premium:</strong> $7 one-time unlock</span>
-          </div>
-        </div>
-      </section>
-
-      <section style={showcase}>
-        <div style={imageCard}>
-          <img
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
-            alt="Global remote team collaboration meeting"
-            style={featureImage}
-          />
-
-          <div style={imageOverlay}>
-            <div style={locationRow}>
-              <span>New York</span>
-              <span>London</span>
-              <span>Tokyo</span>
-            </div>
-
-            <strong>Remote teams. Client calls. Global schedules.</strong>
-            <span>Choose the best meeting window before the invite goes out.</span>
-          </div>
-        </div>
-
-        <div style={featureCopy}>
-          <div>
-            <p style={sectionEyebrow}>Real workflow features</p>
-
-            <h2 style={sectionTitle}>
-              Built around how people actually schedule.
-            </h2>
-
-            <p style={sectionText}>
-              Select cities, compare local times, review recommended windows,
-              and move directly into sharing or calendar actions.
+            <p className="hero-text">
+              Compare cities, swap locations, review the best meeting window,
+              then unlock premium tools to share and add meetings faster.
             </p>
           </div>
 
-          <div style={goldButtonGrid}>
-            <button style={goldButton}>Share Link</button>
-            <button style={goldButton}>Add to Google</button>
-            <button style={goldButton}>Add to Outlook</button>
-            <button style={goldButton}>Add to Calendar</button>
+          <div className="access-card">
+            <p>Free + Premium Access</p>
+            <span><strong>Free:</strong> try a planning session first</span>
+            <span><strong>Premium:</strong> $7 one-time unlock</span>
           </div>
-        </div>
+        </section>
+
+        <section className="showcase">
+          <div className="image-card">
+            <img
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+              alt="Global remote team collaboration meeting"
+            />
+
+            <div className="image-overlay">
+              <div>
+                <span>New York</span>
+                <span>London</span>
+                <span>Tokyo</span>
+              </div>
+
+              <strong>Remote teams. Client calls. Global schedules.</strong>
+              <span>Choose the best meeting window before the invite goes out.</span>
+            </div>
+          </div>
+
+          <div className="workflow-card">
+            <p className="section-eyebrow">Real workflow features</p>
+
+            <h2>Built around how people actually schedule.</h2>
+
+            <p>
+              Select cities, compare local times, review recommended windows,
+              and move directly into sharing or calendar actions.
+            </p>
+
+            <div className="gold-button-grid">
+              <button>Share Link</button>
+              <button>Add to Google</button>
+              <button>Add to Outlook</button>
+              <button>Add to Calendar</button>
+            </div>
+          </div>
+        </section>
+
+        <section className="feature-grid">
+          <article>
+            <p>City Selection</p>
+            <h2>Choose cities fast.</h2>
+            <span>
+              Compare locations side by side and quickly swap cities when plans change.
+            </span>
+          </article>
+
+          <article>
+            <p>Smart Windows</p>
+            <h2>See best times and alternatives.</h2>
+            <span>
+              Review recommended meeting windows plus backup time options.
+            </span>
+          </article>
+
+          <article>
+            <p>Premium Workflow</p>
+            <h2>Share and add to calendars.</h2>
+            <span>
+              Unlock sharing and Google, Outlook, and calendar scheduling actions.
+            </span>
+          </article>
+        </section>
+
+        <section className="cta">
+          <div>
+            <p>Start Planning</p>
+            <h2>Ready to try the scheduler?</h2>
+            <span>
+              Compare meeting times first, then unlock premium tools when you
+              need to share and schedule faster.
+            </span>
+          </div>
+
+          <a href="/how-it-works#schedule-tool">
+            <span>Schedule a Meeting</span>
+            <small>Free to try — no sign-up</small>
+          </a>
+        </section>
       </section>
 
-      <section style={featureGrid}>
-        <article style={card}>
-          <p style={cardLabel}>City Selection</p>
-          <h2 style={cardTitle}>Choose cities fast.</h2>
-          <p style={cardText}>
-            Compare locations side by side and quickly swap cities when plans change.
-          </p>
-        </article>
+      <style>{`
+        .features-page {
+          min-height: 100vh;
+          background: linear-gradient(180deg, #4c1d95 0%, #312e81 100%);
+          padding: 30px 20px 70px;
+        }
 
-        <article style={card}>
-          <p style={cardLabel}>Smart Windows</p>
-          <h2 style={cardTitle}>See best times and alternatives.</h2>
-          <p style={cardText}>
-            Review recommended meeting windows plus backup time options.
-          </p>
-        </article>
+        .features-shell {
+          width: 100%;
+          max-width: 1120px;
+          margin: 0 auto;
+          background: #ffffff;
+          color: #111827;
+          border: 1px solid rgba(237,233,254,0.9);
+          box-shadow: 0 24px 70px rgba(30,27,75,0.18);
+          padding: 18px 18px 28px;
+          box-sizing: border-box;
+        }
 
-        <article style={card}>
-          <p style={cardLabel}>Premium Workflow</p>
-          <h2 style={cardTitle}>Share and add to calendars.</h2>
-          <p style={cardText}>
-            Unlock sharing and Google, Outlook, and calendar scheduling actions.
-          </p>
-        </article>
-      </section>
+        .features-header {
+          min-height: 66px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 18px;
+          border-bottom: 1px solid #ede9fe;
+          margin-bottom: 24px;
+        }
 
-      <section style={ctaBand}>
-        <div>
-          <p style={ctaEyebrow}>Start Planning</p>
-          <h2 style={ctaTitle}>Ready to try the scheduler?</h2>
-          <p style={ctaText}>
-            Compare meeting times first, then unlock premium tools when you need
-            to share and schedule faster.
-          </p>
-        </div>
+        .brand {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          flex-shrink: 0;
+        }
 
-        <a href="/how-it-works#schedule-tool" style={ctaButton}>
-          <span style={ctaMain}>Schedule a Meeting</span>
-          <span style={ctaSub}>Free to try — no sign-up</span>
-        </a>
-      </section>
+        .brand-logo {
+          display: block;
+          width: 160px;
+          height: auto;
+          object-fit: contain;
+        }
+
+        .nav {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 18px;
+        }
+
+        .nav a {
+          color: #374151;
+          font-size: 13px;
+          font-weight: 800;
+          text-decoration: none;
+          white-space: nowrap;
+        }
+
+        .nav .active {
+          color: #5b21b6;
+          border-bottom: 2px solid #5b21b6;
+          padding-bottom: 6px;
+        }
+
+        .nav-cta {
+          background: #5b21b6;
+          color: #ffffff;
+          padding: 9px 16px;
+          border-radius: 8px;
+          font-weight: 900;
+          text-decoration: none;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          line-height: 1.16;
+          min-width: 154px;
+          box-shadow: 0 10px 22px rgba(91,33,182,0.22);
+        }
+
+        .nav-cta span {
+          font-size: 13px;
+        }
+
+        .nav-cta small {
+          font-size: 10px;
+          font-weight: 800;
+          color: #ffffff;
+        }
+
+        .hero {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(240px, 280px);
+          gap: 22px;
+          align-items: end;
+          padding: 10px 10px 18px;
+        }
+
+        .pill {
+          display: inline-block;
+          margin: 0 0 14px;
+          padding: 7px 13px;
+          border-radius: 999px;
+          background: #f3efff;
+          color: #5b21b6;
+          font-size: 12px;
+          font-weight: 950;
+          text-transform: uppercase;
+        }
+
+        .hero h1 {
+          color: #111827;
+          font-size: clamp(34px, 4vw, 48px);
+          line-height: 1.04;
+          letter-spacing: -0.045em;
+          font-weight: 950;
+          margin: 0 0 12px;
+        }
+
+        .hero-text {
+          color: #4b5563;
+          font-size: 15px;
+          line-height: 1.55;
+          margin: 0;
+        }
+
+        .access-card {
+          border: 1px solid #ddd6fe;
+          border-radius: 16px;
+          background: #faf9ff;
+          padding: 14px;
+          display: grid;
+          gap: 7px;
+          color: #4b5563;
+          font-size: 13px;
+          line-height: 1.35;
+        }
+
+        .access-card p {
+          margin: 0;
+          color: #6d28d9;
+          font-size: 12px;
+          font-weight: 950;
+          text-transform: uppercase;
+        }
+
+        .showcase {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          gap: 18px;
+          align-items: stretch;
+          padding: 0 10px 20px;
+        }
+
+        .image-card {
+          position: relative;
+          overflow: hidden;
+          min-height: 260px;
+          border-radius: 18px;
+          border: 1px solid #ddd6fe;
+          background: #faf9ff;
+          box-shadow: 0 16px 36px rgba(91,33,182,0.10);
+        }
+
+        .image-card img {
+          width: 100%;
+          height: 100%;
+          min-height: 260px;
+          object-fit: cover;
+          display: block;
+        }
+
+        .image-overlay {
+          position: absolute;
+          left: 14px;
+          right: 14px;
+          bottom: 14px;
+          padding: 12px 14px;
+          border-radius: 14px;
+          background: rgba(255,255,255,0.92);
+          color: #111827;
+          display: grid;
+          gap: 4px;
+          font-size: 13px;
+          line-height: 1.35;
+          box-shadow: 0 10px 24px rgba(30,27,75,0.18);
+        }
+
+        .image-overlay div {
+          display: flex;
+          gap: 10px;
+          flex-wrap: wrap;
+        }
+
+        .workflow-card {
+          border: 1px solid #ddd6fe;
+          border-radius: 18px;
+          background: #faf9ff;
+          padding: 22px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 14px;
+          box-shadow: 0 16px 36px rgba(91,33,182,0.08);
+        }
+
+        .section-eyebrow {
+          color: #6d28d9 !important;
+          font-size: 12px !important;
+          font-weight: 950 !important;
+          margin: 0 !important;
+          text-transform: uppercase;
+        }
+
+        .workflow-card h2 {
+          color: #111827;
+          font-size: clamp(25px, 3vw, 34px);
+          line-height: 1.08;
+          font-weight: 950;
+          margin: 0;
+        }
+
+        .workflow-card p {
+          color: #4b5563;
+          font-size: 15px;
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        .gold-button-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+        }
+
+        .gold-button-grid button {
+          background: #facc15;
+          color: #111827;
+          border: none;
+          border-radius: 999px;
+          padding: 11px 12px;
+          font-size: 13px;
+          font-weight: 900;
+          cursor: pointer;
+          box-shadow: 0 6px 14px rgba(250,204,21,0.28);
+        }
+
+        .feature-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 16px;
+          padding: 0 10px 20px;
+        }
+
+        .feature-grid article {
+          background: #faf9ff;
+          border: 1px solid #ddd6fe;
+          border-radius: 18px;
+          padding: 20px;
+          display: grid;
+          gap: 8px;
+          box-shadow: 0 16px 36px rgba(91,33,182,0.08);
+        }
+
+        .feature-grid p {
+          color: #6d28d9;
+          font-size: 12px;
+          font-weight: 950;
+          margin: 0;
+          text-transform: uppercase;
+        }
+
+        .feature-grid h2 {
+          color: #111827;
+          font-size: 23px;
+          line-height: 1.08;
+          font-weight: 950;
+          margin: 0;
+        }
+
+        .feature-grid span {
+          color: #4b5563;
+          font-size: 14px;
+          line-height: 1.45;
+        }
+
+        .cta {
+          background: linear-gradient(135deg, #312e81 0%, #6d28d9 100%);
+          border-radius: 18px;
+          padding: 22px 26px;
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) auto;
+          gap: 24px;
+          align-items: center;
+          color: #ffffff;
+          box-shadow: 0 20px 48px rgba(49,46,129,0.22);
+        }
+
+        .cta p {
+          margin: 0 0 4px;
+          color: #facc15;
+          font-size: 12px;
+          font-weight: 950;
+          text-transform: uppercase;
+        }
+
+        .cta h2 {
+          color: #ffffff;
+          font-size: clamp(26px, 3vw, 34px);
+          line-height: 1.08;
+          font-weight: 950;
+          margin: 0 0 6px;
+        }
+
+        .cta span {
+          color: #ede9fe;
+          font-size: 15px;
+          line-height: 1.5;
+        }
+
+        .cta a {
+          background: #ffffff;
+          color: #5b21b6;
+          padding: 14px 18px;
+          border-radius: 12px;
+          text-decoration: none;
+          font-weight: 950;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          line-height: 1.15;
+          min-width: 210px;
+          box-shadow: 0 12px 24px rgba(255,255,255,0.18);
+        }
+
+        .cta a span {
+          color: #5b21b6;
+          font-size: 13px;
+          font-weight: 950;
+        }
+
+        .cta small {
+          color: #5b21b6;
+          font-weight: 800;
+          font-size: 11px;
+        }
+
+        @media (max-width: 900px) {
+          .features-header {
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+
+          .nav {
+            flex-wrap: wrap;
+          }
+
+          .hero {
+            grid-template-columns: 1fr;
+          }
+
+          .showcase {
+            grid-template-columns: 1fr;
+          }
+
+          .feature-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .cta {
+            grid-template-columns: 1fr;
+            text-align: center;
+          }
+        }
+
+        @media (max-width: 560px) {
+          .features-page {
+            padding: 16px 10px 50px;
+          }
+
+          .features-shell {
+            padding: 14px;
+          }
+
+          .hero {
+            padding: 8px 0 18px;
+          }
+
+          .showcase,
+          .feature-grid {
+            padding-left: 0;
+            padding-right: 0;
+          }
+
+          .hero h1 {
+            font-size: 36px;
+          }
+
+          .brand-logo {
+            width: 155px;
+          }
+
+          .nav {
+            gap: 10px 14px;
+          }
+
+          .nav a {
+            font-size: 12px;
+          }
+
+          .nav-cta {
+            width: 100%;
+            max-width: 320px;
+          }
+
+          .gold-button-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .image-card,
+          .image-card img {
+            min-height: 245px;
+          }
+
+          .cta {
+            padding: 20px 18px;
+          }
+
+          .cta a {
+            width: 100%;
+            min-width: 0;
+          }
+        }
+      `}</style>
     </main>
   );
 }
-
-/* STYLES */
-
-const pageShell = {
-  maxWidth: "1120px",
-  margin: "8px auto",
-  padding: "10px",
-  background: "#ffffff",
-  color: "#111827",
-  border: "1px solid rgba(237,233,254,0.95)",
-  boxShadow: "0 18px 50px rgba(30,27,75,0.16)",
-};
-
-const header = {
-  minHeight: "48px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  gap: "16px",
-  borderBottom: "1px solid #ede9fe",
-  marginBottom: "10px",
-};
-
-const brandLink = {
-  display: "flex",
-  alignItems: "center",
-  textDecoration: "none",
-  flexShrink: 0,
-};
-
-const brandLogo = {
-  display: "block",
-  width: "210px",
-  height: "54px",
-  objectFit: "contain" as const,
-  objectPosition: "left center",
-};
-
-const nav = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: "17px",
-};
-
-const navLink = {
-  color: "#111827",
-  fontSize: "13px",
-  fontWeight: 900,
-  textDecoration: "none",
-  whiteSpace: "nowrap" as const,
-};
-
-const navButton = {
-  background: "#5b21b6",
-  color: "#ffffff",
-  padding: "8px 16px",
-  borderRadius: "9px",
-  textDecoration: "none",
-  display: "flex",
-  flexDirection: "column" as const,
-  alignItems: "center",
-  justifyContent: "center",
-  lineHeight: 1.08,
-  minWidth: "158px",
-  boxShadow: "0 10px 22px rgba(91,33,182,0.24)",
-};
-
-const navButtonMain = {
-  fontSize: "13px",
-  fontWeight: 950,
-};
-
-const navButtonSub = {
-  fontSize: "10px",
-  fontWeight: 850,
-  opacity: 0.94,
-};
-
-const heroGrid = {
-  display: "grid",
-  gridTemplateColumns: "1fr 280px",
-  gap: "14px",
-  alignItems: "end",
-  marginBottom: "8px",
-};
-
-const eyebrow = {
-  display: "inline-block",
-  margin: "0 0 7px",
-  padding: "6px 14px",
-  borderRadius: "999px",
-  background: "#f3efff",
-  color: "#5b21b6",
-  fontSize: "13px",
-  fontWeight: 950,
-};
-
-const headline = {
-  color: "#111827",
-  fontSize: "clamp(28px, 3.45vw, 40px)",
-  lineHeight: "1.01",
-  margin: "0 0 5px",
-  fontWeight: 950,
-  letterSpacing: "-0.045em",
-};
-
-const subheadline = {
-  color: "#4b5563",
-  fontSize: "13.5px",
-  lineHeight: "1.28",
-  margin: 0,
-};
-
-const accessCard = {
-  border: "1px solid #ddd6fe",
-  borderRadius: "16px",
-  background: "#faf9ff",
-  padding: "11px",
-};
-
-const accessLabel = {
-  margin: "0 0 6px",
-  color: "#6d28d9",
-  fontSize: "12px",
-  fontWeight: 950,
-  textTransform: "uppercase" as const,
-};
-
-const accessRows = {
-  display: "grid",
-  gap: "5px",
-  color: "#4b5563",
-  fontSize: "13px",
-  lineHeight: "1.25",
-};
-
-const showcase = {
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  gap: "10px",
-  alignItems: "stretch",
-  marginBottom: "9px",
-};
-
-const imageCard = {
-  position: "relative" as const,
-  overflow: "hidden",
-  minHeight: "205px",
-  borderRadius: "18px",
-  border: "1px solid #ddd6fe",
-  background: "#faf9ff",
-};
-
-const featureImage = {
-  width: "100%",
-  height: "100%",
-  minHeight: "205px",
-  objectFit: "cover" as const,
-  display: "block",
-};
-
-const imageOverlay = {
-  position: "absolute" as const,
-  left: "12px",
-  right: "12px",
-  bottom: "12px",
-  padding: "9px 11px",
-  borderRadius: "14px",
-  background: "rgba(255,255,255,0.92)",
-  color: "#111827",
-  display: "grid",
-  gap: "2px",
-  fontSize: "12px",
-  lineHeight: "1.22",
-  boxShadow: "0 10px 24px rgba(30,27,75,0.18)",
-};
-
-const locationRow = {
-  display: "flex",
-  gap: "8px",
-  flexWrap: "wrap" as const,
-};
-
-const featureCopy = {
-  border: "1px solid #ddd6fe",
-  borderRadius: "18px",
-  background: "#faf9ff",
-  padding: "14px",
-  display: "flex",
-  flexDirection: "column" as const,
-  justifyContent: "center",
-  gap: "14px",
-};
-
-const sectionEyebrow = {
-  color: "#6d28d9",
-  fontSize: "12px",
-  fontWeight: 950,
-  margin: "0 0 5px",
-  textTransform: "uppercase" as const,
-};
-
-const sectionTitle = {
-  color: "#111827",
-  fontSize: "21px",
-  lineHeight: "1.06",
-  fontWeight: 950,
-  margin: "0 0 6px",
-};
-
-const sectionText = {
-  color: "#4b5563",
-  fontSize: "12.75px",
-  lineHeight: "1.28",
-  margin: 0,
-};
-
-const goldButtonGrid = {
-  display: "grid",
-  gridTemplateColumns: "repeat(2, 1fr)",
-  gap: "9px",
-};
-
-const goldButton = {
-  background: "#facc15",
-  color: "#111827",
-  border: "none",
-  borderRadius: "999px",
-  padding: "10px 12px",
-  fontSize: "13px",
-  fontWeight: 900,
-  cursor: "pointer",
-  boxShadow: "0 6px 14px rgba(250,204,21,0.28)",
-};
-
-const featureGrid = {
-  display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
-  gap: "9px",
-  marginBottom: "9px",
-};
-
-const card = {
-  background: "#faf9ff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "18px",
-  padding: "12px",
-};
-
-const cardLabel = {
-  color: "#6d28d9",
-  fontSize: "11px",
-  fontWeight: 950,
-  margin: "0 0 5px",
-  textTransform: "uppercase" as const,
-};
-
-const cardTitle = {
-  color: "#111827",
-  fontSize: "18px",
-  lineHeight: "1.08",
-  fontWeight: 950,
-  margin: "0 0 4px",
-};
-
-const cardText = {
-  color: "#4b5563",
-  fontSize: "12.5px",
-  lineHeight: "1.22",
-  margin: 0,
-};
-
-const ctaBand = {
-  padding: "10px 18px",
-  borderRadius: "16px",
-  background: "#5b21b6",
-  color: "#ffffff",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  gap: "18px",
-};
-
-const ctaEyebrow = {
-  margin: "0 0 1px",
-  color: "#facc15",
-  fontSize: "11.5px",
-  fontWeight: 950,
-  textTransform: "uppercase" as const,
-};
-
-const ctaTitle = {
-  margin: "0 0 1px",
-  color: "#ffffff",
-  fontSize: "19px",
-  fontWeight: 950,
-};
-
-const ctaText = {
-  margin: 0,
-  color: "rgba(255,255,255,0.88)",
-  fontSize: "12px",
-  lineHeight: "1.2",
-};
-
-const ctaButton = {
-  background: "#ffffff",
-  color: "#5b21b6",
-  padding: "8px 15px",
-  borderRadius: "9px",
-  textDecoration: "none",
-  display: "flex",
-  flexDirection: "column" as const,
-  alignItems: "center",
-  justifyContent: "center",
-  lineHeight: 1.08,
-  minWidth: "158px",
-};
-
-const ctaMain = {
-  fontSize: "13px",
-  fontWeight: 950,
-};
-
-const ctaSub = {
-  fontSize: "10px",
-  fontWeight: 850,
-  opacity: 0.9,
-};
