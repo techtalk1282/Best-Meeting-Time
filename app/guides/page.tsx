@@ -115,7 +115,7 @@ export default function GuidesPage() {
   alt="Blue world map for learning time zone basics"
 />
             <div className="guide-body">
-              <span className="guide-number purple">1</span>
+              
               <h3>Time Zone Basics</h3>
               <ul>
                 <li>How many time zones are there?</li>
@@ -132,7 +132,7 @@ export default function GuidesPage() {
   alt="Japan and cultural timing guide"
 />
             <div className="guide-body">
-              <span className="guide-number gold">2</span>
+              
               <h3>Cultural Timing Guides</h3>
               <ul>
                 <li>Best time to contact Japan</li>
@@ -149,7 +149,7 @@ export default function GuidesPage() {
   alt="Entertainment timing for gaming and live events"
 />
             <div className="guide-body">
-              <span className="guide-number green">3</span>
+              
               <h3>Entertainment & Social Timing</h3>
               <ul>
                 <li>Best time for global gaming events</li>
@@ -504,23 +504,7 @@ export default function GuidesPage() {
           padding: 20px 22px 21px;
         }
 
-        .guide-number {
-          width: 42px;
-          height: 42px;
-          border-radius: 999px;
-          color: #ffffff;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: 950;
-          margin-bottom: 12px;
-          box-shadow: 0 8px 18px rgba(91,33,182,0.22);
-        }
-
-        .purple { background: #7c3aed; }
-        .gold { background: #facc15; color: #111827; }
-        .green { background: #22c55e; }
-
+        
         .guide-card h3 {
           color: #111827 !important;
           font-size: 25px;
