@@ -98,17 +98,17 @@ export default function FeaturesPage() {
             </p>
 
             <div className="gold-button-grid">
-  <a href="/how-it-works#schedule-tool">Share Link</a>
+  <a href="/how-it-works?premium=share#schedule-tool">Share Link</a>
 
-  <a href="/how-it-works#schedule-tool">
+  <a href="/how-it-works?premium=google#schedule-tool">
     Add to Google
   </a>
 
-  <a href="/how-it-works#schedule-tool">
+  <a href="/how-it-works?premium=outlook#schedule-tool">
     Add to Outlook
   </a>
 
-  <a href="/how-it-works#schedule-tool">
+  <a href="/how-it-works?premium=calendar#schedule-tool">
     Add to Calendar
   </a>
 </div>
