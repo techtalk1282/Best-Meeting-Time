@@ -1,12 +1,13 @@
 /**
  * File: app/blog/page.tsx
- * Version: v3.2 (RESPONSIVE BLOG PAGE FIX)
- * Date: 2026-05-11
+ * Version: v3.3 (BLOG CTA CONTRAST AND ARTICLE ROUTE FIX)
+ * Date: 2026-05-12
  *
  * PURPOSE:
- * - Fix mobile/Samsung/iPhone blog page cutoff
- * - Match the proven responsive structure used on Guides/Features
- * - Preserve desktop layout and all blog content
+ * - Fix bottom CTA small text visibility and spacing
+ * - Keep top CTA unchanged
+ * - Correct the Time Zones article route so it does not point to the Time Zone Basics guide
+ * - Preserve responsive layout and current blog design
  *
  * PROTECTED:
  * - No Stripe changes
@@ -16,7 +17,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert to v3.1 if this layout does not test cleanly
+ * - Revert to v3.2 if this update does not test cleanly
  */
 
 import FooterSection from "../ui/FooterSection";
@@ -53,9 +54,7 @@ export default function BlogPage() {
         <section className="hero-card">
           <p className="eyebrow">Time Zone Scheduling Insights</p>
 
-          <h1>
-            Better Meeting Times for Remote Teams, Clients, and Global Work
-          </h1>
+          <h1>Better Meeting Times for Remote Teams, Clients, and Global Work</h1>
 
           <p>
             Practical articles to help you avoid bad meeting times, compare time
@@ -74,7 +73,7 @@ export default function BlogPage() {
             <strong>Read the remote team guide →</strong>
           </a>
 
-          <a href="/how-to-schedule-meetings-across-time-zones" className="article-card">
+          <a href="/global-meeting-scheduling-tips" className="article-card">
             <span>Time Zones</span>
             <h2>How to Schedule Across Time Zones Without Guessing</h2>
             <p>
@@ -326,27 +325,30 @@ export default function BlogPage() {
         .bottom-band a {
           background: #ffffff;
           color: #5b21b6;
-          padding: 10px 16px;
-          border-radius: 8px;
+          padding: 12px 17px;
+          border-radius: 9px;
           text-decoration: none;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          line-height: 1.15;
-          min-width: 160px;
+          gap: 4px;
+          line-height: 1.18;
+          min-width: 170px;
           box-shadow: 0 10px 22px rgba(30,27,75,0.18);
         }
 
         .bottom-band a strong {
+          color: #5b21b6;
           font-size: 13px;
-          font-weight: 900;
+          font-weight: 950;
         }
 
         .bottom-band a small {
+          color: #5b21b6;
           font-size: 10px;
-          font-weight: 800;
-          opacity: 0.9;
+          font-weight: 900;
+          opacity: 1;
         }
 
         @media (max-width: 900px) {
