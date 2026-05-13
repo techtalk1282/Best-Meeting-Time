@@ -1,13 +1,13 @@
 /**
  * File: app/blog/page.tsx
- * Version: v3.4 (ADD COUNTRY CONTACT ARTICLE TO BLOG GRID)
+ * Version: v3.5 (COMPACT FOUR-CARD BLOG VIEWPORT FIX)
  * Date: 2026-05-13
  *
  * PURPOSE:
- * - Add the Best Times to Contact Different Countries authority article to Blog
- * - Convert Blog article cards from 3-card row to balanced 2 x 2 grid
- * - Improve internal linking, crawl depth, and AdSense content discovery
- * - Preserve responsive layout and current blog design
+ * - Remove low-value hero eyebrow to move content higher
+ * - Preserve the new 2 x 2 blog article grid
+ * - Keep the country contact article linked from Blog
+ * - Tighten vertical spacing so the Blog page fits better at 100% desktop zoom
  *
  * PROTECTED:
  * - No Stripe changes
@@ -17,7 +17,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert to v3.3 if this update does not test cleanly
+ * - Revert to v3.4 if this update does not test cleanly
  */
 
 import FooterSection from "../ui/FooterSection";
@@ -54,8 +54,6 @@ export default function BlogPage() {
         </header>
 
         <section className="hero-card">
-          <p className="eyebrow">Time Zone Scheduling Insights</p>
-
           <h1>Better Meeting Times for Remote Teams, Clients, and Global Work</h1>
 
           <p>
@@ -67,14 +65,11 @@ export default function BlogPage() {
         <section className="article-grid" aria-label="Featured scheduling articles">
           <a href="/best-meeting-times-remote-teams" className="article-card">
             <span>Remote Teams</span>
-
             <h2>Stop Scheduling Remote Meetings at the Worst Possible Time</h2>
-
             <p>
               Learn how to find fair overlap windows for teams working across
               cities, countries, and different workdays.
             </p>
-
             <strong>Read the remote team guide →</strong>
           </a>
 
@@ -83,40 +78,31 @@ export default function BlogPage() {
             className="article-card"
           >
             <span>International Timing</span>
-
             <h2>Best Times to Contact Different Countries</h2>
-
             <p>
               Learn when to contact Japan, the UK, Australia, India, Dubai, and
-              other regions without creating awkward off-hour requests.
+              other regions without awkward off-hour requests.
             </p>
-
             <strong>Read the country timing guide →</strong>
           </a>
 
           <a href="/fun-facts-about-time-zones" className="article-card">
             <span>Fun Time Zone Facts</span>
-
             <h2>Fun Facts About Time Zones Around the World</h2>
-
             <p>
               Discover unusual UTC offsets, countries with surprising clocks,
               the International Date Line, and strange time zone stories.
             </p>
-
             <strong>Read the fun facts article →</strong>
           </a>
 
           <a href="/time-zone-meeting-planner-guide" className="article-card">
             <span>Planner Guide</span>
-
             <h2>What a Time Zone Meeting Planner Actually Helps You Do</h2>
-
             <p>
               See how comparing cities, local times, duration, and recommended
               windows can make scheduling faster.
             </p>
-
             <strong>Read the planner guide →</strong>
           </a>
         </section>
@@ -124,9 +110,7 @@ export default function BlogPage() {
         <section className="bottom-band">
           <div>
             <p>Start Planning</p>
-
             <h2>Ready to find a better meeting time?</h2>
-
             <span>
               Compare cities and review recommended meeting windows before you
               send the invite.
@@ -146,8 +130,8 @@ export default function BlogPage() {
         .blog-page {
           width: 100%;
           max-width: 1120px;
-          margin: 18px auto 0;
-          padding: 18px 18px 42px;
+          margin: 10px auto 0;
+          padding: 14px 18px 32px;
           background: #ffffff;
           color: #111827;
           border: 1px solid rgba(237,233,254,0.9);
@@ -157,13 +141,13 @@ export default function BlogPage() {
         }
 
         .blog-header {
-          min-height: 66px;
+          min-height: 56px;
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 18px;
           border-bottom: 1px solid #ede9fe;
-          margin-bottom: 14px;
+          margin-bottom: 10px;
         }
 
         .brand {
@@ -175,7 +159,7 @@ export default function BlogPage() {
 
         .brand-logo {
           display: block;
-          width: 170px;
+          width: 150px;
           height: auto;
           object-fit: contain;
         }
@@ -204,7 +188,7 @@ export default function BlogPage() {
         .nav-cta {
           background: #5b21b6;
           color: #ffffff;
-          padding: 9px 16px;
+          padding: 8px 15px;
           border-radius: 8px;
           font-weight: 900;
           text-decoration: none;
@@ -212,8 +196,8 @@ export default function BlogPage() {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          line-height: 1.18;
-          min-width: 154px;
+          line-height: 1.16;
+          min-width: 150px;
           box-shadow: 0 10px 22px rgba(91,33,182,0.22);
         }
 
@@ -231,83 +215,74 @@ export default function BlogPage() {
 
         .hero-card {
           text-align: center;
-          padding: 30px 24px 22px;
+          padding: 18px 24px 16px;
           border-bottom: 1px solid #ede9fe;
         }
 
-        .eyebrow {
-          display: inline-block;
-          margin: 0 0 12px;
-          padding: 7px 13px;
-          border-radius: 999px;
-          background: #f3efff;
-          color: #5b21b6;
-          font-size: 12px;
-          font-weight: 900;
-        }
-
         .hero-card h1 {
-          max-width: 780px;
-          margin: 0 auto 12px;
+          max-width: 760px;
+          margin: 0 auto 8px;
           color: #111827;
-          font-size: clamp(34px, 4vw, 48px);
-          line-height: 1.06;
+          font-size: clamp(30px, 3.4vw, 42px);
+          line-height: 1.04;
           font-weight: 950;
           letter-spacing: -0.04em;
         }
 
         .hero-card p:last-child {
-          max-width: 720px;
+          max-width: 700px;
           margin: 0 auto;
           color: #6b7280;
-          font-size: 16px;
-          line-height: 1.6;
+          font-size: 15px;
+          line-height: 1.45;
           font-weight: 500;
         }
 
         .article-grid {
           display: grid;
           grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 16px;
-          padding: 22px 10px 18px;
+          gap: 14px;
+          padding: 16px 10px 14px;
         }
 
         .article-card {
-  min-height: 215px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 10px;
-  background: #faf9ff;
-  border: 1px solid #ddd6fe;
-  border-radius: 16px;
-  padding: 18px;
-  text-decoration: none;
-  color: #111827;
-  box-shadow: 0 12px 28px rgba(91,33,182,0.08);
-}
+          min-height: 205px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 9px;
+          background: #faf9ff;
+          border: 1px solid #ddd6fe;
+          border-radius: 16px;
+          padding: 17px;
+          text-decoration: none;
+          color: #111827;
+          box-shadow: 0 12px 28px rgba(91,33,182,0.08);
+        }
 
         .article-card span {
           color: #6d28d9;
-          font-size: 12px;
+          font-size: 11px;
           font-weight: 950;
           text-transform: uppercase;
           letter-spacing: 0.04em;
         }
 
         .article-card h2 {
-  color: #111827;
-  font-size: 20px;
-  line-height: 1.12;
-  font-weight: 950;
-  margin: 0;
-}
+          color: #111827;
+          font-size: 20px;
+          line-height: 1.1;
+          font-weight: 950;
+          margin: 0;
+        }
+
         .article-card p {
-  color: #4b5563;
-  font-size: 14px;
-  line-height: 1.45;
-  margin: 0;
-}
+          color: #4b5563;
+          font-size: 14px;
+          line-height: 1.42;
+          margin: 0;
+        }
+
         .article-card strong {
           color: #5b21b6;
           font-size: 14px;
@@ -316,7 +291,7 @@ export default function BlogPage() {
 
         .bottom-band {
           margin: 0 10px;
-          padding: 18px 20px;
+          padding: 16px 18px;
           border-radius: 14px;
           background: #5b21b6;
           color: #ffffff;
@@ -338,7 +313,7 @@ export default function BlogPage() {
         .bottom-band h2 {
           margin: 0 0 4px;
           color: #ffffff;
-          font-size: 22px;
+          font-size: 21px;
           font-weight: 950;
         }
 
@@ -346,13 +321,13 @@ export default function BlogPage() {
           display: block;
           color: rgba(255,255,255,0.86);
           font-size: 14px;
-          line-height: 1.5;
+          line-height: 1.45;
         }
 
         .bottom-band a {
           background: #ffffff;
           color: #5b21b6;
-          padding: 12px 17px;
+          padding: 11px 16px;
           border-radius: 9px;
           text-decoration: none;
           display: flex;
@@ -361,7 +336,7 @@ export default function BlogPage() {
           justify-content: center;
           gap: 4px;
           line-height: 1.18;
-          min-width: 170px;
+          min-width: 166px;
           box-shadow: 0 10px 22px rgba(30,27,75,0.18);
         }
 
