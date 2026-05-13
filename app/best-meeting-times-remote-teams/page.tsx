@@ -93,30 +93,31 @@ export default function BestMeetingTimesRemoteTeamsPage() {
           </div>
         </section>
 
-        <section style={summaryGrid}>
+       <section style={summaryGrid}>
           <div style={summaryCard}>
-            <span style={summaryNumber}>01</span>
             <strong>Protect working hours</strong>
             <p>
-              Avoid forcing one region into early morning, late night, or
-              repeated off-hour calls.
+              Start by checking each person’s local workday before choosing a
+              meeting time. This helps remote teams avoid repeated early-morning,
+              late-night, or after-hours calls.
             </p>
           </div>
 
           <div style={summaryCard}>
-            <span style={summaryNumber}>02</span>
             <strong>Find fair overlap</strong>
             <p>
-              Compare local 9 AM to 5 PM windows before sending the invite.
+              Compare cities side by side and look for a realistic window that
+              works for most attendees. The best meeting time should feel
+              reasonable in every location.
             </p>
           </div>
 
           <div style={summaryCard}>
-            <span style={summaryNumber}>03</span>
             <strong>Rotate when needed</strong>
             <p>
-              When no perfect time exists, rotate inconvenience instead of making
-              the same team adjust.
+              If no perfect meeting window exists, rotate the inconvenience
+              instead of asking the same region to adjust every time. Fair
+              rotation builds better global team habits.
             </p>
           </div>
         </section>
@@ -462,11 +463,6 @@ const summaryCard = {
   boxShadow: "0 10px 25px rgba(91,33,182,0.08)",
 };
 
-const summaryNumber = {
-  color: "#6d28d9",
-  fontSize: "12px",
-  fontWeight: 950,
-};
 
 const contentGrid = {
   display: "grid",
