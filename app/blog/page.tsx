@@ -73,14 +73,14 @@ export default function BlogPage() {
             <strong>Read the remote team guide →</strong>
           </a>
 
-         <a href="/how-to-schedule-meetings-across-time-zones" className="article-card">
-  <span>Time Zone Basics</span>
-  <h2>Time Zones Explained: Clocks, Sunlight, and Global Time</h2>
+        <a href="/fun-facts-about-time-zones" className="article-card">
+  <span>Fun Time Zone Facts</span>
+  <h2>Fun Facts About Time Zones Around the World</h2>
   <p>
-    Learn how time zones work, why clocks change, and why checking local
-    time matters before scheduling across countries.
+    Discover unusual UTC offsets, countries with surprising clocks, the
+    International Date Line, and strange time zone stories from around the world.
   </p>
-  <strong>Read the time zone basics guide →</strong>
+  <strong>Read the fun facts article →</strong>
 </a>
 
           <a href="/time-zone-meeting-planner-guide" className="article-card">
