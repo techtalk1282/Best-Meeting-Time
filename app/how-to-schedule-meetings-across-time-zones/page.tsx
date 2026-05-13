@@ -116,25 +116,37 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           <p className="section-pill">What this guide answers</p>
           <h2>Three simple questions explain most time zone confusion.</h2>
 
-          <div className="answer-grid">
-            <a href="#how-many-time-zones" className="answer-card">
-              <span>01</span>
-              <strong>How many time zones are there?</strong>
-              <p>Understand the 24-hour rotation system and real-world offsets.</p>
-            </a>
+         <div className="answer-grid">
+  <a href="#how-many-time-zones" className="answer-card">
+    <strong>How many time zones are there?</strong>
 
-            <a href="#why-time-zones-exist" className="answer-card">
-              <span>02</span>
-              <strong>Why do time zones exist?</strong>
-              <p>See how Earth’s rotation creates daylight in different places.</p>
-            </a>
+    <p>
+      Learn why the world is organized around 24 primary time zones,
+      how UTC offsets work, and why some countries use half-hour or
+      quarter-hour differences.
+    </p>
+  </a>
 
-            <a href="#why-clocks-change" className="answer-card">
-              <span>03</span>
-              <strong>Why do clocks change?</strong>
-              <p>Learn why daylight saving time causes scheduling surprises.</p>
-            </a>
-          </div>
+  <a href="#why-time-zones-exist" className="answer-card">
+    <strong>Why do time zones exist?</strong>
+
+    <p>
+      Understand how Earth’s rotation, daylight, travel, business,
+      and global communication created the need for standardized
+      international time zones.
+    </p>
+  </a>
+
+  <a href="#why-clocks-change" className="answer-card">
+    <strong>Why do clocks change?</strong>
+
+    <p>
+      Discover how daylight saving time affects international meetings,
+      changing UTC offsets, seasonal scheduling, and global business
+      coordination.
+    </p>
+  </a>
+</div>
         </section>
 
         <section id="how-many-time-zones" className="feature-section">
@@ -670,19 +682,7 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           box-shadow: 0 16px 34px rgba(91,33,182,0.08);
         }
 
-        .answer-card span {
-          width: 40px;
-          height: 40px;
-          border-radius: 999px;
-          background: #7c3aed;
-          color: #ffffff;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 14px;
-          font-weight: 950;
-          margin-bottom: 14px;
-        }
+        
 
         .answer-card strong {
           display: block;
