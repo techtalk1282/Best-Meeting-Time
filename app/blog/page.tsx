@@ -56,10 +56,9 @@ export default function BlogPage() {
         <section className="hero-card">
           <h1>Better Meeting Times for Remote Teams, Clients, and Global Work</h1>
 
-          <p>
-            Practical articles to help you avoid bad meeting times, compare time
-            zones faster, and schedule with more confidence.
-          </p>
+         <p>
+  Practical articles to help teams schedule better across time zones.
+</p>
         </section>
 
         <section className="article-grid" aria-label="Featured scheduling articles">
@@ -214,14 +213,14 @@ export default function BlogPage() {
         }
 
         .hero-card {
-          text-align: center;
-          padding: 18px 24px 16px;
-          border-bottom: 1px solid #ede9fe;
-        }
+  text-align: center;
+  padding: 14px 24px 12px;
+  border-bottom: 1px solid #ede9fe;
+}
 
-        .hero-card h1 {
-          max-width: 760px;
-          margin: 0 auto 8px;
+       .hero-card h1 {
+  max-width: 760px;
+  margin: 0 auto 4px;
           color: #111827;
           font-size: clamp(30px, 3.4vw, 42px);
           line-height: 1.04;
