@@ -94,33 +94,45 @@ export default function BestMeetingTimesRemoteTeamsPage() {
         </section>
 
        <section style={summaryGrid}>
-          <div style={summaryCard}>
-            <strong>Protect working hours</strong>
-            <p>
-              Start by checking each person’s local workday before choosing a
-              meeting time. This helps remote teams avoid repeated early-morning,
-              late-night, or after-hours calls.
-            </p>
-          </div>
+  <div style={summaryCard}>
+    <span style={summaryTag}>Remote Team Strategy</span>
 
-          <div style={summaryCard}>
-            <strong>Find fair overlap</strong>
-            <p>
-              Compare cities side by side and look for a realistic window that
-              works for most attendees. The best meeting time should feel
-              reasonable in every location.
-            </p>
-          </div>
+    <h2 style={summaryTitle}>Protect Working Hours</h2>
 
-          <div style={summaryCard}>
-            <strong>Rotate when needed</strong>
-            <p>
-              If no perfect meeting window exists, rotate the inconvenience
-              instead of asking the same region to adjust every time. Fair
-              rotation builds better global team habits.
-            </p>
-          </div>
-        </section>
+    <p style={summaryText}>
+      Start by reviewing each participant’s local workday before selecting
+      a meeting time. Consistently scheduling early-morning or late-night
+      meetings can reduce participation and create long-term frustration
+      for distributed teams.
+    </p>
+  </div>
+
+  <div style={summaryCard}>
+    <span style={summaryTag}>Fair Scheduling</span>
+
+    <h2 style={summaryTitle}>Find Better Overlap Windows</h2>
+
+    <p style={summaryText}>
+      Compare cities side by side and focus on realistic overlap windows
+      that feel reasonable for everyone attending. The best meeting times
+      usually balance productivity, availability, and local working hours
+      across regions.
+    </p>
+  </div>
+
+  <div style={summaryCard}>
+    <span style={summaryTag}>Global Collaboration</span>
+
+    <h2 style={summaryTitle}>Rotate Inconvenient Times</h2>
+
+    <p style={summaryText}>
+      When no perfect meeting window exists, rotate the inconvenience
+      fairly between regions instead of repeatedly burdening the same
+      team. Shared flexibility creates healthier collaboration habits
+      for global organizations.
+    </p>
+  </div>
+</section>
 
         <section style={contentGrid}>
           <article style={mainArticle}>
@@ -456,11 +468,44 @@ const summaryGrid = {
 };
 
 const summaryCard = {
-  background: "#ffffff",
+  background: "linear-gradient(180deg, #ffffff 0%, #faf7ff 100%)",
   border: "1px solid #ddd6fe",
-  borderRadius: "16px",
-  padding: "18px",
-  boxShadow: "0 10px 25px rgba(91,33,182,0.08)",
+  borderRadius: "18px",
+  padding: "22px",
+  boxShadow: "0 14px 32px rgba(91,33,182,0.10)",
+  display: "grid",
+  gap: "12px",
+  alignContent: "start",
+  minHeight: "220px",
+};
+
+const summaryTitle = {
+  color: "#111827",
+  fontSize: "20px",
+  fontWeight: 950,
+  lineHeight: "1.15",
+  margin: 0,
+};
+
+const summaryText = {
+  color: "#4b5563",
+  fontSize: "15px",
+  lineHeight: "1.7",
+  margin: 0,
+};
+
+const summaryTag = {
+  display: "inline-flex",
+  alignItems: "center",
+  width: "fit-content",
+  padding: "6px 10px",
+  borderRadius: "999px",
+  background: "#ede9fe",
+  color: "#5b21b6",
+  fontSize: "11px",
+  fontWeight: 900,
+  textTransform: "uppercase" as const,
+  letterSpacing: "0.04em",
 };
 
 
