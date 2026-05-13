@@ -52,66 +52,78 @@ export default function BestMeetingTimesRemoteTeamsPage() {
           </a>
         </header>
 
-        <section className="hero-section">
-          <div className="hero-copy">
-            <p className="eyebrow hero-eyebrow">Remote Team Scheduling Guide</p>
+<section className="hero-section">
+  <div className="hero-copy">
+    <p className="eyebrow hero-eyebrow">Remote Team Scheduling Guide</p>
 
-            <h1>Better Meeting Times for Global Remote Teams</h1>
+    <h1>Better Meeting Times for Global Remote Teams</h1>
 
-            <p className="hero-text">
-              Coordinate meetings across cities, countries, and continents
-              without frustrating your team. Compare local times, find fair
-              overlap windows, and improve collaboration everywhere.
-            </p>
+    <p className="hero-text">
+      Coordinate meetings across cities, countries, and continents
+      without frustrating your team. Compare local times, find fair
+      overlap windows, and improve collaboration everywhere.
+    </p>
 
-            <div className="hero-points">
-              <div>
-                <strong>Global Coverage</strong>
-                <span>Compare major cities and time zones before sending invites.</span>
-              </div>
+    <div className="hero-points">
+      <div>
+        <strong>Global Coverage</strong>
+        <span>Compare major cities and time zones before sending invites.</span>
+      </div>
 
-              <div>
-                <strong>Team Friendly</strong>
-                <span>Protect working hours and reduce scheduling frustration.</span>
-              </div>
+      <div>
+        <strong>Team Friendly</strong>
+        <span>Protect working hours and reduce scheduling frustration.</span>
+      </div>
 
-              <div>
-                <strong>Smart Overlap</strong>
-                <span>Find better windows for distributed teams and clients.</span>
-              </div>
-            </div>
+      <div>
+        <strong>Smart Overlap</strong>
+        <span>Find better windows for distributed teams and clients.</span>
+      </div>
+    </div>
+  </div>
 
-            <a href="/how-it-works#schedule-tool" className="primary-cta">
-              <span>Schedule a Meeting</span>
-              <small>Free to try — no sign-up</small>
-            </a>
-          </div>
+  <div className="hero-right-column">
+    <div className="hero-visual">
+      <img
+        src="/images/remote-teams/hero_remote_team_visual.png"
+        alt="Global remote team collaborating across time zones"
+        className="hero-image"
+      />
 
-          <div className="hero-visual">
-            <img
-              src="/images/remote-teams/hero_remote_team_visual.png"
-              alt="Global remote team collaborating across time zones"
-              className="hero-image"
-            />
+      <div className="hero-time-overlay" aria-label="Example local meeting times">
+        <div>
+          <span>New York</span>
+          <strong>9:00 AM</strong>
+        </div>
 
-            <div className="hero-time-overlay" aria-label="Example local meeting times">
-              <div>
-                <span>New York</span>
-                <strong>9:00 AM</strong>
-              </div>
+        <div>
+          <span>London</span>
+          <strong>2:00 PM</strong>
+        </div>
 
-              <div>
-                <span>London</span>
-                <strong>2:00 PM</strong>
-              </div>
+        <div>
+          <span>Tokyo</span>
+          <strong>10:00 PM</strong>
+        </div>
+      </div>
+    </div>
 
-              <div>
-                <span>Tokyo</span>
-                <strong>10:00 PM</strong>
-              </div>
-            </div>
-          </div>
-        </section>
+    <div className="hero-action-panel">
+      <div>
+        <strong>Find a better meeting window before you send the invite.</strong>
+        <span>
+          Compare local times, avoid bad overlap, and choose a fairer schedule
+          for remote teams.
+        </span>
+      </div>
+
+      <a href="/how-it-works#schedule-tool" className="primary-cta">
+        <span>Schedule a Meeting</span>
+        <small>Free to try — no sign-up</small>
+      </a>
+    </div>
+  </div>
+</section>
 
         <section className="strategy-grid">
           <article className="strategy-card purple">
@@ -457,14 +469,44 @@ export default function BestMeetingTimesRemoteTeamsPage() {
         }
 
         .hero-visual {
-          position: relative;
-          border-radius: 28px;
-          overflow: hidden;
-          background: #050816;
-          height: 520px;
-          box-shadow: 0 20px 50px rgba(30,27,75,0.22);
-        }
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #050816;
+  height: 430px;
+  box-shadow: 0 20px 50px rgba(30,27,75,0.22);
+}
+.hero-right-column {
+  display: grid;
+  gap: 14px;
+}
 
+.hero-action-panel {
+  background: #f5f3ff;
+  border: 1px solid #ddd6fe;
+  border-radius: 22px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  box-shadow: 0 12px 28px rgba(91,33,182,0.08);
+}
+
+.hero-action-panel strong {
+  display: block;
+  color: #111827;
+  font-size: 20px;
+  font-weight: 950;
+  margin-bottom: 6px;
+}
+
+.hero-action-panel span {
+  display: block;
+  color: #4b5563;
+  font-size: 14px;
+  line-height: 1.55;
+}
         .hero-image {
           width: 100%;
           height: 100%;
