@@ -1,13 +1,14 @@
 /**
  * File: app/best-meeting-times-remote-teams/page.tsx
- * Version: v2.0 (PREMIUM REMOTE TEAMS ARTICLE LAYOUT)
- * Date: 2026-05-05
+ * Version: v3.0 (PREMIUM REMOTE TEAMS EDITORIAL REDESIGN)
+ * Date: 2026-05-12
  *
  * PURPOSE:
- * - Rebuild the remote teams article page with a polished target-UI layout
- * - Replace stacked plain cards with a structured article experience
- * - Align navigation and CTA wording with homepage/blog standards
- * - Remove “free tool” wording and use “Schedule a Meeting / Free to try — no sign-up”
+ * - Completely redesign the Remote Teams article page
+ * - Match the premium visual quality of the Guides page
+ * - Add strong visual hierarchy, color segmentation, and editorial structure
+ * - Introduce global collaboration imagery and richer visual storytelling
+ * - Preserve current routes, SEO content, and responsive behavior
  *
  * PROTECTED:
  * - No Stripe changes
@@ -17,7 +18,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert to v1.0 if this layout does not test cleanly
+ * - Revert to v2.0 if redesign does not test cleanly
  */
 
 import FooterSection from "../ui/FooterSection";
@@ -48,20 +49,36 @@ export default function BestMeetingTimesRemoteTeamsPage() {
           </a>
         </header>
 
-        <section style={heroGrid}>
-          <div style={heroCopy}>
-            <p style={eyebrow}>Remote Team Scheduling Guide</p>
+        <section style={heroSection}>
+          <div style={heroContent}>
+            <span style={heroBadge}>REMOTE TEAM SCHEDULING GUIDE</span>
 
             <h1 style={headline}>
-              Best Meeting Times for Remote Teams
+              Better Meeting Times for Global Remote Teams
             </h1>
 
             <p style={intro}>
-              Remote teams work best when meetings are planned with everyone’s
-              local time in mind. Use this guide to choose fairer meeting windows,
-              avoid inconvenient schedules, and make collaboration easier across
-              cities, countries, and continents.
+              Coordinate meetings across cities, countries, and continents
+              without frustrating your team. Compare local times, create fairer
+              schedules, and improve collaboration across every region.
             </p>
+
+            <div style={heroStats}>
+              <div style={statCard}>
+                <strong style={statValue}>24</strong>
+                <span style={statLabel}>Major Time Zones</span>
+              </div>
+
+              <div style={statCard}>
+                <strong style={statValue}>Remote</strong>
+                <span style={statLabel}>Global Collaboration</span>
+              </div>
+
+              <div style={statCard}>
+                <strong style={statValue}>Fair</strong>
+                <span style={statLabel}>Meeting Rotation</span>
+              </div>
+            </div>
 
             <a href="/how-it-works#schedule-tool" style={primaryButton}>
               <span style={primaryMain}>Schedule a Meeting</span>
@@ -69,171 +86,223 @@ export default function BestMeetingTimesRemoteTeamsPage() {
             </a>
           </div>
 
-          <div style={previewCard}>
-            <p style={previewEyebrow}>Example meeting window</p>
+          <div style={heroVisual}>
+            <img
+              src="/images/guides/global-timezones-guide.webp"
+              alt="Global remote collaboration"
+              style={heroImage}
+            />
 
-            <div style={timeRow}>
-              <div style={timeBox}>
-                <span style={timeLabel}>New York</span>
-                <strong style={timeValue}>9:00 AM</strong>
-                <span style={timeNote}>Team start</span>
+            <div style={overlayCard}>
+              <div style={overlayRow}>
+                <span style={city}>New York</span>
+                <strong style={cityTime}>9:00 AM</strong>
               </div>
 
-              <div style={timeBox}>
-                <span style={timeLabel}>London</span>
-                <strong style={timeValue}>2:00 PM</strong>
-                <span style={timeNote}>Same meeting</span>
+              <div style={overlayRow}>
+                <span style={city}>London</span>
+                <strong style={cityTime}>2:00 PM</strong>
               </div>
-            </div>
 
-            <div style={bestWindow}>
-              <strong>Good overlap window</strong>
-              <span>US morning + Europe afternoon</span>
+              <div style={overlayRow}>
+                <span style={city}>Tokyo</span>
+                <strong style={cityTime}>10:00 PM</strong>
+              </div>
             </div>
           </div>
         </section>
 
-       <section style={summaryGrid}>
-  <div style={summaryCard}>
-    <span style={summaryTag}>Remote Team Strategy</span>
+        <section style={summaryGrid}>
+          <div style={summaryCardPurple}>
+            <span style={summaryTag}>Remote Teams</span>
 
-    <h2 style={summaryTitle}>Protect Working Hours</h2>
+            <h2 style={summaryTitle}>
+              Protect Working Hours
+            </h2>
 
-    <p style={summaryText}>
-      Start by reviewing each participant’s local workday before selecting
-      a meeting time. Consistently scheduling early-morning or late-night
-      meetings can reduce participation and create long-term frustration
-      for distributed teams.
-    </p>
-  </div>
+            <p style={summaryText}>
+              Repeated late-night or early-morning meetings eventually create
+              burnout. Better scheduling helps teams stay productive and engaged.
+            </p>
+          </div>
 
-  <div style={summaryCard}>
-    <span style={summaryTag}>Fair Scheduling</span>
+          <div style={summaryCardBlue}>
+            <span style={summaryTag}>Scheduling Strategy</span>
 
-    <h2 style={summaryTitle}>Find Better Overlap Windows</h2>
+            <h2 style={summaryTitle}>
+              Find Better Overlap Windows
+            </h2>
 
-    <p style={summaryText}>
-      Compare cities side by side and focus on realistic overlap windows
-      that feel reasonable for everyone attending. The best meeting times
-      usually balance productivity, availability, and local working hours
-      across regions.
-    </p>
-  </div>
+            <p style={summaryText}>
+              Compare local times before scheduling meetings so every region has
+              a realistic chance to participate comfortably.
+            </p>
+          </div>
 
-  <div style={summaryCard}>
-    <span style={summaryTag}>Global Collaboration</span>
+          <div style={summaryCardGold}>
+            <span style={summaryTag}>Global Collaboration</span>
 
-    <h2 style={summaryTitle}>Rotate Inconvenient Times</h2>
+            <h2 style={summaryTitle}>
+              Rotate Inconvenient Meetings
+            </h2>
 
-    <p style={summaryText}>
-      When no perfect meeting window exists, rotate the inconvenience
-      fairly between regions instead of repeatedly burdening the same
-      team. Shared flexibility creates healthier collaboration habits
-      for global organizations.
-    </p>
-  </div>
-</section>
+            <p style={summaryText}>
+              When no perfect overlap exists, rotate difficult meeting windows
+              fairly across teams and regions.
+            </p>
+          </div>
+        </section>
 
-        <section style={contentGrid}>
-          <article style={mainArticle}>
-            <section style={contentBlock}>
-              <h2 style={heading}>Why Remote Team Meeting Times Matter</h2>
+        <section style={featureSection}>
+          <div style={featureContent}>
+            <span style={featureEyebrow}>WHY THIS MATTERS</span>
 
-              <p style={text}>
-                Remote work gives teams more flexibility, but it also makes
-                scheduling more complicated. A meeting that feels normal for one
-                person may happen early in the morning, late at night, or outside
-                working hours for someone else.
-              </p>
+            <h2 style={sectionHeading}>
+              Remote teams work better when scheduling feels fair.
+            </h2>
 
-              <p style={text}>
-                Over time, unfair meeting schedules can create frustration and
-                reduce participation. Choosing better meeting times helps teams
-                protect focus time, improve attendance, and make collaboration
-                feel more balanced.
-              </p>
-            </section>
+            <p style={sectionText}>
+              One bad meeting may not matter, but repeated scheduling problems
+              eventually reduce participation, focus, and collaboration. Teams
+              that consistently respect local working hours tend to communicate
+              better and stay more connected.
+            </p>
 
-            <section style={contentBlock}>
-              <h2 style={heading}>Start With Working-Hour Overlap</h2>
-
-              <p style={text}>
-                The best meeting times for remote teams usually fall inside the
-                overlap between normal working hours. For many teams, that means
-                comparing each participant’s local 9:00 AM to 5:00 PM window and
-                finding where those windows intersect.
-              </p>
-
-              <div style={calloutBox}>
-                <strong>Simple example</strong>
-                <span>New York morning can work well for London afternoon.</span>
-                <span>Los Angeles morning can work well for New York midday.</span>
-                <span>Europe and Asia may require rotation or async updates.</span>
+            <div style={highlightGrid}>
+              <div style={highlightCard}>
+                <strong style={highlightTitle}>Avoid burnout</strong>
+                <p style={highlightText}>
+                  Prevent repeated after-hours meetings for the same team.
+                </p>
               </div>
-            </section>
 
-            <section style={contentBlock}>
-              <h2 style={heading}>Good Meeting Windows by Team Type</h2>
-
-              <div style={tableWrap}>
-                <table style={table}>
-                  <thead>
-                    <tr>
-                      <th style={th}>Team Type</th>
-                      <th style={th}>Best Scheduling Approach</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td style={td}>US-only team</td>
-                      <td style={td}>Midday Eastern time often works well.</td>
-                    </tr>
-                    <tr>
-                      <td style={td}>US + Europe</td>
-                      <td style={td}>US morning and Europe afternoon.</td>
-                    </tr>
-                    <tr>
-                      <td style={td}>US + Asia</td>
-                      <td style={td}>Rotate meeting times or use async updates.</td>
-                    </tr>
-                    <tr>
-                      <td style={td}>Global team</td>
-                      <td style={td}>Use rotating schedules and shared documentation.</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div style={highlightCard}>
+                <strong style={highlightTitle}>Improve attendance</strong>
+                <p style={highlightText}>
+                  Better meeting windows usually increase participation.
+                </p>
               </div>
-            </section>
-          </article>
 
-          <aside style={sidePanel}>
-            <div style={sideCard}>
-              <h2 style={sideTitle}>Remote Team Checklist</h2>
+              <div style={highlightCard}>
+                <strong style={highlightTitle}>Reduce confusion</strong>
+                <p style={highlightText}>
+                  Compare cities before sending the calendar invite.
+                </p>
+              </div>
 
-              <ul style={checkList}>
-                <li>Confirm each person’s city or time zone.</li>
-                <li>Compare normal working hours first.</li>
-                <li>Check daylight saving time changes.</li>
-                <li>Rotate inconvenient meeting times.</li>
-                <li>Include major local times in the invite.</li>
-                <li>Use async updates when a live meeting is not needed.</li>
-              </ul>
+              <div style={highlightCard}>
+                <strong style={highlightTitle}>Respect global teams</strong>
+                <p style={highlightText}>
+                  Fair scheduling creates healthier collaboration habits.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section style={workflowSection}>
+          <div style={workflowHeader}>
+            <span style={featureEyebrow}>REMOTE TEAM WORKFLOW</span>
+
+            <h2 style={sectionHeading}>
+              A better process for scheduling across time zones
+            </h2>
+          </div>
+
+          <div style={workflowGrid}>
+            <div style={workflowCard}>
+              <div style={workflowNumber}>01</div>
+
+              <h3 style={workflowTitle}>Compare Cities</h3>
+
+              <p style={workflowText}>
+                Start by identifying each participant’s city or time zone before
+                proposing a meeting.
+              </p>
             </div>
 
-            <div style={sideCardHighlight}>
-              <h2 style={sideTitle}>Better meetings start with better timing.</h2>
+            <div style={workflowCard}>
+              <div style={workflowNumber}>02</div>
 
-              <p style={sideText}>
-                Compare cities before you send the invite and choose a window
-                that works better for everyone.
+              <h3 style={workflowTitle}>Review Overlap</h3>
+
+              <p style={workflowText}>
+                Focus on realistic working-hour overlap instead of convenience
+                for a single office.
               </p>
-
-              <a href="/how-it-works#schedule-tool" style={sideButton}>
-                <span style={primaryMain}>Schedule a Meeting</span>
-                <span style={primarySub}>Free to try — no sign-up</span>
-              </a>
             </div>
-          </aside>
+
+            <div style={workflowCard}>
+              <div style={workflowNumber}>03</div>
+
+              <h3 style={workflowTitle}>Rotate Fairly</h3>
+
+              <p style={workflowText}>
+                Share difficult meeting times fairly between global regions when
+                no perfect overlap exists.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section style={tableSection}>
+          <div style={tableHeader}>
+            <span style={featureEyebrow}>GLOBAL SCHEDULING EXAMPLES</span>
+
+            <h2 style={sectionHeading}>
+              Good meeting windows by team type
+            </h2>
+          </div>
+
+          <div style={tableGrid}>
+            <div style={tableCard}>
+              <strong style={tableTitle}>US-only team</strong>
+              <p style={tableCopy}>
+                Midday Eastern Time often creates the best overlap.
+              </p>
+            </div>
+
+            <div style={tableCard}>
+              <strong style={tableTitle}>US + Europe</strong>
+              <p style={tableCopy}>
+                US mornings and Europe afternoons usually work best.
+              </p>
+            </div>
+
+            <div style={tableCard}>
+              <strong style={tableTitle}>US + Asia</strong>
+              <p style={tableCopy}>
+                Rotate meeting times and reduce unnecessary live meetings.
+              </p>
+            </div>
+
+            <div style={tableCard}>
+              <strong style={tableTitle}>Global organization</strong>
+              <p style={tableCopy}>
+                Use rotating schedules with strong async documentation.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section style={bottomCTA}>
+          <div>
+            <p style={bottomEyebrow}>READY TO SCHEDULE BETTER?</p>
+
+            <h2 style={bottomHeading}>
+              Compare cities before you send the invite.
+            </h2>
+
+            <p style={bottomText}>
+              Review overlap windows, compare local times, and choose a meeting
+              schedule that works better for everyone.
+            </p>
+          </div>
+
+          <a href="/how-it-works#schedule-tool" style={bottomButton}>
+            <span style={bottomButtonMain}>Schedule a Meeting</span>
+            <span style={bottomButtonSub}>Free to try — no sign-up</span>
+          </a>
         </section>
       </main>
 
@@ -261,7 +330,7 @@ const header = {
   justifyContent: "space-between",
   gap: "18px",
   borderBottom: "1px solid #ede9fe",
-  marginBottom: "18px",
+  marginBottom: "22px",
 };
 
 const brandLink = {
@@ -329,311 +398,409 @@ const navButtonSub = {
   opacity: 0.92,
 };
 
-const heroGrid = {
+const heroSection = {
   display: "grid",
-  gridTemplateColumns: "1.15fr 0.85fr",
-  gap: "24px",
+  gridTemplateColumns: "1.1fr 0.9fr",
+  gap: "22px",
   alignItems: "stretch",
-  padding: "10px 10px 18px",
+  marginBottom: "22px",
 };
 
-const heroCopy = {
-  background: "#faf9ff",
+const heroContent = {
+  background: "linear-gradient(180deg, #ffffff 0%, #f6f2ff 100%)",
   border: "1px solid #ddd6fe",
-  borderRadius: "18px",
-  padding: "28px",
+  borderRadius: "22px",
+  padding: "34px",
 };
 
-const eyebrow = {
+const heroBadge = {
   display: "inline-block",
-  margin: "0 0 12px",
-  padding: "7px 13px",
+  padding: "7px 14px",
   borderRadius: "999px",
-  background: "#f3efff",
+  background: "#ede9fe",
   color: "#5b21b6",
   fontSize: "12px",
   fontWeight: 900,
+  marginBottom: "16px",
 };
 
 const headline = {
   color: "#111827",
-  fontSize: "clamp(34px, 4vw, 46px)",
-  lineHeight: "1.06",
-  margin: "0 0 14px",
+  fontSize: "clamp(40px, 5vw, 58px)",
+  lineHeight: "1.02",
+  margin: "0 0 18px",
   fontWeight: 950,
-  letterSpacing: "-0.04em",
+  letterSpacing: "-0.05em",
 };
 
 const intro = {
   color: "#4b5563",
-  fontSize: "16px",
-  lineHeight: "1.6",
-  margin: "0 0 18px",
+  fontSize: "17px",
+  lineHeight: "1.7",
+  marginBottom: "22px",
+};
+
+const heroStats = {
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  gap: "12px",
+  marginBottom: "22px",
+};
+
+const statCard = {
+  background: "#ffffff",
+  border: "1px solid #ddd6fe",
+  borderRadius: "14px",
+  padding: "14px",
+  textAlign: "center" as const,
+};
+
+const statValue = {
+  display: "block",
+  color: "#5b21b6",
+  fontSize: "22px",
+  fontWeight: 950,
+  marginBottom: "6px",
+};
+
+const statLabel = {
+  color: "#4b5563",
+  fontSize: "12px",
+  fontWeight: 800,
 };
 
 const primaryButton = {
   background: "#5b21b6",
   color: "#ffffff",
-  padding: "11px 17px",
-  borderRadius: "9px",
-  fontWeight: 900,
+  padding: "12px 18px",
+  borderRadius: "10px",
   textDecoration: "none",
   display: "inline-flex",
   flexDirection: "column" as const,
   alignItems: "center",
   justifyContent: "center",
-  lineHeight: 1.18,
-  boxShadow: "0 10px 22px rgba(91,33,182,0.22)",
+  boxShadow: "0 12px 24px rgba(91,33,182,0.22)",
 };
 
 const primaryMain = {
   fontSize: "13px",
-  fontWeight: 900,
+  fontWeight: 950,
 };
 
 const primarySub = {
   fontSize: "10px",
-  fontWeight: 800,
-  opacity: 0.92,
-};
-
-const previewCard = {
-  background: "#ffffff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "18px",
-  padding: "22px",
-  boxShadow: "0 14px 32px rgba(91,33,182,0.1)",
-};
-
-const previewEyebrow = {
-  color: "#6d28d9",
-  fontSize: "12px",
-  fontWeight: 950,
-  margin: "0 0 14px",
-  textTransform: "uppercase" as const,
-  letterSpacing: "0.04em",
-};
-
-const timeRow = {
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  gap: "12px",
-  marginBottom: "12px",
-};
-
-const timeBox = {
-  background: "#f8f7ff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "14px",
-  padding: "16px",
-  display: "flex",
-  flexDirection: "column" as const,
-  gap: "6px",
-};
-
-const timeLabel = {
-  color: "#4b5563",
-  fontSize: "12px",
   fontWeight: 900,
 };
 
-const timeValue = {
-  color: "#111827",
-  fontSize: "26px",
-  fontWeight: 950,
+const heroVisual = {
+  position: "relative" as const,
+  borderRadius: "22px",
+  overflow: "hidden",
+  minHeight: "100%",
 };
 
-const timeNote = {
-  color: "#6b7280",
-  fontSize: "12px",
+const heroImage = {
+  width: "100%",
+  height: "100%",
+  objectFit: "cover" as const,
+  display: "block",
 };
 
-const bestWindow = {
-  background: "#ede9fe",
-  color: "#4c1d95",
-  border: "1px solid #c4b5fd",
-  borderRadius: "14px",
+const overlayCard = {
+  position: "absolute" as const,
+  bottom: "20px",
+  right: "20px",
+  background: "rgba(17,24,39,0.88)",
+  backdropFilter: "blur(10px)",
+  borderRadius: "16px",
   padding: "16px",
+  minWidth: "180px",
+  display: "grid",
+  gap: "10px",
+};
+
+const overlayRow = {
   display: "flex",
-  flexDirection: "column" as const,
-  gap: "6px",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: "10px",
+};
+
+const city = {
+  color: "#ffffff",
   fontSize: "13px",
+  fontWeight: 800,
+};
+
+const cityTime = {
+  color: "#facc15",
+  fontSize: "15px",
+  fontWeight: 950,
 };
 
 const summaryGrid = {
   display: "grid",
   gridTemplateColumns: "repeat(3, 1fr)",
-  gap: "14px",
-  padding: "0 10px 18px",
+  gap: "16px",
+  marginBottom: "22px",
 };
 
-const summaryCard = {
-  background: "linear-gradient(180deg, #ffffff 0%, #faf7ff 100%)",
-  border: "1px solid #ddd6fe",
+const summaryCardPurple = {
+  background: "linear-gradient(180deg, #5b21b6 0%, #4c1d95 100%)",
+  color: "#ffffff",
   borderRadius: "18px",
-  padding: "22px",
-  boxShadow: "0 14px 32px rgba(91,33,182,0.10)",
-  display: "grid",
-  gap: "12px",
-  alignContent: "start",
-  minHeight: "220px",
+  padding: "24px",
 };
 
-const summaryTitle = {
+const summaryCardBlue = {
+  background: "linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%)",
+  color: "#ffffff",
+  borderRadius: "18px",
+  padding: "24px",
+};
+
+const summaryCardGold = {
+  background: "linear-gradient(180deg, #facc15 0%, #eab308 100%)",
   color: "#111827",
-  fontSize: "20px",
-  fontWeight: 950,
-  lineHeight: "1.15",
-  margin: 0,
-};
-
-const summaryText = {
-  color: "#4b5563",
-  fontSize: "15px",
-  lineHeight: "1.7",
-  margin: 0,
+  borderRadius: "18px",
+  padding: "24px",
 };
 
 const summaryTag = {
-  display: "inline-flex",
-  alignItems: "center",
-  width: "fit-content",
+  display: "inline-block",
+  marginBottom: "14px",
   padding: "6px 10px",
   borderRadius: "999px",
-  background: "#ede9fe",
-  color: "#5b21b6",
+  background: "rgba(255,255,255,0.18)",
   fontSize: "11px",
   fontWeight: 900,
-  textTransform: "uppercase" as const,
   letterSpacing: "0.04em",
 };
 
-
-const contentGrid = {
-  display: "grid",
-  gridTemplateColumns: "1.35fr 0.65fr",
-  gap: "18px",
-  padding: "0 10px",
-};
-
-const mainArticle = {
-  display: "grid",
-  gap: "14px",
-};
-
-const contentBlock = {
-  background: "#ffffff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "16px",
-  padding: "22px",
-  boxShadow: "0 10px 25px rgba(91,33,182,0.08)",
-};
-
-const heading = {
-  color: "#111827",
+const summaryTitle = {
   fontSize: "24px",
+  lineHeight: "1.1",
   fontWeight: 950,
-  margin: "0 0 10px",
+  margin: "0 0 12px",
 };
 
-const text = {
-  color: "#4b5563",
+const summaryText = {
   fontSize: "15px",
-  lineHeight: "1.65",
-  margin: "8px 0",
-};
-
-const calloutBox = {
-  marginTop: "16px",
-  background: "#f5f3ff",
-  border: "1px solid #c4b5fd",
-  borderRadius: "14px",
-  padding: "16px",
-  display: "flex",
-  flexDirection: "column" as const,
-  gap: "7px",
-  color: "#374151",
-  fontSize: "14px",
-};
-
-const tableWrap = {
-  overflowX: "auto" as const,
-};
-
-const table = {
-  width: "100%",
-  borderCollapse: "collapse" as const,
-  background: "white",
-  borderRadius: "12px",
-  overflow: "hidden",
-};
-
-const th = {
-  textAlign: "left" as const,
-  background: "#ede9fe",
-  color: "#1e1b4b",
-  padding: "12px",
-  border: "1px solid #ddd6fe",
-};
-
-const td = {
-  color: "#374151",
-  padding: "12px",
-  border: "1px solid #ddd6fe",
-  verticalAlign: "top" as const,
-};
-
-const sidePanel = {
-  display: "grid",
-  gap: "14px",
-  alignSelf: "start",
-};
-
-const sideCard = {
-  background: "#faf9ff",
-  border: "1px solid #ddd6fe",
-  borderRadius: "16px",
-  padding: "20px",
-};
-
-const sideCardHighlight = {
-  background: "#5b21b6",
-  color: "#ffffff",
-  borderRadius: "16px",
-  padding: "20px",
-};
-
-const sideTitle = {
-  fontSize: "20px",
-  fontWeight: 950,
-  margin: "0 0 10px",
-};
-
-const sideText = {
-  color: "rgba(255,255,255,0.88)",
-  fontSize: "14px",
-  lineHeight: "1.55",
-  margin: "0 0 14px",
-};
-
-const checkList = {
-  color: "#374151",
-  fontSize: "14px",
   lineHeight: "1.7",
-  paddingLeft: "20px",
   margin: 0,
 };
 
-const sideButton = {
-  background: "#ffffff",
+const featureSection = {
+  background: "#faf9ff",
+  border: "1px solid #ddd6fe",
+  borderRadius: "22px",
+  padding: "34px",
+  marginBottom: "22px",
+};
+
+const featureContent = {};
+
+const featureEyebrow = {
+  display: "inline-block",
   color: "#5b21b6",
-  padding: "10px 14px",
-  borderRadius: "9px",
-  fontWeight: 900,
+  fontSize: "12px",
+  fontWeight: 950,
+  marginBottom: "12px",
+  letterSpacing: "0.04em",
+};
+
+const sectionHeading = {
+  color: "#111827",
+  fontSize: "42px",
+  lineHeight: "1.05",
+  fontWeight: 950,
+  margin: "0 0 18px",
+  letterSpacing: "-0.04em",
+};
+
+const sectionText = {
+  color: "#4b5563",
+  fontSize: "16px",
+  lineHeight: "1.75",
+  maxWidth: "850px",
+  marginBottom: "24px",
+};
+
+const highlightGrid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(2, 1fr)",
+  gap: "16px",
+};
+
+const highlightCard = {
+  background: "#ffffff",
+  border: "1px solid #ddd6fe",
+  borderRadius: "16px",
+  padding: "20px",
+};
+
+const highlightTitle = {
+  display: "block",
+  color: "#111827",
+  fontSize: "18px",
+  fontWeight: 950,
+  marginBottom: "8px",
+};
+
+const highlightText = {
+  color: "#4b5563",
+  fontSize: "14px",
+  lineHeight: "1.6",
+  margin: 0,
+};
+
+const workflowSection = {
+  marginBottom: "22px",
+};
+
+const workflowHeader = {
+  marginBottom: "18px",
+};
+
+const workflowGrid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  gap: "16px",
+};
+
+const workflowCard = {
+  background: "#ffffff",
+  border: "1px solid #ddd6fe",
+  borderRadius: "18px",
+  padding: "24px",
+  boxShadow: "0 14px 30px rgba(91,33,182,0.08)",
+};
+
+const workflowNumber = {
+  width: "42px",
+  height: "42px",
+  borderRadius: "999px",
+  background: "#ede9fe",
+  color: "#5b21b6",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontSize: "14px",
+  fontWeight: 950,
+  marginBottom: "18px",
+};
+
+const workflowTitle = {
+  color: "#111827",
+  fontSize: "22px",
+  fontWeight: 950,
+  margin: "0 0 10px",
+};
+
+const workflowText = {
+  color: "#4b5563",
+  fontSize: "15px",
+  lineHeight: "1.7",
+  margin: 0,
+};
+
+const tableSection = {
+  background: "linear-gradient(180deg, #1e1b4b 0%, #312e81 100%)",
+  borderRadius: "24px",
+  padding: "34px",
+  marginBottom: "24px",
+};
+
+const tableHeader = {
+  marginBottom: "24px",
+};
+
+const tableGrid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(2, 1fr)",
+  gap: "16px",
+};
+
+const tableCard = {
+  background: "rgba(255,255,255,0.08)",
+  border: "1px solid rgba(255,255,255,0.12)",
+  borderRadius: "18px",
+  padding: "22px",
+  backdropFilter: "blur(8px)",
+};
+
+const tableTitle = {
+  display: "block",
+  color: "#ffffff",
+  fontSize: "20px",
+  fontWeight: 950,
+  marginBottom: "10px",
+};
+
+const tableCopy = {
+  color: "rgba(255,255,255,0.84)",
+  fontSize: "15px",
+  lineHeight: "1.65",
+  margin: 0,
+};
+
+const bottomCTA = {
+  background: "linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%)",
+  borderRadius: "24px",
+  padding: "28px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: "24px",
+};
+
+const bottomEyebrow = {
+  color: "#facc15",
+  fontSize: "12px",
+  fontWeight: 950,
+  margin: "0 0 10px",
+  letterSpacing: "0.04em",
+};
+
+const bottomHeading = {
+  color: "#ffffff",
+  fontSize: "36px",
+  lineHeight: "1.08",
+  fontWeight: 950,
+  margin: "0 0 12px",
+};
+
+const bottomText = {
+  color: "rgba(255,255,255,0.88)",
+  fontSize: "15px",
+  lineHeight: "1.7",
+  maxWidth: "700px",
+  margin: 0,
+};
+
+const bottomButton = {
+  background: "#facc15",
+  color: "#111827",
+  padding: "14px 18px",
+  borderRadius: "12px",
   textDecoration: "none",
   display: "inline-flex",
   flexDirection: "column" as const,
   alignItems: "center",
   justifyContent: "center",
-  lineHeight: 1.18,
+  minWidth: "210px",
+  boxShadow: "0 14px 28px rgba(0,0,0,0.18)",
+};
+
+const bottomButtonMain = {
+  color: "#111827",
+  fontSize: "14px",
+  fontWeight: 950,
+};
+
+const bottomButtonSub = {
+  color: "#111827",
+  fontSize: "11px",
+  fontWeight: 900,
+  opacity: 1,
 };
