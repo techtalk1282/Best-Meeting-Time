@@ -1,15 +1,14 @@
 /**
  * File: app/best-meeting-times-remote-teams/page.tsx
- * Version: v4.1 (FINAL REMOTE TEAMS IMAGE ASSET REBUILD)
+ * Version: v4.2 (FINAL CLEAN CINEMATIC HERO REBUILD)
  * Date: 2026-05-12
  *
  * PURPOSE:
- * - Final premium rebuild using confirmed uploaded image assets
- * - Use /images/remote-teams/hero_global_team.png
- * - Use /images/remote-teams/global_map.png
- * - Fix dark section readability
- * - Remove amateur numbered workflow badges
- * - Improve visual hierarchy, CTA readability, and responsive behavior
+ * - Replace duplicated hero mockup image with clean cinematic remote-team visual
+ * - Preserve real HTML headline, CTA, SEO copy, and navigation
+ * - Remove fake headline/button duplication from hero image area
+ * - Keep the premium visual style while improving first viewport fit
+ * - Preserve all protected payment/planner logic boundaries
  *
  * PROTECTED:
  * - No Stripe changes
@@ -18,8 +17,11 @@
  * - No KV changes
  * - No ToolPreviewSection changes
  *
+ * REQUIRED IMAGE:
+ * - public/images/remote-teams/hero_remote_team_visual.png
+ *
  * ROLLBACK:
- * - Revert to v3.0 or v2.0 if this version does not test cleanly
+ * - Revert to v4.1 if this version does not test cleanly
  */
 
 import FooterSection from "../ui/FooterSection";
@@ -52,7 +54,7 @@ export default function BestMeetingTimesRemoteTeamsPage() {
 
         <section className="hero-section">
           <div className="hero-copy">
-            <p className="eyebrow">Remote Team Scheduling Guide</p>
+            <p className="eyebrow hero-eyebrow">Remote Team Scheduling Guide</p>
 
             <h1>Better Meeting Times for Global Remote Teams</h1>
 
@@ -87,10 +89,27 @@ export default function BestMeetingTimesRemoteTeamsPage() {
 
           <div className="hero-visual">
             <img
-              src="/images/remote-teams/hero_global_team.png"
+              src="/images/remote-teams/hero_remote_team_visual.png"
               alt="Global remote team collaborating across time zones"
               className="hero-image"
             />
+
+            <div className="hero-time-overlay" aria-label="Example local meeting times">
+              <div>
+                <span>New York</span>
+                <strong>9:00 AM</strong>
+              </div>
+
+              <div>
+                <span>London</span>
+                <strong>2:00 PM</strong>
+              </div>
+
+              <div>
+                <span>Tokyo</span>
+                <strong>10:00 PM</strong>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -156,45 +175,6 @@ export default function BestMeetingTimesRemoteTeamsPage() {
             <div>
               <strong>Respect global teams</strong>
               <span>Fair scheduling creates stronger collaboration habits.</span>
-            </div>
-          </div>
-        </section>
-
-        <section className="map-section">
-          <div className="map-copy">
-            <p className="eyebrow">Global Scheduling Examples</p>
-
-            <h2>Use timezone visibility before the meeting invite goes out.</h2>
-
-            <p>
-              Remote scheduling gets easier when the team can see local times,
-              working-hour overlap, and regional tradeoffs before the meeting is
-              confirmed.
-            </p>
-          </div>
-
-          <div className="map-visual">
-            <img
-              src="/images/remote-teams/global_map.png"
-              alt="Glowing global map showing connected international teams"
-              className="map-image"
-            />
-
-            <div className="time-card">
-              <div>
-                <span>New York</span>
-                <strong>9:00 AM</strong>
-              </div>
-
-              <div>
-                <span>London</span>
-                <strong>2:00 PM</strong>
-              </div>
-
-              <div>
-                <span>Tokyo</span>
-                <strong>10:00 PM</strong>
-              </div>
             </div>
           </div>
         </section>
@@ -300,7 +280,7 @@ export default function BestMeetingTimesRemoteTeamsPage() {
           justify-content: space-between;
           gap: 18px;
           border-bottom: 1px solid #ede9fe;
-          margin-bottom: 24px;
+          margin-bottom: 20px;
         }
 
         .brand-link {
@@ -373,14 +353,14 @@ export default function BestMeetingTimesRemoteTeamsPage() {
           grid-template-columns: 0.82fr 1.18fr;
           gap: 22px;
           align-items: stretch;
-          margin-bottom: 24px;
+          margin-bottom: 20px;
         }
 
         .hero-copy {
           background: linear-gradient(180deg, #180041 0%, #2e1065 100%);
           color: #ffffff;
           border-radius: 28px;
-          padding: 34px;
+          padding: 30px;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -400,40 +380,40 @@ export default function BestMeetingTimesRemoteTeamsPage() {
           letter-spacing: 0.04em;
         }
 
-        .hero-copy .eyebrow {
+        .hero-eyebrow {
           background: rgba(250,204,21,0.14);
           color: #facc15;
           border: 1px solid rgba(250,204,21,0.42);
         }
 
         .hero-copy h1 {
-          margin: 0 0 18px;
+          margin: 0 0 16px;
           color: #ffffff;
-          font-size: clamp(42px, 5vw, 62px);
-          line-height: 0.98;
+          font-size: clamp(40px, 5vw, 58px);
+          line-height: 0.99;
           font-weight: 950;
           letter-spacing: -0.055em;
         }
 
         .hero-text {
           color: rgba(255,255,255,0.88);
-          font-size: 17px;
-          line-height: 1.7;
-          margin: 0 0 22px;
+          font-size: 16px;
+          line-height: 1.65;
+          margin: 0 0 18px;
         }
 
         .hero-points {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 12px;
-          margin-bottom: 24px;
+          gap: 10px;
+          margin-bottom: 18px;
         }
 
         .hero-points div {
           background: rgba(255,255,255,0.09);
           border: 1px solid rgba(255,255,255,0.14);
           border-radius: 16px;
-          padding: 14px;
+          padding: 13px;
         }
 
         .hero-points strong {
@@ -447,14 +427,14 @@ export default function BestMeetingTimesRemoteTeamsPage() {
         .hero-points span {
           color: rgba(255,255,255,0.82);
           font-size: 13px;
-          line-height: 1.5;
+          line-height: 1.45;
         }
 
         .primary-cta {
           width: fit-content;
           background: #facc15;
           color: #111827;
-          padding: 14px 20px;
+          padding: 13px 18px;
           border-radius: 14px;
           text-decoration: none;
           display: inline-flex;
@@ -477,32 +457,66 @@ export default function BestMeetingTimesRemoteTeamsPage() {
         }
 
         .hero-visual {
-  border-radius: 28px;
-  overflow: hidden;
-  background: #050816;
-  height: 520px;
-  box-shadow: 0 20px 50px rgba(30,27,75,0.22);
-}
+          position: relative;
+          border-radius: 28px;
+          overflow: hidden;
+          background: #050816;
+          height: 520px;
+          box-shadow: 0 20px 50px rgba(30,27,75,0.22);
+        }
+
         .hero-image {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: center center;
-  background: #050816;
-}
+          width: 100%;
+          height: 100%;
+          display: block;
+          object-fit: cover;
+          object-position: center center;
+          background: #050816;
+        }
+
+        .hero-time-overlay {
+          position: absolute;
+          left: 18px;
+          right: 18px;
+          bottom: 18px;
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 10px;
+        }
+
+        .hero-time-overlay div {
+          background: rgba(17,24,39,0.80);
+          border: 1px solid rgba(255,255,255,0.14);
+          border-radius: 14px;
+          padding: 12px;
+          backdrop-filter: blur(10px);
+        }
+
+        .hero-time-overlay span {
+          display: block;
+          color: rgba(255,255,255,0.78);
+          font-size: 12px;
+          font-weight: 800;
+          margin-bottom: 5px;
+        }
+
+        .hero-time-overlay strong {
+          color: #ffffff;
+          font-size: 20px;
+          font-weight: 950;
+        }
 
         .strategy-grid {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 16px;
-          margin-bottom: 24px;
+          margin-bottom: 20px;
         }
 
         .strategy-card {
           border-radius: 22px;
-          padding: 24px;
-          min-height: 210px;
+          padding: 22px;
+          min-height: 190px;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
@@ -510,7 +524,7 @@ export default function BestMeetingTimesRemoteTeamsPage() {
 
         .strategy-card p {
           width: fit-content;
-          margin: 0 0 14px;
+          margin: 0 0 12px;
           padding: 6px 10px;
           border-radius: 999px;
           background: rgba(255,255,255,0.16);
@@ -521,15 +535,15 @@ export default function BestMeetingTimesRemoteTeamsPage() {
         }
 
         .strategy-card h2 {
-          margin: 0 0 12px;
-          font-size: 28px;
+          margin: 0 0 10px;
+          font-size: 26px;
           line-height: 1.05;
           font-weight: 950;
         }
 
         .strategy-card span {
           font-size: 15px;
-          line-height: 1.65;
+          line-height: 1.6;
         }
 
         .purple {
@@ -555,43 +569,41 @@ export default function BestMeetingTimesRemoteTeamsPage() {
           background: #faf9ff;
           border: 1px solid #ddd6fe;
           border-radius: 28px;
-          padding: 34px;
-          margin-bottom: 24px;
+          padding: 30px;
+          margin-bottom: 20px;
         }
 
         .fair-copy h2,
-        .map-copy h2,
         .workflow-section h2,
         .examples-section h2 {
-          margin: 0 0 16px;
+          margin: 0 0 14px;
           color: #111827;
-          font-size: clamp(34px, 4vw, 48px);
+          font-size: clamp(34px, 4vw, 46px);
           line-height: 1.08;
           font-weight: 950;
           letter-spacing: -0.04em;
           max-width: 980px;
         }
 
-        .fair-copy p:last-child,
-        .map-copy p {
+        .fair-copy p:last-child {
           color: #4b5563;
           font-size: 16px;
-          line-height: 1.75;
+          line-height: 1.7;
           max-width: 900px;
-          margin: 0 0 24px;
+          margin: 0 0 22px;
         }
 
         .fair-grid {
           display: grid;
           grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 16px;
+          gap: 14px;
         }
 
         .fair-grid div {
           background: #ffffff;
           border: 1px solid #ddd6fe;
           border-radius: 18px;
-          padding: 20px;
+          padding: 18px;
           box-shadow: 0 12px 28px rgba(91,33,182,0.06);
         }
 
@@ -609,104 +621,38 @@ export default function BestMeetingTimesRemoteTeamsPage() {
           line-height: 1.6;
         }
 
-        .map-section {
-          display: grid;
-          grid-template-columns: 0.82fr 1.18fr;
-          gap: 22px;
-          align-items: stretch;
-          margin-bottom: 24px;
-        }
-
-        .map-copy {
-          background: #ffffff;
-          border: 1px solid #ddd6fe;
-          border-radius: 28px;
-          padding: 30px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          box-shadow: 0 12px 28px rgba(91,33,182,0.06);
-        }
-
-        .map-visual {
-          position: relative;
-          border-radius: 28px;
-          overflow: hidden;
-          min-height: 420px;
-          background: #111827;
-        }
-
-        .map-image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
-
-        .time-card {
-          position: absolute;
-          left: 22px;
-          right: 22px;
-          bottom: 22px;
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 12px;
-        }
-
-        .time-card div {
-          background: rgba(17,24,39,0.84);
-          border: 1px solid rgba(255,255,255,0.14);
-          border-radius: 16px;
-          padding: 14px;
-          backdrop-filter: blur(8px);
-        }
-
-        .time-card span {
-          display: block;
-          color: rgba(255,255,255,0.80);
-          font-size: 12px;
-          font-weight: 800;
-          margin-bottom: 6px;
-        }
-
-        .time-card strong {
-          color: #ffffff;
-          font-size: 22px;
-          font-weight: 950;
-        }
-
         .workflow-section {
-          margin-bottom: 24px;
+          margin-bottom: 20px;
         }
 
         .workflow-grid {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 18px;
+          gap: 16px;
         }
 
         .workflow-grid article {
           background: linear-gradient(180deg, #ffffff 0%, #faf7ff 100%);
           border: 1px solid #ddd6fe;
           border-radius: 22px;
-          padding: 26px;
+          padding: 24px;
           box-shadow: 0 14px 30px rgba(91,33,182,0.08);
-          min-height: 220px;
+          min-height: 190px;
         }
 
         .workflow-grid strong {
           display: block;
           color: #111827;
-          font-size: 28px;
+          font-size: 26px;
           line-height: 1.08;
           font-weight: 950;
-          margin-bottom: 14px;
+          margin-bottom: 12px;
         }
 
         .workflow-grid p {
           color: #4b5563;
-          font-size: 16px;
-          line-height: 1.75;
+          font-size: 15px;
+          line-height: 1.7;
           margin: 0;
         }
 
@@ -714,8 +660,8 @@ export default function BestMeetingTimesRemoteTeamsPage() {
           background: #f5f3ff;
           border: 1px solid #ddd6fe;
           border-radius: 28px;
-          padding: 34px;
-          margin-bottom: 24px;
+          padding: 30px;
+          margin-bottom: 20px;
         }
 
         .examples-grid {
@@ -728,7 +674,7 @@ export default function BestMeetingTimesRemoteTeamsPage() {
           background: #ffffff;
           border: 1px solid #ddd6fe;
           border-radius: 18px;
-          padding: 20px;
+          padding: 18px;
           box-shadow: 0 10px 24px rgba(91,33,182,0.06);
         }
 
@@ -749,7 +695,7 @@ export default function BestMeetingTimesRemoteTeamsPage() {
         .bottom-cta {
           background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%);
           border-radius: 28px;
-          padding: 30px;
+          padding: 28px;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -767,7 +713,7 @@ export default function BestMeetingTimesRemoteTeamsPage() {
 
         .bottom-cta h2 {
           color: #ffffff;
-          font-size: clamp(32px, 4vw, 46px);
+          font-size: clamp(32px, 4vw, 44px);
           line-height: 1.06;
           font-weight: 950;
           letter-spacing: -0.04em;
@@ -809,7 +755,6 @@ export default function BestMeetingTimesRemoteTeamsPage() {
 
         @media (max-width: 1100px) {
           .hero-section,
-          .map-section,
           .strategy-grid,
           .workflow-grid,
           .examples-grid {
@@ -817,7 +762,7 @@ export default function BestMeetingTimesRemoteTeamsPage() {
           }
 
           .hero-visual {
-            min-height: 480px;
+            height: 520px;
           }
 
           .examples-grid,
@@ -869,7 +814,6 @@ export default function BestMeetingTimesRemoteTeamsPage() {
 
           .hero-copy,
           .fair-section,
-          .map-copy,
           .examples-section,
           .bottom-cta {
             padding: 24px;
@@ -879,7 +823,7 @@ export default function BestMeetingTimesRemoteTeamsPage() {
             font-size: 42px;
           }
 
-          .time-card {
+          .hero-time-overlay {
             grid-template-columns: 1fr;
           }
         }
@@ -900,7 +844,6 @@ export default function BestMeetingTimesRemoteTeamsPage() {
 
           .hero-copy h1,
           .fair-copy h2,
-          .map-copy h2,
           .workflow-section h2,
           .examples-section h2,
           .bottom-cta h2 {
@@ -909,14 +852,12 @@ export default function BestMeetingTimesRemoteTeamsPage() {
 
           .hero-text,
           .fair-copy p:last-child,
-          .map-copy p,
           .workflow-grid p {
             font-size: 15px;
           }
 
-          .hero-visual,
-          .map-visual {
-            min-height: 320px;
+          .hero-visual {
+            height: 340px;
           }
 
           .fair-grid,
