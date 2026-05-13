@@ -34,10 +34,10 @@ export default function EntertainmentSocialTimingPage() {
             <Link href="/contact">Contact</Link>
           </nav>
 
-          <Link href="/" className="cta-button">
-            Schedule a Meeting
-            <span>Free to try — no sign-up</span>
-          </Link>
+         <Link href="/how-it-works#schedule-tool" className="cta-button">
+  Schedule a Meeting
+  <span>Free to try — no sign-up</span>
+</Link>
         </header>
 
         {/* HERO */}
@@ -109,13 +109,9 @@ export default function EntertainmentSocialTimingPage() {
         {/* QUESTION 1 */}
         <section className="question-section">
           <div className="question-copy">
-            <div className="question-pill">
-              QUESTION 1
-            </div>
-
-            <h2>
-              When is the best time for global gaming events?
-            </h2>
+           <h2>
+  When is the best time for global gaming events?
+</h2>
 
             <p>
               Online gaming communities often include players from
@@ -161,13 +157,9 @@ export default function EntertainmentSocialTimingPage() {
           </div>
 
           <div className="question-copy">
-            <div className="question-pill">
-              QUESTION 2
-            </div>
-
             <h2>
-              Why does timing matter for streaming and live sports?
-            </h2>
+  Why does timing matter for streaming and live sports?
+</h2>
 
             <p>
               Streaming platforms release shows globally, but
@@ -271,17 +263,16 @@ export default function EntertainmentSocialTimingPage() {
           grid-template-columns: 1fr 1fr;
         }
 
-        .guide-pill,
-        .question-pill {
-          display: inline-block;
-          background: #efe7ff;
-          color: #6d28d9;
-          padding: 10px 18px;
-          border-radius: 999px;
-          font-size: 0.85rem;
-          font-weight: 800;
-          margin-bottom: 20px;
-        }
+       .guide-pill {
+  display: inline-block;
+  background: #efe7ff;
+  color: #6d28d9;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
 
         .hero-copy h1,
         .question-copy h2 {
