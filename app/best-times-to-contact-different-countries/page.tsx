@@ -322,10 +322,10 @@ export default function BestTimesToContactDifferentCountriesPage() {
 
       <style>{`
         .country-page {
-          width: 100%;
-          max-width: 1240px;
-          margin: 18px auto 0;
-          padding: 20px 20px 48px;
+  width: 100%;
+  max-width: 1240px;
+  margin: 10px auto 0;
+  padding: 14px 18px 42px;
           background: #ffffff;
           color: #111827;
           border: 1px solid rgba(237,233,254,0.9);
@@ -334,14 +334,14 @@ export default function BestTimesToContactDifferentCountriesPage() {
           overflow: hidden;
         }
 
-        .site-header {
-          min-height: 66px;
+       .site-header {
+  min-height: 56px;
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 18px;
           border-bottom: 1px solid #ede9fe;
-          margin-bottom: 20px;
+         margin-bottom: 20px;
         }
 
         .brand-link {
@@ -352,7 +352,7 @@ export default function BestTimesToContactDifferentCountriesPage() {
         }
 
         .brand-logo {
-          width: 170px;
+  width: 150px;
           height: auto;
           display: block;
         }
@@ -399,19 +399,19 @@ export default function BestTimesToContactDifferentCountriesPage() {
           opacity: 0.92;
         }
 
-        .hero-section {
-          display: grid;
-          grid-template-columns: 0.82fr 1.18fr;
-          gap: 22px;
-          align-items: stretch;
-          margin-bottom: 20px;
-        }
+       .hero-section {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: 18px;
+  align-items: stretch;
+  margin-bottom: 16px;
+}
 
-        .hero-copy {
-          background: linear-gradient(180deg, #180041 0%, #2e1065 100%);
-          color: #ffffff;
-          border-radius: 28px;
-          padding: 30px;
+       .hero-copy {
+  background: linear-gradient(180deg, #180041 0%, #2e1065 100%);
+  color: #ffffff;
+  border-radius: 28px;
+  padding: 22px;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -437,22 +437,21 @@ export default function BestTimesToContactDifferentCountriesPage() {
           border: 1px solid rgba(250,204,21,0.42);
         }
 
-        .hero-copy h1 {
-          margin: 0 0 16px;
-          color: #ffffff;
-          font-size: clamp(40px, 5vw, 58px);
+       .hero-copy h1 {
+  margin: 0 0 12px;
+  color: #ffffff;
+  font-size: clamp(34px, 4.4vw, 52px);
           line-height: 0.99;
           font-weight: 950;
           letter-spacing: -0.055em;
         }
 
-        .hero-text {
-          color: rgba(255,255,255,0.88);
-          font-size: 16px;
-          line-height: 1.65;
-          margin: 0 0 18px;
-        }
-
+       .hero-text {
+  color: rgba(255,255,255,0.88);
+  font-size: 15px;
+  line-height: 1.55;
+  margin: 0 0 12px;
+}
         .hero-points {
           display: grid;
           grid-template-columns: 1fr;
@@ -485,9 +484,9 @@ export default function BestTimesToContactDifferentCountriesPage() {
           gap: 14px;
         }
 
-        .globe-card {
-          position: relative;
-          min-height: 430px;
+       .globe-card {
+  position: relative;
+  min-height: 360px;
           border-radius: 28px;
           overflow: hidden;
           background:
@@ -498,19 +497,19 @@ export default function BestTimesToContactDifferentCountriesPage() {
         }
 
         .globe {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          width: 220px;
-          height: 220px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 190px;
+  height: 190px;
           border-radius: 999px;
           background: rgba(255,255,255,0.14);
           border: 1px solid rgba(255,255,255,0.24);
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 118px;
+         font-size: 98px;
           box-shadow: 0 24px 70px rgba(17,24,39,0.24);
         }
 
