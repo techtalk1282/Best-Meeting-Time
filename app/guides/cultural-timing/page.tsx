@@ -697,8 +697,17 @@ export default function CulturalTimingGuidePage() {
           box-shadow: 0 12px 24px rgba(250,204,21,0.24);
         }
 
-        .planner-cta a span { font-size: 14px; }
-        .planner-cta a small { font-size: 11px; font-weight: 800; }
+       .planner-cta a span {
+  font-size: 14px;
+  color: #111827;
+}
+
+.planner-cta a small {
+  font-size: 11px;
+  font-weight: 800;
+  color: #111827;
+  opacity: 1;
+}
 
         @media (max-width: 900px) {
           .site-header {
