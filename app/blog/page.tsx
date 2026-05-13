@@ -96,15 +96,35 @@ export default function BlogPage() {
           </a>
 
           <a href="/time-zone-meeting-planner-guide" className="article-card">
-            <span>Planner Guide</span>
-            <h2>What a Time Zone Meeting Planner Actually Helps You Do</h2>
-            <p>
-              See how comparing cities, local times, duration, and recommended
-              windows can make scheduling faster.
-            </p>
-            <strong>Read the planner guide →</strong>
-          </a>
-        </section>
+  <span>Planner Guide</span>
+
+  <h2>What a Time Zone Meeting Planner Actually Helps You Do</h2>
+
+  <p>
+    See how comparing cities, local times, duration, and recommended
+    windows can make scheduling faster.
+  </p>
+
+  <strong>Read the planner guide →</strong>
+</a>
+
+<a
+  href="/best-meeting-times-us-and-europe"
+  className="article-card"
+>
+  <span>US and Europe Meetings</span>
+
+  <h2>Best Meeting Times Between the US and Europe</h2>
+
+  <p>
+    Learn which overlap windows work best between American and European
+    teams, clients, and international business schedules.
+  </p>
+
+  <strong>Read the US and Europe guide →</strong>
+</a>
+
+</section>
 
         <section className="bottom-band">
           <div>
@@ -238,11 +258,16 @@ export default function BlogPage() {
         }
 
         .article-grid {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 14px;
-          padding: 16px 10px 14px;
-        }
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  padding: 22px 10px 18px;
+  align-items: stretch;
+}
+
+.article-grid .article-card:last-child {
+  grid-column: span 2;
+}
 
         .article-card {
           min-height: 205px;
