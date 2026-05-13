@@ -477,19 +477,18 @@ export default function BestMeetingTimesRemoteTeamsPage() {
         }
 
         .hero-visual {
-          border-radius: 28px;
-          overflow: hidden;
-          background: #111827;
-          min-height: 560px;
-          box-shadow: 0 20px 50px rgba(30,27,75,0.22);
-        }
-
+  border-radius: 28px;
+  overflow: hidden;
+  background: #050816;
+  height: 520px;
+  box-shadow: 0 20px 50px rgba(30,27,75,0.22);
+}
         .hero-image {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: contain;
-  object-position: center top;
+  object-fit: cover;
+  object-position: center center;
   background: #050816;
 }
 
