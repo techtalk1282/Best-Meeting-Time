@@ -485,11 +485,13 @@ export default function BestMeetingTimesRemoteTeamsPage() {
         }
 
         .hero-image {
-          width: 100%;
-          height: 100%;
-          display: block;
-          object-fit: cover;
-        }
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center top;
+  background: #050816;
+}
 
         .strategy-grid {
           display: grid;
