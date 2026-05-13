@@ -87,7 +87,7 @@ export default function CulturalTimingGuidePage() {
         <section className="answer-section">
           <p className="section-pill">What this guide answers</p>
 
-          <h2>Good global scheduling respects people, not just clocks.</h2>
+         <h2>Better global scheduling starts with understanding people.</h2>
 
          <div className="answer-grid">
   <a href="#contact-japan" className="answer-card">
