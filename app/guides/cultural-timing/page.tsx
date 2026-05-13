@@ -118,8 +118,6 @@ export default function CulturalTimingGuidePage() {
 
         <section id="contact-japan" className="feature-section">
           <div className="feature-copy">
-            <p className="section-pill">Question 1</p>
-
             <h2>What is the best time to contact Japan?</h2>
 
             <p>
@@ -198,8 +196,6 @@ export default function CulturalTimingGuidePage() {
           </div>
 
           <div className="feature-copy">
-            <p className="section-pill">Question 2</p>
-
             <h2>How do work hours differ around the world?</h2>
 
             <p>
@@ -225,8 +221,6 @@ export default function CulturalTimingGuidePage() {
 
         <section id="weekends" className="feature-section">
           <div className="feature-copy">
-            <p className="section-pill">Question 3</p>
-
             <h2>Why do weekend differences matter globally?</h2>
 
             <p>
