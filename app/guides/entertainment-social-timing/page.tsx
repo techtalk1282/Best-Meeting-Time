@@ -180,6 +180,21 @@ export default function EntertainmentSocialTimingPage() {
               confusion.
             </p>
           </div>
+         </section>
+
+        <section className="planner-cta">
+          <div>
+            <h2>Ready to find the best time to watch, play, or connect?</h2>
+            <p>
+              Use Best Meeting Time to compare cities, review local times, and
+              choose a better time for global games, streams, sports, and social plans.
+            </p>
+          </div>
+
+          <Link href="/how-it-works#schedule-tool" className="planner-cta-button">
+            <span>Open the Meeting Planner</span>
+            <small>Free to try — no sign-up</small>
+          </Link>
         </section>
       </div>
 
@@ -342,11 +357,65 @@ export default function EntertainmentSocialTimingPage() {
           margin-bottom: 72px;
         }
 
-        .intro-section h2 {
+       .intro-section h2 {
           font-size: 3rem;
           line-height: 1.1;
           margin-bottom: 20px;
           color: #0f172a;
+        }
+
+        .planner-cta {
+          background: linear-gradient(135deg, #312e81 0%, #6d28d9 100%);
+          border-radius: 22px;
+          padding: 32px;
+          display: grid;
+          grid-template-columns: 1fr auto;
+          gap: 28px;
+          align-items: center;
+          color: #ffffff;
+          box-shadow: 0 20px 48px rgba(49,46,129,0.22);
+        }
+
+        .planner-cta h2 {
+          color: #ffffff;
+          font-size: clamp(2rem, 3vw, 3rem);
+          line-height: 1.08;
+          margin: 0 0 10px;
+          font-weight: 900;
+        }
+
+        .planner-cta p {
+          color: #ede9fe;
+          font-size: 1.05rem;
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        .planner-cta-button {
+          background: #facc15;
+          color: #111827;
+          padding: 16px 20px;
+          border-radius: 14px;
+          text-decoration: none;
+          font-weight: 900;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          line-height: 1.15;
+          min-width: 230px;
+          box-shadow: 0 12px 24px rgba(250,204,21,0.24);
+        }
+
+        .planner-cta-button span,
+        .planner-cta-button small {
+          color: #111827;
+        }
+
+        .planner-cta-button small {
+          font-size: 0.78rem;
+          font-weight: 800;
         }
 
         @media (max-width: 980px) {
@@ -365,9 +434,20 @@ export default function EntertainmentSocialTimingPage() {
             grid-template-columns: 1fr;
           }
 
-          .top-nav {
+           .top-nav {
             flex-direction: column;
             align-items: flex-start;
+          }
+
+          .planner-cta {
+            grid-template-columns: 1fr;
+            text-align: center;
+          }
+
+          .planner-cta-button {
+            width: 100%;
+            min-width: 0;
+            box-sizing: border-box;
           }
 
           .nav-links {
