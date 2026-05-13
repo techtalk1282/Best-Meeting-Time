@@ -1,13 +1,16 @@
 /**
  * File: app/why-remote-teams-struggle-with-scheduling/page.tsx
- * Version: v1.0 (REMOTE TEAM SCHEDULING STRUGGLES AUTHORITY PAGE)
+ * Version: v1.1 (PREMIUM HERO IMAGE INTEGRATION)
  * Date: 2026-05-13
  *
  * PURPOSE:
- * - Create a practical authority article explaining why remote teams struggle with scheduling
- * - Strengthen the remote-work and international meeting content cluster
- * - Add a sixth Blog article so the Blog grid can become balanced again
- * - Improve AdSense readiness through useful evergreen scheduling content
+ * - Replace the right-side hero dashboard HTML with premium uploaded image
+ * - Preserve current article structure and SEO content
+ * - Improve premium visual feel and reduce repetitive dark dashboard styling
+ * - Keep responsive layout and current spacing behavior
+ *
+ * IMAGE REQUIRED:
+ * /public/images/blog/blog-premium-hero-light-purple.png
  *
  * PROTECTED:
  * - No Stripe changes
@@ -18,7 +21,7 @@
  * - No premium/payment logic changes
  *
  * ROLLBACK:
- * - Remove this route folder if the page does not test cleanly
+ * - Revert to v1.0 if image integration does not test cleanly
  */
 
 import type { Metadata } from "next";
@@ -43,7 +46,10 @@ export default function WhyRemoteTeamsStruggleWithSchedulingPage() {
             />
           </a>
 
-          <nav className="site-nav" aria-label="Remote scheduling struggles navigation">
+          <nav
+            className="site-nav"
+            aria-label="Remote scheduling struggles navigation"
+          >
             <a href="/">Home</a>
             <a href="/how-it-works#schedule-tool">Schedule a Meeting</a>
             <a href="/features">Features</a>
@@ -61,7 +67,9 @@ export default function WhyRemoteTeamsStruggleWithSchedulingPage() {
 
         <section className="hero-section">
           <div className="hero-copy">
-            <p className="eyebrow hero-eyebrow">Remote Work Scheduling</p>
+            <p className="eyebrow hero-eyebrow">
+              Remote Work Scheduling
+            </p>
 
             <h1>Why Remote Teams Struggle With Scheduling</h1>
 
@@ -75,62 +83,49 @@ export default function WhyRemoteTeamsStruggleWithSchedulingPage() {
             <div className="hero-points">
               <div>
                 <strong>Different Work Hours</strong>
-                <span>Remote teams may share a company, but not the same day.</span>
+
+                <span>
+                  Remote teams may share a company, but not the same day.
+                </span>
               </div>
 
               <div>
                 <strong>Time Zone Fatigue</strong>
-                <span>Repeated early or late meetings reduce participation.</span>
+
+                <span>
+                  Repeated early or late meetings reduce participation.
+                </span>
               </div>
 
               <div>
                 <strong>Poor Overlap Planning</strong>
-                <span>Guessing creates unfair meeting patterns over time.</span>
+
+                <span>
+                  Guessing creates unfair meeting patterns over time.
+                </span>
               </div>
             </div>
           </div>
 
           <div className="hero-visual">
-            <div className="time-panel">
-              <div>
-                <span>New York</span>
-                <strong>9:00 AM</strong>
-              </div>
-
-              <div>
-                <span>London</span>
-                <strong>2:00 PM</strong>
-              </div>
-
-              <div>
-                <span>Dubai</span>
-                <strong>5:00 PM</strong>
-              </div>
-
-              <div>
-                <span>Tokyo</span>
-                <strong>10:00 PM</strong>
-              </div>
-            </div>
-
-            <div className="visual-copy">
-              <strong>Same meeting. Very different experience.</strong>
-              <span>
-                A reasonable time for one team can be late, early, or disruptive
-                for another.
-              </span>
-            </div>
+            <img
+              src="/images/blog/blog-premium-hero-light-purple.png"
+              alt="Remote team scheduling dashboard showing time zone planning"
+            />
           </div>
         </section>
 
         <section className="section-block">
           <p className="eyebrow">Core Problem</p>
 
-          <h2>Remote teams are distributed, but meetings often are not.</h2>
+          <h2>
+            Remote teams are distributed, but meetings often are not.
+          </h2>
 
           <div className="content-grid">
             <article>
               <strong>One office still dominates</strong>
+
               <p>
                 Many teams accidentally schedule around headquarters instead of
                 the full distributed team.
@@ -139,6 +134,7 @@ export default function WhyRemoteTeamsStruggleWithSchedulingPage() {
 
             <article>
               <strong>Overlap windows are narrow</strong>
+
               <p>
                 A global team may only have a few practical hours where everyone
                 is reasonably available.
@@ -146,7 +142,10 @@ export default function WhyRemoteTeamsStruggleWithSchedulingPage() {
             </article>
 
             <article>
-              <strong>Daylight saving shifts create confusion</strong>
+              <strong>
+                Daylight saving shifts create confusion
+              </strong>
+
               <p>
                 Time differences can change temporarily when regions change
                 clocks on different dates.
@@ -155,6 +154,7 @@ export default function WhyRemoteTeamsStruggleWithSchedulingPage() {
 
             <article>
               <strong>Meeting burden is not shared</strong>
+
               <p>
                 The same people often absorb early morning or late evening calls
                 again and again.
@@ -165,9 +165,13 @@ export default function WhyRemoteTeamsStruggleWithSchedulingPage() {
 
         <section className="split-section">
           <div className="split-copy">
-            <p className="eyebrow hero-eyebrow">Better Team Habits</p>
+            <p className="eyebrow hero-eyebrow">
+              Better Team Habits
+            </p>
 
-            <h2>Fair scheduling is a remote-work operating habit.</h2>
+            <h2>
+              Fair scheduling is a remote-work operating habit.
+            </h2>
 
             <p>
               The goal is not to find a perfect meeting time every time. The
@@ -184,22 +188,34 @@ export default function WhyRemoteTeamsStruggleWithSchedulingPage() {
           <div className="habit-grid">
             <div>
               <strong>Compare cities first</strong>
-              <span>Use local city times instead of guessing by abbreviation.</span>
+
+              <span>
+                Use local city times instead of guessing by abbreviation.
+              </span>
             </div>
 
             <div>
               <strong>Rotate difficult calls</strong>
-              <span>Share inconvenient timing across regions when needed.</span>
+
+              <span>
+                Share inconvenient timing across regions when needed.
+              </span>
             </div>
 
             <div>
               <strong>Protect deep work</strong>
-              <span>Avoid unnecessary meetings during early or late hours.</span>
+
+              <span>
+                Avoid unnecessary meetings during early or late hours.
+              </span>
             </div>
 
             <div>
               <strong>Use async updates</strong>
-              <span>Not every status update needs a live meeting.</span>
+
+              <span>
+                Not every status update needs a live meeting.
+              </span>
             </div>
           </div>
         </section>
@@ -212,6 +228,7 @@ export default function WhyRemoteTeamsStruggleWithSchedulingPage() {
           <div className="content-grid">
             <article>
               <strong>Use city-based planning</strong>
+
               <p>
                 Cities are clearer than time zone abbreviations and reduce
                 mistakes during daylight saving changes.
@@ -219,7 +236,10 @@ export default function WhyRemoteTeamsStruggleWithSchedulingPage() {
             </article>
 
             <article>
-              <strong>Choose overlap, not convenience</strong>
+              <strong>
+                Choose overlap, not convenience
+              </strong>
+
               <p>
                 A good meeting window should be reasonable for both sides, not
                 just easy for one organizer.
@@ -228,6 +248,7 @@ export default function WhyRemoteTeamsStruggleWithSchedulingPage() {
 
             <article>
               <strong>Document meeting decisions</strong>
+
               <p>
                 Clear notes help teammates who could not attend because of time
                 zone limits.
@@ -236,6 +257,7 @@ export default function WhyRemoteTeamsStruggleWithSchedulingPage() {
 
             <article>
               <strong>Review patterns monthly</strong>
+
               <p>
                 If one region always gets bad meeting times, adjust the team
                 rhythm before frustration builds.
@@ -252,17 +274,26 @@ export default function WhyRemoteTeamsStruggleWithSchedulingPage() {
           <div className="related-grid">
             <a href="/best-meeting-times-remote-teams">
               <strong>Remote Team Scheduling</strong>
-              <span>Learn how to find fair overlap windows for global teams.</span>
+
+              <span>
+                Learn how to find fair overlap windows for global teams.
+              </span>
             </a>
 
             <a href="/best-meeting-times-us-and-europe">
               <strong>US and Europe Meeting Times</strong>
-              <span>See practical overlap windows for transatlantic teams.</span>
+
+              <span>
+                See practical overlap windows for transatlantic teams.
+              </span>
             </a>
 
             <a href="/best-times-to-contact-different-countries">
               <strong>Best Times to Contact Countries</strong>
-              <span>Understand local timing etiquette across regions.</span>
+
+              <span>
+                Understand local timing etiquette across regions.
+              </span>
             </a>
           </div>
         </section>
@@ -271,7 +302,9 @@ export default function WhyRemoteTeamsStruggleWithSchedulingPage() {
           <div>
             <p>Plan Better Meetings</p>
 
-            <h2>Compare time zones before your next remote team meeting.</h2>
+            <h2>
+              Compare time zones before your next remote team meeting.
+            </h2>
 
             <span>
               Use Best Meeting Time to review local times, overlap windows, and
@@ -281,6 +314,7 @@ export default function WhyRemoteTeamsStruggleWithSchedulingPage() {
 
           <a href="/how-it-works#schedule-tool">
             <strong>Schedule a Meeting</strong>
+
             <small>Free to try — no sign-up</small>
           </a>
         </section>
@@ -444,64 +478,18 @@ export default function WhyRemoteTeamsStruggleWithSchedulingPage() {
 
         .hero-visual {
           border-radius: 28px;
-          padding: 24px;
-          background:
-            radial-gradient(circle at 50% 42%, rgba(250,204,21,0.25), transparent 30%),
-            linear-gradient(135deg, #4c1d95 0%, #2563eb 48%, #7c3aed 100%);
-          color: #ffffff;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
+          overflow: hidden;
           min-height: 380px;
           box-shadow: 0 20px 50px rgba(30,27,75,0.22);
         }
 
-        .time-panel {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 14px;
-        }
-
-        .time-panel div {
-          background: rgba(255,255,255,0.94);
-          color: #111827;
-          border-radius: 18px;
-          padding: 16px;
-          box-shadow: 0 16px 34px rgba(30,27,75,0.18);
-        }
-
-        .time-panel span {
+        .hero-visual img {
+          width: 100%;
+          height: 100%;
+          min-height: 380px;
+          object-fit: cover;
+          object-position: center;
           display: block;
-          color: #5b21b6;
-          font-size: 12px;
-          font-weight: 950;
-          margin-bottom: 4px;
-        }
-
-        .time-panel strong {
-          font-size: 24px;
-          font-weight: 950;
-        }
-
-        .visual-copy {
-          background: rgba(17,24,39,0.42);
-          border: 1px solid rgba(255,255,255,0.14);
-          border-radius: 20px;
-          padding: 18px;
-        }
-
-        .visual-copy strong {
-          display: block;
-          font-size: 24px;
-          line-height: 1.1;
-          font-weight: 950;
-          margin-bottom: 8px;
-        }
-
-        .visual-copy span {
-          color: rgba(255,255,255,0.84);
-          font-size: 15px;
-          line-height: 1.6;
         }
 
         .section-block,
@@ -659,10 +647,6 @@ export default function WhyRemoteTeamsStruggleWithSchedulingPage() {
             grid-template-columns: 1fr;
           }
 
-          .hero-visual {
-            min-height: 360px;
-          }
-
           .bottom-cta {
             flex-direction: column;
             align-items: stretch;
@@ -700,10 +684,6 @@ export default function WhyRemoteTeamsStruggleWithSchedulingPage() {
           .related-reading h2,
           .bottom-cta h2 {
             font-size: 34px;
-          }
-
-          .time-panel {
-            grid-template-columns: 1fr;
           }
         }
       `}</style>
