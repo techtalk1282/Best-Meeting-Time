@@ -240,7 +240,37 @@ export default function FunFactsAboutTimeZonesPage() {
             <span>Global time coordination standard</span>
           </div>
         </section>
+<section className="related-reading">
+  <p className="section-pill">Keep Exploring</p>
 
+  <h2>Related Scheduling & Time Zone Guides</h2>
+
+  <div className="related-grid">
+    <a href="/best-meeting-times-remote-teams">
+      <strong>Remote Team Scheduling</strong>
+      <span>
+        Learn how global teams create fair meeting windows across countries
+        and time zones.
+      </span>
+    </a>
+
+    <a href="/time-zone-meeting-planner-guide">
+      <strong>Meeting Planner Guide</strong>
+      <span>
+        See how comparing local times and overlap windows helps reduce
+        scheduling confusion.
+      </span>
+    </a>
+
+    <a href="/how-to-schedule-meetings-across-time-zones">
+      <strong>Time Zone Basics</strong>
+      <span>
+        Understand UTC offsets, daylight saving time, and how world clocks
+        actually work.
+      </span>
+    </a>
+  </div>
+</section>
         <section className="cta-section">
           <img
             src="/images/fun-facts/fun_facts_cta.png"
@@ -547,7 +577,57 @@ export default function FunFactsAboutTimeZonesPage() {
           color: #ede9fe;
           font-weight: 700;
         }
+.related-reading {
+  border-top: 1px solid #ede9fe;
+  padding: 46px 10px 18px;
+  text-align: center;
+}
 
+.related-reading h2 {
+  color: #111827;
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.08;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+  margin: 0 0 24px;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.related-grid a {
+  background: linear-gradient(180deg, #ffffff 0%, #faf5ff 100%);
+  border: 1px solid #ddd6fe;
+  border-radius: 20px;
+  padding: 24px;
+  text-decoration: none;
+  box-shadow: 0 16px 34px rgba(91,33,182,0.08);
+  text-align: left;
+}
+
+.related-grid strong {
+  display: block;
+  color: #111827;
+  font-size: 22px;
+  line-height: 1.15;
+  font-weight: 950;
+  margin-bottom: 12px;
+}
+
+.related-grid span {
+  color: #4b5563;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .related-grid {
+    grid-template-columns: 1fr;
+  }
+}
         .cta-section {
           position: relative;
           margin: 34px 10px 0;
