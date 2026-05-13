@@ -79,7 +79,7 @@ export default function TimeZoneMeetingPlannerGuidePage() {
 
         <section id="what-it-does" className="feature-section">
           <div className="feature-copy">
-            <p className="section-pill">Question 1</p>
+           <p className="section-pill">Planner basics</p>
 
             <h2>What is a time zone meeting planner?</h2>
 
@@ -115,31 +115,39 @@ export default function TimeZoneMeetingPlannerGuidePage() {
 
           <h2>Use a planner before the invite goes out.</h2>
 
-          <div className="steps-grid">
-            <div>
-              <span>01</span>
-              <strong>Add each location</strong>
-              <p>Enter each participant’s city or time zone before choosing a time.</p>
-            </div>
+         <div className="steps-grid">
+  <div>
+    <strong>Add each location</strong>
+    <p>
+      Enter each participant’s city or time zone first so the meeting
+      comparison starts with accurate local context.
+    </p>
+  </div>
 
-            <div>
-              <span>02</span>
-              <strong>Compare local hours</strong>
-              <p>Check whether the proposed time lands inside normal working hours.</p>
-            </div>
+  <div>
+    <strong>Compare local hours</strong>
+    <p>
+      Review whether the proposed time lands inside normal working hours
+      before anyone receives the invite.
+    </p>
+  </div>
 
-            <div>
-              <span>03</span>
-              <strong>Find overlap</strong>
-              <p>Look for a window that works reasonably well for everyone.</p>
-            </div>
+  <div>
+    <strong>Find fair overlap</strong>
+    <p>
+      Look for meeting windows that balance availability across cities instead
+      of favoring one location.
+    </p>
+  </div>
 
-            <div>
-              <span>04</span>
-              <strong>Confirm local time</strong>
-              <p>Send the invite with the correct time zone details included.</p>
-            </div>
-          </div>
+  <div>
+    <strong>Confirm invite details</strong>
+    <p>
+      Send the meeting invite with clear local-time context so every attendee
+      knows exactly when to join.
+    </p>
+  </div>
+</div>
         </section>
 
         <section id="overlap-example" className="feature-section reverse">
@@ -478,19 +486,7 @@ export default function TimeZoneMeetingPlannerGuidePage() {
           box-shadow: 0 16px 34px rgba(91,33,182,0.08);
         }
 
-        .steps-grid span {
-          width: 40px;
-          height: 40px;
-          border-radius: 999px;
-          background: #7c3aed;
-          color: #ffffff;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 14px;
-          font-weight: 950;
-          margin-bottom: 14px;
-        }
+        
 
         .steps-grid strong,
         .mistake-grid strong,
@@ -551,7 +547,13 @@ export default function TimeZoneMeetingPlannerGuidePage() {
         }
 
         .planner-cta a span { font-size: 14px; }
-        .planner-cta a small { font-size: 11px; font-weight: 800; }
+        .planner-cta a small {
+  color: #111827;
+  font-size: 11px;
+  font-weight: 900;
+  opacity: 1;
+  margin-top: 4px;
+}
 
         @media (max-width: 900px) {
           .site-header {
