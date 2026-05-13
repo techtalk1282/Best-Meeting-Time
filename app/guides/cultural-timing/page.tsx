@@ -89,25 +89,31 @@ export default function CulturalTimingGuidePage() {
 
           <h2>Good global scheduling respects people, not just clocks.</h2>
 
-          <div className="answer-grid">
-            <a href="#contact-japan" className="answer-card">
-              <span>01</span>
-              <strong>Best time to contact Japan</strong>
-              <p>See practical Tokyo-friendly contact windows for US and European teams.</p>
-            </a>
+         <div className="answer-grid">
+  <a href="#contact-japan" className="answer-card">
+    <strong>Best time to contact Japan</strong>
+    <p>
+      Learn when Tokyo business hours align best with US and European
+      schedules, and how to avoid contacting Japan too early or too late.
+    </p>
+  </a>
 
-            <a href="#work-hours" className="answer-card">
-              <span>02</span>
-              <strong>Work hours around the world</strong>
-              <p>Compare normal business rhythms across major regions.</p>
-            </a>
+  <a href="#work-hours" className="answer-card">
+    <strong>Work hours around the world</strong>
+    <p>
+      Compare business-hour expectations across Japan, the United States,
+      Europe, and other regions before sending an international invite.
+    </p>
+  </a>
 
-            <a href="#weekends" className="answer-card">
-              <span>03</span>
-              <strong>Weekend differences globally</strong>
-              <p>Understand why Friday, Saturday, and Sunday can mean different things globally.</p>
-            </a>
-          </div>
+  <a href="#weekends" className="answer-card">
+    <strong>Weekend differences globally</strong>
+    <p>
+      Understand why Friday, Saturday, and Sunday can affect international
+      availability differently depending on the country and local workweek.
+    </p>
+  </a>
+</div>
         </section>
 
         <section id="contact-japan" className="feature-section">
@@ -546,19 +552,7 @@ export default function CulturalTimingGuidePage() {
           box-shadow: 0 16px 34px rgba(91,33,182,0.08);
         }
 
-        .answer-card span {
-          width: 40px;
-          height: 40px;
-          border-radius: 999px;
-          background: #7c3aed;
-          color: #ffffff;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 14px;
-          font-weight: 950;
-          margin-bottom: 14px;
-        }
+       
 
         .answer-card strong,
         .mistake-grid strong,
