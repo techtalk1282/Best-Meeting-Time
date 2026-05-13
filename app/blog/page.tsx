@@ -73,15 +73,15 @@ export default function BlogPage() {
             <strong>Read the remote team guide →</strong>
           </a>
 
-          <a href="/how-to-schedule-meetings-across-time-zones" className="article-card">
-            <span>Time Zones</span>
-            <h2>How to Schedule Across Time Zones Without Guessing</h2>
-            <p>
-              A clear step-by-step guide for choosing meeting times that make
-              sense for everyone invited.
-            </p>
-            <strong>Read the scheduling guide →</strong>
-          </a>
+         <a href="/how-to-schedule-meetings-across-time-zones" className="article-card">
+  <span>Time Zone Basics</span>
+  <h2>Time Zones Explained: Clocks, Sunlight, and Global Time</h2>
+  <p>
+    Learn how time zones work, why clocks change, and why checking local
+    time matters before scheduling across countries.
+  </p>
+  <strong>Read the time zone basics guide →</strong>
+</a>
 
           <a href="/time-zone-meeting-planner-guide" className="article-card">
             <span>Planner Guide</span>
