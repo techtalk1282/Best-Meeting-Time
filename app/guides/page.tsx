@@ -1,14 +1,13 @@
 /**
  * File: app/guides/page.tsx
- * Version: v3.4 (VISUAL POLISH IMAGE QUALITY PASS)
- * Date: 2026-05-06
+ * Version: v3.5 (ADD COUNTRY CONTACT TIMING GUIDE CARD)
+ * Date: 2026-05-13
  *
  * PURPOSE:
- * - Improve hero globe realism and glow
- * - Make hero globe appear larger and closer to approved mockup
- * - Replace weak/missing Time Zone Basics image
- * - Replace CTA placeholder with realistic planner/laptop image
- * - Tighten guide-card spacing without restructuring layout
+ * - Add the new Best Times to Contact Different Countries authority page to the Guides hub
+ * - Convert the guide card layout from 3 cards to a balanced 2 x 2 premium grid
+ * - Preserve the existing hero, CTA, visual style, navigation, and responsive behavior
+ * - Improve internal linking and AdSense crawl depth without disrupting protected logic
  *
  * PROTECTED:
  * - No Stripe changes
@@ -18,7 +17,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert to app/guides/page.tsx v3.3 if this visual pass does not test cleanly
+ * - Revert to app/guides/page.tsx v3.4 if this update does not test cleanly
  */
 
 export default function GuidesPage() {
@@ -27,16 +26,16 @@ export default function GuidesPage() {
       <section className="guides-shell">
         <header className="guides-header">
           <a href="/" className="brand" aria-label="Best Meeting Time home">
-  <img
-    src="/images/branding/logo.png"
-    alt="Best Meeting Time"
-    className="brand-logo"
-  />
-</a>
+            <img
+              src="/images/branding/logo.png"
+              alt="Best Meeting Time"
+              className="brand-logo"
+            />
+          </a>
 
           <nav className="nav" aria-label="Guides navigation">
             <a href="/">Home</a>
-           <a href="/how-it-works">Schedule a Meeting</a>
+            <a href="/how-it-works">Schedule a Meeting</a>
             <a href="/features">Features</a>
             <a href="/guides" className="active">Guides</a>
             <a href="/blog">Blog</a>
@@ -67,10 +66,12 @@ export default function GuidesPage() {
                 <strong>24</strong>
                 <span>Primary time zones</span>
               </div>
+
               <div>
                 <strong>195+</strong>
                 <span>Countries with different times</span>
               </div>
+
               <div>
                 <strong>24/7</strong>
                 <span>The world never stops moving</span>
@@ -80,9 +81,9 @@ export default function GuidesPage() {
 
           <div className="hero-visual">
             <img
-  src="/images/guides/guides-hero-world.png"
-  alt="Glowing earth showing global connection across time zones"
-/>
+              src="/images/guides/guides-hero-world.png"
+              alt="Glowing earth showing global connection across time zones"
+            />
 
             <div className="hero-glow" />
             <span className="pin pin-one" />
@@ -92,16 +93,14 @@ export default function GuidesPage() {
             <span className="line line-one" />
             <span className="line line-two" />
             <span className="line line-three" />
-
-           
-
-
           </div>
         </section>
 
         <section className="guide-intro">
           <p className="pill">Explore Our Guides</p>
+
           <h2>Choose a Guide to Start Learning</h2>
+
           <p>
             From time zone basics to cultural tips and entertainment timing,
             these guides help you understand the world and plan with confidence.
@@ -109,53 +108,87 @@ export default function GuidesPage() {
         </section>
 
         <section className="guide-grid">
-          <a href="/how-to-schedule-meetings-across-time-zones" className="guide-card guide-blue">
+          <a
+            href="/how-to-schedule-meetings-across-time-zones"
+            className="guide-card guide-blue"
+          >
             <img
-  src="/images/guides/guides-timezone-basics.png"
-  alt="Blue world map for learning time zone basics"
-/>
+              src="/images/guides/guides-timezone-basics.png"
+              alt="Blue world map for learning time zone basics"
+            />
+
             <div className="guide-body">
-              
               <h3>Time Zone Basics</h3>
+
               <ul>
                 <li>How many time zones are there?</li>
                 <li>Why do time zones exist?</li>
                 <li>Why do clocks change?</li>
               </ul>
+
               <strong>Read more on this guide →</strong>
             </div>
           </a>
 
-         <a href="/guides/cultural-timing" className="guide-card guide-gold">
+          <a href="/guides/cultural-timing" className="guide-card guide-gold">
             <img
-  src="/images/guides/guides-cultural-timing.png"
-  alt="Japan and cultural timing guide"
-/>
+              src="/images/guides/guides-cultural-timing.png"
+              alt="Japan and cultural timing guide"
+            />
+
             <div className="guide-body">
-              
               <h3>Cultural Timing Guides</h3>
+
               <ul>
                 <li>Best time to contact Japan</li>
                 <li>Work hours around the world</li>
                 <li>Weekend differences globally</li>
               </ul>
+
               <strong>Read more on this guide →</strong>
             </div>
           </a>
 
-         <a href="/guides/entertainment-social-timing" className="guide-card guide-green">
+          <a
+            href="/best-times-to-contact-different-countries"
+            className="guide-card guide-purple"
+          >
             <img
-  src="/images/guides/guides-entertainment-social.png"
-  alt="Entertainment timing for gaming and live events"
-/>
+              src="/images/guides/guides-hero-world.png"
+              alt="Best times to contact different countries around the world"
+            />
+
             <div className="guide-body">
-              
+              <h3>Best Times to Contact Different Countries</h3>
+
+              <ul>
+                <li>Best hours to contact Japan, the UK, Australia, and more</li>
+                <li>Understand global workday overlap windows</li>
+                <li>Avoid contacting regions during off-hours</li>
+              </ul>
+
+              <strong>Read more on this guide →</strong>
+            </div>
+          </a>
+
+          <a
+            href="/guides/entertainment-social-timing"
+            className="guide-card guide-green"
+          >
+            <img
+              src="/images/guides/guides-entertainment-social.png"
+              alt="Entertainment timing for gaming and live events"
+            />
+
+            <div className="guide-body">
               <h3>Entertainment & Social Timing</h3>
+
               <ul>
                 <li>Best time for global gaming events</li>
                 <li>Streaming across time zones</li>
                 <li>International sports viewing times</li>
               </ul>
+
               <strong>Read more on this guide →</strong>
             </div>
           </a>
@@ -163,14 +196,39 @@ export default function GuidesPage() {
 
         <section className="why">
           <p className="pill">Why Learning Matters</p>
+
           <h2>Time zones affect more than just meetings.</h2>
 
           <div className="why-grid">
-            <div><span className="why-icon">Work</span><strong>Work & Business</strong><p>Plan fair meetings and respect work hours around the world.</p></div>
-            <div><span className="why-icon">Travel</span><strong>Travel & Lifestyle</strong><p>Avoid missed flights, confusion, and scheduling surprises.</p></div>
-            <div><span className="why-icon">Family</span><strong>Family & Friends</strong><p>Stay connected with loved ones across different time zones.</p></div>
-            <div><span className="why-icon">Play</span><strong>Entertainment</strong><p>Catch live events, streams, and games at the right time.</p></div>
-            <div><span className="why-icon">World</span><strong>Global Community</strong><p>Join online communities and events happening worldwide.</p></div>
+            <div>
+              <span className="why-icon">Work</span>
+              <strong>Work & Business</strong>
+              <p>Plan fair meetings and respect work hours around the world.</p>
+            </div>
+
+            <div>
+              <span className="why-icon">Travel</span>
+              <strong>Travel & Lifestyle</strong>
+              <p>Avoid missed flights, confusion, and scheduling surprises.</p>
+            </div>
+
+            <div>
+              <span className="why-icon">Family</span>
+              <strong>Family & Friends</strong>
+              <p>Stay connected with loved ones across different time zones.</p>
+            </div>
+
+            <div>
+              <span className="why-icon">Play</span>
+              <strong>Entertainment</strong>
+              <p>Catch live events, streams, and games at the right time.</p>
+            </div>
+
+            <div>
+              <span className="why-icon">World</span>
+              <strong>Global Community</strong>
+              <p>Join online communities and events happening worldwide.</p>
+            </div>
           </div>
         </section>
 
@@ -184,6 +242,7 @@ export default function GuidesPage() {
 
           <div>
             <h2>Ready to find the best time to connect?</h2>
+
             <p>
               Use our planner to compare cities, find overlap windows, and
               schedule with confidence.
@@ -226,18 +285,19 @@ export default function GuidesPage() {
         }
 
         .brand {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  flex-shrink: 0;
-}
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          flex-shrink: 0;
+        }
 
-.brand-logo {
-  display: block;
-  width: 160px;
-  height: auto;
-  object-fit: contain;
-}
+        .brand-logo {
+          display: block;
+          width: 160px;
+          height: auto;
+          object-fit: contain;
+        }
+
         .nav {
           display: flex;
           align-items: center;
@@ -274,8 +334,15 @@ export default function GuidesPage() {
           box-shadow: 0 10px 22px rgba(91,33,182,0.22);
         }
 
-        .nav-cta span { font-size: 13px; }
-        .nav-cta small { font-size: 10px; font-weight: 800; color: #ffffff; }
+        .nav-cta span {
+          font-size: 13px;
+        }
+
+        .nav-cta small {
+          font-size: 10px;
+          font-weight: 800;
+          color: #ffffff;
+        }
 
         .hero {
           display: grid;
@@ -349,14 +416,14 @@ export default function GuidesPage() {
         }
 
         .hero-visual img {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  inset: 0;
-  object-fit: cover;
-  object-position: center center;
-  filter: saturate(1.08) contrast(1.02) brightness(1);
-}
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          inset: 0;
+          object-fit: cover;
+          object-position: center center;
+          filter: saturate(1.08) contrast(1.02) brightness(1);
+        }
 
         .hero-glow {
           position: absolute;
@@ -460,7 +527,7 @@ export default function GuidesPage() {
 
         .guide-grid {
           display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 20px;
           padding: 0 10px 26px;
         }
@@ -492,19 +559,35 @@ export default function GuidesPage() {
           object-position: center center;
         }
 
+        .guide-purple img {
+          object-position: center center;
+          filter: saturate(1.2) contrast(1.08) brightness(1.04);
+        }
+
         .guide-green img {
           object-position: center center;
         }
 
-        .guide-blue { background: linear-gradient(180deg, #ffffff 0%, #f7f5ff 100%); }
-        .guide-gold { background: linear-gradient(180deg, #ffffff 0%, #fff7df 100%); }
-        .guide-green { background: linear-gradient(180deg, #ffffff 0%, #ecfdf5 100%); }
+        .guide-blue {
+          background: linear-gradient(180deg, #ffffff 0%, #f7f5ff 100%);
+        }
+
+        .guide-gold {
+          background: linear-gradient(180deg, #ffffff 0%, #fff7df 100%);
+        }
+
+        .guide-purple {
+          background: linear-gradient(180deg, #ffffff 0%, #f5f3ff 100%);
+        }
+
+        .guide-green {
+          background: linear-gradient(180deg, #ffffff 0%, #ecfdf5 100%);
+        }
 
         .guide-body {
           padding: 20px 22px 21px;
         }
 
-        
         .guide-card h3 {
           color: #111827 !important;
           font-size: 25px;
