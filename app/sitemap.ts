@@ -1,16 +1,26 @@
 /**
  * File: app/sitemap.ts
- * Version: v1.0
- * Date: 2026-04-04
+ * Version: v2.0 (EXPANDED CONTENT + AUTHORITY SITEMAP)
+ * Date: 2026-05-13
  *
  * PURPOSE:
- * - Generate sitemap.xml for Google indexing
- * - Includes all city pages + homepage
+ * - Expand sitemap coverage for AdSense readiness
+ * - Include trust pages, blog pages, guide pages, and authority content
+ * - Improve Google crawl discovery and indexing depth
+ * - Preserve existing city SEO pages
  *
  * NOTES:
  * - Uses Next.js native sitemap support
  * - No external libraries required
- * - Auto-updates when redeployed
+ * - Auto-updates on deployment
+ *
+ * PROTECTED:
+ * - No payment logic
+ * - No Stripe changes
+ * - No ToolPreview changes
+ *
+ * ROLLBACK:
+ * - Revert to v1.0 if sitemap generation fails
  */
 
 import { MetadataRoute } from "next";
@@ -19,10 +29,57 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.bestmeetingtimeapp.com";
 
   return [
+    // Homepage
     {
       url: `${baseUrl}`,
       lastModified: new Date(),
     },
+
+    // Main Site Pages
+    {
+      url: `${baseUrl}/how-it-works`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/features`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/guides`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: new Date(),
+    },
+
+    // Authority / Article Pages
+    {
+      url: `${baseUrl}/fun-facts-about-time-zones`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/best-meeting-times-remote-teams`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/time-zone-meeting-planner-guide`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/how-to-schedule-meetings-across-time-zones`,
+      lastModified: new Date(),
+    },
+
+    // City SEO Pages
     {
       url: `${baseUrl}/best-meeting-time-new-york`,
       lastModified: new Date(),
