@@ -139,13 +139,12 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
 
         <section id="how-many-time-zones" className="feature-section">
           <div className="feature-copy">
-            <p className="section-pill">Question 1</p>
-            <h2>How many time zones are there?</h2>
-            <p>
-              The world is commonly organized around 24 main time zones because
-              Earth rotates once every 24 hours. As the planet turns, different
-              regions face the sun at different times.
-            </p>
+           <h2>There are 24 main time zones across the world.</h2>
+<p>
+  The world is commonly organized around 24 main time zones because
+  Earth rotates once every 24 hours. As the planet turns, different
+  regions face the sun at different times.
+</p>
             <p>
               Each main time zone roughly represents one hour of difference from
               the next region. That is why New York, London, Tokyo, and Sydney
@@ -188,8 +187,7 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
           </div>
 
           <div className="feature-copy">
-            <p className="section-pill">Question 2</p>
-            <h2>Why do time zones exist?</h2>
+           <h2>Why do time zones exist?</h2>
             <p>
               Time zones exist because local sunlight changes as Earth rotates.
               Noon is not the same moment everywhere. When the sun is high over
@@ -211,8 +209,7 @@ export default function HowToScheduleMeetingsAcrossTimeZonesPage() {
 
         <section id="why-clocks-change" className="feature-section">
           <div className="feature-copy">
-            <p className="section-pill">Question 3</p>
-            <h2>Why do clocks change?</h2>
+           <h2>Why do clocks change?</h2>
             <p>
               Clocks change in places that use daylight saving time. During part
               of the year, those regions shift the clock forward or backward to
