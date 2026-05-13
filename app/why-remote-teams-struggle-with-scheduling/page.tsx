@@ -109,7 +109,7 @@ export default function WhyRemoteTeamsStruggleWithSchedulingPage() {
 
           <div className="hero-visual">
             <img
-              src="/images/blog/blog-premium-hero-light-purple.png"
+             src="/images/remote-teams/blog-premium-hero-light-purple.png"
               alt="Remote team scheduling dashboard showing time zone planning"
             />
           </div>
