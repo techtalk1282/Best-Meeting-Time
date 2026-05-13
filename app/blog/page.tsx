@@ -73,7 +73,7 @@ export default function BlogPage() {
             <strong>Read the remote team guide →</strong>
           </a>
 
-          <a href="/global-meeting-scheduling-tips" className="article-card">
+          <a href="/how-to-schedule-meetings-across-time-zones" className="article-card">
             <span>Time Zones</span>
             <h2>How to Schedule Across Time Zones Without Guessing</h2>
             <p>
