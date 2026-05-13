@@ -511,18 +511,19 @@ export default function CulturalTimingGuidePage() {
           text-align: center;
         }
 
-        .answer-section h2,
-        .feature-copy h2,
-        .mistakes-section h2,
-        .faq-section h2,
-        .planner-cta h2 {
-          color: #111827;
-          font-size: clamp(30px, 3vw, 42px);
-          line-height: 1.08;
-          letter-spacing: -0.04em;
-          font-weight: 950;
-          margin: 0 0 16px;
-        }
+       .answer-section h2,
+.feature-copy h2,
+.mistakes-section h2,
+.faq-section h2,
+.planner-cta h2 {
+  color: #111827;
+  font-size: clamp(28px, 2.6vw, 36px);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  font-weight: 950;
+  margin: 0 0 16px;
+  text-wrap: balance;
+}
 
         .answer-grid,
         .mistake-grid,
