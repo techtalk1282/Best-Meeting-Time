@@ -1,12 +1,12 @@
 /**
  * File: app/blog/page.tsx
- * Version: v3.3 (BLOG CTA CONTRAST AND ARTICLE ROUTE FIX)
- * Date: 2026-05-12
+ * Version: v3.4 (ADD COUNTRY CONTACT ARTICLE TO BLOG GRID)
+ * Date: 2026-05-13
  *
  * PURPOSE:
- * - Fix bottom CTA small text visibility and spacing
- * - Keep top CTA unchanged
- * - Correct the Time Zones article route so it does not point to the Time Zone Basics guide
+ * - Add the Best Times to Contact Different Countries authority article to Blog
+ * - Convert Blog article cards from 3-card row to balanced 2 x 2 grid
+ * - Improve internal linking, crawl depth, and AdSense content discovery
  * - Preserve responsive layout and current blog design
  *
  * PROTECTED:
@@ -17,7 +17,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert to v3.2 if this update does not test cleanly
+ * - Revert to v3.3 if this update does not test cleanly
  */
 
 import FooterSection from "../ui/FooterSection";
@@ -40,7 +40,9 @@ export default function BlogPage() {
             <a href="/how-it-works">Schedule a Meeting</a>
             <a href="/features">Features</a>
             <a href="/guides">Guides</a>
-            <a href="/blog" className="active">Blog</a>
+            <a href="/blog" className="active">
+              Blog
+            </a>
             <a href="/about">About</a>
             <a href="/contact">Contact</a>
           </nav>
@@ -65,31 +67,56 @@ export default function BlogPage() {
         <section className="article-grid" aria-label="Featured scheduling articles">
           <a href="/best-meeting-times-remote-teams" className="article-card">
             <span>Remote Teams</span>
+
             <h2>Stop Scheduling Remote Meetings at the Worst Possible Time</h2>
+
             <p>
               Learn how to find fair overlap windows for teams working across
               cities, countries, and different workdays.
             </p>
+
             <strong>Read the remote team guide →</strong>
           </a>
 
-        <a href="/fun-facts-about-time-zones" className="article-card">
-  <span>Fun Time Zone Facts</span>
-  <h2>Fun Facts About Time Zones Around the World</h2>
-  <p>
-    Discover unusual UTC offsets, countries with surprising clocks, the
-    International Date Line, and strange time zone stories from around the world.
-  </p>
-  <strong>Read the fun facts article →</strong>
-</a>
+          <a
+            href="/best-times-to-contact-different-countries"
+            className="article-card"
+          >
+            <span>International Timing</span>
+
+            <h2>Best Times to Contact Different Countries</h2>
+
+            <p>
+              Learn when to contact Japan, the UK, Australia, India, Dubai, and
+              other regions without creating awkward off-hour requests.
+            </p>
+
+            <strong>Read the country timing guide →</strong>
+          </a>
+
+          <a href="/fun-facts-about-time-zones" className="article-card">
+            <span>Fun Time Zone Facts</span>
+
+            <h2>Fun Facts About Time Zones Around the World</h2>
+
+            <p>
+              Discover unusual UTC offsets, countries with surprising clocks,
+              the International Date Line, and strange time zone stories.
+            </p>
+
+            <strong>Read the fun facts article →</strong>
+          </a>
 
           <a href="/time-zone-meeting-planner-guide" className="article-card">
             <span>Planner Guide</span>
+
             <h2>What a Time Zone Meeting Planner Actually Helps You Do</h2>
+
             <p>
               See how comparing cities, local times, duration, and recommended
               windows can make scheduling faster.
             </p>
+
             <strong>Read the planner guide →</strong>
           </a>
         </section>
@@ -97,7 +124,9 @@ export default function BlogPage() {
         <section className="bottom-band">
           <div>
             <p>Start Planning</p>
+
             <h2>Ready to find a better meeting time?</h2>
+
             <span>
               Compare cities and review recommended meeting windows before you
               send the invite.
@@ -238,7 +267,7 @@ export default function BlogPage() {
 
         .article-grid {
           display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 16px;
           padding: 22px 10px 18px;
         }
