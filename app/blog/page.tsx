@@ -78,12 +78,12 @@ export default function BlogPage() {
             <strong>Read the fun facts →</strong>
           </a>
 
-          <a href="/time-zone-meeting-planner-guide" className="article-card">
-            <span>Planner Guide</span>
-            <h2>What a Time Zone Meeting Planner Helps You Do</h2>
-            <p>See how comparing cities and overlap windows makes scheduling faster.</p>
-            <strong>Read the planner guide →</strong>
-          </a>
+          <a href="/how-to-plan-global-team-meetings" className="article-card">
+  <span>Global Coordination</span>
+  <h2>How To Plan Global Team Meetings</h2>
+  <p>Learn how global teams coordinate across regions, schedules, and time zones.</p>
+  <strong>Read the global guide →</strong>
+</a>
 
           <a href="/best-meeting-times-us-and-europe" className="article-card">
             <span>US and Europe</span>
