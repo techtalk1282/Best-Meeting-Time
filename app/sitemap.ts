@@ -1,18 +1,12 @@
 /**
  * File: app/sitemap.ts
- * Version: v2.0 (EXPANDED CONTENT + AUTHORITY SITEMAP)
+ * Version: v2.1 (FIX AUTHORITY SITEMAP ARRAY PLACEMENT)
  * Date: 2026-05-13
  *
  * PURPOSE:
- * - Expand sitemap coverage for AdSense readiness
- * - Include trust pages, blog pages, guide pages, and authority content
- * - Improve Google crawl discovery and indexing depth
+ * - Fix sitemap build failure caused by article entries placed outside the return array
+ * - Include trust pages, blog pages, guide pages, authority content, and city SEO pages
  * - Preserve existing city SEO pages
- *
- * NOTES:
- * - Uses Next.js native sitemap support
- * - No external libraries required
- * - Auto-updates on deployment
  *
  * PROTECTED:
  * - No payment logic
@@ -20,7 +14,7 @@
  * - No ToolPreview changes
  *
  * ROLLBACK:
- * - Revert to v1.0 if sitemap generation fails
+ * - Revert to v2.0 if sitemap generation fails
  */
 
 import { MetadataRoute } from "next";
@@ -78,6 +72,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/how-to-schedule-meetings-across-time-zones`,
       lastModified: new Date(),
     },
+    {
+      url: `${baseUrl}/best-times-to-contact-different-countries`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/best-meeting-times-us-and-europe`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/why-remote-teams-struggle-with-scheduling`,
+      lastModified: new Date(),
+    },
 
     // City SEO Pages
     {
@@ -118,15 +124,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 }
-{
-  url: `${baseUrl}/best-times-to-contact-different-countries`,
-  lastModified: new Date(),
-},
-{
-  url: `${baseUrl}/best-meeting-times-us-and-europe`,
-  lastModified: new Date(),
-},
-{
-  url: `${baseUrl}/why-remote-teams-struggle-with-scheduling`,
-  lastModified: new Date(),
-},
