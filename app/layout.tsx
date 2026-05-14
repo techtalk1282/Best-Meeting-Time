@@ -1,7 +1,12 @@
 // app/layout.tsx
+// Version: v2.1 - Google Analytics GA4 added
+// Date: 2026-05-14
+// Purpose: Add GA4 tracking while preserving existing AdSense and metadata.
+// Rollback: Restore previous v2.0 layout.tsx if analytics causes any issue.
 
 import "./globals.css";
 import { ReactNode } from "react";
+import Script from "next/script";
 
 export const metadata = {
   metadataBase: new URL("https://www.bestmeetingtimeapp.com"),
@@ -61,6 +66,20 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9246885832557966"
           crossOrigin="anonymous"
         ></script>
+
+        {/* Google Analytics GA4 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-08PCH2KJWG"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics-ga4" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-08PCH2KJWG');
+          `}
+        </Script>
       </head>
 
       <body
