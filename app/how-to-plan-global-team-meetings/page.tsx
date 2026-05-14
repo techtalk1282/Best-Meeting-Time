@@ -1,13 +1,13 @@
 /**
  * File: app/how-to-plan-global-team-meetings/page.tsx
- * Version: v1.0 (GLOBAL TEAM MEETINGS AUTHORITY PAGE)
+ * Version: v1.1 (PREMIUM GLOBAL MEETINGS REDESIGN)
  * Date: 2026-05-13
  *
  * PURPOSE:
- * - Create high-authority SEO article for global team scheduling
- * - Strengthen AdSense content depth and indexing authority
- * - Connect directly to Best Meeting Time scheduling utility
- * - Expand internal linking structure between authority pages
+ * - Rebuild the global team meetings authority page with a unique premium layout
+ * - Remove reused hero image dependency
+ * - Fix washed-out typography
+ * - Create a stronger Blog-ready SEO article page
  *
  * PROTECTED:
  * - No Stripe changes
@@ -17,7 +17,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Delete this file to fully rollback page
+ * - Revert to v1.0 if this redesign does not test cleanly
  */
 
 import type { Metadata } from "next";
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 export default function HowToPlanGlobalTeamMeetingsPage() {
   return (
     <>
-      <main className="global-team-page">
+      <main className="global-page">
         <header className="site-header">
           <a href="/" className="brand-link">
             <img
@@ -42,7 +42,7 @@ export default function HowToPlanGlobalTeamMeetingsPage() {
             />
           </a>
 
-          <nav className="site-nav">
+          <nav className="site-nav" aria-label="Global team meeting navigation">
             <a href="/">Home</a>
             <a href="/how-it-works#schedule-tool">Schedule a Meeting</a>
             <a href="/features">Features</a>
@@ -60,272 +60,169 @@ export default function HowToPlanGlobalTeamMeetingsPage() {
 
         <section className="hero-section">
           <div className="hero-copy">
-            <p className="eyebrow">
-              Global Team Scheduling
-            </p>
+            <p className="eyebrow">Global Team Scheduling</p>
 
-            <h1>
-              How To Plan Global Team Meetings
-            </h1>
+            <h1>How To Plan Global Team Meetings</h1>
 
-            <p className="hero-text">
-              Global meetings become difficult when teams spread across
-              continents, time zones, and different working cultures.
-              Strong scheduling habits help remote organizations reduce
-              burnout, improve participation, and create fair collaboration.
+            <p>
+              Global meetings work best when teams compare local times, protect
+              working hours, rotate difficult windows, and avoid scheduling
+              around one office by default.
             </p>
 
             <div className="hero-actions">
-              <a href="/how-it-works#schedule-tool">
-                Compare Meeting Times
-              </a>
-
+              <a href="/how-it-works#schedule-tool">Compare Meeting Times</a>
               <span>No sign-up required</span>
             </div>
           </div>
 
-          <div className="hero-visual">
-            <img
-              src="/images/remote-teams/blog-premium-hero-light-purple.png"
-              alt="Global team meeting scheduling dashboard"
-            />
+          <div className="hero-visual" aria-label="Global meeting planning visual">
+            <div className="visual-top">
+              <span>New York</span>
+              <strong>9:00 AM</strong>
+            </div>
+
+            <div className="visual-top">
+              <span>London</span>
+              <strong>2:00 PM</strong>
+            </div>
+
+            <div className="visual-top">
+              <span>Dubai</span>
+              <strong>5:00 PM</strong>
+            </div>
+
+            <div className="visual-map">
+              <div className="orbit orbit-one" />
+              <div className="orbit orbit-two" />
+              <div className="planet">GMT</div>
+            </div>
+
+            <div className="overlap-card">
+              <strong>Best overlap window</strong>
+              <span>2:00 PM – 3:00 PM</span>
+              <p>Reasonable for most regions</p>
+            </div>
           </div>
         </section>
 
-        <section className="compact-grid">
+        <section className="quick-grid">
           <article>
-            <p>Core Strategy</p>
-
-            <h3>
-              Prioritize overlap windows instead of organizer convenience.
-            </h3>
+            <span>Core Strategy</span>
+            <strong>Plan around shared overlap, not organizer convenience.</strong>
           </article>
 
           <article>
-            <p>Remote Team Habit</p>
-
-            <h3>
-              Rotate difficult meeting times across regions fairly.
-            </h3>
+            <span>Team Habit</span>
+            <strong>Rotate difficult meeting times across regions fairly.</strong>
           </article>
 
           <article>
-            <p>Scheduling Goal</p>
-
-            <h3>
-              Protect productivity while improving collaboration quality.
-            </h3>
+            <span>Best Fix</span>
+            <strong>Use city-based planning before sending the invite.</strong>
           </article>
         </section>
 
         <section className="section-heading">
-          <p className="eyebrow">
-            What Makes Global Meetings Difficult
+          <p className="eyebrow">What Goes Wrong</p>
+          <h2>Most global meeting problems come from repeat patterns.</h2>
+          <p>
+            A single bad meeting time is annoying. A repeated bad meeting pattern
+            creates fatigue, missed context, and uneven participation.
           </p>
-
-          <h2>
-            Most global scheduling problems come from repeated patterns.
-          </h2>
-
-          <span>
-            Remote teams often struggle because different regions
-            experience different working hours, cultural expectations,
-            and daylight saving changes at the same time.
-          </span>
         </section>
 
-        <section className="info-grid">
+        <section className="problem-grid">
           <article>
-            <strong>
-              Headquarters often dominate scheduling
-            </strong>
-
+            <span>01</span>
+            <strong>One office becomes the default</strong>
             <p>
-              Many organizations unintentionally prioritize one office
-              while other regions absorb the difficult meeting times.
+              Headquarters often receives the most convenient meeting times while
+              other regions absorb early or late calls.
             </p>
           </article>
 
           <article>
-            <strong>
-              Overlap windows are limited
-            </strong>
-
+            <span>02</span>
+            <strong>Overlap windows are narrow</strong>
             <p>
-              Global teams may only share a few practical hours where
-              everyone can reasonably participate.
+              Distributed teams may share just a few practical hours where live
+              discussion is realistic.
             </p>
           </article>
 
           <article>
-            <strong>
-              Daylight saving changes create confusion
-            </strong>
-
+            <span>03</span>
+            <strong>Daylight saving creates surprises</strong>
             <p>
-              Time differences shift temporarily throughout the year,
-              creating unexpected meeting conflicts.
+              Regional clock changes can shift meeting comfort without anyone
+              noticing until attendance drops.
             </p>
           </article>
 
           <article>
-            <strong>
-              Time zone fatigue reduces engagement
-            </strong>
-
+            <span>04</span>
+            <strong>Time zone fatigue builds quietly</strong>
             <p>
-              Repeated early morning or late-night calls eventually
-              reduce participation and morale.
+              Repeated off-hour meetings reduce energy, participation, and trust
+              across remote teams.
             </p>
           </article>
         </section>
 
-        <section className="purple-panel">
-          <div className="purple-copy">
-            <p className="eyebrow dark-eyebrow">
-              Better Scheduling Habits
+        <section className="strategy-section">
+          <div className="strategy-copy">
+            <p className="eyebrow dark-eyebrow">Better Scheduling System</p>
+            <h2>Use a repeatable process before every global meeting.</h2>
+            <p>
+              The goal is not a perfect time every time. The goal is a fair,
+              predictable scheduling habit that respects the full team.
             </p>
-
-            <h2>
-              Remote teams improve collaboration when scheduling becomes predictable.
-            </h2>
-
-            <span>
-              Teams that compare local times before scheduling meetings
-              reduce confusion, missed attendance, and unfair timing patterns.
-            </span>
           </div>
 
-          <div className="purple-grid">
-            <div>
-              <strong>
-                Compare local city times
-              </strong>
-
-              <p>
-                Cities are easier to understand than abbreviations like
-                EST, CST, or GMT.
-              </p>
-            </div>
-
-            <div>
-              <strong>
-                Protect deep work hours
-              </strong>
-
-              <p>
-                Avoid unnecessary meetings during extremely early or late windows.
-              </p>
-            </div>
-
-            <div>
-              <strong>
-                Rotate difficult meetings
-              </strong>
-
-              <p>
-                Share inconvenient meeting times across regions fairly.
-              </p>
-            </div>
-
-            <div>
-              <strong>
-                Use async updates
-              </strong>
-
-              <p>
-                Not every update requires a live meeting across time zones.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="checklist-section">
-          <div className="checklist-copy">
-            <p className="eyebrow">
-              Quick Checklist
-            </p>
-
-            <h2>
-              Before scheduling a global meeting, review these items.
-            </h2>
-          </div>
-
-          <div className="checklist-grid">
-            <div>Check each participant’s local time.</div>
-            <div>Confirm the meeting is not extremely early or late.</div>
-            <div>Review daylight saving differences between regions.</div>
-            <div>Rotate difficult meeting windows fairly.</div>
+          <div className="strategy-list">
+            <div>Start with each participant’s local city time.</div>
+            <div>Check reasonable working-hour overlap.</div>
+            <div>Rotate difficult calls when overlap is poor.</div>
             <div>Use async notes when live discussion is unnecessary.</div>
           </div>
         </section>
 
         <section className="related-reading">
-          <p className="eyebrow">
-            Related Reading
-          </p>
-
-          <h2>
-            More guides for global scheduling
-          </h2>
+          <p className="eyebrow">Related Reading</p>
+          <h2>More guides for better global scheduling</h2>
 
           <div className="related-grid">
             <a href="/why-remote-teams-struggle-with-scheduling">
-              <strong>
-                Why Remote Teams Struggle With Scheduling
-              </strong>
-
-              <span>
-                Understand the biggest causes of remote scheduling problems.
-              </span>
+              <strong>Why Remote Teams Struggle With Scheduling</strong>
+              <span>Understand the patterns that make remote scheduling hard.</span>
             </a>
 
             <a href="/best-meeting-times-us-and-europe">
-              <strong>
-                Best Meeting Times Between US and Europe
-              </strong>
-
-              <span>
-                Learn practical overlap windows for transatlantic teams.
-              </span>
+              <strong>Best Meeting Times Between the US and Europe</strong>
+              <span>Find better overlap windows for transatlantic teams.</span>
             </a>
 
             <a href="/best-times-to-contact-different-countries">
-              <strong>
-                Best Times To Contact Different Countries
-              </strong>
-
-              <span>
-                Understand global communication timing and etiquette.
-              </span>
+              <strong>Best Times To Contact Different Countries</strong>
+              <span>Plan contact timing across regions with more confidence.</span>
             </a>
           </div>
         </section>
 
         <section className="bottom-cta">
           <div>
-            <p>
-              Plan Better Global Meetings
-            </p>
-
-            <h2>
-              Compare time zones before scheduling your next team meeting.
-            </h2>
-
+            <p>Plan Better Global Meetings</p>
+            <h2>Compare time zones before sending the invite.</h2>
             <span>
-              Use Best Meeting Time to compare local working hours,
-              overlap windows, and fair scheduling times.
+              Use Best Meeting Time to compare cities, working hours, and
+              overlap windows before scheduling.
             </span>
           </div>
 
           <a href="/how-it-works#schedule-tool">
-            <strong>
-              Schedule a Meeting
-            </strong>
-
-            <small>
-              Free to try — no sign-up
-            </small>
+            <strong>Schedule a Meeting</strong>
+            <small>Free to try — no sign-up</small>
           </a>
         </section>
       </main>
@@ -333,7 +230,7 @@ export default function HowToPlanGlobalTeamMeetingsPage() {
       <FooterSection />
 
       <style>{`
-        .global-team-page {
+        .global-page {
           width: 100%;
           max-width: 1240px;
           margin: 10px auto 0;
@@ -356,13 +253,23 @@ export default function HowToPlanGlobalTeamMeetingsPage() {
           margin-bottom: 18px;
         }
 
+        .brand-link {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          flex-shrink: 0;
+        }
+
         .brand-logo {
           width: 150px;
+          height: auto;
           display: block;
         }
 
         .site-nav {
           display: flex;
+          align-items: center;
+          justify-content: center;
           gap: 18px;
         }
 
@@ -371,6 +278,7 @@ export default function HowToPlanGlobalTeamMeetingsPage() {
           font-size: 13px;
           font-weight: 800;
           text-decoration: none;
+          white-space: nowrap;
         }
 
         .header-cta {
@@ -382,7 +290,9 @@ export default function HowToPlanGlobalTeamMeetingsPage() {
           display: flex;
           flex-direction: column;
           align-items: center;
+          line-height: 1.16;
           min-width: 150px;
+          box-shadow: 0 10px 22px rgba(91,33,182,0.22);
         }
 
         .header-cta span {
@@ -397,33 +307,24 @@ export default function HowToPlanGlobalTeamMeetingsPage() {
 
         .hero-section {
           display: grid;
-          grid-template-columns: 0.92fr 1.08fr;
+          grid-template-columns: 0.94fr 1.06fr;
           gap: 18px;
           margin-bottom: 18px;
         }
 
-        .hero-copy,
-        .hero-visual {
-          border-radius: 28px;
-          overflow: hidden;
-          border: 1px solid #ddd6fe;
-        }
-
         .hero-copy {
+          border-radius: 28px;
           padding: 34px;
-          background: linear-gradient(180deg, #ffffff 0%, #f8f5ff 100%);
-        }
-
-        .hero-visual img {
-          width: 100%;
-          height: 100%;
-          min-height: 420px;
-          object-fit: cover;
+          background: linear-gradient(180deg, #ffffff 0%, #f7f3ff 100%);
+          border: 1px solid #ddd6fe;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
         }
 
         .eyebrow {
-          display: inline-flex;
-          margin-bottom: 14px;
+          width: fit-content;
+          margin: 0 0 14px;
           padding: 8px 14px;
           border-radius: 999px;
           background: #ede9fe;
@@ -431,36 +332,36 @@ export default function HowToPlanGlobalTeamMeetingsPage() {
           font-size: 12px;
           font-weight: 950;
           text-transform: uppercase;
+          letter-spacing: 0.04em;
         }
 
         .dark-eyebrow {
           background: rgba(255,255,255,0.14);
           color: #ffffff;
+          border: 1px solid rgba(255,255,255,0.22);
         }
 
-        h1,
-        h2 {
-          margin: 0 0 14px;
-          font-size: clamp(38px, 5vw, 66px);
-          line-height: 0.96;
-          letter-spacing: -0.05em;
+        .hero-copy h1 {
+          margin: 0 0 16px;
+          color: #111827 !important;
+          font-size: clamp(46px, 5vw, 72px);
+          line-height: 0.94;
+          letter-spacing: -0.06em;
           font-weight: 950;
         }
 
-        .hero-text,
-        .section-heading span,
-        .purple-copy span,
-        .bottom-cta span {
+        .hero-copy p {
           color: #4b5563;
-          font-size: 16px;
-          line-height: 1.7;
+          font-size: 17px;
+          line-height: 1.72;
+          margin: 0;
         }
 
         .hero-actions {
           display: flex;
           align-items: center;
           gap: 16px;
-          margin-top: 26px;
+          margin-top: 28px;
         }
 
         .hero-actions a {
@@ -469,108 +370,243 @@ export default function HowToPlanGlobalTeamMeetingsPage() {
           padding: 16px 24px;
           border-radius: 14px;
           text-decoration: none;
-          font-weight: 900;
+          font-size: 15px;
+          font-weight: 950;
+          box-shadow: 0 14px 28px rgba(91,33,182,0.22);
         }
 
         .hero-actions span {
           color: #6b7280;
-          font-weight: 800;
+          font-size: 14px;
+          font-weight: 900;
         }
 
-        .compact-grid,
-        .info-grid,
+        .hero-visual {
+          min-height: 430px;
+          border-radius: 28px;
+          padding: 22px;
+          background:
+            radial-gradient(circle at 72% 18%, rgba(250,204,21,0.32), transparent 24%),
+            radial-gradient(circle at 24% 78%, rgba(255,255,255,0.36), transparent 28%),
+            linear-gradient(135deg, #6d28d9 0%, #2563eb 52%, #a78bfa 100%);
+          box-shadow: 0 20px 50px rgba(30,27,75,0.22);
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 14px;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .visual-top,
+        .overlap-card {
+          background: rgba(255,255,255,0.94);
+          border: 1px solid rgba(255,255,255,0.5);
+          border-radius: 18px;
+          padding: 16px;
+          box-shadow: 0 16px 34px rgba(30,27,75,0.16);
+          z-index: 2;
+        }
+
+        .visual-top span {
+          display: block;
+          color: #5b21b6;
+          font-size: 12px;
+          font-weight: 950;
+          margin-bottom: 6px;
+        }
+
+        .visual-top strong {
+          color: #111827;
+          font-size: 24px;
+          font-weight: 950;
+        }
+
+        .visual-map {
+          grid-column: 1 / 4;
+          min-height: 190px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .planet {
+          width: 132px;
+          height: 132px;
+          border-radius: 999px;
+          background: rgba(255,255,255,0.18);
+          border: 1px solid rgba(255,255,255,0.34);
+          color: #ffffff;
+          font-size: 28px;
+          font-weight: 950;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 24px 70px rgba(17,24,39,0.22);
+          z-index: 2;
+        }
+
+        .orbit {
+          position: absolute;
+          border: 2px dashed rgba(255,255,255,0.48);
+          border-radius: 999px;
+        }
+
+        .orbit-one {
+          width: 360px;
+          height: 120px;
+          transform: rotate(-13deg);
+        }
+
+        .orbit-two {
+          width: 440px;
+          height: 150px;
+          transform: rotate(18deg);
+        }
+
+        .overlap-card {
+          grid-column: 1 / 4;
+          display: grid;
+          grid-template-columns: 1fr auto;
+          align-items: center;
+          gap: 8px 18px;
+        }
+
+        .overlap-card strong {
+          color: #111827;
+          font-size: 18px;
+          font-weight: 950;
+        }
+
+        .overlap-card span {
+          color: #f59e0b;
+          font-size: 18px;
+          font-weight: 950;
+        }
+
+        .overlap-card p {
+          grid-column: 1 / 3;
+          color: #4b5563;
+          margin: 0;
+          font-size: 14px;
+          font-weight: 700;
+        }
+
+        .quick-grid,
+        .problem-grid,
         .related-grid {
           display: grid;
-          grid-template-columns: repeat(3, minmax(0,1fr));
           gap: 16px;
-          margin-bottom: 22px;
+          margin-bottom: 24px;
         }
 
-        .compact-grid article,
-        .info-grid article,
-        .related-grid a,
-        .purple-grid div,
-        .checklist-grid div {
+        .quick-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .problem-grid,
+        .related-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .quick-grid article,
+        .problem-grid article,
+        .related-grid a {
           background: linear-gradient(180deg, #ffffff 0%, #faf7ff 100%);
           border: 1px solid #ddd6fe;
           border-radius: 22px;
           padding: 22px;
+          text-decoration: none;
+          box-shadow: 0 14px 30px rgba(91,33,182,0.08);
         }
 
-        .compact-grid p {
+        .quick-grid span,
+        .problem-grid span {
+          display: block;
           color: #6d28d9;
           font-size: 12px;
           font-weight: 950;
           text-transform: uppercase;
+          margin-bottom: 10px;
         }
 
-        .compact-grid h3,
-        .info-grid strong,
-        .purple-grid strong {
-          font-size: 18px;
-          line-height: 1.3;
+        .quick-grid strong,
+        .problem-grid strong,
+        .related-grid strong {
+          color: #111827 !important;
+          font-size: 19px;
+          line-height: 1.2;
           font-weight: 950;
         }
 
         .section-heading {
           text-align: center;
-          max-width: 920px;
-          margin: 0 auto 24px;
+          max-width: 850px;
+          margin: 34px auto 24px;
         }
 
         .section-heading h2,
-        .purple-copy h2,
-        .checklist-copy h2,
+        .strategy-copy h2,
         .related-reading h2,
         .bottom-cta h2 {
+          margin: 0 0 12px;
+          color: #111827;
           font-size: clamp(34px, 4vw, 54px);
+          line-height: 1.04;
+          letter-spacing: -0.04em;
+          font-weight: 950;
         }
 
-        .info-grid article p,
-        .purple-grid p,
+        .section-heading p,
+        .problem-grid p,
         .related-grid span {
           color: #4b5563;
           font-size: 15px;
           line-height: 1.65;
+          margin: 10px 0 0;
         }
 
-        .purple-panel {
+        .strategy-section {
           display: grid;
           grid-template-columns: 0.95fr 1.05fr;
           gap: 18px;
-          margin-bottom: 22px;
-          background: linear-gradient(180deg, #2e1065 0%, #5b21b6 100%);
+          margin-bottom: 28px;
           border-radius: 28px;
           padding: 24px;
+          background: linear-gradient(135deg, #2e1065 0%, #5b21b6 100%);
         }
 
-        .purple-copy,
-        .purple-copy span {
+        .strategy-copy h2,
+        .strategy-copy p {
           color: #ffffff;
         }
 
-        .purple-grid {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0,1fr));
-          gap: 14px;
+        .strategy-copy p:last-child {
+          color: rgba(255,255,255,0.86);
+          font-size: 16px;
+          line-height: 1.7;
         }
 
-        .checklist-section {
-          margin-bottom: 22px;
-        }
-
-        .checklist-grid {
+        .strategy-list {
           display: grid;
           gap: 12px;
         }
 
-        .checklist-grid div {
-          font-weight: 800;
+        .strategy-list div {
+          background: rgba(255,255,255,0.96);
+          border-radius: 16px;
+          padding: 17px;
+          color: #111827;
+          font-size: 15px;
+          font-weight: 900;
         }
 
-        .related-grid a {
-          text-decoration: none;
-          color: #111827;
+        .related-reading {
+          margin-bottom: 24px;
+        }
+
+        .related-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
         }
 
         .bottom-cta {
@@ -578,21 +614,27 @@ export default function HowToPlanGlobalTeamMeetingsPage() {
           border-radius: 28px;
           padding: 26px;
           display: flex;
+          align-items: center;
           justify-content: space-between;
           gap: 24px;
-          align-items: center;
         }
 
         .bottom-cta p {
           color: #facc15;
           font-size: 12px;
           font-weight: 950;
+          margin: 0 0 8px;
           text-transform: uppercase;
         }
 
-        .bottom-cta h2,
-        .bottom-cta span {
+        .bottom-cta h2 {
           color: #ffffff;
+        }
+
+        .bottom-cta span {
+          color: rgba(255,255,255,0.88);
+          font-size: 15px;
+          line-height: 1.6;
         }
 
         .bottom-cta a {
@@ -605,41 +647,68 @@ export default function HowToPlanGlobalTeamMeetingsPage() {
           flex-direction: column;
           align-items: center;
           min-width: 220px;
+          box-shadow: 0 14px 28px rgba(0,0,0,0.20);
         }
 
-        .bottom-cta strong {
+        .bottom-cta a strong {
+          color: #111827;
           font-size: 18px;
           font-weight: 950;
         }
 
-        .bottom-cta small {
+        .bottom-cta a small {
+          color: #111827;
           font-size: 12px;
           font-weight: 900;
         }
 
         @media (max-width: 900px) {
-          .hero-section,
-          .purple-panel,
-          .compact-grid,
-          .info-grid,
-          .related-grid,
-          .purple-grid {
-            grid-template-columns: 1fr;
+          .global-page {
+            margin: 16px auto 0;
+            max-width: calc(100% - 24px);
+            padding: 16px;
           }
 
           .site-header {
             flex-wrap: wrap;
             justify-content: center;
+            text-align: center;
+          }
+
+          .brand-link {
+            width: 100%;
+            justify-content: center;
           }
 
           .site-nav {
+            width: 100%;
             flex-wrap: wrap;
             justify-content: center;
           }
 
+          .header-cta {
+            width: 100%;
+            max-width: 340px;
+          }
+
+          .hero-section,
+          .quick-grid,
+          .problem-grid,
+          .strategy-section,
+          .related-grid {
+            grid-template-columns: 1fr;
+          }
+
           .bottom-cta {
             flex-direction: column;
+            align-items: stretch;
             text-align: center;
+          }
+
+          .bottom-cta a {
+            width: 100%;
+            min-width: 0;
+            box-sizing: border-box;
           }
         }
       `}</style>
