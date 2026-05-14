@@ -118,3 +118,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 }
+{
+  url: `${baseUrl}/best-times-to-contact-different-countries`,
+  lastModified: new Date(),
+},
+{
+  url: `${baseUrl}/best-meeting-times-us-and-europe`,
+  lastModified: new Date(),
+},
+{
+  url: `${baseUrl}/why-remote-teams-struggle-with-scheduling`,
+  lastModified: new Date(),
+},
