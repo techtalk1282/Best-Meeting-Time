@@ -187,7 +187,30 @@ export default function BestTimesToContactDifferentCountriesPage() {
             </article>
           </div>
         </section>
+<section className="deep-dive-section">
+          <p className="eyebrow">Country-by-Country Deep Dive</p>
 
+          <h2>Best times to contact major business regions</h2>
+
+          <div className="deep-dive-grid">
+            {[
+              ["United States", "Best during local morning through mid-afternoon. For international meetings, US East Coast mornings often work best with Europe."],
+              ["United Kingdom", "Best during UK morning through mid-afternoon. Strong overlap with US East Coast begins around early US morning."],
+              ["Germany", "Best during Central European business hours. Avoid late-day requests when contacting from North America."],
+              ["France", "Best during local business hours, especially mid-morning to mid-afternoon. Be mindful of lunch breaks and holidays."],
+              ["India", "Best during late India morning through early evening. US teams usually need carefully planned morning overlap."],
+              ["Japan", "Best during Japan business hours. US overlap is difficult, so planned evening or rotating meetings may be needed."],
+              ["Singapore", "Best during local morning through late afternoon. Good for Asia-Pacific coordination and some Europe overlap."],
+              ["Australia", "Best during Australian morning or early afternoon. US overlap is limited and often requires rotation."],
+              ["Canada", "Best during local business hours. Eastern Canada overlaps well with the US and partially with Europe."],
+            ].map(([country, guidance]) => (
+              <article key={country}>
+                <strong>{country}</strong>
+                <span>{guidance}</span>
+              </article>
+            ))}
+          </div>
+        </section>
         <section className="culture-section">
           <div className="culture-copy">
             <p className="eyebrow">Timing Etiquette</p>
@@ -672,7 +695,50 @@ export default function BestTimesToContactDifferentCountriesPage() {
           line-height: 1.7;
           margin: 0;
         }
+ .deep-dive-section {
+          background: #ffffff;
+          border: 1px solid #ddd6fe;
+          border-radius: 28px;
+          padding: 30px;
+          margin-bottom: 20px;
+          box-shadow: 0 14px 30px rgba(91,33,182,0.08);
+        }
 
+        .deep-dive-section h2 {
+          margin: 0 0 18px;
+          color: #111827;
+          font-size: clamp(34px, 4vw, 46px);
+          line-height: 1.08;
+          font-weight: 950;
+          letter-spacing: -0.04em;
+        }
+
+        .deep-dive-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 16px;
+        }
+
+        .deep-dive-grid article {
+          background: #faf9ff;
+          border: 1px solid #ddd6fe;
+          border-radius: 18px;
+          padding: 20px;
+        }
+
+        .deep-dive-grid strong {
+          display: block;
+          color: #111827;
+          font-size: 22px;
+          font-weight: 950;
+          margin-bottom: 10px;
+        }
+
+        .deep-dive-grid span {
+          color: #4b5563;
+          font-size: 15px;
+          line-height: 1.7;
+        }
         .culture-section {
           background: #faf9ff;
           border: 1px solid #ddd6fe;
