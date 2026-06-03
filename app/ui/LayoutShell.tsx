@@ -241,15 +241,22 @@ export default function LayoutShell({
             </a>
 
             <a
-              href="/terms-of-service"
-              style={{ marginRight: "15px", color: "#ddd6fe" }}
-            >
-              Terms of Service
-            </a>
+  href="/terms-of-service"
+  style={{ marginRight: "15px", color: "#ddd6fe" }}
+>
+  Terms of Service
+</a>
 
-            <a href="/contact" style={{ color: "#ddd6fe" }}>
-              Contact
-            </a>
+<a
+  href="/disclaimer"
+  style={{ marginRight: "15px", color: "#ddd6fe" }}
+>
+  Disclaimer
+</a>
+
+<a href="/contact" style={{ color: "#ddd6fe" }}>
+  Contact
+</a>
           </div>
 
           <div
