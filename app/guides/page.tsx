@@ -97,17 +97,38 @@ export default function GuidesPage() {
         </section>
 
         <section className="guide-intro">
-          <p className="pill">Explore Our Guides</p>
+  <p className="pill">Explore Our Guides</p>
 
-          <h2>Choose a Guide to Start Learning</h2>
+  <h2>Choose a Guide to Start Learning</h2>
 
-          <p>
-            From time zone basics to cultural tips and entertainment timing,
-            these guides help you understand the world and plan with confidence.
-          </p>
-        </section>
+  <p>
+    From time zone basics to cultural tips and entertainment timing,
+    these guides help you understand the world and plan with confidence.
+  </p>
+</section>
 
-        <section className="guide-grid">
+<section className="playbook-feature">
+  <div className="playbook-copy">
+    <p className="pill">Start Here</p>
+
+    <h2>Global Meeting Scheduling Playbook</h2>
+
+    <p>
+      Learn how international teams coordinate meetings across time zones,
+      understand work-hour overlap windows, avoid daylight-saving confusion,
+      and schedule global meetings with greater confidence.
+    </p>
+
+    <a
+      href="/global-meeting-scheduling-playbook"
+      className="playbook-button"
+    >
+      Read the Complete Playbook
+    </a>
+  </div>
+</section>
+
+<section className="guide-grid">
           <a
             href="/how-to-schedule-meetings-across-time-zones"
             className="guide-card guide-blue"
@@ -525,12 +546,52 @@ export default function GuidesPage() {
           line-height: 1.55;
         }
 
-        .guide-grid {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 20px;
-          padding: 0 10px 26px;
-        }
+        .playbook-feature {
+  margin: 0 10px 28px;
+  padding: 32px;
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    #312e81 0%,
+    #5b21b6 100%
+  );
+  color: #ffffff;
+  text-align: center;
+  box-shadow: 0 20px 48px rgba(49,46,129,0.22);
+}
+
+.playbook-copy {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.playbook-feature h2 {
+  color: #ffffff;
+  font-size: clamp(32px, 4vw, 46px);
+  line-height: 1.08;
+  font-weight: 950;
+  letter-spacing: -0.03em;
+  margin: 0 0 12px;
+}
+
+.playbook-feature p:last-of-type {
+  color: #ede9fe;
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0 auto 22px;
+}
+
+.playbook-button {
+  display: inline-block;
+  background: #facc15;
+  color: #111827;
+  padding: 14px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 950;
+  font-size: 14px;
+  box-shadow: 0 12px 24px rgba(250,204,21,0.24);
+}
 
         .guide-card {
           background: #ffffff;
