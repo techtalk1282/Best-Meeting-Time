@@ -1,13 +1,13 @@
 /**
  * File: app/page.tsx
- * Version: v4.9 (FINAL HOMEPAGE RESPONSIVE MOBILE FIT)
- * Date: 2026-05-11
+ * Version: v5.0 (ADSENSE AUTHORITY-FIRST HOMEPAGE)
+ * Date: 2026-06-02
  *
  * PURPOSE:
- * - Fix homepage mobile and tablet cutoff using the same successful pattern as Features, Blog, About, Contact, and Schedule pages
- * - Replace fragile inline mobile overrides with scoped class-based responsive CSS
- * - Preserve homepage marketing content, routing, premium preview, and desktop presentation
- * - Keep homepage as marketing preview
+ * - Reposition homepage from tool-first to authority/resource-first for AdSense low-value-content recovery
+ * - Lead with global scheduling education, resources, methodology, and expertise signals
+ * - Move planner preview and premium tools lower on the page
+ * - Preserve navigation, routing, branding, responsive structure, and protected payment/tool boundaries
  *
  * PROTECTED:
  * - No Stripe changes
@@ -18,7 +18,7 @@
  * - No ToolPreviewMobile changes
  *
  * ROLLBACK:
- * - Revert app/page.tsx to v4.8 if this layout does not test cleanly
+ * - Revert app/page.tsx to v4.9 if this homepage structure does not test cleanly
  */
 
 import dynamic from "next/dynamic";
@@ -57,58 +57,241 @@ export default function HomePage() {
                 <a href="/contact">Contact</a>
               </nav>
 
-              <a href="/how-it-works#schedule-tool" className="nav-cta">
-                <span>Schedule a Meeting</span>
-                <small>Free to try — no sign-up</small>
+              <a href="/guides" className="nav-cta">
+                <span>Explore Guides</span>
+                <small>Learn before you schedule</small>
               </a>
             </header>
 
-            <section className="hero">
+            <section className="hero authority-hero">
               <div className="hero-copy">
-                <p className="pill">Trusted Time Zone Meeting Planner</p>
+                <p className="pill">Global Scheduling Resource Center</p>
 
-                <h1>Schedule the Best Meeting Times Worldwide</h1>
+                <h1>Learn How to Schedule Better Meetings Across Time Zones</h1>
 
                 <p className="hero-text">
-                  Smarter scheduling across time zones — fast, simple, and
-                  accurate.
+                  Best Meeting Time helps remote teams, clients, freelancers,
+                  and global collaborators understand time zones, compare work
+                  hours, avoid daylight-saving confusion, and choose fairer
+                  meeting windows.
                 </p>
 
                 <div className="hero-bullets">
                   <div>
-                    <strong>Compare cities and time zones instantly</strong>
+                    <strong>Understand global scheduling challenges</strong>
                     <span>
-                      View local times side by side for teams, clients,
-                      freelancers, and remote meetings across different regions.
+                      Learn why time zones, regional work hours, and daylight
+                      saving changes make international coordination difficult.
                     </span>
                   </div>
 
                   <div>
-                    <strong>Find recommended meeting windows faster</strong>
+                    <strong>Use practical meeting-time guidance</strong>
                     <span>
-                      Avoid manual time zone conversion and quickly choose a
-                      practical meeting time that works for both locations.
+                      Review country timing examples, remote team scheduling
+                      tips, and global meeting planning resources before sending
+                      an invite.
                     </span>
                   </div>
 
                   <div>
-                    <strong>Start planning without an account</strong>
+                    <strong>Plan with more confidence</strong>
                     <span>
-                      Use the meeting time planner first, then unlock more
-                      scheduling options if you need premium planning tools.
+                      After reviewing the guides, use the planner to compare
+                      cities and choose a practical meeting window.
                     </span>
                   </div>
                 </div>
 
                 <div className="trust-row">
-                  <span>Free to Try</span>
-                  <span>No Sign-up</span>
-                  <span>Works Worldwide</span>
+                  <span>Time Zone Guides</span>
+                  <span>Remote Work Scheduling</span>
+                  <span>Global Meeting Planning</span>
                 </div>
               </div>
 
+              <div className="authority-card">
+                <p className="section-eyebrow">Featured Resource</p>
+                <h2>Global Meeting Scheduling Playbook</h2>
+                <p>
+                  A complete guide for planning meetings across countries,
+                  handling overlap windows, respecting local work hours, and
+                  reducing scheduling friction for remote teams.
+                </p>
+
+                <div className="authority-list">
+                  <span>Fair meeting windows</span>
+                  <span>Daylight-saving planning</span>
+                  <span>International work-hour awareness</span>
+                  <span>Remote team coordination</span>
+                </div>
+
+                <a href="/guides" className="authority-button">
+                  Start With the Guides
+                </a>
+              </div>
+            </section>
+
+            <section className="content-section authority-section">
+              <div className="section-header">
+                <p className="section-eyebrow">Why Timing Matters</p>
+                <h2>Scheduling Across Time Zones Is Harder Than It Looks</h2>
+                <p>
+                  A meeting time that feels normal in one city may be too early,
+                  too late, or outside working hours somewhere else. Global
+                  scheduling requires more than converting a clock.
+                </p>
+              </div>
+
+              <div className="feature-grid">
+                <article>
+                  <strong>Work hours are not universal</strong>
+                  <span>
+                    Business hours, lunch breaks, weekends, and preferred
+                    response times vary by country and region.
+                  </span>
+                </article>
+
+                <article>
+                  <strong>Daylight saving changes create mistakes</strong>
+                  <span>
+                    Seasonal clock changes can shift meeting overlap windows and
+                    cause confusion for recurring meetings.
+                  </span>
+                </article>
+
+                <article>
+                  <strong>Remote teams need fairness</strong>
+                  <span>
+                    Better scheduling avoids placing the same team members in
+                    early-morning or late-night meetings every time.
+                  </span>
+                </article>
+
+                <article>
+                  <strong>Clients expect timing awareness</strong>
+                  <span>
+                    Checking local time before reaching out helps protect
+                    professionalism and reduces missed communication.
+                  </span>
+                </article>
+              </div>
+            </section>
+
+            <section id="resources" className="content-section">
+              <div className="section-header">
+                <p className="section-eyebrow">Resource Library</p>
+                <h2>Guides for Better Global Meeting Planning</h2>
+                <p>
+                  These resources help explain the scheduling decisions behind
+                  better meeting windows.
+                </p>
+              </div>
+
+              <div className="resources-grid">
+                <a href="/how-to-schedule-meetings-across-time-zones">
+                  <strong>How to Schedule Across Time Zones</strong>
+                  <span>
+                    Learn the basics of planning meetings when teams are spread
+                    across different regions.
+                  </span>
+                </a>
+
+                <a href="/best-meeting-times-remote-teams">
+                  <strong>Best Meeting Times for Remote Teams</strong>
+                  <span>
+                    Review practical overlap strategies for distributed teams
+                    and remote work schedules.
+                  </span>
+                </a>
+
+                <a href="/best-times-to-contact-different-countries">
+                  <strong>Best Times to Contact Different Countries</strong>
+                  <span>
+                    Understand how work hours, local expectations, and timing
+                    etiquette affect global communication.
+                  </span>
+                </a>
+
+                <a href="/best-meeting-times-us-and-europe">
+                  <strong>Best Meeting Times Between the US and Europe</strong>
+                  <span>
+                    Find practical overlap windows for American and European
+                    teams.
+                  </span>
+                </a>
+
+                <a href="/why-remote-teams-struggle-with-scheduling">
+                  <strong>Why Remote Teams Struggle With Scheduling</strong>
+                  <span>
+                    Learn why global teams miss better meeting windows and how
+                    to avoid common scheduling problems.
+                  </span>
+                </a>
+
+                <a href="/fun-facts-about-time-zones">
+                  <strong>Fun Facts About Time Zones</strong>
+                  <span>
+                    Explore unusual time zone facts, UTC offsets, and the
+                    International Date Line.
+                  </span>
+                </a>
+              </div>
+            </section>
+
+            <section id="methodology" className="content-section">
+              <div className="section-header">
+                <p className="section-eyebrow">Scheduling Methodology</p>
+                <h2>How Better Meeting Windows Are Chosen</h2>
+                <p>
+                  Good scheduling considers more than the current time. It
+                  balances local time, working-hour overlap, meeting duration,
+                  and practical availability.
+                </p>
+              </div>
+
+              <div className="how-grid">
+                <article>
+                  <strong>Compare locations</strong>
+                  <span>
+                    Start by identifying the cities or time zones involved in
+                    the meeting.
+                  </span>
+                </article>
+
+                <article>
+                  <strong>Check local working hours</strong>
+                  <span>
+                    Look for overlap that avoids very early, very late, or
+                    impractical meeting windows.
+                  </span>
+                </article>
+
+                <article>
+                  <strong>Choose a practical window</strong>
+                  <span>
+                    Use the recommended overlap as a starting point, then adjust
+                    based on team preference and meeting importance.
+                  </span>
+                </article>
+              </div>
+            </section>
+
+            <section className="content-section planner-preview-section">
+              <div className="section-header">
+                <p className="section-eyebrow">Planning Tool</p>
+                <h2>Use the Planner After Reviewing the Timing Context</h2>
+                <p>
+                  When you are ready to compare cities, the planner helps you
+                  review local times side by side and identify a practical
+                  meeting window.
+                </p>
+              </div>
+
               <div className="planner-card">
-              <p className="section-eyebrow">Preview of the Best Meeting Time scheduler</p>
+                <p className="section-eyebrow">
+                  Preview of the Best Meeting Time scheduler
+                </p>
                 <h2>Recommended meeting window</h2>
 
                 <div className="city-grid">
@@ -153,21 +336,20 @@ export default function HomePage() {
                 </div>
 
                 <a href="/how-it-works#schedule-tool" className="planner-button">
-                  Schedule a Meeting
+                  Open Meeting Planner
                 </a>
 
                 <p className="free-note">Free to try — no sign-up required.</p>
               </div>
             </section>
 
-            <section id="premium-tools" className="content-section">
+            <section id="premium-tools" className="content-section premium-section">
               <div className="section-header">
                 <p className="section-eyebrow">Premium Tools</p>
                 <h2>Plan, Share, and Add Meetings Faster</h2>
                 <p>
-                  After finding the best meeting time, unlock planning tools to
-                  share your selected window and add it to your calendar
-                  workflow.
+                  After choosing a better meeting window, premium planning tools
+                  help share the selected time and add it to a calendar workflow.
                 </p>
               </div>
 
@@ -179,107 +361,17 @@ export default function HomePage() {
               </div>
             </section>
 
-            <section id="features" className="content-section">
-              <div className="section-header">
-                <p className="section-eyebrow">Features</p>
-                <h2>Plan Meetings Across Time Zones Faster</h2>
-                <p>
-                  Best Meeting Time helps you compare cities, review local
-                  times, and choose better meeting windows without guesswork.
-                </p>
-              </div>
-
-              <div className="feature-grid">
-                <article>
-                  <strong>Live Time Comparison</strong>
-                  <span>Check both locations before choosing a meeting time.</span>
-                </article>
-
-                <article>
-                  <strong>Recommended Meeting Windows</strong>
-                  <span>See practical time options for both cities.</span>
-                </article>
-
-                <article>
-                  <strong>Remote Team Scheduling</strong>
-                  <span>Useful for teams, consultants, clients, and partners.</span>
-                </article>
-
-                <article>
-                  <strong>Free Planning Start</strong>
-                  <span>Begin without creating an account or signing in.</span>
-                </article>
-              </div>
-            </section>
-
-            <section id="how-it-works" className="content-section">
-              <div className="section-header">
-                <p className="section-eyebrow">How It Works</p>
-                <h2>How Best Meeting Time Works</h2>
-                <p>A simple three-step flow for scheduling across time zones.</p>
-              </div>
-
-              <div className="how-grid">
-                <article>
-                  <strong>Select locations</strong>
-                  <span>Choose the cities or time zones for your meeting.</span>
-                </article>
-
-                <article>
-                  <strong>Compare local times</strong>
-                  <span>View both locations side by side before scheduling.</span>
-                </article>
-
-                <article>
-                  <strong>Pick the best window</strong>
-                  <span>Use recommended times to schedule with confidence.</span>
-                </article>
-              </div>
-            </section>
-
-            <section id="resources" className="content-section">
-              <div className="section-header">
-                <p className="section-eyebrow">Resources</p>
-                <h2>Helpful Resources to Schedule Better Meetings</h2>
-                <p>Guides and tips to help you collaborate across time zones.</p>
-              </div>
-
-              <div className="resources-grid">
-                <a href="/how-to-schedule-meetings-across-time-zones">
-                  <strong>How to Schedule Across Time Zones</strong>
-                  <span>Step-by-step guide for global teams.</span>
-                </a>
-
-                <a href="/best-meeting-times-remote-teams">
-                  <strong>Best Meeting Times for Remote Teams</strong>
-                  <span>Practical tips that actually work.</span>
-                </a>
-
-                <a href="/time-zone-meeting-planner-guide">
-                  <strong>Time Zone Meeting Planner Guide</strong>
-                  <span>Master your zone planning.</span>
-                </a>
-
-                <a href="/global-meeting-scheduling-tips">
-                  <strong>Global Meeting Scheduling Tips</strong>
-                  <span>Expert tips for faster scheduling.</span>
-                </a>
-
-                <a href="/guides">
-                  <strong>Meeting Time Zone Converter Guide</strong>
-                  <span>Understand time zones easily.</span>
-                </a>
-              </div>
-
+            <section className="content-section">
               <div className="cta-band">
                 <div>
-                  <strong>Ready to find the best time for your next meeting?</strong>
-                  <span>Start free — no sign-up required.</span>
+                  <strong>Ready to compare meeting times?</strong>
+                  <span>
+                    Review the guides first, then use the planner when you are
+                    ready to schedule.
+                  </span>
                 </div>
 
-                <a href="/how-it-works#schedule-tool">
-                  Schedule a Free Meeting
-                </a>
+                <a href="/how-it-works#schedule-tool">Open the Planner</a>
               </div>
             </section>
 
@@ -338,21 +430,21 @@ export default function HomePage() {
               }
 
               .nav-cta {
-  background: #5b21b6;
-  color: #ffffff;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-weight: 900;
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  line-height: 1.18;
-  min-width: 146px;
-  box-shadow: 0 10px 22px rgba(91,33,182,0.22);
-}
+                background: #5b21b6;
+                color: #ffffff;
+                padding: 10px 16px;
+                border-radius: 8px;
+                font-weight: 900;
+                text-decoration: none;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 3px;
+                line-height: 1.18;
+                min-width: 146px;
+                box-shadow: 0 10px 22px rgba(91,33,182,0.22);
+              }
 
               .nav-cta span {
                 color: #ffffff;
@@ -369,14 +461,14 @@ export default function HomePage() {
 
               .hero {
                 display: grid;
-                grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
-                align-items: start;
-                gap: 36px;
+                grid-template-columns: minmax(0, 0.98fr) minmax(0, 1fr);
+                align-items: stretch;
+                gap: 28px;
                 padding: 18px 10px 12px;
               }
 
               .hero-copy {
-                max-width: 500px;
+                max-width: 520px;
               }
 
               .pill {
@@ -392,7 +484,7 @@ export default function HomePage() {
 
               .hero h1 {
                 color: #111827;
-                font-size: clamp(36px, 4vw, 48px);
+                font-size: clamp(34px, 4vw, 48px);
                 line-height: 1.06;
                 margin: 0 0 14px;
                 font-weight: 950;
@@ -400,11 +492,11 @@ export default function HomePage() {
               }
 
               .hero-text {
-                color: #6b7280;
+                color: #4b5563;
                 font-size: 15px;
-                line-height: 1.6;
+                line-height: 1.65;
                 margin: 0 0 14px;
-                font-weight: 500;
+                font-weight: 600;
               }
 
               .hero-bullets {
@@ -417,13 +509,21 @@ export default function HomePage() {
                 background: #faf9ff;
                 border: 1px solid #ede9fe;
                 border-radius: 10px;
-                padding: 9px 11px;
+                padding: 10px 12px;
                 display: flex;
                 flex-direction: column;
-                gap: 2px;
+                gap: 3px;
                 color: #374151;
                 font-size: 12px;
-                line-height: 1.35;
+                line-height: 1.4;
+              }
+
+              .hero-bullets strong,
+              .feature-grid strong,
+              .how-grid strong,
+              .resources-grid strong {
+                color: #111827;
+                font-weight: 950;
               }
 
               .trust-row {
@@ -436,7 +536,156 @@ export default function HomePage() {
                 margin-top: 14px;
               }
 
+              .authority-card {
+                background: linear-gradient(135deg, #1e0b4f 0%, #5b21b6 65%, #7c3aed 100%);
+                border-radius: 20px;
+                padding: 26px;
+                color: #ffffff;
+                box-shadow: 0 24px 60px rgba(76,29,149,0.28);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                min-height: 100%;
+              }
+
+              .authority-card .section-eyebrow {
+                color: #facc15;
+              }
+
+              .authority-card h2 {
+                color: #ffffff;
+                font-size: 30px;
+                line-height: 1.05;
+                margin: 0 0 12px;
+                font-weight: 950;
+                letter-spacing: -0.03em;
+              }
+
+              .authority-card p {
+                margin: 0;
+                color: rgba(255,255,255,0.88);
+                font-size: 14px;
+                line-height: 1.65;
+                font-weight: 600;
+              }
+
+              .authority-list {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+                margin: 18px 0;
+              }
+
+              .authority-list span {
+                background: rgba(255,255,255,0.12);
+                border: 1px solid rgba(255,255,255,0.18);
+                border-radius: 12px;
+                padding: 10px;
+                font-size: 12px;
+                font-weight: 850;
+              }
+
+              .authority-button {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                background: #facc15;
+                color: #111827;
+                padding: 12px 16px;
+                border-radius: 10px;
+                text-decoration: none;
+                font-size: 13px;
+                font-weight: 950;
+                width: fit-content;
+              }
+
+              .content-section {
+                margin-top: 14px;
+                padding: 22px 16px;
+                background: #ffffff;
+                border-radius: 14px;
+                border: 1px solid #ede9fe;
+                scroll-margin-top: 24px;
+              }
+
+              .authority-section {
+                background: #faf9ff;
+              }
+
+              .section-header {
+                text-align: center;
+                margin-bottom: 16px;
+              }
+
+              .section-eyebrow {
+                color: #6d28d9;
+                font-size: 11px;
+                font-weight: 950;
+                margin: 0 0 4px;
+                text-transform: uppercase;
+                letter-spacing: 0.04em;
+              }
+
+              .section-header h2 {
+                font-size: 24px;
+                font-weight: 950;
+                color: #111827;
+                margin: 0 0 6px;
+                letter-spacing: -0.03em;
+              }
+
+              .section-header p:last-child {
+                color: #6b7280;
+                font-size: 13px;
+                line-height: 1.65;
+                margin: 0 auto;
+                max-width: 760px;
+              }
+
+              .feature-grid {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 12px;
+              }
+
+              .how-grid {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 12px;
+                margin-top: 10px;
+              }
+
+              .resources-grid {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 12px;
+                margin-top: 10px;
+              }
+
+              .feature-grid article,
+              .how-grid article,
+              .resources-grid a {
+                background: #ffffff;
+                border: 1px solid #ddd6fe;
+                border-radius: 14px;
+                padding: 18px;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                font-size: 13px;
+                line-height: 1.5;
+                box-shadow: 0 10px 25px rgba(91,33,182,0.08);
+                text-decoration: none;
+                color: #374151;
+              }
+
+              .planner-preview-section {
+                background: #ffffff;
+              }
+
               .planner-card {
+                max-width: 620px;
+                margin: 0 auto;
                 background: #ffffff;
                 border: 1px solid #ddd6fe;
                 border-radius: 18px;
@@ -450,15 +699,6 @@ export default function HomePage() {
                 font-size: 18px;
                 font-weight: 950;
                 margin: 0 0 14px;
-              }
-
-              .section-eyebrow {
-                color: #6d28d9;
-                font-size: 11px;
-                font-weight: 950;
-                margin: 0 0 4px;
-                text-transform: uppercase;
-                letter-spacing: 0.04em;
               }
 
               .city-grid {
@@ -565,31 +805,8 @@ export default function HomePage() {
                 text-align: center;
               }
 
-              .content-section {
-                margin-top: 14px;
-                padding: 20px 16px;
-                background: #ffffff;
-                border-radius: 14px;
-                border: 1px solid #ede9fe;
-                scroll-margin-top: 24px;
-              }
-
-              .section-header {
-                text-align: center;
-                margin-bottom: 14px;
-              }
-
-              .section-header h2 {
-                font-size: 22px;
-                font-weight: 950;
-                color: #111827;
-                margin: 0 0 6px;
-              }
-
-              .section-header p:last-child {
-                color: #6b7280;
-                font-size: 13px;
-                margin: 0;
+              .premium-section {
+                background: #fffdf4;
               }
 
               .premium-row {
@@ -610,44 +827,6 @@ export default function HomePage() {
                 box-shadow: 0 8px 18px rgba(250,204,21,0.22);
               }
 
-              .feature-grid {
-                display: grid;
-                grid-template-columns: repeat(4, minmax(0, 1fr));
-                gap: 12px;
-              }
-
-              .how-grid {
-                display: grid;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: 12px;
-                margin-top: 10px;
-              }
-
-              .resources-grid {
-                display: grid;
-                grid-template-columns: repeat(5, minmax(0, 1fr));
-                gap: 12px;
-                margin-top: 10px;
-                margin-bottom: 14px;
-              }
-
-              .feature-grid article,
-              .how-grid article,
-              .resources-grid a {
-                background: #ffffff;
-                border: 1px solid #ddd6fe;
-                border-radius: 14px;
-                padding: 18px;
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-                font-size: 13px;
-                line-height: 1.5;
-                box-shadow: 0 10px 25px rgba(91,33,182,0.08);
-                text-decoration: none;
-                color: #111827;
-              }
-
               .cta-band {
                 display: flex;
                 justify-content: space-between;
@@ -655,7 +834,7 @@ export default function HomePage() {
                 gap: 14px;
                 background: #5b21b6;
                 color: #ffffff;
-                padding: 14px 16px;
+                padding: 16px;
                 border-radius: 12px;
                 font-weight: 900;
                 font-size: 12px;
@@ -667,10 +846,15 @@ export default function HomePage() {
                 gap: 3px;
               }
 
+              .cta-band span {
+                color: rgba(255,255,255,0.86);
+                font-weight: 700;
+              }
+
               .cta-band a {
                 background: #facc15;
                 color: #111827;
-                padding: 9px 13px;
+                padding: 10px 14px;
                 border-radius: 8px;
                 font-size: 11px;
                 font-weight: 900;
@@ -731,6 +915,7 @@ export default function HomePage() {
                   font-size: 34px;
                 }
 
+                .authority-list,
                 .city-grid,
                 .feature-grid,
                 .how-grid,
@@ -778,6 +963,14 @@ export default function HomePage() {
 
                 .hero h1 {
                   font-size: 32px;
+                }
+
+                .authority-card {
+                  padding: 20px;
+                }
+
+                .authority-card h2 {
+                  font-size: 25px;
                 }
 
                 .premium-row {
