@@ -253,7 +253,52 @@ export default function GlobalMeetingSchedulingPlaybookPage() {
               </article>
             </div>
           </section>
+<section className="content-section">
+            <h2>Practical Meeting Time Examples</h2>
+            <p>
+              The easiest way to understand global scheduling is to compare real
+              city pairs. These examples show why a meeting time can feel normal
+              in one place but difficult somewhere else.
+            </p>
 
+            <div className="example-grid">
+              <article>
+                <strong>New York ↔ London</strong>
+                <span>
+                  A strong overlap is usually New York morning and London
+                  afternoon. For example, 9:00 AM in New York is 2:00 PM in
+                  London during many parts of the year.
+                </span>
+              </article>
+
+              <article>
+                <strong>New York ↔ Tokyo</strong>
+                <span>
+                  This is a difficult pairing because normal work hours rarely
+                  overlap well. Teams often need rotating meeting times or async
+                  updates.
+                </span>
+              </article>
+
+              <article>
+                <strong>London ↔ Singapore</strong>
+                <span>
+                  London morning can align with Singapore late afternoon, which
+                  can work well for planning calls if the meeting is not too
+                  late in Singapore.
+                </span>
+              </article>
+
+              <article>
+                <strong>Los Angeles ↔ Sydney</strong>
+                <span>
+                  This pairing often crosses the International Date Line. Teams
+                  should confirm both the day and the time before sending an
+                  invite.
+                </span>
+              </article>
+            </div>
+          </section>
           <section className="content-section">
             <h2>When to Use the Planner</h2>
             <p>
@@ -537,7 +582,33 @@ export default function GlobalMeetingSchedulingPlaybookPage() {
               font-size: 14px;
               line-height: 1.7;
             }
+ .example-grid {
+              display: grid;
+              grid-template-columns: repeat(2, minmax(0, 1fr));
+              gap: 14px;
+              margin-top: 18px;
+            }
 
+            .example-grid article {
+              background: #faf9ff;
+              border: 1px solid #ddd6fe;
+              border-radius: 16px;
+              padding: 20px;
+            }
+
+            .example-grid strong {
+              display: block;
+              color: #111827;
+              font-size: 20px;
+              font-weight: 950;
+              margin-bottom: 8px;
+            }
+
+            .example-grid span {
+              color: #4b5563;
+              font-size: 14px;
+              line-height: 1.7;
+            }
             .mistake-list {
               display: grid;
               gap: 12px;
@@ -662,12 +733,12 @@ export default function GlobalMeetingSchedulingPlaybookPage() {
                 font-size: 16px;
               }
 
-              .principle-grid,
+               .principle-grid,
               .framework-grid,
-              .resource-grid {
+              .resource-grid,
+              .example-grid {
                 grid-template-columns: 1fr;
               }
-
               .cta-band {
                 display: grid;
                 grid-template-columns: 1fr;
