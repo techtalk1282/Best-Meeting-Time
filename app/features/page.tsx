@@ -159,6 +159,13 @@ export default function FeaturesPage() {
             <small>Free to try — no sign-up</small>
           </a>
         </section>
+        <footer className="features-footer">
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/terms-of-service">Terms of Service</a>
+          <a href="/disclaimer">Disclaimer</a>
+          <a href="/cookie-policy">Cookie Policy</a>
+          <a href="/contact">Contact</a>
+        </footer>
       </section>
 
       <style>{`
@@ -522,7 +529,23 @@ export default function FeaturesPage() {
           font-weight: 800;
           font-size: 11px;
         }
+ .features-footer {
+          margin-top: 28px;
+          padding-top: 24px;
+          border-top: 1px solid #ede9fe;
+          display: flex;
+          justify-content: center;
+          gap: 18px;
+          flex-wrap: wrap;
+          text-align: center;
+        }
 
+        .features-footer a {
+          color: #5b21b6;
+          font-size: 14px;
+          font-weight: 800;
+          text-decoration: none;
+        }
         @media (max-width: 900px) {
           .features-header {
             flex-wrap: wrap;
