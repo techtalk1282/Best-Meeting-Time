@@ -1,11 +1,12 @@
 /**
  * File: app/contact/page.tsx
-* Version: v2.2 (ADD FACEBOOK TRUST LINK)
- * Date: 2026-05-11
+ * Version: v2.3 (HEADER SOCIAL ICONS + SYNTAX FIX)
+ * Date: 2026-06-04
  *
  * PURPOSE:
- * - Fix Contact page Samsung/iPhone mobile right-side cutoff
- * - Match successful Features, Blog, and About responsive page pattern
+ * - Add YouTube and Facebook social trust icons to the Contact page header
+ * - Remove buried mid-page Facebook text block
+ * - Fix broken JSX caused by extra closing section tag
  * - Keep premium white-shell layout and AdSense trust content
  *
  * PROTECTED:
@@ -16,7 +17,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert to v2.0 if this responsive pass does not test cleanly
+ * - Revert to v2.1 if this header social icon update does not test cleanly
  */
 
 export default function ContactPage() {
@@ -41,34 +42,34 @@ export default function ContactPage() {
           <a href="/contact" className="active">Contact</a>
         </nav>
 
-       <div className="header-actions">
-  <div className="social-links" aria-label="Best Meeting Time social links">
-    <a
-      href="https://youtube.com/shorts/gvC3O4W8NBI?feature=share"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Watch Best Meeting Time on YouTube"
-      className="social-link youtube-link"
-    >
-      ▶
-    </a>
+        <div className="header-actions">
+          <div className="social-links" aria-label="Best Meeting Time social links">
+            <a
+              href="https://youtube.com/shorts/gvC3O4W8NBI?feature=share"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Watch Best Meeting Time on YouTube"
+              className="social-link youtube-link"
+            >
+              ▶
+            </a>
 
-    <a
-      href="https://www.facebook.com/profile.php?id=61590738985034"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Follow Best Meeting Time on Facebook"
-      className="social-link facebook-link"
-    >
-      f
-    </a>
-  </div>
+            <a
+              href="https://www.facebook.com/profile.php?id=61590738985034"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow Best Meeting Time on Facebook"
+              className="social-link facebook-link"
+            >
+              f
+            </a>
+          </div>
 
-  <a href="/how-it-works#schedule-tool" className="nav-cta">
-    <span>Schedule a Meeting</span>
-    <small>Free to try — no sign-up</small>
-  </a>
-</div>
+          <a href="/how-it-works#schedule-tool" className="nav-cta">
+            <span>Schedule a Meeting</span>
+            <small>Free to try — no sign-up</small>
+          </a>
+        </div>
       </header>
 
       <section className="hero">
@@ -82,28 +83,25 @@ export default function ContactPage() {
         </p>
       </section>
 
-     <section className="contact-panel">
-  <div className="contact-card">
-    <p>Support Email</p>
-    <h2>support@bestmeetingtimeapp.com</h2>
-    <span>
-      Send us your question, issue, or feedback and include any helpful
-      details about what you were trying to do.
-    </span>
-  </div>
+      <section className="contact-panel">
+        <div className="contact-card">
+          <p>Support Email</p>
+          <h2>support@bestmeetingtimeapp.com</h2>
+          <span>
+            Send us your question, issue, or feedback and include any helpful
+            details about what you were trying to do.
+          </span>
+        </div>
 
-  <div className="contact-card">
-    <p>Response Time</p>
-    <h2>24–48 hours</h2>
-    <span>
-      We typically respond within one to two business days depending on
-      request volume.
-    </span>
-  </div>
-</section>
-
-
-</section>
+        <div className="contact-card">
+          <p>Response Time</p>
+          <h2>24–48 hours</h2>
+          <span>
+            We typically respond within one to two business days depending on
+            request volume.
+          </span>
+        </div>
+      </section>
 
       <section className="info-grid">
         <article>
@@ -148,7 +146,7 @@ export default function ContactPage() {
           <strong>Schedule a Meeting</strong>
           <small>Free to try — no sign-up</small>
         </a>
-       </section>
+      </section>
 
       <footer className="contact-footer">
         <a href="/privacy-policy">Privacy Policy</a>
@@ -215,40 +213,42 @@ export default function ContactPage() {
           border-bottom: 2px solid #5b21b6;
           padding-bottom: 6px;
         }
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
 
-.social-links {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+        .header-actions {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
 
-.social-link {
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  font-weight: 950;
-  text-decoration: none;
-  color: #ffffff;
-  box-shadow: 0 8px 18px rgba(30,27,75,0.16);
-}
+        .social-links {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
 
-.youtube-link {
-  background: #dc2626;
-}
+        .social-link {
+          width: 34px;
+          height: 34px;
+          border-radius: 999px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 16px;
+          font-weight: 950;
+          text-decoration: none;
+          color: #ffffff;
+          box-shadow: 0 8px 18px rgba(30,27,75,0.16);
+        }
 
-.facebook-link {
-  background: #2563eb;
-  font-family: Arial, sans-serif;
-}
+        .youtube-link {
+          background: #dc2626;
+        }
+
+        .facebook-link {
+          background: #2563eb;
+          font-family: Arial, sans-serif;
+        }
+
         .nav-cta {
           background: #5b21b6;
           color: #ffffff;
@@ -440,7 +440,8 @@ export default function ContactPage() {
           font-weight: 850;
           opacity: 0.9;
         }
-.contact-footer {
+
+        .contact-footer {
           margin-top: 22px;
           padding-top: 22px;
           border-top: 1px solid #ede9fe;
@@ -457,6 +458,7 @@ export default function ContactPage() {
           font-weight: 800;
           text-decoration: none;
         }
+
         @media (max-width: 900px) {
           .contact-page {
             max-width: min(100%, 520px);
@@ -492,16 +494,17 @@ export default function ContactPage() {
           }
 
           .header-actions {
-  width: 100%;
-  justify-content: center;
-  flex-wrap: wrap;
-}
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+          }
 
-.nav-cta {
-  width: 100%;
-  max-width: 320px;
-  min-width: unset;
-}
+          .nav-cta {
+            width: 100%;
+            max-width: 320px;
+            min-width: unset;
+          }
+
           .hero {
             text-align: left;
             padding: 12px 4px 4px;
@@ -517,10 +520,7 @@ export default function ContactPage() {
             line-height: 1.55;
           }
 
-          .contact-panel {
-            grid-template-columns: 1fr;
-          }
-
+          .contact-panel,
           .info-grid {
             grid-template-columns: 1fr;
           }
