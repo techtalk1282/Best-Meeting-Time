@@ -316,7 +316,7 @@ export default function CulturalTimingGuidePage() {
           </div>
         </section>
 
-        <section className="planner-cta">
+         <section className="planner-cta">
           <div>
             <p className="section-pill gold-pill">Plan respectfully</p>
 
@@ -333,8 +333,15 @@ export default function CulturalTimingGuidePage() {
             <small>Free to try — no sign-up</small>
           </a>
         </section>
-      </section>
 
+        <footer className="standard-footer">
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/terms-of-service">Terms of Service</a>
+          <a href="/disclaimer">Disclaimer</a>
+          <a href="/cookie-policy">Cookie Policy</a>
+          <a href="/contact">Contact</a>
+        </footer>
+      </section>
       <style>{`
         .cultural-page {
           min-height: 100vh;
@@ -709,7 +716,23 @@ export default function CulturalTimingGuidePage() {
   color: #111827;
   opacity: 1;
 }
+ .standard-footer {
+          border-top: 1px solid #ede9fe;
+          margin: 34px 10px 0;
+          padding: 24px 10px 4px;
+          display: flex;
+          justify-content: center;
+          gap: 22px;
+          flex-wrap: wrap;
+          text-align: center;
+        }
 
+        .standard-footer a {
+          color: #5b21b6;
+          font-size: 14px;
+          font-weight: 900;
+          text-decoration: none;
+        }
         @media (max-width: 900px) {
           .site-header {
             flex-wrap: wrap;
