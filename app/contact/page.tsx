@@ -1,6 +1,6 @@
 /**
  * File: app/contact/page.tsx
- * Version: v2.1 (RESPONSIVE MOBILE FIT CONVERSION)
+* Version: v2.2 (ADD FACEBOOK TRUST LINK)
  * Date: 2026-05-11
  *
  * PURPOSE:
@@ -58,25 +58,44 @@ export default function ContactPage() {
         </p>
       </section>
 
-      <section className="contact-panel">
-        <div className="contact-card">
-          <p>Support Email</p>
-          <h2>support@bestmeetingtimeapp.com</h2>
-          <span>
-            Send us your question, issue, or feedback and include any helpful
-            details about what you were trying to do.
-          </span>
-        </div>
+     <section className="contact-panel">
+  <div className="contact-card">
+    <p>Support Email</p>
+    <h2>support@bestmeetingtimeapp.com</h2>
+    <span>
+      Send us your question, issue, or feedback and include any helpful
+      details about what you were trying to do.
+    </span>
+  </div>
 
-        <div className="contact-card">
-          <p>Response Time</p>
-          <h2>24–48 hours</h2>
-          <span>
-            We typically respond within one to two business days depending on
-            request volume.
-          </span>
-        </div>
-      </section>
+  <div className="contact-card">
+    <p>Response Time</p>
+    <h2>24–48 hours</h2>
+    <span>
+      We typically respond within one to two business days depending on
+      request volume.
+    </span>
+  </div>
+</section>
+
+<section className="social-trust-panel">
+  <div>
+    <p>Official Social Page</p>
+    <h2>Follow Best Meeting Time on Facebook.</h2>
+    <span>
+      Visit our Facebook page for updates, scheduling resources, and links back
+      to the Best Meeting Time tool.
+    </span>
+  </div>
+
+  <a
+    href="https://www.facebook.com/profile.php?id=61590738985034"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Open Facebook Page
+  </a>
+</section>
 
       <section className="info-grid">
         <article>
