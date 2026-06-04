@@ -195,7 +195,15 @@ export default function EntertainmentSocialTimingPage() {
             <span>Open the Meeting Planner</span>
             <small>Free to try — no sign-up</small>
           </Link>
-        </section>
+         </section>
+
+        <footer className="standard-footer">
+          <Link href="/privacy-policy">Privacy Policy</Link>
+          <Link href="/terms-of-service">Terms of Service</Link>
+          <Link href="/disclaimer">Disclaimer</Link>
+          <Link href="/cookie-policy">Cookie Policy</Link>
+          <Link href="/contact">Contact</Link>
+        </footer>
       </div>
 
       <style>{`
@@ -417,7 +425,23 @@ export default function EntertainmentSocialTimingPage() {
           font-size: 0.78rem;
           font-weight: 800;
         }
+ .standard-footer {
+          border-top: 1px solid #e9ddff;
+          margin: 36px 0 0;
+          padding: 24px 10px 0;
+          display: flex;
+          justify-content: center;
+          gap: 22px;
+          flex-wrap: wrap;
+          text-align: center;
+        }
 
+        .standard-footer a {
+          color: #5b21b6;
+          font-size: 14px;
+          font-weight: 900;
+          text-decoration: none;
+        }
         @media (max-width: 980px) {
           .hero-section,
           .question-section,
