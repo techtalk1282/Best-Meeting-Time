@@ -50,25 +50,7 @@ export default function BlogPage() {
     className="social-links"
     aria-label="Best Meeting Time social links"
   >
-    <a
-      href="https://youtube.com/shorts/gvC3O4W8NBI?feature=share"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Watch Best Meeting Time on YouTube"
-      className="social-link youtube-link"
-    >
-      ▶
-    </a>
-
-    <a
-      href="https://www.facebook.com/profile.php?id=61590738985034"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Follow Best Meeting Time on Facebook"
-      className="social-link facebook-link"
-    >
-      f
-    </a>
+    
   </div>
 
   <div className="header-actions">
