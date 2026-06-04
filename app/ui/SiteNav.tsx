@@ -120,12 +120,16 @@ export default function SiteNav() {
           </a>
 
           <a href="/how-it-works" style={navLink} className="bmt-site-link">
-            Schedule a Meeting
-          </a>
+  Schedule a Meeting
+</a>
 
-          <a href="/features" style={navLink} className="bmt-site-link">
-            Features
-          </a>
+<a href="/how-it-works" style={navLink} className="bmt-site-link">
+  Current World Time
+</a>
+
+<a href="/features" style={navLink} className="bmt-site-link">
+  Features
+</a>
 
           <a href="/guides" style={navLink} className="bmt-site-link">
             Guides
@@ -149,8 +153,8 @@ export default function SiteNav() {
           style={ctaButton}
           className="bmt-site-cta"
         >
-          <span style={ctaMain}>Schedule a Meeting</span>
-          <span style={ctaSub}>Free to try — no sign-up</span>
+          <span style={ctaMain}>Meeting Planner & World Clock</span>
+<span style={ctaSub}>Free • No Sign-Up</span>
         </a>
       </header>
     </>
@@ -215,7 +219,7 @@ const ctaButton = {
   alignItems: "center",
   justifyContent: "center",
   lineHeight: 1.18,
-  minWidth: "154px",
+ minWidth: "190px",
   boxShadow: "0 10px 22px rgba(91,33,182,0.22)",
 };
 
