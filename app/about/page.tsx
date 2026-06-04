@@ -1,13 +1,13 @@
 /**
  * File: app/about/page.tsx
- * Version: v7.3 (RESPONSIVE MOBILE FIT CONVERSION)
- * Date: 2026-05-11
+ * Version: v7.4 (MISSION + TRUST EXPANSION)
+ * Date: 2026-06-03
  *
  * PURPOSE:
- * - Fix Samsung/iPhone mobile right-side cutoff
- * - Match the successful Features/Blog responsive page pattern
- * - Preserve desktop white-shell layout and branded scheduling visual
- * - Keep all payment, premium, KV, Stripe, and planner logic untouched
+ * - Strengthen About page trust signals for AdSense readiness
+ * - Add a clearer mission, team voice, editorial focus, and commitment section
+ * - Keep the page professional without using personal photos or fake team claims
+ * - Preserve responsive layout, navigation, footer links, and protected systems
  *
  * PROTECTED:
  * - No Stripe changes
@@ -17,7 +17,7 @@
  * - No ToolPreviewSection changes
  *
  * ROLLBACK:
- * - Revert to v7.2 if this responsive pass does not test cleanly
+ * - Revert to v7.3 if this About trust expansion does not test cleanly
  */
 
 export default function AboutPage() {
@@ -51,13 +51,38 @@ export default function AboutPage() {
       <section className="hero">
         <p className="pill">About Best Meeting Time</p>
 
-        <h1>Smarter Scheduling for Remote Teams, Clients, and Global Work</h1>
+        <h1>Helping People Schedule Across Time Zones With More Confidence</h1>
 
         <p>
-          Best Meeting Time helps people compare time zones faster, find fair
-          overlap windows, and schedule meetings with more confidence before the
-          invite goes out.
+          Best Meeting Time was created to make global scheduling easier for
+          remote teams, clients, consultants, freelancers, and anyone working
+          across cities, countries, and time zones.
         </p>
+      </section>
+
+      <section className="story-panel">
+        <div>
+          <p className="section-label">Why We Built This</p>
+          <h2>Scheduling should not feel like guesswork.</h2>
+          <span>
+            Coordinating across time zones can quickly become confusing. A time
+            that works well in one city may be too early, too late, or outside
+            normal working hours somewhere else. We built Best Meeting Time to
+            help people compare time zones, understand overlap windows, and make
+            better scheduling decisions before the invite goes out.
+          </span>
+        </div>
+
+        <div>
+          <p className="section-label">Our Focus</p>
+          <h2>Practical guidance, not just clock conversion.</h2>
+          <span>
+            Many tools show the current time in different places. Best Meeting
+            Time goes further by focusing on meeting context: work hours,
+            fairness, daylight-saving changes, remote collaboration, and
+            practical planning for real conversations.
+          </span>
+        </div>
       </section>
 
       <section className="visual-panel">
@@ -105,8 +130,8 @@ export default function AboutPage() {
           <p>Our Mission</p>
           <h2>Make time zone planning easier.</h2>
           <span>
-            Scheduling across locations should not depend on guesswork,
-            repeated conversions, or long message threads.
+            Scheduling across locations should not depend on repeated
+            conversions, unclear time references, or long message threads.
           </span>
         </article>
 
@@ -129,6 +154,33 @@ export default function AboutPage() {
         </article>
       </section>
 
+      <section className="trust-panel">
+        <p className="section-label">Our Commitment</p>
+        <h2>We are building Best Meeting Time as a useful scheduling resource.</h2>
+        <p>
+          Our goal is to provide clear tools and educational resources that help
+          people understand time-zone differences, plan fairer meeting windows,
+          and avoid common global scheduling mistakes.
+        </p>
+
+        <div className="trust-grid">
+          <a href="/guides">
+            <strong>Scheduling Guides</strong>
+            <span>Read practical resources for global meeting planning.</span>
+          </a>
+
+          <a href="/blog">
+            <strong>Blog Resources</strong>
+            <span>Explore articles about time zones and remote work timing.</span>
+          </a>
+
+          <a href="/contact">
+            <strong>Contact Best Meeting Time</strong>
+            <span>Reach out with questions, feedback, or support needs.</span>
+          </a>
+        </div>
+      </section>
+
       <section className="cta">
         <div>
           <p>Start Planning</p>
@@ -143,7 +195,7 @@ export default function AboutPage() {
           <strong>Schedule a Meeting</strong>
           <small>Free to try — no sign-up</small>
         </a>
-     </section>
+      </section>
 
       <footer className="about-footer">
         <a href="/privacy-policy">Privacy Policy</a>
@@ -240,7 +292,7 @@ export default function AboutPage() {
         }
 
         .hero {
-          max-width: 820px;
+          max-width: 860px;
           margin: 0 auto 18px;
           text-align: center;
         }
@@ -258,19 +310,61 @@ export default function AboutPage() {
 
         .hero h1 {
           color: #111827;
-          font-size: clamp(34px, 4vw, 48px);
-          line-height: 1.04;
+          font-size: clamp(34px, 4vw, 46px);
+          line-height: 1.05;
           margin: 0 0 10px;
           font-weight: 950;
           letter-spacing: -0.045em;
         }
 
         .hero p:last-child {
-          max-width: 780px;
+          max-width: 790px;
           margin: 0 auto;
           color: #4b5563;
           font-size: 16px;
-          line-height: 1.45;
+          line-height: 1.48;
+        }
+
+        .section-label {
+          margin: 0 0 8px;
+          color: #6d28d9;
+          font-size: 12px;
+          font-weight: 950;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        .story-panel {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 14px;
+          margin-bottom: 14px;
+        }
+
+        .story-panel div,
+        .trust-panel {
+          background: #faf9ff;
+          border: 1px solid #ddd6fe;
+          border-radius: 18px;
+          padding: 20px;
+        }
+
+        .story-panel h2,
+        .trust-panel h2 {
+          color: #111827;
+          font-size: 24px;
+          line-height: 1.12;
+          font-weight: 950;
+          margin: 0 0 9px;
+          letter-spacing: -0.03em;
+        }
+
+        .story-panel span,
+        .trust-panel p {
+          color: #4b5563;
+          font-size: 14.5px;
+          line-height: 1.58;
+          margin: 0;
         }
 
         .visual-panel {
@@ -401,6 +495,40 @@ export default function AboutPage() {
           line-height: 1.42;
         }
 
+        .trust-panel {
+          margin-bottom: 14px;
+        }
+
+        .trust-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 12px;
+          margin-top: 16px;
+        }
+
+        .trust-grid a {
+          background: #ffffff;
+          border: 1px solid #ddd6fe;
+          border-radius: 14px;
+          padding: 15px;
+          text-decoration: none;
+          display: grid;
+          gap: 6px;
+          box-shadow: 0 10px 22px rgba(91,33,182,0.08);
+        }
+
+        .trust-grid strong {
+          color: #111827;
+          font-size: 14px;
+          font-weight: 950;
+        }
+
+        .trust-grid span {
+          color: #4b5563;
+          font-size: 13px;
+          line-height: 1.42;
+        }
+
         .cta {
           padding: 15px 20px;
           border-radius: 16px;
@@ -458,13 +586,14 @@ export default function AboutPage() {
         }
 
         .cta a small {
-  font-size: 10px;
-  font-weight: 900;
-  color: #5b21b6;
-  opacity: 1;
-  margin-top: 2px;
-}
- .about-footer {
+          font-size: 10px;
+          font-weight: 900;
+          color: #5b21b6;
+          opacity: 1;
+          margin-top: 2px;
+        }
+
+        .about-footer {
           margin-top: 22px;
           padding-top: 22px;
           border-top: 1px solid #ede9fe;
@@ -481,6 +610,7 @@ export default function AboutPage() {
           font-weight: 800;
           text-decoration: none;
         }
+
         @media (max-width: 900px) {
           .about-page {
             max-width: min(100%, 520px);
@@ -527,7 +657,7 @@ export default function AboutPage() {
           }
 
           .hero h1 {
-            font-size: 34px;
+            font-size: 33px;
             line-height: 1.08;
           }
 
@@ -536,11 +666,10 @@ export default function AboutPage() {
             line-height: 1.55;
           }
 
-          .visual-panel {
-            grid-template-columns: 1fr;
-          }
-
-          .card-grid {
+          .story-panel,
+          .visual-panel,
+          .card-grid,
+          .trust-grid {
             grid-template-columns: 1fr;
           }
 
@@ -565,7 +694,7 @@ export default function AboutPage() {
           }
 
           .hero h1 {
-            font-size: 31px;
+            font-size: 30px;
           }
 
           .pill {
