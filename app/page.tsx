@@ -110,26 +110,42 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="authority-card">
-                <p className="section-eyebrow">Featured Resource</p>
-                <h2>Global Meeting Scheduling Playbook</h2>
-                <p>
-                  A complete guide for planning meetings across countries,
-                  handling overlap windows, respecting local work hours, and
-                  reducing scheduling friction for remote teams.
-                </p>
+             <div className="authority-card video-authority-card">
+  <p className="section-eyebrow">Featured Resource</p>
 
-                <div className="authority-list">
-                  <span>Fair meeting windows</span>
-                  <span>Daylight-saving planning</span>
-                  <span>International work-hour awareness</span>
-                  <span>Remote team coordination</span>
-                </div>
+  <h2>What If There Were No Time Zones?</h2>
 
-                <a href="/guides" className="authority-button">
-                  Start With the Guides
-                </a>
-              </div>
+  <p>
+    Watch this quick visual explainer to see why time zones matter
+    and why better global scheduling requires more than a simple
+    clock conversion.
+  </p>
+
+  <div className="hero-video-wrap">
+    <iframe
+      className="hero-video-frame"
+      src="https://www.youtube.com/embed/gvC3O4W8NBI"
+      title="What if there were no time zones?"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowFullScreen
+    />
+  </div>
+
+  <div className="video-button-row">
+    <a
+      href="https://youtube.com/shorts/gvC3O4W8NBI?feature=share"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="authority-button"
+    >
+      Watch Video
+    </a>
+
+    <a href="/guides" className="authority-button secondary-authority-button">
+      Start With the Guides
+    </a>
+  </div>
+</div>
             </section>
 
             <section className="content-section authority-section">
@@ -598,7 +614,41 @@ export default function HomePage() {
                 font-weight: 950;
                 width: fit-content;
               }
+.video-authority-card {
+  align-items: stretch;
+}
 
+.hero-video-wrap {
+  width: 100%;
+  max-width: 245px;
+  margin: 16px auto;
+  aspect-ratio: 9 / 16;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #111827;
+  border: 1px solid rgba(255,255,255,0.24);
+  box-shadow: 0 18px 42px rgba(0,0,0,0.24);
+}
+
+.hero-video-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.video-button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.secondary-authority-button {
+  background: rgba(255,255,255,0.14);
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.24);
+}
               .content-section {
                 margin-top: 14px;
                 padding: 22px 16px;
