@@ -41,10 +41,34 @@ export default function ContactPage() {
           <a href="/contact" className="active">Contact</a>
         </nav>
 
-        <a href="/how-it-works#schedule-tool" className="nav-cta">
-          <span>Schedule a Meeting</span>
-          <small>Free to try — no sign-up</small>
-        </a>
+       <div className="header-actions">
+  <div className="social-links" aria-label="Best Meeting Time social links">
+    <a
+      href="https://youtube.com/shorts/gvC3O4W8NBI?feature=share"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Watch Best Meeting Time on YouTube"
+      className="social-link youtube-link"
+    >
+      ▶
+    </a>
+
+    <a
+      href="https://www.facebook.com/profile.php?id=61590738985034"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Follow Best Meeting Time on Facebook"
+      className="social-link facebook-link"
+    >
+      f
+    </a>
+  </div>
+
+  <a href="/how-it-works#schedule-tool" className="nav-cta">
+    <span>Schedule a Meeting</span>
+    <small>Free to try — no sign-up</small>
+  </a>
+</div>
       </header>
 
       <section className="hero">
@@ -78,23 +102,7 @@ export default function ContactPage() {
   </div>
 </section>
 
-<section className="social-trust-panel">
-  <div>
-    <p>Official Social Page</p>
-    <h2>Follow Best Meeting Time on Facebook.</h2>
-    <span>
-      Visit our Facebook page for updates, scheduling resources, and links back
-      to the Best Meeting Time tool.
-    </span>
-  </div>
 
-  <a
-    href="https://www.facebook.com/profile.php?id=61590738985034"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Open Facebook Page
-  </a>
 </section>
 
       <section className="info-grid">
@@ -207,7 +215,40 @@ export default function ContactPage() {
           border-bottom: 2px solid #5b21b6;
           padding-bottom: 6px;
         }
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.social-link {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 950;
+  text-decoration: none;
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(30,27,75,0.16);
+}
+
+.youtube-link {
+  background: #dc2626;
+}
+
+.facebook-link {
+  background: #2563eb;
+  font-family: Arial, sans-serif;
+}
         .nav-cta {
           background: #5b21b6;
           color: #ffffff;
@@ -450,12 +491,17 @@ export default function ContactPage() {
             font-size: 13px;
           }
 
-          .nav-cta {
-            width: 100%;
-            max-width: 320px;
-            min-width: unset;
-          }
+          .header-actions {
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
+.nav-cta {
+  width: 100%;
+  max-width: 320px;
+  min-width: unset;
+}
           .hero {
             text-align: left;
             padding: 12px 4px 4px;
