@@ -42,10 +42,34 @@ export default function AboutPage() {
           <a href="/contact">Contact</a>
         </nav>
 
-        <a href="/how-it-works#schedule-tool" className="nav-cta">
-          <span>Schedule a Meeting</span>
-          <small>Free to try — no sign-up</small>
-        </a>
+        <div className="header-actions">
+  <div className="social-links" aria-label="Best Meeting Time social links">
+    <a
+      href="https://youtube.com/shorts/gvC3O4W8NBI?feature=share"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Watch Best Meeting Time on YouTube"
+      className="social-link youtube-link"
+    >
+      ▶
+    </a>
+
+    <a
+      href="https://www.facebook.com/profile.php?id=61590738985034"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Follow Best Meeting Time on Facebook"
+      className="social-link facebook-link"
+    >
+      f
+    </a>
+  </div>
+
+  <a href="/how-it-works#schedule-tool" className="nav-cta">
+    <span>Schedule a Meeting</span>
+    <small>Free to try — no sign-up</small>
+  </a>
+</div>
       </header>
 
       <section className="hero">
@@ -258,12 +282,47 @@ export default function AboutPage() {
         }
 
         .nav .active {
-          color: #5b21b6;
-          border-bottom: 2px solid #5b21b6;
-          padding-bottom: 6px;
-        }
+  color: #5b21b6;
+  border-bottom: 2px solid #5b21b6;
+  padding-bottom: 6px;
+}
 
-        .nav-cta {
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.social-link {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 950;
+  box-shadow: 0 8px 18px rgba(30,27,75,0.16);
+}
+
+.youtube-link {
+  background: #dc2626;
+}
+
+.facebook-link {
+  background: #2563eb;
+  font-family: Arial, sans-serif;
+}
+
+.nav-cta {
           background: #5b21b6;
           color: #ffffff;
           padding: 9px 17px;
@@ -645,11 +704,17 @@ export default function AboutPage() {
             font-size: 13px;
           }
 
-          .nav-cta {
-            width: 100%;
-            max-width: 320px;
-            min-width: unset;
-          }
+          .header-actions {
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.nav-cta {
+  width: 100%;
+  max-width: 320px;
+  min-width: unset;
+}
 
           .hero {
             text-align: left;
