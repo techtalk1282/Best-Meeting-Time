@@ -143,7 +143,15 @@ export default function AboutPage() {
           <strong>Schedule a Meeting</strong>
           <small>Free to try — no sign-up</small>
         </a>
-      </section>
+     </section>
+
+      <footer className="about-footer">
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms-of-service">Terms of Service</a>
+        <a href="/disclaimer">Disclaimer</a>
+        <a href="/cookie-policy">Cookie Policy</a>
+        <a href="/contact">Contact</a>
+      </footer>
 
       <style>{`
         .about-page {
@@ -456,7 +464,23 @@ export default function AboutPage() {
   opacity: 1;
   margin-top: 2px;
 }
+ .about-footer {
+          margin-top: 22px;
+          padding-top: 22px;
+          border-top: 1px solid #ede9fe;
+          display: flex;
+          justify-content: center;
+          gap: 18px;
+          flex-wrap: wrap;
+          text-align: center;
+        }
 
+        .about-footer a {
+          color: #5b21b6;
+          font-size: 14px;
+          font-weight: 800;
+          text-decoration: none;
+        }
         @media (max-width: 900px) {
           .about-page {
             max-width: min(100%, 520px);
