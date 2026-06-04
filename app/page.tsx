@@ -55,7 +55,6 @@ export default function HomePage() {
                 <a href="/guides">Guides</a>
                 <a href="/blog">Blog</a>
                 <a href="/about">About</a>
-                <a href="/contact">Contact</a>
               </nav>
 
               <a href="/how-it-works#schedule-tool" className="nav-cta">
