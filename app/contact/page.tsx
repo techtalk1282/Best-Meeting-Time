@@ -121,7 +121,15 @@ export default function ContactPage() {
           <strong>Schedule a Meeting</strong>
           <small>Free to try — no sign-up</small>
         </a>
-      </section>
+       </section>
+
+      <footer className="contact-footer">
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms-of-service">Terms of Service</a>
+        <a href="/disclaimer">Disclaimer</a>
+        <a href="/cookie-policy">Cookie Policy</a>
+        <a href="/contact">Contact</a>
+      </footer>
 
       <style>{`
         .contact-page {
@@ -372,7 +380,23 @@ export default function ContactPage() {
           font-weight: 850;
           opacity: 0.9;
         }
+.contact-footer {
+          margin-top: 22px;
+          padding-top: 22px;
+          border-top: 1px solid #ede9fe;
+          display: flex;
+          justify-content: center;
+          gap: 18px;
+          flex-wrap: wrap;
+          text-align: center;
+        }
 
+        .contact-footer a {
+          color: #5b21b6;
+          font-size: 14px;
+          font-weight: 800;
+          text-decoration: none;
+        }
         @media (max-width: 900px) {
           .contact-page {
             max-width: min(100%, 520px);
