@@ -282,7 +282,15 @@ export default function FunFactsAboutTimeZonesPage() {
               Open the Meeting Planner
             </a>
           </div>
-        </section>
+       </section>
+
+        <footer className="standard-footer">
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/terms-of-service">Terms of Service</a>
+          <a href="/disclaimer">Disclaimer</a>
+          <a href="/cookie-policy">Cookie Policy</a>
+          <a href="/contact">Contact</a>
+        </footer>
       </section>
 
       <style>{`
@@ -652,7 +660,23 @@ export default function FunFactsAboutTimeZonesPage() {
           border-radius: 14px;
           box-shadow: 0 16px 36px rgba(250,204,21,0.28);
         }
+ .standard-footer {
+          border-top: 1px solid #ede9fe;
+          margin: 36px 10px 0;
+          padding: 24px 10px 0;
+          display: flex;
+          justify-content: center;
+          gap: 22px;
+          flex-wrap: wrap;
+          text-align: center;
+        }
 
+        .standard-footer a {
+          color: #5b21b6;
+          font-size: 14px;
+          font-weight: 900;
+          text-decoration: none;
+        }
         @media (max-width: 900px) {
           .site-header {
             flex-wrap: wrap;
