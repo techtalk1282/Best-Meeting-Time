@@ -569,13 +569,14 @@ export default function HomePage() {
               }
 
               .authority-card h2 {
-                color: #ffffff;
-                font-size: 30px;
-                line-height: 1.05;
-                margin: 0 0 12px;
-                font-weight: 950;
-                letter-spacing: -0.03em;
-              }
+  color: #ffffff;
+  font-size: 26px;
+  line-height: 1.1;
+  margin: 0 0 12px;
+  font-weight: 950;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
 
               .authority-card p {
                 margin: 0;
