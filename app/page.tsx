@@ -50,17 +50,18 @@ export default function HomePage() {
               <nav className="nav" aria-label="Homepage navigation">
                 <a href="/">Home</a>
                 <a href="/how-it-works">Schedule a Meeting</a>
-                <a href="/features">Features</a>
+<a href="/how-it-works">Current World Time</a>
+<a href="/features">Features</a>
                 <a href="/guides">Guides</a>
                 <a href="/blog">Blog</a>
                 <a href="/about">About</a>
                 <a href="/contact">Contact</a>
               </nav>
 
-              <a href="/guides" className="nav-cta">
-                <span>Explore Guides</span>
-                <small>Learn before you schedule</small>
-              </a>
+              <a href="/how-it-works#schedule-tool" className="nav-cta">
+  <span>Meeting Planner & World Clock</span>
+  <small>Free • No Sign-Up</small>
+</a>
             </header>
 
             <section className="hero authority-hero">
@@ -431,12 +432,11 @@ export default function HomePage() {
               }
 
               .nav {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 16px;
-              }
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+}
               .nav a {
                 color: #374151;
                 font-size: 13px;
@@ -458,7 +458,7 @@ export default function HomePage() {
                 justify-content: center;
                 gap: 3px;
                 line-height: 1.18;
-                min-width: 146px;
+                min-width: 190px;
                 box-shadow: 0 10px 22px rgba(91,33,182,0.22);
               }
 
