@@ -39,7 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/terms-of-service`, lastModified: new Date() },
     { url: `${baseUrl}/disclaimer`, lastModified: new Date() },
     { url: `${baseUrl}/cookie-policy`, lastModified: new Date() },
-
+{ url: `${baseUrl}/refund-policy`, lastModified: new Date() },
     // Authority / Guide / Blog Pages
     { url: `${baseUrl}/global-meeting-scheduling-playbook`, lastModified: new Date() },
     { url: `${baseUrl}/how-to-plan-global-team-meetings`, lastModified: new Date() },
