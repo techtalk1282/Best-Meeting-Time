@@ -222,13 +222,13 @@ export default function AboutPage() {
       </section>
 
       <footer className="about-footer">
-        <a href="/privacy-policy">Privacy Policy</a>
-        <a href="/terms-of-service">Terms of Service</a>
-        <a href="/disclaimer">Disclaimer</a>
-        <a href="/cookie-policy">Cookie Policy</a>
-        <a href="/contact">Contact</a>
-      </footer>
-
+  <a href="/privacy-policy">Privacy Policy</a>
+  <a href="/terms-of-service">Terms of Service</a>
+  <a href="/disclaimer">Disclaimer</a>
+  <a href="/cookie-policy">Cookie Policy</a>
+  <a href="/refund-policy">Refund Policy</a>
+  <a href="/contact">Contact</a>
+</footer>
       <style>{`
         .about-page {
           width: 100%;
