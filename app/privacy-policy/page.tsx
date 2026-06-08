@@ -437,6 +437,17 @@ export default function PrivacyPolicy() {
           <Link href="/terms-of-service" style={{ color: "white", textDecoration: "none", fontWeight: 700 }}>
             Terms of Service
           </Link>
+          <Link href="/disclaimer" style={{ color: "white", textDecoration: "none", fontWeight: 700 }}>
+  Disclaimer
+</Link>
+
+<Link href="/cookie-policy" style={{ color: "white", textDecoration: "none", fontWeight: 700 }}>
+  Cookie Policy
+</Link>
+
+<Link href="/refund-policy" style={{ color: "white", textDecoration: "none", fontWeight: 700 }}>
+  Refund Policy
+</Link>
         </div>
       </footer>
     </main>
